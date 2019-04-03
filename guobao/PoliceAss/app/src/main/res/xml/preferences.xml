@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:preference="http://schemas.android.com/apk/res-auto">
+
+
+<gbpe.policeass.utils.MyPreferenceCategory
+    android:title="@string/video_param_set"/>
+    <ListPreference
+        android:summary="1280x720 720p 4:3"
+        android:key="video_size"
+        android:defaultValue="1280x720 720p 4:3"
+        android:entries="@array/video_size"
+        android:entryValues="@array/video_size"
+        android:title="@string/video_solution" />
+    <ListPreference
+        android:summary="30"
+        android:defaultValue="30"
+        android:entries="@array/video_rate"
+        android:entryValues="@array/video_rate"
+        android:key="video_rate"
+        android:title="@string/frame_rate" />
+
+    <ListPreference
+         android:defaultValue="@string/thirty_minutes"
+        android:summary="@string/thirty_minutes"
+        android:entries="@array/video_segmented"
+        android:entryValues="@array/video_segmented"
+        android:key="video_segmented"
+        android:title="@string/segment_recording" />
+
+    <ListPreference
+          android:defaultValue="@string/close"
+        android:summary="@string/close"
+        android:entries="@array/video_segmented"
+        android:entryValues="@array/video_segmented"
+        android:key="video_delay"
+        android:title="@string/video_delay" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="video_prerecord"
+        android:title="@string/record_in_advance" />
+
+
+    <ListPreference
+        android:defaultValue="@string/normal"
+        android:summary="@string/normal"
+        android:entries="@array/quality"
+        android:entryValues="@array/quality"
+        android:key="video_quality"
+        android:title="@string/video_quality" />
+    <ListPreference
+        android:defaultValue="mp4"
+        android:summary="mp4"
+        android:entries="@array/video_outputformat"
+        android:entryValues="@array/video_outputformat"
+        android:key="video_outputformat"
+        android:title="@string/video_formation" />
+
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="video_motiondetection"
+        android:title="@string/motion_detection" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="video_osd"
+        android:title="@string/watermark"/>
+
+<!--
+    <EditTextPreference
+        android:dependency="video_osd"
+        android:defaultValue="2017-7-7 17:00:08"
+        android:key="videoWatermark"
+        android:title="水印格式设置"
+        android:summary="2017-7-7 17:00:08"
+        android:dialogTitle="只能是数字,横线，空格和冒号"
+        />
+-->
+
+    <ListPreference
+         android:defaultValue="80000"
+        android:summary="80000"
+        android:entries="@array/video_maxduration"
+        android:entryValues="@array/video_maxduration"
+        android:key="video_maxduration"
+        android:title="@string/max_video_duration" />
+
+
+
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="@string/photo_setting"/>
+    <ListPreference
+         android:defaultValue="1280x720 720p 4:3"
+        android:summary="1280x720 720p 4:3"
+        android:entries="@array/video_size"
+        android:entryValues="@array/video_size"
+        android:key="preview_size"
+        android:title="@string/preview_solution" />
+    <ListPreference
+        android:defaultValue="5M (2560x1920)"
+        android:summary="5M (2560x1920)"
+        android:entries="@array/picture_size"
+        android:entryValues="@array/picture_size"
+        android:key="picture_size"
+        android:title="@string/picture_solution" />
+
+    <ListPreference
+        android:defaultValue="@string/close"
+        android:entries="@array/jpeg_continousShooting"
+        android:entryValues="@array/jpeg_continousShooting"
+        android:key="jpeg_continous"
+        android:title="@string/continuous_shooting"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="isPicAddOsd"
+        android:title="@string/picture_watermark"/>
+<!--
+    <EditTextPreference
+        android:dependency="isPicAddOsd"
+        android:defaultValue="2017-7-7 17:00:08"
+        android:key="picWatermark"
+        android:title="图片水印格式设置"
+        android:summary="2017-7-7 17:00:08"
+        android:dialogTitle="水印设置"
+        />
+-->
+
+    <ListPreference
+        android:summary="jpg"
+        android:defaultValue="jpg"
+        android:entries="@array/jpeg_outputformat"
+        android:entryValues="@array/jpeg_outputformat"
+        android:key="jpeg_outputformat"
+        android:title="@string/picture_format" />
+    <ListPreference
+        android:defaultValue="auto"
+        android:key="flash_mode"
+        android:title="@string/flash_light" />
+    <ListPreference
+        android:key="focus_mode"
+        android:title="@string/camera_focus_mode" />
+    <ListPreference
+        android:defaultValue="auto"
+        android:key="white_balance"
+        android:title="@string/camera_white_balance" />
+    <ListPreference
+        android:defaultValue="auto"
+        android:key="scene_mode"
+        android:title="@string/camera_scance" />
+    <ListPreference
+        android:entryValues="@array/expose"
+        android:entries="@array/expose"
+        android:defaultValue="0 EV"
+        android:summary="0 EV"
+        android:key="exposure_compensation"
+        android:title="@string/camera_compensation" />
+    <ListPreference
+        android:defaultValue="@string/normal"
+        android:entries="@array/quality"
+        android:entryValues="@array/quality"
+        android:summary="@string/normal"
+        android:key="jpeg_quality"
+        android:title="@string/photo_quality" />
+
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="@string/audio_recorder_parameter"/>
+    <ListPreference
+        android:summary="44100"
+        android:defaultValue="44100"
+        android:entries="@array/audio_samplerate"
+        android:entryValues="@array/audio_samplerate"
+        android:key="audio_samplerate"
+        android:title="@string/audio_sampling_rate" />
+    <ListPreference
+        android:summary="wav"
+        android:defaultValue="wav"
+        android:entries="@array/audio_outputformat"
+        android:entryValues="@array/audio_outputformat"
+        android:key="audio_outputformat"
+        android:title="@string/audio_format" />
+
+
+    <ListPreference
+         android:summary="80000"
+        android:defaultValue="80000"
+        android:entries="@array/audio_maxduration"
+        android:entryValues="@array/audio_maxduration"
+        android:key="audio_maxduration"
+        android:title="@string/audio_max_duration" />
+
+
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="@string/system_setting"/>
+    <!--<SwitchPreference-->
+        <!--android:defaultValue="false"-->
+        <!--android:key="gps_data"-->
+        <!--android:title="GPS定位" />-->
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="gps_data2"
+        preference:titlestring="@string/gps_location" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="wifi_data"
+        preference:titlestring="@string/wifi" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="key_tone"
+        android:title="@string/prompt_tone"/>
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="vibrate"
+        android:title="@string/vibrator"/>
+    <!--<SwitchPreference-->
+        <!--android:defaultValue="false"-->
+        <!--android:key="onekey_lockscreen"-->
+        <!--android:title="一键锁屏"/>-->
+    <SwitchPreference
+        android:title="@string/tts_setting"
+        android:summary="@string/tts_tips"
+        android:defaultValue="false"
+        android:key="text_to_speech"
+        />
+
+    <ListPreference
+        android:summary="@string/picture_mode"
+        android:defaultValue="@string/picture_mode"
+        android:entries="@array/flieview"
+        android:entryValues="@array/flieview"
+        android:key="fileview_type"
+        android:title="@string/file_view_mode" />
+    <ListPreference
+        android:summary="English"
+        android:defaultValue="English"
+        android:entries="@array/language"
+        android:entryValues="@array/language"
+        android:key="LanguageZfy"
+        android:title="@string/system_language_setting" />
+    <ListPreference
+        android:summary="@string/usb_setting"
+        android:defaultValue="@string/usb_forbiden"
+        android:entries="@array/udisk"
+        android:entryValues="@array/udisk"
+        android:key="udisk"
+        android:title="@string/usb_setting" />
+    <ListPreference
+        android:summary="@string/manual"
+        android:defaultValue="@string/manual"
+        android:entries="@array/infraed"
+        android:entryValues="@array/infraed"
+        android:key="InfraRed"
+        android:title="@string/infrared" />
+
+
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="screenOn"
+        android:summary="@string/recording_screen_on"
+        android:title="@string/keep_screen_on"/>
+    <gbpe.policeass.views.PreferenceWithTip
+        android:defaultValue="17:15:31"
+        android:key="brightness"
+        preference:tipstring="@string/display_tips"
+        preference:titlestring="@string/display_setting" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="blutooth"
+        preference:tipstring="@string/bluetooth"
+        preference:titlestring="@string/bluetooth" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="@string/user_para"/>
+    <EditTextPreference
+        android:key="policeNumber"
+        android:title="@string/police_number"
+        android:summary="888888"
+        android:defaultValue="888888"
+        android:dialogTitle="@string/police_number"
+        android:inputType="number"
+        />
+
+    <EditTextPreference
+        android:defaultValue="123456"
+        android:key="devNumber"
+        android:title="@string/device_number"
+        android:summary="123456"
+        android:dialogTitle="@string/device_number"
+        android:inputType="number"
+        />
+
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="AdminName"
+        android:title="@string/admin_name"
+        android:summary="xxx"
+        android:dialogTitle="@string/admin_name"
+        android:inputType="textAutoComplete"
+        />
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="usrName"
+        android:title="@string/user_name"
+        android:summary="xxx"
+        android:dialogTitle="@string/user_name"
+        android:inputType="textAutoComplete"
+        />
+
+    <EditTextPreference
+        android:defaultValue="111111"
+        android:key="usrPassword"
+        android:title="@string/usr_passwd"
+        android:summary="111111"
+        android:dialogTitle="@string/usr_passwd"
+        android:inputType="number"
+        />
+
+    <EditTextPreference
+        android:defaultValue="111111"
+        android:key="AdminPassword"
+        android:title="@string/admin_passwd"
+        android:summary="111111"
+        android:dialogTitle="@string/admin_passwd"
+        android:inputType="number"
+        />
+
+
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="unitNumber"
+        android:title="@string/company_number"
+        android:summary="xxx"
+        android:dialogTitle="@string/company_number"
+        android:inputType="textAutoComplete"
+        />
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="unitName"
+        android:title="@string/company_name"
+        android:summary="xxx"
+        android:dialogTitle="@string/company_name"
+        android:inputType="textAutoComplete"
+        />
+
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="current_data"
+        android:defaultValue="2017/3/18"
+        preference:tipstring="2017/3/18"
+        preference:titlestring="@string/date_setting" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="current_time"
+        android:defaultValue="17:15:31"
+        preference:tipstring="17:15:31"
+        preference:titlestring="@string/time_setting" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+
+
+
+    <EditTextPreference
+    android:defaultValue="110"
+    android:key="sos"
+    android:title="@string/sos_setting"
+    android:summary="110"
+    android:dialogTitle="@string/sos_setting"
+    android:inputType="number"
+    />
+
+
+    <!--<gbpe.policeass.views.PreferenceWithTip-->
+        <!--android:key="finger_print"-->
+        <!--android:defaultValue="指纹设置"-->
+        <!--preference:tipstring="指纹设置"-->
+        <!--preference:titlestring="指纹设置" >-->
+        <!--<intent-->
+        <!--android:action="android.intent.action.VIEW"-->
+        <!--android:data="http://www.baidu.com" />-->
+    <!--</gbpe.policeass.views.PreferenceWithTip>-->
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="reset"
+        preference:tipstring="@string/factory_setting"
+        preference:titlestring="@string/factory_setting" >
+        <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:data="http://www.baidu.com" />-->
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+
+</PreferenceScreen>

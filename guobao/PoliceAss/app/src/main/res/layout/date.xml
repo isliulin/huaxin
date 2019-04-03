@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <DatePicker
+         android:id="@+id/datePicker"
+        android:calendarViewShown="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </DatePicker>
+    <LinearLayout
+        android:id="@+id/ll_set_date"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/tv_cancle"
+            android:text="@string/cancel"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_marginLeft="20dp"
+            android:id="@+id/tv_confim"
+            android:text="@string/confirm"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

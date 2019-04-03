@@ -1,0 +1,211 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+    </style>
+
+
+    <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+    </style>
+    <!--横线style-->
+    <style name="hon_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5px</item>
+        <item name="android:background">#DDDDDD</item>
+    </style>
+    <!--设置界面">"图片样式-->
+    <style name="img_setup_style">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:src">@drawable/next</item>
+    </style>
+    <!--设置界面testview样式-->
+    <style name="tv_setup_style">
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/dark</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40sp</item>
+    </style>
+   <!--设置界面switch样式-->
+    <style name="sw_setup_style">
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <!--设置界面switch样式-->
+    <style name="et_setup_style">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textSize">@dimen/textSize</item>
+    </style>
+
+
+
+    <!--设置界面按钮样式-->
+    <style name="btn_setup_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <!--指南针style-->
+    <style name="copass_style">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!--dialog密码框样式-->
+    <style name="CustomDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:background">#003371</item>
+    </style>
+
+
+
+
+
+
+
+
+    <style name="main_style">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+
+    <style name="main_layout_style">
+         <item name="android:orientation">horizontal</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+         <item name="android:layout_weight">1</item>
+     </style>
+
+
+
+   <!--主界面的底部栏样式-->
+    <style name="mainpage_bottom_style">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+     <!--主界面的底部栏样式-->
+    <style name="mainpage_bottom_botton_style">
+        <item name="android:scaleType">fitCenter</item>
+         <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+
+
+
+    <style name="mainpage_top_style">
+
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 遮罩层 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+
+
+    <style name="input_et_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">#3E3A39</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:textColorHint">#AAAAAA</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <!-- 大按钮样式 -->
+
+    <style name="tv_big_button_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@drawable/button_round_bg</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- 输入框的样式 -->
+
+    <style name="input_ll_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
+    </style>
+    <style name="input_iv_style">
+        <item name="android:layout_width">17dp</item>
+        <item name="android:layout_height">17dp</item>
+    </style>
+
+
+    <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowIsTranslucent">true</item>  <!-- 透明背景 -->
+    </style>
+
+    <style name="MyDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item> <!--activity不变暗-->
+    </style>
+
+</resources>

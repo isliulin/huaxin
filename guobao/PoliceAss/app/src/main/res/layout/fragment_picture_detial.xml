@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<uk.co.senab.photoview.PhotoView
+    android:id="@+id/iv_picture_detial"
+    android:layout_width="240dp"
+    android:layout_height="320dp" />
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="3dp"
+    android:paddingTop="3dp"
+    android:paddingLeft="@dimen/margin_left"
+    android:paddingRight="@dimen/margin_right">
+
+
+    <LinearLayout
+        style="@style/main_layout_style">
+
+        <TextView
+            android:id="@+id/tv_video_browse"
+            style="@style/main_style"
+            android:drawableTop="@drawable/spll"
+            android:text="视频浏览"
+            />
+        <TextView
+            android:id="@+id/tv_pic_browse"
+            style="@style/main_style"
+            android:drawableTop="@drawable/tp"
+            android:text="图片浏览"
+            />
+        <TextView
+            android:id="@+id/tv_audio_browse"
+            style="@style/main_style"
+            android:drawableTop="@drawable/syll"
+            android:text="声音浏览"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/main_layout_style">
+        <TextView
+            android:id="@+id/tv_setting"
+            style="@style/main_style"
+            android:drawableTop="@drawable/pass"
+            android:text="指南针"
+            />
+        <TextView
+            android:id="@+id/tv_onkey_upload"
+            style="@style/main_style"
+            android:drawableTop="@drawable/voice_intercom"
+            android:text="4G传输"
+            />
+        <TextView
+            android:id="@+id/tv_content_quarey"
+            style="@style/main_style"
+            android:drawableTop="@drawable/sc"
+            android:text="一键上传"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/main_layout_style">
+        <TextView
+            android:id="@+id/tv_sos"
+            style="@style/main_style"
+            android:drawableTop="@drawable/wodesos"
+            android:text="SOS"
+            />
+
+        <TextView
+            android:id="@+id/tv_real_time_audio"
+            style="@style/main_style"
+            android:drawableTop="@drawable/wjsxt"
+            android:text="外接摄像头"
+            />
+        <TextView
+            android:id="@+id/tv_extern_camera"
+            style="@style/main_style"
+            android:drawableTop="@drawable/setting"
+            android:text="系统设置"
+            />
+    </LinearLayout>
+
+</LinearLayout>

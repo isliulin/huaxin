@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		<FrameLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<ImageView
+				android:id="@+id/iv_curr"
+				android:background="#dcdcdc"
+				android:layout_weight="3"
+				android:layout_width="100dp"
+				android:layout_height="150dp" />
+			<ImageView
+				android:layout_gravity="center"
+				android:src="@drawable/video"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+		</FrameLayout>
+
+
+		<LinearLayout
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<TextView
+				android:textSize="8sp"
+				android:id="@+id/tv_name"
+				android:textColor="#000"
+				android:layout_weight="1"
+				android:text="姓名：习近平"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView
+				android:id="@+id/tv_pNumber"
+				android:textSize="8sp"
+				android:layout_toRightOf="@id/tv_name"
+				android:textColor="#000"
+				android:layout_weight="1"
+				android:text="警员编号:123456"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView
+				android:id="@+id/startTime"
+				android:textSize="8sp"
+				android:textColor="#000"
+				android:layout_weight="1"
+				android:text="开始时间：2010.11.3 13:12:04"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView
+				android:id="@+id/stopTime"
+				android:textSize="8sp"
+				android:textColor="#000"
+				android:layout_weight="1"
+				android:text="结束时间：2010.11.3 13:15:04"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView
+				android:id="@+id/tv_seinor"
+				android:textSize="8sp"
+				android:textColor="#000"
+				android:text="重要等级：一般"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<TextView
+				android:id="@+id/tvSize"
+				android:textSize="8sp"
+				android:textColor="#000"
+				android:text="大小:100M"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+			<LinearLayout
+				android:orientation="horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<TextView
+					android:textColor="#000"
+					android:textSize="8sp"
+					android:text="标记为："
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				<Spinner
+					android:layout_marginLeft="30dp"
+					android:id="@+id/sp_rank"
+					android:entries="@array/rank"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+				</Spinner>
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+
+	<gbpe.policeass.views.MyRecyclerView
+		android:id="@+id/id_recyclerview_horizontal"
+		android:layout_width="240dp"
+		android:layout_height="100dp"
+		android:layout_centerVertical="true"
+		android:scrollbars="none" />
+
+
+</LinearLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+	<!--android:orientation="vertical"-->
+	<!--android:background="#ffffff"-->
+	<!--android:layout_width="match_parent"-->
+	<!--android:layout_height="match_parent">-->
+
+	<!--<LinearLayout-->
+		<!--android:orientation="horizontal"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="wrap_content">-->
+		<!--<LinearLayout-->
+			<!--android:layout_weight="1"-->
+			<!--android:orientation="vertical"-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content">-->
+			<!--<RelativeLayout-->
+ 				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="wrap_content">-->
+				<!--<TextView-->
+					<!--android:textSize="8sp"-->
+					<!--android:id="@+id/tv_name"-->
+					<!--android:textColor="#000"-->
+					<!--android:layout_weight="1"-->
+					<!--android:text="姓名：习近平"-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content" />-->
+				<!--<TextView-->
+					<!--android:id="@+id/tv_pNumber"-->
+					<!--android:textSize="8sp"-->
+					<!--android:layout_marginLeft="10dp"-->
+					<!--android:layout_toRightOf="@id/tv_name"-->
+ 					<!--android:textColor="#000"-->
+					<!--android:layout_weight="1"-->
+					<!--android:text="警员编号:123456"-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content" />-->
+			<!--</RelativeLayout>-->
+
+			<!--<TextView-->
+				<!--android:id="@+id/startTime"-->
+				<!--android:textSize="8sp"-->
+				<!--android:textColor="#000"-->
+				<!--android:layout_weight="1"-->
+				<!--android:text="开始时间：2010.11.3 13:12:04"-->
+				<!--android:layout_width="wrap_content"-->
+				<!--android:layout_height="wrap_content" />-->
+			<!--<TextView-->
+				<!--android:id="@+id/stopTime"-->
+				<!--android:textSize="8sp"-->
+				<!--android:textColor="#000"-->
+				<!--android:layout_weight="1"-->
+				<!--android:text="结束时间：2010.11.3 13:15:04"-->
+				<!--android:layout_width="wrap_content"-->
+				<!--android:layout_height="wrap_content" />-->
+
+			<!--<LinearLayout-->
+				<!--android:orientation="horizontal"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="wrap_content">-->
+				<!--<TextView-->
+					<!--android:id="@+id/tvSize"-->
+					<!--android:textSize="8sp"-->
+					<!--android:textColor="#000"-->
+ 					<!--android:text="大小:100M"-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content" />-->
+
+				<!--<TextView-->
+					<!--android:id="@+id/tv_seinor"-->
+					<!--android:textSize="8sp"-->
+					<!--android:layout_marginLeft="10dp"-->
+					<!--android:textColor="#000"-->
+ 					<!--android:text="重要等级："-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content" />-->
+
+				<!--<Spinner-->
+					<!--android:id="@+id/sp_rank"-->
+					<!--android:entries="@array/rank"-->
+					<!--android:layout_marginLeft="5dp"-->
+					<!--android:layout_width="wrap_content"-->
+					<!--android:layout_height="wrap_content">-->
+				<!--</Spinner>-->
+			<!--</LinearLayout>-->
+
+			<!--<TextView-->
+				<!--android:id="@+id/tv_duration"-->
+				<!--android:textSize="8sp"-->
+				<!--android:textColor="#000"-->
+				<!--android:layout_weight="1"-->
+				<!--android:text="时间长度:30分"-->
+				<!--android:layout_width="wrap_content"-->
+				<!--android:layout_height="wrap_content" />-->
+
+
+		<!--</LinearLayout>-->
+	<!--</LinearLayout>-->
+	<!--<android.support.v7.widget.RecyclerView-->
+		<!--android:id="@+id/id_recyclerview_horizontal"-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="120dp"-->
+		<!--android:layout_centerVertical="true"-->
+ 		<!--android:scrollbars="none" />-->
+	<!---->
+
+
+<!--</LinearLayout>-->
+

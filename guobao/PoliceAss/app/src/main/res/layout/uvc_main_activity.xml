@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context="gbpe.policeass.uvc.UvcMainActivity">
+    <RelativeLayout
+        android:visibility="gone"
+         android:id="@+id/uvc_rl"
+        android:background="#444444"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:background="@mipmap/dd"
+            android:id="@+id/uvc_ll"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+
+        <Button
+
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:paddingRight="8dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/uvc_charge"
+             android:background="@drawable/icn_change_view_pressed"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+    </RelativeLayout>
+
+
+    <!-- 以上是标题栏-->
+
+
+
+
+
+
+<!-- 此处应该是点击屏幕显示/隐藏三个按钮-->
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/uvc_bottom_button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/uvc_tv_menue"
+            android:textSize="10sp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/menue_main"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/uvc_iv_audio_reocrd"
+            android:src="@drawable/btn_audio_record_bottom"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:background="@drawable/aa"
+            android:gravity="center"
+            android:layout_width="160dp"
+            android:layout_height="80dp">
+
+
+
+            <ImageView
+                android:id="@+id/uvc_iv_video_record"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:src="@drawable/btn_video_record_bottom"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                />
+            <ImageView
+                android:id="@+id/uvc_iv_take_picture"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:src="@drawable/btn_img_shutter_bottom"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <!--   此处应该为显示警员编号等信息   -->
+    <!--   fl_sv_container 为显示摄像头图像的surface-->
+        <FrameLayout
+        android:layout_below="@id/uvc_rl"
+        android:layout_above="@id/uvc_bottom_button"
+        android:id="@+id/uvc_fl_sView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:background="#363433"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <FrameLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                android:id="@+id/uvc_fl_sv_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <!-- 相对布局，放置两个按钮 -->
+                <RelativeLayout
+                    android:layout_alignParentBottom="true"
+                android:id="@+id/uvc_ll_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextClock
+                        style="@style/mainpage_top_style"
+                    android:id="@+id/uvc_tc_date"
+                       />
+                    <TextView
+                         android:layout_centerHorizontal="true"
+                        style="@style/mainpage_top_style"
+                    android:id="@+id/uvc_tv_memory"
+                        android:text="10000"
+                        />
+                    <TextClock
+                         android:layout_alignParentRight="true"
+                        style="@style/mainpage_top_style"
+                    android:id="@+id/uvc_tc_time"
+                       />
+                </RelativeLayout>
+
+
+                <!-- 相对布局，放置两个按钮 -->
+                <RelativeLayout
+                android:layout_above="@id/uvc_ll_text"
+                android:id="@+id/uvc_lll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:textColor="#ffff"
+                    android:id="@+id/uvc_tv_pid"
+                        android:text="PID:5678"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_alignParentRight="true"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:textColor="#ffff"
+                    android:id="@+id/uvc_tv_sn"
+                        android:text="SN:123456"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <TextView
+                android:id="@+id/uvc_tv_tital"
+                    android:textSize="12sp"
+                    android:textColor="#ffffff"
+                    android:text="1024×768"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:visibility="invisible"
+                android:id="@+id/uvc_rl_indicate"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content">
+                    <Chronometer
+                        android:layout_alignParentRight="true"
+                        android:textSize="13sp"
+                        android:textColor="#fff"
+                    android:id="@+id/uvc_timer_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_centerVertical="true"
+                         android:layout_marginRight="3dp"
+                        android:layout_toLeftOf="@id/timer_main"
+                        android:layout_gravity="center_vertical"
+                    android:id="@+id/uvc_iv_point"
+                        android:src="@drawable/point"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp" />
+                </RelativeLayout>
+
+                <gbpe.policeass.views.TimeIndicator
+                android:id="@+id/uvc_tid"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </gbpe.policeass.views.TimeIndicator>
+                <!--<gbpe.policeass.views.TimeIndicator-->
+                    <!--android:id="@+id/tid"-->
+                    <!--android:layout_centerHorizontal="true"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                <!--</gbpe.policeass.views.TimeIndicator>-->
+
+
+                <gbpe.policeass.views.MemoryView
+                    android:src="@mipmap/nc1"
+                    android:layout_alignParentRight="true"
+                android:id="@+id/uvc_iv_memory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp" />
+
+                <ImageView
+                    android:layout_marginRight="7dp"
+                    android:layout_toLeftOf="@id/uvc_iv_memory"
+                    android:src="@drawable/battery2"
+                android:id="@+id/uvc_iv_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp" />
+                <ImageView
+                    android:visibility="invisible"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/uvc_iv_memory"
+                    android:src="@mipmap/cd"
+                android:id="@+id/uvc_iv_cd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp" />
+                <TextView
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_toLeftOf="@id/uvc_iv_main"
+                android:id="@+id/uvc_tv_battery_level"
+                    android:text="0%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <Button
+                android:visibility="gone"
+                android:onClick="startAndStop2"
+                android:text="开始"
+            android:id="@+id/uvc_vvvv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+    <Button
+        android:visibility="gone"
+           android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:text="跳转"
+        android:id="@+id/uvc_btn_jump2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+         android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:visibility="gone"
+            android:text="1920x1080"
+            android:id="@+id/uvc_btn_resolu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:visibility="gone"
+            android:text="1280x720"
+            android:id="@+id/uvc_btn_resolu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:visibility="gone"
+            android:text="640x480"
+            android:id="@+id/uvc_btn_resolu3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:visibility="gone"
+             android:text="320x240"
+            android:id="@+id/uvc_btn_resolu4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!-- 此处作用未明，删除之后没有变化-->
+    <gbpe.policeass.views.CountDownTimerView
+        android:visibility="invisible"
+         android:id="@+id/uvc_cdt_show"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#ffffff"
+        android:text=""
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

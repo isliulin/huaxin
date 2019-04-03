@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LawRecorder</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+	<string	name="chinese_btn">chinese</string>
+	<string	name="english_btn">english</string>
+	<string name="yellow">yellow</string>
+	<string name="red">red</string>
+	<string name="gray">gray</string>
+	<string name="green">green</string>
+	<string name="orange">orange</string>
+	<string name="blue">blue</string>
+	<string name="black">black</string>
+    <string name="stop_recorder">stop recorder</string>
+	<string name="start_recorder">start recorder</string>
+	<string name="no_sdcard">no sdcard</string>
+	<string name="start_audio">start audio</string>
+	<string name="stop_audio">stop audio</string>
+	<string name="save_to">save to</string>
+	<string name="shoot_two_photo_continuously"> two continuously</string>
+	<string name="shoot_three_photo_continuously">three continuously</string>
+	<string name="shoot_five_photo_continuously">five continuously</string>
+	<string name="shoot_ten_photo_continuously">ten continuously</string>
+	<string name="shoot_twenty_photo_continuously">twenty continuously</string>
+	<string name="take_picture_successfully">take picture successfully!</string>
+	<string name="the_USB_mode_settings">USB mode settings</string>
+	<string name="Volume">Volume</string>
+	<string name="SegmentedVideo">SegmentedVideo</string>
+	<string name="red_line">fraredRay</string>
+	<string name="the_GPS">GPS</string>
+	<string name="play_error">play failed</string>
+	<string name="no_audio_file">No audio file！</string>
+	<string name="take_picture">take picture</string>
+	<string name="play_video">play video</string>
+	<string name="simplified_chinese">simplified chinese</string>
+	<string name="english">English</string>
+	<string name="get_video_lists">video</string>
+	<string name="get_photo_lists">photo</string>
+	<string name="get_sound_lists">sound</string>
+	<string name="video_browsing">Video</string>
+	<string name="photo_browsing">Photo</string>
+	<string name="sound_browsing">Voice</string>
+	<string name="open_camera">change camera</string>
+	<string name="setup">set up</string>
+	<string name="picture_size">picture size</string>
+	<string name="takephoto_continuously">takephoto continously</string>
+	<string name="MaxDuration">MaxDuration</string>
+	<string name="the_audio_sampling_rate">audio sampling rate</string>
+	<string name="resolution_ratio">resoulution ratio</string>
+	<string name="picture_quality">picture quality</string>
+	<string name="video_delay">video delay</string>
+	<string name="motion_detection">motion detection</string>
+	<string name="lower">lower</string>
+	<string name="high">high</string>
+	<string name="medium">medium</string>
+	<string name="delicacy">delicacy</string>
+	<string name="file_mode">file mode</string>
+	<string name="power_on">power on</string>
+	<string name="power_off">power off</string>
+	<string name="cancle_delay_time">cancle</string>
+	<string name="upload_to_server">upload to server</string>
+	<string name="one_key_upload">one key upload</string>
+	<string name="segmented_video_record">segmented video record</string>
+	<string name="realtime_audio">realtime audio</string>
+	<string name="realtime_video">realtime video</string>
+	<string name="query">query</string>
+	<string name="importance">importance</string>
+	<string name="common">common</string>
+	<string name="never">never</string>
+	<string name="police_number">police number</string>
+	<string name="device_number">device number</string>
+	<string name="fill_in_numbers">fill in numbers please</string>
+	<string name="date_setting">date setting</string>
+	<string name="time_setting">time setting</string>
+	<style name="data_and_time">data and time</style>
+	<string name="usr_passwd">user password</string>
+	<string name="restore">restore to defaults</string>
+	<string name="compass">Compass</string>
+	<string name="getting_location">Getting location...</string>
+	<string name="cannot_get_location">Cannot get your location</string>
+	<string name="cannot_get_sensor">Cannot get any sensor</string>
+	<string name="location_north">%s N</string>
+	<string name="location_south">%s S</string>
+	<string name="location_east">%s E</string>
+	<string name="location_west">%s W</string>
+	<string name="exit_toast">Click again exit application</string>
+	<string name="ac_name_image_list">Image List Example</string>
+	<string name="ac_name_image_grid">Image Grid Example</string>
+	<string name="ac_name_image_pager">Image Pager Example</string>
+	<string name="ac_name_image_gallery">Image Gallery Example</string>
+	<!-- Labels -->
+	<string name="label_activity_examples">Activity Examples</string>
+	<string name="menu_item_clear_memory_cache">Clear memory cache</string>
+	<string name="menu_item_clear_disc_cache">Clear disc cache</string>
+	<string name="menu_item_pause_on_scroll">Pause on scroll</string>
+	<string name="menu_item_pause_on_fling">Pause on fling</string>
+	<string name="button_image_list">ListView</string>
+	<string name="button_image_grid">GridView</string>
+	<string name="button_image_pager">ViewPager</string>
+	<string name="button_image_gallery">Gallery</string>
+	<!-- Content descriptions -->
+	<string name="descr_image">Image</string>
+	<string name="play">play</string>
+	<string name="totalsize">total size</string>
+	<string name="surplussize">surplus size</string>
+	<string name="vibrator">Vibrator</string>
+
+	<string name="uvc_record_start">start record</string>
+	<string name="uvc_record_finish">stop record</string>
+
+	<string name="button_video">star/stop</string>
+
+	<string name="button1">photo</string>
+
+	<string name="forth_gen_trans">PTT</string>
+	<string name="usb_video_camera">UVC</string>
+	<string name="system_setting">Setting</string>
+
+	<string name="journal">Journal</string>
+	<string name="phone">Phone</string>
+
+	<string name="ftp_setting">FTP</string>
+	<string name="message">Message</string>
+	<string name="wifi_setting">Wifi</string>
+	<string name="back">Back</string>
+
+	<string name="passwd_input">Password please</string>
+	<string name="password_tips">six numbers</string>
+
+    <string name="cancel">cancle</string>
+    <string name="confirm">ok</string>
+
+    <string name="video_solution">solution</string>
+    <string name="frame_rate">frame rate</string>
+    <string name="close">close</string>
+    <string name="segment_recording">Segment duration</string>
+
+    <string name="record_in_advance">Record in advance</string>
+    <string name="normal">normal</string>
+
+    <string name="video_quality">Quality</string>
+    <string name="watermark">Video watermark</string>
+
+    <string name="watermark_format">Watermark format</string>
+    <string name="watermark_tips">Only numbers, line, space, colon permit</string>
+
+    <string name="admin_name">Admin name</string>
+    <string name="user_name">User name</string>
+
+    <string name="admin_passwd">Admin password</string>
+    <string name="company_number">Company number</string>
+    <string name="company_name">Company name</string>
+    <string name="format_sdcard">Format sd card</string>
+
+    <string name="system_update">System update</string>
+    <string name="version">V2.2.2</string>
+    <string name="factory_setting">Factory setting</string>
+	<string name="gps_location">Gps location</string>
+
+	<string name="wifi">Wifi</string>
+	<string name="prompt_tone">Prompt tone</string>
+	<string name="tts_setting">Text to speech</string>
+	<string name="tts_tips">Please select xunfei speech</string>
+	<string name="picture_mode">Picture mode</string>
+
+	<string name="file_browse_mode">File browse mode</string>
+	<string name="system_language_setting">System Language Setting</string>
+	<string name="usb_setting">USB setting</string>
+	<string name="usb_forbiden">Forbiden</string>
+	<string name="usb_mode_cmd">Command Mode</string>
+	<string name="usb_mode_udisk">U Disk Mode</string>
+
+	<string name="manual">Manual</string>
+	<string name="infrared">Infrared</string>
+
+	<string name="recording_screen_on">Keep screen on when recording</string>
+	<string name="keep_screen_on">Keep screen on</string>
+	<string name="display_setting">Display setting</string>
+
+	<string name="display_tips">Brightness, font and dormant time</string>
+	<string name="bluetooth">Bluetooth</string>
+	<string name="preview_solution">Preview solution</string>
+	<string name="picture_solution">Picture solution</string>
+	<string name="continuous_shooting">Continuous shooting</string>
+	<string name="picture_watermark">Picture watermark</string>
+	<string name="picture_watermark_format">Picture watermark format</string>
+	<string name="picture_format">Picture format</string>
+	<string name="audio_sampling_rate">Audio sampling rate</string>
+
+	<string name="audio_format">Audio format</string>
+	<string name="audio_max_duration">Max recording duration</string>
+	<string name="camera_exception">Camera exception</string>
+	<string name="no_sdcard_tips">Please insert sdcard</string>
+	<string name="no_photo_tips">Photo is not available now</string>
+	<string name="no_frequent_ops">No frequent operation</string>
+	<string name="mark_as_important">Mark as important file</string>
+	<string name="wait_tips">Wait for a moment</string>
+	<string name="recording_interrupt_tips">On the Recording, are you sure interrpt?</string>
+	<string name="on_audio_recording">Audio Recording</string>
+	<string name="photo_ok_tips">Photo saved</string>
+	<string name="no_battery_tips">No power now, stop recording and poweroff soon</string>
+	<string name="stop">Stop</string>
+	<string name="start">Start</string>
+
+	<string name="video_settings">Video setting</string>
+	<string name="sound_settings">Photo setting</string>
+	<string name="audio_settings">Audio setting</string>
+	<string name="Language_settings">System language setting</string>
+
+	<string name="WIFI_settings">Wifi setting</string>
+	<string name="self_lockscreen">Auto screen off</string>
+	<string name="key_tone">Key tone</string>
+	<string name="file_pattern">File browse mode</string>
+	<string name="manual_lockscreen">Manual lock screen</string>
+	<string name="data_and_time">Date and Time</string>
+
+	<string name="east_longitude">East longitude</string>
+	<string name="west_longitude">West longitude</string>
+	<string name="south_latitude">South latitude</string>
+	<string name="north_latitude">North latitude</string>
+	<string name="direct_east">E</string>
+	<string name="direct_west">W</string>
+	<string name="direct_south">S</string>
+	<string name="direct_north">N</string>
+	<string name="direct_north_east">EN</string>
+	<string name="direct_south_east">ES</string>
+	<string name="direct_north_west">WN</string>
+	<string name="direct_south_west">WS</string>
+	<string name="allow_location_service">Allow location service</string>
+	<string name="allow_location_service_describe">Allow location service to improve the data accuracy</string>
+	<string name="calibrate_compass">Compass interference. Wave the phone in figure 8 motion to re-calibrate the compass.</string>
+	<string name="character_degree">°</string>
+	<string name="character_fen">′</string>
+	<string name="character_miao">″</string>
+
+	<string name="video_para">Video</string>
+	<string name="picture_para">Picture</string>
+	<string name="audio_para">Audio</string>
+	<string name="system_para">System</string>
+	<string name="user_para">User</string>
+
+	<string name="open">Open</string>
+	<string name="fine">fine</string>
+	<string name="excellent">excellent</string>
+	<string name="auto">Auto</string>
+
+	<string name="file_view_mode">File</string>
+	<string name="picture_view_mode">Picture</string>
+
+	<string name="video">Video</string>
+	<string name="picture">Photo</string>
+	<string name="voice">Voice</string>
+
+	<string name="key_format_error_tips">Password format error</string>
+	<string name="key_error_tips">Password incorrect</string>
+	<string name="port_ip_null_tips">Port or ip is invalid</string>
+	<string name="sos_func_tips">Please press sos button</string>
+	<string name="uvc_open_tips">Open uvc now...</string>
+	<string name="no_support_now">Not support now</string>
+	<string name="set_date_tips">Set date: </string>
+	<string name="set_time_tips">Set time: </string>
+	<string name="restore_factory_tips">Are you sure restore factory settings?</string>
+	<string name="restore_factory_note">All date will be cleared</string>
+	<string name="format_sdcard_tips">Are you sure Format SD card ?</string>
+	<string name="format_sdcard_notes">All date in SD card will be deleted</string>
+	<string name="format_sdcar_error_tips">Format SD card error</string>
+	<string name="update_system_tips">Update system now?</string>
+	<string name="update_system_message">Make sure all date is backuped</string>
+	<string name="camera_setup_tips">On the start up...</string>
+
+	<string name="no_video_available_tips">No video file available now</string>
+	<string name="select_one_item">Select 1 item yet</string>
+	<string name="sure_to_upload">Sure to upload</string>
+	<string name="mark_as_important_all">Sure to mark all?</string>
+	<string name="mark_on_run_tips">On the mark now ...</string>
+	<string name="mark_over_tips">Mark successed</string>
+
+	<string name="car_recognise">Car Reader</string>
+	<string name="face_recognise">Face Reader</string>
+	<string name="id_recognise">ID Reader</string>
+	<string name="registering_please_wait">registering,please wait</string>
+	<string name="liveness_detect">Liveness</string>
+	<string name="register">Register</string>
+	<string name="init_failed">init failed,code is %d</string>
+	<string name="permission_denied">permission denied!</string>
+	<string name="cat_plate_tips">Car plate recognition isn\'t available now</string>
+	<string name="id_reco_tips">ID recognition isn\'t available now</string>
+	<string name="active_engine">active engine</string>
+
+	<string name="active_success">active success</string>
+	<string name="already_activated">already activated</string>
+	<string name="active_failed">active failed,code is %d</string>
+
+	<string name="recognise">Recognise</string>
+	<string name="no_alive_tips">No aliveness detected</string>
+
+    <string name="register_input_name">Name</string>
+    <string name="register_input_id">ID</string>
+    <string name="register_input_remark">Remark</string>
+
+	<string name="no_admin_privilege">No authority</string>
+    <string name="admin_active_error">Admin active error</string>
+    <string name="open_device_manager_tips">Screen lock is available after confirm...</string>
+	<string name="face_recognise_tips">FACE CONFIRMED</string>
+	<string name="service_busy_tips">Service busy, please wait</string>
+	<string name="start_register_tips">Start register</string>
+	<string name="start_recognise_tips">Start Recognise</string>
+	<string name="batch_register">Batch</string>
+	<string name="batch_no_exit_tips">Faces directory not exist</string>
+	<string name="recovery_factory_setting">Recovery factory setting</string>
+
+	<string name="confirm_recovery">Are you confirm to recovery factory settings</string>
+	<string name="clear_all_data_waring">All data will be cleard</string>
+	<string name="voice_recording_tips">Voice Recording</string>
+	<string name="voice_recording_stop_tips">Voice Recording stoped</string>
+	<string name="save_ok_tips">Save successed</string>
+
+    <string name="voice_record_note">Press button to start voice recording</string>
+    <string name="pause">pause</string>
+    <string name="voice_pause_tips">Voice recording paused</string>
+
+	<string name="second">s</string>
+	<string name="minute">m</string>
+	<string name="hour">h</string>
+
+	<string name="video_param_set">Video parameter setting</string>
+	<string name="photo_setting">Photo setting</string>
+	<string name="max_video_duration">Max video duration</string>
+	<string name="video_formation">Video formation</string>
+	<string name="flash_light">Flash light</string>
+	<string name="camera_focus_mode">Focus mode</string>
+	<string name="camera_white_balance">White balance</string>
+	<string name="camera_scance">Scene</string>
+	<string name="camera_compensation">Exposure compensation</string>
+	<string name="photo_quality">Photo quality</string>
+	<string name="audio_recorder_parameter">Audio parameter setting</string>
+	<string name="sos_setting">SOS setting</string>
+
+
+	<string name="twenty_seconds">20 sec</string>
+	<string name="thrity_second">30 sec</string>
+	<string name="one_minute">1 min</string>
+	<string name="three_minute">3 min</string>
+	<string name="five_seconds">5 sec</string>
+	<string name="thrity_minutes">30 min</string>
+	<string name="fifteen_minutes">15 min</string>
+	<string name="ten_minutes">10 min</string>
+	<string name="thirty_minutes">30 min</string>
+	<string name="twenty_minutes">20 min</string>
+	<string name="ten_seconds">10 sec</string>
+	<string name="fifty_minutes">50 sec</string>
+	<string name="three_times">3 pieces</string>
+	<string name="five_times">5 pieces</string>
+	<string name="ten_times">10 pieces</string>
+	<string name="twenty_times">20 pieces</string>
+	<string name="thirty_times">30 pieces</string>
+
+	<string name="video_240p">320x240  240p 4:3</string>
+	<string name="video_480p">640x480  480p 4:3</string>
+	<string name="video_720p">1280x720 720p 4:3</string>
+	<string name="video_1080p">1920x1080 1080p 16:9</string>
+
+	<string name="inserted">inserted</string>
+	<string name="ejected">ejected</string>
+	<string name="device">device</string>
+	<string name="attached">attached</string>
+	<string name="dettached">dettached</string>
+	<string name="plate_rect">Recognition area</string>
+
+	<string name="id_use_net">Use net</string>
+	<string name="no_gps_tips">No gps provider</string>
+	<string name="gps_get_failed">Get gps data error</string>
+    <string name="photo_manager_busy">Busy...</string>
+	<string name="finished">Finished</string>
+
+	<string name="apn_setting">APN</string>
+	<string name="setting">setting</string>
+	<string name="click_to_set">Click to set</string>
+	<string name="android_setting">Android Setting</string>
+    <string name="app_open_failed">Open app failed</string>
+
+	<string name="selected">selected</string>
+	<string name="items">item(s)</string>
+	<string name="confirm_to_upload">confirm to upload?</string>
+	<string name="confirm_to_mark">confirm to mark?</string>
+	<string name="marking">marking ...</string>
+	<string name="mark_ok">mark ok</string>
+    <string name="picture_save_error">Picture save error</string>
+    <string name="face_bat_register_start">Begin Faces sample register</string>
+	<string name="face_bat_register_finished">Register ok</string>
+	<string name="release_camera_tips">Release camera</string>
+    <string name="sys_crash_tips">Sorry, the APP is crashed</string>
+    <string name="photo_to_plate_number">Take photo to get number</string>
+    <string name="input_to_research">Input research content</string>
+	<string name="find_new_package">Discovery of new firmware</string>
+	<string name="begin_ota_tips">Begin to update system</string>
+    <string name="recive_sample">Receive photo</string>
+	<string name="file_no_exist">No file founded</string>
+	<string name="file_format_error">File format error</string>
+	<string name="begin_register">Begine register</string>
+    <string name="register_failed">Register failed</string>
+	<string name="register_success">Register ok</string>
+	<string name="success">success</string>
+	<string name="failed">failed</string>
+    <string name="open_camera_err">Open camera failed</string>
+    <string name="init_success">Initialization ok</string>
+
+
+</resources>

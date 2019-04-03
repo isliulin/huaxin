@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:preference="http://schemas.android.com/apk/res-auto">
+
+    <!--
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="系统设置"/>
+        -->
+    <!--<SwitchPreference-->
+    <!--android:defaultValue="false"-->
+    <!--android:key="gps_data"-->
+    <!--android:title="GPS定位" />-->
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="gps_data2"
+        preference:tipstring="@string/click_to_set"
+        preference:titlestring="@string/gps_location" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="wifi_data"
+        preference:tipstring="@string/click_to_set"
+        preference:titlestring="@string/wifi" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="key_tone"
+        android:title="@string/prompt_tone"/>
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="vibrate"
+        android:title="@string/vibrator"/>
+    <!--<SwitchPreference-->
+    <!--android:defaultValue="false"-->
+    <!--android:key="onekey_lockscreen"-->
+    <!--android:title="一键锁屏"/>-->
+    <SwitchPreference
+        android:title="@string/tts_setting"
+        android:summary="@string/tts_tips"
+        android:defaultValue="false"
+        android:key="text_to_speech"
+        />
+<!--
+    <ListPreference
+        android:summary="@string/picture_mode"
+        android:defaultValue="@string/picture_mode"
+        android:entries="@array/flieview"
+        android:entryValues="@array/flieview"
+        android:key="fileview_type"
+        android:title="@string/file_browse_mode" />
+        -->
+    <ListPreference
+        android:summary="English"
+        android:defaultValue="English"
+        android:entries="@array/language"
+        android:entryValues="@array/language"
+        android:key="LanguageZfy"
+        android:title="@string/system_language_setting" />
+    <ListPreference
+        android:summary="@string/usb_setting"
+        android:defaultValue="@string/usb_forbiden"
+        android:entries="@array/udisk"
+        android:entryValues="@array/udisk"
+        android:key="udisk"
+        android:title="@string/usb_setting" />
+    <ListPreference
+        android:summary="@string/manual"
+        android:defaultValue="@string/manual"
+        android:entries="@array/infraed"
+        android:entryValues="@array/infraed"
+        android:key="InfraRed"
+        android:title="@string/infrared" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="screenOn"
+        android:summary="@string/recording_screen_on"
+        android:title="@string/keep_screen_on"/>
+    <gbpe.policeass.views.PreferenceWithTip
+        android:defaultValue="17:15:31"
+        android:key="brightness"
+        preference:tipstring="@string/display_tips"
+        preference:titlestring="@string/display_setting" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="blutooth"
+        preference:tipstring="@string/bluetooth"
+        preference:titlestring="@string/bluetooth" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="apn_setting"
+        preference:titlestring="@string/android_setting"
+        preference:tipstring="@string/click_to_set"
+        />
+
+</PreferenceScreen>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="gbpe.policeass"
+    android:installLocation="preferExternal"
+    android:persistent="true"
+    >
+
+    <!-- 要想修改系统时间必须加上以下权限 -->
+    <!-- android:sharedUserId="android.uid.system" -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <uses-permission android:name="android.permission.SHUTDOWN"/>
+
+    <!-- add by ycb, 连接电脑时，枚举为不同模式时需要该权限 -->
+    <!--uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/-->
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <!-- 获取网络状态的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <!-- 打电话功能权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 定位相关权限 -->
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.HARDWARE_TEST" />
+
+    <!-- 获取当前wifi状态 -->
+    <!-- 允许程序改变网络连接状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 读取联系人权限，上传联系人需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 读取通讯录权限 -->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <!-- 写入通讯录权限 -->
+
+
+    <!-- 震动需要的权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 开机启动权限 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.STATUS_BAR" />
+
+    <!-- 加入权限，获取当前正在运行的activity用 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.INJECT_EVENTS" />
+    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN"/>
+
+    <uses-permission android:name="android.permission.MASTER_CLEAR"/>
+    <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS"/>
+
+    <uses-permission android:name="android.permission.RECOVERY"/>
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.DEVICE_POWER"
+        tools:ignore="ProtectedPermissions"/>
+
+    <!--  <intent-filter android:priority="2"> 如此设置的话，会没有下拉菜单 -->
+    <application
+        android:name=".appinfo.App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Holo.Light"
+        tools:replace="android:icon">
+        <activity
+            android:name=".Activity.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter android:priority="2">
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".zfysim.WelcomeActivity" />
+        <activity android:name=".Photograph.imgdetial.ImagePagerActivity" />
+        <activity android:name=".Photograph.imgdetial.ImgDetialActivity" />
+
+        <receiver
+            android:name=".receiver.AdminManageReceiver"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+        <!--
+        <receiver android:name=".receiver.USBBroadcastReceiver">
+            <intent-filter android:priority="800">
+                <action android:name="android.hardware.usb.action.USB_STATE" />
+            </intent-filter>
+        </receiver>
+        -->
+
+        <!-- 开机广播接受者 -->
+        <receiver android:name=".receiver.BootBroadcastReceiver">
+            <intent-filter>
+
+                <!-- 注册开机广播地址 -->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".usbconnection.ServiceBroadcastReceiver">
+            <intent-filter>
+                <action android:name="NotifyServiceStart" />
+                <action android:name="NotifyServiceStop" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.ExternalStorageListener">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.ReleaseCameraReceiver">
+            <intent-filter android:priority="1000">
+                <action android:name="action_Release_Camera" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".usbconnection.androidService" />
+        <service
+            android:name=".log.MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service android:name=".log.Logs" />
+        <service android:name=".service.MyService" />
+
+        <!--<activity android:name=".zfysim.Main2Activity" />-->
+        <activity android:name=".Photograph.imgdetial.ImgDetialActivity2" />
+        <activity android:name=".zfysim.RecordActivity" />
+        <activity
+            android:name=".Activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <!--
+        <activity
+            android:name=".zfysim.HomeActivity"
+            android:screenOrientation="portrait" />
+            -->
+        <activity android:name=".zfysim.NewHomeActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".zfysim.LanuchActivity"></activity>
+        <activity android:name=".zfysim.TestActivity" />
+        <activity android:name=".Activity.AVCodecActivity" />
+        <activity android:name=".Activity.MyTestActivity" />
+        <activity android:name=".zfysim.LoginActivity" />
+        <activity
+            android:name=".zfysim.CompassActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".zfysim.ImageDetailsActivity" />
+        <!--
+        <activity android:name="gbpe.ffmpeg2videomark2.CombineActivity"></activity>
+        -->
+
+        <activity android:name="gbpe.policeass.uvc.UvcMainActivity"/>
+        <activity android:name="gbpe.policeass.utils.OtaUpdateActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity android:name=".Activity.FaceRecogniseActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="landscape"/>
+
+        <activity android:name=".Activity.FaceRecordActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="landscape"/>
+
+        <activity android:name=".Activity.CarRecogniseActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Plate.recognizer.ui.PlateRecognizeActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Activity.IdRecogniseActivity"
+            android:theme="@style/Theme.AppCompat"/>
+
+        <receiver android:name=".utils.ScreenOffAdminReceiver"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN:">
+        <meta-data
+            android:name="android.app.device_admin"
+            android:resource="@xml/device_admin" />
+        <intent-filter>
+            <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+        </intent-filter>
+
+        </receiver>
+
+        <receiver android:name=".receiver.LanguageReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+
+        </receiver>
+
+        <receiver android:name=".receiver.UsbActionReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.hardware.usb.action.USB_STATE"/>
+                <action android:name="android.hardware.usb.action.USB_STATE"/>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <action android:name="android.intent.action.MEDIA_EJECT"/>
+            </intent-filter>
+
+        </receiver>
+
+        <receiver android:name=".receiver.FaceSampleReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="gbpe.face.detect.sample"/>
+            </intent-filter>
+
+        </receiver>
+
+        <service android:name=".SysUpdate.PollService"/>
+
+        <!--
+        <receiver android:name=".receiver.USBDeviceReceiver">
+            <intent-filter android:priority="200">
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+            </intent-filter>
+            <intent-filter android:priority="200">
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED"/>
+                <data android:scheme="file"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_EJECT"/>
+                <data android:scheme="file"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.USBCommonReceiver">
+            <intent-filter android:priority="100">
+                <action android:name="android.hardware.usb.action.USB_STATE"/>
+            </intent-filter></receiver>
+            -->
+
+    </application>
+
+</manifest>

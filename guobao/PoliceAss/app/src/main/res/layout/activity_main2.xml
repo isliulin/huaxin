@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="@mipmap/mainpage_bg"
+    tools:context="gbpe.policeass.zfysim.Main2Activity">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <RelativeLayout
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:layout_centerVertical="true"
+                    android:scaleType="center"
+                    android:background="@mipmap/setting"
+                    android:id="@+id/button11"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp" />
+                <ImageButton
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="center"
+                    android:layout_marginLeft="15dp"
+                    android:background="@mipmap/voice_intercom"
+                    android:id="@+id/button12"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp" />
+                <ImageButton
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@mipmap/message"
+                    android:layout_marginLeft="15dp"
+                    android:scaleType="center"
+                    android:id="@+id/button13"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp" />
+            </RelativeLayout>
+
+          <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="执法仪"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            <TextView
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:text="博远通"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            <TextView
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="短信"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            </RelativeLayout>
+        </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <RelativeLayout
+                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:layout_centerVertical="true"
+                        android:scaleType="center"
+                        android:background="@mipmap/phone"
+                        android:id="@+id/button21"
+                        android:layout_width="50dp"
+                        android:layout_height="60dp" />
+                    <ImageButton
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="center"
+                        android:layout_marginLeft="15dp"
+                        android:background="@mipmap/pass"
+                        android:id="@+id/button22"
+                        android:layout_width="50dp"
+                        android:layout_height="60dp" />
+                    <ImageButton
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@mipmap/message"
+                        android:layout_marginLeft="15dp"
+                        android:scaleType="center"
+                        android:id="@+id/button23"
+                        android:layout_width="50dp"
+                        android:layout_height="60dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:text="紧急呼叫"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="@color/white"
+                        android:text="指南针"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginRight="9dp"
+                        android:textColor="@color/white"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+                        android:text="电话簿"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                    <RelativeLayout
+                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageButton
+                            android:layout_centerVertical="true"
+                            android:scaleType="center"
+                            android:background="@mipmap/voice_intercom"
+                            android:id="@+id/button31"
+                            android:layout_width="50dp"
+                            android:layout_height="60dp" />
+                        <ImageButton
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true"
+                            android:scaleType="center"
+                            android:layout_marginLeft="15dp"
+                            android:background="@mipmap/voice_intercom"
+                            android:id="@+id/button32"
+                            android:layout_width="50dp"
+                            android:layout_height="60dp" />
+                        <ImageButton
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@mipmap/setting"
+                            android:layout_marginLeft="15dp"
+                            android:scaleType="center"
+                            android:id="@+id/button33"
+                            android:layout_width="50dp"
+                            android:layout_height="60dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:text="打电话"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                    <TextView
+                    android:textColor="@color/white"
+                    android:text="浏览器"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                    <TextView
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:text="系统设置"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+        </LinearLayout>
+</LinearLayout>
+

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="3dp"
+    android:paddingTop="3dp"
+    android:paddingLeft="@dimen/margin_left"
+    android:paddingRight="@dimen/margin_right">
+
+    <LinearLayout
+        style="@style/main_layout_style">
+        <TextView
+            android:id="@+id/button11"
+            style="@style/main_style"
+            android:drawableTop="@drawable/zfy"
+            android:text="日志浏览"
+            />
+
+        <TextView
+            android:id="@+id/button12"
+            style="@style/main_style"
+            android:drawableTop="@drawable/phone"
+            android:text="打电话"
+            />
+        <TextView
+            android:id="@+id/button13"
+            style="@style/main_style"
+            android:drawableTop="@drawable/figuer"
+            android:text="指纹设置"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/main_layout_style">
+
+        <TextView
+            android:id="@+id/button21"
+            style="@style/main_style"
+            android:drawableTop="@drawable/wsftp"
+            android:text="ftp设置"
+            />
+        <TextView
+            android:id="@+id/button22"
+            style="@style/main_style"
+            android:drawableTop="@drawable/message"
+            android:text="短信"
+            />
+        <TextView
+            android:id="@+id/button23"
+            style="@style/main_style"
+            android:drawableTop="@drawable/sifi"
+            android:text="WiFi设置"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        style="@style/main_layout_style">
+        <TextView
+            android:id="@+id/button31"
+            style="@style/main_style"
+            android:drawableTop="@drawable/voice_intercom"
+            android:text="指纹设置"
+            />
+        <TextView
+            android:id="@+id/button32"
+            style="@style/main_style"
+            android:drawableTop="@drawable/llq"
+            android:text=""
+            />
+        <TextView
+            android:id="@+id/button33"
+            style="@style/main_style"
+            android:drawableTop="@drawable/setting"
+            android:text="系统设置"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--android:paddingBottom="3dp"-->
+    <!--android:paddingTop="3dp"-->
+    <!--android:paddingLeft="@dimen/activity_horizontal_margin"-->
+    <!--android:paddingRight="@dimen/activity_horizontal_margin">-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_fisrt"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:scaleType="center"-->
+                <!--android:background="@drawable/zfy"-->
+                <!--android:id="@+id/button11"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:scaleType="center"-->
+                <!--android:background="@drawable/voice_intercom"-->
+                <!--android:id="@+id/button12"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:background="@drawable/message"-->
+                <!--android:scaleType="center"-->
+                <!--android:id="@+id/button13"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_below="@id/rl_fisrt"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<TextView-->
+                <!--android:layout_marginLeft="12dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:gravity="center"-->
+                <!--android:text="日历"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="计算器"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                 <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:gravity="center"-->
+                <!--android:text="系统相册"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+    <!--</RelativeLayout>-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_gravity="center_vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_two"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:scaleType="center"-->
+                <!--android:background="@drawable/phone"-->
+                <!--android:id="@+id/button21"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:scaleType="center"-->
+                <!--android:background="@drawable/pass"-->
+                <!--android:id="@+id/button22"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:background="@drawable/dhb"-->
+                <!--android:scaleType="center"-->
+                <!--android:id="@+id/button23"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_below="@id/rl_two"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--android:layout_marginLeft="2dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:gravity="center"-->
+                <!--android:text="语音设置"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="指纹设置"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                <!--android:layout_marginRight="12dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:gravity="center"-->
+                <!--android:text="电话簿"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+
+    <!--</RelativeLayout>-->
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_three"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:scaleType="center"-->
+                <!--android:background="@drawable/voice_intercom"-->
+                <!--android:id="@+id/button31"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:scaleType="center"-->
+                <!--android:background="@drawable/llq"-->
+                <!--android:id="@+id/button32"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<ImageButton-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:background="@drawable/setting"-->
+                <!--android:scaleType="center"-->
+                <!--android:id="@+id/button33"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<RelativeLayout-->
+            <!--android:layout_below="@id/rl_three"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+            <!--<TextView-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:gravity="center"-->
+                <!--android:text="打电话"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <!--<TextView-->
+                <!--android:textColor="@color/white"-->
+                <!--android:text="浏览器"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:gravity="center"-->
+                <!--android:text="系统设置"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+        <!--</RelativeLayout>-->
+
+    <!--</RelativeLayout>-->
+<!--</LinearLayout>-->
+

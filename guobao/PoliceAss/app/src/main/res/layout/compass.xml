@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/compassbackground" >
+
+        <LinearLayout
+              android:id="@+id/view_compass"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/background_light"
+            android:orientation="vertical" >
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                layout="@layout/titlebar"/>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                 android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:background="#000"
+                         android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal" >
+
+                        <!--方向-->
+                        <LinearLayout
+                            android:id="@+id/layout_direction"
+                            android:layout_width="0dip"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="20dip"
+                            android:layout_height="fill_parent" >
+                        </ImageView>
+                        <!--角度-->
+                        <LinearLayout
+                            android:id="@+id/layout_angle"
+                            android:layout_width="0dip"
+                            android:layout_height="20dp"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:orientation="horizontal" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                     android:layout_marginTop="10dp"
+                     android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="3"
+                    android:orientation="vertical" >
+
+                    <FrameLayout
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                           style="@style/copass_style"
+                            android:src="@drawable/background_compass" />
+
+                        <gbpe.policeass.views.CompassView
+                            android:id="@+id/compass_pointer"
+                            style="@style/copass_style"
+                            android:src="@drawable/compass" />
+
+                        <ImageView
+                           style="@style/copass_style"
+                            android:src="@drawable/miui_cover" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/location_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_bottom"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textview_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/getting_location"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#7FFFFFFF" />
+            </FrameLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
+    defaultConfig {
+        applicationId "gbpe.policeass"
+        minSdkVersion 18
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi' //, 'armeabi','x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        buildConfigField("String", "BUILD_TIME", "\""+new Date().format("yyDDD")+"\"")
+
+    }
+
+    packagingOptions {
+        pickFirst 'lib/armeabi/libnmUVC.so'
+        pickFirst 'lib/armeabi/libavcodec-56.so'
+        pickFirst 'lib/armeabi/libswscale-3.so'
+        pickFirst 'lib/armeabi/libsfftranscoder.so'
+        pickFirst 'lib/armeabi/libpostproc-53.so'
+        pickFirst 'lib/armeabi/libavformat-56.so'
+        pickFirst 'lib/armeabi/libavdevice-56.so'
+        pickFirst 'lib/armeabi/libavutil-54.so'
+        pickFirst 'lib/armeabi/libswresample-1.so'
+        pickFirst 'lib/armeabi/libavfilter-5.so'
+    }
+
+    externalNativeBuild{
+        ndkBuild{
+            path "src/main/jni/Android.mk"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //指定动态库路径
+    sourceSets {
+        main {
+            jni.srcDirs = []    // disable automatic ndk-build call, which ignore our Android.mk
+            jniLibs.srcDir 'src/main/libs'
+        }
+    }
+    //Add the following configuration
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    productFlavors {
+    }
+
+//    signingConfigs{
+//        release {
+//            storeFile file("F:/work/svn/key/mykey_e8.jks")
+//            storePassword '430074'
+//            keyAlias 'key0'
+//            keyPassword '430074'
+//        }
+//
+//        debug {
+//            storeFile file("F:/work/svn/key/mykey_e8.jks")
+//            storePassword '430074'
+//            keyAlias 'key0'
+//            keyPassword '430074'
+//        }
+//
+//
+//    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.orhanobut:logger:1.15'
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+    implementation files('libs/nineoldandroids-2.4.0.jar')
+    implementation files('libs/universal-image-loader-1.8.6-with-sources.jar')
+    implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation project(':library')
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.googlecode.mp4parser:isoparser:1.1.22'
+    implementation 'com.android.support:support-v13:26.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'cn.pedant.sweetalert:library:1.3'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.rmtheis:tess-two:6.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1'
+    implementation 'org.jsoup:jsoup:1.11.3'
+}

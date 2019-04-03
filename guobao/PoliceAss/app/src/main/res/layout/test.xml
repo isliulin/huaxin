@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+
+    <LinearLayout
+        android:id="@+id/ll_item_bg"
+        android:background="@drawable/touch_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--<ImageView-->
+            <!--android:id="@+id/video_thumb"-->
+            <!--android:layout_width="72dip"-->
+            <!--android:layout_height="72dip"-->
+            <!--android:layout_margin="3dip"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:contentDescription="@string/descr_image"-->
+            <!--android:scaleType="centerCrop" />-->
+        <RelativeLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="72dip">
+            <TextView
+                android:textSize="22sp"
+                android:layout_marginLeft="10dp"
+                android:singleLine="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/dark"
+                android:layout_marginTop="15dp"
+                android:text="AAAAAAAAAAAAAAA"
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--<TextView-->
+                <!--android:textColor="@color/dark"-->
+                <!--android:text="AAAAAAAAAAAAAAA"-->
+                <!--android:id="@+id/tv_size"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/check_box"
+                android:layout_marginRight="3dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignEnd="@+id/image" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <View
+        style="@style/hon_line_style"/>
+
+</LinearLayout>

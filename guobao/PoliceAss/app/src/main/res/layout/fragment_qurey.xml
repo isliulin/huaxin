@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:layout_marginLeft="5dp"
+        android:id="@+id/title"
+        layout="@layout/titlebar"
+        android:layout_height="31dp"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#000"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:text="媒体文件详细资料"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+           <TextView
+               android:textColor="#000"
+            android:layout_weight="1"
+            android:text="姓名：习近平"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="#000"
+                android:layout_weight="1"
+                android:text="警员编号:123456"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#000"
+            android:layout_weight="1"
+            android:text="开始时间：2010.11.3 13:12:04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#000"
+            android:layout_weight="1"
+            android:text="结束时间：2010.11.3 13:15:04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#000"
+            android:layout_weight="1"
+            android:text="上传日期:2016.11.20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="#000"
+                android:layout_weight="1"
+                android:text="大小:100M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000"
+                android:layout_weight="1"
+                android:text="重要等级："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/sp_rank"
+                android:entries="@array/rank"
+                android:layout_marginLeft="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Spinner>
+        </LinearLayout>
+
+        <TextView
+            android:textColor="#000"
+            android:layout_weight="1"
+            android:text="时间长度:30分"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp">
+        <TextView
+            android:textColor="#000"
+            android:text="请选择："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/sp_items"
+            android:entries="@array/items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_gravity="center"
+        android:id="@+id/iv_preview"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_front"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="上一张"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_next"
+            android:layout_weight="1"
+            android:textColor="#000"
+            android:text="下一张"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>

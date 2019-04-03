@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="图像参数"/>
+        -->
+    <!--
+    <ListPreference
+        android:defaultValue="1280x720 720p 4:3"
+        android:summary="1280x720 720p 4:3"
+        android:entries="@array/video_size"
+        android:entryValues="@array/video_size"
+        android:key="preview_size"
+        android:title="@string/preview_solution" />
+        -->
+    <ListPreference
+        android:defaultValue="5M (2560x1920)"
+        android:summary="5M (2560x1920)"
+        android:entries="@array/picture_size"
+        android:entryValues="@array/picture_size"
+        android:key="picture_size"
+        android:title="@string/picture_solution" />
+
+    <ListPreference
+        android:defaultValue="@string/close"
+        android:entries="@array/jpeg_continousShooting"
+        android:entryValues="@array/jpeg_continousShooting"
+        android:key="jpeg_continous"
+        android:title="@string/continuous_shooting"/>
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="isPicAddOsd"
+        android:title="@string/picture_watermark"/>
+<!--
+    <EditTextPreference
+        android:dependency="isPicAddOsd"
+        android:defaultValue="2017-7-7 17:00:08"
+        android:key="picWatermark"
+        android:title="@string/picture_watermark_format"
+        android:summary="2017-7-7 17:00:08"
+        android:dialogTitle="@string/watermark"
+        />
+        -->
+
+    <ListPreference
+        android:summary="jpg"
+        android:defaultValue="jpg"
+        android:entries="@array/jpeg_outputformat"
+        android:entryValues="@array/jpeg_outputformat"
+        android:key="jpeg_outputformat"
+        android:title="@string/picture_format" />
+
+    <ListPreference
+        android:defaultValue="@string/normal"
+        android:entries="@array/quality"
+        android:entryValues="@array/quality"
+        android:summary="@string/normal"
+        android:key="jpeg_quality"
+        android:title="@string/picture_quality" />
+
+</PreferenceScreen>

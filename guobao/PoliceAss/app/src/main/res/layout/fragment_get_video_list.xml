@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:background="#fff"
+    android:id="@+id/rl_getvideo"
+    android:layout_width="260dp"
+    android:layout_height="300dp">
+    <include
+        android:layout_marginLeft="5dp"
+        android:id="@+id/title"
+        layout="@layout/titlebar"
+        android:layout_height="31dp"
+        android:layout_width="match_parent" />
+    <RelativeLayout
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/header"
+        android:visibility="gone"
+        android:background="@color/colorPrimary">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cancel"
+            android:background="@android:color/transparent"
+            android:text="@string/cancel"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已选择1项"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/number"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全选"
+            android:background="@android:color/transparent"
+            android:id="@+id/btn_select_all"
+            android:layout_alignParentEnd="true"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清除"
+            android:background="@android:color/transparent"
+            android:id="@+id/btn_clear"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_to_server"
+        android:id="@+id/btn_send2server"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/header"
+        android:id="@+id/rv_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@id/btn_send2server"
+        />
+
+
+</RelativeLayout>

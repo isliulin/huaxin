@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string-array name="items">
+        <item>@string/video</item>
+        <item>@string/picture</item>
+        <item>@string/voice</item>
+        <item>@string/journal</item>
+    </string-array>
+    <string-array name="rank">
+        <item></item>
+        <item>@string/normal</item>
+        <item>@string/importance</item>
+    </string-array>
+    <string-array name="jazzy_effects">
+        <item>Standard</item>
+        <item>Tablet</item>
+        <item>CubeIn</item>
+        <item>CubeOut</item>
+        <item>FlipVertical</item>
+        <item>FlipHorizontal</item>
+        <item>Stack</item>
+        <item>ZoomIn</item>
+        <item>ZoomOut</item>
+        <item>RotateUp</item>
+        <item>RotateDown</item>
+        <item>Accordion</item>
+    </string-array>
+
+    <attr name="editTextPreferenceStyle" format="reference" />
+    <!--搜索图标左边margin-->
+    <attr name="SearchBarIconMarginLeft" format="dimension"/>
+    <!--搜索图标右边margin-->
+    <attr name="SearchBarIconMarginRight" format="dimension"/>
+    <!--搜索图标-->
+    <attr name="SearchBarIconSrc" format="reference"/>
+    <!--清除图标左边margin-->
+    <attr name="ClearIconMarginLeft" format="dimension"/>
+    <!--清除图标右边margin-->
+    <attr name="ClearIconMarginRight" format="dimension"/>
+    <!--清除图标-->
+    <attr name="ClearIconSrc" format="reference"/>
+    <!--搜索文字大小-->
+    <attr name="SearchTextSize" format="dimension"/>
+    <!--搜索文字颜色-->
+    <attr name="SearchTextColor" format="color"/>
+    <declare-styleable name="CommolySearchView">
+        <attr name="SearchBarIconMarginLeft"/>
+        <attr name="SearchBarIconMarginRight"/>
+        <attr name="SearchBarIconSrc"/>
+        <attr name="ClearIconMarginLeft"/>
+        <attr name="ClearIconMarginRight"/>
+        <attr name="ClearIconSrc"/>
+        <attr name="SearchTextSize"/>
+        <attr name="SearchTextColor"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="JazzyViewPager">
+        <attr name="style">
+            <enum name="standard" value="0" />
+            <enum name="tablet" value="1" />
+            <enum name="cubein" value="2" />
+            <enum name="cubeout" value="3" />
+            <enum name="flipvertical" value="4" />
+            <enum name="fliphorizontal" value="5" />
+            <enum name="stack" value="6" />
+            <enum name="zoomin" value="7" />
+            <enum name="zoomout" value="8" />
+            <enum name="rotateup" value="9" />
+            <enum name="rotatedown" value="10" />
+            <enum name="accordion" value="11" />
+        </attr>
+        <attr name="fadeEnabled" format="boolean" />
+        <attr name="outlineEnabled" format="boolean" />
+        <attr name="outlineColor" format="color|reference" />
+    </declare-styleable>
+    <declare-styleable name="SpinnerLoading">
+        <attr name="circle_color" format="color"/>
+        <attr name="circle_color_move" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="PreferenceWithTip">
+        <attr name="tipstring" format="string"></attr>
+        <attr name="titlestring" format="string"></attr>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="CoustomEditPerference">
+        <attr name="contstring" format="string"></attr>
+    </declare-styleable>
+
+    <!--    照片输出格式-->
+    <string-array name="jpeg_outputformat">
+        <item>jpg</item>
+        <item>png</item>
+        <item>raw</item>
+    </string-array>
+
+
+    <!--(连拍: 3张，连拍: 5张，连拍: 10,连拍: 20,连拍: 30,关)-->
+    <string-array name="jpeg_continousShooting">
+        <item>@string/three_times</item>
+        <item>@string/five_times</item>
+        <item>@string/ten_times</item>
+        <item>@string/close</item>
+    </string-array>
+
+
+    <!--    视频帧率-->
+    <string-array name="video_rate">
+        <item>30</item>
+        <item>25</item>
+    </string-array>
+
+
+    <!--    视频最长录制时间-->
+    <string-array name="video_maxduration">
+        <item>80000</item>
+        <item>70000</item>
+        <item>60000</item>
+        <item>1800</item>
+    </string-array>
+
+
+    <!--
+     //"5分钟","10分钟","15分钟","20分钟","30分钟","关"(分段录制默认值为30分钟)(按秒来计算分钟数)
+     5分钟，10分钟，20分钟，30分钟，1小时，关
+     视频分段录制-->
+    <string-array name="video_segmented">
+        <item>@string/ten_minutes</item>
+        <item>@string/twenty_minutes</item>
+        <item>@string/thirty_minutes</item>
+    </string-array>
+
+    <string-array name="video_delay">
+        <item>@string/ten_seconds</item>
+        <item>@string/twenty_seconds</item>
+        <item>@string/thrity_second</item>
+        <item>@string/close</item>
+    </string-array>
+
+    <!--&lt;!&ndash;-->
+       <!--预录设置-->
+       <!--//"一分钟","2分钟","3分钟","5分钟","10分钟","关"(分段录制默认值为30分钟)(按秒来计算分钟数)-->
+       <!--5秒，10秒，20分，30分，关-->
+       <!--&ndash;&gt;-->
+    <!--<string-array name="video_prerecord">-->
+        <!--<item> 5分</item>-->
+        <!--<item>10分</item>-->
+        <!--<item>20分</item>-->
+        <!--<item>30分</item>-->
+        <!--<item>关</item>-->
+    <!--</string-array>-->
+
+
+    <!--
+       预录设置
+       //"一分钟","2分钟","3分钟","5分钟","10分钟","关"(分段录制默认值为30分钟)(按秒来计算分钟数)
+       5秒，10秒，20分，30分，关
+       -->
+    <string-array name="video_prerecord">
+
+        <item>@string/open</item>
+        <item>@string/close</item>
+    </string-array>
+
+
+
+    <string-array name="video_outputformat">
+        <item>mp4</item>
+    </string-array>
+
+<!--//（5秒，10秒，20分，30分,关）-->
+    <!--延时录制设置-->
+
+    <!--    音频最长录制时间-->
+    <string-array name="audio_maxduration">
+        <item>80000</item>
+        <item>70000</item>
+        <item>1800</item>
+    </string-array>
+
+
+
+    <!--    音频采样率-->
+    <string-array name="audio_samplerate">
+        <item>44100</item>
+        <item>48000</item>
+    </string-array>
+
+    <!--    音频输出格式-->
+    <string-array name="audio_outputformat">
+        <item>wav</item>
+        <item>mp3</item>
+        <item>amr</item>
+    </string-array>
+
+
+    <string-array name="flieview">
+        <item>@string/file_view_mode</item>
+        <item>@string/picture_view_mode</item>
+    </string-array>
+
+
+    <!--一下是测试数据直接写死了-->
+    <string-array name="video_size">
+        <item>@string/video_240p</item>
+        <item>@string/video_480p</item>
+        <item>@string/video_720p</item>
+        <item>@string/video_1080p</item>
+    </string-array>
+
+
+
+    <string-array name="picture_size">
+        <item>1M (1280x960)</item>
+        <item>2M (1600x1200)</item>
+        <item>3M (2048x1536)</item>
+        <item>5M (2560x1920)</item>
+        <item>8M (3600x2160)</item>
+        <item>20M (5760x3456)</item>
+        <item>32M (7200x4320)</item>
+    </string-array>
+
+
+    <string-array name="language">
+        <item>中文(简体)</item>
+        <item>English</item>
+        <item>한글</item>
+    </string-array>
+
+    <string-array name="udisk">
+        <item>@string/usb_forbiden</item>
+        <item>@string/usb_mode_udisk</item>
+    </string-array>
+
+
+    <string-array name="quality">
+        <item>@string/normal</item>
+        <item>@string/fine</item>
+        <item>@string/excellent</item>
+    </string-array>
+
+    <string-array name="mSwitch">
+        <item>@string/open</item>
+        <item>@string/close</item>
+    </string-array>
+
+
+    //-3 EV，-2 EV,-1 EV,0 EV ,1 EV，2  EV，3 EV
+    <string-array name="expose">
+        <item>-3 EV</item>
+        <item>-2 EV</item>
+        <item>-1 EV</item>
+        <item> 0 EV</item>
+        <item> 1 EV</item>
+        <item> 2 EV</item>
+        <item> 3 EV</item>
+    </string-array>
+
+    <string-array name="infraed">
+        <item>@string/auto</item>
+        <item>@string/manual</item>
+    </string-array>
+
+    <string-array name="volume">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+</resources>

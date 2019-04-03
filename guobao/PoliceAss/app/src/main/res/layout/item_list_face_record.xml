@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+
+    <LinearLayout
+        android:background="@drawable/touch_bg"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/face_rcd_photo"
+            android:layout_width="56dip"
+            android:layout_height="56dip"
+            android:layout_margin="3dip"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:contentDescription="@string/descr_image"
+            android:scaleType="centerCrop" />
+
+        <RelativeLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="72dip">
+            <TextView
+
+                android:textColor="@color/dark"
+                android:layout_marginTop="15dp"
+                android:text="AAAAAAAAAAAAAAA"
+                android:textSize="20sp"
+                android:singleLine="true"
+                android:id="@+id/face_rcd_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/face_rcd_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/face_rcd_name"
+                android:text="2019/02/23 14:47"
+                android:textColor="@color/dark" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00.00000 00.00000"
+                android:textColor="@color/dark" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <View
+        style="@style/hon_line_style"/>
+
+</LinearLayout>

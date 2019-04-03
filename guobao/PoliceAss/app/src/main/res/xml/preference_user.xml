@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:preference="http://schemas.android.com/apk/res-auto">
+
+    <!--
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="用户设置"/>
+        -->
+    <EditTextPreference
+        android:key="policeNumber"
+        android:title="@string/police_number"
+        android:summary="888888"
+        android:defaultValue="888888"
+        android:dialogTitle="@string/police_number"
+        android:inputType="number"
+        />
+
+    <EditTextPreference
+        android:defaultValue="123456"
+        android:key="devNumber"
+        android:title="@string/device_number"
+        android:summary="123456"
+        android:dialogTitle="@string/device_number"
+        android:inputType="number"
+        />
+
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="AdminName"
+        android:title="@string/admin_name"
+        android:summary="xxx"
+        android:dialogTitle="@string/admin_name"
+        android:inputType="textAutoComplete"
+        />
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="usrName"
+        android:title="@string/user_name"
+        android:summary="xxx"
+        android:dialogTitle="@string/user_name"
+        android:inputType="textAutoComplete"
+        />
+
+    <EditTextPreference
+        android:defaultValue="111111"
+        android:key="usrPassword"
+        android:title="@string/usr_passwd"
+        android:summary="111111"
+        android:dialogTitle="@string/usr_passwd"
+        android:inputType="number"
+        />
+
+    <EditTextPreference
+        android:defaultValue="111111"
+        android:key="AdminPassword"
+        android:title="@string/admin_passwd"
+        android:summary="111111"
+        android:dialogTitle="@string/admin_passwd"
+        android:inputType="number"
+        />
+
+
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="unitNumber"
+        android:title="@string/company_number"
+        android:summary="xxx"
+        android:dialogTitle="@string/company_number"
+        android:inputType="textAutoComplete"
+        />
+    <EditTextPreference
+        android:defaultValue="xxx"
+        android:key="unitName"
+        android:title="@string/company_name"
+        android:summary="xxx"
+        android:dialogTitle="@string/company_name"
+        android:inputType="textAutoComplete"
+        />
+
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="current_data"
+        android:defaultValue="2017/3/18"
+        preference:tipstring="2017/3/18"
+        preference:titlestring="@string/date_setting">
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="current_time"
+        android:defaultValue="17:15:31"
+        preference:tipstring="17:15:31"
+        preference:titlestring="@string/time_setting" >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+    <!--
+    <EditTextPreference
+        android:defaultValue="110"
+        android:key="sos"
+        android:title="sos设置"
+        android:summary="110"
+        android:dialogTitle="sos设置"
+        android:inputType="number"
+        />
+        -->
+
+    <!--
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="formatSD"
+        preference:titlestring="@string/format_sdcard" >
+    </gbpe.policeass.views.PreferenceWithTip>
+    -->
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="updateSystem"
+        preference:titlestring="@string/system_update"
+        preference:tipstring="@string/version"
+        >
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+    <!--<gbpe.policeass.views.PreferenceWithTip-->
+    <!--android:key="finger_print"-->
+    <!--android:defaultValue="指纹设置"-->
+    <!--preference:tipstring="指纹设置"-->
+    <!--preference:titlestring="指纹设置" >-->
+    <!--<intent-->
+    <!--android:action="android.intent.action.VIEW"-->
+    <!--android:data="http://www.baidu.com" />-->
+    <!--</gbpe.policeass.views.PreferenceWithTip>-->
+
+
+    <gbpe.policeass.views.PreferenceWithTip
+        android:key="reset"
+        preference:tipstring="@string/factory_setting"
+        preference:titlestring="@string/factory_setting" >
+        <!--<intent-->
+        <!--android:action="android.intent.action.VIEW"-->
+        <!--android:data="http://www.baidu.com" />-->
+    </gbpe.policeass.views.PreferenceWithTip>
+
+
+</PreferenceScreen>

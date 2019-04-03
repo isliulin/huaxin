@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:id="@+id/container"
+    android:background="#fff"
+  >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/header"
+        android:visibility="gone"
+        android:background="@color/colorPrimary">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_cancel"
+            android:background="@android:color/transparent"
+            android:text="@string/cancel"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已选择1项"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:id="@+id/number"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全选"
+            android:background="@android:color/transparent"
+            android:id="@+id/btn_select_all"
+            android:layout_alignParentEnd="true"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清除"
+            android:background="@android:color/transparent"
+            android:id="@+id/btn_clear"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_to_server"
+        android:id="@+id/btn_send2server"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/header"
+        android:id="@+id/rv_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_above="@id/btn_send2server"
+        />
+
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/rl_detial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--<TextView-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:id="@+id/tv_detial"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="图片"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<ImageView-->
+            <!--android:src="@mipmap/ic_launcher"-->
+            <!--android:id="@+id/iv_detial"-->
+            <!--android:layout_above="@id/tv_detial"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent" />-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/detail_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eeeeee"
+            android:visibility="invisible"
+            android:contentDescription="用来展示图片的viewpager"/>
+    </RelativeLayout>
+
+</FrameLayout>

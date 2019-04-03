@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     android:paddingBottom="3dp"
+    android:paddingTop="3dp"
+    android:paddingLeft="@dimen/margin_left"
+    android:paddingRight="@dimen/margin_right">
+
+    <LinearLayout
+      style="@style/main_layout_style">
+        <TextView
+            android:id="@+id/tv_zfy"
+            style="@style/main_style"
+            android:drawableTop="@drawable/zfy"
+            android:text="视频浏览"
+           />
+
+        <TextView
+            android:id="@+id/tv_byt"
+            style="@style/main_style"
+            android:drawableTop="@drawable/voice_intercom"
+            android:text="图片浏览"
+            />
+        <TextView
+            android:id="@+id/tv_msg"
+            style="@style/main_style"
+            android:drawableTop="@drawable/message"
+            android:text="声音浏览"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/main_layout_style">
+
+        <TextView
+            android:id="@+id/tv_emerg_call"
+            style="@style/main_style"
+            android:drawableTop="@drawable/phone"
+            android:text="指南针"
+            />
+        <TextView
+            android:id="@+id/tv_compass"
+            style="@style/main_style"
+            android:drawableTop="@drawable/pass"
+            android:text="博远通"
+            />
+        <TextView
+            android:id="@+id/tv_comtact"
+            style="@style/main_style"
+            android:drawableTop="@drawable/dhb"
+            android:text="一键上传"
+            />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/main_layout_style">
+        <TextView
+            android:id="@+id/tv_call"
+            style="@style/main_style"
+            android:drawableTop="@drawable/voice_intercom"
+            android:text="SOS"
+            />
+        <TextView
+            android:id="@+id/tv_browser"
+            style="@style/main_style"
+            android:drawableTop="@drawable/llq"
+            android:text="外接摄像头"
+            />
+        <TextView
+            android:id="@+id/tv_sys_setting"
+            style="@style/main_style"
+            android:drawableTop="@drawable/setting"
+            android:text="系统设置"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

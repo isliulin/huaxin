@@ -1,0 +1,29 @@
+{
+  "buildFiles": [
+    "F:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Android.mk",
+    "F:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "D:\\android\\android-ndk-r16b-windows-x86_64\\android-ndk-r16b\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-18 NDK_OUT\u003dF:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\lib clean"
+  ],
+  "libraries": {
+    "EasyPR-release-armeabi": {
+      "artifactName": "EasyPR",
+      "buildCommand": "D:\\android\\android-ndk-r16b-windows-x86_64\\android-ndk-r16b\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-18 NDK_OUT\u003dF:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\lib F:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj/local/armeabi/libEasyPR.so",
+      "abi": "armeabi",
+      "output": "F:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\obj\\local\\armeabi\\libEasyPR.so"
+    },
+    "sfftranscoder-release-armeabi": {
+      "artifactName": "sfftranscoder",
+      "buildCommand": "D:\\android\\android-ndk-r16b-windows-x86_64\\android-ndk-r16b\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-18 NDK_OUT\u003dF:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\lib F:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj/local/armeabi/libsfftranscoder.so",
+      "abi": "armeabi",
+      "output": "F:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\obj\\local\\armeabi\\libsfftranscoder.so"
+    },
+    "nmUVC-release-armeabi": {
+      "artifactName": "nmUVC",
+      "buildCommand": "D:\\android\\android-ndk-r16b-windows-x86_64\\android-ndk-r16b\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-18 NDK_OUT\u003dF:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dF:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\lib F:/work/svn/e12/hm1/PoliceAss/app/build/intermediates/ndkBuild/release/obj/local/armeabi/libnmUVC.so",
+      "abi": "armeabi",
+      "output": "F:\\work\\svn\\e12\\hm1\\PoliceAss\\app\\build\\intermediates\\ndkBuild\\release\\obj\\local\\armeabi\\libnmUVC.so"
+    }
+  }
+}

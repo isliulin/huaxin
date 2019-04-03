@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="视频参数"/>
+        -->
+    <ListPreference
+        android:summary="1280x720 720p 4:3"
+        android:key="video_size"
+        android:defaultValue="1280x720 720p 4:3"
+        android:entries="@array/video_size"
+        android:entryValues="@array/video_size"
+        android:title="@string/video_solution" />
+    <ListPreference
+        android:summary="30"
+        android:defaultValue="30"
+        android:entries="@array/video_rate"
+        android:entryValues="@array/video_rate"
+        android:key="video_rate"
+        android:title="@string/frame_rate" />
+
+    <ListPreference
+        android:defaultValue="@string/thirty_minutes"
+        android:summary="@string/thirty_minutes"
+        android:entries="@array/video_segmented"
+        android:entryValues="@array/video_segmented"
+        android:key="video_segmented"
+        android:title="@string/segment_recording" />
+
+    <ListPreference
+        android:defaultValue="@string/close"
+        android:summary="@string/close"
+        android:entries="@array/video_delay"
+        android:entryValues="@array/video_delay"
+        android:key="video_delay"
+        android:title="@string/video_delay" />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="video_prerecord"
+        android:title="@string/record_in_advance" />
+
+
+    <ListPreference
+        android:defaultValue="@string/normal"
+        android:summary="@string/normal"
+        android:entries="@array/quality"
+        android:entryValues="@array/quality"
+        android:key="video_quality"
+        android:title="@string/video_quality" />
+
+    <!--
+    <ListPreference
+        android:defaultValue="mp4"
+        android:summary="mp4"
+        android:entries="@array/video_outputformat"
+        android:entryValues="@array/video_outputformat"
+        android:key="video_outputformat"
+        android:title="视频输出格式" />
+        -->
+
+    <!--
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="video_motiondetection"
+        android:title="移动侦测" />
+        -->
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="video_osd"
+        android:title="@string/watermark"/>
+
+    <!--
+    <EditTextPreference
+        android:dependency="video_osd"
+        android:defaultValue="2017-7-7 17:00:08"
+        android:key="videoWatermark"
+        android:title="@string/watermark_format"
+        android:summary="2017-7-7 17:00:08"
+        android:dialogTitle="@string/watermark_tips"
+        />
+        -->
+
+    <!--
+    <ListPreference
+        android:defaultValue="80000"
+        android:summary="80000"
+        android:entries="@array/video_maxduration"
+        android:entryValues="@array/video_maxduration"
+        android:key="video_maxduration"
+        android:title="最长录制时间" />
+        -->
+
+</PreferenceScreen>

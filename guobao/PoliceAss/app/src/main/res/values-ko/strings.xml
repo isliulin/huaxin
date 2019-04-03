@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation"
+	>
+	<string name="app_name">바디캠</string>
+  <string name="action_settings">설정</string>
+  <string name="hello_world">헬로우 월드</string>
+	<string	name="chinese_btn">중문</string>
+	<string	name="english_btn">영문</string>
+	<string name="yellow">옐로우</string>
+	<string name="red">레드</string>
+	<string name="gray">그레이</string>
+	<string name="green">그린</string>
+	<string name="orange">오렌지</string>
+	<string name="blue">블루</string>
+	<string name="black">블랙</string>
+
+	<string name="stop_recorder">녹화중지</string>
+	<string name="start_recorder">녹화시작</string>
+	<string name="no_sdcard">sd카드없음</string>
+	<string name="start_audio">녹음시작</string>
+	<string name="stop_audio">녹음정지</string>
+	<string name="save_to">저장</string>
+	<string name="shoot_two_photo_continuously">2연속촬영</string>
+	<string name="shoot_three_photo_continuously">3연속촬영</string>
+	<string name="shoot_five_photo_continuously">5연속촬영</string>
+	<string name="shoot_ten_photo_continuously">10연속촬영</string>
+	<string name="shoot_twenty_photo_continuously">20연속촬영</string>
+	<string name="take_picture_successfully">사진찍기성공</string>
+
+	<string name="video_settings">영상설정</string>
+	<string name="sound_settings">사진설정</string>
+	<string name="audio_settings">녹음설정</string>
+	<string name="Language_settings">시스템언어설정</string>
+	<string name="the_USB_mode_settings">usb설정모드</string>
+	<string name="WIFI_settings">wifi설정</string>
+	<string name="self_lockscreen">자동액정끄기</string>
+	<string name="Volume">Volume</string>
+	<string name="SegmentedVideo">SegmentedVideo</string>
+	<string name="key_tone">버튼음</string>
+	<string name="red_line">적외선</string>
+	<string name="file_pattern">파일보기모드</string>
+	<string name="the_GPS">위치시스템</string>
+	<string name="manual_lockscreen">수동액정잠금</string>
+	<string name="play_error">재생오류</string>
+	<string name="no_audio_file">오디오파일없음</string>
+	<string name="take_picture">사진촬영</string>
+	<string name="play_video">비디오 재생</string>
+	<string name="simplified_chinese">간체중문</string>
+	<string name="english">영문</string>
+	<string name="get_video_lists">영상</string>
+	<string name="get_photo_lists">사진</string>
+	<string name="get_sound_lists">음성</string>
+	<string name="video_browsing">영상보기</string>
+	<string name="photo_browsing">사진보기</string>
+	<string name="sound_browsing">음성듣기</string>
+	<string name="open_camera">카메라 체인지</string>
+	<string name="setup">설정</string>
+	<string name="picture_size">사진크기</string>
+	<string name="takephoto_continuously">연속촬영</string>
+	<string name="MaxDuration">최장녹화시간</string>
+	<string name="the_audio_sampling_rate">오디오 쌤플링</string>
+	<string name="resolution_ratio">해상도</string>
+	<string name="picture_quality">화질</string>
+	<string name="video_delay">비디오 지연</string>
+	<string name="motion_detection">모션감지</string>
+	<string name="lower">저</string>
+	<string name="high">고</string>
+	<string name="medium">중</string>
+	<string name="delicacy">정밀</string>
+	<string name="file_mode">파일모드</string>
+	<string name="thrity_second">30초</string>
+	<string name="one_minute">1분</string>
+	<string name="three_minute">3분</string>
+	<string name="power_on">开机</string>
+	<string name="power_off">关机</string>
+	<string name="five_seconds">5초</string>
+	<string name="thrity_minutes">30분</string>
+	<string name="cancle_delay_time">취소설정</string>
+	<string name="one_key_upload">원클릭업로드</string>
+	<string name="segmented_video_record">세그먼트 기록</string>
+	<string name="fifteen_minutes">15분</string>
+	<string name="realtime_audio">식시간 녹음</string>
+	<string name="realtime_video">실시간 영상</string>
+	<string name="query">검색</string>
+	<string name="importance">중요</string>
+	<string name="common">일반</string>
+	<string name="never">네버</string>
+	<string name="police_number">경찰원 번호</string>
+	<string name="device_number">설비번호</string>
+	<string name="fill_in_numbers">숫자입력</string>
+	<string name="date_setting">날자설정</string>
+	<string name="time_setting">시간설정</string>
+	<string name="data_and_time">날자및시간</string>
+	<string name="usr_passwd">사용자 암호설정</string>
+	<string name="restore">초기화 설정</string>
+	<string name="compass">지남침</string>
+	<string name="getting_location">경위도 인식중...</string>
+	<string name="cannot_get_location">경위도 인식불가</string>
+	<string name="cannot_get_sensor">방향센서 획득되지 않음</string>
+	<string name="location_north">북위도 %s</string>
+	<string name="location_south">남위도 %sS</string>
+	<string name="location_east">동경 %s</string>
+	<string name="location_west">서경 %s</string>
+	<string name="exit_toast">다시누르면 앱종료</string>
+	<string name="ac_name_image_list">Image List Example</string>
+	<string name="ac_name_image_grid">Image Grid Example</string>
+	<string name="ac_name_image_pager">Image Pager Example</string>
+	<string name="ac_name_image_gallery">Image Gallery Example</string>
+	<!-- Labels -->
+	<string name="label_activity_examples">Activity Examples</string>
+	<string name="menu_item_clear_memory_cache">Clear memory cache</string>
+	<string name="menu_item_clear_disc_cache">Clear disc cache</string>
+	<string name="menu_item_pause_on_scroll">Pause on scroll</string>
+	<string name="menu_item_pause_on_fling">Pause on fling</string>
+	<string name="button_image_list">ListView</string>
+	<string name="button_image_grid">GridView</string>
+	<string name="button_image_pager">ViewPager</string>
+	<string name="button_image_gallery">Gallery</string>
+	<!-- Content descriptions -->
+	<string name="descr_image">Image</string>
+	<string name="play">재생</string>
+	<string name="totalsize">총용량</string>
+	<string name="surplussize">남은용량</string>
+	<string name="vibrator">진동알림</string>
+
+
+
+
+
+	<string name="east_longitude">동경</string>
+	<string name="west_longitude">서경</string>
+	<string name="south_latitude">남위</string>
+	<string name="north_latitude">북위</string>
+	<string name="direct_east">동</string>
+	<string name="direct_west">서</string>
+	<string name="direct_south">남</string>
+	<string name="direct_north">북</string>
+	<string name="direct_north_east">동북</string>
+	<string name="direct_south_east">남북</string>
+	<string name="direct_north_west">서북</string>
+	<string name="direct_south_west">서남</string>
+	<string name="allow_location_service">위치 서비스 허용하기</string>
+	<string name="allow_location_service_describe">위치 정밀도 향상</string>
+	<string name="calibrate_compass">Compass interference. Wave the phone in figure 8 motion to re-calibrate the compass.</string>
+	<string name="character_degree">°</string>
+	<string name="character_fen">′</string>
+	<string name="character_miao">″</string>
+
+	<string name="uvc_record_start">녹화시작</string>
+	<string name="uvc_record_finish">녹화완성</string>
+
+	<string name="button_video">녹화시작/녹화정지</string>
+
+	<string name="button1">사진찍기</string>
+
+	<string name="forth_gen_trans">4G전송</string>
+	<string name="usb_video_camera">외장 카메라</string>
+
+	<string name="journal">일지보기</string>
+	<string name="phone">전화</string>
+	<string name="ftp_setting">ftp설정</string>
+	<string name="message">짧은 소식</string>
+	<string name="wifi_setting">Wifi</string>
+
+	<string name="back">백업</string>
+	<string name="passwd_input">비밀번호 입력</string>
+	
+	<string name="password_tips">6자리숫자</string>
+    <string name="cancel">취소</string>
+    <string name="confirm">확인</string>
+
+	<string name="video_solution">해상도</string>
+	<string name="frame_rate">프레임 속도</string>
+	
+	<string name="close">OFF</string>
+	<!--string name="segment_recording">세그먼트 기록</string-->
+	<string name="segment_recording">단일 비디오시간</string>
+	<string name="record_in_advance">비디오 예약설정</string>
+
+	<string name="normal">보통</string>
+	<string name="video_quality">비디오 품절</string>
+	<string name="watermark">워터 마크</string>
+
+	<string name="watermark_format">워터마크 형식</string>
+
+	<string name="watermark_tips">숫자,_,엔터,:</string>
+	<string name="admin_name">관리자 이름</string>
+	<string name="user_name">사용자 이름</string>
+
+	<string name="admin_passwd">관리자 암호</string>
+
+	<string name="company_number">단위번호</string>
+	<string name="company_name">단위명칭</string>
+
+	<string name="format_sdcard">SD카드 포맷</string>
+	<string name="system_update">시스템 업그레이드</string>
+
+	<string name="version">현재버전：V2.2.2</string>
+	<string name="factory_setting">초기화 설정</string>
+
+	<string name="gps_location">Gps위치</string>
+	<string name="wifi">Wifi</string>
+	<string name="prompt_tone">제시음</string>
+	<string name="tts_setting">음성방송</string>
+
+	<string name="tts_tips">문자 TTS음성전환+</string>
+	<string name="picture_mode">그림모드</string>
+	<string name="file_browse_mode">파일찾기모드</string>
+	<string name="system_language_setting">시스템 언어설정</string>
+
+	<string name="usb_setting">USB설정</string>
+	<string name="usb_forbiden">금지</string>
+    <string name="usb_mode_cmd">명령모드</string>
+    <string name="usb_mode_udisk">U디스크 모드</string>
+
+	<string name="manual">수동</string>
+
+	<string name="recording_screen_on">녹화중 화면지속 켜짐 </string>
+	<string name="keep_screen_on">화면지속 켜짐</string>
+	<string name="display_setting">디스플레이 설정</string>
+	<string name="display_tips">화면밝기,글체및수면시간</string>
+	<string name="bluetooth">블루트스 설정</string>
+	<string name="preview_solution">해상도 미리보기</string>
+	<string name="picture_solution">사진 해상도</string>
+	<string name="continuous_shooting">연속촬영</string>
+
+	<string name="picture_watermark">사진워터마크</string>
+	<string name="picture_watermark_format">사진워트마크 형식</string>
+	<string name="picture_format">사진형식</string>
+	
+	<string name="audio_sampling_rate">오디오 쌤플링 속도</string>
+	<string name="audio_format">오디오 형식</string>
+	<string name="audio_max_duration">최대녹음시간</string>
+
+	<string name="camera_exception">카메라 이상</string>
+	<string name="no_sdcard_tips">SD카드 삽입</string>
+	<string name="no_photo_tips">촬영 금지</string>
+	<string name="no_frequent_ops">반복상용 금지</string>
+	<string name="wait_tips">잠시후</string>
+	<string name="recording_interrupt_tips">녹음중/녹화중 중단하시겠습니까?</string>
+	<string name="on_audio_recording">녹음중</string>
+	<string name="photo_ok_tips">사진 저장</string>
+
+	<string name="no_battery_tips">배터리부족, 촬영정지</string>
+
+	<string name="stop">정지</string>
+	<string name="start">시작</string>
+
+	<string name="infrared">적외선</string>
+
+	<string name="video_para">영상 참고지수</string>
+	<string name="picture_para">이미지 참고지수</string>
+	<string name="audio_para">오디오 참고지수</string>
+	<string name="system_para">시스템 참고지소</string>
+	<string name="user_para">사용자 설정</string>
+
+    <string name="open">시작</string>
+    <string name="fine">양호</string>
+    <string name="excellent">정밀</string>
+    <string name="auto">자동</string>
+
+    <string name="file_view_mode">파일모드</string>
+    <string name="picture_view_mode">이미지 모드</string>
+
+	<string name="ten_minutes">10 분</string>
+    <string name="thirty_minutes">30 분</string>
+    <string name="twenty_minutes">20 분</string>
+    <string name="ten_seconds">10 초</string>
+    <string name="fifty_minutes">50 분</string>
+    <string name="three_times">3 장</string>
+    <string name="five_times">5 장</string>
+    <string name="ten_times">10 장</string>
+    <string name="twenty_times">20 장</string>
+    <string name="thirty_times">30 장</string>
+    <string name="video">비디오</string>
+    <string name="picture">사진</string>
+    <string name="voice">음성</string>
+
+	<string name="key_format_error_tips">키워드 포맷 애러</string>
+	<string name="key_error_tips">키워드 오류</string>
+	<string name="port_ip_null_tips">포트남바 혹은 IP주소 필수기재 </string>
+	<string name="sos_func_tips">SOS버튼클릭</string>
+	<string name="uvc_open_tips">외부 카메라에 연결중</string>
+	<string name="no_support_now">잠시지원안됨</string>
+	<string name="set_date_tips">날자설정: </string>
+	<string name="set_time_tips">시간설정: </string>
+	<string name="restore_factory_tips">초기화 설정 확인?</string>
+	<string name="restore_factory_note">모든정보 삭제</string>
+	<string name="format_sdcard_tips">SD카드 포맷 ?</string>
+	<string name="format_sdcard_notes">SD카드 모든정보 삭제</string>
+	<string name="format_sdcar_error_tips">格SD카드 포맷오류</string>
+	<string name="update_system_tips">시스템 업데이트 ?</string>
+	<string name="update_system_message">업데이트전 모든문서 백업!!!</string>
+	<string name="camera_setup_tips">작동중...</string>
+
+    <string name="no_video_available_tips">동영상 자료없음</string>
+    <string name="select_one_item">선택사항 1개있음</string>
+    <string name="upload_to_server">서버에 전송하시겠습니까?</string>
+    <string name="sure_to_upload">전송 확인?</string>
+    <string name="mark_as_important">특별파일표기</string>
+    <string name="mark_as_important_all">전체표기 확인?</string>
+    <string name="mark_on_run_tips">표기중...</string>
+    <string name="mark_over_tips">표기완료</string>
+
+	<string name="car_recognise">차표 식별</string>
+	<string name="face_recognise">얼굴인식</string>
+	<string name="id_recognise">신분증</string>
+
+	<string name="registering_please_wait">등록중,잠시만 기다리세요</string>
+	<string name="liveness_detect">생체검출</string>
+
+	<string name="register">등록</string>
+	<string name="init_failed">엔진초기화실패 ,오류코드 %d</string>
+	<string name="permission_denied">권한거부됨!</string>
+
+	<string name="cat_plate_tips">차량번호판 인식 지원안됨</string>
+	<string name="id_reco_tips">신분증 인식 지원안됨</string>
+
+	<string name="active_engine">엔진 활성화</string>
+
+	<string name="active_success">엔진 활성화 성공</string>
+	<string name="already_activated">엔진활성화완료,재활성화 불필요</string>
+	<string name="active_failed">active failed,code is %d</string>
+
+	<string name="recognise">식별</string>
+	<string name="no_alive_tips">검출실패</string>
+
+    <string name="register_input_name">이름</string>
+    <string name="register_input_id">ID</string>
+    <string name="register_input_remark">비고</string>
+
+	<string name="no_admin_privilege">권한없음</string>
+	<string name="admin_active_error">관리자 활성화 오류</string>
+	<string name="open_device_manager_tips">작동후 화면잠금 사용가능...</string>
+	<string name="face_recognise_tips">얼굴확인</string>
+
+	<string name="service_busy_tips">잠시만 기다려주세요</string>
+	<string name="start_register_tips">등록시작</string>
+	<string name="start_recognise_tips">식별시작</string>
+
+	<string name="batch_register">대량</string>
+	<string name="batch_no_exit_tips">인간 얼굴 폴더가 존재하지 않습니다.</string>
+	<string name="recovery_factory_setting">공장 출하</string>
+	<string name="confirm_recovery">공장 출하</string>
+	<string name="clear_all_data_waring">모든 데이터 청공</string>
+
+	<string name="voice_recording_tips">녹음을 하고 있다.</string>
+	<string name="voice_recording_stop_tips">녹음 정지</string>
+	<string name="save_ok_tips">저장 성</string>
+    <string name="voice_record_note">클릭 단추를 누르면 녹음을 시작합니다.</string>
+    <string name="pause">일시 정지</string>
+    <string name="voice_pause_tips">녹음을 녹음하다.</string>
+
+	<string name="second">s</string>
+	<string name="minute">m</string>
+	<string name="hour">h</string>
+
+	<string name="video_param_set">비디오 참수</string>
+	<string name="photo_setting">사진 개수</string>
+	<string name="max_video_duration">최대 비디오</string>
+	<string name="video_formation">비디오 형식</string>
+	<string name="flash_light">플래시 램프</string>
+	<string name="camera_focus_mode">대각 모드</string>
+	<string name="camera_white_balance">백평형</string>
+	<string name="camera_scance">정경</string>
+	<string name="camera_compensation">노출 보상</string>
+	<string name="photo_quality">이미지 품질</string>
+	<string name="audio_recorder_parameter">오디오 참수 설정</string>
+	<string name="sos_setting">SOS 설치</string>
+
+    <string name="twenty_seconds">20 초</string>
+	<string name="system_setting">시스템 설정</string>
+
+	<string name="video_240p">320x240  240p 4:3</string>
+	<string name="video_480p">640x480  480p 4:3</string>
+	<string name="video_720p">1280x720 720p 4:3</string>
+	<string name="video_1080p">1920x1080 1080p 16:9</string>
+
+	<string name="inserted">끼워넣다</string>
+	<string name="ejected">발탄</string>
+	<string name="device">설비</string>
+	<string name="attached">연결</string>
+	<string name="dettached">끊어지다</string>
+
+	<string name="plate_rect">식별 영역</string>
+	<string name="id_use_net">네트워킹</string>
+	<string name="no_gps_tips">gps 서비스 없음</string>
+	<string name="gps_get_failed">gps 데이터 가져오기 실패</string>
+    <string name="photo_manager_busy">분주하다</string>
+	<string name="finished">완성하다</string>
+
+	<string name="apn_setting">APN</string>
+	<string name="setting">설치</string>
+    <string name="click_to_set">클릭설정</string>
+	<string name="android_setting">Android 설치</string>
+    <string name="app_open_failed">app 열기 실패</string>
+    <string name="selected">선택하다</string>
+	<string name="items">항목</string>
+	<string name="confirm_to_upload">확인</string>
+	<string name="confirm_to_mark">확인 표시</string>
+	<string name="marking">태그 중</string>
+	<string name="mark_ok">태그 성공</string>
+    <string name="picture_save_error">그림 저장 오류</string>
+    <string name="face_bat_register_start">대량 등록하다.</string>
+	<string name="face_bat_register_finished">등록 완료</string>
+	<string name="release_camera_tips">카메라방출</string>
+    <string name="sys_crash_tips">프로그램충돌</string>
+    <string name="photo_to_plate_number">사진식별</string>
+    <string name="input_to_research">검색내용입력</string>
+	<string name="find_new_package">새고물발견</string>
+	<string name="begin_ota_tips">시스템업그레이드시작</string>
+    <string name="recive_sample">사진을 받다</string>
+	<string name="file_no_exist">파일을 찾을 수 없다</string>
+	<string name="file_format_error">파일 형식 오류</string>
+	<string name="begin_register">등록 시작</string>
+    <string name="register_failed">등록 실패</string>
+	<string name="register_success">등록 완료</string>
+    <string name="success">성공</string>
+	<string name="failed">실패</string>
+    <string name="open_camera_err">카메라 켜기 실패</string>
+    <string name="init_success">성공 초기화</string>
+
+
+</resources>

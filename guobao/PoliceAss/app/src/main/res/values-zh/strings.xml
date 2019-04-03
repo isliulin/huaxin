@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation"
+	>
+	<string name="app_name">执法记录仪</string>
+  <string name="action_settings">设置</string>
+  <string name="hello_world">嗨 世界</string>
+	<string	name="chinese_btn">中文</string>
+	<string	name="english_btn">英文</string>
+	<string name="yellow">黄色</string>
+	<string name="red">红色</string>
+	<string name="gray">灰色</string>
+	<string name="green">绿色</string>
+	<string name="orange">橙色</string>
+	<string name="blue">蓝色</string>
+	<string name="black">黑色</string>
+
+	<string name="stop_recorder">停止录像</string>
+	<string name="start_recorder">开始录像</string>
+	<string name="no_sdcard">没有sd卡</string>
+	<string name="start_audio">开始录音</string>
+	<string name="stop_audio">停止录音</string>
+	<string name="save_to">保存至</string>
+	<string name="shoot_two_photo_continuously">连拍两张</string>
+	<string name="shoot_three_photo_continuously">连拍三张</string>
+	<string name="shoot_five_photo_continuously">连拍五张</string>
+	<string name="shoot_ten_photo_continuously">连拍十张</string>
+	<string name="shoot_twenty_photo_continuously">连拍二十张</string>
+	<string name="take_picture_successfully">拍照成功</string>
+
+	<string name="video_settings">视频设置</string>
+	<string name="sound_settings">照相设置</string>
+	<string name="audio_settings">录音设置</string>
+	<string name="Language_settings">系统语言设置</string>
+	<string name="the_USB_mode_settings">USB设置模式</string>
+	<string name="WIFI_settings">WiFi设置</string>
+	<string name="self_lockscreen">自动关屏</string>
+	<string name="Volume">Volume</string>
+	<string name="SegmentedVideo">SegmentedVideo</string>
+	<string name="key_tone">按键音</string>
+	<string name="red_line">红外</string>
+	<string name="file_pattern">文件查看模式</string>
+	<string name="the_GPS">定位系统</string>
+	<string name="manual_lockscreen">手动锁屏</string>
+	<string name="play_error">播放失败</string>
+	<string name="no_audio_file">还没有音频文件</string>
+	<string name="take_picture">拍照</string>
+	<string name="play_video">播放视频</string>
+	<string name="simplified_chinese">简体中文</string>
+	<string name="english">英语</string>
+	<string name="get_video_lists">视频</string>
+	<string name="get_photo_lists">图片</string>
+	<string name="get_sound_lists">声音</string>
+	<string name="video_browsing">视频浏览</string>
+	<string name="photo_browsing">图片浏览</string>
+	<string name="sound_browsing">声音浏览</string>
+	<string name="open_camera">切换摄像头</string>
+	<string name="setup">设置</string>
+	<string name="picture_size">图片大小</string>
+	<string name="takephoto_continuously">连拍</string>
+	<string name="MaxDuration">最长录制时间</string>
+	<string name="the_audio_sampling_rate">音频采样率</string>
+	<string name="resolution_ratio">分辨率</string>
+	<string name="picture_quality">画质</string>
+	<string name="video_delay">录像延时</string>
+	<string name="motion_detection">移动侦测</string>
+	<string name="lower">低</string>
+	<string name="high">高</string>
+	<string name="medium">中</string>
+	<string name="delicacy">精致</string>
+	<string name="file_mode">文件模式</string>
+
+	<string name="power_on">开机</string>
+	<string name="power_off">关机</string>
+
+	<string name="cancle_delay_time">取消设置</string>
+	<string name="one_key_upload">一键上传</string>
+	<string name="segmented_video_record">分段录制</string>
+	<string name="realtime_audio">实时语音</string>
+	<string name="realtime_video">实时视频</string>
+	<string name="query">查询</string>
+	<string name="importance">重要</string>
+	<string name="common">一般</string>
+	<string name="never">从不</string>
+	<string name="police_number">警员编号</string>
+	<string name="device_number">设备编号</string>
+	<string name="fill_in_numbers">请填写数字</string>
+	<string name="date_setting">日期设置</string>
+	<string name="time_setting">时间设置</string>
+	<string name="data_and_time">日起和时间</string>
+	<string name="usr_passwd">用户密码设置</string>
+	<string name="restore">恢复出厂设置</string>
+	<string name="compass">指南针</string>
+	<string name="getting_location">正在获取经纬度...</string>
+	<string name="cannot_get_location">无法获取经纬度</string>
+	<string name="cannot_get_sensor">未获取到方向传感器</string>
+	<string name="location_north">北纬 %s</string>
+	<string name="location_south">南纬 %sS</string>
+	<string name="location_east">东经 %s</string>
+	<string name="location_west">西经 %s</string>
+	<string name="exit_toast">再按一次退出应用</string>
+	<string name="ac_name_image_list">Image List Example</string>
+	<string name="ac_name_image_grid">Image Grid Example</string>
+	<string name="ac_name_image_pager">Image Pager Example</string>
+	<string name="ac_name_image_gallery">Image Gallery Example</string>
+	<!-- Labels -->
+	<string name="label_activity_examples">Activity Examples</string>
+	<string name="menu_item_clear_memory_cache">Clear memory cache</string>
+	<string name="menu_item_clear_disc_cache">Clear disc cache</string>
+	<string name="menu_item_pause_on_scroll">Pause on scroll</string>
+	<string name="menu_item_pause_on_fling">Pause on fling</string>
+	<string name="button_image_list">ListView</string>
+	<string name="button_image_grid">GridView</string>
+	<string name="button_image_pager">ViewPager</string>
+	<string name="button_image_gallery">Gallery</string>
+	<!-- Content descriptions -->
+	<string name="descr_image">Image</string>
+	<string name="play">播放</string>
+	<string name="totalsize">总容量</string>
+	<string name="surplussize">剩余</string>
+	<string name="vibrator">震动提示</string>
+
+
+
+
+
+	<string name="east_longitude">东 经</string>
+	<string name="west_longitude">西 经</string>
+	<string name="south_latitude">南 纬</string>
+	<string name="north_latitude">北 纬</string>
+	<string name="direct_east">东</string>
+	<string name="direct_west">西</string>
+	<string name="direct_south">南</string>
+	<string name="direct_north">北</string>
+	<string name="direct_north_east">东 北</string>
+	<string name="direct_south_east">东 南</string>
+	<string name="direct_north_west">西 北</string>
+	<string name="direct_south_west">西 南</string>
+	<string name="allow_location_service">Allow location service</string>
+	<string name="allow_location_service_describe">Allow location service to improve the data accuracy</string>
+	<string name="calibrate_compass">Compass interference. Wave the phone in figure 8 motion to re-calibrate the compass.</string>
+	<string name="character_degree">°</string>
+	<string name="character_fen">′</string>
+	<string name="character_miao">″</string>
+
+	<string name="uvc_record_start">录像开始</string>
+	<string name="uvc_record_finish">录像完成</string>
+
+	<string name="button_video">开始录像/停止录像</string>
+
+	<string name="button1">拍照</string>
+
+	<string name="forth_gen_trans">4G传输</string>
+	<string name="usb_video_camera">外接摄像头</string>
+	<string name="system_setting">系统设置</string>
+
+	<string name="journal">日志浏览</string>
+	<string name="phone">电话</string>
+	<string name="ftp_setting">ftp设置</string>
+	<string name="message">短信</string>
+	<string name="wifi_setting">Wifi设置</string>
+
+	<string name="back">返回</string>
+	<string name="passwd_input">请输入密码</string>
+	
+	<string name="password_tips">六位数字</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+
+	<string name="video_solution">分辨率</string>
+	<string name="frame_rate">帧率</string>
+	
+	<string name="close">关</string>
+	<!--string name="segment_recording">分段录制</string-->
+	<string name="segment_recording">单个视频时长</string>
+	<string name="record_in_advance">预录设置</string>
+
+	<string name="normal">普通</string>
+	<string name="video_quality">视频质量</string>
+	<string name="watermark">视频水印</string>
+
+	<string name="watermark_format">水印格式</string>
+
+	<string name="watermark_tips">只能是数字,横线，空格和冒号</string>
+	<string name="admin_name">管理员名称</string>
+	<string name="user_name">用户名称</string>
+
+	<string name="admin_passwd">管理员密码</string>
+
+	<string name="company_number">单位编号</string>
+	<string name="company_name">单位名称</string>
+
+	<string name="format_sdcard">格式化SD卡</string>
+	<string name="system_update">系统升级</string>
+
+	<string name="version">当前版本：V2.2.2</string>
+	<string name="factory_setting">恢复出厂设置</string>
+
+	<string name="gps_location">Gps定位</string>
+	<string name="wifi">Wifi</string>
+	<string name="prompt_tone">提示音</string>
+	<string name="tts_setting">语音播报</string>
+
+	<string name="tts_tips">请将文字转语音(TTS)输出勾选为讯飞语音+</string>
+	<string name="picture_mode">图片模式</string>
+	<string name="file_browse_mode">文件浏览模式</string>
+	<string name="system_language_setting">系统语言设置</string>
+
+	<string name="usb_setting">USB设置</string>
+	<string name="usb_forbiden">禁止</string>
+    <string name="usb_mode_cmd">命令模式</string>
+    <string name="usb_mode_udisk">U盘模式</string>
+
+	<string name="manual">手动</string>
+
+	<string name="recording_screen_on">录制视频时屏幕是否常亮</string>
+	<string name="keep_screen_on">屏幕常亮</string>
+	<string name="display_setting">显示设置</string>
+	<string name="display_tips">屏幕亮度、字体和休眠时间</string>
+	<string name="bluetooth">蓝牙设置</string>
+	<string name="preview_solution">预览分辨率</string>
+	<string name="picture_solution">照片分辨率</string>
+	<string name="continuous_shooting">连拍</string>
+
+	<string name="picture_watermark">图片水印</string>
+	<string name="picture_watermark_format">图片水印格式</string>
+	<string name="picture_format">图片格式</string>
+	
+	<string name="audio_sampling_rate">音频采样率</string>
+	<string name="audio_format">音频格式</string>
+	<string name="audio_max_duration">最大录音时间</string>
+
+	<string name="camera_exception">摄像头异常</string>
+	<string name="no_sdcard_tips">请插入SD卡</string>
+	<string name="no_photo_tips">不可拍照</string>
+	<string name="no_frequent_ops">请不要频繁操作</string>
+	<string name="wait_tips">请稍候</string>
+	<string name="recording_interrupt_tips">正在录音/录像中，确认中断吗？</string>
+	<string name="on_audio_recording">录音中</string>
+	<string name="photo_ok_tips">照片已保存</string>
+
+	<string name="no_battery_tips">电池电量过低，停止录像即将关机</string>
+
+	<string name="stop">停止</string>
+	<string name="start">开始</string>
+
+	<string name="infrared">红外</string>
+
+	<string name="video_para">视频参数</string>
+	<string name="picture_para">图像参数</string>
+	<string name="audio_para">音频参数</string>
+	<string name="system_para">系统参数</string>
+	<string name="user_para">用户设置</string>
+
+    <string name="open">开</string>
+    <string name="fine">良好</string>
+    <string name="excellent">精细</string>
+    <string name="auto">自动</string>
+
+    <string name="file_view_mode">文件模式</string>
+    <string name="picture_view_mode">图片模式</string>
+
+    <string name="video">视频</string>
+    <string name="picture">图像</string>
+    <string name="voice">声音</string>
+
+	<string name="key_format_error_tips">密码格式错误</string>
+	<string name="key_error_tips">密码错误</string>
+	<string name="port_ip_null_tips">端口号或IP地址不可为空</string>
+	<string name="sos_func_tips">请按SOS按键</string>
+	<string name="uvc_open_tips">正在打开外接摄像头</string>
+	<string name="no_support_now">暂不支持</string>
+	<string name="set_date_tips">设置日期: </string>
+	<string name="set_time_tips">设置时间: </string>
+	<string name="restore_factory_tips">确定恢复出厂设置?</string>
+	<string name="restore_factory_note">将会清空所有数据</string>
+	<string name="format_sdcard_tips">确定格式化SD卡？</string>
+	<string name="format_sdcard_notes">SD卡所有数据将会清空</string>
+	<string name="format_sdcar_error_tips">格式化SD卡错误</string>
+	<string name="update_system_tips">现在开始升级系统？</string>
+	<string name="update_system_message">升级前请确认所有文件已备份！！！</string>
+	<string name="camera_setup_tips">启动中...</string>
+
+    <string name="no_video_available_tips">还没有视频文件</string>
+    <string name="select_one_item">已选择1项</string>
+    <string name="upload_to_server">上传至服务器</string>
+    <string name="sure_to_upload">确定上传？</string>
+    <string name="mark_as_important">标记为重点文件</string>
+    <string name="mark_as_important_all">确定全部标记？</string>
+    <string name="mark_on_run_tips">正在标记...</string>
+    <string name="mark_over_tips">标记完成</string>
+
+	<string name="car_recognise">车牌识别</string>
+	<string name="face_recognise">人脸识别</string>
+	<string name="id_recognise">身份证</string>
+
+	<string name="registering_please_wait">注册中，请稍等</string>
+	<string name="liveness_detect">活体检测</string>
+
+	<string name="register">注册</string>
+	<string name="init_failed">引擎初始化失败，错误码为 %d</string>
+	<string name="permission_denied">权限被拒绝！</string>
+
+	<string name="cat_plate_tips">暂不支持车牌识别</string>
+	<string name="id_reco_tips">暂不支持身份证识别</string>
+
+	<string name="active_engine">激活引擎</string>
+
+	<string name="active_success">激活引擎成功</string>
+	<string name="already_activated">引擎已激活，无需再次激活</string>
+	<string name="active_failed">active failed,code is %d</string>
+
+	<string name="recognise">识别</string>
+	<string name="no_alive_tips">检测失败</string>
+
+    <string name="register_input_name">名字</string>
+    <string name="register_input_id">ID</string>
+    <string name="register_input_remark">备注</string>
+
+	<string name="no_admin_privilege">没有权限</string>
+	<string name="admin_active_error">激活管理员错误</string>
+	<string name="open_device_manager_tips">开启后就可以使用锁屏功能了...</string>
+	<string name="face_recognise_tips">人脸确认</string>
+
+	<string name="service_busy_tips">服务忙，请等待</string>
+	<string name="start_register_tips">开始注册</string>
+	<string name="start_recognise_tips">开始识别</string>
+
+	<string name="batch_register">批量</string>
+	<string name="batch_no_exit_tips">人脸文件夹不存在</string>
+	<string name="recovery_factory_setting">恢复出厂设置</string>
+	<string name="confirm_recovery">确定恢复出厂设置?</string>
+	<string name="clear_all_data_waring">将会清空所有数据</string>
+
+	<string name="voice_recording_tips">正在录音</string>
+	<string name="voice_recording_stop_tips">停止录音</string>
+	<string name="save_ok_tips">保存成功</string>
+
+    <string name="voice_record_note">点击按钮开始录音.</string>
+    <string name="pause">暂停</string>
+    <string name="voice_pause_tips">录音已暂停</string>
+
+	<string name="second">秒</string>
+	<string name="minute">分</string>
+	<string name="hour">小时</string>
+
+	<string name="video_param_set">视频参数设置</string>
+	<string name="photo_setting">拍照设置</string>
+	<string name="max_video_duration">最大录像时长</string>
+	<string name="video_formation">video_formation</string>
+	<string name="flash_light">闪光灯</string>
+	<string name="camera_focus_mode">对焦模式</string>
+	<string name="camera_white_balance">白平衡</string>
+	<string name="camera_scance">场景</string>
+	<string name="camera_compensation">曝光补偿</string>
+	<string name="photo_quality">照片质量</string>
+	<string name="audio_recorder_parameter">录音参数设置</string>
+	<string name="sos_setting">sos设置</string>
+
+	<string name="ten_minutes">10 分</string>
+	<string name="thirty_minutes">30 分</string>
+	<string name="twenty_minutes">20 分</string>
+	<string name="ten_seconds">10 秒</string>
+	<string name="fifty_minutes">50 分</string>
+	<string name="three_times">3 张</string>
+	<string name="five_times">5 张</string>
+	<string name="ten_times">10 张</string>
+	<string name="twenty_times">20 张</string>
+	<string name="thirty_times">30 张</string>
+	<string name="thrity_second">30 秒</string>
+	<string name="one_minute">1 分</string>
+	<string name="three_minute">3 分</string>
+	<string name="five_seconds">5 秒</string>
+	<string name="thrity_minutes">30 分</string>
+	<string name="fifteen_minutes">15 分</string>
+	<string name="twenty_seconds">20 秒</string>
+
+	<string name="video_240p">320x240  240p 4:3</string>
+	<string name="video_480p">640x480  480p 4:3</string>
+	<string name="video_720p">1280x720 720p 4:3</string>
+	<string name="video_1080p">1920x1080 1080p 16:9</string>
+
+	<string name="inserted">插入</string>
+	<string name="ejected">弹出</string>
+	<string name="device">设备</string>
+	<string name="attached">连接</string>
+	<string name="dettached">断开</string>
+	<string name="plate_rect">识别区</string>
+
+	<string name="id_use_net">联网</string>
+
+	<string name="no_gps_tips">获取位置失败</string>
+	<string name="gps_get_failed">获取gps数据失败</string>
+    <string name="photo_manager_busy">忙碌...</string>
+	<string name="finished">完成</string>
+
+	<string name="apn_setting">APN</string>
+	<string name="setting">设置</string>
+    <string name="click_to_set">点击设置</string>
+	<string name="android_setting">Android 设置</string>
+	<string name="app_open_failed">打开应用失败</string>
+
+	<string name="selected">已选择</string>
+	<string name="items">项</string>
+	<string name="confirm_to_upload">确认上传?</string>
+	<string name="confirm_to_mark">确认标记?</string>
+	<string name="marking">标记中 ...</string>
+	<string name="mark_ok">标记成功</string>
+	<string name="picture_save_error">图像保存错误</string>
+	<string name="face_bat_register_start">批量注册人脸信息</string>
+	<string name="face_bat_register_finished">注册完成</string>
+	<string name="release_camera_tips">释放摄像头</string>
+    <string name="sys_crash_tips">很抱歉,程序出现异常</string>
+	<string name="photo_to_plate_number">拍照识别车牌</string>
+    <string name="input_to_research">输入搜索内容</string>
+	<string name="find_new_package">发现新固件</string>
+	<string name="begin_ota_tips">系统开始</string>
+    <string name="recive_sample">收到照片</string>
+	<string name="file_no_exist">找不到文件</string>
+	<string name="file_format_error">文件格式错误</string>
+	<string name="begin_register">开始注册</string>
+    <string name="register_failed">注册失败</string>
+	<string name="register_success">注册完成</string>
+	<string name="success">成功</string>
+	<string name="failed">失败</string>
+    <string name="open_camera_err">打开摄像机失败</string>
+    <string name="init_success">初始化正常</string>
+
+
+</resources>

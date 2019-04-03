@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#003371"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="输入IP和端口号"
+        android:textColor="#fffffb"
+        android:textSize="16sp"
+        android:visibility="visible" />
+
+    <!--   <LinearLayout
+          android:id="@+id/contentView"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content" > -->
+
+    <EditText
+        android:inputType="numberPassword"
+        android:background="@drawable/shape"
+        android:id="@+id/et_server_ip"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+
+        android:gravity="center"
+        android:hint="请输入IP地址" />
+
+    <EditText
+        android:inputType="numberPassword"
+        android:background="@drawable/shape"
+        android:id="@+id/et_server_port"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:hint="请输入端口号" />
+    <!-- </LinearLayout> -->
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="60.0dip"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:background="@drawable/shape"
+            android:text="@string/cancel"
+            android:id="@+id/btn_uplod_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <Button
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/shape"
+            android:text="@string/confirm"
+            android:id="@+id/btn_uplod_confim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

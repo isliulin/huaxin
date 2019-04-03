@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    tools:context="gbpe.policeass.zfysim.LanuchActivity">
+
+    <TextView
+        android:textColor="#fff"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:text="正在启动中...."
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    <gbpe.policeass.utils.MyPreferenceCategory
+        android:title="录音参数"/>
+        -->
+    <ListPreference
+        android:summary="44100"
+        android:defaultValue="44100"
+        android:entries="@array/audio_samplerate"
+        android:entryValues="@array/audio_samplerate"
+        android:key="audio_samplerate"
+        android:title="@string/audio_sampling_rate" />
+    <ListPreference
+        android:summary="wav"
+        android:defaultValue="wav"
+        android:entries="@array/audio_outputformat"
+        android:entryValues="@array/audio_outputformat"
+        android:key="audio_outputformat"
+        android:title="@string/audio_format" />
+
+
+    <ListPreference
+        android:summary="80000"
+        android:defaultValue="80000"
+        android:entries="@array/audio_maxduration"
+        android:entryValues="@array/audio_maxduration"
+        android:key="audio_maxduration"
+        android:title="@string/audio_max_duration" />
+
+</PreferenceScreen>

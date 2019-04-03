@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/mainpage_bg"
+    tools:context=".zfysim.NewHomeActivity">
+
+    <!--<include-->
+    <!--layout="@layout/titlebar"-->
+    <!--android:layout_height="61dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--/>-->
+    <RelativeLayout
+        android:id="@+id/add_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/mmtitle_bg" >
+
+        <Button
+            android:id="@+id/add_reback_btn"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/appkefu_title_btn_back"
+            android:text="@string/back"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!--
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="42dp"
+        android:layout_above="@id/ll"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+    -->
+
+    <!--
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="42dp"
+            android:id="@+id/new_home_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <gbpe.policeass.views.VerticalSeekBar
+            android:layout_marginTop="42dp"
+            android:id="@+id/verticalSeekBar"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right">
+
+        </gbpe.policeass.views.VerticalSeekBar>
+
+
+    </FrameLayout>
+
+    -->
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="42dp"
+        android:id="@+id/new_home_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        />
+
+
+</RelativeLayout>

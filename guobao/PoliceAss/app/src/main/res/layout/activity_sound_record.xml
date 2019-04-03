@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#363b4f">
+
+    <include
+        android:id="@+id/sound_record_titlebar"
+        layout="@layout/titlebar"/>
+    <TextView
+        android:layout_marginTop="33dp"
+          android:id="@+id/recording_tip_tv_id"
+        android:gravity="center"
+        android:text="点击录音按钮开始录音"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff0000"
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/recording_tip_tv_id"
+        android:id="@+id/recording_time_tv_id"
+        android:gravity="center"
+        android:text="00:00"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="Start"
+            android:id="@+id/recorder_btn_id"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:text="Save"
+            android:id="@+id/stop_btn_id"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:id="@+id/volume_show_id"
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@drawable/record_microphone"
+            android:id="@+id/iv_voice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</RelativeLayout>
