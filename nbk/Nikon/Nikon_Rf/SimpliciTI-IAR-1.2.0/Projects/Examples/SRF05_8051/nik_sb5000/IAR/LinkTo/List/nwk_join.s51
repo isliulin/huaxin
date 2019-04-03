@@ -1,0 +1,1760 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        26/Jul/2016  23:17:48 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_ /
+//                          applications\nwk_join.c                           /
+//    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\Configuration\LinkTo\smpl_co /
+//                          nfig.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56,     /
+//                          0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK           /
+//                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\Configuration\smp /
+//                          l_nwk_config.dat (-DMAX_HOPS=3                    /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4            /
+//                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING          /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=115200                           /
+//                          -DUART_FLOW_CONTROL=UART_FLOW_CONTROL_OFF         /
+//                          -DUART_PARITY_MODE=UART_PARITY_NONE               /
+//                          -DUART_STOP_BITS=UART_1_STOP_BIT                  /
+//                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                  /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_ /
+//                          applications\nwk_join.c -D MCU_H=<ioCC2530.h> -D  /
+//                          MRFI_CC2530 -D ZTOOL_P1 -D MRFI_PA_LNA_ENABLED    /
+//                          -lC C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          on_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 /
+//                          5_8051\nik_sb5000\IAR\LinkTo\List\ -lA            /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -o                 /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\Obj\ -e --debug          /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data --nr_virtual_regs  /
+//                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\N /
+//                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SR /
+//                          F05_8051\nik_sb5000\IAR\..\..\..\..\..\Components /
+//                          \bsp\ -I C:\Users\freeman\Documents\work\NBK\Niko /
+//                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples /
+//                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compone /
+//                          nts\bsp\drivers\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\bsp\boards\CC2530EM\ -I            /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\ /
+//                           -I C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          on_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 /
+//                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S /
+//                          impliciTI\nwk\ -I C:\Users\freeman\Documents\work /
+//                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects /
+//                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\Appl /
+//                          ications\ -I C:\Users\freeman\Documents\work\NBK\ /
+//                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam /
+//                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com /
+//                          ponents\SimpliciTI\nwk_applications\ -I           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\ /
+//                          INCLUDE\ -I C:\Users\freeman\Documents\work\NBK\N /
+//                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp /
+//                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp /
+//                          onents\OSAL\MCU\CCSOC\ -I                         /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\HAL\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\HAL\TARGET\CC2530EB\ -I                     /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\SERVI /
+//                          CES\SADDR\ -I C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co /
+//                          mponents\SERVICES\SDATA\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MT\   /
+//                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\..\..\..\..\..\Components\ST /
+//                          ACK\AF\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\NWK\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\STACK\SEC\ -I                      /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\STACK /
+//                          \SAPI\ -I C:\Users\freeman\Documents\work\NBK\Nik /
+//                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon /
+//                          ents\STACK\SYS\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\STACK\ZDO\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\HIGH_LEVEL\ -I                          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\L /
+//                          OW_LEVEL\srf04\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\    /
+//                          -Ohz --require_prototypes                         /
+//    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\nwk_join.s51        /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk_join
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?L_MOV_TO_X
+        EXTERN ?L_MOV_X
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTORE_R2345
+        EXTERN __INIT_XDATA_I
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??nwk_getJoinToken?relay
+        FUNCTION ??nwk_getJoinToken?relay,0203H
+        PUBLIC ??nwk_join?relay
+        FUNCTION ??nwk_join?relay,0203H
+        PUBLIC ??nwk_joinInit?relay
+        FUNCTION ??nwk_joinInit?relay,0203H
+        PUBLIC ??nwk_processJoin?relay
+        FUNCTION ??nwk_processJoin?relay,0203H
+        PUBLIC ??nwk_setJoinToken?relay
+        FUNCTION ??nwk_setJoinToken?relay,0203H
+        PUBWEAK __Constant_5060708
+        PUBLIC nwk_getJoinToken
+        FUNCTION nwk_getJoinToken,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC nwk_join
+        FUNCTION nwk_join,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 35, STACK
+        PUBLIC nwk_joinInit
+        FUNCTION nwk_joinInit,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        PUBLIC nwk_processJoin
+        FUNCTION nwk_processJoin,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC nwk_setJoinToken
+        FUNCTION nwk_setJoinToken,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+MRFI_RandomByte     SYMBOL "MRFI_RandomByte"
+MRFI_GetRadioState  SYMBOL "MRFI_GetRadioState"
+nwk_getBCastAddress SYMBOL "nwk_getBCastAddress"
+nwk_putNumObjectIntoMsg SYMBOL "nwk_putNumObjectIntoMsg"
+nwk_getProtocolVersion SYMBOL "nwk_getProtocolVersion"
+SMPL_Ioctl          SYMBOL "SMPL_Ioctl"
+MRFI_WakeUp         SYMBOL "MRFI_WakeUp"
+MRFI_RxOn           SYMBOL "MRFI_RxOn"
+MRFI_ReplyDelay     SYMBOL "MRFI_ReplyDelay"
+MRFI_Sleep          SYMBOL "MRFI_Sleep"
+MRFI_RxIdle         SYMBOL "MRFI_RxIdle"
+memcpy              SYMBOL "memcpy"
+nwk_setLinkToken    SYMBOL "nwk_setLinkToken"
+nwk_setAPAddress    SYMBOL "nwk_setAPAddress"
+nwk_isValidReply    SYMBOL "nwk_isValidReply"
+MRFI_PostKillSem    SYMBOL "MRFI_PostKillSem"
+??MRFI_GetRadioState?relay SYMBOL "?relay", MRFI_GetRadioState
+??MRFI_PostKillSem?relay SYMBOL "?relay", MRFI_PostKillSem
+??MRFI_RandomByte?relay SYMBOL "?relay", MRFI_RandomByte
+??MRFI_ReplyDelay?relay SYMBOL "?relay", MRFI_ReplyDelay
+??MRFI_RxIdle?relay SYMBOL "?relay", MRFI_RxIdle
+??MRFI_RxOn?relay   SYMBOL "?relay", MRFI_RxOn
+??MRFI_Sleep?relay  SYMBOL "?relay", MRFI_Sleep
+??MRFI_WakeUp?relay SYMBOL "?relay", MRFI_WakeUp
+??SMPL_Ioctl?relay  SYMBOL "?relay", SMPL_Ioctl
+??memcpy?relay      SYMBOL "?relay", memcpy
+??nwk_getBCastAddress?relay SYMBOL "?relay", nwk_getBCastAddress
+??nwk_getProtocolVersion?relay SYMBOL "?relay", nwk_getProtocolVersion
+??nwk_isValidReply?relay SYMBOL "?relay", nwk_isValidReply
+??nwk_putNumObjectIntoMsg?relay SYMBOL "?relay", nwk_putNumObjectIntoMsg
+??nwk_setAPAddress?relay SYMBOL "?relay", nwk_setAPAddress
+??nwk_setLinkToken?relay SYMBOL "?relay", nwk_setLinkToken
+nwk_getJoinToken    SYMBOL "nwk_getJoinToken"
+??nwk_getJoinToken?relay SYMBOL "?relay", nwk_getJoinToken
+nwk_join            SYMBOL "nwk_join"
+??nwk_join?relay    SYMBOL "?relay", nwk_join
+nwk_joinInit        SYMBOL "nwk_joinInit"
+??nwk_joinInit?relay SYMBOL "?relay", nwk_joinInit
+nwk_processJoin     SYMBOL "nwk_processJoin"
+??nwk_processJoin?relay SYMBOL "?relay", nwk_processJoin
+nwk_setJoinToken    SYMBOL "nwk_setJoinToken"
+??nwk_setJoinToken?relay SYMBOL "?relay", nwk_setJoinToken
+
+        EXTERN MRFI_RandomByte
+        FUNCTION MRFI_RandomByte,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_GetRadioState
+        FUNCTION MRFI_GetRadioState,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_getBCastAddress
+        FUNCTION nwk_getBCastAddress,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_putNumObjectIntoMsg
+        FUNCTION nwk_putNumObjectIntoMsg,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_getProtocolVersion
+        FUNCTION nwk_getProtocolVersion,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN SMPL_Ioctl
+        FUNCTION SMPL_Ioctl,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_WakeUp
+        FUNCTION MRFI_WakeUp,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_RxOn
+        FUNCTION MRFI_RxOn,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_ReplyDelay
+        FUNCTION MRFI_ReplyDelay,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_Sleep
+        FUNCTION MRFI_Sleep,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_RxIdle
+        FUNCTION MRFI_RxIdle,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memcpy
+        FUNCTION memcpy,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 35, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_setLinkToken
+        FUNCTION nwk_setLinkToken,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_setAPAddress
+        FUNCTION nwk_setAPAddress,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_isValidReply
+        FUNCTION nwk_isValidReply,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_PostKillSem
+        FUNCTION MRFI_PostKillSem,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??MRFI_GetRadioState?relay
+        FUNCTION ??MRFI_GetRadioState?relay,00H
+        EXTERN ??MRFI_PostKillSem?relay
+        FUNCTION ??MRFI_PostKillSem?relay,00H
+        EXTERN ??MRFI_RandomByte?relay
+        FUNCTION ??MRFI_RandomByte?relay,00H
+        EXTERN ??MRFI_ReplyDelay?relay
+        FUNCTION ??MRFI_ReplyDelay?relay,00H
+        EXTERN ??MRFI_RxIdle?relay
+        FUNCTION ??MRFI_RxIdle?relay,00H
+        EXTERN ??MRFI_RxOn?relay
+        FUNCTION ??MRFI_RxOn?relay,00H
+        EXTERN ??MRFI_Sleep?relay
+        FUNCTION ??MRFI_Sleep?relay,00H
+        EXTERN ??MRFI_WakeUp?relay
+        FUNCTION ??MRFI_WakeUp?relay,00H
+        EXTERN ??SMPL_Ioctl?relay
+        FUNCTION ??SMPL_Ioctl?relay,00H
+        EXTERN ??memcpy?relay
+        FUNCTION ??memcpy?relay,00H
+        EXTERN ??nwk_getBCastAddress?relay
+        FUNCTION ??nwk_getBCastAddress?relay,00H
+        EXTERN ??nwk_getProtocolVersion?relay
+        FUNCTION ??nwk_getProtocolVersion?relay,00H
+        EXTERN ??nwk_isValidReply?relay
+        FUNCTION ??nwk_isValidReply?relay,00H
+        EXTERN ??nwk_putNumObjectIntoMsg?relay
+        FUNCTION ??nwk_putNumObjectIntoMsg?relay,00H
+        EXTERN ??nwk_setAPAddress?relay
+        FUNCTION ??nwk_setAPAddress?relay,00H
+        EXTERN ??nwk_setLinkToken?relay
+        FUNCTION ??nwk_setLinkToken?relay,00H
+
+// C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_applications\nwk_join.c
+//    1 /**************************************************************************************************
+//    2   Filename:       nwk_join.c
+//    3   Revised:        $Date: 2009-01-06 15:45:54 -0800 (Tue, 06 Jan 2009) $
+//    4   Revision:       $Revision: 18697 $
+//    5 
+//    6   Description:    This file supports the SimpliciTI Join network application.
+//    7 
+//    8   Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+//    9 
+//   10   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   11   the terms of a software license agreement between the user who downloaded the software,
+//   12   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   13   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   14   License. The License limits your use, and you acknowledge, that the Software may not be
+//   15   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   16   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   17   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   18   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   19   perform, display or sell this Software and/or its documentation for any purpose.
+//   20 
+//   21   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   22   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   23   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   24   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   25   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   26   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   27   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   28   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   29   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   30 
+//   31   Should you have any questions regarding your right to use this Software,
+//   32   contact Texas Instruments Incorporated at www.TI.com.
+//   33 **************************************************************************************************/
+//   34 
+//   35 
+//   36 /******************************************************************************
+//   37  * INCLUDES
+//   38  */
+//   39 #include <string.h>
+//   40 #include "bsp.h"
+//   41 #include "mrfi.h"
+//   42 #include "nwk_types.h"
+//   43 #include "nwk_api.h"
+//   44 #include "nwk_frame.h"
+//   45 #include "nwk.h"
+//   46 #include "nwk_link.h"
+//   47 #include "nwk_join.h"
+//   48 #include "nwk_globals.h"
+//   49 #include "nwk_freq.h"
+//   50 #include "nwk_security.h"
+//   51 #include "nwk_mgmt.h"
+//   52 
+//   53 /******************************************************************************
+//   54  * MACROS
+//   55  */
+//   56 
+//   57 /******************************************************************************
+//   58  * CONSTANTS AND DEFINES
+//   59  */
+//   60 
+//   61 /******************************************************************************
+//   62  * TYPEDEFS
+//   63  */
+//   64 
+//   65 /******************************************************************************
+//   66  * LOCAL VARIABLES
+//   67  */
+//   68 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA32
+//   69 static          uint32_t sJoinToken = 0;
+sJoinToken:
+        DS 4
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   70 static          uint8_t (*spCallback)(linkID_t) = NULL;
+spCallback:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   71 static volatile uint8_t  sTid = 0;
+sTid:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   72 
+//   73 #ifdef ACCESS_POINT
+//   74 static sfInfo_t *spSandFContext = NULL;
+//   75 static uint8_t   sJoinOK = 0;
+//   76 #endif /* ACCESS_POINT */
+//   77 
+//   78 /******************************************************************************
+//   79  * LOCAL FUNCTIONS
+//   80  */
+//   81 #ifdef ACCESS_POINT
+//   82 static void     smpl_send_join_reply(mrfiPacket_t *frame);
+//   83 static uint32_t generateLinkToken(void);
+//   84 static void     handleJoinRequest(mrfiPacket_t *);
+//   85 #endif  /*  ACCESS_POINT */
+//   86 
+//   87 /******************************************************************************
+//   88  * GLOBAL VARIABLES
+//   89  */
+//   90 
+//   91 /******************************************************************************
+//   92  * GLOBAL FUNCTIONS
+//   93  */
+//   94 
+//   95 /******************************************************************************
+//   96  * @fn          nwk_joinInit
+//   97  *
+//   98  * @brief       Initialize Join application.
+//   99  *
+//  100  * input parameters
+//  101  *
+//  102  * output parameters
+//  103  *
+//  104  * @return   void
+//  105  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  106 void nwk_joinInit(uint8_t (*pf)(linkID_t))
+nwk_joinInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function nwk_joinInit
+        CODE
+//  107 {
+        FUNCALL nwk_joinInit, MRFI_RandomByte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  108   if (!sJoinToken) 
+        MOV     DPTR,#sJoinToken
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        ORL     A,?V0 + 2
+        ORL     A,?V0 + 3
+        JNZ     ??nwk_joinInit_0
+//  109   {
+//  110     sJoinToken = DEFAULT_JOIN_TOKEN;
+        MOV     DPTR,#__Constant_5060708
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#sJoinToken
+        LCALL   ?XSTORE_R2345
+//  111   }
+//  112   
+//  113   spCallback = pf;
+??nwk_joinInit_0:
+        MOV     DPTR,#spCallback
+        MOV     A,R6
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R7
+        MOVX    @DPTR,A
+//  114   (void) spCallback;  /* keep compiler happy if we don't use this */
+//  115 
+//  116   sTid = MRFI_RandomByte() ;
+        ; Setup parameters for call to function MRFI_RandomByte
+        LCALL   ??MRFI_RandomByte?relay
+        MOV     A,R1
+        MOV     DPTR,#sTid
+        MOVX    @DPTR,A
+        CFI EndBlock cfiBlock0
+//  117 
+//  118 #ifdef ACCESS_POINT
+//  119   /* set link token to something other than deafult if desired */
+//  120   nwk_setLinkToken(generateLinkToken());
+//  121 #if defined(STARTUP_JOINCONTEXT_ON)
+//  122   sJoinOK = 1;
+//  123 #elif defined(STARTUP_JOINCONTEXT_OFF)
+//  124   sJoinOK = 0;
+//  125 #else
+//  126 #error ERROR: Must define either STARTUP_JOINCONTEXT_ON or STARTUP_JOINCONTEXT_OFF
+//  127 #endif
+//  128   spSandFContext = nwk_getSFInfoPtr();
+//  129 #endif
+//  130 
+//  131   return;
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  132 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock1
+//  133 
+//  134 /******************************************************************************
+//  135  * @fn          nwk_setJoinToken
+//  136  *
+//  137  * @brief       Sets the join token.
+//  138  *
+//  139  * input parameters
+//  140  * @param   token   - join token to be used on this network.
+//  141  *
+//  142  * output parameters
+//  143  *         no room in output queue.
+//  144  *
+//  145  * @return   void
+//  146  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  147 void nwk_setJoinToken(uint32_t token)
+nwk_setJoinToken:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function nwk_setJoinToken
+        CODE
+//  148 {
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     ?V0 + 2,R4
+        MOV     ?V0 + 3,R5
+//  149   /* only set if the supplied token is non-zero. */
+//  150   if (token)
+        MOV     A,R2
+        ORL     A,?V0 + 1
+        ORL     A,?V0 + 2
+        ORL     A,?V0 + 3
+        JZ      ??nwk_setJoinToken_0
+//  151   {
+//  152     sJoinToken = token;
+        MOV     DPTR,#sJoinToken
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_TO_X
+//  153   }
+//  154 
+//  155   return;
+??nwk_setJoinToken_0:
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock2
+//  156 }
+//  157 
+//  158 /******************************************************************************
+//  159  * @fn          nwk_getJoinToken
+//  160  *
+//  161  * @brief       Gets the current join token.
+//  162  *
+//  163  * input parameters
+//  164  *
+//  165  * output parameters
+//  166  * @param   pToken   - pointer to the returned value.
+//  167  *
+//  168  * @return   Current link token
+//  169  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  170 void nwk_getJoinToken(uint32_t *pToken)
+nwk_getJoinToken:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function nwk_getJoinToken
+        CODE
+//  171 {
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R0,A
+        MOV     A,R3
+        MOV     R1,A
+//  172   /* only set if the supplied token is non-zero. */
+//  173   if (pToken)
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??nwk_getJoinToken_0
+//  174   {
+//  175     *pToken = sJoinToken;
+        MOV     DPTR,#sJoinToken
+        LCALL   ?XLOAD_R2345
+        MOV     DPL,R0
+        MOV     DPH,R1
+        LCALL   ?XSTORE_R2345
+        CFI EndBlock cfiBlock3
+//  176   }
+//  177 
+//  178   return;
+??nwk_getJoinToken_0:
+        REQUIRE ?Subroutine1
+        ; // Fall through to label ?Subroutine1
+//  179 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock4
+//  180 
+//  181 /******************************************************************************
+//  182  * @fn          generateLinkToken
+//  183  *
+//  184  * @brief       Generate the link token to be used for the network controlled
+//  185  *              by this Access Point.
+//  186  *
+//  187  * input parameters
+//  188  *
+//  189  * output parameters
+//  190  *
+//  191  * @return   void
+//  192  */
+//  193 #ifdef ACCESS_POINT
+//  194 static uint32_t generateLinkToken(void)
+//  195 {
+//  196   return 0xDEADBEEF;
+//  197 }
+//  198 
+//  199 /******************************************************************************
+//  200  * @fn          smpl_send_join_reply
+//  201  *
+//  202  * @brief       Send the Join reply. Include the Link token. If the device is
+//  203  *              a polling sleeper put it into the list of store-and-forward
+//  204  *              clients.
+//  205  *
+//  206  * input parameters
+//  207  * @param   frame     - join frame for which a reply is needed...maybe
+//  208  *
+//  209  * output parameters
+//  210  *
+//  211  * @return   void
+//  212  */
+//  213 static void smpl_send_join_reply(mrfiPacket_t *frame)
+//  214 {
+//  215   frameInfo_t *pOutFrame;
+//  216   uint8_t      msg[JOIN_REPLY_FRAME_SIZE];
+//  217 
+//  218   /* Is this a legacy frame? If so continue. Otherwise check verion.*/
+//  219   if ((MRFI_GET_PAYLOAD_LEN(frame) - F_APP_PAYLOAD_OS) > JOIN_LEGACY_MSG_LENGTH)
+//  220   {
+//  221     /* see if protocol version is correct... */
+//  222     if (*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+J_PROTOCOL_VERSION_OS) != nwk_getProtocolVersion())
+//  223     {
+//  224       /* Accommodation of protocol version differences can be noted or accomplished here.
+//  225        * Otherwise, no match and the board goes back
+//  226        */
+//  227       return;
+//  228     }
+//  229   }
+//  230 
+//  231 
+//  232   /* see if join token is correct */
+//  233   {
+//  234     uint32_t jt;
+//  235 
+//  236     nwk_getNumObjectFromMsg(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+J_JOIN_TOKEN_OS, &jt, sizeof(jt));
+//  237     if (jt != sJoinToken)
+//  238     {
+//  239       return;
+//  240     }
+//  241   }
+//  242 
+//  243   /* send reply with tid, the link token, and the encryption context */
+//  244   {
+//  245     uint32_t linkToken;
+//  246 
+//  247     nwk_getLinkToken(&linkToken);
+//  248     nwk_putNumObjectIntoMsg((void *)&linkToken, msg+JR_LINK_TOKEN_OS, sizeof(linkToken));
+//  249   }
+//  250   msg[JR_CRYPTKEY_SIZE_OS] = SEC_CRYPT_KEY_SIZE;
+//  251   msg[JB_REQ_OS]           = JOIN_REQ_JOIN | NWK_APP_REPLY_BIT;
+//  252   /* sender's tid... */
+//  253   msg[JB_TID_OS]           = *(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+JB_TID_OS);
+//  254 
+//  255   if (pOutFrame = nwk_buildFrame(SMPL_PORT_JOIN, msg, sizeof(msg), MAX_HOPS_FROM_AP))
+//  256   {
+//  257     /* destination address is the source adddress of the received frame. */
+//  258     memcpy(MRFI_P_DST_ADDR(&pOutFrame->mrfiPkt), MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE);
+//  259 
+//  260 #ifdef AP_IS_DATA_HUB
+//  261     /* if source device supports ED objects save source address to detect duplicate joins */
+//  262     if (*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+J_NUMCONN_OS))
+//  263     {
+//  264       if (nwk_saveJoinedDevice(frame) && spCallback)
+//  265       {
+//  266         spCallback(0);
+//  267       }
+//  268     }
+//  269 #endif
+//  270   }
+//  271   else
+//  272   {
+//  273     /* oops -- no room left for Tx frame. Don't send reply. */
+//  274     return;
+//  275   }
+//  276 
+//  277   /* If this device polls we need to provide store-and-forward support */
+//  278   if (GET_FROM_FRAME(MRFI_P_PAYLOAD(frame),F_RX_TYPE) == F_RX_TYPE_POLLS)
+//  279   {
+//  280     uint8_t loc;
+//  281 
+//  282     /* Check duplicate status */
+//  283     if (!nwk_isSandFClient(MRFI_P_SRC_ADDR(frame), &loc))
+//  284     {
+//  285       uint8_t        *pNumc   = &spSandFContext->curNumSFClients;
+//  286       sfClientInfo_t *pClient = &spSandFContext->sfClients[*pNumc];
+//  287 
+//  288       /* It's not a duplicate. Save it if there's room */
+//  289       if (*pNumc < NUM_STORE_AND_FWD_CLIENTS)
+//  290       {
+//  291         memcpy(pClient->clientAddr.addr, MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE);
+//  292         *pNumc = *pNumc + 1;
+//  293       }
+//  294       else
+//  295       {
+//  296         /* No room left. Just return and don't send reply. */
+//  297         return;
+//  298       }
+//  299     }
+//  300     else
+//  301     {
+//  302       /* We get here if it's a duplicate. We drop through and send reply.
+//  303        * Reset the S&F marker in the Management application -- we should
+//  304        * assume that the Client reset so the TID will be random. If this is
+//  305        * simply a duplicate frame it causes no harm.
+//  306        */
+//  307       nwk_resetSFMarker(loc);
+//  308     }
+//  309   }
+//  310 
+//  311 #ifdef SMPL_SECURE
+//  312     nwk_setSecureFrame(&pOutFrame->mrfiPkt, sizeof(msg), 0);
+//  313 #endif  /* SMPL_SECURE */
+//  314 
+//  315   /* It's not S&F or it is but we're OK to send reply. */
+//  316   nwk_sendFrame(pOutFrame, MRFI_TX_TYPE_FORCED);
+//  317 
+//  318   return;
+//  319 }
+//  320 
+//  321 /******************************************************************************
+//  322  * @fn          nwk_join
+//  323  *
+//  324  * @brief       Stub Join function for Access Points.
+//  325  *
+//  326  * input parameters
+//  327  *
+//  328  * output parameters
+//  329  *
+//  330  * @return   Always returns SMPL_SUCCESS.
+//  331  */
+//  332 smplStatus_t nwk_join(void)
+//  333 {
+//  334   return SMPL_SUCCESS;
+//  335 }
+//  336 
+//  337 /******************************************************************************
+//  338  * @fn          nwk_isSandFClient
+//  339  *
+//  340  * @brief       Helper function to see if the destination of a frame we have is
+//  341  *              one of AP's store-and-forward clients.
+//  342  *
+//  343  * input parameters
+//  344  * @param   fPtr     - pointer to address in frame in question
+//  345  *
+//  346  * output parameters
+//  347  * @param   entLoc   - pointer to receive entry location in array of clients.
+//  348  *
+//  349  * @return   Returns client info structure pointer if the destination is a
+//  350  *           store-and-forward client, else 0.
+//  351  */
+//  352 sfClientInfo_t *nwk_isSandFClient(uint8_t *pAddr, uint8_t *entLoc)
+//  353 {
+//  354   uint8_t i;
+//  355   sfClientInfo_t *pSFClient = spSandFContext->sfClients;
+//  356 
+//  357   for (i=0; i<spSandFContext->curNumSFClients; ++i, ++pSFClient)
+//  358   {
+//  359     if (!memcmp(&pSFClient->clientAddr.addr, pAddr, NET_ADDR_SIZE))
+//  360     {
+//  361       *entLoc = i;
+//  362       return pSFClient;
+//  363     }
+//  364   }
+//  365 
+//  366   return 0;
+//  367 }
+//  368 
+//  369 /******************************************************************************
+//  370  * @fn          nwk_setJoinContext
+//  371  *
+//  372  * @brief       Helper function to set Join context for Access Point. This will
+//  373  *              allow arbitration bewteen potentially nearby Access Points when
+//  374  *              a new device is joining.
+//  375  *
+//  376  * input parameters
+//  377  * @param   which   - Join context is either off or on
+//  378  *
+//  379  * output parameters
+//  380  *
+//  381  * @return   void
+//  382  */
+//  383 void nwk_setJoinContext(uint8_t which)
+//  384 {
+//  385   sJoinOK = (JOIN_CONTEXT_ON == which) ? 1 : 0;
+//  386 
+//  387   return;
+//  388 }
+//  389 
+//  390 /******************************************************************************
+//  391  * @fn          handleJoinRequest
+//  392  *
+//  393  * @brief       Dispatches handler for specfic join request
+//  394  *
+//  395  * input parameters
+//  396  *
+//  397  * @param   frame - Join frame received
+//  398  *
+//  399  * output parameters
+//  400  *
+//  401  * @return   void
+//  402  */
+//  403 static void handleJoinRequest(mrfiPacket_t *frame)
+//  404 {
+//  405   if (JOIN_LEGACY_MSG_LENGTH == (MRFI_GET_PAYLOAD_LEN(frame) - F_APP_PAYLOAD_OS))
+//  406   {
+//  407     /* Legacy frame. Spoof a join request */
+//  408     *(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS) = JOIN_REQ_JOIN;
+//  409   }
+//  410 
+//  411   switch (*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS))
+//  412   {
+//  413     case JOIN_REQ_JOIN:
+//  414       smpl_send_join_reply(frame);
+//  415       break;
+//  416 
+//  417     default:
+//  418       break;
+//  419   }
+//  420 
+//  421   return;
+//  422 }
+//  423 
+//  424 #else  /* ACCESS_POINT */
+//  425 
+//  426 /******************************************************************************
+//  427  * @fn          nwk_join
+//  428  *
+//  429  * @brief       Join functioanlity for non-AP devices. Send the Join token
+//  430  *              and wait for the reply.
+//  431  *
+//  432  * input parameters
+//  433  *
+//  434  * output parameters
+//  435  *
+//  436  * @return   Status of operation.
+//  437  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  438 smplStatus_t nwk_join(void)
+nwk_join:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function nwk_join
+        CODE
+//  439 {
+        FUNCALL nwk_join, MRFI_GetRadioState
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, nwk_getBCastAddress
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, nwk_putNumObjectIntoMsg
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, nwk_getProtocolVersion
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, SMPL_Ioctl
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, MRFI_WakeUp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, MRFI_RxOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, MRFI_ReplyDelay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, MRFI_Sleep
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, MRFI_RxIdle
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, SMPL_Ioctl
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, memcpy
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 35, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 35, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, nwk_setLinkToken
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_join, nwk_setAPAddress
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 33, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 33, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 23
+        MOV     A,#-0x17
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 33)
+//  440   uint8_t      msg[JOIN_FRAME_SIZE];
+//  441   uint32_t     linkToken;
+//  442   addr_t       apAddr;
+//  443   uint8_t      radioState = MRFI_GetRadioState();
+        ; Setup parameters for call to function MRFI_GetRadioState
+        LCALL   ??MRFI_GetRadioState?relay
+        MOV     A,R1
+        MOV     R7,A
+//  444   smplStatus_t rc = SMPL_NO_JOIN;
+        MOV     R6,#0x6
+//  445   union
+//  446   {
+//  447     ioctlRawSend_t    send;
+//  448     ioctlRawReceive_t recv;
+//  449   } ioctl_info;
+//  450 
+//  451 #if defined( FREQUENCY_AGILITY )
+//  452   uint8_t  i, numChan;
+//  453   freqEntry_t channels[NWK_FREQ_TBL_SIZE];
+//  454 
+//  455   if (!(numChan=nwk_scanForChannels(channels)))
+//  456   {
+//  457     return SMPL_NO_CHANNEL;
+//  458   }
+//  459 
+//  460   for (i=0; i<numChan; ++i)
+//  461   {
+//  462     nwk_setChannel(&channels[i]);
+//  463 #else
+//  464   {
+//  465 #endif
+//  466 
+//  467     ioctl_info.send.addr = (addr_t *)nwk_getBCastAddress();
+        ; Setup parameters for call to function nwk_getBCastAddress
+        LCALL   ??nwk_getBCastAddress?relay
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  468     ioctl_info.send.msg  = msg;
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R0,DPL
+        MOV     R1,DPH
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  469     ioctl_info.send.len  = sizeof(msg);
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x8
+        MOVX    @DPTR,A
+//  470     ioctl_info.send.port = SMPL_PORT_JOIN;
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+//  471 
+//  472     /* Put join token in */
+//  473     nwk_putNumObjectIntoMsg((void *)&sJoinToken, msg+J_JOIN_TOKEN_OS, sizeof(sJoinToken));
+        ; Setup parameters for call to function nwk_putNumObjectIntoMsg
+        MOV     R1,#0x4
+        MOV     A,#0x9
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     R2,#sJoinToken & 0xff
+        MOV     R3,#(sJoinToken >> 8) & 0xff
+        LCALL   ??nwk_putNumObjectIntoMsg?relay
+//  474     /* set app info byte */
+//  475     msg[JB_REQ_OS] = JOIN_REQ_JOIN;
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  476     msg[JB_TID_OS] = sTid;
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        PUSH    A
+        CFI CFA_SP SP+-1
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+        CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  477     /* Set number of connections supported. Used only by AP if it is
+//  478      * a data hub.
+//  479      */
+//  480     msg[J_NUMCONN_OS] = NUM_CONNECTIONS;
+        MOV     A,#0xd
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+//  481     /* protocol version number */
+//  482     msg[J_PROTOCOL_VERSION_OS] = nwk_getProtocolVersion();
+        ; Setup parameters for call to function nwk_getProtocolVersion
+        LCALL   ??nwk_getProtocolVersion?relay
+        MOV     A,#0xe
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  483 
+//  484     SMPL_Ioctl(IOCTL_OBJ_RAW_IO, IOCTL_ACT_WRITE, &ioctl_info.send);
+        ; Setup parameters for call to function SMPL_Ioctl
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     R2,#0x3
+        MOV     R1,#0x2
+        LCALL   ??SMPL_Ioctl?relay
+//  485 
+//  486     ioctl_info.recv.port = SMPL_PORT_JOIN;
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+//  487     ioctl_info.recv.msg  = msg;
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R0,DPL
+        MOV     R1,DPH
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  488     ioctl_info.recv.addr = &apAddr;    /* save AP address from reply */
+        MOV     A,#0xf
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R0,DPL
+        MOV     R1,DPH
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  489 
+//  490     NWK_CHECK_FOR_SETRX(radioState);
+        MOV     A,#0x3
+        XRL     A,R7
+        JZ      ??nwk_join_0
+        MOV     A,#0x1
+        XRL     A,R7
+        JNZ     ??nwk_join_1
+        ; Setup parameters for call to function MRFI_WakeUp
+        LCALL   ??MRFI_WakeUp?relay
+??nwk_join_1:
+        ; Setup parameters for call to function MRFI_RxOn
+        LCALL   ??MRFI_RxOn?relay
+//  491     NWK_REPLY_DELAY();
+??nwk_join_0:
+        ; Setup parameters for call to function MRFI_ReplyDelay
+        LCALL   ??MRFI_ReplyDelay?relay
+//  492     NWK_CHECK_FOR_RESTORE_STATE(radioState);
+        MOV     A,#0x3
+        XRL     A,R7
+        JZ      ??nwk_join_2
+        MOV     A,#0x1
+        XRL     A,R7
+        JNZ     ??nwk_join_3
+        ; Setup parameters for call to function MRFI_Sleep
+        LCALL   ??MRFI_Sleep?relay
+        SJMP    ??nwk_join_2
+??nwk_join_3:
+        ; Setup parameters for call to function MRFI_RxIdle
+        LCALL   ??MRFI_RxIdle?relay
+//  493 
+//  494     if (SMPL_SUCCESS == SMPL_Ioctl(IOCTL_OBJ_RAW_IO, IOCTL_ACT_READ, &ioctl_info.recv))
+??nwk_join_2:
+        ; Setup parameters for call to function SMPL_Ioctl
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     R2,#0x2
+        MOV     R1,#0x2
+        LCALL   ??SMPL_Ioctl?relay
+        MOV     A,R1
+        JNZ     ??nwk_join_4
+//  495     {
+//  496       uint8_t firstByte = msg[JB_REQ_OS] & (~NWK_APP_REPLY_BIT);
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        ANL     A,#0x7f
+        MOV     R0,A
+//  497 
+//  498       /* Sanity check for correct reply frame. Older version
+//  499        * has the length instead of the request as the first byte.
+//  500        */
+//  501       if ((firstByte == JOIN_REQ_JOIN) ||
+//  502           (firstByte == JOIN_REPLY_LEGACY_MSG_LENGTH)
+//  503          )
+        MOV     A,#0x1
+        XRL     A,R0
+        JZ      ??nwk_join_5
+        MOV     A,R6
+        XRL     A,R0
+        JNZ     ??nwk_join_4
+//  504       {
+//  505         /* join reply returns link token */
+//  506         memcpy(&linkToken, msg+JR_LINK_TOKEN_OS, sizeof(linkToken));
+??nwk_join_5:
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 35)
+        MOV     A,#0xb
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     A,#0x15
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??memcpy?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 33)
+//  507 
+//  508         nwk_setLinkToken(linkToken);
+        ; Setup parameters for call to function nwk_setLinkToken
+        MOV     A,#0x13
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XLOAD_R2345
+        LCALL   ??nwk_setLinkToken?relay
+//  509         /* save AP address */
+//  510         nwk_setAPAddress(&apAddr);
+        ; Setup parameters for call to function nwk_setAPAddress
+        MOV     A,#0xf
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??nwk_setAPAddress?relay
+//  511         sTid++;   /* guard against duplicates */
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        INC     A
+        MOVX    @DPTR,A
+//  512         rc = SMPL_SUCCESS;
+        MOV     R6,#0x0
+//  513 #if defined( FREQUENCY_AGILITY )
+//  514         break;
+//  515 #endif
+//  516       }
+//  517     }
+//  518     /* TODO: process encryption stuff */
+//  519   }
+//  520 
+//  521   return rc;
+??nwk_join_4:
+        MOV     A,R6
+        MOV     R1,A
+        MOV     A,#0x17
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock5
+//  522 
+//  523 }
+//  524 
+//  525 #endif /* ACCESS_POINT */
+//  526 
+//  527 /******************************************************************************
+//  528  * @fn          nwk_processJoin
+//  529  *
+//  530  * @brief       Processes a Join frame. If this is a reply let it go to the
+//  531  *              application. Otherwise generate and send the reply.
+//  532  *
+//  533  * input parameters
+//  534  * @param   frame     - Pointer to Join frame
+//  535  *
+//  536  * output parameters
+//  537  *
+//  538  * @return   Keep frame for application, release frame, or replay frame.
+//  539  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  540 fhStatus_t nwk_processJoin(mrfiPacket_t *frame)
+nwk_processJoin:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function nwk_processJoin
+        CODE
+//  541 {
+        FUNCALL nwk_processJoin, nwk_isValidReply
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_processJoin, MRFI_PostKillSem
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+//  542   fhStatus_t rc = FHS_RELEASE;
+        MOV     R6,#0x0
+//  543   uint8_t    replyType;
+//  544 
+//  545   /* Make sure this is a reply and see if we sent this. Validate the
+//  546    * packet for reception by client app.
+//  547    */
+//  548   if (SMPL_MY_REPLY == (replyType=nwk_isValidReply(frame, sTid, JB_REQ_OS, JB_TID_OS)))
+        ; Setup parameters for call to function nwk_isValidReply
+        MOV     R5,#0x1
+        MOV     R4,#0x0
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   ??nwk_isValidReply?relay
+        MOV     A,R1
+        JNZ     ??nwk_processJoin_0
+//  549   {
+//  550     /* It's a match and it's a reply. Validate the received packet by
+//  551      * returning a 1 so it can be received by the client app.
+//  552      */
+//  553     MRFI_PostKillSem();
+        ; Setup parameters for call to function MRFI_PostKillSem
+        LCALL   ??MRFI_PostKillSem?relay
+//  554     rc = FHS_KEEP;
+        INC     R6
+//  555   }
+//  556 #if defined(ACCESS_POINT)
+//  557   else if (SMPL_A_REPLY == replyType)
+//  558   {
+//  559     /* No match. If I'm not an ED this is a reply that should be passed on. */
+//  560     rc = FHS_REPLAY;
+//  561   }
+//  562   else
+//  563   {
+//  564     /* Send reply if we're an Access Point otherwise ignore the frame. */
+//  565     if ((SMPL_NOT_REPLY == replyType) && sJoinOK)
+//  566     {
+//  567       handleJoinRequest(frame);
+//  568     }
+//  569   }
+//  570 #elif defined(RANGE_EXTENDER)
+//  571   else
+//  572   {
+//  573     /* Either a reply that has to be replayed or a request that
+//  574      * also must be replayed.
+//  575      */
+//  576     rc = FHS_REPLAY;
+//  577   }
+//  578 #endif /* not END_DEVICE */
+//  579 
+//  580   (void) replyType;  /* keep compiler happy */
+//  581 
+//  582   return rc;
+??nwk_processJoin_0:
+        MOV     A,R6
+        MOV     R1,A
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock6
+//  583 }
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+__Constant_5060708:
+        DS 4
+        REQUIRE `?<Initializer for __Constant_5060708>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for __Constant_5060708>`:
+        DATA32
+        DD 84281096
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_joinInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_joinInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_setJoinToken?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_setJoinToken
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_getJoinToken?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_getJoinToken
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_join?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_join
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_processJoin?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_processJoin
+
+        END
+// 
+// 497 bytes in segment BANKED_CODE
+//  30 bytes in segment BANK_RELAYS
+//   4 bytes in segment XDATA_I
+//   4 bytes in segment XDATA_ID
+//   7 bytes in segment XDATA_Z
+// 
+// 527 bytes of CODE  memory (+ 4 bytes shared)
+//   7 bytes of XDATA memory (+ 4 bytes shared)
+//
+//Errors: none
+//Warnings: none

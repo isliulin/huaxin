@@ -1,0 +1,450 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         04/Dec/2016  22:37:59 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\hal\ta #
+#                          rget\CC2530EB\hal_dma.c                            #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          Stm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\Configuration\LinkTo #
+#                          \smpl_config.dat ("-DTHIS_DEVICE_ADDRESS={0x79,    #
+#                          0x56, 0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK      #
+#                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Pro #
+#                          jects\Examples\SRF05_8051\nik_sb5000\IAR\Configura #
+#                          tion\smpl_nwk_config.dat (-DMAX_HOPS=3             #
+#                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34          #
+#                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x010203 #
+#                          04 -DDEFAULT_JOIN_TOKEN=0x05060708                 #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\hal\ta #
+#                          rget\CC2530EB\hal_dma.c -D MCU_H=<ioCC2530.h> -D   #
+#                          MRFI_CC2530 -D ZTOOL_P1 -lC                        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -lA        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -o         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\ -e --debug  #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          konStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Ex #
+#                          amples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co #
+#                          mponents\bsp\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\bsp\drivers\ -I                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\bsp\boards\CC2530EM\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\mrfi\ -I C:\Users\freeman\Documents\work\NBK\Ni #
+#                          kon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Proje #
+#                          cts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. #
+#                          \..\Components\SimpliciTI\nwk\ -I                  #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\Applications\  #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          Stm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo #
+#                          nents\SimpliciTI\nwk_applications\ -I              #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\OSAL\INCLUDE\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2 #
+#                          .0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\ #
+#                          ..\..\..\..\Components\OSAL\MCU\CCSOC\ -I          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\HAL\INCLUDE\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2. #
+#                          0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\. #
+#                          .\..\..\..\Components\HAL\TARGET\CC2530EB\ -I      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\SERVICES\SADDR\ -I C:\Users\freeman\Documents\w #
+#                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 #
+#                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\. #
+#                          .\..\..\..\..\Components\SERVICES\SDATA\ -I        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MT\ -I C:\Users\freeman\Documents\work\NBK\Niko #
+#                          n\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project #
+#                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\. #
+#                          .\Components\STACK\AF\ -I                          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\NWK\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\STACK\SEC\ -I                  #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\SAPI\ -I C:\Users\freeman\Documents\work\ #
+#                          NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0 #
+#                          \Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\.. #
+#                          \..\..\..\Components\STACK\SYS\ -I                 #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\ZDO\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\MAC\INCLUDE\ -I                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\HIGH_LEVEL\ -I C:\Users\freeman\Documents\w #
+#                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 #
+#                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\. #
+#                          .\..\..\..\..\Components\MAC\LOW_LEVEL\srf04\ -I   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz           #
+#                          --require_prototypes                               #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\hal_dma.lst #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\hal_dma.r51  #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\hal\target\CC2530EB\hal_dma.c
+      1          /**************************************************************************************************
+      2            Filename:       hal_dma.c
+      3            Revised:        $Date: 2009-08-05 18:23:26 -0700 (Wed, 05 Aug 2009) $
+      4            Revision:       $Revision: 20480 $
+      5          
+      6            Description:    This file contains the interface to the DMA.
+      7          
+      8          
+      9            Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, 
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE, 
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com. 
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41           * INCLUDES
+     42           */
+     43          
+     44          #include "hal_types.h"
+     45          #include "hal_defs.h"
+     46          #include "hal_dma.h"
+
+   \                                 In  segment SFR_AN, at 0xb8
+   \   union <unnamed> volatile __sfr _A_IEN1
+   \                     _A_IEN1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc0
+   \   union <unnamed> volatile __sfr _A_IRCON
+   \                     _A_IRCON:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd1
+   \   unsigned char volatile __sfr DMAIRQ
+   \                     DMAIRQ:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd2
+   \   unsigned char volatile __sfr DMA1CFGL
+   \                     DMA1CFGL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd3
+   \   unsigned char volatile __sfr DMA1CFGH
+   \                     DMA1CFGH:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd4
+   \   unsigned char volatile __sfr DMA0CFGL
+   \                     DMA0CFGL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd5
+   \   unsigned char volatile __sfr DMA0CFGH
+   \                     DMA0CFGH:
+   \   000000                DS 1
+     47          #include "hal_mcu.h"
+     48          #include "hal_uart.h"
+     49          
+     50          #if (defined HAL_IRGEN) && (HAL_IRGEN == TRUE)
+     51          #include "hal_irgen.h"
+     52          #endif
+     53          
+     54          #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+     55          #include "hal_spi.h"
+     56          #endif
+     57          
+     58          
+     59          #if ((defined HAL_DMA) && (HAL_DMA == TRUE))
+     60          
+     61          /*********************************************************************
+     62           * MACROS
+     63           */
+     64          
+     65          /*********************************************************************
+     66           * CONSTANTS
+     67           */
+     68          
+     69          /*********************************************************************
+     70           * TYPEDEFS
+     71           */
+     72          
+     73          /*********************************************************************
+     74           * GLOBAL VARIABLES
+     75           */
+     76          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     77          halDMADesc_t dmaCh0;
+   \                     dmaCh0:
+   \   000000                DS 8
+   \   000008                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     78          halDMADesc_t dmaCh1234[4];
+   \                     dmaCh1234:
+   \   000000                DS 32
+   \   000020                REQUIRE __INIT_XDATA_Z
+     79          
+     80          /*********************************************************************
+     81           * GLOBAL FUNCTIONS
+     82           */
+     83          
+     84          /*********************************************************************
+     85           * LOCAL VARIABLES
+     86           */
+     87          
+     88          /*********************************************************************
+     89           * LOCAL FUNCTIONS
+     90           */
+     91          
+     92          /******************************************************************************
+     93           * @fn      HalDMAInit
+     94           *
+     95           * @brief   DMA Interrupt Service Routine
+     96           *
+     97           * @param   None
+     98           *
+     99           * @return  None
+    100           *****************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    101          void HalDmaInit( void )
+   \                     HalDmaInit:
+    102          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    103            HAL_DMA_SET_ADDR_DESC0( &dmaCh0 );
+                   ^
+Warning[Pe069]: integer conversion resulted in truncation
+   \   000000   74..         MOV     A,#(dmaCh0 >> 8) & 0xff
+   \   000002   F5D5         MOV     0xd5,A
+   \   000004   75D4..       MOV     0xd4,#dmaCh0 & 0xff
+    104            HAL_DMA_SET_ADDR_DESC1234( dmaCh1234 );
+                   ^
+Warning[Pe069]: integer conversion resulted in truncation
+   \   000007   74..         MOV     A,#(dmaCh1234 >> 8) & 0xff
+   \   000009   F5D3         MOV     0xd3,A
+   \   00000B   75D2..       MOV     0xd2,#dmaCh1234 & 0xff
+    105          #if (HAL_UART_DMA || \
+    106             ((defined HAL_SPI) && (HAL_SPI == TRUE))  || \
+    107             ((defined HAL_IRGEN) && (HAL_IRGEN == TRUE)))
+    108            DMAIE = 1;
+   \   00000E   D2B8         SETB    0xb8.0
+    109          #endif
+    110          }
+   \   000010   02....       LJMP    ?BRET
+   \   000013                REQUIRE DMA0CFGH
+   \   000013                REQUIRE DMA0CFGL
+   \   000013                REQUIRE DMA1CFGH
+   \   000013                REQUIRE DMA1CFGL
+   \   000013                REQUIRE _A_IEN1
+    111          
+    112          #if (HAL_UART_DMA || \
+    113             ((defined HAL_SPI) && (HAL_SPI == TRUE))  || \
+    114             ((defined HAL_IRGEN) && (HAL_IRGEN == TRUE)))
+    115          /******************************************************************************
+    116           * @fn      HalDMAInit
+    117           *
+    118           * @brief   DMA Interrupt Service Routine
+    119           *
+    120           * @param   None
+    121           *
+    122           * @return  None
+    123           *****************************************************************************/
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    124          HAL_ISR_FUNCTION( halDmaIsr, DMA_VECTOR )
+   \                     halDmaIsr:
+    125          {
+   \   000000   C0E0         PUSH    A
+   \   000002   74F2         MOV     A,#-0xe
+   \   000004   12....       LCALL   ?INTERRUPT_ENTER_XSP
+   \   000007                ; Saved register size: 14
+   \   000007                ; Auto size: 0
+    126            extern void HalUARTIsrDMA(void);
+    127          
+    128            DMAIF = 0;
+   \   000007   C2C0         CLR     0xc0.0
+    129          
+    130          #if HAL_UART_DMA
+    131            if (HAL_DMA_CHECK_IRQ(HAL_DMA_CH_TX))
+   \   000009   E5D1         MOV     A,0xd1
+   \   00000B   A2E4         MOV     C,0xE0 /* A   */.4
+   \   00000D   5003         JNC     ??halDmaIsr_0
+    132            {
+    133              HalUARTIsrDMA();
+   \   00000F                ; Setup parameters for call to function HalUARTIsrDMA
+   \   00000F   12....       LCALL   ??HalUARTIsrDMA?relay
+    134            }
+    135          #endif // HAL_UART_DMA
+    136          
+    137          #if (defined HAL_SPI) && (HAL_SPI == TRUE)
+    138            if ( HAL_DMA_CHECK_IRQ( HAL_DMA_CH_RX ) )
+    139            {
+    140              HAL_DMA_CLEAR_IRQ( HAL_DMA_CH_RX );
+    141              HalSpiRxIsr();
+    142            }
+    143          
+    144            if ( HAL_DMA_CHECK_IRQ( HAL_DMA_CH_TX ) )
+    145            {
+    146              HAL_DMA_CLEAR_IRQ( HAL_DMA_CH_TX );
+    147              HalSpiTxIsr();
+    148            }
+    149          #endif // (defined HAL_SPI) && (HAL_SPI == TRUE)
+    150          
+    151          #if (defined HAL_IRGEN) && (HAL_IRGEN == TRUE)
+    152            if ( HAL_IRGEN == TRUE && HAL_DMA_CHECK_IRQ( HAL_IRGEN_DMA_CH ) )
+    153            {
+    154              HAL_DMA_CLEAR_IRQ( HAL_IRGEN_DMA_CH );
+    155              HalIrGenDmaIsr();
+    156            }
+    157          #endif // (defined HAL_IRGEN) && (HAL_IRGEN == TRUE)
+    158          }
+   \                     ??halDmaIsr_0:
+   \   000012   7F01         MOV     R7,#0x1
+   \   000014   02....       LJMP    ?INTERRUPT_LEAVE_XSP
+   \   000017                REQUIRE _A_IRCON
+   \   000017                REQUIRE DMAIRQ
+
+   \                                 In  segment INTVEC, offset 0x43, root
+   \                     `??halDmaIsr??INTVEC 67`:
+   \   000043   02....       LJMP       (halDmaIsr)
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??HalDmaInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    HalDmaInit
+    159          #endif
+    160          #endif  // #if ((defined HAL_DMA) && (HAL_DMA == TRUE))
+    161          /******************************************************************************
+    162          ******************************************************************************/
+
+   Maximum stack usage in bytes:
+
+     Function           ISTACK PSTACK XSTACK
+     --------           ------ ------ ------
+     HalDmaInit             0      0      0
+     halDmaIsr              0      0     14
+       -> HalUARTIsrDMA     0      0     28
+
+
+   Segment part sizes:
+
+     Function/Label         Bytes
+     --------------         -----
+     _A_IEN1                   1
+     _A_IRCON                  1
+     DMAIRQ                    1
+     DMA1CFGL                  1
+     DMA1CFGH                  1
+     DMA0CFGL                  1
+     DMA0CFGH                  1
+     dmaCh0                    8
+     dmaCh1234                32
+     HalDmaInit               19
+     halDmaIsr                23
+     ??halDmaIsr??INTVEC 67    3
+     ??HalDmaInit?relay        6
+
+ 
+ 19 bytes in segment BANKED_CODE
+  6 bytes in segment BANK_RELAYS
+  3 bytes in segment INTVEC
+ 23 bytes in segment NEAR_CODE
+  7 bytes in segment SFR_AN
+ 40 bytes in segment XDATA_Z
+ 
+ 48 bytes of CODE  memory (+ 3 bytes shared)
+  0 bytes of DATA  memory (+ 7 bytes shared)
+ 40 bytes of XDATA memory
+
+Errors: none
+Warnings: 2

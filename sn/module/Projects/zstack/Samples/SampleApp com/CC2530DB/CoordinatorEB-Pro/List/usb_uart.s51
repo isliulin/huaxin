@@ -1,0 +1,1885 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        19/Jun/2016  18:15:46 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\class_cdc\usb_uart.c                      /
+//    Command line       =  -f "C:\Users\freeman\Documents\work\SN\module\Pro /
+//                          jects\zstack\Samples\SampleApp                    /
+//                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g" (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR  /
+//                          -DDEFAULT_CHANLIST=0x00000800                     /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          "-DCONST=const __code" -DGENERIC=__generic        /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000       /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100   /
+//                          -DREJOIN_POLL_RATE=440)                           /
+//                          C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\class_cdc\usb_uart.c -D ZIGBEEPRO -D      /
+//                          ZTOOL_P1 -lC "C:\Users\freeman\Documents\work\SN\ /
+//                          module\Projects\zstack\Samples\SampleApp          /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\"             /
+//                          --diag_suppress Pe001,Pa010 -o                    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug   /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data_rom                /
+//                          --nr_virtual_regs 16 -I                           /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp com\CC2530DB\" -I     /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\SOURCE\" -I                       /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET /
+//                          \CC2530EB\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\C /
+//                          CSOC\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLU /
+//                          DE\" -I "C:\Users\freeman\Documents\work\SN\modul /
+//                          e\Projects\zstack\Samples\SampleApp               /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI /
+//                          \" -I "C:\Users\freeman\Documents\work\SN\module\ /
+//                          Projects\zstack\Samples\SampleApp                 /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I  /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          ADDR\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          DATA\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_L /
+//                          EVEL\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\SINGLE_CHIP\" -I                        /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\librar /
+//                          y\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_ /
+//                          hid\" -I "C:\Users\freeman\Documents\work\SN\modu /
+//                          le\Projects\zstack\Samples\SampleApp              /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common /
+//                          \" -Ohz --require_prototypes                      /
+//    List file          =  C:\Users\freeman\Documents\work\SN\module\Project /
+//                          s\zstack\Samples\SampleApp                        /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\usb_uart.s51  /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME usb_uart
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?L_ADD
+        EXTERN ?L_ADD_X
+        EXTERN ?L_MOV_X
+        EXTERN ?L_SUB
+        EXTERN ?PUSH_XSTACK_I_THREE
+        EXTERN ?UL_GE_X
+        EXTERN ?UL_GT
+        EXTERN ?V0
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??UsbSendBlock?relay
+        FUNCTION ??UsbSendBlock?relay,0203H
+        PUBLIC ??usbOutDataRcv?relay
+        FUNCTION ??usbOutDataRcv?relay,0203H
+        PUBLIC ??usbUartInit?relay
+        FUNCTION ??usbUartInit?relay,0203H
+        PUBLIC ??usbUartProcess?relay
+        FUNCTION ??usbUartProcess?relay,0203H
+        PUBWEAK P1DIR
+        PUBWEAK P1SEL
+        PUBLIC UsbSendBlock
+        FUNCTION UsbSendBlock,021203H
+        ARGFRAME XSTACK, 4, STACK
+        LOCFRAME XSTACK, 26, STACK
+        PUBWEAK _A_P1
+        PUBWEAK __Constant_0
+        PUBWEAK __Constant_40
+        PUBWEAK __Constant_41
+        PUBLIC cdcCTS
+        PUBLIC cdcRTS
+        PUBLIC g_outHandProc
+        PUBLIC usbOutDataRcv
+        FUNCTION usbOutDataRcv,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        PUBLIC usbUartInit
+        FUNCTION usbUartInit,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbUartProcess
+        FUNCTION usbUartProcess,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 14, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+usbfwInit           SYMBOL "usbfwInit"
+usbirqInit          SYMBOL "usbirqInit"
+halIntOn            SYMBOL "halIntOn"
+usbfwResetHandler   SYMBOL "usbfwResetHandler"
+usbfwSetupHandler   SYMBOL "usbfwSetupHandler"
+usbsuspEnter        SYMBOL "usbsuspEnter"
+halIntOff           SYMBOL "halIntOff"
+usbfwReadFifo       SYMBOL "usbfwReadFifo"
+Scsi_Rx             SYMBOL "Scsi_Rx"
+usbfwWriteFifo      SYMBOL "usbfwWriteFifo"
+??Scsi_Rx?relay     SYMBOL "?relay", Scsi_Rx
+??halIntOff?relay   SYMBOL "?relay", halIntOff
+??halIntOn?relay    SYMBOL "?relay", halIntOn
+??usbfwInit?relay   SYMBOL "?relay", usbfwInit
+??usbfwReadFifo?relay SYMBOL "?relay", usbfwReadFifo
+??usbfwResetHandler?relay SYMBOL "?relay", usbfwResetHandler
+??usbfwSetupHandler?relay SYMBOL "?relay", usbfwSetupHandler
+??usbfwWriteFifo?relay SYMBOL "?relay", usbfwWriteFifo
+??usbirqInit?relay  SYMBOL "?relay", usbirqInit
+??usbsuspEnter?relay SYMBOL "?relay", usbsuspEnter
+UsbSendBlock        SYMBOL "UsbSendBlock"
+??UsbSendBlock?relay SYMBOL "?relay", UsbSendBlock
+usbOutDataRcv       SYMBOL "usbOutDataRcv"
+??usbOutDataRcv?relay SYMBOL "?relay", usbOutDataRcv
+usbUartInit         SYMBOL "usbUartInit"
+??usbUartInit?relay SYMBOL "?relay", usbUartInit
+usbUartProcess      SYMBOL "usbUartProcess"
+??usbUartProcess?relay SYMBOL "?relay", usbUartProcess
+
+        EXTERN usbfwInit
+        FUNCTION usbfwInit,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbirqInit
+        FUNCTION usbirqInit,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN halIntOn
+        FUNCTION halIntOn,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbfwResetHandler
+        FUNCTION usbfwResetHandler,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbfwSetupHandler
+        FUNCTION usbfwSetupHandler,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbsuspEnter
+        FUNCTION usbsuspEnter,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN halIntOff
+        FUNCTION halIntOff,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbfwReadFifo
+        FUNCTION usbfwReadFifo,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN Scsi_Rx
+        FUNCTION Scsi_Rx,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbfwWriteFifo
+        FUNCTION usbfwWriteFifo,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??Scsi_Rx?relay
+        FUNCTION ??Scsi_Rx?relay,00H
+        EXTERN ??halIntOff?relay
+        FUNCTION ??halIntOff?relay,00H
+        EXTERN ??halIntOn?relay
+        FUNCTION ??halIntOn?relay,00H
+        EXTERN ??usbfwInit?relay
+        FUNCTION ??usbfwInit?relay,00H
+        EXTERN ??usbfwReadFifo?relay
+        FUNCTION ??usbfwReadFifo?relay,00H
+        EXTERN ??usbfwResetHandler?relay
+        FUNCTION ??usbfwResetHandler?relay,00H
+        EXTERN ??usbfwSetupHandler?relay
+        FUNCTION ??usbfwSetupHandler?relay,00H
+        EXTERN ??usbfwWriteFifo?relay
+        FUNCTION ??usbfwWriteFifo?relay,00H
+        EXTERN ??usbirqInit?relay
+        FUNCTION ??usbirqInit?relay,00H
+        EXTERN ??usbsuspEnter?relay
+        FUNCTION ??usbsuspEnter?relay,00H
+        EXTERN cbw
+        EXTERN usbirqData
+
+// C:\Users\freeman\Documents\work\SN\module\Components\usb\class_cdc\usb_uart.c
+//    1 /***********************************************************************************
+//    2 
+//    3     Filename:     usb_uart.h
+//    4 
+//    5     Description:  USB Virtual UART implementation.
+//    6 
+//    7 ***********************************************************************************/
+//    8 
+//    9 
+//   10 /***********************************************************************************
+//   11  * INCLUDES
+//   12  */
+//   13 #include "hal_types.h"
+//   14 #include "hal_board.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,090H
+// union <unnamed> volatile __sfr _A_P1
+_A_P1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f4H
+// unsigned char volatile __sfr P1SEL
+P1SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0feH
+// unsigned char volatile __sfr P1DIR
+P1DIR:
+        DATA8
+        DS 1
+//   15 #include "hal_int.h"
+//   16 #include "hal_led.h"
+//   17 
+//   18 #include "usb_cdc.h"
+//   19 #include "usb_firmware_library_config.h"
+//   20 #include "usb_firmware_library_headers.h"
+//   21 
+//   22 #include "usb_uart.h"
+//   23 #include "util_buffer.h"
+//   24 
+//   25 #include "usb_scsi.h"
+//   26 
+//   27 
+//   28 /***********************************************************************************
+//   29  * MACROS and DEFINITIONS
+//   30  */
+//   31 
+//   32 #define HAL_LED_DEBUG
+//   33 
+//   34 
+//   35 /***********************************************************************************
+//   36  * EXTERNAL VARIABLES
+//   37  */
+//   38 
+//   39 /* Ring buffers defined in hal_uart.c */
+//   40 
+//   41 //extern ringBuf_t rbRxBuf;
+//   42 //extern ringBuf_t rbTxBuf;
+//   43 
+//   44 
+//   45 /***********************************************************************************
+//   46  * GLOBAL VARIABLES
+//   47  */
+//   48 //CDC_LINE_CODING_STRUCTURE __xdata currentLineCoding;
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   49 uint16 cdcRTS;              // Request-To-Send modem control line
+cdcRTS:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   50 uint8  cdcCTS;              // Clear-To-Send   modem control line
+cdcCTS:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   51 
+//   52 
+//   53 /***********************************************************************************
+//   54  * LOCAL DATA
+//   55  */
+//   56 //static uint8 __xdata buffer[USB_MAX_PACKET_SIZE];
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   57 static uint8 oldEndpoint;
+oldEndpoint:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   58 unsigned char g_outHandProc=0;
+g_outHandProc:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   59 extern char g_modBoot;
+//   60 extern uint8 g_isMaster;
+//   61 
+//   62 /***********************************************************************************
+//   63  * LOCAL FUNCTIONS
+//   64  */
+//   65 static void usbEventProcess(void);
+//   66 static void usbOutProcess(void);
+//   67 static void usbInProcess(void);
+//   68 void UsbSendBlock(uint8 *ps, uint32 len);
+//   69 uint8 usbOutDataRcv(uint8* rBuf);
+//   70 
+//   71 /******************************************************************************
+//   72  * FUNCTIONS
+//   73  */
+//   74 
+//   75 
+//   76 
+//   77 /***********************************************************************************
+//   78 * @fn           usbUartInit
+//   79 *
+//   80 * @brief        USB UART init function.
+//   81 *               - Set initial line decoding to 8/NONE/1.
+//   82 *               - Initialise the USB Firmware Library and the USB controller.
+//   83 *
+//   84 * @param        none
+//   85 *
+//   86 * @return       none
+//   87 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   88 void usbUartInit(uint32 baudrate)
+usbUartInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function usbUartInit
+        CODE
+//   89 {
+        FUNCALL usbUartInit, usbfwInit
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartInit, usbirqInit
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartInit, halIntOn
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   90     // Set default line coding.
+//   91     //currentLineCoding.dteRate = baudrate;
+//   92     //currentLineCoding.charFormat = CDC_CHAR_FORMAT_1_STOP_BIT;
+//   93     //currentLineCoding.parityType = CDC_PARITY_TYPE_NONE;
+//   94    //currentLineCoding.dataBits = 8;
+//   95 
+//   96     // Initialise hardware flow control
+//   97     cdcRTS= 0;      // TRUE when DCE connected
+        MOV     DPTR,#cdcRTS
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//   98     cdcCTS= 1;      // Indicate CTS to DCE (here handled internally as CDC does
+        MOV     DPTR,#cdcCTS
+        INC     A
+        MOVX    @DPTR,A
+//   99                     // not directly support CTC).
+//  100 
+//  101     //bufInit(&rbRxBuf);
+//  102     //bufInit(&rbTxBuf);
+//  103 
+//  104     // Init USB library
+//  105     usbfwInit();
+        ; Setup parameters for call to function usbfwInit
+        LCALL   ??usbfwInit?relay
+//  106 
+//  107     // Initialize the USB interrupt handler with bit mask containing all processed USBIRQ events
+//  108     usbirqInit(0xFFFF);
+        ; Setup parameters for call to function usbirqInit
+        MOV     R2,#-0x1
+        MOV     R3,#-0x1
+        LCALL   ??usbirqInit?relay
+//  109 
+//  110     // Enable pullup on D+
+//  111     HAL_USB_PULLUP_ENABLE();
+        ANL     0xf4,#0xfe
+        SETB    0x90.0
+        ORL     0xfe,#0x1
+//  112 
+//  113     // Enable global interrupts
+//  114     halIntOn();
+        ; Setup parameters for call to function halIntOn
+        LCALL   ??halIntOn?relay
+//  115 }
+        POP     DPH
+        CFI DPH0 SameValue
+        CFI CFA_SP SP+-4
+        POP     DPL
+        CFI DPL0 SameValue
+        CFI CFA_SP SP+-3
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock0
+        REQUIRE P1SEL
+        REQUIRE _A_P1
+        REQUIRE P1DIR
+//  116 
+//  117 
+//  118 
+//  119 /***********************************************************************************
+//  120 * @fn           usbUartProcess
+//  121 *
+//  122 * @brief        The USB UART main task function. Must be called from the
+//  123 *               applications main loop.
+//  124 *
+//  125 * @param        none
+//  126 *
+//  127 * @return       none
+//  128 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  129 void usbUartProcess(void)
+usbUartProcess:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function usbUartProcess
+        CODE
+//  130 {
+        FUNCALL usbUartProcess, usbfwResetHandler
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartProcess, usbfwSetupHandler
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartProcess, usbsuspEnter
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartProcess, halIntOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartProcess, usbfwReadFifo
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 14, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 14, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartProcess, halIntOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbUartProcess, Scsi_Rx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xb
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        ; Saved register size: 11
+        ; Auto size: 0
+//  131     // Process USB events
+//  132     usbEventProcess();
+        MOV     R0,usbirqData+0x0
+        MOV     A,R0
+        ANL     A,#0x4
+        JZ      ??usbUartProcess_0
+        MOV     R0,#usbirqData
+        MOV     A,@R0
+        ANL     A,#0xfb
+        MOV     @R0,A
+        ; Setup parameters for call to function usbfwResetHandler
+        LCALL   ??usbfwResetHandler?relay
+??usbUartProcess_0:
+        MOV     R0,usbirqData+0x0
+        MOV     A,R0
+        ANL     A,#0x10
+        JZ      ??usbUartProcess_1
+        MOV     R0,#usbirqData
+        MOV     A,@R0
+        ANL     A,#0xef
+        MOV     @R0,A
+        ; Setup parameters for call to function usbfwSetupHandler
+        LCALL   ??usbfwSetupHandler?relay
+??usbUartProcess_1:
+        MOV     R0,usbirqData+0x0
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??usbUartProcess_2
+        MOV     R0,#usbirqData
+        ANL     A,#0xfe
+        MOV     @R0,A
+        ; Setup parameters for call to function usbsuspEnter
+        LCALL   ??usbsuspEnter?relay
+        MOV     R0,#usbirqData
+        MOV     A,@R0
+        ANL     A,#0xfd
+        MOV     @R0,A
+//  133     usbOutProcess();
+??usbUartProcess_2:
+        ; Setup parameters for call to function halIntOff
+        LCALL   ?Subroutine0 & 0xFFFF
+??CrossCallReturnLabel_0:
+        MOV     DPTR,#0x6214
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??usbUartProcess_3
+        MOV     DPTR,#0x6216
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     A,R0
+        MOV     R7,A
+        CLR     C
+        SUBB    A,#0x41
+        JC      ??usbUartProcess_4
+        MOV     R6,#0x40
+        SJMP    ??usbUartProcess_5
+??usbUartProcess_4:
+        MOV     A,R7
+        MOV     R6,A
+        JZ      ??usbUartProcess_3
+??usbUartProcess_5:
+        ; Setup parameters for call to function usbfwReadFifo
+        MOV     ?V0 + 0,#cbw & 0xff
+        MOV     ?V0 + 1,#(cbw >> 8) & 0xff
+        MOV     ?V0 + 2,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_THREE
+        CFI CFA_XSP16 add(XSP16, 14)
+        MOV     A,R6
+        MOV     R1,A
+        MOV     R2,#0x24
+        MOV     R3,#0x62
+        LCALL   ??usbfwReadFifo?relay
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 11)
+        MOV     DPTR,#g_outHandProc
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+        MOV     A,R6
+        XRL     A,R7
+        JNZ     ??usbUartProcess_3
+        MOV     DPTR,#0x620e
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6214
+        CLR     A
+        MOVX    @DPTR,A
+??usbUartProcess_3:
+        LCALL   ?Subroutine1 & 0xFFFF
+//  134     usbInProcess();
+??CrossCallReturnLabel_2:
+        MOV     DPTR,#g_outHandProc
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??usbUartProcess_6
+        ; Setup parameters for call to function Scsi_Rx
+        LCALL   ??Scsi_Rx?relay
+        MOV     DPTR,#g_outHandProc
+        CLR     A
+        MOVX    @DPTR,A
+//  135 
+//  136 #if 0
+//  137     if (cdcCTS && cdcRTS) {
+//  138 
+//  139         // Process USB OUT data (USB -> RF)
+//  140         usbOutProcess();
+//  141 
+//  142         // Process USB IN data (RF -> USB)
+//  143         usbInProcess();
+//  144     }
+//  145 #endif
+//  146     
+//  147 }
+??usbUartProcess_6:
+        MOV     R7,#0x3
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock1
+//  148 
+//  149 /*
+//  150 void Mass_Storage_Out (void)
+//  151 {
+//  152    uint8 controlReg;
+//  153    uint8 bytesNow;
+//  154    uint8 oldEndpoint;	
+//  155 
+//  156    oldEndpoint = USBFW_GET_SELECTED_ENDPOINT();
+//  157    USBFW_SELECT_ENDPOINT(2);
+//  158   
+//  159 }
+//  160 */
+//  161 
+//  162 
+//  163 
+//  164 /***********************************************************************************
+//  165 * @fn           usbEventProcess
+//  166 *
+//  167 * @brief        Handle the USB events which are not directly related to the UART.
+//  168 *
+//  169 * @param        none
+//  170 *
+//  171 * @return       none
+//  172 */
+//  173 static void usbEventProcess(void)
+//  174 {
+//  175     // Handle reset signaling on the bus
+//  176     if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_RESET) {
+//  177         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_RESET);
+//  178         usbfwResetHandler();
+//  179     }
+//  180 
+//  181     // Handle packets on EP0
+//  182     if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_SETUP) {
+//  183         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_SETUP);
+//  184         usbfwSetupHandler();
+//  185 	//if(!g_modBoot)
+//  186 	//{
+//  187 		//g_modBoot = 1;
+//  188 		//g_isMaster = CMD_MODE_OFF;
+//  189 	//}
+//  190     }
+//  191 
+//  192     // Handle USB suspend
+//  193     if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_SUSPEND) {
+//  194 
+//  195         // Clear USB suspend interrupt
+//  196         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_SUSPEND);
+//  197 
+//  198         // Take the chip into PM1 until a USB resume is deteceted.
+//  199         usbsuspEnter();
+//  200 
+//  201         // Running again; first clear RESUME interrupt
+//  202         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_RESUME);
+//  203 
+//  204     }
+//  205 
+//  206 /*
+//  207     if(USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_EP1IN)
+//  208     {
+//  209 		Mass_Storage_Out();
+//  210     }
+//  211 
+//  212     if(USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_EP2OUT)
+//  213     {
+//  214     		Mass_Storage_Out();
+//  215     }
+//  216 */
+//  217 }
+//  218 
+//  219 
+//  220 
+//  221 /***********************************************************************************
+//  222 * @fn           usbInProcess
+//  223 *
+//  224 * @brief        Handle traffic flow from RF to USB.
+//  225 *
+//  226 * @param        none
+//  227 *
+//  228 * @return       none
+//  229 */
+//  230 static void usbInProcess(void)
+//  231 {
+//  232 	if(1==g_outHandProc)
+//  233 	{
+//  234 		Scsi_Rx();
+//  235 		g_outHandProc = 0;
+//  236 	}
+//  237 #if 0
+//  238     uint8 length;
+//  239     static uint8 stage=0;
+//  240 
+//  241     // USB ready to accept new IN packet
+//  242     halIntOff();
+//  243 
+//  244     oldEndpoint = USBFW_GET_SELECTED_ENDPOINT();
+//  245     USBFW_SELECT_ENDPOINT(1);
+//  246 
+//  247     // The IN endpoint is ready to accept data
+//  248     if ( USBFW_IN_ENDPOINT_DISARMED() )
+//  249     {
+//  250         // Number of bytes present in RF buffer
+//  251         length= bufNumBytes(&rbTxBuf);
+//  252 	 if(!stage)
+//  253 	 {
+//  254 	        if (length>0) {
+//  255 
+//  256 	            // Limit the size
+//  257 	            if (length > USB_MAX_PACKET_SIZE)
+//  258 	            {
+//  259 	                length = USB_MAX_PACKET_SIZE;
+//  260 	            }
+//  261 
+//  262 	            // Read from UART TX buffer
+//  263 	            bufGet(&rbTxBuf,buffer,length);
+//  264 
+//  265 	            // Write to USB FIFO
+//  266 	            usbfwWriteFifo(&USBF1, length, buffer);
+//  267 
+//  268 		     stage = 1;
+//  269 
+//  270 	            // Flag USB IN buffer as not ready (disarming EP4)
+//  271 	            USBFW_SELECT_ENDPOINT(1);
+//  272 	            USBFW_ARM_IN_ENDPOINT();   // Send data to the host
+//  273         		}
+//  274 	}else
+//  275 	{
+//  276 			usbfwWriteFifo(&USBF1, sizeof(csw), (BYTE*)&csw);
+//  277 			USBFW_SELECT_ENDPOINT(1);
+//  278 	              USBFW_ARM_IN_ENDPOINT();   // Send data to the host
+//  279 	              stage = 0;
+//  280 	}
+//  281     }
+//  282 
+//  283     USBFW_SELECT_ENDPOINT(oldEndpoint);
+//  284     halIntOn();
+//  285 #endif
+//  286 }
+//  287 
+//  288 #define SEND_PACEKT_LEN 64
+//  289 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  290 void UsbSendBlock(uint8 *ps, uint32 len)
+UsbSendBlock:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function UsbSendBlock
+        CODE
+//  291 {
+        FUNCALL UsbSendBlock, halIntOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 23, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL UsbSendBlock, usbfwWriteFifo
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 26, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL UsbSendBlock, usbfwWriteFifo
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 26, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL UsbSendBlock, halIntOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 23, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x17
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V14 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 23)
+        ; Saved register size: 23
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     A,#0x17
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_MOV_X
+//  292     	uint32 index=0;
+        MOV     DPTR,#__Constant_0
+        MOV     R0,#?V0 + 8
+        LCALL   ?L_MOV_X
+//  293 
+//  294 	// USB ready to accept new IN packet
+//  295 	halIntOff();
+        ; Setup parameters for call to function halIntOff
+        LCALL   ?Subroutine2 & 0xFFFF
+//  296 
+//  297 	oldEndpoint = USBFW_GET_SELECTED_ENDPOINT();
+//  298 	USBFW_SELECT_ENDPOINT(3);
+??CrossCallReturnLabel_5:
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+//  299 
+//  300 
+//  301 	while(!USBFW_IN_ENDPOINT_DISARMED());
+??UsbSendBlock_0:
+        MOV     DPTR,#0x6211
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        JC      ??UsbSendBlock_0
+//  302 
+//  303 	// The IN endpoint is ready to accept data
+//  304 	// Number of bytes present in RF buffer
+//  305 
+//  306 	// Write to USB FIFO
+//  307 	while(index<len)
+??UsbSendBlock_1:
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 8
+        LCALL   ?UL_GT
+        JNC     ??UsbSendBlock_2
+//  308 	{
+//  309 		if(len-index>SEND_PACEKT_LEN)
+        MOV     ?V0 + 0,?V0 + 8
+        MOV     ?V0 + 1,?V0 + 9
+        MOV     A,R6
+        ADD     A,?V0 + 0
+        MOV     ?V0 + 12,A
+        MOV     A,R7
+        ADDC    A,?V0 + 1
+        MOV     ?V0 + 13,A
+        MOV     ?V0 + 14,#0x0
+        MOV     ?V0 + 0,?V0 + 4
+        MOV     ?V0 + 1,?V0 + 5
+        MOV     ?V0 + 2,?V0 + 6
+        MOV     ?V0 + 3,?V0 + 7
+        MOV     R0,#?V0 + 0
+        MOV     R1,#?V0 + 8
+        LCALL   ?L_SUB
+        MOV     DPTR,#__Constant_41
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        MOV     R0,#?V0 + 12
+        JNC     ??UsbSendBlock_3
+//  310 		{
+//  311 			usbfwWriteFifo(&USBF3, SEND_PACEKT_LEN, (uint8*)(ps+index));
+        ; Setup parameters for call to function usbfwWriteFifo
+        LCALL   ?PUSH_XSTACK_I_THREE
+        CFI CFA_XSP16 add(XSP16, 26)
+        MOV     R1,#0x40
+        MOV     R2,#0x26
+        MOV     R3,#0x62
+        LCALL   ??usbfwWriteFifo?relay
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 23)
+//  312 			index+=SEND_PACEKT_LEN;
+        MOV     DPTR,#__Constant_40
+        MOV     R0,#?V0 + 8
+        LCALL   ?L_ADD_X
+        SJMP    ??UsbSendBlock_4
+//  313 		}else
+//  314 		{
+//  315 			usbfwWriteFifo(&USBF3, (len-index), (uint8*)(ps+index));
+??UsbSendBlock_3:
+        ; Setup parameters for call to function usbfwWriteFifo
+        LCALL   ?PUSH_XSTACK_I_THREE
+        CFI CFA_XSP16 add(XSP16, 26)
+        MOV     A,?V0 + 4
+        CLR     C
+        SUBB    A,?V0 + 8
+        MOV     R1,A
+        MOV     R2,#0x26
+        MOV     R3,#0x62
+        LCALL   ??usbfwWriteFifo?relay
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 23)
+//  316 			index = len;
+        MOV     ?V0 + 8,?V0 + 4
+        MOV     ?V0 + 9,?V0 + 5
+        MOV     ?V0 + 10,?V0 + 6
+        MOV     ?V0 + 11,?V0 + 7
+//  317 		}
+//  318 		USBFW_ARM_IN_ENDPOINT();
+??UsbSendBlock_4:
+        MOV     DPTR,#0x6211
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+        SJMP    ??UsbSendBlock_1
+//  319 		//USBFW_ARM_IN_ENDPOINT();
+//  320 		//while(!USBFW_IN_ENDPOINT_DISARMED());
+//  321 	}
+//  322 	//USBFW_ARM_IN_ENDPOINT();
+//  323 	// Flag USB IN buffer as not ready (disarming EP4)
+//  324 	//USBFW_SELECT_ENDPOINT(5);
+//  325 	//USBFW_ARM_IN_ENDPOINT();   // Send data to the host
+//  326 
+//  327 
+//  328 	USBFW_SELECT_ENDPOINT(oldEndpoint);
+??UsbSendBlock_2:
+        LCALL   ?Subroutine1 & 0xFFFF
+//  329 	halIntOn();
+//  330 
+//  331 }
+??CrossCallReturnLabel_3:
+        MOV     R7,#0xf
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock2
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiCond3 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_2
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        CFI Block cfiCond4 Using cfiCommon0
+        CFI (cfiCond4) NoFunction
+        CFI (cfiCond4) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond4) R6 load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI (cfiCond4) VB load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI (cfiCond4) V0 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI (cfiCond4) V1 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI (cfiCond4) V2 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI (cfiCond4) V3 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI (cfiCond4) V4 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond4) V5 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond4) V6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond4) V7 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond4) V8 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond4) V9 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond4) V10 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond4) V11 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond4) V12 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond4) V13 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond4) V14 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond4) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond4) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond4) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond4) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond4) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond4) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond4) CFA_SP SP+0
+        CFI (cfiCond4) CFA_XSP16 add(XSP16, 23)
+        CFI Block cfiCond5 Using cfiCommon0
+        CFI (cfiCond5) NoFunction
+        CFI (cfiCond5) Conditional ??CrossCallReturnLabel_4
+        CFI (cfiCond5) R6 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI (cfiCond5) VB load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI (cfiCond5) V0 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI (cfiCond5) V1 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI (cfiCond5) V2 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI (cfiCond5) V3 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond5) V4 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond5) V5 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond5) V6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond5) V7 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond5) V8 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond5) V9 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond5) V10 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond5) V11 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond5) V12 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond5) V13 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond5) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond5) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond5) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond5) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond5) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond5) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond5) CFA_SP SP+0
+        CFI (cfiCond5) CFA_XSP16 add(XSP16, 22)
+        CFI Block cfiPicker6 Using cfiCommon1
+        CFI (cfiPicker6) NoFunction
+        CFI (cfiPicker6) Picker
+        MOV     DPTR,#oldEndpoint
+        MOVX    A,@DPTR
+        MOV     DPTR,#0x620e
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function halIntOn
+        ; Setup parameters for call to function halIntOn
+        ; Setup parameters for call to function halIntOn
+        LCALL   ??halIntOn?relay
+        RET
+        CFI EndBlock cfiCond3
+        CFI EndBlock cfiCond4
+        CFI EndBlock cfiCond5
+        CFI EndBlock cfiPicker6
+//  332 
+//  333 
+//  334 /***********************************************************************************
+//  335 * @fn           usbOutProcess
+//  336 *
+//  337 * @brief        Handle traffic flow from USB to RF.
+//  338 *
+//  339 * @param        none
+//  340 *
+//  341 * @return       none
+//  342 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  343 uint8 usbOutDataRcv(uint8* rBuf)
+usbOutDataRcv:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function usbOutDataRcv
+        CODE
+//  344 {
+        FUNCALL usbOutDataRcv, halIntOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 22, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 22, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbOutDataRcv, usbfwReadFifo
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbOutDataRcv, halIntOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 22, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 22, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x16
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 22)
+        ; Saved register size: 22
+        ; Auto size: 0
+        MOV     ?V0 + 12,R2
+        MOV     ?V0 + 13,R3
+//  345 	uint8 length, nToSend;
+//  346 	uint32 rcvTotal=0;
+        MOV     DPTR,#__Constant_0
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+//  347 
+//  348 	// If new packet is ready in USB FIFO
+//  349 	halIntOff();
+        ; Setup parameters for call to function halIntOff
+        LCALL   ?Subroutine0 & 0xFFFF
+//  350 
+//  351 	oldEndpoint = USBFW_GET_SELECTED_ENDPOINT();
+//  352 	USBFW_SELECT_ENDPOINT(2);
+//  353 
+//  354 	while(!(USBFW_OUT_ENDPOINT_DISARMED()));
+??CrossCallReturnLabel_1:
+        MOV     DPTR,#0x6214
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??CrossCallReturnLabel_1
+//  355 
+//  356 	length = USBFW_GET_OUT_ENDPOINT_COUNT_LOW();
+        MOV     DPTR,#0x6216
+        MOVX    A,@DPTR
+        MOV     R0,A
+//  357 	length+= USBFW_GET_OUT_ENDPOINT_COUNT_HIGH() >> 8;
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     A,R0
+        MOV     R6,A
+        MOV     ?V0 + 4,R0
+        MOV     ?V0 + 5,#0x0
+        MOV     ?V0 + 6,#0x0
+        MOV     ?V0 + 7,#0x0
+        SJMP    ??usbOutDataRcv_0
+//  358 
+//  359 
+//  360 	while(rcvTotal<length)
+//  361 	{
+//  362 		// Get length of USB packet, this operation must not be interrupted.
+//  363 
+//  364 		// Calculate number of bytes available in RF buffer; and the number
+//  365 		// of bytes we may transfer in this operation.
+//  366 		//nToSend= MIN(, length);
+//  367 		if((length-rcvTotal)>BUF_SIZE)
+//  368 		{
+//  369 			nToSend = BUF_SIZE;
+//  370 		}else 
+//  371 		{
+//  372 			nToSend = length-rcvTotal;
+??usbOutDataRcv_1:
+        MOV     R0,?V0 + 0
+        MOV     A,R6
+        CLR     C
+        SUBB    A,R0
+        MOV     R7,A
+//  373 		}
+//  374 		usbfwReadFifo(&USBF2, nToSend, rBuf);
+??usbOutDataRcv_2:
+        ; Setup parameters for call to function usbfwReadFifo
+        MOV     ?V0 + 8,?V0 + 12
+        MOV     ?V0 + 9,?V0 + 13
+        MOV     ?V0 + 10,#0x0
+        MOV     R0,#?V0 + 8
+        LCALL   ?PUSH_XSTACK_I_THREE
+        CFI CFA_XSP16 add(XSP16, 25)
+        MOV     A,R7
+        MOV     R1,A
+        MOV     R2,#0x24
+        MOV     R3,#0x62
+        LCALL   ??usbfwReadFifo?relay
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 22)
+//  375 		rcvTotal +=nToSend;
+        MOV     ?V0 + 8,R7
+        CLR     A
+        MOV     ?V0 + 9,A
+        MOV     ?V0 + 11,A
+        MOV     R0,#?V0 + 0
+        MOV     R1,#?V0 + 8
+        LCALL   ?L_ADD
+??usbOutDataRcv_0:
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 0
+        LCALL   ?UL_GT
+        JNC     ??usbOutDataRcv_3
+        MOV     ?V0 + 8,R6
+        MOV     ?V0 + 9,?V0 + 5
+        MOV     ?V0 + 10,?V0 + 6
+        MOV     ?V0 + 11,?V0 + 7
+        MOV     R0,#?V0 + 8
+        MOV     R1,#?V0 + 0
+        LCALL   ?L_SUB
+        MOV     DPTR,#__Constant_41
+        MOV     R0,#?V0 + 8
+        LCALL   ?UL_GE_X
+        JNC     ??usbOutDataRcv_1
+        MOV     R7,#0x40
+        SJMP    ??usbOutDataRcv_2
+//  376 		
+//  377 
+//  378 	}
+//  379 
+//  380 	USBFW_SELECT_ENDPOINT(2);
+??usbOutDataRcv_3:
+        MOV     DPTR,#0x620e
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+//  381        USBFW_ARM_OUT_ENDPOINT();
+        MOV     DPTR,#0x6214
+        CLR     A
+        MOVX    @DPTR,A
+//  382 
+//  383 	USBFW_SELECT_ENDPOINT(oldEndpoint);
+        LCALL   ?Subroutine1 & 0xFFFF
+//  384 	halIntOn();
+//  385 
+//  386 	return length;
+??CrossCallReturnLabel_4:
+        MOV     A,R6
+        MOV     R1,A
+        MOV     R7,#0xe
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock7
+//  387 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiCond8 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        CFI Block cfiCond9 Using cfiCommon0
+        CFI (cfiCond9) NoFunction
+        CFI (cfiCond9) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond9) R6 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI (cfiCond9) VB load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI (cfiCond9) V0 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI (cfiCond9) V1 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI (cfiCond9) V2 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI (cfiCond9) V3 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond9) V4 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond9) V5 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond9) V6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond9) V7 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond9) V8 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond9) V9 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond9) V10 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond9) V11 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond9) V12 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond9) V13 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond9) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond9) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond9) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond9) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond9) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond9) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond9) CFA_SP SP+0
+        CFI (cfiCond9) CFA_XSP16 add(XSP16, 22)
+        CFI Block cfiPicker10 Using cfiCommon1
+        CFI (cfiPicker10) NoFunction
+        CFI (cfiPicker10) Picker
+        LCALL   ?Subroutine2 & 0xFFFF
+??CrossCallReturnLabel_6:
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond8
+        CFI EndBlock cfiCond9
+        CFI EndBlock cfiPicker10
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiCond11 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_5
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V14 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 23)
+        CFI Block cfiCond12 Using cfiCommon0
+        CFI (cfiCond12) NoFunction
+        CFI (cfiCond12) Conditional ??CrossCallReturnLabel_6, ??CrossCallReturnLabel_0
+        CFI (cfiCond12) R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond12) VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond12) V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond12) V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond12) V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond12) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond12) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond12) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond12) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond12) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond12) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond12) CFA_SP SP+0
+        CFI (cfiCond12) CFA_XSP16 add(XSP16, 11)
+        CFI Block cfiCond13 Using cfiCommon0
+        CFI (cfiCond13) NoFunction
+        CFI (cfiCond13) Conditional ??CrossCallReturnLabel_6, ??CrossCallReturnLabel_1
+        CFI (cfiCond13) R6 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI (cfiCond13) VB load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI (cfiCond13) V0 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI (cfiCond13) V1 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI (cfiCond13) V2 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI (cfiCond13) V3 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond13) V4 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond13) V5 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond13) V6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond13) V7 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond13) V8 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond13) V9 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond13) V10 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond13) V11 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond13) V12 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond13) V13 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond13) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond13) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond13) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond13) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond13) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond13) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond13) CFA_SP SP+0
+        CFI (cfiCond13) CFA_XSP16 add(XSP16, 22)
+        CFI Block cfiPicker14 Using cfiCommon1
+        CFI (cfiPicker14) NoFunction
+        CFI (cfiPicker14) Picker
+        LCALL   ??halIntOff?relay
+        MOV     DPTR,#0x620e
+        MOVX    A,@DPTR
+        MOV     DPTR,#oldEndpoint
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x620e
+        RET
+        CFI EndBlock cfiCond11
+        CFI EndBlock cfiCond12
+        CFI EndBlock cfiCond13
+        CFI EndBlock cfiPicker14
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_0:
+        DD 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_41:
+        DD 65
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_40:
+        DD 64
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbUartInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbUartInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbUartProcess?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbUartProcess
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??UsbSendBlock?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    UsbSendBlock
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbOutDataRcv?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbOutDataRcv
+
+        END
+//  388 
+//  389 static void usbOutProcess(void)
+//  390 {
+//  391     uint8 length, nToSend;
+//  392 
+//  393     // If new packet is ready in USB FIFO
+//  394     halIntOff();
+//  395 
+//  396     oldEndpoint = USBFW_GET_SELECTED_ENDPOINT();
+//  397     USBFW_SELECT_ENDPOINT(2);
+//  398 
+//  399 
+//  400     if (USBFW_OUT_ENDPOINT_DISARMED() ) {
+//  401 
+//  402         // Get length of USB packet, this operation must not be interrupted.
+//  403         length = USBFW_GET_OUT_ENDPOINT_COUNT_LOW();
+//  404         length+= USBFW_GET_OUT_ENDPOINT_COUNT_HIGH() >> 8;
+//  405 
+//  406         // Calculate number of bytes available in RF buffer; and the number
+//  407         // of bytes we may transfer in this operation.
+//  408         nToSend= MIN(BUF_SIZE, length);
+//  409 
+//  410         // Space available in UART RX buffer ?
+//  411         if (nToSend>0)
+//  412         {
+//  413             // Read from USB FIFO
+//  414             //usbfwReadFifo(&USBF2, nToSend, buffer);
+//  415             usbfwReadFifo(&USBF2, nToSend, (BYTE*)&cbw);
+//  416 	     g_outHandProc = 1;
+//  417 	     //Scsi_Rx();
+//  418 
+//  419             // Write to radio TX buffer
+//  420             //bufPut(&rbRxBuf,buffer,nToSend);
+//  421 
+//  422             // If entire USB packet is read from buffer
+//  423             if (length == nToSend)
+//  424             {
+//  425                 USBFW_SELECT_ENDPOINT(2);
+//  426                 USBFW_ARM_OUT_ENDPOINT();
+//  427             }
+//  428 
+//  429         }
+//  430     }
+//  431 
+//  432     USBFW_SELECT_ENDPOINT(oldEndpoint);
+//  433     halIntOn();
+//  434 }
+//  435 /*
+//  436 +------------------------------------------------------------------------------
+//  437 |  Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+//  438 |
+//  439 |  IMPORTANT: Your use of this Software is limited to those specific rights
+//  440 |  granted under the terms of a software license agreement between the user who
+//  441 |  downloaded the software, his/her employer (which must be your employer) and
+//  442 |  Texas Instruments Incorporated (the "License"). You may not use this Software
+//  443 |  unless you agree to abide by the terms of the License. The License limits
+//  444 |  your use, and you acknowledge, that the Software may not be modified, copied
+//  445 |  or distributed unless embedded on a Texas Instruments microcontroller or used
+//  446 |  solely and exclusively in conjunction with a Texas Instruments radio
+//  447 |  frequency transceiver, which is integrated into your product. Other than for
+//  448 |  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//  449 |  works of, modify, distribute, perform, display or sell this Software and/or
+//  450 |  its documentation for any purpose.
+//  451 |
+//  452 |  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//  453 |  PROVIDED â€œAS ISâ€?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//  454 |  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//  455 |  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//  456 |  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//  457 |  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//  458 |  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING
+//  459 |  BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+//  460 |  CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+//  461 |  SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//  462 |  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//  463 |
+//  464 |  Should you have any questions regarding your right to use this Software,
+//  465 |  contact Texas Instruments Incorporated at www.TI.com.
+//  466 |
+//  467 +------------------------------------------------------------------------------
+//  468 */
+//  469 
+// 
+// 578 bytes in segment BANKED_CODE
+//  24 bytes in segment BANK_RELAYS
+//   3 bytes in segment SFR_AN
+//  12 bytes in segment XDATA_ROM_C
+//   5 bytes in segment XDATA_Z
+// 
+// 602 bytes of CODE  memory
+//   0 bytes of CONST memory (+ 12 bytes shared)
+//   0 bytes of DATA  memory (+  3 bytes shared)
+//   5 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

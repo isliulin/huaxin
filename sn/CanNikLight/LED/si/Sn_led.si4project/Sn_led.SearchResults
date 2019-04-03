@@ -1,0 +1,35 @@
+---- g_pwm_chan1_duty Matches (34 in 5 files) ----
+ParseRfData in a7105.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty = 0;
+ParseRfData in a7105.c (STM8S903_RC\USER) : 			CHAN_1_Set_Duty(PWN_PERIOD - g_pwm_chan1_duty*PWM_PULSE_WIDTH_STEP);
+ParseRfData in a7105.c (STM8S903_RC\USER) : 			//g_pwm_chan1_duty = dat[1] * PWM_PULSE_WIDTH_STEP;
+ParseRfData in a7105.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty = dat[1];
+ParseRfData in a7105.c (STM8S903_RC\USER) : 			CHAN_1_Set_Duty(PWN_PERIOD - g_pwm_chan1_duty*PWM_PULSE_WIDTH_STEP);
+RC_ControlData in a7105.c (STM8S903_RC\USER) : 	//g_rfSendBuf[4] = (g_pwm_chan1_duty/PWM_PULSE_WIDTH_STEP);
+RC_ControlData in a7105.c (STM8S903_RC\USER) : 	g_rfSendBuf[4] = g_pwm_chan1_duty;
+IS_PARA_NEED_SAVE in eeprom.c (STM8S903_RC\USER) : 	if (g_pwm_chan1_duty!=g_paraReadBuf[2])
+IS_PARA_NEED_SAVE in eeprom.c (STM8S903_RC\USER) : 	tmp = g_pwm_chan1_duty/PWM_PULSE_WIDTH_STEP;
+CopyParam in eeprom.c (STM8S903_RC\USER) : 	g_paraReadBuf[2] = (g_pwm_chan1_duty/PWM_PULSE_WIDTH_STEP);
+ParaReadProc in eeprom.c (STM8S903_RC\USER) : 	//g_pwm_chan1_duty = g_paraReadBuf[2]*PWM_PULSE_WIDTH_STEP;
+ParaReadProc in eeprom.c (STM8S903_RC\USER) : 	g_pwm_chan1_duty = g_paraReadBuf[2];
+include.h (STM8S903_RC\USER) line 12 : extern uint16_t g_pwm_chan1_duty;
+key.c (STM8S903_RC\USER) line 21 : //uint16_t g_pwm_chan1_duty = 0;
+key.c (STM8S903_RC\USER) line 24 : u8 g_pwm_chan1_duty = 0;
+KeyRightProc in key.c (STM8S903_RC\USER) : 		if (g_pwm_chan1_duty > PWM_PULSE_WIDTH_STEP)
+KeyRightProc in key.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty -= PWM_PULSE_WIDTH_STEP;
+KeyRightProc in key.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty = 0;
+KeyRightProc in key.c (STM8S903_RC\USER) : 		if (g_pwm_chan1_duty > 0)
+KeyRightProc in key.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty --;
+KeyRightProc in key.c (STM8S903_RC\USER) : 		CHAN_1_Set_Duty(PWN_PERIOD - (u16)g_pwm_chan1_duty*PWM_PULSE_WIDTH_STEP);
+KeyRightProc in key.c (STM8S903_RC\USER) : 		//g_ledChar = (g_pwm_chan1_duty / PWM_PULSE_WIDTH_STEP);
+KeyRightProc in key.c (STM8S903_RC\USER) : 		g_ledChar = g_pwm_chan1_duty;
+KeyLeftProc in key.c (STM8S903_RC\USER) : 		if (g_pwm_chan1_duty < (PWN_PERIOD - PWM_PULSE_WIDTH_STEP))
+KeyLeftProc in key.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty += PWM_PULSE_WIDTH_STEP;
+KeyLeftProc in key.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty = PWN_PERIOD;
+KeyLeftProc in key.c (STM8S903_RC\USER) : 		if (g_pwm_chan1_duty < 100)
+KeyLeftProc in key.c (STM8S903_RC\USER) : 			g_pwm_chan1_duty ++;
+KeyLeftProc in key.c (STM8S903_RC\USER) : 		//CHAN_1_Set_Duty(g_pwm_chan1_duty);
+KeyLeftProc in key.c (STM8S903_RC\USER) : 		CHAN_1_Set_Duty(PWN_PERIOD - (u16)g_pwm_chan1_duty*PWM_PULSE_WIDTH_STEP);
+KeyLeftProc in key.c (STM8S903_RC\USER) : 		//g_ledChar = (g_pwm_chan1_duty / PWM_PULSE_WIDTH_STEP);
+KeyLeftProc in key.c (STM8S903_RC\USER) : 		g_ledChar = g_pwm_chan1_duty;
+KeyOnOffProc in key.c (STM8S903_RC\USER) : 		g_chan1_duty_bak = g_pwm_chan1_duty;
+LED_init in main.c (STM8S903_RC\USER) : 		CHAN_1_Set_Duty(PWN_PERIOD - (u16)g_pwm_chan1_duty*PWM_PULSE_WIDTH_STEP);

@@ -1,0 +1,754 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.40338/W32 for 8051         22/Jul/2014  14:54:27 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Com #
+#                          ponents\usb\class_hid\usb_hid.c                    #
+#    Command line       =  -f "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                          " (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR    #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100 -DREJOIN_POLL_RATE=440)   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Com #
+#                          ponents\usb\class_hid\usb_hid.c -D ZIGBEEPRO -D    #
+#                          ZTOOL_P1 -lC "D:\WorkReserve\project\AES_BOOT\CC25 #
+#                          31UsbSlave\Projects\zstack\Samples\SampleApp       #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\"              #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug    #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "D:\WorkReserve\project\AE #
+#                          S_BOOT\CC2531UsbSlave\Projects\zstack\Samples\Samp #
+#                          leApp com\CC2530DB\" -I "D:\WorkReserve\project\AE #
+#                          S_BOOT\CC2531UsbSlave\Projects\zstack\Samples\Samp #
+#                          leApp com\CC2530DB\..\SOURCE\" -I                  #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I     #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE #
+#                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl #
+#                          ave\Projects\zstack\Samples\SampleApp              #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\ #
+#                          CC2530EB\" -I "D:\WorkReserve\project\AES_BOOT\CC2 #
+#                          531UsbSlave\Projects\zstack\Samples\SampleApp      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CC #
+#                          SOC\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUD #
+#                          E\" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbS #
+#                          lave\Projects\zstack\Samples\SampleApp             #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\"  #
+#                          -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ #
+#                          " -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSla #
+#                          ve\Projects\zstack\Samples\SampleApp               #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\"  #
+#                          -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I   #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SA #
+#                          DDR\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SD #
+#                          ATA\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE #
+#                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl #
+#                          ave\Projects\zstack\Samples\SampleApp              #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LE #
+#                          VEL\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\" -I "D:\WorkReserve\project\AES_BOOT\CC2 #
+#                          531UsbSlave\Projects\zstack\Samples\SampleApp      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\SINGLE_CHIP\" -I                          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\library #
+#                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl #
+#                          ave\Projects\zstack\Samples\SampleApp              #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_h #
+#                          id\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Usb #
+#                          Slave\Projects\zstack\Samples\SampleApp            #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common\ #
+#                          " -Ohz --require_prototypes                        #
+#    List file          =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\usb_hid.lst    #
+#    Object file        =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\usb_hid.r51     #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Components\usb\class_hid\usb_hid.c
+      1          /***********************************************************************************
+      2          
+      3            Filename:	usb_hid.c
+      4          
+      5            Description:	Application support for the HID class
+      6          
+      7          ***********************************************************************************/
+      8          
+      9          /***********************************************************************************
+     10          * INCLUDES
+     11          */
+     12          #include "simple_hid.h"
+     13          #include "hal_int.h"
+     14          #include "hal_mcu.h"
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+     15          
+     16          #include "usb_firmware_library_headers.h"
+     17          #include "usb_hid_reports.h"
+     18          #include "usb_class_requests.h"
+     19          
+     20          void halMcuWaitUs(uint16 usec);
+     21          void halMcuWaitMs(uint16 msec);
+     22          /***********************************************************************************
+     23          * GLOBAL DATA
+     24          */
+
+   \                                 In  segment DATA_Z, align 1, keep-with-next
+     25          KEYBOARD_IN_REPORT __data keyboard;
+   \                     keyboard:
+   \   000000                DS 8
+   \   000008                REQUIRE __INIT_DATA_Z
+
+   \                                 In  segment DATA_Z, align 1, keep-with-next
+     26          MOUSE_IN_REPORT __data mouse;
+   \                     mouse:
+   \   000000                DS 4
+   \   000004                REQUIRE __INIT_DATA_Z
+     27          
+     28          void usbHidInit(void); 
+     29          void usbHidProcessEvents(void);
+     30          void usbHidProcessKeyboard(uint8 *pRfData);
+     31          void usbHidProcessMouse(uint8 *pRfData);
+     32          /** \brief Initializes the \ref module_usb_firmware_library_config module
+     33          *
+     34          * This function should be called first.
+     35          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     36          void usbHidInit(void)
+   \                     usbHidInit:
+     37          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     38              // Init USB library
+     39              usbfwInit();
+   \   000004                ; Setup parameters for call to function usbfwInit
+   \   000004   12....       LCALL   ??usbfwInit?relay
+     40          
+     41              // Initialize the USB interrupt handler with bit mask containing all processed USBIRQ events
+     42              usbirqInit(0xFFFF);
+   \   000007                ; Setup parameters for call to function usbirqInit
+   \   000007   7AFF         MOV     R2,#-0x1
+   \   000009   7BFF         MOV     R3,#-0x1
+   \   00000B   12....       LCALL   ??usbirqInit?relay
+     43          
+     44              // Enable pullup on D+
+     45              HAL_USB_PULLUP_ENABLE();
+   \   00000E   53F4FE       ANL     0xf4,#0xfe
+   \   000011   D290         SETB    0x90.0
+   \   000013   43FE01       ORL     0xfe,#0x1
+     46          
+     47              // Enable global interrupts
+     48              halIntOn();
+   \   000016                ; Setup parameters for call to function halIntOn
+   \   000016   12....       LCALL   ??halIntOn?relay
+     49          
+     50          } // usbHidInit
+   \   000019                REQUIRE ?Subroutine0
+   \   000019                REQUIRE P1SEL
+   \   000019                REQUIRE _A_P1
+   \   000019                REQUIRE P1DIR
+   \   000019                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     51          
+     52          /// @}
+     53          
+     54          
+     55          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     56          void usbHidProcessEvents(void)
+   \                     usbHidProcessEvents:
+     57          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     58              // Handle USB reset
+     59              if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_RESET) {
+   \   000004   A8..         MOV     R0,usbirqData+0x0
+   \   000006   E8           MOV     A,R0
+   \   000007   5404         ANL     A,#0x4
+   \   000009   600F         JZ      ??usbHidProcessEvents_0
+     60                  USBIRQ_CLEAR_EVENTS(0xFFFF);
+   \   00000B   75..00       MOV     usbirqData+0x0,#0x0
+   \   00000E   75..00       MOV     usbirqData+0x1,#0x0
+     61                  usbfwResetHandler();
+   \   000011                ; Setup parameters for call to function usbfwResetHandler
+   \   000011   12....       LCALL   ??usbfwResetHandler?relay
+     62                  USBPOW = USBPOW_SUSPEND_EN;
+   \   000014   906201       MOV     DPTR,#0x6201
+   \   000017   7401         MOV     A,#0x1
+   \   000019   F0           MOVX    @DPTR,A
+     63              }
+     64          
+     65              // Handle USB packets on EP0
+     66              if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_SETUP) {
+   \                     ??usbHidProcessEvents_0:
+   \   00001A   A8..         MOV     R0,usbirqData+0x0
+   \   00001C   E8           MOV     A,R0
+   \   00001D   5410         ANL     A,#0x10
+   \   00001F   6009         JZ      ??usbHidProcessEvents_1
+     67                  USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_SETUP);
+   \   000021   78..         MOV     R0,#usbirqData
+   \   000023   E6           MOV     A,@R0
+   \   000024   54EF         ANL     A,#0xef
+   \   000026   F6           MOV     @R0,A
+     68                  usbfwSetupHandler();
+   \   000027                ; Setup parameters for call to function usbfwSetupHandler
+   \   000027   12....       LCALL   ??usbfwSetupHandler?relay
+     69              }
+     70          
+     71              // Handle USB suspend
+     72              if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_SUSPEND) {
+   \                     ??usbHidProcessEvents_1:
+   \   00002A   A8..         MOV     R0,usbirqData+0x0
+   \   00002C   E8           MOV     A,R0
+   \   00002D   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00002F   500E         JNC     ??usbHidProcessEvents_2
+     73                  USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_SUSPEND);  // Clear USB suspend interrupt
+   \   000031   78..         MOV     R0,#usbirqData
+   \   000033   54FE         ANL     A,#0xfe
+   \   000035   F6           MOV     @R0,A
+     74                  usbsuspEnter();                             // Calling this function will take the chip into PM1 until a USB resume is deteceted.
+   \   000036                ; Setup parameters for call to function usbsuspEnter
+   \   000036   12....       LCALL   ??usbsuspEnter?relay
+     75                  USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_RESUME);   // Clear USB resume interrupt.
+   \   000039   78..         MOV     R0,#usbirqData
+   \   00003B   E6           MOV     A,@R0
+   \   00003C   54FD         ANL     A,#0xfd
+   \   00003E   F6           MOV     @R0,A
+     76              }
+     77          }
+   \                     ??usbHidProcessEvents_2:
+   \   00003F   80..         SJMP    ?Subroutine0
+     78          
+     79          /***********************************************************************************
+     80          * @fn          halMcuWaitUs
+     81          *
+     82          * @brief       Busy wait function. Waits the specified number of microseconds. Use
+     83          *              assumptions about number of clock cycles needed for the various
+     84          *              instructions. This function assumes a 32 MHz clock.
+     85          *
+     86          *              NB! This function is highly dependent on architecture and compiler!
+     87          *
+     88          * @param       uint16 usec - number of microseconds delays
+     89          *
+     90          * @return      none
+     91          */
+     92          #pragma optimize=none
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     93          void halMcuWaitUs(uint16 usec)
+   \                     halMcuWaitUs:
+     94          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     95              usec>>= 1;
+   \   000000   EB           MOV     A,R3
+   \   000001   C3           CLR     C
+   \   000002   13           RRC     A
+   \   000003   FB           MOV     R3,A
+   \   000004   EA           MOV     A,R2
+   \   000005   13           RRC     A
+   \   000006   FA           MOV     R2,A
+     96              while(usec--)
+   \                     ??halMcuWaitUs_0:
+   \   000007   EA           MOV     A,R2
+   \   000008   F8           MOV     R0,A
+   \   000009   EB           MOV     A,R3
+   \   00000A   F9           MOV     R1,A
+   \   00000B   E8           MOV     A,R0
+   \   00000C   24FF         ADD     A,#-0x1
+   \   00000E   FA           MOV     R2,A
+   \   00000F   E9           MOV     A,R1
+   \   000010   34FF         ADDC    A,#-0x1
+   \   000012   FB           MOV     R3,A
+   \   000013   E8           MOV     A,R0
+   \   000014   49           ORL     A,R1
+   \   000015   6013         JZ      ??halMcuWaitUs_1
+     97              {
+     98                  NOP();
+   \   000017   00           NOP
+     99                  NOP();
+   \   000018   00           NOP
+    100                  NOP();
+   \   000019   00           NOP
+    101                  NOP();
+   \   00001A   00           NOP
+    102                  NOP();
+   \   00001B   00           NOP
+    103                  NOP();
+   \   00001C   00           NOP
+    104                  NOP();
+   \   00001D   00           NOP
+    105                  NOP();
+   \   00001E   00           NOP
+    106                  NOP();
+   \   00001F   00           NOP
+    107                  NOP();
+   \   000020   00           NOP
+    108                  NOP();
+   \   000021   00           NOP
+    109                  NOP();
+   \   000022   00           NOP
+    110                  NOP();
+   \   000023   00           NOP
+    111                  NOP();
+   \   000024   00           NOP
+    112                  NOP();
+   \   000025   00           NOP
+    113                  NOP();
+   \   000026   00           NOP
+    114                  NOP();
+   \   000027   00           NOP
+   \   000028   80DD         SJMP    ??halMcuWaitUs_0
+    115              }
+    116          }
+   \                     ??halMcuWaitUs_1:
+   \   00002A   02....       LJMP    ?BRET
+    117          /***********************************************************************************
+    118          * @fn          halMcuWaitMs
+    119          *
+    120          * @brief       Busy wait function. Waits the specified number of milliseconds. Use
+    121          *              assumptions about number of clock cycles needed for the various
+    122          *              instructions.
+    123          *
+    124          *              NB! This function is highly dependent on architecture and compiler!
+    125          *
+    126          * @param       uint16 millisec - number of milliseconds delay
+    127          *
+    128          * @return      none
+    129          */
+    130          #pragma optimize=none
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    131          void halMcuWaitMs(uint16 msec)
+   \                     halMcuWaitMs:
+    132          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    133              while(msec--)
+   \                     ??halMcuWaitMs_0:
+   \   000009   EE           MOV     A,R6
+   \   00000A   F8           MOV     R0,A
+   \   00000B   EF           MOV     A,R7
+   \   00000C   F9           MOV     R1,A
+   \   00000D   E8           MOV     A,R0
+   \   00000E   24FF         ADD     A,#-0x1
+   \   000010   FE           MOV     R6,A
+   \   000011   E9           MOV     A,R1
+   \   000012   34FF         ADDC    A,#-0x1
+   \   000014   FF           MOV     R7,A
+   \   000015   E8           MOV     A,R0
+   \   000016   49           ORL     A,R1
+   \   000017   6009         JZ      ??halMcuWaitMs_1
+    134                  halMcuWaitUs(1000);
+   \   000019                ; Setup parameters for call to function halMcuWaitUs
+   \   000019   7AE8         MOV     R2,#-0x18
+   \   00001B   7B03         MOV     R3,#0x3
+   \   00001D   12....       LCALL   ??halMcuWaitUs?relay
+   \   000020   80E7         SJMP    ??halMcuWaitMs_0
+    135          }
+   \                     ??halMcuWaitMs_1:
+   \   000022   7F01         MOV     R7,#0x1
+   \   000024   02....       LJMP    ?BANKED_LEAVE_XDATA
+    136          
+    137          
+    138          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    139          void usbHidProcessKeyboard(uint8 *pRfData)
+   \                     usbHidProcessKeyboard:
+    140          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    141              uint8 i;
+    142          
+    143              keyboard.modifiers = pRfData[1];     // copy data from rx buffer.
+   \   000005   8A82         MOV     DPL,R2
+   \   000007   8B83         MOV     DPH,R3
+   \   000009   A3           INC     DPTR
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   F5..         MOV     keyboard,A
+    144              keyboard.reserved = pRfData[2];
+   \   00000D   8A82         MOV     DPL,R2
+   \   00000F   8B83         MOV     DPH,R3
+   \   000011   A3           INC     DPTR
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   F5..         MOV     keyboard + 1,A
+    145              for(i = 0; i < sizeof(keyboard.pKeyCodes); i++) {
+   \   000016   7800         MOV     R0,#0x0
+    146                  keyboard.pKeyCodes[i] = pRfData[i + 3];
+   \                     ??usbHidProcessKeyboard_0:
+   \   000018   88..         MOV     ?V0 + 0,R0
+   \   00001A   EA           MOV     A,R2
+   \   00001B   25..         ADD     A,?V0 + 0
+   \   00001D   F582         MOV     DPL,A
+   \   00001F   EB           MOV     A,R3
+   \   000020   3400         ADDC    A,#0x0
+   \   000022   F583         MOV     DPH,A
+   \   000024   A3           INC     DPTR
+   \   000025   A3           INC     DPTR
+   \   000026   A3           INC     DPTR
+   \   000027   E0           MOVX    A,@DPTR
+   \   000028   C0E0         PUSH    A
+   \   00002A   74..         MOV     A,#keyboard + 2
+   \   00002C   28           ADD     A,R0
+   \   00002D   F9           MOV     R1,A
+   \   00002E   D0E0         POP     A
+   \   000030   F7           MOV     @R1,A
+    147              }
+   \   000031   08           INC     R0
+   \   000032   E8           MOV     A,R0
+   \   000033   C3           CLR     C
+   \   000034   9406         SUBB    A,#0x6
+   \   000036   40E0         JC      ??usbHidProcessKeyboard_0
+    148          
+    149              // Update and send the received HID keyboard report if USB endpoint is ready
+    150              hidUpdateKeyboardInReport(&keyboard);
+   \   000038                ; Setup parameters for call to function hidUpdateKeyboardInReport
+   \   000038   79..         MOV     R1,#keyboard
+   \   00003A   12....       LCALL   ??hidUpdateKeyboardInReport?relay
+    151              
+    152              if (hidSendKeyboardInReport()) {
+   \   00003D                ; Setup parameters for call to function hidSendKeyboardInReport
+   \   00003D   12....       LCALL   ??hidSendKeyboardInReport?relay
+   \   000040   E9           MOV     A,R1
+   \   000041   602D         JZ      ??usbHidProcessKeyboard_1
+    153          
+    154                  // For each successfully sent keyboard report, also clear the HID
+    155                  // keyboard report and send a blank report to release the key
+    156                  keyboard.modifiers = 0;
+   \   000043   75..00       MOV     keyboard,#0x0
+    157                  keyboard.reserved = 0;
+   \   000046   75..00       MOV     keyboard + 1,#0x0
+    158                  for(i = 0; i < sizeof(keyboard.pKeyCodes); i++) {
+   \   000049   7800         MOV     R0,#0x0
+    159                      keyboard.pKeyCodes[i] = 0;
+   \                     ??usbHidProcessKeyboard_2:
+   \   00004B   74..         MOV     A,#keyboard + 2
+   \   00004D   28           ADD     A,R0
+   \   00004E   F9           MOV     R1,A
+   \   00004F   7700         MOV     @R1,#0x0
+    160                  }
+   \   000051   08           INC     R0
+   \   000052   E8           MOV     A,R0
+   \   000053   C3           CLR     C
+   \   000054   9406         SUBB    A,#0x6
+   \   000056   40F3         JC      ??usbHidProcessKeyboard_2
+    161          
+    162                  hidUpdateKeyboardInReport(&keyboard);
+   \   000058                ; Setup parameters for call to function hidUpdateKeyboardInReport
+   \   000058   79..         MOV     R1,#keyboard
+   \   00005A   12....       LCALL   ??hidUpdateKeyboardInReport?relay
+    163                  for (i= 0;i<100; i++) {
+   \   00005D   7E64         MOV     R6,#0x64
+    164                      if (hidSendKeyboardInReport())
+   \                     ??usbHidProcessKeyboard_3:
+   \   00005F                ; Setup parameters for call to function hidSendKeyboardInReport
+   \   00005F   12....       LCALL   ??hidSendKeyboardInReport?relay
+   \   000062   E9           MOV     A,R1
+   \   000063   700B         JNZ     ??usbHidProcessKeyboard_1
+    165                          break;
+    166                      halMcuWaitMs(1);
+   \   000065                ; Setup parameters for call to function halMcuWaitMs
+   \   000065   7A01         MOV     R2,#0x1
+   \   000067   7B00         MOV     R3,#0x0
+   \   000069   12....       LCALL   ??halMcuWaitMs?relay
+    167                  }
+   \   00006C   1E           DEC     R6
+   \   00006D   EE           MOV     A,R6
+   \   00006E   70EF         JNZ     ??usbHidProcessKeyboard_3
+    168              }
+    169          }
+   \                     ??usbHidProcessKeyboard_1:
+   \   000070   7F02         MOV     R7,#0x2
+   \   000072   02....       LJMP    ?BANKED_LEAVE_XDATA
+    170          
+    171          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    172          void usbHidProcessMouse(uint8 *pRfData)
+   \                     usbHidProcessMouse:
+    173          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    174              mouse.buttons = pRfData[1];         // copy data from rx buffer.
+   \   000004   8A82         MOV     DPL,R2
+   \   000006   8B83         MOV     DPH,R3
+   \   000008   A3           INC     DPTR
+   \   000009   E0           MOVX    A,@DPTR
+   \   00000A   F5..         MOV     mouse,A
+    175              if (mouse.buttons==0) {
+   \   00000C   701E         JNZ     ??usbHidProcessMouse_0
+    176                  mouse.dX = pRfData[2];
+   \   00000E   8A82         MOV     DPL,R2
+   \   000010   8B83         MOV     DPH,R3
+   \   000012   A3           INC     DPTR
+   \   000013   A3           INC     DPTR
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   F5..         MOV     mouse + 1,A
+    177                  mouse.dY = pRfData[3];
+   \   000017   8A82         MOV     DPL,R2
+   \   000019   8B83         MOV     DPH,R3
+   \   00001B   A3           INC     DPTR
+   \   00001C   A3           INC     DPTR
+   \   00001D   A3           INC     DPTR
+   \   00001E   E0           MOVX    A,@DPTR
+   \   00001F   F5..         MOV     mouse + 2,A
+    178                  mouse.dZ = pRfData[4];
+   \   000021   8A82         MOV     DPL,R2
+   \   000023   8B83         MOV     DPH,R3
+   \   000025   A3           INC     DPTR
+   \   000026   A3           INC     DPTR
+   \   000027   A3           INC     DPTR
+   \   000028   A3           INC     DPTR
+   \   000029   E0           MOVX    A,@DPTR
+   \   00002A   F5..         MOV     mouse + 3,A
+    179              }
+    180          
+    181              // Update and send the received HID mouse report if USB endpoint is ready
+    182              hidUpdateMouseInReport(&mouse);
+   \                     ??usbHidProcessMouse_0:
+   \   00002C                ; Setup parameters for call to function hidUpdateMouseInReport
+   \   00002C   79..         MOV     R1,#mouse
+   \   00002E   12....       LCALL   ??hidUpdateMouseInReport?relay
+    183              hidSendMouseInReport();
+   \   000031                ; Setup parameters for call to function hidSendMouseInReport
+   \   000031   12....       LCALL   ??hidSendMouseInReport?relay
+    184          }
+   \   000034   02....       LJMP    ?Subroutine0 & 0xFFFF
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbHidInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbHidInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbHidProcessEvents?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbHidProcessEvents
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??halMcuWaitUs?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    halMcuWaitUs
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??halMcuWaitMs?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    halMcuWaitMs
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbHidProcessKeyboard?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbHidProcessKeyboard
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbHidProcessMouse?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbHidProcessMouse
+    185          
+    186          
+    187          /*
+    188          +------------------------------------------------------------------------------
+    189          |  Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+    190          |
+    191          |  IMPORTANT: Your use of this Software is limited to those specific rights
+    192          |  granted under the terms of a software license agreement between the user who
+    193          |  downloaded the software, his/her employer (which must be your employer) and
+    194          |  Texas Instruments Incorporated (the "License"). You may not use this Software
+    195          |  unless you agree to abide by the terms of the License. The License limits
+    196          |  your use, and you acknowledge, that the Software may not be modified, copied
+    197          |  or distributed unless embedded on a Texas Instruments microcontroller or used
+    198          |  solely and exclusively in conjunction with a Texas Instruments radio
+    199          |  frequency transceiver, which is integrated into your product. Other than for
+    200          |  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+    201          |  works of, modify, distribute, perform, display or sell this Software and/or
+    202          |  its documentation for any purpose.
+    203          |
+    204          |  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+    205          |  PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+    206          |  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+    207          |  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+    208          |  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+    209          |  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+    210          |  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING
+    211          |  BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+    212          |  CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+    213          |  SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+    214          |  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+    215          |
+    216          |  Should you have any questions regarding your right to use this Software,
+    217          |  contact Texas Instruments Incorporated at www.TI.com.
+    218          |
+    219          +------------------------------------------------------------------------------
+    220          */
+    221          
+    222          
+    223          
+    224          
+    225          
+
+   Maximum stack usage in bytes:
+
+     Function                       ISTACK PSTACK XSTACK
+     --------                       ------ ------ ------
+     halMcuWaitMs                       0      0     19
+       -> halMcuWaitUs                  0      0     18
+     halMcuWaitUs                       0      0      9
+     usbHidInit                         2      0      0
+       -> usbfwInit                     4      0      0
+       -> usbirqInit                    4      0      0
+       -> halIntOn                      4      0      0
+     usbHidProcessEvents                2      0      0
+       -> usbfwResetHandler             4      0      0
+       -> usbfwSetupHandler             4      0      0
+       -> usbsuspEnter                  4      0      0
+     usbHidProcessKeyboard              1      0     10
+       -> hidUpdateKeyboardInReport     0      0     20
+       -> hidSendKeyboardInReport       0      0     20
+       -> hidUpdateKeyboardInReport     0      0     20
+       -> hidSendKeyboardInReport       0      0     20
+       -> halMcuWaitMs                  0      0     20
+     usbHidProcessMouse                 2      0      0
+       -> hidUpdateMouseInReport        4      0      0
+       -> hidSendMouseInReport          4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                Bytes
+     --------------                -----
+     _A_P1                            1
+     P1SEL                            1
+     P1DIR                            1
+     keyboard                         8
+     mouse                            4
+     usbHidInit                      25
+     ?Subroutine0                     7
+     usbHidProcessEvents             65
+     halMcuWaitUs                    45
+     halMcuWaitMs                    39
+     usbHidProcessKeyboard          117
+     usbHidProcessMouse              55
+     ??usbHidInit?relay               6
+     ??usbHidProcessEvents?relay      6
+     ??halMcuWaitUs?relay             6
+     ??halMcuWaitMs?relay             6
+     ??usbHidProcessKeyboard?relay    6
+     ??usbHidProcessMouse?relay       6
+
+ 
+ 353 bytes in segment BANKED_CODE
+  36 bytes in segment BANK_RELAYS
+  12 bytes in segment DATA_Z
+   3 bytes in segment SFR_AN
+ 
+ 389 bytes of CODE memory
+  12 bytes of DATA memory (+ 3 bytes shared)
+
+Errors: none
+Warnings: none

@@ -1,0 +1,377 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:51 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Compone /
+//                          nts\bsp\bsp.c                                     /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Components\bsp\b /
+//                          sp.c" -D "MCU_H=\"ioCC1110.h\"" -D MRFI_CC1110    /
+//                          -lB "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pr /
+//                          ojects\Examples\SRF04\UART_Bridge\IAR\CC1110-Link /
+//                          To\List\" -o "C:\Texas Instruments\SimpliciTI-IAR /
+//                          -1.2.0\Projects\Examples\SRF04\UART_Bridge\IAR\CC /
+//                          1110-LinkTo\Obj\" -e --debug --core=plain         /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\bsp.s51                                        /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME bsp
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?DPS
+        EXTERN ?XSP
+
+        PUBLIC BSP_Delay
+        PUBLIC BSP_Init
+        PUBLIC BSP_InitBoard
+        PUBLIC BSP_InitButtons
+        PUBLIC BSP_InitDrivers
+        PUBLIC BSP_InitLeds
+        PUBWEAK P0INP
+        PUBWEAK P1DIR
+        PUBWEAK T3CC0
+        PUBWEAK T3CTL
+        PUBWEAK _A_IEN0
+        PUBWEAK _A_P1
+        PUBWEAK _A_TIMIF
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Components\bsp\bsp.c
+//    1 /**************************************************************************************************
+//    2   Revised:        $Date: 2007-07-06 11:19:00 -0700 (Fri, 06 Jul 2007) $
+//    3   Revision:       $Revision: 13579 $
+//    4 
+//    5   Copyright 2007 Texas Instruments Incorporated.  All rights reserved.
+//    6 
+//    7   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//    8   the terms of a software license agreement between the user who downloaded the software,
+//    9   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   10   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   11   License. The License limits your use, and you acknowledge, that the Software may not be
+//   12   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   13   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   14   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   15   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   16   perform, display or sell this Software and/or its documentation for any purpose.
+//   17 
+//   18   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   19   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   20   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   21   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   22   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   23   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   24   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   25   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   26   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   27 
+//   28   Should you have any questions regarding your right to use this Software,
+//   29   contact Texas Instruments Incorporated at www.TI.com.
+//   30 **************************************************************************************************/
+//   31 
+//   32 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//   33  *   BSP (Board Support Package)
+//   34  *   Top-level BSP code file.
+//   35  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//   36  */
+//   37 
+//   38 /* ------------------------------------------------------------------------------------------------
+//   39  *                                            Includes
+//   40  * ------------------------------------------------------------------------------------------------
+//   41  */
+//   42 #include "bsp.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,08fH
+// unsigned char volatile __sfr P0INP
+P0INP:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,090H
+// union <unnamed> volatile __sfr _A_P1
+_A_P1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0a8H
+// union <unnamed> volatile __sfr _A_IEN0
+_A_IEN0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0cbH
+// unsigned char volatile __sfr T3CTL
+T3CTL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0cdH
+// unsigned char volatile __sfr T3CC0
+T3CC0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d8H
+// union <unnamed> volatile __sfr _A_TIMIF
+_A_TIMIF:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0feH
+// unsigned char volatile __sfr P1DIR
+P1DIR:
+        DATA8
+        DS 1
+//   43 #include "bsp_driver_defs.h"
+//   44 
+//   45 
+//   46 /**************************************************************************************************
+//   47  * @fn          BSP_Init
+//   48  *
+//   49  * @brief       Initialize the board and drivers.
+//   50  *
+//   51  * @param       none
+//   52  *
+//   53  * @return      none
+//   54  **************************************************************************************************
+//   55  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//   56 void BSP_Init(void)
+BSP_Init:
+        CODE
+//   57 {
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 2
+        MOV     A,#-0x2
+        LCALL   ?ALLOC_XSTACK8
+//   58   BSP_INIT_BOARD();
+//   59   BSP_INIT_DRIVERS();
+        ORL     0xfe,#0x1
+        ORL     0xfe,#0x8
+        SETB    0x90.0
+        SETB    0x90.3
+        ORL     0x8f,#0x20
+//   60 
+//   61   /*-------------------------------------------------------------
+//   62    *  Run time integrity checks.  Perform only if asserts
+//   63    *  are enabled.
+//   64    */
+//   65 #ifdef BSP_ASSERTS_ARE_ON
+//   66   /* verify endianess is correctly specified */
+//   67   {
+//   68     uint16_t test = 0x00AA; /* first storage byte of 'test' is non-zero for little endian */
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,#-0x56
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//   69     BSP_ASSERT(!(*((uint8_t *)&test)) == !BSP_LITTLE_ENDIAN); /* endianess mismatch */
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        JNZ     ??BSP_Init_0
+        CLR     0xa8.7
+??BSP_Init_1:
+        SJMP    ??BSP_Init_1
+//   70   }
+//   71 #endif
+//   72 }
+??BSP_Init_0:
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        POP     DPH
+        POP     DPL
+        RET
+        REQUIRE _A_IEN0
+        REQUIRE P0INP
+        REQUIRE P1DIR
+        REQUIRE _A_P1
+//   73 
+//   74 
+//   75 /* ================================================================================================
+//   76  *                                        C Code Includes
+//   77  * ================================================================================================
+//   78  */
+//   79 #ifdef BSP_BOARD_C
+//   80 #include BSP_BOARD_C
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void BSP_InitBoard(void)
+BSP_InitBoard:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        ANL     ?DPS,#0xfe
+        RET
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void BSP_Delay(uint16_t)
+BSP_Delay:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        ANL     0xcb,#0xef
+        CLR     0xd8.0
+        ORL     0xcb,#0x4
+        MOV     B,#0xd
+        MOV     A,R2
+        MUL     AB
+        MOV     0xcd,A
+        MOV     A,0xcb
+        ANL     A,#0xfc
+        ORL     A,#0x2
+        MOV     0xcb,A
+        ORL     0xcb,#0x10
+??BSP_Delay_0:
+        MOV     C,0xd8.0
+        JNC     ??BSP_Delay_0
+        ANL     0xcb,#0xef
+        CLR     0xd8.0
+        ANL     ?DPS,#0xfe
+        RET
+        REQUIRE T3CTL
+        REQUIRE _A_TIMIF
+        REQUIRE T3CC0
+//   81 #endif
+//   82 
+//   83 #ifdef BSP_DRIVERS_C
+//   84 #include BSP_DRIVERS_C
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void BSP_InitDrivers(void)
+BSP_InitDrivers:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        ORL     0xfe,#0x1
+        ORL     0xfe,#0x8
+        SETB    0x90.0
+        SETB    0x90.3
+        REQUIRE ?Subroutine0
+        REQUIRE P0INP
+        REQUIRE P1DIR
+        REQUIRE _A_P1
+        ; // Fall through to label ?Subroutine0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        ORL     0x8f,#0x20
+        ANL     ?DPS,#0xfe
+        RET
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void BSP_InitLeds(void)
+BSP_InitLeds:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        ORL     0xfe,#0x1
+        ORL     0xfe,#0x8
+        SETB    0x90.0
+        SETB    0x90.3
+        ANL     ?DPS,#0xfe
+        RET
+        REQUIRE P1DIR
+        REQUIRE _A_P1
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void BSP_InitButtons(void)
+BSP_InitButtons:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        SJMP    ?Subroutine0
+        REQUIRE P0INP
+
+        END
+//   85 #endif
+//   86 
+//   87 
+//   88 /* ************************************************************************************************
+//   89  *                                   Compile Time Integrity Checks
+//   90  * ************************************************************************************************
+//   91  */
+//   92 BSP_STATIC_ASSERT( sizeof(  uint8_t ) == 1 );
+//   93 BSP_STATIC_ASSERT( sizeof(   int8_t ) == 1 );
+//   94 BSP_STATIC_ASSERT( sizeof( uint16_t ) == 2 );
+//   95 BSP_STATIC_ASSERT( sizeof(  int16_t ) == 2 );
+//   96 BSP_STATIC_ASSERT( sizeof( uint32_t ) == 4 );
+//   97 BSP_STATIC_ASSERT( sizeof(  int32_t ) == 4 );
+//   98 
+//   99 
+//  100 /**************************************************************************************************
+//  101  */
+// 
+// 136 bytes in segment NEAR_CODE
+//   7 bytes in segment SFR_AN
+// 
+// 136 bytes of CODE memory
+//   0 bytes of DATA memory (+ 7 bytes shared)
+//
+//Errors: none
+//Warnings: none

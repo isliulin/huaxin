@@ -1,0 +1,1143 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         22/Jul/2016  20:57:17 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Components\bsp\drivers\code\ #
+#                          uart.c                                             #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          _Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8 #
+#                          051\nik_sb5000\IAR\Configuration\LinkTo\smpl_confi #
+#                          g.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34,   #
+#                          0x12}" -DxNWK_PLL_REFERENCE_CLOCK -DLINK_TO) -f    #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\Configuration\smpl_nwk_config.dat  #
+#                          (-DMAX_HOPS=3 -DMAX_HOPS_FROM_AP=1                 #
+#                          -DMAX_NWK_PAYLOAD=34 -DMAX_APP_PAYLOAD=10          #
+#                          -DDEFAULT_LINK_TOKEN=0x01020304                    #
+#                          -DDEFAULT_JOIN_TOKEN=0x05060708                    #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Components\bsp\drivers\code\ #
+#                          uart.c -D MCU_H=<ioCC2530.h> -D MRFI_CC2530 -D     #
+#                          ZTOOL_P1 -D MRFI_PA_LNA_ENABLED -lC                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\List\ -lA                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\List\ -o                    #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\Obj\ -e --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\bs #
+#                          p\ -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\bs #
+#                          p\drivers\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo #
+#                          nents\bsp\boards\CC2530EM\ -I                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\    #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          _Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8 #
+#                          051\nik_sb5000\IAR\..\..\..\..\..\Components\Simpl #
+#                          iciTI\nwk\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\Application #
+#                          s\ -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\Si #
+#                          mpliciTI\nwk_applications\ -I                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\INC #
+#                          LUDE\ -I C:\Users\freeman\Documents\work\NBK\Nikon #
+#                          \Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\S #
+#                          RF05_8051\nik_sb5000\IAR\..\..\..\..\..\Components #
+#                          \OSAL\MCU\CCSOC\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects #
+#                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\.. #
+#                          \Components\HAL\INCLUDE\ -I                        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\HAL\TARG #
+#                          ET\CC2530EB\ -I C:\Users\freeman\Documents\work\NB #
+#                          K\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa #
+#                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com #
+#                          ponents\SERVICES\SADDR\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\SERVICES #
+#                          \SDATA\ -I C:\Users\freeman\Documents\work\NBK\Nik #
+#                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MT\ -I C:\Users\freeman\Documents\work\NBK\Niko #
+#                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\ #
+#                          SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Component #
+#                          s\STACK\AF\ -I C:\Users\freeman\Documents\work\NBK #
+#                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam #
+#                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp #
+#                          onents\STACK\NWK\ -I C:\Users\freeman\Documents\wo #
+#                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project #
+#                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\. #
+#                          .\Components\STACK\SEC\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\STACK\SA #
+#                          PI\ -I C:\Users\freeman\Documents\work\NBK\Nikon\N #
+#                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF #
+#                          05_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S #
+#                          TACK\SYS\ -I C:\Users\freeman\Documents\work\NBK\N #
+#                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl #
+#                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon #
+#                          ents\STACK\ZDO\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\ #
+#                          Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\ #
+#                          Components\MAC\INCLUDE\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\MAC\HIGH #
+#                          _LEVEL\ -I C:\Users\freeman\Documents\work\NBK\Nik #
+#                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\LOW_LEVEL\srf04\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\MAC\LOW_ #
+#                          LEVEL\srf04\SINGLE_CHIP\ -Ohz --require_prototypes #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\List\uart.lst               #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\Obj\uart.r51                #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\bsp\drivers\code\uart.c
+      1          /**************************************************************************************************
+      2            Filename:       uart.c
+      3            Revised:        $Date: 2009-08-17 10:50:58 -0700 (Mon, 17 Aug 2009) $
+      4            Author:         $Author: jnoxon $
+      5          
+      6            Description:    This file supports the SimpliciTI-compatible UART driver.
+      7          
+      8            Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+      9          
+     10            IMPORTANT: Your use of this Software is limited to those specific rights granted under
+     11            the terms of a software license agreement between the user who downloaded the software,
+     12            his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+     13            "License"). You may not use this Software unless you agree to abide by the terms of the
+     14            License. The License limits your use, and you acknowledge, that the Software may not be
+     15            modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+     16            or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+     17            transceiver, which is integrated into your product. Other than for the foregoing purpose,
+     18            you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+     19            perform, display or sell this Software and/or its documentation for any purpose.
+     20          
+     21            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+     22            WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+     23            WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+     24            IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     25            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+     26            THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+     27            INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+     28            DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+     29            THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     30          
+     31            Should you have any questions regarding your right to use this Software,
+     32            contact Texas Instruments Incorporated at www.TI.com.
+     33          **************************************************************************************************/
+     34          
+     35          /******************************************************************************
+     36           * INCLUDES
+     37           */
+     38          #include "bsp.h"
+
+   \                                 In  segment SFR_AN, at 0xa8
+   \   union <unnamed> volatile __sfr _A_IEN0
+   \                     _A_IEN0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc1
+   \   unsigned char volatile __sfr U0DBUF
+   \                     U0DBUF:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc2
+   \   unsigned char volatile __sfr U0BAUD
+   \                     U0BAUD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xe8
+   \   union <unnamed> volatile __sfr _A_IRCON2
+   \                     _A_IRCON2:
+   \   000000                DS 1
+     39          #include "uart.h"
+
+   \                                 In  segment SFR_AN, at 0x9a
+   \   union <unnamed> volatile __sfr _A__IEN2_
+   \                     _A__IEN2_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf1
+   \   union <unnamed> volatile __sfr _A__PERCFG_
+   \                     _A__PERCFG_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf2
+   \   union <unnamed> volatile __sfr _A__ADCCFG_
+   \                     _A__ADCCFG_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   union <unnamed> volatile __sfr _A__P0SEL_
+   \                     _A__P0SEL_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf5
+   \   union <unnamed> volatile __sfr _A__P2SEL_
+   \                     _A__P2SEL_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x86
+   \   union <unnamed> volatile __sfr _A__U0CSR_
+   \                     _A__U0CSR_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc4
+   \   union <unnamed> volatile __sfr _A__U0UCR_
+   \                     _A__U0UCR_:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc5
+   \   union <unnamed> volatile __sfr _A__U0GCR_
+   \                     _A__U0GCR_:
+   \   000000                DS 1
+     40          
+     41          /******************************************************************************
+     42           * MACROS
+     43           */
+     44          
+     45          /******************************************************************************
+     46           * CONSTANTS AND DEFINES
+     47           */
+     48          
+     49          /******************************************************************************
+     50           * TYPEDEFS
+     51           */
+     52          
+     53          /******************************************************************************
+     54           * LOCAL VARIABLES
+     55           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     56          static uart_get_tx_data_type uart_tx_handler = NULL;
+   \                     uart_tx_handler:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     57          static uart_put_rx_data_type uart_rx_handler = NULL;
+   \                     uart_rx_handler:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     58          
+     59          /******************************************************************************
+     60           * LOCAL FUNCTIONS
+     61           */
+     62          void uart_tx_irq( void );
+     63          void uart_rx_irq( void );
+     64          
+     65          /******************************************************************************
+     66           * IRQs for all 8051 variants using IAR
+     67           */
+     68          
+     69          #if ( defined __IAR_SYSTEMS_ICC__ ) && ( defined __ICC8051__ )
+     70          
+     71          /* vector all interrupts to common routines */
+     72          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, TX )
+     73          __idata_reentrant __interrupt void uart_0_tx_irq( void );
+     74          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, TX )
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     75          __idata_reentrant __interrupt void uart_0_tx_irq( void )
+   \                     uart_0_tx_irq:
+   \   000000   80..         SJMP    ?Subroutine0
+   \   000002                REQUIRE _A_IEN0
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+     76          {
+   \   000000   C0E0         PUSH    A
+   \   000002   7401         MOV     A,#0x1
+   \   000004   12....       LCALL   ?INTERRUPT_ENTER_SP
+   \   000007                ; Saved register size: 13
+   \   000007                ; Auto size: 0
+     77            /* work-a-round for XCH instruction */
+     78            bspIState_t istate;
+     79            istate = __bsp_GET_ISTATE__();
+   \   000007                ; Saved register size: 13
+   \   000007                ; Auto size: 0
+   \   000007   E5A8         MOV     A,0xa8
+   \   000009   FE           MOV     R6,A
+     80            BSP_ENABLE_INTERRUPTS();
+   \   00000A   D2AF         SETB    0xa8.7
+     81          
+     82            uart_tx_irq( );
+   \   00000C                ; Setup parameters for call to function uart_tx_irq
+   \   00000C                ; Setup parameters for call to function uart_tx_irq
+   \   00000C   12....       LCALL   ??uart_tx_irq?relay
+     83          
+     84            /* work-a-round for XCH instruction */
+     85            __bsp_RESTORE_ISTATE__(istate);
+   \   00000F                REQUIRE ??Subroutine4_0
+   \   00000F                ; // Fall through to label ??Subroutine4_0
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ??Subroutine4_0:
+   \   000000   EE           MOV     A,R6
+   \   000001   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000003   92AF         MOV     0xa8.7,C
+     86            
+     87            return;
+   \   000005   7F01         MOV     R7,#0x1
+   \   000007   02....       LJMP    ?INTERRUPT_LEAVE_SP
+     88          }
+     89          
+     90          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, TX )
+     91          __idata_reentrant __interrupt void uart_1_tx_irq( void );
+     92          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, TX )
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+     93          __idata_reentrant __interrupt void uart_1_tx_irq( void )
+   \                     uart_1_tx_irq:
+   \   000000   80..         SJMP    ?Subroutine0
+   \   000002                REQUIRE _A_IEN0
+     94          {
+     95            /* work-a-round for XCH instruction */
+     96            bspIState_t istate;
+     97            istate = __bsp_GET_ISTATE__();
+     98            BSP_ENABLE_INTERRUPTS();
+     99          
+    100            uart_tx_irq( );
+    101          
+    102            /* work-a-round for XCH instruction */
+    103            __bsp_RESTORE_ISTATE__(istate);
+    104            
+    105            return;
+    106          }
+    107          
+    108          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, RX )
+    109          __idata_reentrant __interrupt void uart_0_rx_irq( void );
+    110          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, RX )
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    111          __idata_reentrant __interrupt void uart_0_rx_irq( void )
+   \                     uart_0_rx_irq:
+   \   000000                REQUIRE ?Subroutine2
+   \   000000                REQUIRE _A_IEN0
+   \   000000                ; // Fall through to label ?Subroutine2
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+    112          {
+   \   000000   C0E0         PUSH    A
+   \   000002   7401         MOV     A,#0x1
+   \   000004   12....       LCALL   ?INTERRUPT_ENTER_SP
+   \   000007                ; Saved register size: 13
+   \   000007                ; Auto size: 0
+    113            /* work-a-round for XCH instruction */
+    114            bspIState_t istate;
+    115            istate = __bsp_GET_ISTATE__();
+   \   000007                ; Saved register size: 13
+   \   000007                ; Auto size: 0
+   \   000007   E5A8         MOV     A,0xa8
+   \   000009   FE           MOV     R6,A
+    116            BSP_ENABLE_INTERRUPTS();
+   \   00000A   D2AF         SETB    0xa8.7
+    117          
+    118            uart_rx_irq( );
+   \   00000C                ; Setup parameters for call to function uart_rx_irq
+   \   00000C                ; Setup parameters for call to function uart_rx_irq
+   \   00000C   12....       LCALL   ??uart_rx_irq?relay
+    119          
+    120            /* work-a-round for XCH instruction */
+    121            __bsp_RESTORE_ISTATE__(istate);
+   \   00000F   80..         SJMP    ??Subroutine4_0
+    122            
+    123            return;
+    124          }
+    125          
+    126          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, RX )
+    127          __idata_reentrant __interrupt void uart_1_rx_irq( void );
+    128          #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, RX )
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    129          __idata_reentrant __interrupt void uart_1_rx_irq( void )
+   \                     uart_1_rx_irq:
+   \   000000   80..         SJMP    ?Subroutine2
+   \   000002                REQUIRE _A_IEN0
+    130          {
+    131            /* work-a-round for XCH instruction */
+    132            bspIState_t istate;
+    133            istate = __bsp_GET_ISTATE__();
+    134            BSP_ENABLE_INTERRUPTS();
+    135          
+    136            uart_rx_irq( );
+    137          
+    138            /* work-a-round for XCH instruction */
+    139            __bsp_RESTORE_ISTATE__(istate);
+    140            
+    141            return;
+    142          }
+    143          
+    144          
+    145          /******************************************************************************
+    146           * IRQs for MSP430+CCxxxx using IAR
+    147           */
+    148          
+    149          #elif ( defined __IAR_SYSTEMS_ICC__ ) && ( defined __ICC430__ )
+    150          
+    151          #pragma vector=USCIAB0TX_VECTOR
+    152          __interrupt void uart_tx_enter_irq( void );
+    153          #pragma vector=USCIAB0TX_VECTOR
+    154          __interrupt void uart_tx_enter_irq( void )
+    155          {
+    156          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    157            /* if remote device can accept more data */ 
+    158            if( UART_CTS_GET_STATE( ) == UART_CTS_DEASSERTED )
+    159              uart_tx_irq( ); /* handle the transmit request */
+    160            
+    161            else /* if remote device is holding us off then disable interrupts,
+    162                  * they will get re-enabled when the CTS interrupt is triggered.
+    163                  * this way we don't get stuck in an infinite loop because we are not
+    164                  * handling the transmit interrupt, we will get back here once the
+    165                  * CTS interrupt is generated because it will enable interrupts again. */
+    166              UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+    167          #else
+    168            uart_tx_irq( ); /* handle the transmit request */ 
+    169          #endif
+    170            return;
+    171          }
+    172          
+    173          #pragma vector=USCIAB0RX_VECTOR
+    174          __interrupt void uart_rx_enter_irq( void );
+    175          #pragma vector=USCIAB0RX_VECTOR
+    176          __interrupt void uart_rx_enter_irq( void )
+    177          {
+    178            uart_rx_irq( );
+    179            return;
+    180          }
+    181          
+    182          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    183          #pragma vector=INFIX( PORT, UART_CTS_PORT_NUM, _VECTOR )
+    184          __interrupt void uart_cts_irq( void );
+    185          #pragma vector=INFIX( PORT, UART_CTS_PORT_NUM, _VECTOR )
+    186          __interrupt void uart_cts_irq( void )
+    187          {
+    188            /* if a handler exists then a message must be currently in the buffer so
+    189             * it is safe to re-enable interrupts */
+    190            if( uart_tx_handler != NULL )
+    191              UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, TX );
+    192            
+    193            UART_CTS_CLEAR_INTERRUPT( );
+    194            
+    195            return;
+    196          }
+    197          #endif
+    198          
+    199          
+    200          /******************************************************************************
+    201           * IRQs for MSP430+CCxxxx using Code Composer
+    202           */
+    203          
+    204          #elif  defined __TI_COMPILER_VERSION__ 
+    205          
+    206          BSP_ISR_FUNCTION( uart_tx_enter_irq, USCIAB0TX_VECTOR )
+    207          {
+    208          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    209            /* if remote device can accept more data */
+    210            if( UART_CTS_GET_STATE( ) == UART_CTS_DEASSERTED )
+    211              uart_tx_irq( ); /* handle the transmit request */ 
+    212            
+    213            else /* if remote device is holding us off then disable interrupts,
+    214                  * they will get re-enabled when the CTS interrupt is triggered.
+    215                  * this way we don't get stuck in an infinite loop because we are not
+    216                  * handling the transmit interrupt, we will get back here once the
+    217                  * CTS interrupt is generated because it will enable interrupts again. */
+    218              UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+    219          #else
+    220            uart_tx_irq( ); /* handle the transmit request */
+    221          #endif
+    222            return;
+    223          }
+    224          
+    225          BSP_ISR_FUNCTION( uart_rx_enter_irq, USCIAB0RX_VECTOR )
+    226          {
+    227            uart_rx_irq( );
+    228            return;
+    229          }
+    230          
+    231          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    232          BSP_ISR_FUNCTION( uart_cts_irq, INFIX( PORT, UART_CTS_PORT_NUM, _VECTOR ) )
+    233          {
+    234            /* if a handler exists then a message must be currently in the buffer so
+    235             * it is safe to re-enable interrupts */
+    236            if( uart_tx_handler != NULL )
+    237              UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, TX );
+    238            
+    239            UART_CTS_CLEAR_INTERRUPT( );
+    240            
+    241            return;
+    242          }
+    243          #endif
+    244          
+    245          
+    246          
+    247          
+    248          #else
+    249          #error "Undefined target processor or unknown compiler."
+    250          #endif
+    251          
+    252          
+    253          /******************************************************************************
+    254           * Interrupt Service Routines (ISRs)
+    255           */
+    256          
+    257          /******************************************************************************
+    258           * @fn          uart_tx_irq
+    259           *
+    260           * @brief       TX interrupt service routine
+    261           *
+    262           * input parameters
+    263           *
+    264           * output parameters
+    265           *
+    266           * @return   
+    267           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    268          void uart_tx_irq( void )
+   \                     uart_tx_irq:
+    269            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004   74FF         MOV     A,#-0x1
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    270            unsigned char c;
+    271            uart_get_tx_data_type handler;
+    272            
+    273            BSP_CRITICAL_STATEMENT( handler = uart_tx_handler );
+   \   000009   E5A8         MOV     A,0xa8
+   \   00000B   FA           MOV     R2,A
+   \   00000C   C2AF         CLR     0xa8.7
+   \   00000E   90....       MOV     DPTR,#uart_tx_handler
+   \   000011   E0           MOVX    A,@DPTR
+   \   000012   F8           MOV     R0,A
+   \   000013   A3           INC     DPTR
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   F9           MOV     R1,A
+   \   000016   EA           MOV     A,R2
+   \   000017   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000019   92AF         MOV     0xa8.7,C
+   \   00001B   E5A8         MOV     A,0xa8
+    274            
+    275            /* if a handler exists */ 
+    276            if( handler != NULL )
+   \   00001D   E8           MOV     A,R0
+   \   00001E   49           ORL     A,R1
+   \   00001F   603A         JZ      ??uart_tx_irq_0
+    277              {
+    278              if( (*handler)( &c ) != false ) /* if this is not the last byte to send */
+   \   000021                ; Setup parameters for indirect call
+   \   000021   85..82       MOV     DPL,?XSP + 0
+   \   000024   85..83       MOV     DPH,?XSP + 1
+   \   000027   AA82         MOV     R2,DPL
+   \   000029   AB83         MOV     R3,DPH
+   \   00002B   8882         MOV     DPL,R0
+   \   00002D   8983         MOV     DPH,R1
+   \   00002F   12....       LCALL   ?CALL_IND
+   \   000032   E5A8         MOV     A,0xa8
+   \   000034   5006         JNC     ??uart_tx_irq_1
+    279                {
+    280                bspIState_t intState;
+    281                BSP_ENTER_CRITICAL_SECTION( intState );
+   \   000036   C2AF         CLR     0xa8.7
+    282                
+    283                /* only reset the interrupt flag if we have additional data to send
+    284                 * that way, if we are done then the interrupt is still pending and
+    285                 * will be immediately entered upon re-enabling it.*/
+    286                UART_IRQ_FLAG_CLR( UART_NUMBER, UART_LOCATION, TX ); /* eset the interrupt */
+   \   000038   C2E9         CLR     0xe8.1
+    287                
+    288                BSP_EXIT_CRITICAL_SECTION( intState );
+   \   00003A   800E         SJMP    ??uart_tx_irq_2
+    289                }
+    290              else
+    291                {
+    292                bspIState_t intState;
+    293                BSP_ENTER_CRITICAL_SECTION( intState );
+   \                     ??uart_tx_irq_1:
+   \   00003C   F8           MOV     R0,A
+   \   00003D   C2AF         CLR     0xa8.7
+    294                
+    295                /* we're done sending data.  since we left the interrupt pending,
+    296                 * disable it so we don't re-enter the isr.  the interrupt will be
+    297                 * re-enabled when there is another message to send. */
+    298                UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+   \   00003F   539AFB       ANL     0x9a,#0xfb
+    299                
+    300                /* no more data to send, reset the handler to flag not busy */
+    301                uart_tx_handler = NULL;
+   \   000042   90....       MOV     DPTR,#uart_tx_handler
+   \   000045   E4           CLR     A
+   \   000046   F0           MOVX    @DPTR,A
+   \   000047   A3           INC     DPTR
+   \   000048   F0           MOVX    @DPTR,A
+    302                
+    303                BSP_EXIT_CRITICAL_SECTION( intState );
+   \   000049   E8           MOV     A,R0
+   \                     ??uart_tx_irq_2:
+   \   00004A   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00004C   92AF         MOV     0xa8.7,C
+   \   00004E   E5A8         MOV     A,0xa8
+    304                }
+    305          
+    306              UART_SEND( UART_NUMBER, UART_LOCATION, c ); /* send the byte */
+   \   000050   85..82       MOV     DPL,?XSP + 0
+   \   000053   85..83       MOV     DPH,?XSP + 1
+   \   000056   E0           MOVX    A,@DPTR
+   \   000057   F5C1         MOV     0xc1,A
+   \   000059   8003         SJMP    ??uart_tx_irq_3
+    307              }
+    308            else /* if no handler exists?!?!?!? */
+    309              /* something went wrong, disable interrupts so we don't get stuck here */
+    310              UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+   \                     ??uart_tx_irq_0:
+   \   00005B   539AFB       ANL     0x9a,#0xfb
+    311          
+    312            return;
+   \                     ??uart_tx_irq_3:
+   \   00005E   7401         MOV     A,#0x1
+   \   000060                REQUIRE ?Subroutine3
+   \   000060                REQUIRE _A_IEN0
+   \   000060                REQUIRE _A_IRCON2
+   \   000060                REQUIRE _A__IEN2_
+   \   000060                REQUIRE U0DBUF
+   \   000060                ; // Fall through to label ?Subroutine3
+    313          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000003   80..         SJMP    ??Subroutine5_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine5_0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+    314          
+    315          /******************************************************************************
+    316           * @fn          uart_rx_irq
+    317           *
+    318           * @brief       RX interrupt service routine
+    319           *
+    320           * input parameters
+    321           *
+    322           * output parameters
+    323           *
+    324           * @return   
+    325           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    326          void uart_rx_irq( void )
+   \                     uart_rx_irq:
+    327            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    328            uart_put_rx_data_type handler;
+    329            
+    330            /* read in the received data, this will clear the interrupt also */
+    331            unsigned char c = UART_RECEIVE( UART_NUMBER, UART_LOCATION );
+   \   000004   E5C1         MOV     A,0xc1
+   \   000006   F9           MOV     R1,A
+    332            
+    333            BSP_CRITICAL_STATEMENT( handler = uart_rx_handler );
+   \   000007   E5A8         MOV     A,0xa8
+   \   000009   F8           MOV     R0,A
+   \   00000A   C2AF         CLR     0xa8.7
+   \   00000C   90....       MOV     DPTR,#uart_rx_handler
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   FA           MOV     R2,A
+   \   000011   A3           INC     DPTR
+   \   000012   E0           MOVX    A,@DPTR
+   \   000013   FB           MOV     R3,A
+   \   000014   8A82         MOV     DPL,R2
+   \   000016   8B83         MOV     DPH,R3
+   \   000018   E8           MOV     A,R0
+   \   000019   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00001B   92AF         MOV     0xa8.7,C
+   \   00001D   E5A8         MOV     A,0xa8
+    334            
+    335            if( handler != NULL ) /* if a handler exists to receive data */
+   \   00001F   E582         MOV     A,DPL
+   \   000021   4583         ORL     A,DPH
+   \   000023   6018         JZ      ??uart_rx_irq_0
+    336              if( ( *handler)( c ) == false ) /* if the user is done receiveing */
+   \   000025                ; Setup parameters for indirect call
+   \   000025   12....       LCALL   ?CALL_IND
+   \   000028   4013         JC      ??uart_rx_irq_0
+    337                /* indicate the receiver is available */
+    338                BSP_CRITICAL_STATEMENT( uart_rx_handler = NULL );
+   \   00002A   E5A8         MOV     A,0xa8
+   \   00002C   F8           MOV     R0,A
+   \   00002D   C2AF         CLR     0xa8.7
+   \   00002F   90....       MOV     DPTR,#uart_rx_handler
+   \   000032   E4           CLR     A
+   \   000033   F0           MOVX    @DPTR,A
+   \   000034   A3           INC     DPTR
+   \   000035   F0           MOVX    @DPTR,A
+   \   000036   E8           MOV     A,R0
+   \   000037   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000039   92AF         MOV     0xa8.7,C
+   \   00003B   E5A8         MOV     A,0xa8
+    339              
+    340            return;
+   \                     ??uart_rx_irq_0:
+   \   00003D   80..         SJMP    ??Subroutine5_0
+   \   00003F                REQUIRE U0DBUF
+   \   00003F                REQUIRE _A_IEN0
+    341            }
+    342          
+    343          /******************************************************************************
+    344           * GLOBAL FUNCTIONS
+    345           */ 
+    346          
+    347          /******************************************************************************
+    348           * @fn          uart_init
+    349           *
+    350           * @brief       Configures UART and sets up transmit and receive interrupts
+    351           *
+    352           * input parameters
+    353           *
+    354           * output parameters
+    355           *
+    356           * @return   
+    357           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    358          void uart_init( void )
+   \                     uart_init:
+    359            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 2
+   \   000004   74FE         MOV     A,#-0x2
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    360            volatile unsigned int i;
+    361          
+    362            /* make sure the handler functions are cleared in case we are re-initialized */
+    363            uart_tx_handler = NULL;
+   \   000009   90....       MOV     DPTR,#uart_tx_handler
+   \   00000C   E4           CLR     A
+   \   00000D   F0           MOVX    @DPTR,A
+   \   00000E   A3           INC     DPTR
+   \   00000F   F0           MOVX    @DPTR,A
+    364            uart_rx_handler = NULL;
+   \   000010   90....       MOV     DPTR,#uart_rx_handler
+   \   000013   F0           MOVX    @DPTR,A
+   \   000014   A3           INC     DPTR
+   \   000015   F0           MOVX    @DPTR,A
+    365          
+    366            /* initialize the uart interface for operations */
+    367            UART_INIT( UART_NUMBER,
+    368                       UART_LOCATION,
+    369                       UART_FLOW_CONTROL,    /* enable/disable flow control */
+    370                       UART_PARITY_MODE,     /* enable/disable parity */
+    371                       UART_STOP_BITS,       /* number of stop bits */
+    372                       UART_BAUD_RATE );     /* baud rate to use */
+   \   000016   438680       ORL     0x86,#0x80
+   \   000019   438640       ORL     0x86,#0x40
+   \   00001C   53F1FE       ANL     0xf1,#0xfe
+   \   00001F   53F2F7       ANL     0xf2,#0xf7
+   \   000022   53F2FB       ANL     0xf2,#0xfb
+   \   000025   43F308       ORL     0xf3,#0x8
+   \   000028   43F304       ORL     0xf3,#0x4
+   \   00002B   53F5BF       ANL     0xf5,#0xbf
+   \   00002E   53F5DF       ANL     0xf5,#0xdf
+   \   000031   53F5F7       ANL     0xf5,#0xf7
+   \   000034   53C4BF       ANL     0xc4,#0xbf
+   \   000037   53C4F7       ANL     0xc4,#0xf7
+   \   00003A   53C4FB       ANL     0xc4,#0xfb
+   \   00003D   43C402       ORL     0xc4,#0x2
+   \   000040   53C4FE       ANL     0xc4,#0xfe
+   \   000043   53C5DF       ANL     0xc5,#0xdf
+   \   000046   E5C5         MOV     A,0xc5
+   \   000048   54E0         ANL     A,#0xe0
+   \   00004A   440B         ORL     A,#0xb
+   \   00004C   F5C5         MOV     0xc5,A
+   \   00004E   75C2D8       MOV     0xc2,#-0x28
+   \   000051   43C480       ORL     0xc4,#0x80
+    373             
+    374            i = UART_BAUD_RATE >> 5; /* delay approximately 1 bit time */
+   \   000054   85..82       MOV     DPL,?XSP + 0
+   \   000057   85..83       MOV     DPH,?XSP + 1
+   \   00005A   7410         MOV     A,#0x10
+   \   00005C   F0           MOVX    @DPTR,A
+   \   00005D   A3           INC     DPTR
+   \   00005E   740E         MOV     A,#0xe
+   \   000060   F0           MOVX    @DPTR,A
+    375            while( --i != 0 ) /* give the uart some time to initialize */
+   \                     ??uart_init_0:
+   \   000061   85..82       MOV     DPL,?XSP + 0
+   \   000064   85..83       MOV     DPH,?XSP + 1
+   \   000067   E0           MOVX    A,@DPTR
+   \   000068   24FF         ADD     A,#-0x1
+   \   00006A   F8           MOV     R0,A
+   \   00006B   A3           INC     DPTR
+   \   00006C   E0           MOVX    A,@DPTR
+   \   00006D   34FF         ADDC    A,#-0x1
+   \   00006F   F9           MOV     R1,A
+   \   000070   85..82       MOV     DPL,?XSP + 0
+   \   000073   85..83       MOV     DPH,?XSP + 1
+   \   000076   E8           MOV     A,R0
+   \   000077   F0           MOVX    @DPTR,A
+   \   000078   A3           INC     DPTR
+   \   000079   E9           MOV     A,R1
+   \   00007A   F0           MOVX    @DPTR,A
+   \   00007B   E8           MOV     A,R0
+   \   00007C   49           ORL     A,R1
+   \   00007D   70E2         JNZ     ??uart_init_0
+    376                ; /* null statement */
+    377          
+    378            /* set the interrupt flag so that a transmit interrupt will be pending
+    379             * that way when a message is sent and the irq is enabled, the interrupt
+    380             * will happen immediately to start the transmission */
+    381            UART_IRQ_FLAG_SET( UART_NUMBER, UART_LOCATION, TX ); /* set the interrupt */
+   \   00007F   D2E9         SETB    0xe8.1
+    382            
+    383            /* enable receive interrupts, they are always welcome. */
+    384            UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, RX ); 
+   \   000081   D2AA         SETB    0xa8.2
+    385          
+    386            return;
+   \   000083   7402         MOV     A,#0x2
+   \   000085   02....       LJMP    ?Subroutine3 & 0xFFFF
+   \   000088                REQUIRE _A__U0CSR_
+   \   000088                REQUIRE _A__PERCFG_
+   \   000088                REQUIRE _A__ADCCFG_
+   \   000088                REQUIRE _A__P0SEL_
+   \   000088                REQUIRE _A__P2SEL_
+   \   000088                REQUIRE _A__U0UCR_
+   \   000088                REQUIRE _A__U0GCR_
+   \   000088                REQUIRE U0BAUD
+   \   000088                REQUIRE _A_IRCON2
+   \   000088                REQUIRE _A_IEN0
+    387            }
+    388          
+    389          /******************************************************************************
+    390           * @fn          uart_tx_message
+    391           *
+    392           * @brief       Installs transmit handler if no message currently being sent
+    393           *
+    394           * input parameters
+    395           * @param   handler - UART transmit handler
+    396           *
+    397           * @return   Status of the operation.
+    398           *           true                 Transmit handler successfully installed
+    399           *           false                Message being sent or handler is invalid
+    400           *                                
+    401           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   EC           MOV     A,R4
+   \   000001   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000003   92AF         MOV     0xa8.7,C
+   \   000005   E5A8         MOV     A,0xa8
+   \   000007   A2F0         MOV     C,B.0
+   \   000009                REQUIRE ??Subroutine5_0
+   \   000009                ; // Fall through to label ??Subroutine5_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    402          bool uart_tx_message( uart_get_tx_data_type handler )
+   \                     uart_tx_message:
+    403            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    404            bspIState_t  intState;
+    405            bool status = false; /* assume failure initially */
+   \   000004   C2F0         CLR     B.0
+    406          
+    407            /* updates required, store interrupt state and disable interrupts */
+    408            BSP_ENTER_CRITICAL_SECTION(intState);
+   \   000006   A2AF         MOV     C,0xa8.7
+   \   000008   E4           CLR     A
+   \   000009   33           RLC     A
+   \   00000A   FC           MOV     R4,A
+   \   00000B   C2AF         CLR     0xa8.7
+    409          
+    410            /* if no message is currently being sent and handler looks valid */
+    411            if( uart_tx_handler == NULL && handler != NULL )
+   \   00000D   90....       MOV     DPTR,#uart_tx_handler
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F8           MOV     R0,A
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   F9           MOV     R1,A
+   \   000015   E8           MOV     A,R0
+   \   000016   49           ORL     A,R1
+   \   000017   7011         JNZ     ??uart_tx_message_0
+   \   000019   EA           MOV     A,R2
+   \   00001A   4B           ORL     A,R3
+   \   00001B   600D         JZ      ??uart_tx_message_0
+    412              {
+    413              uart_tx_handler = handler; /* install the handler */
+   \   00001D   90....       MOV     DPTR,#uart_tx_handler
+   \   000020   EA           MOV     A,R2
+   \   000021   F0           MOVX    @DPTR,A
+   \   000022   A3           INC     DPTR
+   \   000023   EB           MOV     A,R3
+   \   000024   F0           MOVX    @DPTR,A
+    414          
+    415              /* once the handler has been setup, enable the interrupt.
+    416               * this will cause the message to begin transmission */
+    417              UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, TX ); 
+   \   000025   439A04       ORL     0x9a,#0x4
+    418          
+    419              status = true; /* indicate success */    
+   \   000028   D2F0         SETB    B.0
+    420              }
+    421          
+    422            BSP_EXIT_CRITICAL_SECTION(intState); /* restore interrupt state */
+   \                     ??uart_tx_message_0:
+   \   00002A   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   00002D                REQUIRE _A_IEN0
+   \   00002D                REQUIRE _A__IEN2_
+    423              
+    424            return status; /* indicate status */
+    425            }
+    426          
+    427          /******************************************************************************
+    428           * @fn          uart_rx_message
+    429           *
+    430           * @brief       Installs receive handler if no message currently being received
+    431           *
+    432           * input parameters
+    433           * @param   handler - UART receive handler
+    434           *
+    435           * @return   Status of the operation.
+    436           *           true                 Receive handler successfully installed
+    437           *           false                Message being received or handler is invalid
+    438           *                                
+    439           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    440          bool uart_rx_message( uart_put_rx_data_type handler )
+   \                     uart_rx_message:
+    441            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    442            bspIState_t intState;
+    443            bool status = false;  /* assume failure initially */
+   \   000004   C2F0         CLR     B.0
+    444            
+    445            /* updates required, store interrupt state and disable interrupts */
+    446            BSP_ENTER_CRITICAL_SECTION(intState);
+   \   000006   A2AF         MOV     C,0xa8.7
+   \   000008   E4           CLR     A
+   \   000009   33           RLC     A
+   \   00000A   FC           MOV     R4,A
+   \   00000B   C2AF         CLR     0xa8.7
+    447          
+    448            /* if no message is being received and the handler looks valid */
+    449            if( uart_rx_handler == NULL && handler != NULL )
+   \   00000D   90....       MOV     DPTR,#uart_rx_handler
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F8           MOV     R0,A
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \   000014   F9           MOV     R1,A
+   \   000015   E8           MOV     A,R0
+   \   000016   49           ORL     A,R1
+   \   000017   700E         JNZ     ??uart_rx_message_0
+   \   000019   EA           MOV     A,R2
+   \   00001A   4B           ORL     A,R3
+   \   00001B   600A         JZ      ??uart_rx_message_0
+    450              {
+    451              uart_rx_handler = handler; /* install the handler */
+   \   00001D   90....       MOV     DPTR,#uart_rx_handler
+   \   000020   EA           MOV     A,R2
+   \   000021   F0           MOVX    @DPTR,A
+   \   000022   A3           INC     DPTR
+   \   000023   EB           MOV     A,R3
+   \   000024   F0           MOVX    @DPTR,A
+    452          
+    453              status = true; /* indicate success */
+   \   000025   D2F0         SETB    B.0
+    454              }
+    455            
+    456            BSP_EXIT_CRITICAL_SECTION(intState); /* restore interrupt state */
+   \                     ??uart_rx_message_0:
+   \   000027   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   00002A                REQUIRE _A_IEN0
+    457              
+    458            return status; /* indicate status */
+    459            }
+
+   \                                 In  segment INTVEC, offset 0x13, root
+   \                     `??uart_0_rx_irq??INTVEC 19`:
+   \   000013   02....       LJMP       (uart_0_rx_irq)
+
+   \                                 In  segment INTVEC, offset 0x1b, root
+   \                     `??uart_1_rx_irq??INTVEC 27`:
+   \   00001B   02....       LJMP       (uart_1_rx_irq)
+
+   \                                 In  segment INTVEC, offset 0x3b, root
+   \                     `??uart_0_tx_irq??INTVEC 59`:
+   \   00003B   02....       LJMP       (uart_0_tx_irq)
+
+   \                                 In  segment INTVEC, offset 0x73, root
+   \                     `??uart_1_tx_irq??INTVEC 115`:
+   \   000073   02....       LJMP       (uart_1_tx_irq)
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_tx_irq?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_tx_irq
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_rx_irq?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_rx_irq
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_tx_message?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_tx_message
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_rx_message?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_rx_message
+
+   Maximum stack usage in bytes:
+
+     Function         ISTACK PSTACK XSTACK
+     --------         ------ ------ ------
+     uart_0_rx_irq       13      0      0
+       -> uart_rx_irq    26      0      0
+     uart_0_tx_irq       13      0      0
+       -> uart_tx_irq    26      0      0
+     uart_1_rx_irq       13      0      0
+       -> uart_rx_irq    26      0      0
+     uart_1_tx_irq       13      0      0
+       -> uart_tx_irq    26      0      0
+     uart_init            2      0      2
+     uart_rx_irq          2      0      0
+     uart_rx_message      2      0      0
+     uart_tx_irq          2      0      1
+     uart_tx_message      2      0      0
+
+
+   Segment part sizes:
+
+     Function/Label              Bytes
+     --------------              -----
+     _A_IEN0                        1
+     U0DBUF                         1
+     U0BAUD                         1
+     _A_IRCON2                      1
+     _A__IEN2_                      1
+     _A__PERCFG_                    1
+     _A__ADCCFG_                    1
+     _A__P0SEL_                     1
+     _A__P2SEL_                     1
+     _A__U0CSR_                     1
+     _A__U0UCR_                     1
+     _A__U0GCR_                     1
+     uart_tx_handler                2
+     uart_rx_handler                2
+     uart_0_tx_irq                  2
+     ?Subroutine0                  15
+     ??Subroutine4_0               10
+     uart_1_tx_irq                  2
+     uart_0_rx_irq                  0
+     ?Subroutine2                  17
+     uart_1_rx_irq                  2
+     uart_tx_irq                   96
+     ?Subroutine3                   5
+     ??Subroutine5_0                7
+     uart_rx_irq                   63
+     uart_init                    136
+     ?Subroutine1                   9
+     uart_tx_message               45
+     uart_rx_message               42
+     ??uart_0_rx_irq??INTVEC 19     3
+     ??uart_1_rx_irq??INTVEC 27     3
+     ??uart_0_tx_irq??INTVEC 59     3
+     ??uart_1_tx_irq??INTVEC 115    3
+     ??uart_tx_irq?relay            6
+     ??uart_rx_irq?relay            6
+     ??uart_init?relay              6
+     ??uart_tx_message?relay        6
+     ??uart_rx_message?relay        6
+
+ 
+ 403 bytes in segment BANKED_CODE
+  30 bytes in segment BANK_RELAYS
+  12 bytes in segment INTVEC
+  48 bytes in segment NEAR_CODE
+  12 bytes in segment SFR_AN
+   4 bytes in segment XDATA_Z
+ 
+ 481 bytes of CODE  memory (+ 12 bytes shared)
+   0 bytes of DATA  memory (+ 12 bytes shared)
+   4 bytes of XDATA memory
+
+Errors: none
+Warnings: none

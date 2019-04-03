@@ -1,0 +1,1906 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         19/Jun/2016  18:16:17 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\SN\module\Componen #
+#                          ts\usb\class_cdc\usb_scsi.c                        #
+#    Command line       =  -f "C:\Users\freeman\Documents\work\SN\module\Proj #
+#                          ects\zstack\Samples\SampleApp                      #
+#                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                          " (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR    #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100 -DREJOIN_POLL_RATE=440)   #
+#                          C:\Users\freeman\Documents\work\SN\module\Componen #
+#                          ts\usb\class_cdc\usb_scsi.c -D ZIGBEEPRO -D        #
+#                          ZTOOL_P1 -lC "C:\Users\freeman\Documents\work\SN\m #
+#                          odule\Projects\zstack\Samples\SampleApp            #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA          #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\"              #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug    #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "C:\Users\freeman\Document #
+#                          s\work\SN\module\Projects\zstack\Samples\SampleApp #
+#                           com\CC2530DB\" -I "C:\Users\freeman\Documents\wor #
+#                          k\SN\module\Projects\zstack\Samples\SampleApp      #
+#                          com\CC2530DB\..\SOURCE\" -I                        #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I          #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I     #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE #
+#                          \" -I "C:\Users\freeman\Documents\work\SN\module\P #
+#                          rojects\zstack\Samples\SampleApp                   #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\ #
+#                          CC2530EB\" -I "C:\Users\freeman\Documents\work\SN\ #
+#                          module\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CC #
+#                          SOC\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUD #
+#                          E\" -I "C:\Users\freeman\Documents\work\SN\module\ #
+#                          Projects\zstack\Samples\SampleApp                  #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\"  #
+#                          -I "C:\Users\freeman\Documents\work\SN\module\Proj #
+#                          ects\zstack\Samples\SampleApp                      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ #
+#                          " -I "C:\Users\freeman\Documents\work\SN\module\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\"  #
+#                          -I "C:\Users\freeman\Documents\work\SN\module\Proj #
+#                          ects\zstack\Samples\SampleApp                      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I   #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SA #
+#                          DDR\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SD #
+#                          ATA\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE #
+#                          \" -I "C:\Users\freeman\Documents\work\SN\module\P #
+#                          rojects\zstack\Samples\SampleApp                   #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LE #
+#                          VEL\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\" -I "C:\Users\freeman\Documents\work\SN\ #
+#                          module\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\SINGLE_CHIP\" -I                          #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\library #
+#                          \" -I "C:\Users\freeman\Documents\work\SN\module\P #
+#                          rojects\zstack\Samples\SampleApp                   #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_h #
+#                          id\" -I "C:\Users\freeman\Documents\work\SN\module #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common\ #
+#                          " -Ohz --require_prototypes                        #
+#    List file          =  C:\Users\freeman\Documents\work\SN\module\Projects #
+#                          \zstack\Samples\SampleApp                          #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\usb_scsi.lst   #
+#    Object file        =  C:\Users\freeman\Documents\work\SN\module\Projects #
+#                          \zstack\Samples\SampleApp                          #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\usb_scsi.r51    #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\SN\module\Components\usb\class_cdc\usb_scsi.c
+      1          //-----------------------------------------------------------------------------
+      2          // F34x_MSD_Scsi.c
+      3          //-----------------------------------------------------------------------------
+      4          // Copyright 2009 Silicon Laboratories, Inc.
+      5          // http://www.silabs.com
+      6          //
+      7          // Program Description:
+      8          //
+      9          // This file contains functions which responses to requests from USB device
+     10          //
+     11          //
+     12          //
+     13          // How To Test:    See Readme.txt
+     14          //
+     15          //
+     16          // FID:            34X000051
+     17          // Target:         C8051F34x
+     18          // Tool chain:     Keil
+     19          // Command Line:   See Readme.txt
+     20          // Project Name:   F34x_USB_MSD
+     21          //
+     22          // Release 1.3
+     23          //    -All changes by ES
+     24          //    -18 DEC 2009
+     25          //    -No changes; incremented revision number to match project revision
+     26          //
+     27          // Release 1.2
+     28          //    -All changes by BD and PD
+     29          //    -5 OCT 2007
+     30          //    -No changes; incremented revision number to match project revision
+     31          //
+     32          // Release 1.1
+     33          //    -All changes by PKC
+     34          //    -09 JUN 2006
+     35          //    -No changes; incremented revision number to match project revision
+     36          //
+     37          // Release 1.0
+     38          //    -Initial Release
+     39          //
+     40          
+     41          //-----------------------------------------------------------------------------
+     42          // Includes
+     43          //-----------------------------------------------------------------------------
+     44          
+     45          #include "usb_scsi.h"
+     46          #include "FAT.h"
+     47          //#include "bsp.h"
+     48          //#include "F34x_MSD_Msd.h"
+     49          //#include "F34x_MSD_Util.h"
+     50          //#include "F34x_MSD_Sect_Serv.h"
+     51          #include <stdio.h>
+     52          #include <ioCC2530.h>
+
+   \                                 In  segment SFR_AN, at 0xb1
+   \   unsigned char volatile __sfr ENCDI
+   \                     ENCDI:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb2
+   \   unsigned char volatile __sfr ENCDO
+   \                     ENCDO:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb3
+   \   unsigned char volatile __sfr ENCCS
+   \                     ENCCS:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd4
+   \   unsigned char volatile __sfr DMA0CFGL
+   \                     DMA0CFGL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd5
+   \   unsigned char volatile __sfr DMA0CFGH
+   \                     DMA0CFGH:
+   \   000000                DS 1
+     53          #include "comdef.h"
+     54          #include "hal_board_cfg.h"
+     55          #include "hal_dma.h"
+     56          #include "hal_flash.h"
+     57          #include "hal_oad.h"
+     58          #include "hal_types.h"
+     59          #include "hal_aes.h"
+
+  typedef uint16  UINT16;
+                  ^
+"C:\Users\freeman\Documents\work\SN\module\COMPONENTS\OSAL\INCLUDE\ZComDef.h",202  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+
+  typedef int16   INT16;
+                  ^
+"C:\Users\freeman\Documents\work\SN\module\COMPONENTS\OSAL\INCLUDE\ZComDef.h",203  Warning[Pe301]: 
+          typedef name has already been declared (with same type)
+     60          
+     61          #define SEND_PACKET_LEN 64
+     62          
+     63          #define SCSI_TEST_UNIT_READY 				0x00
+     64          #define SCSI_REQUEST_SENSE 					0x03
+     65          #define SCSI_FORMAT_UNIT					0x04
+     66          #define SCSI_SEND_DIAGNOSTIC				0x10
+     67          #define SCSI_INQUIRY						0x12
+     68          #define SCSI_MODE_SELECT_6					0x15
+     69          #define SCSI_MODE_SENSE_6					0x1A
+     70          #define SCSI_START_STOP_UNIT				0x1B
+     71          #define SCSI_PREVENT_ALLOW_MEDIUM_REMOVAL 	0x1E
+     72          #define SCSI_READ_CAPACITY_10				0x25
+     73          #define SCSI_READ_CAPACITY_16				0x9E
+     74          #define SCSI_READ_6							0x08
+     75          #define SCSI_READ_10						0x28
+     76          #define SCSI_READ_16						0x88
+     77          #define SCSI_WRITE_10						0x2A
+     78          #define SCSI_VERIFY_10						0x2F
+     79          #define SCSI_READ_FORMAT_CAPACITIES 		0x23
+     80          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     81          BYTE  Scsi_Status;
+   \                     Scsi_Status:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     82          DWORD Scsi_Residue;
+   \                     Scsi_Residue:
+   \   000000                DS 4
+   \   000004                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     83          CBW cbw;
+   \                     cbw:
+   \   000000                DS 31
+   \   00001F                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     84          CSW csw;
+   \                     csw:
+   \   000000                DS 13
+   \   00000D                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     85          unsigned char g_outDataReady=0;
+   \                     g_outDataReady:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     86          char g_modBoot=0;
+   \                     g_modBoot:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     87          extern unsigned char g_deviceLinked;
+     88          //BYTE xdata Msd_State=MSD_READY;
+     89          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     90          BYTE outPacket[EP1_PACKET_SIZE];
+   \                     outPacket:
+   \   000000                DS 64
+   \   000040                REQUIRE __INIT_XDATA_Z
+     91          
+     92          extern uint8 usbOutDataRcv(uint8* rBuf);
+     93          static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr);
+     94          static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key);
+     95          extern void DevUpdateUartSend(char *sbuf, int len);
+     96          
+     97          // Buffer for read/write transfers:
+     98          //BYTE Scratch[PHYSICAL_BLOCK_SIZE]={0};
+     99          
+    100          #if 0
+    101          const BYTE Scsi_Standard_Inquiry_Data[36]= {
+    102          0x00,0x80,0x02,0x02,0x20,0x00,0x00,0x00,0x53,0x54,0x4d,0x20,
+    103          0x20,0x20,0x20,0x20,0x53,0x44,0x20,0x46,0x6c,0x61,0x73,0x68,
+    104          0x20,0x44,0x69,0x73,0x6b,0x20,0x20,0x20,0x31,0x2e,0x30,0x20,
+    105          /*
+    106          //BYTE Scsi_Standard_Inquiry_Data[28]= {
+    107            0x00, // Peripheral qualifier & peripheral device type
+    108            0x80, // Removable medium
+    109            0x05, // Version of the standard (2=obsolete, 5=SPC-3)
+    110            0x02, // No NormACA, No HiSup, response data format=2
+    111            0x1F, // No extra parameters
+    112            0x00, // No flags
+    113            0x80, // 0x80 => BQue => Basic Task Management supported
+    114            0x00, // No flags
+    115            'S','i','L','a','b','s',' ',' ', // Requested by Dekimo via www.t10.org
+    116            'M','a','s','s',' ','S','t','o','r','a','g','e'
+    117          */
+    118          };
+    119          #else
+    120          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    121          const BYTE Scsi_Standard_Inquiry_Data[36]=
+   \                     Scsi_Standard_Inquiry_Data:
+   \   000000   00           DB 0
+   \   000001   80           DB 128
+   \   000002   00           DB 0
+   \   000003   01           DB 1
+   \   000004   1F           DB 31
+   \   000005   00           DB 0
+   \   000006   00           DB 0
+   \   000007   00           DB 0
+   \   000008   C1           DB 193
+   \   000009   BD           DB 189
+   \   00000A   B0           DB 176
+   \   00000B   D1           DB 209
+   \   00000C   B2           DB 178
+   \   00000D   CB           DB 203
+   \   00000E   B5           DB 181
+   \   00000F   B6           DB 182
+   \   000010   C9           DB 201
+   \   000011   E8           DB 232
+   \   000012   B1           DB 177
+   \   000013   B8           DB 184
+   \   000014   C9           DB 201
+   \   000015   FD           DB 253
+   \   000016   BC           DB 188
+   \   000017   B6           DB 182
+   \   000018   00           DB 0
+   \   000019   00           DB 0
+   \   00001A   00           DB 0
+   \   00001B   00           DB 0
+   \   00001C   00           DB 0
+   \   00001D   00           DB 0
+   \   00001E   00           DB 0
+   \   00001F   00           DB 0
+   \   000020   31           DB 49
+   \   000021   2E           DB 46
+   \   000022   30           DB 48
+   \   000023   31           DB 49
+    122          {
+    123           0x00, //磁盘设备
+    124           0x80, //其中最高位D7为RMB。RMB=0，表示不可移除设备。如果RMB=1，则为可移除设备。
+    125           0x00, //各种版本号0
+    126           0x01, //数据响应格式
+    127           0x1F, //附加数据长度，为31字节
+    128           0x00, //保留
+    129           0x00, //保留
+    130           0x00, //保留
+    131           //0xB5,0xE7,0XC4,0xD4,0xC8,0xA6,0xC8,0xA6, //厂商标识，为字符串“电脑圈圈”
+    132           0xC1,0xbd,0xb0,0xD1,0xb2,0xcb,0xb5,0xb6,
+    133           
+    134           //产品标识，为字符串“自己做的假U盘”
+    135           //0xD7,0xD4,0xBC,0xBA,0xD7,0xF6,0xB5,0xC4,0xBC,0xD9,0x55,0xC5,0xCC,0x00,0x00,0x00,
+    136          //0x31,0x2E,0x30,0x31 //产品版本号，为1.01
+    137          0xC9,0XE8,0XB1,0XB8,0XC9,0XFD,0XBC,0XB6,0X00,0X00,0X00,0X00,0X00,0x00,0x00,0x00,
+    138          0x31,0x2E,0x30,0x31
+    139          };
+    140          #endif
+    141          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    142          const uint8 MaximumCapacity[12]=
+   \                     MaximumCapacity:
+   \   000000   00           DB 0
+   \   000001   00           DB 0
+   \   000002   00           DB 0
+   \   000003   08           DB 8
+   \   000004   01           DB 1
+   \   000005   00           DB 0
+   \   000006   00           DB 0
+   \   000007   00           DB 0
+   \   000008   03           DB 3
+   \   000009   00           DB 0
+   \   00000A   02           DB 2
+   \   00000B   00           DB 0
+    143          {
+    144          
+    145          	0x00, 0x00, 0x00, //保留
+    146          	0x08,  //容量列表长度
+    147          	0x01, 0x00, 0x00, 0x00,  //块数(最大支持8GB)
+    148          	0x03, //描述符代码为3，表示最大支持的格式化容量
+    149          	0x00, 0x02, 0x00 //每块大小为512字节
+    150          /*
+    151          	0x00,0x00,0x00,0x08,0x00,0x6c,0xe0,0x00,0x02,0x00,0x02,0x00
+    152          */
+    153          
+    154          };
+    155          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    156          const uint8 DiskCapacity[8]=
+   \                     DiskCapacity:
+   \   000000   00           DB 0
+   \   000001   03           DB 3
+   \   000002   FF           DB 255
+   \   000003   FF           DB 255
+   \   000004   00           DB 0
+   \   000005   00           DB 0
+   \   000006   02           DB 2
+   \   000007   00           DB 0
+    157          {
+    158          //0x00,0x6c,0xdf,0xff,0x00,0x00,0x02,0x00,
+    159          0x00,0x03,0xFF,0xFF, //能够访问的最大逻辑块地址
+    160          0x00,0x00,0x02,0x00  //块的长度
+    161           //所以该磁盘的容量为
+    162           //(0x3FFFF+1)*0x200 = 0x8000000 = 128*1024*1024 = 128MB.
+    163           //0x00,0x6c,0xdf,0xff,0x00,0x00,0x02,0x00,
+    164          };
+    165          
+    166          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    167          const BYTE Scsi_Mode_Sense_6[4]= { 0x03,0,0,0 }; // No mode sense parameter
+   \                     Scsi_Mode_Sense_6:
+   \   000000   03           DB 3
+   \   000001   00           DB 0
+   \   000002   00           DB 0
+   \   000003   00           DB 0
+    168          
+    169          //----------------------------------------------------------------------------
+    170          // Scsi_Send
+    171          //----------------------------------------------------------------------------
+    172          //
+    173          // This function sends defined numbers of bytes via USB
+    174          //
+    175          // Parameters   : ptr - poiter to sending bytes
+    176          //                count - number of sending bytes
+    177          // Return Value :
+    178          //----------------------------------------------------------------------------
+    179          extern uint16 halUartBufferedWrite(const uint8* buf, uint16 length);
+    180          extern void usbInProcess(void);
+    181          extern void UsbSendBlock(uint8 *ps, uint32 len);
+    182          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    183          static void Scsi_Send(uint8* ptr,uint32 count)
+   \                     Scsi_Send:
+    184          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   740C         MOV     A,#0xc
+   \   000007   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000A   78..         MOV     R0,#?V0 + 0
+   \   00000C   12....       LCALL   ?L_MOV_X
+    185          
+    186          	Scsi_Residue-=count;
+   \   00000F   90....       MOV     DPTR,#Scsi_Residue
+   \   000012   78..         MOV     R0,#?V0 + 0
+   \   000014   12....       LCALL   ?L_SUB_FROM_X
+    187          	UsbSendBlock(ptr,count);
+   \   000017                ; Setup parameters for call to function UsbSendBlock
+   \   000017   78..         MOV     R0,#?V0 + 0
+   \   000019   12....       LCALL   ?PUSH_XSTACK_I_FOUR
+   \   00001C   12....       LCALL   ??UsbSendBlock?relay
+   \   00001F   7404         MOV     A,#0x4
+   \   000021   12....       LCALL   ?DEALLOC_XSTACK8
+    188          
+    189          }
+   \   000024                REQUIRE ?Subroutine0
+   \   000024                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F04         MOV     R7,#0x4
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    190          
+    191          //----------------------------------------------------------------------------
+    192          // Scsi_Inquiry
+    193          //----------------------------------------------------------------------------
+    194          //
+    195          // This function responses to inquiry from other USB device
+    196          //
+    197          // Parameters   :
+    198          // Return Value :
+    199          //----------------------------------------------------------------------------
+    200          
+    201          static void Scsi_Inquiry(void)
+    202          {
+    203          	uint8 *sp;
+    204          	Scsi_Status=SCSI_PASSED;
+    205          	sp = (uint8 *)Scsi_Standard_Inquiry_Data;
+    206          	Scsi_Send(sp,sizeof(Scsi_Standard_Inquiry_Data));
+    207          }
+    208          
+    209          //----------------------------------------------------------------------------
+    210          // Scsi_Write10
+    211          //----------------------------------------------------------------------------
+    212          //
+    213          // This function responses to write command
+    214          //
+    215          // Parameters   :
+    216          // Return Value :
+    217          //----------------------------------------------------------------------------
+    218          extern halDMADesc_t dmaCh0;
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+    219          char *g_decKey = "WorkForYourDream";
+   \                     g_decKey:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for g_decKey>`
+   \   000002                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    220          static void Scsi_Write10(void)
+   \                     Scsi_Write10:
+    221          {
+   \   000000   74E8         MOV     A,#-0x18
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 24
+   \   000005                ; Auto size: 0
+    222          	uint32 rcvTotal=0;
+   \   000005   90....       MOV     DPTR,#__Constant_0
+   \   000008   78..         MOV     R0,#?V0 + 0
+   \   00000A   12....       LCALL   ?L_MOV_X
+    223          	uint8 rcvBlockSize=0;
+    224          	static uint32 addr = FW_OAD_LOCA_START;
+    225            	//uint16 oset;
+    226            	//uint16 page=FW_OAD_LOCA_START/HAL_FLASH_PAGE_SIZE;
+    227          	uint32 rtAddr=(((uint32)cbw.CBWCB[2]<<24)|((uint32)cbw.CBWCB[3]<<16)|((uint32)cbw.CBWCB[4]<<8)|((uint32)cbw.CBWCB[5]));
+   \   00000D   90....       MOV     DPTR,#cbw + 17
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F5..         MOV     ?V0 + 4,A
+   \   000013   E4           CLR     A
+   \   000014   F5..         MOV     ?V0 + 5,A
+   \   000016   F5..         MOV     ?V0 + 6,A
+   \   000018   F5..         MOV     ?V0 + 7,A
+   \   00001A   7418         MOV     A,#0x18
+   \   00001C   78..         MOV     R0,#?V0 + 4
+   \   00001E   12....       LCALL   ?L_SHL
+   \   000021   A3           INC     DPTR
+   \   000022   E0           MOVX    A,@DPTR
+   \   000023   F5..         MOV     ?V0 + 8,A
+   \   000025   E4           CLR     A
+   \   000026   F5..         MOV     ?V0 + 9,A
+   \   000028   F5..         MOV     ?V0 + 10,A
+   \   00002A   F5..         MOV     ?V0 + 11,A
+   \   00002C   7410         MOV     A,#0x10
+   \   00002E   78..         MOV     R0,#?V0 + 8
+   \   000030   12....       LCALL   ?L_SHL
+   \   000033   78..         MOV     R0,#?V0 + 4
+   \   000035   79..         MOV     R1,#?V0 + 8
+   \   000037   12....       LCALL   ?L_IOR
+   \   00003A   A3           INC     DPTR
+   \   00003B   E0           MOVX    A,@DPTR
+   \   00003C   F5..         MOV     ?V0 + 8,A
+   \   00003E   E4           CLR     A
+   \   00003F   F5..         MOV     ?V0 + 10,A
+   \   000041   7408         MOV     A,#0x8
+   \   000043   78..         MOV     R0,#?V0 + 8
+   \   000045   12....       LCALL   ?L_SHL
+   \   000048   78..         MOV     R0,#?V0 + 4
+   \   00004A   79..         MOV     R1,#?V0 + 8
+   \   00004C   12....       LCALL   ?L_IOR
+   \   00004F   A3           INC     DPTR
+   \   000050   E0           MOVX    A,@DPTR
+   \   000051   F5..         MOV     ?V0 + 8,A
+   \   000053   E4           CLR     A
+   \   000054   F5..         MOV     ?V0 + 9,A
+   \   000056   78..         MOV     R0,#?V0 + 4
+   \   000058   79..         MOV     R1,#?V0 + 8
+   \   00005A   12....       LCALL   ?L_IOR
+    228          
+    229          	if(g_deviceLinked)
+   \   00005D   90....       MOV     DPTR,#g_deviceLinked
+   \   000060   E0           MOVX    A,@DPTR
+   \   000061   6048         JZ      ??Scsi_Write10_0
+    230          	{
+    231          		while(rcvTotal<cbw.dCBWDataTransferLength)
+   \                     ??Scsi_Write10_1:
+   \   000063   90....       MOV     DPTR,#cbw + 8
+   \   000066   78..         MOV     R0,#?V0 + 0
+   \   000068   12....       LCALL   ?UL_GE_X
+   \   00006B   5003         JNC     $+5
+   \   00006D   02....       LJMP    ??Scsi_Write10_2 & 0xFFFF
+    232          		{
+    233          			rcvBlockSize=usbOutDataRcv(outPacket);
+   \   000070                ; Setup parameters for call to function usbOutDataRcv
+   \   000070   12....       LCALL   ?Subroutine2 & 0xFFFF
+    234          			rcvTotal+=rcvBlockSize;
+   \                     ??CrossCallReturnLabel_0:
+   \   000073   12....       LCALL   ?L_ADD
+    235          			if((0x00!=rtAddr)&&(0x01!=rtAddr)&&(0x41!=rtAddr)&&(0x21!=rtAddr))
+   \   000076   E5..         MOV     A,?V0 + 4
+   \   000078   45..         ORL     A,?V0 + 5
+   \   00007A   45..         ORL     A,?V0 + 6
+   \   00007C   45..         ORL     A,?V0 + 7
+   \   00007E   60E3         JZ      ??Scsi_Write10_1
+   \   000080   90....       MOV     DPTR,#__Constant_1
+   \   000083   78..         MOV     R0,#?V0 + 4
+   \   000085   12....       LCALL   ?L_EQ_X
+   \   000088   60D9         JZ      ??Scsi_Write10_1
+   \   00008A   90....       MOV     DPTR,#__Constant_41
+   \   00008D   78..         MOV     R0,#?V0 + 4
+   \   00008F   12....       LCALL   ?L_EQ_X
+   \   000092   60CF         JZ      ??Scsi_Write10_1
+   \   000094   90....       MOV     DPTR,#__Constant_21
+   \   000097   78..         MOV     R0,#?V0 + 4
+   \   000099   12....       LCALL   ?L_EQ_X
+   \   00009C   60C5         JZ      ??Scsi_Write10_1
+    236          			{
+    237          				DevUpdateUartSend(outPacket,rcvBlockSize);
+                 				                  ^
+Warning[Pe167]: argument of type "BYTE *" is incompatible with parameter of
+          type "char *"
+   \   00009E                ; Setup parameters for call to function DevUpdateUartSend
+   \   00009E   AC..         MOV     R4,?V0 + 10
+   \   0000A0   7D00         MOV     R5,#0x0
+   \   0000A2   7A..         MOV     R2,#outPacket & 0xff
+   \   0000A4   7B..         MOV     R3,#(outPacket >> 8) & 0xff
+   \   0000A6   12....       LCALL   ??DevUpdateUartSend?relay
+   \   0000A9   80B8         SJMP    ??Scsi_Write10_1
+    238          			}
+    239          		}
+    240          
+    241          	}else
+    242          	{
+    243          		HAL_DMA_SET_ADDR_DESC0( &dmaCh0 );
+                 		^
+Warning[Pe069]: integer conversion resulted in truncation
+   \                     ??Scsi_Write10_0:
+   \   0000AB   74..         MOV     A,#(dmaCh0 >> 8) & 0xff
+   \   0000AD   F5D5         MOV     0xd5,A
+   \   0000AF   75D4..       MOV     0xd4,#dmaCh0 & 0xff
+    244          	  	HalFlashInit();
+   \   0000B2                ; Setup parameters for call to function HalFlashInit
+   \   0000B2   12....       LCALL   ??HalFlashInit?relay
+    245          		AES_SETMODE(ECB);
+   \   0000B5   53B38F       ANL     0xb3,#0x8f
+   \   0000B8   43B340       ORL     0xb3,#0x40
+    246          		halAesLoadKeyOrInitVector(g_decKey, TRUE);
+                 		                          ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "BYTE *"
+   \   0000BB   90....       MOV     DPTR,#g_decKey
+   \   0000BE   E0           MOVX    A,@DPTR
+   \   0000BF   F8           MOV     R0,A
+   \   0000C0   A3           INC     DPTR
+   \   0000C1   E0           MOVX    A,@DPTR
+   \   0000C2   F9           MOV     R1,A
+   \   0000C3   E5B3         MOV     A,0xb3
+   \   0000C5   54F8         ANL     A,#0xf8
+   \   0000C7   4404         ORL     A,#0x4
+   \   0000C9   F5B3         MOV     0xb3,A
+   \   0000CB   43B301       ORL     0xb3,#0x1
+   \   0000CE   7A00         MOV     R2,#0x0
+   \                     ??Scsi_Write10_3:
+   \   0000D0   8A..         MOV     ?V0 + 8,R2
+   \   0000D2   E8           MOV     A,R0
+   \   0000D3   25..         ADD     A,?V0 + 8
+   \   0000D5   F582         MOV     DPL,A
+   \   0000D7   E9           MOV     A,R1
+   \   0000D8   3400         ADDC    A,#0x0
+   \   0000DA   F583         MOV     DPH,A
+   \   0000DC   E0           MOVX    A,@DPTR
+   \   0000DD   F5B1         MOV     0xb1,A
+   \   0000DF   0A           INC     R2
+   \   0000E0   EA           MOV     A,R2
+   \   0000E1   C3           CLR     C
+   \   0000E2   9410         SUBB    A,#0x10
+   \   0000E4   40EA         JC      ??Scsi_Write10_3
+    247          		
+    248          		while(rcvTotal<cbw.dCBWDataTransferLength)
+   \                     ??Scsi_Write10_4:
+   \   0000E6   90....       MOV     DPTR,#cbw + 8
+   \   0000E9   78..         MOV     R0,#?V0 + 0
+   \   0000EB   12....       LCALL   ?UL_GE_X
+   \   0000EE   5003         JNC     $+5
+   \   0000F0   02....       LJMP    ??Scsi_Write10_2 & 0xFFFF
+    249          		{
+    250          			rcvBlockSize=usbOutDataRcv(outPacket);
+   \   0000F3                ; Setup parameters for call to function usbOutDataRcv
+   \   0000F3   12....       LCALL   ?Subroutine2 & 0xFFFF
+    251          			rcvTotal+=rcvBlockSize;
+   \                     ??CrossCallReturnLabel_1:
+   \   0000F6   12....       LCALL   ?L_ADD
+    252          			halAesEncrDecr((BYTE *)outPacket, EP1_PACKET_SIZE, (BYTE *)outPacket, DECRYPT);
+   \   0000F9                ; Setup parameters for call to function halAesEncrDecr
+   \   0000F9   75....       MOV     ?V0 + 8,#outPacket & 0xff
+   \   0000FC   75....       MOV     ?V0 + 9,#(outPacket >> 8) & 0xff
+   \   0000FF   78..         MOV     R0,#?V0 + 8
+   \   000101   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000104   7901         MOV     R1,#0x1
+   \   000106   7C40         MOV     R4,#0x40
+   \   000108   7D00         MOV     R5,#0x0
+   \   00010A   7A..         MOV     R2,#outPacket & 0xff
+   \   00010C   7B..         MOV     R3,#(outPacket >> 8) & 0xff
+   \   00010E   12....       LCALL   ??halAesEncrDecr?relay
+   \   000111   7402         MOV     A,#0x2
+   \   000113   12....       LCALL   ?DEALLOC_XSTACK8
+    253          			if((0x00!=rtAddr)&&(0x01!=rtAddr)&&(0x41!=rtAddr)&&(0x21!=rtAddr)&&(addr<(FW_OAD_LOCA_END)))
+   \   000116   E5..         MOV     A,?V0 + 4
+   \   000118   45..         ORL     A,?V0 + 5
+   \   00011A   45..         ORL     A,?V0 + 6
+   \   00011C   45..         ORL     A,?V0 + 7
+   \   00011E   60C6         JZ      ??Scsi_Write10_4
+   \   000120   90....       MOV     DPTR,#__Constant_1
+   \   000123   78..         MOV     R0,#?V0 + 4
+   \   000125   12....       LCALL   ?L_EQ_X
+   \   000128   60BC         JZ      ??Scsi_Write10_4
+   \   00012A   90....       MOV     DPTR,#__Constant_41
+   \   00012D   78..         MOV     R0,#?V0 + 4
+   \   00012F   12....       LCALL   ?L_EQ_X
+   \   000132   60B2         JZ      ??Scsi_Write10_4
+   \   000134   90....       MOV     DPTR,#__Constant_21
+   \   000137   78..         MOV     R0,#?V0 + 4
+   \   000139   12....       LCALL   ?L_EQ_X
+   \   00013C   60A8         JZ      ??Scsi_Write10_4
+   \   00013E   90....       MOV     DPTR,#??addr
+   \   000141   C082         PUSH    DPL
+   \   000143   90....       MOV     DPTR,#__Constant_10000
+   \   000146   78..         MOV     R0,#?V0 + 12
+   \   000148   12....       LCALL   ?L_MOV_X
+   \   00014B   7583..       MOV     DPH,#(??addr >> 8) & 0xff
+   \   00014E   D082         POP     DPL
+   \   000150   78..         MOV     R0,#?V0 + 12
+   \   000152   12....       LCALL   ?UL_GT_X
+   \   000155   508F         JNC     ??Scsi_Write10_4
+    254          			{
+    255          				if ((addr % (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE)) == 0)
+   \   000157   90....       MOV     DPTR,#??addr
+   \   00015A   78..         MOV     R0,#?V0 + 12
+   \   00015C   12....       LCALL   ?L_MOV_X
+   \   00015F   E5..         MOV     A,?V0 + 13
+   \   000161   5401         ANL     A,#0x1
+   \   000163   F9           MOV     R1,A
+   \   000164   E5..         MOV     A,?V0 + 12
+   \   000166   49           ORL     A,R1
+   \   000167   7017         JNZ     ??Scsi_Write10_5
+    256          				{
+    257          					HalFlashErase(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE));
+   \   000169                ; Setup parameters for call to function HalFlashErase
+   \   000169   90....       MOV     DPTR,#??addr
+   \   00016C   78..         MOV     R0,#?V0 + 12
+   \   00016E   12....       LCALL   ?L_MOV_X
+   \   000171   7409         MOV     A,#0x9
+   \   000173   78..         MOV     R0,#?V0 + 12
+   \   000175   12....       LCALL   ?UL_SHR
+   \   000178   85....       MOV     ?V0 + 8,?V0 + 12
+   \   00017B   A9..         MOV     R1,?V0 + 8
+   \   00017D   12....       LCALL   ??HalFlashErase?relay
+    258          				}
+    259          				HalFlashWrite(addr, outPacket, rcvBlockSize/4);
+   \                     ??Scsi_Write10_5:
+   \   000180   E5..         MOV     A,?V0 + 10
+   \   000182   13           RRC     A
+   \   000183   13           RRC     A
+   \   000184   543F         ANL     A,#0x3f
+   \   000186   F5..         MOV     ?V0 + 8,A
+   \   000188                ; Setup parameters for call to function HalFlashWrite
+   \   000188   F5..         MOV     ?V0 + 10,A
+   \   00018A   78..         MOV     R0,#?V0 + 10
+   \   00018C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00018F   7C..         MOV     R4,#outPacket & 0xff
+   \   000191   7D..         MOV     R5,#(outPacket >> 8) & 0xff
+   \   000193   90....       MOV     DPTR,#??addr
+   \   000196   78..         MOV     R0,#?V0 + 12
+   \   000198   12....       LCALL   ?L_MOV_X
+   \   00019B   AA..         MOV     R2,?V0 + 12
+   \   00019D   AB..         MOV     R3,?V0 + 13
+   \   00019F   12....       LCALL   ??HalFlashWrite?relay
+   \   0001A2   7402         MOV     A,#0x2
+   \   0001A4   12....       LCALL   ?DEALLOC_XSTACK8
+    260          				addr += (rcvBlockSize/4);
+   \   0001A7   E4           CLR     A
+   \   0001A8   F5..         MOV     ?V0 + 9,A
+   \   0001AA   F5..         MOV     ?V0 + 10,A
+   \   0001AC   90....       MOV     DPTR,#??addr
+   \   0001AF   78..         MOV     R0,#?V0 + 8
+   \   0001B1   12....       LCALL   ?L_ADD_TO_X
+   \   0001B4   02....       LJMP    ??Scsi_Write10_4 & 0xFFFF
+    261          			}
+    262          		}
+    263          	}
+    264          	
+    265          	Scsi_Status=SCSI_PASSED;
+   \                     ??Scsi_Write10_2:
+   \   0001B7                REQUIRE ?Subroutine1
+   \   0001B7                REQUIRE DMA0CFGH
+   \   0001B7                REQUIRE DMA0CFGL
+   \   0001B7                REQUIRE ENCCS
+   \   0001B7                REQUIRE ENCDI
+   \   0001B7                ; // Fall through to label ?Subroutine1
+    266          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   90....       MOV     DPTR,#Scsi_Status
+   \   000003   E4           CLR     A
+   \   000004   F0           MOVX    @DPTR,A
+   \   000005   7F10         MOV     R7,#0x10
+   \   000007   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   7A..         MOV     R2,#outPacket & 0xff
+   \   000002   7B..         MOV     R3,#(outPacket >> 8) & 0xff
+   \   000004   12....       LCALL   ??usbOutDataRcv?relay
+   \   000007   E9           MOV     A,R1
+   \   000008   F5..         MOV     ?V0 + 10,A
+   \   00000A   F5..         MOV     ?V0 + 12,A
+   \   00000C   E4           CLR     A
+   \   00000D   F5..         MOV     ?V0 + 13,A
+   \   00000F   F5..         MOV     ?V0 + 14,A
+   \   000011   F5..         MOV     ?V0 + 15,A
+   \   000013   78..         MOV     R0,#?V0 + 0
+   \   000015   79..         MOV     R1,#?V0 + 12
+   \   000017   22           RET
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     ??addr:
+   \   000000                DS 4
+   \   000004                REQUIRE `?<Initializer for addr>`
+   \   000004                REQUIRE __INIT_XDATA_I
+    267          
+    268          //----------------------------------------------------------------------------
+    269          // Scsi_Mode_Sense6
+    270          //----------------------------------------------------------------------------
+    271          //
+    272          // This function responses to mode sense information request
+    273          //
+    274          // Parameters   :
+    275          // Return Value :
+    276          //----------------------------------------------------------------------------
+    277          
+    278          static void Scsi_Mode_Sense6(void)
+    279          {
+    280          	uint8 *sp;
+    281          	Scsi_Status=SCSI_PASSED;
+    282          	sp = (uint8 *)Scsi_Mode_Sense_6;
+    283          	Scsi_Send(sp,sizeof(Scsi_Mode_Sense_6));
+    284          }
+    285          
+    286          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    287          static void Scsi_Read10(void)
+   \                     Scsi_Read10:
+    288          {
+   \   000000   74E8         MOV     A,#-0x18
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 24
+   \   000005                ; Auto size: 0
+    289          
+    290          	uint32 index=0;
+   \   000005   90....       MOV     DPTR,#__Constant_0
+   \   000008   78..         MOV     R0,#?V0 + 4
+   \   00000A   12....       LCALL   ?L_MOV_X
+    291          	uint32 byteAddrBlock = (((uint32)cbw.CBWCB[2]<<24)|((uint32)cbw.CBWCB[3]<<16)|((uint32)cbw.CBWCB[4]<<8)|((uint32)cbw.CBWCB[5]));
+    292          	uint32 byteAddr=byteAddrBlock*512;
+   \   00000D   90....       MOV     DPTR,#cbw + 18
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F5..         MOV     ?V0 + 12,A
+   \   000013   E4           CLR     A
+   \   000014   F5..         MOV     ?V0 + 13,A
+   \   000016   F5..         MOV     ?V0 + 14,A
+   \   000018   F5..         MOV     ?V0 + 15,A
+   \   00001A   7410         MOV     A,#0x10
+   \   00001C   78..         MOV     R0,#?V0 + 12
+   \   00001E   12....       LCALL   ?L_SHL
+   \   000021   A3           INC     DPTR
+   \   000022   E0           MOVX    A,@DPTR
+   \   000023   F5..         MOV     ?V0 + 0,A
+   \   000025   E4           CLR     A
+   \   000026   F5..         MOV     ?V0 + 1,A
+   \   000028   F5..         MOV     ?V0 + 2,A
+   \   00002A   F5..         MOV     ?V0 + 3,A
+   \   00002C   7408         MOV     A,#0x8
+   \   00002E   78..         MOV     R0,#?V0 + 0
+   \   000030   12....       LCALL   ?L_SHL
+   \   000033   78..         MOV     R0,#?V0 + 12
+   \   000035   79..         MOV     R1,#?V0 + 0
+   \   000037   12....       LCALL   ?L_IOR
+   \   00003A   A3           INC     DPTR
+   \   00003B   E0           MOVX    A,@DPTR
+   \   00003C   F5..         MOV     ?V0 + 0,A
+   \   00003E   E4           CLR     A
+   \   00003F   F5..         MOV     ?V0 + 1,A
+   \   000041   78..         MOV     R0,#?V0 + 12
+   \   000043   79..         MOV     R1,#?V0 + 0
+   \   000045   12....       LCALL   ?L_IOR
+   \   000048   7409         MOV     A,#0x9
+   \   00004A   78..         MOV     R0,#?V0 + 12
+   \   00004C   12....       LCALL   ?L_SHL
+   \   00004F   801E         SJMP    ??Scsi_Read10_0
+    293          
+    294          	uint8* sp;
+    295          	while(index<cbw.dCBWDataTransferLength)
+    296          	{
+    297          		 if(byteAddr<512) 
+    298          		 {
+    299          		 	sp=(uint8*)(Dbr+index); //返回DBR
+    300          		 }else if(byteAddr==512) 
+    301          		{
+    302          			sp=(uint8*)Fat; //返回FAT
+    303          		 }else if((byteAddr>=576)&&(byteAddr<16896)) 
+    304          		 {
+    305          		 	sp=(uint8*)Zeros;
+    306          		}else if(byteAddr==16896)
+    307          		{
+    308          			sp=(uint8*)Fat; //返回FAT（备份FAT）
+    309          		}else if((byteAddr>=16960)&&(byteAddr<33280)) 
+    310          		{
+    311          			sp=(uint8*)Zeros;
+    312          		}else if(byteAddr==33280) 
+    313          		{
+    314          			sp=(uint8*)RootDir; //返回根目录
+    315          		}else if((byteAddr>=33344)&&(byteAddr<49664)) 
+    316          		{
+    317          			sp=(uint8*)Zeros;
+    318          		}
+    319          #ifdef INCLUDE_TEST_FILE
+    320          		else if((byteAddr>=49664) &&(byteAddr<(49664+512)))
+    321          		 {
+    322          			sp=(uint8*)(TestFileData+index); //返回文件数据
+    323          		 }
+    324          #endif
+    325          		else
+    326          		 {
+    327          		 	sp=(uint8*)Zeros;
+    328          		 }
+    329          
+    330          		 if((index+SEND_PACKET_LEN)<cbw.dCBWDataTransferLength)
+    331          		 {
+    332          			Scsi_Send(sp,SEND_PACKET_LEN);
+   \                     ??Scsi_Read10_1:
+   \   000051                ; Setup parameters for call to function Scsi_Send
+   \   000051   90....       MOV     DPTR,#__Constant_40
+   \   000054   12....       LCALL   ?PUSH_XSTACK8_X_FOUR
+   \   000057   12....       LCALL   ??Scsi_Send?relay
+   \   00005A   7404         MOV     A,#0x4
+   \   00005C   12....       LCALL   ?DEALLOC_XSTACK8
+    333          			index += SEND_PACKET_LEN;
+   \   00005F   90....       MOV     DPTR,#__Constant_40
+   \   000062   78..         MOV     R0,#?V0 + 4
+   \   000064   12....       LCALL   ?L_ADD_X
+    334          		 }else
+    335          		 {
+    336          			Scsi_Send(sp,cbw.dCBWDataTransferLength-index);
+    337          			break;
+    338          		 }
+    339          
+    340          		byteAddr+=SEND_PACKET_LEN;
+   \   000067   90....       MOV     DPTR,#__Constant_40
+   \   00006A   78..         MOV     R0,#?V0 + 12
+   \   00006C   12....       LCALL   ?L_ADD_X
+   \                     ??Scsi_Read10_0:
+   \   00006F   90....       MOV     DPTR,#cbw + 8
+   \   000072   78..         MOV     R0,#?V0 + 8
+   \   000074   12....       LCALL   ?L_MOV_X
+   \   000077   78..         MOV     R0,#?V0 + 8
+   \   000079   79..         MOV     R1,#?V0 + 4
+   \   00007B   12....       LCALL   ?UL_GT
+   \   00007E   4003         JC      $+5
+   \   000080   02....       LJMP    ??Scsi_Read10_2 & 0xFFFF
+   \   000083   90....       MOV     DPTR,#__Constant_200
+   \   000086   78..         MOV     R0,#?V0 + 12
+   \   000088   12....       LCALL   ?UL_GE_X
+   \   00008B   4010         JC      ??Scsi_Read10_3
+   \   00008D   85....       MOV     ?V0 + 0,?V0 + 4
+   \   000090   85....       MOV     ?V0 + 1,?V0 + 5
+   \   000093   74..         MOV     A,#Dbr & 0xff
+   \   000095   25..         ADD     A,?V0 + 0
+   \   000097   FA           MOV     R2,A
+   \   000098   74..         MOV     A,#(Dbr >> 8) & 0xff
+   \   00009A   02....       LJMP    ??Scsi_Read10_4 & 0xFFFF
+   \                     ??Scsi_Read10_3:
+   \   00009D   90....       MOV     DPTR,#__Constant_200
+   \   0000A0   78..         MOV     R0,#?V0 + 12
+   \   0000A2   12....       LCALL   ?L_EQ_X
+   \   0000A5   7007         JNZ     ??Scsi_Read10_5
+   \                     ??Scsi_Read10_6:
+   \   0000A7   7A..         MOV     R2,#Fat & 0xff
+   \   0000A9   7B..         MOV     R3,#(Fat >> 8) & 0xff
+   \   0000AB   02....       LJMP    ??Scsi_Read10_7 & 0xFFFF
+   \                     ??Scsi_Read10_5:
+   \   0000AE   85....       MOV     ?V0 + 0,?V0 + 12
+   \   0000B1   85....       MOV     ?V0 + 1,?V0 + 13
+   \   0000B4   85....       MOV     ?V0 + 2,?V0 + 14
+   \   0000B7   85....       MOV     ?V0 + 3,?V0 + 15
+   \   0000BA   90....       MOV     DPTR,#__Constant_fffffdc0
+   \   0000BD   78..         MOV     R0,#?V0 + 0
+   \   0000BF   12....       LCALL   ?L_ADD_X
+   \   0000C2   90....       MOV     DPTR,#__Constant_3fc0
+   \   0000C5   78..         MOV     R0,#?V0 + 0
+   \   0000C7   12....       LCALL   ?UL_GE_X
+   \   0000CA   4007         JC      ??Scsi_Read10_8
+   \                     ??Scsi_Read10_9:
+   \   0000CC   7A..         MOV     R2,#Zeros & 0xff
+   \   0000CE   7B..         MOV     R3,#(Zeros >> 8) & 0xff
+   \   0000D0   02....       LJMP    ??Scsi_Read10_7 & 0xFFFF
+   \                     ??Scsi_Read10_8:
+   \   0000D3   90....       MOV     DPTR,#__Constant_4200
+   \   0000D6   78..         MOV     R0,#?V0 + 12
+   \   0000D8   12....       LCALL   ?L_EQ_X
+   \   0000DB   60CA         JZ      ??Scsi_Read10_6
+   \   0000DD   85....       MOV     ?V0 + 0,?V0 + 12
+   \   0000E0   85....       MOV     ?V0 + 1,?V0 + 13
+   \   0000E3   85....       MOV     ?V0 + 2,?V0 + 14
+   \   0000E6   85....       MOV     ?V0 + 3,?V0 + 15
+   \   0000E9   90....       MOV     DPTR,#__Constant_ffffbdc0
+   \   0000EC   78..         MOV     R0,#?V0 + 0
+   \   0000EE   12....       LCALL   ?L_ADD_X
+   \   0000F1   90....       MOV     DPTR,#__Constant_3fc0
+   \   0000F4   78..         MOV     R0,#?V0 + 0
+   \   0000F6   12....       LCALL   ?UL_GE_X
+   \   0000F9   50D1         JNC     ??Scsi_Read10_9
+   \   0000FB   90....       MOV     DPTR,#__Constant_8200
+   \   0000FE   78..         MOV     R0,#?V0 + 12
+   \   000100   12....       LCALL   ?L_EQ_X
+   \   000103   7006         JNZ     ??Scsi_Read10_10
+   \   000105   7A..         MOV     R2,#RootDir & 0xff
+   \   000107   7B..         MOV     R3,#(RootDir >> 8) & 0xff
+   \   000109   804C         SJMP    ??Scsi_Read10_7
+   \                     ??Scsi_Read10_10:
+   \   00010B   85....       MOV     ?V0 + 0,?V0 + 12
+   \   00010E   85....       MOV     ?V0 + 1,?V0 + 13
+   \   000111   85....       MOV     ?V0 + 2,?V0 + 14
+   \   000114   85....       MOV     ?V0 + 3,?V0 + 15
+   \   000117   90....       MOV     DPTR,#__Constant_ffff7dc0
+   \   00011A   78..         MOV     R0,#?V0 + 0
+   \   00011C   12....       LCALL   ?L_ADD_X
+   \   00011F   90....       MOV     DPTR,#__Constant_3fc0
+   \   000122   78..         MOV     R0,#?V0 + 0
+   \   000124   12....       LCALL   ?UL_GE_X
+   \   000127   50A3         JNC     ??Scsi_Read10_9
+   \   000129   85....       MOV     ?V0 + 0,?V0 + 12
+   \   00012C   85....       MOV     ?V0 + 1,?V0 + 13
+   \   00012F   85....       MOV     ?V0 + 2,?V0 + 14
+   \   000132   85....       MOV     ?V0 + 3,?V0 + 15
+   \   000135   90....       MOV     DPTR,#__Constant_ffff3e00
+   \   000138   78..         MOV     R0,#?V0 + 0
+   \   00013A   12....       LCALL   ?L_ADD_X
+   \   00013D   90....       MOV     DPTR,#__Constant_200
+   \   000140   78..         MOV     R0,#?V0 + 0
+   \   000142   12....       LCALL   ?UL_GE_X
+   \   000145   4085         JC      ??Scsi_Read10_9
+   \   000147   85....       MOV     ?V0 + 0,?V0 + 4
+   \   00014A   85....       MOV     ?V0 + 1,?V0 + 5
+   \   00014D   74..         MOV     A,#TestFileData & 0xff
+   \   00014F   25..         ADD     A,?V0 + 0
+   \   000151   FA           MOV     R2,A
+   \   000152   74..         MOV     A,#(TestFileData >> 8) & 0xff
+   \                     ??Scsi_Read10_4:
+   \   000154   35..         ADDC    A,?V0 + 1
+   \   000156   FB           MOV     R3,A
+   \                     ??Scsi_Read10_7:
+   \   000157   85....       MOV     ?V0 + 0,?V0 + 4
+   \   00015A   85....       MOV     ?V0 + 1,?V0 + 5
+   \   00015D   85....       MOV     ?V0 + 2,?V0 + 6
+   \   000160   85....       MOV     ?V0 + 3,?V0 + 7
+   \   000163   90....       MOV     DPTR,#__Constant_40
+   \   000166   78..         MOV     R0,#?V0 + 0
+   \   000168   12....       LCALL   ?L_ADD_X
+   \   00016B   78..         MOV     R0,#?V0 + 8
+   \   00016D   79..         MOV     R1,#?V0 + 0
+   \   00016F   12....       LCALL   ?UL_GT
+   \   000172   5003         JNC     $+5
+   \   000174   02....       LJMP    ??Scsi_Read10_1 & 0xFFFF
+   \   000177                ; Setup parameters for call to function Scsi_Send
+   \   000177   78..         MOV     R0,#?V0 + 8
+   \   000179   79..         MOV     R1,#?V0 + 4
+   \   00017B   12....       LCALL   ?L_SUB
+   \   00017E   78..         MOV     R0,#?V0 + 8
+   \   000180   12....       LCALL   ?PUSH_XSTACK_I_FOUR
+   \   000183   12....       LCALL   ??Scsi_Send?relay
+   \   000186   7404         MOV     A,#0x4
+   \   000188   12....       LCALL   ?DEALLOC_XSTACK8
+    341          	}
+    342          	
+    343          	Scsi_Status=SCSI_PASSED;
+   \                     ??Scsi_Read10_2:
+   \   00018B   02....       LJMP    ?Subroutine1 & 0xFFFF
+    344          }
+    345          
+    346          
+    347          static void Scsi_Read_Capacity10(void)
+    348          {
+    349          	uint8 *sp;
+    350          	DWORD d_len = ntohl(cbw.dCBWDataTransferLength);
+    351          	Scsi_Status=SCSI_PASSED;
+    352          	if(d_len>sizeof(DiskCapacity))
+    353          	{
+    354          		d_len = sizeof(DiskCapacity);
+    355          	}
+    356          	sp = (uint8 *)DiskCapacity;
+    357          	Scsi_Send(sp,d_len);
+    358          }
+    359          
+    360          
+    361          static void SCSI_ReadFormatCapacity(void)
+    362          {
+    363          	uint8 *sp;
+    364          	DWORD d_len = ntohl(cbw.dCBWDataTransferLength);
+    365          
+    366          	Scsi_Status=SCSI_PASSED;
+    367          	if(d_len>sizeof(MaximumCapacity))
+    368          	{
+    369          		d_len = sizeof(MaximumCapacity);
+    370          	}
+    371          	sp = (uint8 *)MaximumCapacity;
+    372          	Scsi_Send(sp,d_len);
+    373          }
+    374          
+    375          static void SCSI_RequestSense(void)
+    376          {
+    377          	
+    378          }
+    379          
+    380          //----------------------------------------------------------------------------
+    381          // Scsi_Rx
+    382          //----------------------------------------------------------------------------
+    383          //
+    384          // This function answers to requests from USB
+    385          //
+    386          // Parameters   :
+    387          // Return Value :
+    388          //----------------------------------------------------------------------------
+    389          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    390          void Scsi_Rx()
+   \                     Scsi_Rx:
+    391          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+    392          
+    393          	Scsi_Status=SCSI_FAILED;
+   \   000005   90....       MOV     DPTR,#Scsi_Status
+   \   000008   7401         MOV     A,#0x1
+   \   00000A   F0           MOVX    @DPTR,A
+    394          	Scsi_Residue=ntohl(cbw.dCBWDataTransferLength);
+   \   00000B   90....       MOV     DPTR,#cbw + 8
+   \   00000E   12....       LCALL   ?XLOAD_R2345
+   \   000011   90....       MOV     DPTR,#Scsi_Residue
+   \   000014   12....       LCALL   ?XSTORE_R2345
+    395          
+    396          	if(g_outDataReady)
+   \   000017   90....       MOV     DPTR,#g_outDataReady
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   6017         JZ      ??Scsi_Rx_0
+    397          	{
+    398          		UsbSendBlock((BYTE*)&csw,sizeof(CSW));
+   \   00001D                ; Setup parameters for call to function UsbSendBlock
+   \   00001D   90....       MOV     DPTR,#__Constant_d
+   \   000020   12....       LCALL   ?PUSH_XSTACK8_X_FOUR
+   \   000023   7A..         MOV     R2,#csw & 0xff
+   \   000025   7B..         MOV     R3,#(csw >> 8) & 0xff
+   \   000027   12....       LCALL   ??UsbSendBlock?relay
+   \   00002A   7404         MOV     A,#0x4
+   \   00002C   12....       LCALL   ?DEALLOC_XSTACK8
+    399          		g_outDataReady = 0;
+   \   00002F   90....       MOV     DPTR,#g_outDataReady
+   \   000032   E4           CLR     A
+   \   000033   F0           MOVX    @DPTR,A
+    400          	}
+    401          
+    402          	if(!cbw.bCBWCBLength)
+   \                     ??Scsi_Rx_0:
+   \   000034   90....       MOV     DPTR,#cbw + 14
+   \   000037   E0           MOVX    A,@DPTR
+   \   000038   7003         JNZ     $+5
+   \   00003A   02....       LJMP    ??Scsi_Rx_1 & 0xFFFF
+    403          	return;
+    404          
+    405          	switch(cbw.CBWCB[0]) 
+   \   00003D   A3           INC     DPTR
+   \   00003E   E0           MOVX    A,@DPTR
+   \   00003F   24FD         ADD     A,#-0x3
+   \   000041   7003         JNZ     $+5
+   \   000043   02....       LJMP    ??Scsi_Rx_2 & 0xFFFF
+   \   000046   24F1         ADD     A,#-0xf
+   \   000048   6020         JZ      ??Scsi_Rx_3
+   \   00004A   24F8         ADD     A,#-0x8
+   \   00004C   602D         JZ      ??Scsi_Rx_4
+   \   00004E   24F7         ADD     A,#-0x9
+   \   000050   607C         JZ      ??Scsi_Rx_5
+   \   000052   24FE         ADD     A,#-0x2
+   \   000054   6036         JZ      ??Scsi_Rx_6
+   \   000056   24FD         ADD     A,#-0x3
+   \   000058   605C         JZ      ??Scsi_Rx_7
+   \   00005A   24FE         ADD     A,#-0x2
+   \   00005C   605D         JZ      ??Scsi_Rx_8
+   \   00005E   24FB         ADD     A,#-0x5
+   \   000060   605E         JZ      ??Scsi_Rx_9
+    406          	{ // SCSI Operation code
+    407          		case SCSI_TEST_UNIT_READY:
+    408          			Scsi_Status=SCSI_PASSED;
+   \                     ??Scsi_Rx_10:
+   \   000062   90....       MOV     DPTR,#Scsi_Status
+   \   000065   E4           CLR     A
+   \   000066   F0           MOVX    @DPTR,A
+    409          		break;
+   \   000067   02....       LJMP    ??Scsi_Rx_2 & 0xFFFF
+    410          		
+    411          		case SCSI_INQUIRY:
+    412          			Scsi_Inquiry();
+   \                     ??Scsi_Rx_3:
+   \   00006A   90....       MOV     DPTR,#Scsi_Status
+   \   00006D   E4           CLR     A
+   \   00006E   F0           MOVX    @DPTR,A
+   \   00006F                ; Setup parameters for call to function Scsi_Send
+   \   00006F   90....       MOV     DPTR,#__Constant_24
+   \   000072   12....       LCALL   ?PUSH_XSTACK8_X_FOUR
+   \   000075   7A..         MOV     R2,#Scsi_Standard_Inquiry_Data & 0xff
+   \   000077   7B..         MOV     R3,#(Scsi_Standard_Inquiry_Data >> 8) & 0xff
+   \   000079   807B         SJMP    ??Scsi_Rx_11
+    413          		break;
+    414          		
+    415          		case SCSI_MODE_SENSE_6:
+    416          			Scsi_Mode_Sense6();
+   \                     ??Scsi_Rx_4:
+   \   00007B   90....       MOV     DPTR,#Scsi_Status
+   \   00007E   E4           CLR     A
+   \   00007F   F0           MOVX    @DPTR,A
+   \   000080                ; Setup parameters for call to function Scsi_Send
+   \   000080   90....       MOV     DPTR,#__Constant_4
+   \   000083   12....       LCALL   ?PUSH_XSTACK8_X_FOUR
+   \   000086   7A..         MOV     R2,#Scsi_Mode_Sense_6 & 0xff
+   \   000088   7B..         MOV     R3,#(Scsi_Mode_Sense_6 >> 8) & 0xff
+   \   00008A   806A         SJMP    ??Scsi_Rx_11
+    417          		break;
+    418          		
+    419          		case SCSI_READ_CAPACITY_10:
+    420          			Scsi_Read_Capacity10();
+   \                     ??Scsi_Rx_6:
+   \   00008C   90....       MOV     DPTR,#cbw + 8
+   \   00008F   78..         MOV     R0,#?V0 + 0
+   \   000091   12....       LCALL   ?L_MOV_X
+   \   000094   90....       MOV     DPTR,#Scsi_Status
+   \   000097   E4           CLR     A
+   \   000098   F0           MOVX    @DPTR,A
+   \   000099   90....       MOV     DPTR,#__Constant_9
+   \   00009C   78..         MOV     R0,#?V0 + 0
+   \   00009E   12....       LCALL   ?UL_GE_X
+   \   0000A1   5008         JNC     ??Scsi_Rx_12
+   \   0000A3   90....       MOV     DPTR,#__Constant_8
+   \   0000A6   78..         MOV     R0,#?V0 + 0
+   \   0000A8   12....       LCALL   ?L_MOV_X
+   \                     ??Scsi_Rx_12:
+   \   0000AB                ; Setup parameters for call to function Scsi_Send
+   \   0000AB   78..         MOV     R0,#?V0 + 0
+   \   0000AD   12....       LCALL   ?PUSH_XSTACK_I_FOUR
+   \   0000B0   7A..         MOV     R2,#DiskCapacity & 0xff
+   \   0000B2   7B..         MOV     R3,#(DiskCapacity >> 8) & 0xff
+   \   0000B4   8040         SJMP    ??Scsi_Rx_11
+    421          		break;
+    422          		
+    423          		case SCSI_READ_10:
+    424          			Scsi_Read10();
+   \                     ??Scsi_Rx_7:
+   \   0000B6                ; Setup parameters for call to function Scsi_Read10
+   \   0000B6   12....       LCALL   ??Scsi_Read10?relay
+    425          		break;
+   \   0000B9   8043         SJMP    ??Scsi_Rx_2
+    426          		
+    427          		case SCSI_WRITE_10:
+    428          			Scsi_Write10();
+   \                     ??Scsi_Rx_8:
+   \   0000BB                ; Setup parameters for call to function Scsi_Write10
+   \   0000BB   12....       LCALL   ??Scsi_Write10?relay
+    429          		break;
+   \   0000BE   803E         SJMP    ??Scsi_Rx_2
+    430          		
+    431          		case SCSI_VERIFY_10:
+    432          			Scsi_Residue=0;
+   \                     ??Scsi_Rx_9:
+   \   0000C0   90....       MOV     DPTR,#__Constant_0
+   \   0000C3   12....       LCALL   ?XLOAD_R2345
+   \   0000C6   90....       MOV     DPTR,#Scsi_Residue
+   \   0000C9   12....       LCALL   ?XSTORE_R2345
+   \   0000CC   8094         SJMP    ??Scsi_Rx_10
+    433          			Scsi_Status=SCSI_PASSED;
+    434          		break;
+    435          		
+    436          		case SCSI_START_STOP_UNIT:
+    437          			Scsi_Status=SCSI_PASSED;
+    438          		break;
+    439          
+    440          		case SCSI_READ_FORMAT_CAPACITIES:
+    441          			SCSI_ReadFormatCapacity();
+   \                     ??Scsi_Rx_5:
+   \   0000CE   90....       MOV     DPTR,#cbw + 8
+   \   0000D1   78..         MOV     R0,#?V0 + 0
+   \   0000D3   12....       LCALL   ?L_MOV_X
+   \   0000D6   90....       MOV     DPTR,#Scsi_Status
+   \   0000D9   E4           CLR     A
+   \   0000DA   F0           MOVX    @DPTR,A
+   \   0000DB   90....       MOV     DPTR,#__Constant_d
+   \   0000DE   78..         MOV     R0,#?V0 + 0
+   \   0000E0   12....       LCALL   ?UL_GE_X
+   \   0000E3   5008         JNC     ??Scsi_Rx_13
+   \   0000E5   90....       MOV     DPTR,#__Constant_c
+   \   0000E8   78..         MOV     R0,#?V0 + 0
+   \   0000EA   12....       LCALL   ?L_MOV_X
+   \                     ??Scsi_Rx_13:
+   \   0000ED                ; Setup parameters for call to function Scsi_Send
+   \   0000ED   78..         MOV     R0,#?V0 + 0
+   \   0000EF   12....       LCALL   ?PUSH_XSTACK_I_FOUR
+   \   0000F2   7A..         MOV     R2,#MaximumCapacity & 0xff
+   \   0000F4   7B..         MOV     R3,#(MaximumCapacity >> 8) & 0xff
+   \                     ??Scsi_Rx_11:
+   \   0000F6   12....       LCALL   ??Scsi_Send?relay
+   \   0000F9   7404         MOV     A,#0x4
+   \   0000FB   12....       LCALL   ?DEALLOC_XSTACK8
+    442          		break;
+    443          
+    444          		case SCSI_REQUEST_SENSE:
+    445          			SCSI_RequestSense();
+    446          		break;
+    447          			
+    448          		case SCSI_PREVENT_ALLOW_MEDIUM_REMOVAL:
+    449          			Scsi_Status=SCSI_PASSED;
+    450          		break;
+    451          		
+    452          		default:
+    453          		//printf("Unknown SCSI Cmd (0x%02X).\n",(int)cbw.CBWCB[0]);
+    454          			Scsi_Status=SCSI_PASSED;
+    455          			//Scsi_Read10();
+    456          		break;
+    457          	}
+    458          
+    459          	//if(SCSI_WRITE_10!=cbw.CBWCB[0])
+    460          	{
+    461          	  	csw.dCSWSignature=CSW_SIGNATURE;
+   \                     ??Scsi_Rx_2:
+   \   0000FE   90....       MOV     DPTR,#__Constant_55534253
+   \   000101   12....       LCALL   ?XLOAD_R2345
+   \   000104   90....       MOV     DPTR,#csw
+   \   000107   12....       LCALL   ?XSTORE_R2345
+    462          	  	csw.dCSWTag=cbw.dCBWTag;
+   \   00010A   90....       MOV     DPTR,#cbw + 4
+   \   00010D   12....       LCALL   ?XLOAD_R2345
+   \   000110   90....       MOV     DPTR,#csw + 4
+   \   000113   12....       LCALL   ?XSTORE_R2345
+    463          	  	csw.bCSWStatus=Scsi_Status;
+   \   000116   90....       MOV     DPTR,#Scsi_Status
+   \   000119   E0           MOVX    A,@DPTR
+   \   00011A   90....       MOV     DPTR,#csw + 12
+   \   00011D   F0           MOVX    @DPTR,A
+    464          	  	csw.dCSWDataResidue=ntohl(Scsi_Residue);
+   \   00011E   90....       MOV     DPTR,#Scsi_Residue
+   \   000121   12....       LCALL   ?XLOAD_R2345
+   \   000124   90....       MOV     DPTR,#csw + 8
+   \   000127   12....       LCALL   ?XSTORE_R2345
+    465          	  	UsbSendBlock((BYTE*)&csw,sizeof(CSW));
+   \   00012A                ; Setup parameters for call to function UsbSendBlock
+   \   00012A   90....       MOV     DPTR,#__Constant_d
+   \   00012D   12....       LCALL   ?PUSH_XSTACK8_X_FOUR
+   \   000130   7A..         MOV     R2,#csw & 0xff
+   \   000132   7B..         MOV     R3,#(csw >> 8) & 0xff
+   \   000134   12....       LCALL   ??UsbSendBlock?relay
+   \   000137   7404         MOV     A,#0x4
+   \   000139   12....       LCALL   ?DEALLOC_XSTACK8
+    466          	}
+    467          
+    468                //USB_In((BYTE*)&csw,sizeof(CSW));
+    469          
+    470          	  
+    471          }
+   \                     ??Scsi_Rx_1:
+   \   00013C   02....       LJMP    ?Subroutine0 & 0xFFFF
+    472          
+    473          static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key)
+    474          {
+    475             UINT8 i;
+    476          
+    477             // Checking whether to load a key or an initialisation vector.
+    478             if(key){
+    479                AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_KEY);
+    480             }
+    481             else {
+    482                AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_IV);
+    483             }
+    484             // Starting loading of key or vector.
+    485             AES_START();
+    486          
+    487             // loading the data (key or vector)
+    488             for(i = 0; i < 16; i++){
+    489                ENCDI = pData[i];
+    490             }
+    491          }
+    492          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    493          static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr)
+   \                     halAesEncrDecr:
+    494          {
+   \   000000   74EE         MOV     A,#-0x12
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 18
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 6,R1
+   \   000007   7412         MOV     A,#0x12
+   \   000009   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   F8           MOV     R0,A
+   \   00000E   A3           INC     DPTR
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   F9           MOV     R1,A
+   \   000011   E8           MOV     A,R0
+   \   000012   FE           MOV     R6,A
+   \   000013   E9           MOV     A,R1
+   \   000014   FF           MOV     R7,A
+    495             UINT16  i;
+    496             UINT8   j, k;
+                               ^
+Warning[Pe177]: variable "k" was declared but never referenced
+    497             BYTE    mode;
+    498             UINT16  nbrOfBlocks;
+    499             UINT16  convertedBlock;
+    500             UINT8   delay;
+    501          
+    502             nbrOfBlocks = length / 16;
+   \   000015   8C..         MOV     ?V0 + 0,R4
+   \   000017   8D..         MOV     ?V0 + 1,R5
+   \   000019   7404         MOV     A,#0x4
+   \   00001B   78..         MOV     R0,#?V0 + 0
+   \   00001D   12....       LCALL   ?US_SHR
+   \   000020   85....       MOV     ?V0 + 2,?V0 + 0
+   \   000023   85....       MOV     ?V0 + 3,?V0 + 1
+    503             mode = 0;
+    504          
+    505             if( (length % 16) != 0){
+   \   000026   EC           MOV     A,R4
+   \   000027   540F         ANL     A,#0xf
+   \   000029   600C         JZ      ??halAesEncrDecr_0
+    506                // length not multiplum of 16, convert one block extra with zeropadding
+    507                nbrOfBlocks++;
+   \   00002B   E5..         MOV     A,?V0 + 2
+   \   00002D   2401         ADD     A,#0x1
+   \   00002F   F5..         MOV     ?V0 + 2,A
+   \   000031   E5..         MOV     A,?V0 + 3
+   \   000033   3400         ADDC    A,#0x0
+   \   000035   F5..         MOV     ?V0 + 3,A
+    508             }
+    509          
+    510             // Loading the IV.
+    511             //halAesLoadKeyOrInitVector(pInitVector, FALSE);
+    512          
+    513             // Starting either encryption or decryption
+    514             if(decr){
+   \                     ??halAesEncrDecr_0:
+   \   000037   E5..         MOV     A,?V0 + 6
+   \   000039   600A         JZ      ??halAesEncrDecr_1
+    515                AES_SET_ENCR_DECR_KEY_IV(AES_DECRYPT);
+   \   00003B   E5B3         MOV     A,0xb3
+   \   00003D   54F8         ANL     A,#0xf8
+   \   00003F   4402         ORL     A,#0x2
+   \   000041   F5B3         MOV     0xb3,A
+   \   000043   8003         SJMP    ??halAesEncrDecr_2
+    516             } else {
+    517                AES_SET_ENCR_DECR_KEY_IV(AES_ENCRYPT);
+   \                     ??halAesEncrDecr_1:
+   \   000045   53B3F8       ANL     0xb3,#0xf8
+    518             }
+    519          
+    520             // Getting the operation mode.
+    521             mode = ENCCS & 0x70;
+   \                     ??halAesEncrDecr_2:
+   \   000048   E5B3         MOV     A,0xb3
+   \   00004A   5470         ANL     A,#0x70
+   \   00004C   F5..         MOV     ?V0 + 7,A
+    522          
+    523             for(convertedBlock = 0; convertedBlock < nbrOfBlocks; convertedBlock++){
+   \   00004E   75..00       MOV     ?V0 + 0,#0x0
+   \   000051   75..00       MOV     ?V0 + 1,#0x0
+   \   000054   8047         SJMP    ??halAesEncrDecr_3
+    524                // Starting the conversion.
+    525                AES_START();
+    526          
+    527                i = convertedBlock * 16;
+    528                // Counter, Output Feedback and Cipher Feedback operates on 4 bytes and not 16 bytes.
+    529                if((mode == CFB) || (mode == OFB) || (mode == CTR))
+    530          	 {
+    531          /*
+    532                   for(j = 0; j < 4; j++){
+    533                      // Writing the input data
+    534                      // Zeropadding the remainder of the block
+    535                      for(k = 0; k < 4; k++){
+    536                         ENCDI = ((i + 4*j + k < length) ? pDataIn[i + 4*j + k] : 0x00 );
+    537                      }
+    538                      // wait for data ready
+    539                      delay = DELAY;
+    540                      while(delay--);
+    541                      // Read out data for every 4th byte
+    542                      for(k = 0; k < 4; k++){
+    543                         pDataOut[i + 4*j + k] = ENCDO;
+    544                      }
+    545                   }
+    546          */
+    547                }
+    548                else if(mode == CBC_MAC){/*
+    549                   // Writing the input data
+    550                   // Zeropadding the remainder of the block
+    551                   for(j = 0; j < 16; j++){
+    552                      ENCDI = ((i + j < length) ? pDataIn[i + j] : 0x00 );
+    553                   }
+    554                   // The last block of the CBC-MAC is computed by using CBC mode.
+    555                   if(convertedBlock == nbrOfBlocks - 2){
+    556                      AES_SETMODE(CBC);
+    557                      delay = DELAY;
+    558                      while(delay--);
+    559                   }
+    560                   // The CBC-MAC does not produce an output on the n-1 first blocks
+    561                   // only the last block is read out
+    562                   else if(convertedBlock == nbrOfBlocks - 1){
+    563                      // wait for data ready
+    564                      delay = DELAY;
+    565                      while(delay--);
+    566                      for(j = 0; j < 16; j++){
+    567                         pDataOut[j] = ENCDO;
+    568                      }
+    569                   }*/
+    570                }
+    571                else{
+    572                   // Writing the input data
+    573                   // Zeropadding the remainder of the block
+    574                   for(j = 0; j < 16; j++){
+    575                      ENCDI = ((i+j < length) ? pDataIn[i+j] : 0x00 );
+   \                     ??halAesEncrDecr_4:
+   \   000056   E4           CLR     A
+   \                     ??halAesEncrDecr_5:
+   \   000057   F5B1         MOV     0xb1,A
+   \   000059   05..         INC     ?V0 + 9
+   \   00005B   E5..         MOV     A,?V0 + 9
+   \   00005D   C3           CLR     C
+   \   00005E   9410         SUBB    A,#0x10
+   \   000060   4075         JC      ??halAesEncrDecr_6
+    576                   }
+    577                   // wait for data ready
+    578                   delay = DELAY;
+   \   000062   75..0F       MOV     ?V0 + 4,#0xf
+    579                   while(delay--);
+   \                     ??halAesEncrDecr_7:
+   \   000065   85....       MOV     ?V0 + 8,?V0 + 4
+   \   000068   74FF         MOV     A,#-0x1
+   \   00006A   25..         ADD     A,?V0 + 8
+   \   00006C   F5..         MOV     ?V0 + 4,A
+   \   00006E   04           INC     A
+   \   00006F   70F4         JNZ     ??halAesEncrDecr_7
+    580                   // Read out data
+    581                   for(j = 0; j < 16; j++){
+   \   000071   75..00       MOV     ?V0 + 9,#0x0
+    582                      pDataOut[i+j] = ENCDO;
+   \                     ??halAesEncrDecr_8:
+   \   000074   E5B2         MOV     A,0xb2
+   \   000076   C0E0         PUSH    A
+   \   000078   12....       LCALL   ?Subroutine3 & 0xFFFF
+    583                   }
+   \                     ??CrossCallReturnLabel_2:
+   \   00007B   EE           MOV     A,R6
+   \   00007C   25..         ADD     A,?V0 + 4
+   \   00007E   F582         MOV     DPL,A
+   \   000080   EF           MOV     A,R7
+   \   000081   35..         ADDC    A,?V0 + 5
+   \   000083   F583         MOV     DPH,A
+   \   000085   D0E0         POP     A
+   \   000087   F0           MOVX    @DPTR,A
+   \   000088   05..         INC     ?V0 + 9
+   \   00008A   E5..         MOV     A,?V0 + 9
+   \   00008C   C3           CLR     C
+   \   00008D   9410         SUBB    A,#0x10
+   \   00008F   40E3         JC      ??halAesEncrDecr_8
+   \                     ??halAesEncrDecr_9:
+   \   000091   E5..         MOV     A,?V0 + 0
+   \   000093   2401         ADD     A,#0x1
+   \   000095   F5..         MOV     ?V0 + 0,A
+   \   000097   E5..         MOV     A,?V0 + 1
+   \   000099   3400         ADDC    A,#0x0
+   \   00009B   F5..         MOV     ?V0 + 1,A
+   \                     ??halAesEncrDecr_3:
+   \   00009D   C3           CLR     C
+   \   00009E   E5..         MOV     A,?V0 + 0
+   \   0000A0   95..         SUBB    A,?V0 + 2
+   \   0000A2   E5..         MOV     A,?V0 + 1
+   \   0000A4   95..         SUBB    A,?V0 + 3
+   \   0000A6   504C         JNC     ??halAesEncrDecr_10
+   \   0000A8   43B301       ORL     0xb3,#0x1
+   \   0000AB   85....       MOV     ?V0 + 4,?V0 + 0
+   \   0000AE   85....       MOV     ?V0 + 5,?V0 + 1
+   \   0000B1   7404         MOV     A,#0x4
+   \   0000B3   78..         MOV     R0,#?V0 + 4
+   \   0000B5   12....       LCALL   ?S_SHL
+   \   0000B8   A8..         MOV     R0,?V0 + 4
+   \   0000BA   A9..         MOV     R1,?V0 + 5
+   \   0000BC   7410         MOV     A,#0x10
+   \   0000BE   65..         XRL     A,?V0 + 7
+   \   0000C0   60CF         JZ      ??halAesEncrDecr_9
+   \   0000C2   7420         MOV     A,#0x20
+   \   0000C4   65..         XRL     A,?V0 + 7
+   \   0000C6   60C9         JZ      ??halAesEncrDecr_9
+   \   0000C8   7430         MOV     A,#0x30
+   \   0000CA   65..         XRL     A,?V0 + 7
+   \   0000CC   60C3         JZ      ??halAesEncrDecr_9
+   \   0000CE   7450         MOV     A,#0x50
+   \   0000D0   65..         XRL     A,?V0 + 7
+   \   0000D2   60BD         JZ      ??halAesEncrDecr_9
+   \   0000D4   75..00       MOV     ?V0 + 9,#0x0
+   \                     ??halAesEncrDecr_6:
+   \   0000D7   12....       LCALL   ?Subroutine3 & 0xFFFF
+    584                }
+    585             }
+   \                     ??CrossCallReturnLabel_3:
+   \   0000DA   C3           CLR     C
+   \   0000DB   E5..         MOV     A,?V0 + 4
+   \   0000DD   9C           SUBB    A,R4
+   \   0000DE   E5..         MOV     A,?V0 + 5
+   \   0000E0   9D           SUBB    A,R5
+   \   0000E1   4003         JC      $+5
+   \   0000E3   02....       LJMP    ??halAesEncrDecr_4 & 0xFFFF
+   \   0000E6   EA           MOV     A,R2
+   \   0000E7   25..         ADD     A,?V0 + 4
+   \   0000E9   F582         MOV     DPL,A
+   \   0000EB   EB           MOV     A,R3
+   \   0000EC   35..         ADDC    A,?V0 + 5
+   \   0000EE   F583         MOV     DPH,A
+   \   0000F0   E0           MOVX    A,@DPTR
+   \   0000F1   02....       LJMP    ??halAesEncrDecr_5 & 0xFFFF
+    586          }
+   \                     ??halAesEncrDecr_10:
+   \   0000F4   7F0A         MOV     R7,#0xa
+   \   0000F6   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   0000F9                REQUIRE ENCCS
+   \   0000F9                REQUIRE ENCDI
+   \   0000F9                REQUIRE ENCDO
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   85....       MOV     ?V0 + 4,?V0 + 9
+   \   000003   E8           MOV     A,R0
+   \   000004   25..         ADD     A,?V0 + 4
+   \   000006   F5..         MOV     ?V0 + 4,A
+   \   000008   E9           MOV     A,R1
+   \   000009   3400         ADDC    A,#0x0
+   \   00000B   F5..         MOV     ?V0 + 5,A
+   \   00000D   22           RET
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for g_decKey>`:
+   \   000000   ....         DW `?<Constant "WorkForYourDream">`
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for addr>`:
+   \   000000   00800000     DD 32768
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Scsi_Send?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Scsi_Send
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Scsi_Write10?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Scsi_Write10
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Scsi_Read10?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Scsi_Read10
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Scsi_Rx?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Scsi_Rx
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??halAesEncrDecr?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    halAesEncrDecr
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "WorkForYourDream">`:
+   \   000000   576F726B     DB "WorkForYourDream"
+   \            466F7259
+   \            6F757244
+   \            7265616D
+   \            00      
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_0:
+   \   000000   00000000     DD 0
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_1:
+   \   000000   01000000     DD 1
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_41:
+   \   000000   41000000     DD 65
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_21:
+   \   000000   21000000     DD 33
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_10000:
+   \   000000   00000100     DD 65536
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_40:
+   \   000000   40000000     DD 64
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_200:
+   \   000000   00020000     DD 512
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_fffffdc0:
+   \   000000   C0FDFFFF     DD 4294966720
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_3fc0:
+   \   000000   C03F0000     DD 16320
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_4200:
+   \   000000   00420000     DD 16896
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_ffffbdc0:
+   \   000000   C0BDFFFF     DD 4294950336
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_8200:
+   \   000000   00820000     DD 33280
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_ffff7dc0:
+   \   000000   C07DFFFF     DD 4294933952
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_ffff3e00:
+   \   000000   003EFFFF     DD 4294917632
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_d:
+   \   000000   0D000000     DD 13
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_24:
+   \   000000   24000000     DD 36
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_4:
+   \   000000   04000000     DD 4
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_9:
+   \   000000   09000000     DD 9
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_8:
+   \   000000   08000000     DD 8
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_c:
+   \   000000   0C000000     DD 12
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_55534253:
+   \   000000   53425355     DD 1431519827
+    587          
+    588          
+    589          
+    590          
+    591          
+
+   Maximum stack usage in bytes:
+
+     Function               ISTACK PSTACK XSTACK
+     --------               ------ ------ ------
+     Scsi_Read10                0      0     40
+       -> Scsi_Send             0      0     56
+       -> Scsi_Send             0      0     56
+     Scsi_Rx                    0      0     16
+       -> UsbSendBlock          0      0     32
+       -> Scsi_Send             0      0     32
+       -> Scsi_Send             0      0     32
+       -> Scsi_Send             0      0     32
+       -> Scsi_Read10           0      0     24
+       -> Scsi_Write10          0      0     24
+       -> Scsi_Send             0      0     32
+       -> UsbSendBlock          0      0     32
+     Scsi_Send                  0      0     44
+       -> UsbSendBlock          0      0     32
+     Scsi_Write10               2      0     38
+       -> usbOutDataRcv         0      0     48
+       -> DevUpdateUartSend     0      0     48
+       -> HalFlashInit          0      0     48
+       -> usbOutDataRcv         0      0     48
+       -> halAesEncrDecr        0      0     52
+       -> HalFlashErase         0      0     48
+       -> HalFlashWrite         0      0     52
+     halAesEncrDecr             1      0     44
+
+
+   Segment part sizes:
+
+     Function/Label                 Bytes
+     --------------                 -----
+     ENCDI                             1
+     ENCDO                             1
+     ENCCS                             1
+     DMA0CFGL                          1
+     DMA0CFGH                          1
+     Scsi_Status                       1
+     Scsi_Residue                      4
+     cbw                              31
+     csw                              13
+     g_outDataReady                    1
+     g_modBoot                         1
+     outPacket                        64
+     Scsi_Standard_Inquiry_Data       36
+     MaximumCapacity                  12
+     DiskCapacity                      8
+     Scsi_Mode_Sense_6                 4
+     Scsi_Send                        36
+     ?Subroutine0                      5
+     g_decKey                          2
+     Scsi_Write10                    439
+     ?Subroutine1                     10
+     ?Subroutine2                     24
+     addr                              4
+     Scsi_Read10                     398
+     Scsi_Rx                         319
+     halAesEncrDecr                  249
+     ?Subroutine3                     14
+     ?<Initializer for g_decKey>       2
+     ?<Initializer for addr>           4
+     ??Scsi_Send?relay                 6
+     ??Scsi_Write10?relay              6
+     ??Scsi_Read10?relay               6
+     ??Scsi_Rx?relay                   6
+     ??halAesEncrDecr?relay            6
+     ?<Constant "WorkForYourDream">   17
+     __Constant_0                      4
+     __Constant_1                      4
+     __Constant_41                     4
+     __Constant_21                     4
+     __Constant_10000                  4
+     __Constant_40                     4
+     __Constant_200                    4
+     __Constant_fffffdc0               4
+     __Constant_3fc0                   4
+     __Constant_4200                   4
+     __Constant_ffffbdc0               4
+     __Constant_8200                   4
+     __Constant_ffff7dc0               4
+     __Constant_ffff3e00               4
+     __Constant_d                      4
+     __Constant_24                     4
+     __Constant_4                      4
+     __Constant_9                      4
+     __Constant_8                      4
+     __Constant_c                      4
+     __Constant_55534253               4
+
+ 
+ 1 494 bytes in segment BANKED_CODE
+    30 bytes in segment BANK_RELAYS
+     5 bytes in segment SFR_AN
+     6 bytes in segment XDATA_I
+     6 bytes in segment XDATA_ID
+   161 bytes in segment XDATA_ROM_C
+   115 bytes in segment XDATA_Z
+ 
+ 1 530 bytes of CODE  memory
+    77 bytes of CONST memory (+ 84 bytes shared)
+     0 bytes of DATA  memory (+  5 bytes shared)
+   121 bytes of XDATA memory
+
+Errors: none
+Warnings: 6

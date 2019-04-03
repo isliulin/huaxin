@@ -1,0 +1,475 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         22/Jul/2016  22:34:49 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Components\bsp\bsp.c         #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          _Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8 #
+#                          051\nik_sb5000\IAR\Configuration\LinkTo\smpl_confi #
+#                          g.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34,   #
+#                          0x12}" -DxNWK_PLL_REFERENCE_CLOCK -DLINK_TO) -f    #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\Configuration\smpl_nwk_config.dat  #
+#                          (-DMAX_HOPS=3 -DMAX_HOPS_FROM_AP=1                 #
+#                          -DMAX_NWK_PAYLOAD=34 -DMAX_APP_PAYLOAD=10          #
+#                          -DDEFAULT_LINK_TOKEN=0x01020304                    #
+#                          -DDEFAULT_JOIN_TOKEN=0x05060708                    #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Components\bsp\bsp.c -D      #
+#                          MCU_H=<ioCC2530.h> -D MRFI_CC2530 -D ZTOOL_P1 -D   #
+#                          MRFI_PA_LNA_ENABLED -lC C:\Users\freeman\Documents #
+#                          \work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Proj #
+#                          ects\Examples\SRF05_8051\nik_sb5000\IAR\LinkTo\Lis #
+#                          t\ -lA C:\Users\freeman\Documents\work\NBK\Nikon\N #
+#                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF #
+#                          05_8051\nik_sb5000\IAR\LinkTo\List\ -o             #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\Obj\ -e --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\bs #
+#                          p\ -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\bs #
+#                          p\drivers\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo #
+#                          nents\bsp\boards\CC2530EM\ -I                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\    #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          _Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8 #
+#                          051\nik_sb5000\IAR\..\..\..\..\..\Components\Simpl #
+#                          iciTI\nwk\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\Application #
+#                          s\ -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\Si #
+#                          mpliciTI\nwk_applications\ -I                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\INC #
+#                          LUDE\ -I C:\Users\freeman\Documents\work\NBK\Nikon #
+#                          \Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\S #
+#                          RF05_8051\nik_sb5000\IAR\..\..\..\..\..\Components #
+#                          \OSAL\MCU\CCSOC\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects #
+#                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\.. #
+#                          \Components\HAL\INCLUDE\ -I                        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\HAL\TARG #
+#                          ET\CC2530EB\ -I C:\Users\freeman\Documents\work\NB #
+#                          K\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa #
+#                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com #
+#                          ponents\SERVICES\SADDR\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\SERVICES #
+#                          \SDATA\ -I C:\Users\freeman\Documents\work\NBK\Nik #
+#                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MT\ -I C:\Users\freeman\Documents\work\NBK\Niko #
+#                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\ #
+#                          SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Component #
+#                          s\STACK\AF\ -I C:\Users\freeman\Documents\work\NBK #
+#                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam #
+#                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp #
+#                          onents\STACK\NWK\ -I C:\Users\freeman\Documents\wo #
+#                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project #
+#                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\. #
+#                          .\Components\STACK\SEC\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\STACK\SA #
+#                          PI\ -I C:\Users\freeman\Documents\work\NBK\Nikon\N #
+#                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF #
+#                          05_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S #
+#                          TACK\SYS\ -I C:\Users\freeman\Documents\work\NBK\N #
+#                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl #
+#                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon #
+#                          ents\STACK\ZDO\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\ #
+#                          Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\ #
+#                          Components\MAC\INCLUDE\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\MAC\HIGH #
+#                          _LEVEL\ -I C:\Users\freeman\Documents\work\NBK\Nik #
+#                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\LOW_LEVEL\srf04\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\MAC\LOW_ #
+#                          LEVEL\srf04\SINGLE_CHIP\ -Ohz --require_prototypes #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\List\bsp.lst                #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\Obj\bsp.r51                 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\bsp\bsp.c
+      1          /**************************************************************************************************
+      2            Revised:        $Date: 2007-07-06 11:19:00 -0700 (Fri, 06 Jul 2007) $
+      3            Revision:       $Revision: 13579 $
+      4          
+      5            Copyright 2007 Texas Instruments Incorporated.  All rights reserved.
+      6          
+      7            IMPORTANT: Your use of this Software is limited to those specific rights granted under
+      8            the terms of a software license agreement between the user who downloaded the software,
+      9            his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+     10            "License"). You may not use this Software unless you agree to abide by the terms of the
+     11            License. The License limits your use, and you acknowledge, that the Software may not be
+     12            modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+     13            or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+     14            transceiver, which is integrated into your product. Other than for the foregoing purpose,
+     15            you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+     16            perform, display or sell this Software and/or its documentation for any purpose.
+     17          
+     18            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+     19            WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+     20            WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+     21            IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     22            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+     23            THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+     24            INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+     25            DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+     26            THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     27          
+     28            Should you have any questions regarding your right to use this Software,
+     29            contact Texas Instruments Incorporated at www.TI.com.
+     30          **************************************************************************************************/
+     31          
+     32          /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     33           *   BSP (Board Support Package)
+     34           *   Top-level BSP code file.
+     35           * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+     36           */
+     37          
+     38          /* ------------------------------------------------------------------------------------------------
+     39           *                                            Includes
+     40           * ------------------------------------------------------------------------------------------------
+     41           */
+     42          #include "bsp.h"
+
+   \                                 In  segment SFR_AN, at 0x8f
+   \   unsigned char volatile __sfr P0INP
+   \                     P0INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xa8
+   \   union <unnamed> volatile __sfr _A_IEN0
+   \                     _A_IEN0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xcb
+   \   unsigned char volatile __sfr T3CTL
+   \                     T3CTL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xcc
+   \   unsigned char volatile __sfr T3CCTL0
+   \                     T3CCTL0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xcd
+   \   unsigned char volatile __sfr T3CC0
+   \                     T3CC0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd8
+   \   union <unnamed> volatile __sfr _A_TIMIF
+   \                     _A_TIMIF:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf7
+   \   unsigned char volatile __sfr P2INP
+   \                     P2INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+     43          #include "bsp_driver_defs.h"
+     44          
+     45          
+     46          /**************************************************************************************************
+     47           * @fn          BSP_Init
+     48           *
+     49           * @brief       Initialize the board and drivers.
+     50           *
+     51           * @param       none
+     52           *
+     53           * @return      none
+     54           **************************************************************************************************
+     55           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     56          void BSP_Init(void)
+   \                     BSP_Init:
+     57          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 2
+   \   000004   74FE         MOV     A,#-0x2
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+     58            //BSP_INIT_BOARD();
+     59            //BSP_INIT_DRIVERS();
+     60          
+     61            /*-------------------------------------------------------------
+     62             *  Run time integrity checks.  Perform only if asserts
+     63             *  are enabled.
+     64             */
+     65          #ifdef BSP_ASSERTS_ARE_ON
+     66            /* verify endianess is correctly specified */
+     67            {
+     68              uint16_t test = 0x00AA; /* first storage byte of 'test' is non-zero for little endian */
+   \   000009   85..82       MOV     DPL,?XSP + 0
+   \   00000C   85..83       MOV     DPH,?XSP + 1
+   \   00000F   74AA         MOV     A,#-0x56
+   \   000011   F0           MOVX    @DPTR,A
+   \   000012   A3           INC     DPTR
+   \   000013   E4           CLR     A
+   \   000014   F0           MOVX    @DPTR,A
+     69              BSP_ASSERT(!(*((uint8_t *)&test)) == !BSP_LITTLE_ENDIAN); /* endianess mismatch */
+   \   000015   85..82       MOV     DPL,?XSP + 0
+   \   000018   85..83       MOV     DPH,?XSP + 1
+   \   00001B   E0           MOVX    A,@DPTR
+   \   00001C   7004         JNZ     ??BSP_Init_0
+   \   00001E   C2AF         CLR     0xa8.7
+   \                     ??BSP_Init_1:
+   \   000020   80FE         SJMP    ??BSP_Init_1
+     70            }
+     71          #endif
+     72          }
+   \                     ??BSP_Init_0:
+   \   000022   7402         MOV     A,#0x2
+   \   000024   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000027                REQUIRE ?Subroutine0
+   \   000027                REQUIRE _A_IEN0
+   \   000027                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     73          
+     74          
+     75          /* ================================================================================================
+     76           *                                        C Code Includes
+     77           * ================================================================================================
+     78           */
+     79          #ifdef BSP_BOARD_C
+     80          #include BSP_BOARD_C
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \   __banked_func __xdata_reentrant void BSP_InitBoard(void)
+   \                     BSP_InitBoard:
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+   \   000000   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \   __banked_func __xdata_reentrant void BSP_Delay(uint16_t)
+   \                     BSP_Delay:
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+   \   000000   75CB44       MOV     0xcb,#0x44
+   \   000003   75CC04       MOV     0xcc,#0x4
+   \   000006   EA           MOV     A,R2
+   \   000007   33           RLC     A
+   \   000008   33           RLC     A
+   \   000009   33           RLC     A
+   \   00000A   54F8         ANL     A,#0xf8
+   \   00000C   F5CD         MOV     0xcd,A
+   \   00000E   43CB10       ORL     0xcb,#0x10
+   \                     ??BSP_Delay_0:
+   \   000011   A2D9         MOV     C,0xd8.1
+   \   000013   50FC         JNC     ??BSP_Delay_0
+   \   000015   75CB00       MOV     0xcb,#0x0
+   \   000018   C2D9         CLR     0xd8.1
+   \   00001A   02....       LJMP    ?BRET
+   \   00001D                REQUIRE T3CTL
+   \   00001D                REQUIRE T3CCTL0
+   \   00001D                REQUIRE T3CC0
+   \   00001D                REQUIRE _A_TIMIF
+     81          #endif
+     82          
+     83          #ifdef BSP_DRIVERS_C
+     84          #include BSP_DRIVERS_C
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \   __banked_func __xdata_reentrant void BSP_InitDrivers(void)
+   \                     BSP_InitDrivers:
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+   \   000004                ; Setup parameters for call to function BSP_InitLeds
+   \   000004   12....       LCALL   ??BSP_InitLeds?relay
+   \   000007                ; Setup parameters for call to function BSP_InitButtons
+   \   000007   12....       LCALL   ??BSP_InitButtons?relay
+   \   00000A   80..         SJMP    ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \   __banked_func __xdata_reentrant void BSP_InitLeds(void)
+   \                     BSP_InitLeds:
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+   \   000000   43FE01       ORL     0xfe,#0x1
+   \   000003   43FE02       ORL     0xfe,#0x2
+   \   000006   C290         CLR     0x90.0
+   \   000008   C291         CLR     0x90.1
+   \   00000A   02....       LJMP    ?BRET
+   \   00000D                REQUIRE P1DIR
+   \   00000D                REQUIRE _A_P1
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \   __banked_func __xdata_reentrant void BSP_InitButtons(void)
+   \                     BSP_InitButtons:
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+   \   000000   438F02       ORL     0x8f,#0x2
+   \   000003   43F701       ORL     0xf7,#0x1
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0INP
+   \   000009                REQUIRE P2INP
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BSP_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BSP_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BSP_InitBoard?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BSP_InitBoard
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BSP_Delay?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BSP_Delay
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BSP_InitDrivers?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BSP_InitDrivers
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BSP_InitLeds?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BSP_InitLeds
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BSP_InitButtons?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BSP_InitButtons
+     85          #endif
+     86          
+     87          
+     88          /* ************************************************************************************************
+     89           *                                   Compile Time Integrity Checks
+     90           * ************************************************************************************************
+     91           */
+     92          BSP_STATIC_ASSERT( sizeof(  uint8_t ) == 1 );
+     93          BSP_STATIC_ASSERT( sizeof(   int8_t ) == 1 );
+     94          BSP_STATIC_ASSERT( sizeof( uint16_t ) == 2 );
+     95          BSP_STATIC_ASSERT( sizeof(  int16_t ) == 2 );
+     96          BSP_STATIC_ASSERT( sizeof( uint32_t ) == 4 );
+     97          BSP_STATIC_ASSERT( sizeof(  int32_t ) == 4 );
+     98          
+     99          
+    100          /**************************************************************************************************
+    101           */
+
+   Maximum stack usage in bytes:
+
+     Function             ISTACK PSTACK XSTACK
+     --------             ------ ------ ------
+     BSP_Delay                0      0      0
+     BSP_Init                 2      0      2
+     BSP_InitBoard            0      0      0
+     BSP_InitButtons          0      0      0
+     BSP_InitDrivers          2      0      0
+       -> BSP_InitLeds        4      0      0
+       -> BSP_InitButtons     4      0      0
+     BSP_InitLeds             0      0      0
+
+
+   Segment part sizes:
+
+     Function/Label          Bytes
+     --------------          -----
+     P0INP                      1
+     _A_P1                      1
+     _A_IEN0                    1
+     T3CTL                      1
+     T3CCTL0                    1
+     T3CC0                      1
+     _A_TIMIF                   1
+     P2INP                      1
+     P1DIR                      1
+     BSP_Init                  39
+     ?Subroutine0               7
+     BSP_InitBoard              3
+     BSP_Delay                 29
+     BSP_InitDrivers           12
+     BSP_InitLeds              13
+     BSP_InitButtons            9
+     ??BSP_Init?relay           6
+     ??BSP_InitBoard?relay      6
+     ??BSP_Delay?relay          6
+     ??BSP_InitDrivers?relay    6
+     ??BSP_InitLeds?relay       6
+     ??BSP_InitButtons?relay    6
+
+ 
+ 112 bytes in segment BANKED_CODE
+  36 bytes in segment BANK_RELAYS
+   9 bytes in segment SFR_AN
+ 
+ 148 bytes of CODE memory
+   0 bytes of DATA memory (+ 9 bytes shared)
+
+Errors: none
+Warnings: none

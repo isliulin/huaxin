@@ -1,0 +1,1830 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:53 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Compone /
+//                          nts\simpliciti\nwk\nwk_frame.c                    /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Components\simpl /
+//                          iciti\nwk\nwk_frame.c" -D "MCU_H=\"ioCC1110.h\""  /
+//                          -D MRFI_CC1110 -lB "C:\Texas                      /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\CC1110-LinkTo\List\" -o   /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\O /
+//                          bj\" -e --debug --core=plain                      /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\nwk_frame.s51                                  /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk_frame
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ADD_XSTACK_DISP0_8
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?CALL_IND
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?DPH1
+        EXTERN ?DPL1
+        EXTERN ?DPS
+        EXTERN ?FUNC_ENTER_XDATA
+        EXTERN ?FUNC_LEAVE_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTACK_DISP1_8
+        EXTERN ?XSTACK_RESTORE_DPTRS_1
+        EXTERN ?XSTACK_SAVE_DPTRS_1
+        EXTERN __INIT_XDATA_I
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC MRFI_RxCompleteISR
+        PUBLIC nwk_buildFrame
+        PUBLIC nwk_frameInit
+        PUBLIC nwk_getMyRxType
+        PUBLIC nwk_retrieveFrame
+        PUBLIC nwk_sendFrame
+
+        EXTERN nwk_getMyAddress
+        EXTERN MRFI_RandomByte
+        EXTERN nwk_QfindSlot
+        EXTERN memcpy
+        EXTERN MRFI_Receive
+        EXTERN nwk_QfindOldest
+        EXTERN nwk_getConnInfo
+        EXTERN nwk_QadjustOrder
+        EXTERN memcmp
+        EXTERN nwk_isConnectionValid
+        EXTERN MRFI_Transmit
+        EXTERN nwk_processFreq
+        EXTERN nwk_processJoin
+        EXTERN nwk_processLink
+        EXTERN nwk_processMgmt
+        EXTERN nwk_processPing
+        EXTERN nwk_processSecurity
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk\nwk_frame.c
+//    1 /**************************************************************************************************
+//    2   Filename:       nwk_frame.c
+//    3   Revised:        $Date: 2011-10-26 15:37:41 -0700 (Wed, 26 Oct 2011) $
+//    4   Revision:       $Revision: 28058 $
+//    5   Author          $Author: jnoxon $
+//    6 
+//    7   Description:    This file supports the SimpliciTI frame handling functions.
+//    8 
+//    9   Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   12   the terms of a software license agreement between the user who downloaded the software,
+//   13   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   14   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   15   License. The License limits your use, and you acknowledge, that the Software may not be
+//   16   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   17   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   18   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   19   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   20   perform, display or sell this Software and/or its documentation for any purpose.
+//   21 
+//   22   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   23   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   24   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   25   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   26   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   27   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   28   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   29   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   30   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   31 
+//   32   Should you have any questions regarding your right to use this Software,
+//   33   contact Texas Instruments Incorporated at www.TI.com.
+//   34 **************************************************************************************************/
+//   35 
+//   36 
+//   37 /******************************************************************************
+//   38  * INCLUDES
+//   39  */
+//   40 
+//   41 #include <string.h>
+//   42 #include "bsp.h"
+//   43 #include "mrfi.h"
+//   44 #include "nwk_types.h"
+//   45 #include "nwk_frame.h"
+//   46 #include "nwk.h"
+//   47 #include "nwk_app.h"
+//   48 #include "nwk_QMgmt.h"
+//   49 #include "nwk_globals.h"
+//   50 #include "nwk_mgmt.h"
+//   51 #include "nwk_security.h"
+//   52 
+//   53 /******************************************************************************
+//   54  * MACROS
+//   55  */
+//   56 
+//   57 /******************************************************************************
+//   58  * CONSTANTS AND DEFINES
+//   59  */
+//   60 
+//   61 /******************************************************************************
+//   62  * TYPEDEFS
+//   63  */
+//   64 
+//   65 /******************************************************************************
+//   66  * LOCAL VARIABLES
+//   67  */
+//   68 
+//   69 #if SIZE_INFRAME_Q > 0
+//   70 /* array of function pointers to handle NWK application frames */
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA8
+//   71 static  fhStatus_t (* const func[])(mrfiPacket_t *) = { nwk_processPing,
+func:
+        DS 12
+        REQUIRE `?<Initializer for func>`
+        REQUIRE __INIT_XDATA_I
+//   72                                                         nwk_processLink,
+//   73                                                         nwk_processJoin,
+//   74                                                         nwk_processSecurity,
+//   75                                                         nwk_processFreq,
+//   76                                                         nwk_processMgmt
+//   77 #ifdef NWK_PLL
+//   78                                                           ,
+//   79                                                         nwk_processPLL
+//   80 #endif
+//   81                                                       };
+//   82 #endif  /* SIZE_INFRAME_Q > 0 */
+//   83 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   84 static uint8_t sTRACTID = 0;
+sTRACTID:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   85 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   86 static addr_t const *sMyAddr = NULL;
+sMyAddr:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   87 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   88 static uint8_t  sMyRxType = 0, sMyTxType = 0;
+sMyRxType:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+sMyTxType:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   89 
+//   90 #if !defined(RX_POLLS)
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   91 static uint8_t  (*spCallback)(linkID_t) = NULL;
+spCallback:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   92 #endif
+//   93 
+//   94 /******************************************************************************
+//   95  * LOCAL FUNCTIONS
+//   96  */
+//   97 
+//   98 #if SIZE_INFRAME_Q > 0
+//   99 /* local helper functions for Rx devices */
+//  100 static void  dispatchFrame(frameInfo_t *);
+//  101 #if !defined(END_DEVICE)
+//  102 #if defined(ACCESS_POINT)
+//  103 /* only Access Points need to worry about duplicate S&F frames */
+//  104 uint8_t  isDupSandFFrame(mrfiPacket_t *);
+//  105 #endif /* ACCESS_POINT */
+//  106 #endif  /* !END_DEVICE */
+//  107 #endif  /* SIZE_INFRAME_Q > 0 */
+//  108 
+//  109 /******************************************************************************
+//  110  * GLOBAL VARIABLES
+//  111  */
+//  112 
+//  113 /******************************************************************************
+//  114  * GLOBAL FUNCTIONS
+//  115  */
+//  116 
+//  117 /******************************************************************************
+//  118  * @fn          nwk_frameInit
+//  119  *
+//  120  * @brief       Initialize network context.
+//  121  *
+//  122  * input parameters
+//  123  *       pF - Pointer to callback function. If none intended should be NULL.
+//  124  *
+//  125  * output parameters
+//  126  *
+//  127  * @return    void
+//  128  */
+//  129 
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  130 void nwk_frameInit(uint8_t (*pF)(linkID_t))
+nwk_frameInit:
+        CODE
+//  131 {
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+//  132 
+//  133 /****** Fill static values for the DEVICEINFO byte that will go in each frame ******/
+//  134   /* Rx type when frame originates from this device. Set in nwk_buildFrame() */
+//  135   /* Tx type when frame sent from this device. Set in nwk_sendframe() */
+//  136 #if !defined(END_DEVICE)
+//  137     sMyRxType = F_RX_TYPE_USER_CTL;
+//  138   #if defined(ACCESS_POINT)
+//  139     sMyTxType = F_TX_DEVICE_AP;
+//  140   #else
+//  141     sMyTxType = F_TX_DEVICE_RE;
+//  142   #endif
+//  143 #else
+//  144     sMyTxType = F_TX_DEVICE_ED;
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#sMyTxType
+        CLR     A
+        MOVX    @DPTR,A
+//  145   #if defined(RX_POLLS)
+//  146     sMyRxType = F_RX_TYPE_POLLS;
+//  147   #endif
+//  148   #if defined(RX_USER)
+//  149     sMyRxType = F_RX_TYPE_USER_CTL;
+//  150   #endif
+//  151 #endif
+//  152 /****** DONE fill static values for the DEVICEINFO byte that will go in each frame ******/
+//  153 
+//  154 #if !defined(RX_POLLS)
+//  155   spCallback = pF;
+        MOV     DPTR,#spCallback
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  156 #else
+//  157   (void) pF;
+//  158 #endif
+//  159 
+//  160   sMyAddr = nwk_getMyAddress();
+        ; Setup parameters for call to function nwk_getMyAddress
+        LCALL   nwk_getMyAddress
+        MOV     DPTR,#sMyAddr
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  161 
+//  162   while (!(sTRACTID=MRFI_RandomByte())) ;
+??nwk_frameInit_0:
+        ; Setup parameters for call to function MRFI_RandomByte
+        LCALL   MRFI_RandomByte
+        MOV     A,R1
+        MOV     DPTR,#sTRACTID
+        MOVX    @DPTR,A
+        JZ      ??nwk_frameInit_0
+//  163 
+//  164   return;
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  165 }
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        POP     DPH
+        POP     DPL
+        RET
+//  166 
+//  167 /******************************************************************************
+//  168  * @fn          nwk_buildFrame
+//  169  *
+//  170  * @brief       Builds an output frame for the port and message enclosed.
+//  171  *              This routine prepends the frame header and populates the
+//  172  *              frame in the output queue.
+//  173  *
+//  174  * input parameters
+//  175  * @param   port    - port from application
+//  176  * @param   msg     - pointer to message from app to be sent
+//  177  * @param   len     - length of enclosed message
+//  178  * @param   hops    - number of hops allowed. this is less than MAX_HOPS
+//  179  *                    whenever the frame is being sent to the AP. this is to
+//  180  *                    help mitigate the (short) broadcast storms
+//  181  *
+//  182  * output parameters
+//  183  *
+//  184  * @return   pointer to frameInfo_t structure created. NULL if there is
+//  185  *           no room in output queue.
+//  186  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  187 frameInfo_t *nwk_buildFrame(uint8_t port, uint8_t *msg, uint8_t len, uint8_t hops)
+nwk_buildFrame:
+        CODE
+//  188 {
+        MOV     A,#-0xf
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 17
+        ; Auto size: 0
+        MOV     ?V0 + 4,R1
+        MOV     ?V0 + 6,R2
+        MOV     ?V0 + 7,R3
+        MOV     ?V0 + 0,R4
+        MOV     ?V0 + 1,R5
+//  189   frameInfo_t  *fInfoPtr;
+//  190 
+//  191   if (!(fInfoPtr=nwk_QfindSlot(OUTQ)))
+        ; Setup parameters for call to function nwk_QfindSlot
+        MOV     R1,#0x2
+        LCALL   nwk_QfindSlot
+        MOV     ?V0 + 2,R2
+        MOV     ?V0 + 3,R3
+        MOV     R0,?V0 + 2
+        MOV     R1,?V0 + 3
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??nwk_buildFrame_0
+//  192   {
+//  193     return (frameInfo_t *)NULL;
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        LJMP    ??nwk_buildFrame_1
+//  194   }
+//  195 
+//  196   MRFI_SET_PAYLOAD_LEN(&fInfoPtr->mrfiPkt, len+F_APP_PAYLOAD_OS);
+??nwk_buildFrame_0:
+        MOV     A,#0xb
+        ADD     A,?V0 + 0
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+//  197 
+//  198   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_ENCRYPT_OS, 0);
+//  199   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_PORT_OS, port);
+        MOV     A,R6
+        ADD     A,#0xb
+        MOV     R0,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOVX    A,@DPTR
+        ANL     A,#0x80
+        ORL     A,?V0 + 4
+        MOVX    @DPTR,A
+//  200   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_TRACTID_OS, sTRACTID);
+        MOV     DPTR,#sTRACTID
+        MOVX    A,@DPTR
+        PUSH    A
+        MOV     A,R6
+        ADD     A,#0xd
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     DPH,A
+        POP     A
+        MOVX    @DPTR,A
+//  201   while (!(++sTRACTID)) ;  /* transaction ID can't be 0 */
+??nwk_buildFrame_2:
+        MOV     DPTR,#sTRACTID
+        MOVX    A,@DPTR
+        INC     A
+        MOVX    @DPTR,A
+        JZ      ??nwk_buildFrame_2
+//  202   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_RX_TYPE, sMyRxType);
+//  203   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_HOP_COUNT, hops);
+//  204 
+//  205   /* reset ack-relevant bits */
+//  206   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_ACK_REQ, 0);
+//  207   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_ACK_RPLY, 0);
+        MOV     A,R6
+        ADD     A,#0xc
+        MOV     ?DPL1,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     ?DPH1,A
+        MOV     DPTR,#sMyRxType
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        ANL     A,#0xbf
+        MOV     R2,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOVX    A,@DPTR
+        ORL     A,R2
+        ANL     A,#0xf8
+        ORL     A,?V0 + 1
+        ANL     A,#0x77
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        MOVX    @DPTR,A
+//  208 
+//  209   /* reset forwarding bit */
+//  210   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_FWD_FRAME, 0);
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.7
+        MOVX    @DPTR,A
+//  211 
+//  212   memcpy(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt)+F_APP_PAYLOAD_OS, msg, len);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 2,?V0 + 0
+        MOV     ?V0 + 3,#0x0
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,?V0 + 6
+        MOV     R5,?V0 + 7
+        MOV     A,R6
+        ADD     A,#0xe
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+//  213   memcpy(MRFI_P_SRC_ADDR(&fInfoPtr->mrfiPkt), sMyAddr, NET_ADDR_SIZE);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 2,#0x4
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     DPTR,#sMyAddr
+        MOVX    A,@DPTR
+        MOV     R4,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R5,A
+        MOV     A,R6
+        ADD     A,#0x7
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+//  214 
+//  215   return fInfoPtr;
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+??nwk_buildFrame_1:
+        REQUIRE ?Subroutine1
+        ; // Fall through to label ?Subroutine1
+//  216 }
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x8
+        LJMP    ?FUNC_LEAVE_XDATA
+//  217 
+//  218 #if defined(APP_AUTO_ACK)
+//  219 /******************************************************************************
+//  220  * @fn          nwk_buildAckReqFrame
+//  221  *
+//  222  * @brief       Builds an output frame for the port and message enclosed.
+//  223  *              This routine prepends the frame header and populates the
+//  224  *              frame in the output queue. The frame is set to request that
+//  225  *              an ack frame be sent by the peer.
+//  226  *
+//  227  * input parameters
+//  228  * @param   port    - port from application
+//  229  * @param   msg     - pointer to message from app to be sent
+//  230  * @param   len     - length of enclosed message
+//  231  * @param   hops    - number of hops allowed. this is less than MAX_HOPS
+//  232  *                    whenever the frame is being sent to the AP. this is to
+//  233  *                    help mitigate the (short) broadcast storms
+//  234  * @param   tid     - Transaction ID to insert in NWK header used to match
+//  235  *                    the ack reply.
+//  236  *
+//  237  * output parameters
+//  238  *
+//  239  * @return   pointer to frameInfo_t structure created. NULL if there is
+//  240  *           no room in output queue.
+//  241  */
+//  242 frameInfo_t *nwk_buildAckReqFrame(uint8_t port, uint8_t *msg, uint8_t len, uint8_t hops, volatile uint8_t *tid)
+//  243 {
+//  244   frameInfo_t *fInfoPtr;
+//  245 
+//  246   /* Build a normal frame first. */
+//  247   if (!(fInfoPtr=nwk_buildFrame(port, msg, len, hops)))
+//  248   {
+//  249     return (frameInfo_t *)NULL;
+//  250   }
+//  251 
+//  252   /* save TID  */
+//  253   *tid = GET_FROM_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_TRACTID_OS);
+//  254   /* Set REQ_ACK bit */
+//  255   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fInfoPtr->mrfiPkt), F_ACK_REQ, F_ACK_REQ_TYPE);
+//  256 
+//  257   return fInfoPtr;
+//  258 }
+//  259 #endif  /* APP_AUTO_ACK */
+//  260 
+//  261 #if SIZE_INFRAME_Q > 0
+//  262 /******************************************************************************
+//  263  * @fn          MRFI_RxCompleteISR
+//  264  *
+//  265  * @brief       Here on Rx interrupt from radio. Process received frame from the
+//  266  *              radio Rx FIFO.
+//  267  *
+//  268  * input parameters
+//  269  *
+//  270  * output parameters
+//  271  *
+//  272  * @return      void
+//  273  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  274 void MRFI_RxCompleteISR()
+MRFI_RxCompleteISR:
+        CODE
+//  275 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 9
+        ; Auto size: 0
+//  276   frameInfo_t  *fInfoPtr;
+//  277 
+//  278   /* room for more? */
+//  279   if (fInfoPtr=nwk_QfindSlot(INQ))
+        ; Setup parameters for call to function nwk_QfindSlot
+        MOV     R1,#0x1
+        LCALL   nwk_QfindSlot
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     R0,?V0 + 0
+        MOV     R1,?V0 + 1
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??MRFI_RxCompleteISR_0
+//  280   {
+//  281     MRFI_Receive(&fInfoPtr->mrfiPkt);
+        ; Setup parameters for call to function MRFI_Receive
+        MOV     A,R6
+        ADD     A,#0x2
+        INC     R2
+        INC     R2
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   MRFI_Receive
+//  282 
+//  283     dispatchFrame(fInfoPtr);
+        ; Setup parameters for call to function dispatchFrame
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   dispatchFrame
+//  284   }
+//  285 
+//  286   return;
+??MRFI_RxCompleteISR_0:
+        MOV     R7,#0x2
+        LJMP    ?FUNC_LEAVE_XDATA
+//  287 }
+//  288 
+//  289 /******************************************************************************
+//  290  * @fn          nwk_retrieveFrame
+//  291  *
+//  292  * @brief       Retrieve frame from Rx frame queue. Invoked by application-level
+//  293  *              code either app through SMPL_Receive() or IOCTL through raw Rx. This
+//  294  *              should run in a user thread, not an ISR thread.
+//  295  *
+//  296  * input parameters
+//  297  * @param    port    - port on which to get a frame
+//  298  *
+//  299  * output parameters
+//  300  * @param    msg     - pointer to where app payload should be copied. Buffer
+//  301  *                     allocated should be == MAX_APP_PAYLOAD.
+//  302  *
+//  303  * @param    len      - pointer to where payload length should be stored. Caller
+//  304  *                      can check for non-zero when polling the port. initialized
+//  305  *                      to 0 even if no frame is retrieved.
+//  306  * @param    srcAddr  - if non-NULL, a pointer to where to copy the source address
+//  307  *                      of the retrieved message.
+//  308  * @param    hopCount - if non-NULL, a pointer to where to copy the hop count
+//  309                         of the retrieved message.
+//  310  *
+//  311  * @return    SMPL_SUCCESS
+//  312  *            SMPL_NO_FRAME  - no frame found for specified destination
+//  313  *            SMPL_BAD_PARAM - no valid connection info for the Link ID
+//  314  *
+//  315  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  316 smplStatus_t nwk_retrieveFrame(rcvContext_t *rcv, uint8_t *msg, uint8_t *len, addr_t *srcAddr, uint8_t *hopCount)
+nwk_retrieveFrame:
+        CODE
+//  317 {
+        MOV     A,#-0xf
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 17
+        ; Auto size: 2
+        MOV     A,#-0x2
+        LCALL   ?ALLOC_XSTACK8
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R4
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R5
+        MOVX    @DPTR,A
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOV     A,#0x13
+        LCALL   ?XSTACK_DISP1_8
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        MOV     ?V0 + 0,A
+        INC     DPTR/*1*/
+        MOVX    A,@DPTR/*1*/
+        MOV     ?V0 + 1,A
+        MOV     A,#0x15
+        LCALL   ?XSTACK_DISP1_8
+        MOVX    A,@DPTR/*1*/
+        MOV     ?V0 + 6,A
+        INC     DPTR/*1*/
+        MOVX    A,@DPTR/*1*/
+        MOV     ?V0 + 7,A
+        MOV     A,#0x17
+        LCALL   ?XSTACK_DISP1_8
+        MOVX    A,@DPTR/*1*/
+        MOV     ?V0 + 4,A
+        INC     DPTR/*1*/
+        MOVX    A,@DPTR/*1*/
+        MOV     ?V0 + 5,A
+//  318   frameInfo_t *fPtr;
+//  319   uint8_t      done;
+//  320 
+//  321   do {
+//  322     /* look for a frame on requested port. */
+//  323     *len = 0;
+        MOV     ?DPL1,?V0 + 0
+        MOV     ?DPH1,?V0 + 1
+        CLR     A
+        MOVX    @DPTR/*1*/,A
+//  324     done = 1;
+//  325 
+//  326     fPtr = nwk_QfindOldest(INQ, rcv, USAGE_NORMAL);
+        ; Setup parameters for call to function nwk_QfindOldest
+        MOV     R4,#0x1
+        MOV     R1,#0x1
+        LCALL   nwk_QfindOldest
+        MOV     ?V0 + 2,R2
+        MOV     ?V0 + 3,R3
+        MOV     R6,?V0 + 2
+        MOV     R7,?V0 + 3
+//  327     if (fPtr)
+        MOV     A,R6
+        ORL     A,R7
+        JNZ     $+5
+        LJMP    ??nwk_retrieveFrame_0
+//  328     {
+//  329       connInfo_t  *pCInfo = 0;
+        MOV     ?DPL1,#0x0
+        MOV     ?DPH1,#0x0
+//  330 
+//  331       if (RCV_APP_LID == rcv->type)
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??nwk_retrieveFrame_1
+//  332       {
+//  333         pCInfo = nwk_getConnInfo(rcv->t.lid);
+        ; Setup parameters for call to function nwk_getConnInfo
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   nwk_getConnInfo
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+//  334         if (!pCInfo)
+        MOV     A,?DPL1
+        ORL     A,?DPH1
+        JNZ     ??nwk_retrieveFrame_1
+//  335         {
+//  336           return SMPL_BAD_PARAM;
+        MOV     R1,#0x2
+        LJMP    ??nwk_retrieveFrame_2
+//  337         }
+//  338 #if defined(SMPL_SECURE)
+//  339         /* decrypt here...we have all the context we need. */
+//  340         {
+//  341           uint32_t  ctr  = pCInfo->connRxCTR;
+//  342           uint32_t *pctr = &ctr;
+//  343           uint8_t   len  = MRFI_GET_PAYLOAD_LEN(&fPtr->mrfiPkt) - F_SEC_CTR_OS;
+//  344 
+//  345           if (pCInfo->thisLinkID == SMPL_LINKID_USER_UUD)
+//  346           {
+//  347             pctr = NULL;
+//  348           }
+//  349 #if defined(RX_POLLS)
+//  350           else if ((F_APP_PAYLOAD_OS - F_SEC_CTR_OS) == len)
+//  351           {
+//  352             /* This was an empty poll reply frame generated by the AP.
+//  353              * It uses the single-byte CTR value like network applications.
+//  354              * We do not want to use the application layer counter in this case.
+//  355              */
+//  356             pctr = NULL;
+//  357           }
+//  358 #endif
+//  359           if (nwk_getSecureFrame(&fPtr->mrfiPkt, len, pctr))
+//  360           {
+//  361             if (pctr)
+//  362             {
+//  363               /* Update connection's counter. */
+//  364               pCInfo->connRxCTR = ctr;
+//  365             }
+//  366           }
+//  367           else
+//  368           {
+//  369             /* Frame bogus. Remove from queue and check for another frame. */
+//  370             nwk_QadjustOrder(INQ, fPtr->orderStamp);
+//  371             fPtr->fi_usage = FI_AVAILABLE;
+//  372             done = 0;
+//  373             continue;
+//  374           }
+//  375         }
+//  376 #endif  /* SMPL_SECURE */
+//  377       }
+//  378 
+//  379       /* it's on the requested port. */
+//  380       *len = MRFI_GET_PAYLOAD_LEN(&fPtr->mrfiPkt) - F_APP_PAYLOAD_OS;
+??nwk_retrieveFrame_1:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADD     A,#-0xb
+        MOV     R0,A
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        MOVX    @DPTR,A
+//  381       memcpy(msg, MRFI_P_PAYLOAD(&fPtr->mrfiPkt)+F_APP_PAYLOAD_OS, *len);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,R0
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     A,R6
+        ADD     A,#0xe
+        MOV     R4,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R5,A
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+//  382       /* save signal info */
+//  383       if (pCInfo)
+        MOV     A,?DPL1
+        ORL     A,?DPH1
+        JZ      ??nwk_retrieveFrame_3
+//  384       {
+//  385         /* Save Rx metrics... */
+//  386         pCInfo->sigInfo.rssi = fPtr->mrfiPkt.rxMetrics[MRFI_RX_METRICS_RSSI_OFS];
+        MOV     A,R6
+        ADD     A,#0x30
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+//  387         pCInfo->sigInfo.lqi  = fPtr->mrfiPkt.rxMetrics[MRFI_RX_METRICS_CRC_LQI_OFS];
+        MOV     A,R6
+        ADD     A,#0x31
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        MOVX    @DPTR/*1*/,A
+//  388       }
+//  389       if (srcAddr)
+??nwk_retrieveFrame_3:
+        MOV     A,?V0 + 6
+        ORL     A,?V0 + 7
+        JZ      ??nwk_retrieveFrame_4
+//  390       {
+//  391         /* copy source address if requested */
+//  392         memcpy(srcAddr, MRFI_P_SRC_ADDR(&fPtr->mrfiPkt), NET_ADDR_SIZE);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     A,R6
+        ADD     A,#0x7
+        MOV     R4,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R5,A
+        MOV     R2,?V0 + 6
+        MOV     R3,?V0 + 7
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+//  393       }
+//  394       if (hopCount)
+??nwk_retrieveFrame_4:
+        MOV     A,?V0 + 4
+        ORL     A,?V0 + 5
+        JZ      ??nwk_retrieveFrame_5
+//  395       {
+//  396         /* copy hop count if requested */
+//  397         *hopCount = GET_FROM_FRAME(MRFI_P_PAYLOAD(&fPtr->mrfiPkt), F_HOP_COUNT);
+        MOV     A,R6
+        ADD     A,#0xc
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     DPH,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOVX    A,@DPTR
+        ANL     A,#0x7
+        MOV     DPL,?V0 + 4
+        MOV     DPH,?V0 + 5
+        MOVX    @DPTR,A
+//  398       }
+//  399       /* input frame no longer needed. free it. */
+//  400       nwk_QadjustOrder(INQ, fPtr->orderStamp);
+??nwk_retrieveFrame_5:
+        ; Setup parameters for call to function nwk_QadjustOrder
+        MOV     DPL,R6
+        MOV     DPH,R7
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     R1,#0x1
+        LCALL   nwk_QadjustOrder
+//  401 
+//  402       fPtr->fi_usage = FI_AVAILABLE;
+        MOV     DPL,R6
+        MOV     DPH,R7
+        CLR     A
+        MOVX    @DPTR,A
+//  403       return SMPL_SUCCESS;
+        MOV     R1,A
+        SJMP    ??nwk_retrieveFrame_2
+//  404     }
+//  405   } while (!done);
+//  406 
+//  407   return SMPL_NO_FRAME;
+??nwk_retrieveFrame_0:
+        MOV     R1,#0x4
+??nwk_retrieveFrame_2:
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        LJMP    ?Subroutine1
+//  408 }
+//  409 
+//  410 /******************************************************************************
+//  411  * @fn          dispatchFrame
+//  412  *
+//  413  * @brief       Received frame looks OK so far. Dispatch to either NWK app by
+//  414  *              invoking the handler or the user's app by simply leaving the
+//  415  *              frame in the queue and letting the app poll the port.
+//  416  *
+//  417  * input parameters
+//  418  * @param   fiPtr    - frameInfo_t pointer to received frame
+//  419  *
+//  420  * output parameters
+//  421  *
+//  422  * @return   void
+//  423  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  424 static void dispatchFrame(frameInfo_t *fiPtr)
+dispatchFrame:
+        CODE
+//  425 {
+        MOV     A,#-0xb
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 13
+        ; Auto size: 1
+        MOV     A,#-0x1
+        LCALL   ?ALLOC_XSTACK8
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  426   uint8_t     port       = GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_PORT_OS);
+        MOV     A,R6
+        ADD     A,#0xb
+        MOV     ?DPL1,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     ?DPH1,A
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        ANL     A,#0x3f
+        MOV     ?V0 + 0,A
+//  427   uint8_t     nwkAppSize = sizeof(func)/sizeof(func[0]);
+//  428   fhStatus_t  rc;
+//  429   linkID_t    lid;
+//  430 #if defined(ACCESS_POINT)
+//  431   uint8_t loc;
+//  432 #endif
+//  433 #if !defined(END_DEVICE)
+//  434   uint8_t isForMe;
+//  435 #endif
+//  436 
+//  437   /* be sure it's not an echo... */
+//  438   if (!memcmp(MRFI_P_SRC_ADDR(&fiPtr->mrfiPkt), sMyAddr, NET_ADDR_SIZE))
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 2,#0x4
+        MOV     ?V0 + 3,#0x0
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     DPTR,#sMyAddr
+        MOVX    A,@DPTR
+        MOV     R4,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R5,A
+        MOV     A,R6
+        ADD     A,#0x7
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   memcmp
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     ?V0 + 3,R3
+        MOV     A,R2
+        ORL     A,?V0 + 3
+        JNZ     ??dispatchFrame_0
+//  439   {
+//  440     fiPtr->fi_usage = FI_AVAILABLE;
+??dispatchFrame_1:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        CLR     A
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+??dispatchFrame_2:
+        MOVX    @DPTR,A
+//  441     return;
+        LJMP    ??dispatchFrame_3
+//  442   }
+//  443 
+//  444   /* Make sure encyrption bit conforms to our security support context. */
+//  445 #if defined(SMPL_SECURE)
+//  446   if (!(GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_ENCRYPT_OS)))
+//  447   {
+//  448     /* Encyrption bit is not on when when it should be */
+//  449     fiPtr->fi_usage = FI_AVAILABLE;
+//  450     return;
+//  451   }
+//  452 #else
+//  453   if (GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_ENCRYPT_OS))
+??dispatchFrame_0:
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        MOV     C,0xE0 /* A   */.6
+        JC      ??dispatchFrame_1
+//  454   {
+//  455     /* Encyrption bit is on when when it should not be */
+//  456     fiPtr->fi_usage = FI_AVAILABLE;
+//  457     return;
+//  458   }
+//  459 #endif  /* SMPL_SECURE */
+//  460 
+//  461   /* If it's a network application port dispatch to service routine. Dispose
+//  462    * of frame depending on return code.
+//  463    */
+//  464   if (port && (port <= nwkAppSize))
+        MOV     A,?V0 + 0
+        JZ      ??dispatchFrame_4
+        CLR     C
+        SUBB    A,#0x7
+        JNC     ??dispatchFrame_5
+//  465   {
+//  466 #if defined(SMPL_SECURE)
+//  467     /* Non-connection-based frame. We can decode here if it was encrypted */
+//  468     if (!nwk_getSecureFrame(&fiPtr->mrfiPkt, MRFI_GET_PAYLOAD_LEN(&fiPtr->mrfiPkt) - F_SEC_CTR_OS, 0))
+//  469     {
+//  470       fiPtr->fi_usage = FI_AVAILABLE;
+//  471       return;
+//  472     }
+//  473 #endif
+//  474     rc = func[port-1](&fiPtr->mrfiPkt);
+//  475     if (FHS_KEEP == rc)
+        ; Setup parameters for indirect call
+        MOV     A,R6
+        ADD     A,#0x2
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        MOV     A,?V0 + 0
+        CLR     C
+        RLC     A
+        MOV     R0,A
+        MOV     A,#(func + 254) & 0xff
+        ADD     A,R0
+        MOV     ?DPL1,A
+        MOV     A,#((func - 2) >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     ?DPH1,A
+        MOVX    A,@DPTR/*1*/
+        MOV     DPL,A
+        INC     DPTR/*1*/
+        MOVX    A,@DPTR/*1*/
+        MOV     DPH,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        LCALL   ?CALL_IND
+        MOV     A,R1
+        XRL     A,#0x1
+        JNZ     ??dispatchFrame_1
+//  476     {
+//  477       fiPtr->fi_usage = FI_INUSE_UNTIL_DEL;
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOV     A,#0x1
+        SJMP    ??dispatchFrame_2
+//  478     }
+//  479 #if !defined(END_DEVICE)
+//  480     else if (FHS_REPLAY == rc)
+//  481     {
+//  482       /* an AP or an RE could be relaying a NWK application frame... */
+//  483       nwk_replayFrame(fiPtr);
+//  484     }
+//  485 #endif
+//  486     else  /* rc == FHS_RELEASE (default...) */
+//  487     {
+//  488       fiPtr->fi_usage = FI_AVAILABLE;
+//  489     }
+//  490     return;
+//  491   }
+//  492   /* sanity check */
+//  493   else if ((port != SMPL_PORT_USER_BCAST) && ((port < PORT_BASE_NUMBER) || (port > SMPL_PORT_STATIC_MAX)))
+??dispatchFrame_5:
+        MOV     A,#0x3f
+        XRL     A,?V0 + 0
+        JZ      ??dispatchFrame_6
+??dispatchFrame_4:
+        MOV     A,#-0x20
+        ADD     A,?V0 + 0
+        CLR     C
+        SUBB    A,#0x1f
+        JNC     ??dispatchFrame_1
+//  494   {
+//  495     /* bogus port. drop frame */
+//  496     fiPtr->fi_usage = FI_AVAILABLE;
+//  497     return;
+//  498   }
+//  499 
+//  500   /* At this point we know the target is a user app. If this is an end device
+//  501    * and we got this far save the frame and we're done. If we're an AP there
+//  502    * are 3 cases: it's for us, it's for s store-and-forward client, or we need
+//  503    * to replay the frame. If we're and RE and the frame didn't come from an RE
+//  504    * and it's not for us, replay the frame.
+//  505    */
+//  506 
+//  507 #if defined(END_DEVICE)
+//  508   /* If we're s polling end device we only accept application frames from
+//  509    * the AP. This prevents duplicate reception if we happen to be on when
+//  510    * a linked peer sends.
+//  511    */
+//  512 #if defined(RX_POLLS)
+//  513   if (F_TX_DEVICE_ED != GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_TX_DEVICE))
+//  514   {
+//  515     if (nwk_isConnectionValid(&fiPtr->mrfiPkt, &lid))
+//  516     {
+//  517       fiPtr->fi_usage = FI_INUSE_UNTIL_DEL;
+//  518     }
+//  519     else
+//  520     {
+//  521       fiPtr->fi_usage = FI_AVAILABLE;
+//  522     }
+//  523   }
+//  524   else
+//  525   {
+//  526     fiPtr->fi_usage = FI_AVAILABLE;
+//  527   }
+//  528 #else
+//  529   /* it's destined for a user app. */
+//  530   if (nwk_isConnectionValid(&fiPtr->mrfiPkt, &lid))
+??dispatchFrame_6:
+        ; Setup parameters for call to function nwk_isConnectionValid
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     A,R6
+        ADD     A,#0x2
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   nwk_isConnectionValid
+        MOV     A,R1
+        JZ      ??dispatchFrame_1
+//  531   {
+//  532     fiPtr->fi_usage = FI_INUSE_UNTIL_DEL;
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  533     if (spCallback && spCallback(lid))
+        MOV     DPTR,#spCallback
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??dispatchFrame_3
+        ; Setup parameters for indirect call
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     R1,A
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOV     DPTR/*1*/,#spCallback
+        MOVX    A,@DPTR/*1*/
+        MOV     DPL,A
+        INC     DPTR/*1*/
+        MOVX    A,@DPTR/*1*/
+        MOV     DPH,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        LCALL   ?CALL_IND
+        MOV     A,R1
+        JZ      $+5
+        LJMP    ??dispatchFrame_1
+??dispatchFrame_3:
+        MOV     A,#0x1
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x4
+        LJMP    ?FUNC_LEAVE_XDATA
+//  534     {
+//  535       fiPtr->fi_usage = FI_AVAILABLE;
+//  536       return;
+//  537     }
+//  538   }
+//  539   else
+//  540   {
+//  541     fiPtr->fi_usage = FI_AVAILABLE;
+//  542   }
+//  543 #endif  /* RX_POLLS */
+//  544 
+//  545 #else   /* END_DEVICE */
+//  546 
+//  547   /* We have an issue if the frame is broadcast to the UUD port. The AP (or RE) must
+//  548    * handle this frame as if it were the target in case there is an application
+//  549    * running that is listening on that port. But if it's a broadcast it must also be
+//  550    * replayed. It isn't enough just to test for the UUD port because it could be a
+//  551    * directed frame to another device. We must check explicitly for broadcast
+//  552    * destination address.
+//  553    */
+//  554   isForMe = !memcmp(sMyAddr, MRFI_P_DST_ADDR(&fiPtr->mrfiPkt), NET_ADDR_SIZE);
+//  555   if (isForMe || ((port == SMPL_PORT_USER_BCAST) && !memcmp(nwk_getBCastAddress(), MRFI_P_DST_ADDR(&fiPtr->mrfiPkt), NET_ADDR_SIZE)))
+//  556   {
+//  557     /* The folllowing test will succeed for the UUD port regardless of the
+//  558      * source address.
+//  559      */
+//  560     if (nwk_isConnectionValid(&fiPtr->mrfiPkt, &lid))
+//  561     {
+//  562       /* If this is for the UUD port and we are here then the device is either
+//  563        * an AP or an RE. In either case it must replay the UUD port frame if the
+//  564        * frame is not "for me". But it also must handle it since it could have a
+//  565        * UUD-listening application. Do the reply first and let the subsequent code
+//  566        * correctly set the frame usage state. Note that the routine return can be
+//  567        * from this code block. If not it will drop through to the bottom without
+//  568        * doing a replay.
+//  569        */
+//  570       /* Do I need to replay it? */
+//  571       if (!isForMe)
+//  572       {
+//  573         /* must be a broadcast for the UUD port */
+//  574         nwk_replayFrame(fiPtr);
+//  575       }
+//  576       /* OK. Now I handle it... */
+//  577       fiPtr->fi_usage = FI_INUSE_UNTIL_DEL;
+//  578       if (spCallback && spCallback(lid))
+//  579       {
+//  580         fiPtr->fi_usage = FI_AVAILABLE;
+//  581         return;
+//  582       }
+//  583     }
+//  584     else
+//  585     {
+//  586       fiPtr->fi_usage = FI_AVAILABLE;
+//  587     }
+//  588   }
+//  589 #if defined( ACCESS_POINT )
+//  590   /* Check to see if we need to save this for a S and F client. Otherwise,
+//  591    * if it's not for us, get rid of it.
+//  592    */
+//  593   else if (nwk_isSandFClient(MRFI_P_DST_ADDR(&fiPtr->mrfiPkt), &loc))
+//  594   {
+//  595     /* Don't bother if it is a duplicate frame or if it's a forwarded frame
+//  596      * echoed back from an RE.
+//  597      */
+//  598     if (!isDupSandFFrame(&fiPtr->mrfiPkt) &&
+//  599         !(GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_FWD_FRAME))
+//  600        )
+//  601     {
+//  602 #if defined(APP_AUTO_ACK)
+//  603       /* Make sure ack request bit is off. Sender will have gone away. */
+//  604       PUT_INTO_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_ACK_REQ, 0);
+//  605 #endif
+//  606       fiPtr->fi_usage = FI_INUSE_UNTIL_FWD;
+//  607     }
+//  608     else
+//  609     {
+//  610       fiPtr->fi_usage = FI_AVAILABLE;
+//  611     }
+//  612   }
+//  613   else if (GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_TX_DEVICE) == F_TX_DEVICE_AP)
+//  614   {
+//  615     /* I'm an AP and this frame came from an AP. Don't replay. */
+//  616     fiPtr->fi_usage = FI_AVAILABLE;
+//  617   }
+//  618 #elif defined( RANGE_EXTENDER )
+//  619   else if (GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_TX_DEVICE) == F_TX_DEVICE_RE)
+//  620   {
+//  621     /* I'm an RE and this frame came from an RE. Don't replay. */
+//  622     fiPtr->fi_usage = FI_AVAILABLE;
+//  623   }
+//  624 #endif
+//  625   else
+//  626   {
+//  627     /* It's not for me and I'm either an AP or I'm an RE and the frame
+//  628      * didn't come from an RE. Replay the frame.
+//  629      */
+//  630     nwk_replayFrame(fiPtr);
+//  631   }
+//  632 #endif  /* !END_DEVICE */
+//  633   return;
+//  634 }
+//  635 #endif   /* SIZE_INFRAME_Q > 0 */
+//  636 
+//  637 /******************************************************************************
+//  638  * @fn          nwk_sendFrame
+//  639  *
+//  640  * @brief       Send a frame by copying it to the radio Tx FIFO.
+//  641  *
+//  642  * input parameters
+//  643  * @param   pFrameInfo   - pointer to frame to be sent
+//  644  * @param   txOption     - do CCA or force frame out.
+//  645  *
+//  646  * output parameters
+//  647  *
+//  648  * @return    SMPL_SUCCESS
+//  649  *            SMPL_TX_CCA_FAIL Tx failed because of CCA failure.
+//  650  *                             Tx FIFO flushed in this case.
+//  651  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  652 smplStatus_t nwk_sendFrame(frameInfo_t *pFrameInfo, uint8_t txOption)
+nwk_sendFrame:
+        CODE
+//  653 {
+        MOV     A,#-0x8
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  654   smplStatus_t rc;
+//  655 
+//  656   /* set the type of device sending the frame in the header */
+//  657   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&pFrameInfo->mrfiPkt), F_TX_DEVICE, sMyTxType);
+        MOV     A,R6
+        ADD     A,#0xc
+        MOV     ?DPL1,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     ?DPH1,A
+        MOV     DPTR,#sMyTxType
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        ANL     A,#0xcf
+        MOV     R0,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOVX    A,@DPTR
+        ORL     A,R0
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    @DPTR/*1*/,A
+//  658 
+//  659   if (MRFI_TX_RESULT_SUCCESS == MRFI_Transmit(&pFrameInfo->mrfiPkt, txOption))
+        ; Setup parameters for call to function MRFI_Transmit
+        MOV     A,R6
+        ADD     A,#0x2
+        INC     R2
+        INC     R2
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   MRFI_Transmit
+        MOV     A,R1
+        JNZ     ??nwk_sendFrame_0
+//  660   {
+//  661     rc = SMPL_SUCCESS;
+        MOV     R1,#0x0
+        SJMP    ??nwk_sendFrame_1
+//  662   }
+//  663   else
+//  664   {
+//  665     /* Tx failed -- probably CCA. free up frame buffer. We do not have NWK
+//  666      * level retries. Let application do it.
+//  667      */
+//  668     rc = SMPL_TX_CCA_FAIL;
+??nwk_sendFrame_0:
+        MOV     R1,#0x9
+//  669   }
+//  670 
+//  671   /* TX is done. free up the frame buffer */
+//  672   pFrameInfo->fi_usage = FI_AVAILABLE;
+??nwk_sendFrame_1:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        CLR     A
+        MOVX    @DPTR,A
+//  673 
+//  674   return rc;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x1
+        LJMP    ?FUNC_LEAVE_XDATA
+//  675 }
+//  676 
+//  677 
+//  678 /******************************************************************************
+//  679  * @fn          nwk_getMyRxType
+//  680  *
+//  681  * @brief       Get my Rx type. Used to help populate the hops count in the
+//  682  *              frame header to try and limit the broadcast storm. Info is
+//  683  *              exchanged when linking.
+//  684  *
+//  685  * input parameters
+//  686  *
+//  687  * output parameters
+//  688  *
+//  689  * @return      The address LSB.
+//  690  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  691 uint8_t nwk_getMyRxType(void)
+nwk_getMyRxType:
+        CODE
+//  692 {
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+//  693   return sMyRxType;
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#sMyRxType
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LJMP    ?Subroutine0
+//  694 }
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for func>`:
+        DATA16
+        DW nwk_processPing
+        DW nwk_processLink
+        DW nwk_processJoin
+        DW nwk_processSecurity
+        DW nwk_processFreq
+        DW nwk_processMgmt
+
+        END
+//  695 
+//  696 #if defined(APP_AUTO_ACK)
+//  697 /******************************************************************************
+//  698  * @fn          nwk_sendAckReply
+//  699  *
+//  700  * @brief       Send an acknowledgement reply frame.
+//  701  *
+//  702  * input parameters
+//  703  * @param   frame   - pointer to frame with ack request.
+//  704  * @param   port    - port on whcih reply expected.
+//  705  *
+//  706  * output parameters
+//  707  *
+//  708  * @return      void
+//  709  */
+//  710 void nwk_sendAckReply(mrfiPacket_t *frame, uint8_t port)
+//  711 {
+//  712   mrfiPacket_t dFrame;
+//  713   uint8_t      tid = GET_FROM_FRAME(MRFI_P_PAYLOAD(frame), F_TRACTID_OS);
+//  714 
+//  715   /* set the type of device sending the frame in the header */
+//  716   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_TX_DEVICE, sMyTxType);
+//  717 
+//  718   /* set the listen type of device sending the frame in the header. */
+//  719   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_RX_TYPE, sMyRxType);
+//  720 
+//  721   /* destination address from received frame */
+//  722   memcpy(MRFI_P_DST_ADDR(&dFrame), MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE);
+//  723 
+//  724   /* source address */
+//  725   memcpy(MRFI_P_SRC_ADDR(&dFrame), sMyAddr, NET_ADDR_SIZE);
+//  726 
+//  727   /* port is the source the Tx port from the connection object */
+//  728   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_PORT_OS, port);
+//  729 
+//  730   /* frame length... */
+//  731   MRFI_SET_PAYLOAD_LEN(&dFrame,F_APP_PAYLOAD_OS);
+//  732 
+//  733   /* transaction ID taken from source frame */
+//  734   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_TRACTID_OS, tid);
+//  735 
+//  736   /* hop count... */
+//  737   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_HOP_COUNT, MAX_HOPS);
+//  738 
+//  739   /* set ACK field */
+//  740   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ACK_RPLY, F_ACK_RPLY_TYPE);
+//  741   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ACK_REQ, 0);
+//  742 
+//  743    /* This is not a forwarded frame */
+//  744   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_FWD_FRAME, 0);
+//  745 
+//  746   /* Encryption state */
+//  747 #if !defined(SMPL_SECURE)
+//  748   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ENCRYPT_OS, 0);
+//  749 #else
+//  750   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ENCRYPT_OS, F_ENCRYPT_OS_MSK);
+//  751   nwk_setSecureFrame(&dFrame, 0, 0);
+//  752 #endif
+//  753 
+//  754   MRFI_Transmit(&dFrame, MRFI_TX_TYPE_FORCED);
+//  755 
+//  756   return;
+//  757 }
+//  758 #endif /* APP_AUTO_ACK */
+//  759 
+//  760 #if !defined(END_DEVICE)
+//  761 /******************************************************************************
+//  762  * @fn          nwk_replayFrame
+//  763  *
+//  764  * @brief       Deal with hop count on a Range Extender or Access Point replay.
+//  765  *              Queue entry usage always left as available when done.
+//  766  *
+//  767  * input parameters
+//  768  * @param   pFrameInfo   - pointer to frame information structure
+//  769  *
+//  770  * output parameters
+//  771  *
+//  772  * @return      void
+//  773  */
+//  774 void nwk_replayFrame(frameInfo_t *pFrameInfo)
+//  775 {
+//  776   uint8_t  hops = GET_FROM_FRAME(MRFI_P_PAYLOAD(&pFrameInfo->mrfiPkt), F_HOP_COUNT);
+//  777 
+//  778   /* if hops are zero, drop frame. othewise send it. */
+//  779   if (hops--)
+//  780   {
+//  781     PUT_INTO_FRAME(MRFI_P_PAYLOAD(&pFrameInfo->mrfiPkt),F_HOP_COUNT,hops);
+//  782     /* Don't care if the Tx fails because of TO. Either someone else
+//  783      * will retransmit or the application itself will recover.
+//  784      */
+//  785 #if defined(SMPL_SECURE)
+//  786     /* If the frame was targeted to a NWK port it was decrypted on spec in
+//  787      * the 'dispatchFrame()' method. It must be re-encypted in this case.
+//  788      */
+//  789     if (GET_FROM_FRAME(MRFI_P_PAYLOAD(&pFrameInfo->mrfiPkt), F_PORT_OS) <= SMPL_PORT_NWK_BCAST)
+//  790     {
+//  791       nwk_setSecureFrame(&pFrameInfo->mrfiPkt, MRFI_GET_PAYLOAD_LEN(&pFrameInfo->mrfiPkt)-F_APP_PAYLOAD_OS, 0);
+//  792     }
+//  793 #endif
+//  794     MRFI_DelayMs(1);
+//  795     nwk_sendFrame(pFrameInfo, MRFI_TX_TYPE_CCA);
+//  796   }
+//  797   else
+//  798   {
+//  799     pFrameInfo->fi_usage = FI_AVAILABLE;
+//  800   }
+//  801   return;
+//  802 }
+//  803 
+//  804 #if defined(ACCESS_POINT)
+//  805 /******************************************************************************
+//  806  * @fn          nwk_getSandFFrame
+//  807  *
+//  808  * @brief       Get any frame waiting for the client on the port supplied in
+//  809  *              the frame payload.
+//  810  *              TODO: support returning NWK application frames always. the
+//  811  *              port requested in the call should be an user application port.
+//  812  *              NWK app ports will never be in the called frame.
+//  813  *              TODO: deal with broadcast NWK frames from AP.
+//  814  *
+//  815  * input parameters
+//  816  * @param   frame   - pointer to frame in question
+//  817  * @param   osPort  - offset of where requested port is in the application payload.
+//  818  *
+//  819  * output parameters
+//  820  * @param   qType   - queue type in which frame found. Needed to know which queue
+//  821  *                    requires order-adjusting when frame removed from queue. Defined
+//  822  *                    only if a frame is found.
+//  823  *
+//  824  * @return      pointer to frame if there is one, otherwise 0.
+//  825  */
+//  826 frameInfo_t *nwk_getSandFFrame(mrfiPacket_t *frame, uint8_t osPort, uint8_t *qType)
+//  827 {
+//  828   uint8_t        i, port = *(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+osPort);
+//  829   frameInfo_t *fiPtr;
+//  830   rcvContext_t rcv;
+//  831 
+//  832   rcv.type  = RCV_RAW_POLL_FRAME;
+//  833   rcv.t.pkt = frame;
+//  834   /* check the input queue for messages sent by others. */
+//  835   if (fiPtr=nwk_QfindOldest(INQ, &rcv, USAGE_FWD))
+//  836   {
+//  837     *qType = INQ;
+//  838     return fiPtr;
+//  839   }
+//  840 
+//  841   /* Check the output queue to see if we ourselves need to send anything.
+//  842    * TODO: use the cast-out scheme for output queue so this routine finds
+//  843    * the oldest in either queue.
+//  844    */
+//  845   fiPtr = nwk_getQ(OUTQ);
+//  846   for (i=0; i<SIZE_OUTFRAME_Q; ++i, fiPtr++)
+//  847   {
+//  848     if (FI_INUSE_UNTIL_FWD == fiPtr->fi_usage)
+//  849     {
+//  850       if (!memcmp(MRFI_P_DST_ADDR(&fiPtr->mrfiPkt), MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE))
+//  851       {
+//  852         if (GET_FROM_FRAME(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), F_PORT_OS) == port)
+//  853         {
+//  854           *qType = OUTQ;
+//  855           return fiPtr;
+//  856         }
+//  857       }
+//  858     }
+//  859   }
+//  860   return 0;
+//  861 }
+//  862 
+//  863 /******************************************************************************
+//  864  * @fn          nwk_SendEmptyPollRspFrame
+//  865  *
+//  866  * @brief       There are no frames waiting for the requester on the specified
+//  867  *              port. Send a frame back to that port with no payload.
+//  868  *
+//  869  * input parameters
+//  870  * @param   frame   - pointer to frame in question
+//  871  *
+//  872  * output parameters
+//  873  *
+//  874  * @return      void
+//  875  */
+//  876 void nwk_SendEmptyPollRspFrame(mrfiPacket_t *frame)
+//  877 {
+//  878   mrfiPacket_t dFrame;
+//  879   uint8_t      port = *(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+M_POLL_PORT_OS);
+//  880 
+//  881   /* set the type of device sending the frame in the header. we know it's an AP */
+//  882   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_TX_DEVICE, F_TX_DEVICE_AP);
+//  883   /* set the listen type of device sending the frame in the header. we know it's
+//  884    * an AP is is probably always on...but use the static variable anyway.
+//  885    */
+//  886   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_RX_TYPE, sMyRxType);
+//  887   /* destination address from received frame (polling device) */
+//  888   memcpy(MRFI_P_DST_ADDR(&dFrame), MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE);
+//  889   /* source address */
+//  890   memcpy(MRFI_P_SRC_ADDR(&dFrame), MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+M_POLL_ADDR_OS, NET_ADDR_SIZE);
+//  891   /* port is the port requested */
+//  892   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_PORT_OS, port);
+//  893   /* frame length... */
+//  894   MRFI_SET_PAYLOAD_LEN(&dFrame,F_APP_PAYLOAD_OS);
+//  895   /* transaction ID... */
+//  896   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_TRACTID_OS, sTRACTID);
+//  897   sTRACTID++;
+//  898   /* hop count... */
+//  899   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_HOP_COUNT, MAX_HOPS_FROM_AP);
+//  900 
+//  901   /* Ack fields */
+//  902   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ACK_RPLY, 0);
+//  903   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ACK_REQ, 0);
+//  904 
+//  905   /* This is logically a forwarded frame */
+//  906   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_FWD_FRAME, F_FRAME_FWD_TYPE);
+//  907 
+//  908   /* Encryption state */
+//  909 #if !defined(SMPL_SECURE)
+//  910   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ENCRYPT_OS, 0);
+//  911 #else
+//  912   PUT_INTO_FRAME(MRFI_P_PAYLOAD(&dFrame), F_ENCRYPT_OS, F_ENCRYPT_OS_MSK);
+//  913   nwk_setSecureFrame(&dFrame, 0, 0);
+//  914 #endif
+//  915 
+//  916   MRFI_Transmit(&dFrame, MRFI_TX_TYPE_FORCED);
+//  917 
+//  918   return;
+//  919 }
+//  920 
+//  921 /******************************************************************************
+//  922  * @fn          isDupSandFFrame
+//  923  *
+//  924  * @brief       Have we already stored this frame on behalf of a client?
+//  925  *
+//  926  * input parameters
+//  927  * @param   frame   - pointer to frame in question
+//  928  *
+//  929  * output parameters
+//  930  *
+//  931  * @return      Returns 1 if the frame is a duplicate, otherwise 0.
+//  932  */
+//  933 uint8_t  isDupSandFFrame(mrfiPacket_t *frame)
+//  934 {
+//  935   uint8_t      i, plLen = MRFI_GET_PAYLOAD_LEN(frame);
+//  936   frameInfo_t *fiPtr;
+//  937 
+//  938   /* check the input queue for duplicate S&F frame. */
+//  939   fiPtr = nwk_getQ(INQ);
+//  940   for (i=0; i<SIZE_INFRAME_Q; ++i, fiPtr++)
+//  941   {
+//  942     if (FI_INUSE_UNTIL_FWD == fiPtr->fi_usage)
+//  943     {
+//  944       /* compare everything except the DEVICE INFO byte. */
+//  945       if (MRFI_GET_PAYLOAD_LEN(&fiPtr->mrfiPkt) == plLen                                   &&
+//  946           !memcmp(MRFI_P_DST_ADDR(&fiPtr->mrfiPkt), MRFI_P_DST_ADDR(frame), NET_ADDR_SIZE) &&
+//  947           !memcmp(MRFI_P_SRC_ADDR(&fiPtr->mrfiPkt), MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE) &&
+//  948           !memcmp(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt), MRFI_P_PAYLOAD(frame), 1)               &&
+//  949           !memcmp(MRFI_P_PAYLOAD(&fiPtr->mrfiPkt)+F_TRACTID_OS, MRFI_P_PAYLOAD(frame)+F_TRACTID_OS, plLen-F_TRACTID_OS)
+//  950           )
+//  951       {
+//  952         return 1;
+//  953       }
+//  954     }
+//  955   }
+//  956   return 0;
+//  957 }
+//  958 #endif  /* ACCESS_POINT */
+//  959 
+//  960 #endif  /* !END_DEVICE */
+// 
+// 1 047 bytes in segment NEAR_CODE
+//    12 bytes in segment XDATA_I
+//    12 bytes in segment XDATA_ID
+//     7 bytes in segment XDATA_Z
+// 
+// 1 059 bytes of CODE  memory
+//    19 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

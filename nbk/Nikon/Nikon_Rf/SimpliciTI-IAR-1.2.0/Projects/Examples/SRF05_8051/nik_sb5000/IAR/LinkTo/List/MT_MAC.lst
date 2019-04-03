@@ -1,0 +1,2040 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         17/Jul/2016  18:16:35 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Components\mt\MT_MAC.c           #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\test\ #
+#                          SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\ #
+#                          UART_Bridge\IAR\Configuration\LinkTo\smpl_config.d #
+#                          at ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34,      #
+#                          0x12}" -DxNWK_PLL_REFERENCE_CLOCK -DLINK_TO) -f    #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\Configuration\smpl_nwk_config.dat     #
+#                          (-DMAX_HOPS=3 -DMAX_HOPS_FROM_AP=1                 #
+#                          -DMAX_NWK_PAYLOAD=34 -DMAX_APP_PAYLOAD=10          #
+#                          -DDEFAULT_LINK_TOKEN=0x01020304                    #
+#                          -DDEFAULT_JOIN_TOKEN=0x05060708                    #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Components\mt\MT_MAC.c -D        #
+#                          MCU_H=<ioCC2530.h> -D MRFI_CC2530 -lC              #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\LinkTo\List\ -lA                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\LinkTo\List\ -o                       #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\LinkTo\Obj\ -e --debug --core=plain   #
+#                          --dptr=16,1 --data_model=large                     #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\te #
+#                          st\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 #
+#                          51\UART_Bridge\IAR\..\..\..\..\..\Components\bsp\  #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\test\ #
+#                          SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\ #
+#                          UART_Bridge\IAR\..\..\..\..\..\Components\bsp\driv #
+#                          ers\ -I C:\Users\freeman\Documents\work\NBK\Nikon\ #
+#                          test\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_ #
+#                          8051\UART_Bridge\IAR\..\..\..\..\..\Components\bsp #
+#                          \boards\CC2530EM\ -I C:\Users\freeman\Documents\wo #
+#                          rk\NBK\Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Ex #
+#                          amples\SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\C #
+#                          omponents\mrfi\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Exam #
+#                          ples\SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\Com #
+#                          ponents\SimpliciTI\nwk\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\..\..\..\Applications\ -I             #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\..\..\..\..\..\Components\SimpliciTI\ #
+#                          nwk_applications\ -I C:\Users\freeman\Documents\wo #
+#                          rk\NBK\Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Ex #
+#                          amples\SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\C #
+#                          omponents\OSAL\INCLUDE\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\..\..\..\..\..\Components\OSAL\MCU\CC #
+#                          SOC\ -I C:\Users\freeman\Documents\work\NBK\Nikon\ #
+#                          test\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_ #
+#                          8051\UART_Bridge\IAR\..\..\..\..\..\Components\HAL #
+#                          \INCLUDE\ -I C:\Users\freeman\Documents\work\NBK\N #
+#                          ikon\test\SimpliciTI-IAR-1.2.0\Projects\Examples\S #
+#                          RF05_8051\UART_Bridge\IAR\..\..\..\..\..\Component #
+#                          s\HAL\TARGET\CC2530EB\ -I                          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\..\..\..\..\..\Components\SERVICES\SA #
+#                          DDR\ -I C:\Users\freeman\Documents\work\NBK\Nikon\ #
+#                          test\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_ #
+#                          8051\UART_Bridge\IAR\..\..\..\..\..\Components\SER #
+#                          VICES\SDATA\ -I C:\Users\freeman\Documents\work\NB #
+#                          K\Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Example #
+#                          s\SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\Compon #
+#                          ents\MT\ -I C:\Users\freeman\Documents\work\NBK\Ni #
+#                          kon\test\SimpliciTI-IAR-1.2.0\Projects\Examples\SR #
+#                          F05_8051\UART_Bridge\IAR\..\..\..\..\..\Components #
+#                          \STACK\AF\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Examples\ #
+#                          SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\NWK\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Exampl #
+#                          es\SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\Compo #
+#                          nents\STACK\SEC\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\test\SimpliciTI-IAR-1.2.0\Projects\Exa #
+#                          mples\SRF05_8051\UART_Bridge\IAR\..\..\..\..\..\Co #
+#                          mponents\STACK\SAPI\ -I C:\Users\freeman\Documents #
+#                          \work\NBK\Nikon\test\SimpliciTI-IAR-1.2.0\Projects #
+#                          \Examples\SRF05_8051\UART_Bridge\IAR\..\..\..\..\. #
+#                          .\Components\STACK\SYS\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\..\..\..\..\..\Components\STACK\ZDO\  #
+#                          -Ohz --require_prototypes                          #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\LinkTo\List\MT_MAC.lst                #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\test\Sim #
+#                          pliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051\UAR #
+#                          T_Bridge\IAR\LinkTo\Obj\MT_MAC.r51                 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\test\SimpliciTI-IAR-1.2.0\Components\mt\MT_MAC.c
+      1          /**************************************************************************************************
+      2            Filename:       MT_MAC.c
+      3            Revised:        $Date: 2009-03-30 22:36:57 -0700 (Mon, 30 Mar 2009) $
+      4            Revision:       $Revision: 19596 $
+      5          
+      6            Description:    MonitorTest functions for the MAC layer.
+      7          
+      8          
+      9            Copyright 2004-2007 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          #if defined (MT_MAC_FUNC) || defined (MT_MAC_CB_FUNC)  //MAC commands
+     41          /***************************************************************************************************
+     42           * INCLUDES
+     43           ***************************************************************************************************/
+     44          #include "ZComDef.h"
+     45          #include "OSAL.h"
+     46          #include "MT.h"
+     47          #include "MT_UART.h"
+     48          #include "ZMAC.h"
+     49          #include "MT_MAC.h"
+     50          
+     51          #if !defined( WIN32 )
+     52            #include "OnBoard.h"
+     53          #endif
+     54          
+     55          /* MAC radio */
+     56          #include "mac_radio_defs.h"
+     57          
+     58          /* Hal */
+     59          #include "hal_uart.h"
+     60          
+     61          /***************************************************************************************************
+     62           * MACROS
+     63           ***************************************************************************************************/
+     64          
+     65          /* The length in bytes of the pending address fields in the beacon */
+     66          #define MT_MAC_PEND_LEN(pendAddrSpec)   ((((pendAddrSpec) & 0x07) * 2) + \
+     67                                                  ((((pendAddrSpec) & 0x70) >> 4) * 8))
+     68          
+     69          /* This matches the value used by nwk */
+     70          #define MT_MAC_ED_SCAN_MAXCHANNELS      27
+     71          
+     72          /* Maximum size of pending address spec in beacon notify ind */
+     73          #define MT_MAC_PEND_LEN_MAX             32
+     74          
+     75          /* Maximum size of the payload SDU in beacon notify ind */
+     76          #define MT_MAC_SDU_LEN_MAX              32
+     77          
+     78          /* Maximum length of scan result in bytes */
+     79          #define MT_MAC_SCAN_RESULT_LEN_MAX      32
+     80          
+     81          /* Maximum size of beacon payload */
+     82          #define MT_MAC_BEACON_PAYLOAD_MAX       16
+     83          
+     84          /***************************************************************************************************
+     85           * CONSTANTS
+     86           ***************************************************************************************************/
+     87          #define DEFAULT_NSDU_HANDLE             0x00
+     88          
+     89          #define MT_MAC_LEN_ASSOCIATE_IND        0x14          /* Associate Indication */
+     90          #define MT_MAC_LEN_ASSOCIATE_CNF        0x0E          /* Associate Confirmation */
+     91          #define MT_MAC_LEN_DISASSOCIATE_IND     0x14          /* Disassociate Indication */
+     92          #define MT_MAC_LEN_DISASSOCIATE_CNF     0x0c          /* Disassociate Confirmation */
+     93          #define MT_MAC_LEN_BEACON_NOTIFY_IND    0x63          /* Beacon Notification */
+     94          #define MT_MAC_LEN_ORPHAN_IND           0x13          /* Orphan Indication */
+     95          #define MT_MAC_LEN_SCAN_CNF             0x09          /* Scan Confirmation */
+     96          #define MT_MAC_LEN_SYNC_LOSS_IND        0x10          /* Sync Loss Indication */
+     97          #define MT_MAC_LEN_COMM_STATUS_IND      0x21          /* Comm Status Indication */
+     98          #define MT_MAC_LEN_DATA_CNF             0x08          /* Data Confirmation */
+     99          #define MT_MAC_LEN_DATA_IND             0x2C          /* Data Indication */
+    100          #define MT_MAC_LEN_PURGE_CNF            0x02          /* Purge Confirmation */
+    101          
+    102          /***************************************************************************************************
+    103           * GLOBAL VARIABLES
+    104           ***************************************************************************************************/
+    105          uint16 _macCallbackSub;
+    106          
+    107          /* storage for MAC beacon payload */
+    108          static uint8 mtMacBeaconPayload[MT_MAC_BEACON_PAYLOAD_MAX];
+    109          
+    110          /***************************************************************************************************
+    111           * LOCAL FUNCTIONS
+    112           ***************************************************************************************************/
+    113          static void MT_MacSpi2Sec( ZMacSec_t *pSec, uint8 *pSrc );
+    114          static void MT_MacSpi2Addr( zAddrType_t *pDst, uint8 *pSrc );
+    115          static void MT_MacAddr2Spi( uint8 *pDst, zAddrType_t *pSrc );
+    116          static void MT_MacRevExtCpy( uint8 *pDst, uint8 *pSrc );
+    117          
+    118          void MT_MacResetReq(uint8 *pBuf);
+    119          void MT_MacInit(uint8 *pBuf);
+    120          void MT_MacStartReq(uint8 *pBuf);
+    121          void MT_MacSyncReq(uint8 *pBuf);
+    122          void MT_MacDataReq(uint8 *pBuf);
+    123          void MT_MacAssociateReq(uint8 *pBuf);
+    124          void MT_MacDisassociateReq(uint8 *pBuf);
+    125          void MT_MacGetReq(uint8 *pBuf);
+    126          void MT_MacSetReq(uint8 *pBuf);
+    127          void MT_MacScanReq(uint8 * pBuf);
+    128          void MT_MacPollReq(uint8 *pBuf);
+    129          void MT_MacPurgeReq(uint8 *pBuf);
+    130          void MT_MacSetRxGainReq(uint8 *pBuf);
+    131          void MT_MacAssociateRsp(uint8 *pBuf);
+    132          void MT_MacOrphanRsp(uint8 *pBuf);
+    133          void MT_MacSrcMatchEnable (uint8 *pBuf);
+    134          void MT_MacSrcMatchAddEntry (uint8 *pBuf);
+    135          void MT_MacSrcMatchDeleteEntry (uint8 *pBuf);
+    136          void MT_MacSrcMatchCheckSrcAddr (uint8 *pBuf);
+    137          void MT_MacSrcMatchAckAllPending (uint8 *pBuf);
+    138          void MT_MacSrcMatchCheckAllPending (uint8 *pBuf);
+    139          
+    140          /***************************************************************************************************
+    141           * @fn      MT_MacCommandProcessing
+    142           *
+    143           * @brief   Process all the MAC commands that are issued by test tool
+    144           *
+    145           * @param   pBuf - pointer to the msg buffer
+    146           *
+    147           *          | LEN  | CMD0  | CMD1  |  DATA  |
+    148           *          |  1   |   1   |   1   |  0-255 |
+    149           *
+    150           * @return  void
+    151           ***************************************************************************************************/
+    152          uint8 MT_MacCommandProcessing (uint8 *pBuf)
+    153          {
+    154            uint8 status = MT_RPC_SUCCESS;
+    155          
+    156            switch (pBuf[MT_RPC_POS_CMD1])
+    157            {
+    158              case MT_MAC_RESET_REQ:
+    159                MT_MacResetReq(pBuf);
+    160                break;
+    161          
+    162              case MT_MAC_INIT:
+    163                MT_MacInit(pBuf);
+    164                break;
+    165          
+    166              case MT_MAC_START_REQ:
+    167                MT_MacStartReq(pBuf);
+    168                break;
+    169          
+    170              case MT_MAC_SYNC_REQ:
+    171                MT_MacSyncReq(pBuf);
+    172                break;
+    173          
+    174              case MT_MAC_DATA_REQ:
+    175                MT_MacDataReq(pBuf);
+    176                break;
+    177          
+    178              case MT_MAC_ASSOCIATE_REQ:
+    179                MT_MacAssociateReq(pBuf);
+    180                break;
+    181          
+    182              case MT_MAC_DISASSOCIATE_REQ:
+    183                MT_MacDisassociateReq(pBuf);
+    184                break;
+    185          
+    186              case MT_MAC_GET_REQ:
+    187                MT_MacGetReq(pBuf);
+    188                break;
+    189          
+    190              case MT_MAC_SET_REQ:
+    191                MT_MacSetReq(pBuf);
+    192                break;
+    193          
+    194              case MT_MAC_GTS_REQ:
+    195                /* Not supported */
+    196                break;
+    197          
+    198              case MT_MAC_SCAN_REQ:
+    199                MT_MacScanReq(pBuf);
+    200                break;
+    201          
+    202              case MT_MAC_POLL_REQ:
+    203                MT_MacPollReq(pBuf);
+    204                break;
+    205          
+    206              case MT_MAC_PURGE_REQ:
+    207                MT_MacPurgeReq(pBuf);
+    208                break;
+    209          
+    210              case MT_MAC_SET_RX_GAIN_REQ:
+    211                MT_MacSetRxGainReq(pBuf);
+    212                break;
+    213          
+    214              case MT_MAC_ASSOCIATE_RSP:
+    215                MT_MacAssociateRsp(pBuf);
+    216                break;
+    217          
+    218              case MT_MAC_ORPHAN_RSP:
+    219                MT_MacOrphanRsp(pBuf);
+    220                break;
+    221          
+    222              case MT_MAC_SRC_MATCH_ENABLE:
+    223                MT_MacSrcMatchEnable(pBuf);
+    224                break;
+    225          
+    226              case MT_MAC_SRC_MATCH_ADD_ENTRY:
+    227                MT_MacSrcMatchAddEntry(pBuf);
+    228                break;
+    229          
+    230              case MT_MAC_SRC_MATCH_DEL_ENTRY:
+    231                MT_MacSrcMatchDeleteEntry(pBuf);
+    232                break;
+    233          
+    234              case MT_MAC_SRC_MATCH_CHECK_SRC_ADDR:
+    235                MT_MacSrcMatchCheckSrcAddr(pBuf);
+    236                break;
+    237          
+    238              case MT_MAC_SRC_MATCH_ACK_ALL_PENDING:
+    239                MT_MacSrcMatchAckAllPending(pBuf);
+    240                break;
+    241          
+    242              case MT_MAC_SRC_MATCH_CHECK_ALL_PENDING:
+    243                MT_MacSrcMatchCheckAllPending(pBuf);
+    244                break;
+    245          
+    246          
+    247              default:
+    248              status = MT_RPC_ERR_COMMAND_ID;
+    249              break;
+    250            }
+    251          
+    252            return status;
+    253          }
+    254          
+    255          /***************************************************************************************************
+    256           * @fn      MT_MacReset
+    257           *
+    258           * @brief   Process MAC Reset command that are issued by test tool
+    259           *
+    260           * @param   pBuf - Buffer contains the data
+    261           *
+    262           * @return  void
+    263           ***************************************************************************************************/
+    264          void MT_MacResetReq(uint8 *pBuf)
+    265          {
+    266            uint8 retValue, cmdId;
+    267          
+    268            /* Parse header */
+    269            cmdId = pBuf[MT_RPC_POS_CMD1];
+    270            pBuf += MT_RPC_FRAME_HDR_SZ;
+    271          
+    272            retValue = ZMacReset(*pBuf);
+    273          
+    274            /* Build and send back the response */
+    275            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    276          }
+    277          
+    278          /***************************************************************************************************
+    279           * @fn      MT_MacInit
+    280           *
+    281           * @brief   Process Mac Init command that are issued by test tool
+    282           *
+    283           * @param   pBuf - Buffer contains the data
+    284           *
+    285           * @return  void
+    286           ***************************************************************************************************/
+    287          void MT_MacInit(uint8 *pBuf)
+    288          {
+    289            uint8 retValue, cmdId;
+    290          
+    291            /* Parse header */
+    292            cmdId = pBuf[MT_RPC_POS_CMD1];
+    293            pBuf += MT_RPC_FRAME_HDR_SZ;
+    294          
+    295            retValue = ZMacInit();
+    296          
+    297            /* Build and send back the response */
+    298            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    299          }
+    300          
+    301          /***************************************************************************************************
+    302           * @fn      MT_MacStart
+    303           *
+    304           * @brief   Process MAC Start command that are issued by test tool
+    305           *
+    306           * @param   pBuf - Buffer contains the data
+    307           *
+    308           * @return  void
+    309           ***************************************************************************************************/
+    310          void MT_MacStartReq(uint8 *pBuf)
+    311          {
+    312            uint8 retValue, cmdId;
+    313            ZMacStartReq_t startReq;
+    314          
+    315            /* Parse header */
+    316            cmdId = pBuf[MT_RPC_POS_CMD1];
+    317            pBuf += MT_RPC_FRAME_HDR_SZ;
+    318          
+    319          #ifdef RTR_NWK
+    320          
+    321            /* StartTime */
+    322            startReq.StartTime = BUILD_UINT32 (pBuf[0], pBuf[1], pBuf[2], pBuf[3]);
+    323            pBuf += 4;
+    324          
+    325            /* PanID */
+    326            startReq.PANID = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    327            pBuf += 2;
+    328          
+    329            /* Fill in other fields sequentially incrementing the pointer*/
+    330          
+    331            startReq.LogicalChannel    =  *pBuf++;
+    332            startReq.ChannelPage       =  *pBuf++;
+    333            startReq.BeaconOrder       =  *pBuf++;
+    334            startReq.SuperframeOrder   =  *pBuf++;
+    335            startReq.PANCoordinator    =  *pBuf++;
+    336            startReq.BatteryLifeExt    =  *pBuf++;
+    337            startReq.CoordRealignment  =  *pBuf++;
+    338          
+    339            /* Realign Security Information */
+    340            MT_MacSpi2Sec( &startReq.RealignSec, pBuf );
+    341            pBuf += ZTEST_DEFAULT_SEC_LEN;
+    342          
+    343            /* Beacon Security Information */
+    344            MT_MacSpi2Sec( &startReq.BeaconSec, pBuf );
+    345          
+    346            /* Call corresponding ZMAC function */
+    347            retValue = ZMacStartReq( &startReq );
+    348          
+    349          #else
+    350          
+    351            retValue = ZMacDenied;
+    352          
+    353          #endif
+    354          
+    355            /* Build and send back the response */
+    356            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    357          }
+    358          
+    359          /***************************************************************************************************
+    360           * @fn      MT_MacSync
+    361           *
+    362           * @brief   Process MAC Sync command that are issued by test tool
+    363           *
+    364           * @param   pBuf - Buffer contains the data
+    365           *
+    366           * @return  void
+    367           ***************************************************************************************************/
+    368          void MT_MacSyncReq(uint8 *pBuf)
+    369          {
+    370            uint8 retValue, cmdId;
+    371            ZMacSyncReq_t syncReq;
+    372          
+    373            /* Parse header */
+    374            cmdId = pBuf[MT_RPC_POS_CMD1];
+    375            pBuf += MT_RPC_FRAME_HDR_SZ;
+    376          
+    377            /* LogicalChannel */
+    378            syncReq.LogicalChannel = *pBuf++;
+    379          
+    380            /* ChannelPage */
+    381            syncReq.ChannelPage = *pBuf++;
+    382          
+    383            /* TrackBeacon */
+    384            syncReq.TrackBeacon    = *pBuf;
+    385          
+    386            /* Call corresponding ZMAC function */
+    387            retValue = ZMacSyncReq( &syncReq );
+    388          
+    389            /* Build and send back the response */
+    390            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    391          }
+    392          
+    393          /***************************************************************************************************
+    394           * @fn      MT_MacDataReq
+    395           *
+    396           * @brief   Process MAC Data Request command that are issued by test tool
+    397           *
+    398           * @param   pBuf - Buffer contains the data
+    399           *
+    400           * @return  void
+    401           ***************************************************************************************************/
+    402          void MT_MacDataReq(uint8 *pBuf)
+    403          {
+    404            uint8 retValue, cmdId;
+    405            ZMacDataReq_t dataReq;
+    406          
+    407            /* Parse header */
+    408            cmdId = pBuf[MT_RPC_POS_CMD1];
+    409            pBuf += MT_RPC_FRAME_HDR_SZ;
+    410          
+    411             /* Destination address mode */
+    412            dataReq.DstAddr.addrMode = *pBuf++;
+    413          
+    414            /* Destination address */
+    415            MT_MacSpi2Addr( &dataReq.DstAddr, pBuf);
+    416            pBuf += Z_EXTADDR_LEN;
+    417          
+    418            /* Destination Pan ID */
+    419            dataReq.DstPANId = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    420            pBuf += 2;
+    421          
+    422            /* Source address mode */
+    423            dataReq.SrcAddrMode = *pBuf++;
+    424          
+    425            /* Handle */
+    426            dataReq.Handle = *pBuf++;
+    427          
+    428            /* TxOptions */
+    429            dataReq.TxOptions = *pBuf++;
+    430          
+    431            /* Channel */
+    432            dataReq.Channel = *pBuf++;
+    433          
+    434            /* Power */
+    435            dataReq.Power = *pBuf++;
+    436          
+    437            /* Security Information */
+    438            MT_MacSpi2Sec( &dataReq.Sec, pBuf );
+    439            pBuf += ZTEST_DEFAULT_SEC_LEN;
+    440          
+    441            /* Data length */
+    442            dataReq.msduLength = *pBuf++;
+    443          
+    444            /* Data - Just pass the pointer to the structure */
+    445            dataReq.msdu = pBuf;
+    446          
+    447            /* Call corresponding ZMAC function */
+    448            retValue = ZMacDataReq( &dataReq );
+    449          
+    450            /* Build and send back the response */
+    451            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    452          }
+    453          
+    454          /***************************************************************************************************
+    455           * @fn      MT_MacAssociateReq
+    456           *
+    457           * @brief   Process MAC Get Request command that are issued by test tool
+    458           *
+    459           * @param   pBuf - Buffer contains the data
+    460           *
+    461           * @return  void
+    462           ***************************************************************************************************/
+    463          void MT_MacAssociateReq(uint8 *pBuf)
+    464          {
+    465            uint8 retValue, cmdId;
+    466            ZMacAssociateReq_t    assocReq;
+    467          
+    468            /* Parse header */
+    469            cmdId = pBuf[MT_RPC_POS_CMD1];
+    470            pBuf += MT_RPC_FRAME_HDR_SZ;
+    471          
+    472            /* Logical Channel */
+    473            assocReq.LogicalChannel = *pBuf++;
+    474          
+    475            /* Channel Page */
+    476            assocReq.ChannelPage = *pBuf++;
+    477          
+    478            /* Address Mode */
+    479            assocReq.CoordAddress.addrMode = *pBuf++;
+    480          
+    481            /* Coordinator Address, address mode must be set at this point */
+    482            MT_MacSpi2Addr( &assocReq.CoordAddress, pBuf );
+    483            pBuf += Z_EXTADDR_LEN;
+    484          
+    485            /* Coordinator PanID */
+    486            assocReq.CoordPANId = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    487            pBuf += 2;
+    488          
+    489            /* Capability information */
+    490            assocReq.CapabilityInformation = *pBuf++;
+    491          
+    492            /* Security Information */
+    493            MT_MacSpi2Sec( &assocReq.Sec, pBuf );
+    494          
+    495            /* Call corresponding ZMAC function */
+    496            retValue = ZMacAssociateReq( &assocReq );
+    497          
+    498            /* Build and send back the response */
+    499            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    500          }
+    501          
+    502          /***************************************************************************************************
+    503           * @fn      MT_MacDisassociateReq
+    504           *
+    505           * @brief   Process MAC Get Request command that are issued by test tool
+    506           *
+    507           * @param   pBuf - Buffer contains the data
+    508           *
+    509           * @return  void
+    510           ***************************************************************************************************/
+    511          void MT_MacDisassociateReq(uint8 *pBuf)
+    512          {
+    513            uint8 retValue, cmdId;
+    514            ZMacDisassociateReq_t disassocReq;
+    515          
+    516            /* Parse header */
+    517            cmdId = pBuf[MT_RPC_POS_CMD1];
+    518            pBuf += MT_RPC_FRAME_HDR_SZ;
+    519          
+    520            /* Device address mode */
+    521            disassocReq.DeviceAddress.addrMode = *pBuf++;
+    522          
+    523            /* Device address - Device address mode have to be set to use this function*/
+    524            MT_MacSpi2Addr( &disassocReq.DeviceAddress, pBuf);
+    525            pBuf += Z_EXTADDR_LEN;
+    526          
+    527            /* Pan ID */
+    528            disassocReq.DevicePanId = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    529            pBuf += 2;
+    530          
+    531            /* Disassociate reason */
+    532            disassocReq.DisassociateReason = *pBuf++;
+    533          
+    534            /* TxIndirect */
+    535            disassocReq.TxIndirect = *pBuf++;
+    536          
+    537            /* Security Information */
+    538            MT_MacSpi2Sec( &disassocReq.Sec, pBuf );
+    539          
+    540            /* Call corresponding ZMAC function */
+    541            retValue = ZMacDisassociateReq( &disassocReq );
+    542          
+    543            /* Build and send back the response */
+    544            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    545          }
+    546          
+    547          /***************************************************************************************************
+    548           * @fn      MT_MacGetReq
+    549           *
+    550           * @brief   Process MAC Get Request command that are issued by test tool
+    551           *
+    552           * @param   pBuf - Buffer contains the data
+    553           *
+    554           * @return  void
+    555           ***************************************************************************************************/
+    556          void MT_MacGetReq(uint8 *pBuf)
+    557          {
+    558            uint8 respLen, cmdId, attr;
+    559            uint8 *pRetBuf;
+    560          
+    561            /* Parse header */
+    562            cmdId = pBuf[MT_RPC_POS_CMD1];
+    563            pBuf += MT_RPC_FRAME_HDR_SZ;
+    564          
+    565            /* Response length is 16 bytes + 1 byte status */
+    566            respLen = ZTEST_DEFAULT_PARAM_LEN;
+    567          
+    568            /* Allocate */
+    569            pRetBuf = osal_mem_alloc(respLen);
+    570          
+    571            /* Attribute to be read */
+    572            attr = *pBuf;
+    573          
+    574            if (pRetBuf)
+    575            {
+    576              /* Zero everything */
+    577              osal_memset(pRetBuf, 0, respLen);
+    578              /* Default to ZFailure */
+    579              pRetBuf[0] = ZFailure;
+    580              /* Read the pib value */
+    581              pRetBuf[0] = ZMacGetReq(attr, &pRetBuf[1]);
+    582          
+    583              /* Build and send back the response */
+    584              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, respLen, pRetBuf );
+    585          
+    586              /* Deallocate */
+    587              osal_mem_free(pRetBuf);
+    588            }
+    589          }
+    590          
+    591          /***************************************************************************************************
+    592           * @fn      MT_MacSetReq
+    593           *
+    594           * @brief   Process MAC Set Req command that are issued by test tool
+    595           *
+    596           * @param   pBuf - Buffer contains the data
+    597           *
+    598           * @return  void
+    599           ***************************************************************************************************/
+    600          void MT_MacSetReq(uint8 *pBuf)
+    601          {
+    602            uint8 retValue, cmdId, attr;
+    603          
+    604            /* Parse header */
+    605            cmdId = pBuf[MT_RPC_POS_CMD1];
+    606            pBuf += MT_RPC_FRAME_HDR_SZ;
+    607          
+    608            /*
+    609              In the data field of 'msg', the first byte is the attribute and remainder
+    610              is the attribute value. So the pointer 'pBuf' points directly to the attribute.
+    611              The value of the attribute is from the next byte position
+    612            */
+    613            attr = *pBuf;
+    614          
+    615            /* special case for beacon payload */
+    616            if ( attr == ZMacBeaconMSDU )
+    617            {
+    618              osal_memcpy( mtMacBeaconPayload, pBuf + 1, MT_MAC_BEACON_PAYLOAD_MAX );
+    619              retValue = ZMacSetReq( (ZMacAttributes_t)attr ,  (byte *) &mtMacBeaconPayload );
+    620            }
+    621            else
+    622            {
+    623              retValue = ZMacSetReq( (ZMacAttributes_t)attr , pBuf + 1 );
+    624            }
+    625          
+    626            /* Build and send back the response */
+    627            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    628          }
+    629          
+    630          /***************************************************************************************************
+    631           * @fn      MT_MacScanReq
+    632           *
+    633           * @brief   Process MAC Scan Req command that are issued by test tool
+    634           *
+    635           * @param   pBuf - Buffer contains the data
+    636           *
+    637           * @return  void
+    638           ***************************************************************************************************/
+    639          void MT_MacScanReq(uint8 * pBuf)
+    640          {
+    641            uint8 retValue, cmdId;
+    642            ZMacScanReq_t scanReq;
+    643          
+    644            /* Parse header */
+    645            cmdId = pBuf[MT_RPC_POS_CMD1];
+    646            pBuf += MT_RPC_FRAME_HDR_SZ;
+    647          
+    648            /* ScanChannels is the 32-bit channel list */
+    649            scanReq.ScanChannels = BUILD_UINT32 (pBuf[0], pBuf[1], pBuf[2], pBuf[3]);
+    650            pBuf += 4;
+    651          
+    652            /* Fill in fields sequentially incrementing the pointer */
+    653            scanReq.ScanType = *pBuf++;
+    654          
+    655            /* ScanDuration */
+    656            scanReq.ScanDuration = *pBuf++;
+    657          
+    658            /* Channel Page */
+    659            scanReq.ChannelPage = *pBuf++;
+    660          
+    661            /* MaxResults */
+    662            scanReq.MaxResults = *pBuf++;
+    663          
+    664            /* Security Information */
+    665            MT_MacSpi2Sec( &scanReq.Sec, pBuf );
+    666          
+    667            /* Call corresponding ZMAC function */
+    668            retValue =  ZMacScanReq( &scanReq );
+    669          
+    670            /* Build and send back the response */
+    671            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    672          }
+    673          
+    674          /***************************************************************************************************
+    675           * @fn      MT_MacPollReq
+    676           *
+    677           * @brief   Process MAC Poll Req command that are issued by test tool
+    678           *
+    679           * @param   pBuf - Buffer contains the data
+    680           *
+    681           * @return  void
+    682           ***************************************************************************************************/
+    683          void MT_MacPollReq(uint8 *pBuf)
+    684          {
+    685            uint8 retValue, cmdId;
+    686            ZMacPollReq_t pollReq;
+    687          
+    688            /* Parse header */
+    689            cmdId = pBuf[MT_RPC_POS_CMD1];
+    690            pBuf += MT_RPC_FRAME_HDR_SZ;
+    691          
+    692            /* Coordinator address mode */
+    693            pollReq.CoordAddress.addrMode = *pBuf++;
+    694          
+    695            /* Coordinator address - Device address mode have to be set to use this function */
+    696            MT_MacSpi2Addr( &pollReq.CoordAddress, pBuf);
+    697            pBuf += Z_EXTADDR_LEN;
+    698          
+    699            /* Coordinator Pan ID */
+    700            pollReq.CoordPanId = BUILD_UINT16(pBuf[0] , pBuf[1]);
+    701            pBuf += 2;
+    702          
+    703            /* Security Information */
+    704            MT_MacSpi2Sec(&pollReq.Sec, pBuf);
+    705          
+    706            /* Call corresponding ZMAC function */
+    707            retValue = ZMacPollReq( &pollReq );
+    708          
+    709            /* Build and send back the response */
+    710            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    711          }
+    712          
+    713          /***************************************************************************************************
+    714           * @fn      MT_MacPurgeReq
+    715           *
+    716           * @brief   Process MAC Purge Req command that are issued by test tool
+    717           *
+    718           * @param   pBuf - Buffer contains the data
+    719           *
+    720           * @return  void
+    721           ***************************************************************************************************/
+    722          void MT_MacPurgeReq(uint8 *pBuf)
+    723          {
+    724            uint8 retValue, cmdId;
+    725          
+    726            /* Parse header */
+    727            cmdId = pBuf[MT_RPC_POS_CMD1];
+    728            pBuf += MT_RPC_FRAME_HDR_SZ;
+    729          
+    730            /* First and only byte - MsduHandle */
+    731            retValue = ZMacPurgeReq (*pBuf);
+    732          
+    733            /* Build and send back the response */
+    734            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    735          }
+    736          
+    737          /***************************************************************************************************
+    738           * @fn      MT_MacSetRxGainReq
+    739           *
+    740           * @brief   Process MAC Rx Gain Req command that are issued by test tool
+    741           *
+    742           * @param   pBuf - Buffer contains the data
+    743           *
+    744           * @return  void
+    745           ***************************************************************************************************/
+    746          void MT_MacSetRxGainReq(uint8 *pBuf)
+    747          {
+    748            uint8 retValue, cmdId;
+    749          
+    750            /* Parse header */
+    751            cmdId = pBuf[MT_RPC_POS_CMD1];
+    752            pBuf += MT_RPC_FRAME_HDR_SZ;
+    753          
+    754          #ifdef HAL_PA_LNA
+    755            /* Toggle PA/LNA mode */
+    756            if (*pBuf)
+    757            {
+    758              HAL_PA_LNA_RX_HGM();
+    759            }
+    760            else
+    761            {
+    762              HAL_PA_LNA_RX_LGM();
+    763            }
+    764            retValue = ZSuccess;
+    765          #else
+    766            retValue = ZFailure;
+    767          #endif
+    768          
+    769          
+    770            /* Build and send back the response */
+    771            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    772          }
+    773          
+    774          /***************************************************************************************************
+    775           * @fn          MT_MacAssociateRsp
+    776           *
+    777           * @brief       Process MAC Associate Rsp command that are issued by test tool
+    778           *
+    779           * @param       pBuf - Buffer contains the data
+    780           *
+    781           * @return      void
+    782           ***************************************************************************************************/
+    783          void MT_MacAssociateRsp(uint8 *pBuf)
+    784          {
+    785            uint8 retValue, cmdId;
+    786            ZMacAssociateRsp_t assocRsp;
+    787          
+    788            /* Parse header */
+    789            cmdId = pBuf[MT_RPC_POS_CMD1];
+    790            pBuf += MT_RPC_FRAME_HDR_SZ;
+    791          
+    792          #ifdef RTR_NWK
+    793          
+    794            /* The address of the device requesting association */
+    795            MT_MacRevExtCpy(assocRsp.DeviceAddress, pBuf);
+    796            pBuf += Z_EXTADDR_LEN;
+    797          
+    798            /* The short address allocated to the (associated) device */
+    799            assocRsp.AssocShortAddress = BUILD_UINT16(pBuf[0],pBuf[1]);
+    800            pBuf += 2;
+    801          
+    802            /* Status of the association */
+    803            assocRsp.Status = *pBuf++;
+    804          
+    805            /* Security Information */
+    806            MT_MacSpi2Sec( &assocRsp.Sec, pBuf );
+    807          
+    808            /* Call corresponding ZMAC function */
+    809            retValue = ZMacAssociateRsp( &assocRsp );
+    810          
+    811          #else
+    812          
+    813            retValue = ZMacDenied;
+    814          
+    815          #endif
+    816          
+    817            /* Build and send back the response */
+    818            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue);
+    819          }
+    820          
+    821          /***************************************************************************************************
+    822           * @fn      MT_MacOrphanRsp
+    823           *
+    824           * @brief   Process MAC Orphan Response command that are issued by test tool
+    825           *
+    826           * @param   pBuf - Buffer contains the data
+    827           *
+    828           * @return  void
+    829           ***************************************************************************************************/
+    830          void MT_MacOrphanRsp(uint8 *pBuf)
+    831          {
+    832            uint8 retValue, cmdId;
+    833            ZMacOrphanRsp_t orphanRsp;
+    834          
+    835            /* Parse header */
+    836            cmdId = pBuf[MT_RPC_POS_CMD1];
+    837            pBuf += MT_RPC_FRAME_HDR_SZ;
+    838          
+    839            /* Extended address of the device sending the notification */
+    840            MT_MacRevExtCpy( orphanRsp.OrphanAddress, pBuf );
+    841            pBuf += Z_EXTADDR_LEN;
+    842          
+    843            /* Short address of the orphan device */
+    844            orphanRsp.ShortAddress = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    845            pBuf += 2;
+    846          
+    847            /* Associated member */
+    848            orphanRsp.AssociatedMember = *pBuf++;
+    849          
+    850            /* Security Information */
+    851            MT_MacSpi2Sec( &orphanRsp.Sec, pBuf );
+    852          
+    853            /* Call corresponding ZMAC function */
+    854            retValue = ZMacOrphanRsp( &orphanRsp );
+    855          
+    856            /* Build and send back the response */
+    857            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue);
+    858          }
+    859          
+    860          /***************************************************************************************************
+    861           * @fn          MAC_SrcMatchEnable
+    862           *
+    863           * @brief      Enabled AUTOPEND and source address matching.
+    864           *
+    865           * @param      pBuf - Buffer contains the data
+    866           *
+    867           * @return     void
+    868           ***************************************************************************************************/
+    869          void MT_MacSrcMatchEnable (uint8 *pBuf)
+    870          {
+    871            uint8 retValue, cmdId;
+    872          
+    873            /* Parse header */
+    874            cmdId = pBuf[MT_RPC_POS_CMD1];
+    875            pBuf += MT_RPC_FRAME_HDR_SZ;
+    876          
+    877          #ifdef AUTO_PEND
+    878            /* Call the routine */
+    879            retValue = ZMacSrcMatchEnable (pBuf[0], pBuf[1]);
+    880          #else
+    881            retValue = ZMacUnsupported;
+    882          #endif
+    883          
+    884            /* Build and send back the response */
+    885            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    886          
+    887          }
+    888          
+    889          /***************************************************************************************************
+    890           * @fn          MAC_SrcMatchAddEntry
+    891           *
+    892           * @brief       Add a short or extended address to source address table.
+    893           *
+    894           * @param       pBuf - Buffer contains the data
+    895           *
+    896           * @return      void
+    897           ***************************************************************************************************/
+    898          void MT_MacSrcMatchAddEntry (uint8 *pBuf)
+    899          {
+    900            uint8 retValue, cmdId;
+    901          
+    902            /* Parse header */
+    903            cmdId = pBuf[MT_RPC_POS_CMD1];
+    904            pBuf += MT_RPC_FRAME_HDR_SZ;
+    905          
+    906          #ifdef AUTO_PEND
+    907            uint16 panID;
+    908            zAddrType_t devAddr;
+    909          
+    910            /* Address mode */
+    911            devAddr.addrMode = *pBuf++;
+    912          
+    913            /* Address based on the address mode */
+    914            MT_MacSpi2Addr( &devAddr, pBuf);
+    915            pBuf += Z_EXTADDR_LEN;
+    916          
+    917            /* PanID */
+    918            panID = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    919          
+    920          
+    921            /* Call the routine */
+    922            retValue =  ZMacSrcMatchAddEntry (&devAddr, panID);
+    923          #else
+    924            retValue = ZMacUnsupported;
+    925          #endif
+    926          
+    927            /* Build and send back the response */
+    928            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    929          }
+    930          
+    931          
+    932          /***************************************************************************************************
+    933           * @fn          MAC_SrcMatchDeleteEntry
+    934           *
+    935           * @brief      Delete a short or extended address from source address table.
+    936           *
+    937           * @param      pBuf - Buffer contains the data
+    938           *
+    939           * @return     void
+    940           ***************************************************************************************************/
+    941          void MT_MacSrcMatchDeleteEntry (uint8 *pBuf)
+    942          {
+    943            uint8 retValue, cmdId;
+    944          
+    945            /* Parse header */
+    946            cmdId = pBuf[MT_RPC_POS_CMD1];
+    947            pBuf += MT_RPC_FRAME_HDR_SZ;
+    948          
+    949          #ifdef AUTO_PEND
+    950            uint16 panID;
+    951            zAddrType_t devAddr;
+    952          
+    953            /* Address mode */
+    954            devAddr.addrMode = *pBuf++;
+    955          
+    956            /* Address based on the address mode */
+    957            MT_MacSpi2Addr( &devAddr, pBuf);
+    958            pBuf += Z_EXTADDR_LEN;
+    959          
+    960            /* PanID */
+    961            panID = BUILD_UINT16( pBuf[0] , pBuf[1] );
+    962          
+    963          
+    964            /* Call the routine */
+    965            retValue =  ZMacSrcMatchDeleteEntry (&devAddr, panID);
+    966          #else
+    967            retValue = ZMacUnsupported;
+    968          #endif
+    969          
+    970            /* Build and send back the response */
+    971            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+    972          }
+    973          
+    974          
+    975          /***************************************************************************************************
+    976           * @fn          MT_MacSrcMatchCheckSrcAddr
+    977           *
+    978           * @brief      Check if a short or extended address is in the source address table.
+    979           *
+    980           * @param      pBuf - Buffer contains the data
+    981           *
+    982           * @return     void
+    983           ***************************************************************************************************/
+    984          void MT_MacSrcMatchCheckSrcAddr (uint8 *pBuf)
+    985          {
+    986            uint8 cmdId;
+    987            uint8 retArray[2];
+    988          
+    989            /* Parse header */
+    990            cmdId = pBuf[MT_RPC_POS_CMD1];
+    991            pBuf += MT_RPC_FRAME_HDR_SZ;
+    992          
+    993          #if 0  /* Unsupported  */
+    994            uint16 panID;
+    995            zAddrType_t devAddr;
+    996          
+    997            /* Address mode */
+    998            devAddr.addrMode = *pBuf++;
+    999          
+   1000            /* Address based on the address mode */
+   1001            MT_MacSpi2Addr( &devAddr, pBuf);
+   1002            pBuf += Z_EXTADDR_LEN;
+   1003          
+   1004            /* PanID */
+   1005            panID = BUILD_UINT16( pBuf[0] , pBuf[1] );
+   1006          
+   1007            /* Call the routine */
+   1008            retArray[1] =  ZMacSrcMatchCheckSrcAddr (&devAddr, panID);
+   1009          
+   1010              /* Return failure if the index is invalid */
+   1011            if (retArray[1] == ZMacSrcMatchInvalidIndex )
+   1012            {
+   1013              retArray[0] = ZFailure;
+   1014            }
+   1015            else
+   1016            {
+   1017              retArray[0] = ZSuccess;
+   1018            }
+   1019          #else
+   1020            retArray[0] = ZMacUnsupported;
+   1021            retArray[1] = ZMacSrcMatchInvalidIndex;
+   1022          #endif
+   1023          
+   1024            /* Build and send back the response */
+   1025            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 2, retArray );
+   1026          }
+   1027          
+   1028          
+   1029          /***************************************************************************************************
+   1030           * @fn          MAC_SrcMatchAckAllPending
+   1031           *
+   1032           * @brief       Enabled/disable acknowledging all packets with pending bit set
+   1033           *              It is normally enabled when adding new entries to
+   1034           *              the source address table fails due to the table is full, or
+   1035           *              disabled when more entries are deleted and the table has
+   1036           *              empty slots.
+   1037           *
+   1038           * @param       pBuf - Buffer contains the data
+   1039           *
+   1040           * @return      void
+   1041           ***************************************************************************************************/
+   1042          void MT_MacSrcMatchAckAllPending (uint8 *pBuf)
+   1043          {
+   1044            uint8 retValue, cmdId;
+   1045          
+   1046            /* Parse header */
+   1047            cmdId = pBuf[MT_RPC_POS_CMD1];
+   1048            pBuf += MT_RPC_FRAME_HDR_SZ;
+   1049          
+   1050          #ifdef AUTO_PEND
+   1051            /* Call the routine */
+   1052            retValue = ZMacSrcMatchAckAllPending(*pBuf);
+   1053          #else
+   1054            retValue = ZMacUnsupported;
+   1055          #endif
+   1056          
+   1057            /* Build and send back the response */
+   1058            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 1, &retValue );
+   1059          }
+   1060          
+   1061          
+   1062          /***************************************************************************************************
+   1063           * @fn          MT_MacSrcMatchCheckAllPending
+   1064           *
+   1065           * @brief       Check if acknowledging all packets with pending bit set
+   1066           *              is enabled.
+   1067           *
+   1068           * @param       pBuf - Buffer contains the data
+   1069           *
+   1070           * @return      void
+   1071           ***************************************************************************************************/
+   1072          void MT_MacSrcMatchCheckAllPending (uint8 *pBuf)
+   1073          {
+   1074            uint8 retArray[2], cmdId;
+   1075          
+   1076            /* Parse header */
+   1077            cmdId = pBuf[MT_RPC_POS_CMD1];
+   1078            pBuf += MT_RPC_FRAME_HDR_SZ;
+   1079          
+   1080          #ifdef AUTO_PEND
+   1081            /* Call the routine */
+   1082            retArray[0] = ZMacSuccess;
+   1083            retArray[1] = ZMacSrcMatchCheckAllPending();
+   1084          #else
+   1085            retArray[0] = ZMacUnsupported;
+   1086            retArray[1] = FALSE;
+   1087          #endif
+   1088          
+   1089            /* Build and send back the response */
+   1090            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_MAC), cmdId, 2, retArray );
+   1091          }
+   1092          
+   1093          #if defined ( MT_MAC_CB_FUNC )
+   1094          
+   1095          /***************************************************************************************************
+   1096           * @fn          nwk_MTCallbackSubNwkSyncLossInd
+   1097           *
+   1098           * @brief       Process the callback subscription for nwk_sync_loss_ind
+   1099           *
+   1100           * @param       byte LossReason
+   1101           *
+   1102           * @return      None
+   1103           ***************************************************************************************************/
+   1104          void nwk_MTCallbackSubNwkSyncLossInd( ZMacSyncLossInd_t *param )
+   1105          {
+   1106            uint8 respLen;
+   1107            uint8 *pRetBuf, *tp;
+   1108          
+   1109            respLen = MT_MAC_LEN_SYNC_LOSS_IND;
+   1110          
+   1111            pRetBuf = osal_mem_alloc (respLen);
+   1112          
+   1113            if ( pRetBuf )
+   1114            {
+   1115              tp = pRetBuf;
+   1116          
+   1117              /*  Status - loss reason */
+   1118              *tp++ = param->hdr.Status;
+   1119          
+   1120              /* Pan Id */
+   1121              *tp++ = LO_UINT16( param->PANId );
+   1122              *tp++ = HI_UINT16( param->PANId );
+   1123          
+   1124              /* Logical Channel */
+   1125              *tp++ = param->LogicalChannel;
+   1126          
+   1127              /* Channel Page */
+   1128              *tp++ = param->ChannelPage;
+   1129          
+   1130              /* Security */
+   1131              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1132          
+   1133              /* Build and send back the response */
+   1134              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_SYNC_LOSS_IND, respLen, pRetBuf);
+   1135          
+   1136              /* Deallocate */
+   1137              osal_mem_free(pRetBuf);
+   1138            }
+   1139          }
+   1140          
+   1141          /***************************************************************************************************
+   1142           * @fn          nwk_MTCallbackSubNwkAssociateInd
+   1143           *
+   1144           * @brief       Process the callback subscription for nwk_associate_ind
+   1145           *
+   1146           * @param       pointer of type macnwk_associate_ind_t
+   1147           *
+   1148           * @return      None
+   1149           ***************************************************************************************************/
+   1150          void nwk_MTCallbackSubNwkAssociateInd( ZMacAssociateInd_t *param )
+   1151          {
+   1152            uint8 respLen;
+   1153            uint8 *pRetBuf, *tp;
+   1154          
+   1155            respLen = MT_MAC_LEN_ASSOCIATE_IND;
+   1156          
+   1157            pRetBuf = osal_mem_alloc (respLen);
+   1158          
+   1159            if ( pRetBuf )
+   1160            {
+   1161              tp = pRetBuf;
+   1162          
+   1163              /* Extended address */
+   1164              MT_MacAddr2Spi(pRetBuf, (zAddrType_t*)param->DeviceAddress);
+   1165              tp += Z_EXTADDR_LEN;
+   1166          
+   1167              /* Capability Information */
+   1168              *tp++ = param->CapabilityInformation;
+   1169          
+   1170              /* Security */
+   1171              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1172          
+   1173              /* Build and send back the response */
+   1174              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_ASSOCIATE_IND, respLen, pRetBuf);
+   1175          
+   1176              /* Deallocate */
+   1177              osal_mem_free(pRetBuf);
+   1178            }
+   1179          }
+   1180          
+   1181          /***************************************************************************************************
+   1182           * @fn          nwk_MTCallbackSubNwkAssociateCnf
+   1183           *
+   1184           * @brief       Process the callback subscription for nwk_associate_cnf
+   1185           *
+   1186           * @param       pointer of type macnwk_associate_cnf_t
+   1187           *
+   1188           * @return      SUCCESS if message sent succesfully , else N_FAIL
+   1189           ***************************************************************************************************/
+   1190          void nwk_MTCallbackSubNwkAssociateCnf( ZMacAssociateCnf_t *param )
+   1191          {
+   1192            uint8 respLen;
+   1193            uint8 *pRetBuf, *tp;
+   1194          
+   1195            respLen = MT_MAC_LEN_ASSOCIATE_CNF;
+   1196          
+   1197            pRetBuf = osal_mem_alloc (respLen);
+   1198          
+   1199            if ( pRetBuf )
+   1200            {
+   1201              tp = pRetBuf;
+   1202          
+   1203              /* Status */
+   1204              *tp++ = param->hdr.Status;
+   1205          
+   1206              /* Short address */
+   1207              *tp++ = LO_UINT16( param->AssocShortAddress );
+   1208              *tp++ = HI_UINT16( param->AssocShortAddress );
+   1209          
+   1210              /* Security */
+   1211              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1212          
+   1213              /* Build and send back the response */
+   1214              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_ASSOCIATE_CNF, respLen, pRetBuf);
+   1215          
+   1216              /* Deallocate */
+   1217              osal_mem_free(pRetBuf);
+   1218            }
+   1219          }
+   1220          
+   1221          /***************************************************************************************************
+   1222           * @fn          nwk_MTCallbackSubNwkBeaconNotifyInd
+   1223           *
+   1224           * @brief       Process the callback subscription for
+   1225           *              beacon_notify_ind.
+   1226           *
+   1227           * @param       pointer to ZMacBeaconNotifyInd_t
+   1228           *
+   1229           * @return      None
+   1230           ***************************************************************************************************/
+   1231          void nwk_MTCallbackSubNwkBeaconNotifyInd ( ZMacBeaconNotifyInd_t *param )
+   1232          {
+   1233            uint8 respLen;
+   1234            uint8 *pRetBuf, *tp;
+   1235          
+   1236            respLen = MT_MAC_LEN_BEACON_NOTIFY_IND;
+   1237          
+   1238            pRetBuf = osal_mem_alloc (respLen);
+   1239          
+   1240            if ( pRetBuf )
+   1241            {
+   1242              tp = pRetBuf;
+   1243          
+   1244              /* BSN */
+   1245              *tp++ = param->BSN;
+   1246          
+   1247              /* Timestamp */
+   1248              *tp++ = BREAK_UINT32( param->pPanDesc->TimeStamp, 0 );
+   1249              *tp++ = BREAK_UINT32( param->pPanDesc->TimeStamp, 1 );
+   1250              *tp++ = BREAK_UINT32( param->pPanDesc->TimeStamp, 2 );
+   1251              *tp++ = BREAK_UINT32( param->pPanDesc->TimeStamp, 3 );
+   1252          
+   1253              /* Coordinator address mode */
+   1254              *tp++ = param->pPanDesc->CoordAddress.addrMode;
+   1255          
+   1256              /* Coordinator address */
+   1257              MT_MacAddr2Spi( tp, &param->pPanDesc->CoordAddress );
+   1258              tp += Z_EXTADDR_LEN;
+   1259          
+   1260              /* PAN ID */
+   1261              *tp++ = LO_UINT16( param->pPanDesc->CoordPANId );
+   1262              *tp++ = HI_UINT16( param->pPanDesc->CoordPANId );
+   1263          
+   1264              /* Superframe spec */
+   1265              *tp++ = LO_UINT16( param->pPanDesc->SuperframeSpec );
+   1266              *tp++ = HI_UINT16( param->pPanDesc->SuperframeSpec );
+   1267          
+   1268              /* LogicalChannel */
+   1269              *tp++ = param->pPanDesc->LogicalChannel;
+   1270          
+   1271              /* GTSPermit */
+   1272              *tp++ = param->pPanDesc->GTSPermit;
+   1273          
+   1274              /* LinkQuality */
+   1275              *tp++ = param->pPanDesc->LinkQuality;
+   1276          
+   1277              /* SecurityFailure */
+   1278              *tp++ = param->pPanDesc->SecurityFailure;
+   1279          
+   1280              /* Security */
+   1281              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->pPanDesc->Sec);
+   1282              tp += ZTEST_DEFAULT_SEC_LEN;
+   1283          
+   1284              /* PendingAddrSpec */
+   1285              *tp++ = param->PendAddrSpec;
+   1286          
+   1287              /* AddrList */
+   1288              osal_memset( tp, 0, MT_MAC_PEND_LEN_MAX );
+   1289              osal_memcpy( tp, param->AddrList, MIN(MT_MAC_PEND_LEN_MAX, MT_MAC_PEND_LEN(param->PendAddrSpec)) );
+   1290              tp += MT_MAC_PEND_LEN_MAX;
+   1291          
+   1292              /* SDULength */
+   1293              *tp++ = param->sduLength;
+   1294          
+   1295              /* SDU */
+   1296              osal_memset( tp, 0, MT_MAC_SDU_LEN_MAX );
+   1297              osal_memcpy( tp, param->sdu, MIN(MT_MAC_SDU_LEN_MAX, param->sduLength) );
+   1298          
+   1299              /* Build and send back the response */
+   1300              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_BEACON_NOTIFY_IND, respLen, pRetBuf);
+   1301          
+   1302              /* Deallocate */
+   1303              osal_mem_free(pRetBuf);
+   1304          
+   1305            }
+   1306          }
+   1307          
+   1308          /***************************************************************************************************
+   1309           * @fn          nwk_MTCallbackSubNwkDataCnf
+   1310           *
+   1311           * @brief       Process the callback subscription for nwk_data_cnf
+   1312           *
+   1313           * @param       pointer of type macnwk_data_cnf_t
+   1314           *
+   1315           * @return      None
+   1316           ***************************************************************************************************/
+   1317          void nwk_MTCallbackSubNwkDataCnf( ZMacDataCnf_t *param )
+   1318          {
+   1319            uint8 *pRetBuf, *tp;
+   1320          
+   1321            /* Allocate */
+   1322            pRetBuf = osal_mem_alloc(MT_MAC_LEN_DATA_CNF);
+   1323          
+   1324            if (pRetBuf)
+   1325            {
+   1326              tp = pRetBuf;
+   1327          
+   1328              /* Status */
+   1329              *tp++ = param->hdr.Status;
+   1330          
+   1331              /* Handle */
+   1332              *tp++ = param->msduHandle;
+   1333          
+   1334              /* Timestamp */
+   1335              *tp++ = BREAK_UINT32( param->Timestamp, 0 );
+   1336              *tp++ = BREAK_UINT32( param->Timestamp, 1 );
+   1337              *tp++ = BREAK_UINT32( param->Timestamp, 2 );
+   1338              *tp++ = BREAK_UINT32( param->Timestamp, 3 );
+   1339          
+   1340              /* Timestamp2 */
+   1341              *tp++ = LO_UINT16( param->Timestamp2);
+   1342              *tp = HI_UINT16( param->Timestamp2);
+   1343          
+   1344              /* Build and send back the response */
+   1345              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_DATA_CNF, MT_MAC_LEN_DATA_CNF, pRetBuf);
+   1346          
+   1347              /* Deallocate */
+   1348              osal_mem_free(pRetBuf);
+   1349            }
+   1350          }
+   1351          
+   1352          /***************************************************************************************************
+   1353           * @fn          nwk_MTCallbackSubNwkDataInd
+   1354           *
+   1355           * @brief       Process the callback subscription for nwk_data_ind
+   1356           *
+   1357           * @param       pointer of type macnwk_data_ind_t
+   1358           *
+   1359           * @return      None
+   1360           ***************************************************************************************************/
+   1361          void nwk_MTCallbackSubNwkDataInd( ZMacDataInd_t *param )
+   1362          {
+   1363            uint8 respLen, tempLen;
+   1364            uint8 *pRetBuf, *tp;
+   1365          
+   1366            /* Packet length is 44 + 102 data */
+   1367            respLen = MT_MAC_LEN_DATA_IND + ZTEST_DEFAULT_DATA_LEN;
+   1368          
+   1369            pRetBuf = osal_mem_alloc (respLen);
+   1370          
+   1371            if ( pRetBuf )
+   1372            {
+   1373              tp = pRetBuf;
+   1374          
+   1375              /* Src address mode */
+   1376              *tp++ = param->SrcAddr.addrMode;
+   1377          
+   1378              if (param->SrcAddr.addrMode != SADDR_MODE_NONE)
+   1379              {
+   1380                /* Src Address */
+   1381                MT_MacAddr2Spi( tp, &param->SrcAddr );
+   1382              }
+   1383              else
+   1384              {
+   1385                /* No address */
+   1386                for ( uint8 i = 0; i< Z_EXTADDR_LEN; i++ )
+   1387                {
+   1388                  tp[i] = 0x00;
+   1389                }
+   1390              }
+   1391              tp += Z_EXTADDR_LEN;
+   1392          
+   1393              /* Dst address mode */
+   1394              *tp++ = param->DstAddr.addrMode;
+   1395          
+   1396              /* Dst address */
+   1397              MT_MacAddr2Spi( tp, &param->DstAddr );
+   1398              tp += Z_EXTADDR_LEN;
+   1399          
+   1400                 /* Timestamp */
+   1401              *tp++ = BREAK_UINT32( param->Timestamp, 0 );
+   1402              *tp++ = BREAK_UINT32( param->Timestamp, 1 );
+   1403              *tp++ = BREAK_UINT32( param->Timestamp, 2 );
+   1404              *tp++ = BREAK_UINT32( param->Timestamp, 3 );
+   1405          
+   1406              /* Timestamp2 */
+   1407              *tp++ = LO_UINT16( param->Timestamp2);
+   1408              *tp++ = HI_UINT16( param->Timestamp2);
+   1409          
+   1410              /* Src Pan Id */
+   1411              *tp++ = LO_UINT16( param->SrcPANId );
+   1412              *tp++ = HI_UINT16( param->SrcPANId );
+   1413          
+   1414              /* Dst Pan Id */
+   1415              *tp++ = LO_UINT16( param->DstPANId );
+   1416              *tp++ = HI_UINT16( param->DstPANId );
+   1417          
+   1418              /* mpdu Link Quality */
+   1419              *tp++ = param->mpduLinkQuality;
+   1420          
+   1421              /* LQI */
+   1422              *tp++ = param->Correlation;
+   1423          
+   1424              /* RSSI */
+   1425              *tp++ = param->Rssi;
+   1426          
+   1427              /* DSN */
+   1428              *tp++ = param->Dsn;
+   1429          
+   1430              /* Security */
+   1431              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1432              tp += ZTEST_DEFAULT_SEC_LEN;
+   1433          
+   1434              /* Determine the length of the actual data */
+   1435              if ( param->msduLength < ZTEST_DEFAULT_DATA_LEN )
+   1436                tempLen = param->msduLength;
+   1437              else
+   1438                tempLen = ZTEST_DEFAULT_DATA_LEN;
+   1439          
+   1440              /* Length */
+   1441              *tp++ = tempLen;
+   1442          
+   1443              /* Copy the data according to Len, the rest are zeroed out */
+   1444              osal_memset( tp, 0, ZTEST_DEFAULT_DATA_LEN );
+   1445              osal_memcpy( tp, param->msdu, tempLen );
+   1446          
+   1447              /* Build and send back the response */
+   1448              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_DATA_IND, respLen, pRetBuf);
+   1449          
+   1450              /* Deallocate */
+   1451              osal_mem_free(pRetBuf);
+   1452            }
+   1453          }
+   1454          
+   1455          /***************************************************************************************************
+   1456           * @fn          nwk_MTCallbackSubNwkDisassociateInd
+   1457           *
+   1458           * @brief       Process the callback subscription for nwk_disassociate_ind
+   1459           *
+   1460           * @param       pointer of type macnwk_disassociate_ind_t
+   1461           *
+   1462           * @return      None
+   1463           ***************************************************************************************************/
+   1464          void nwk_MTCallbackSubNwkDisassociateInd( ZMacDisassociateInd_t *param )
+   1465          {
+   1466            uint8 respLen;
+   1467            uint8 *pRetBuf, *tp;
+   1468          
+   1469            respLen = MT_MAC_LEN_DISASSOCIATE_IND;
+   1470          
+   1471            pRetBuf = osal_mem_alloc (respLen);
+   1472          
+   1473            if ( pRetBuf )
+   1474            {
+   1475              tp = pRetBuf;
+   1476          
+   1477              /* Extended address */
+   1478              MT_MacRevExtCpy( pRetBuf, param->DeviceAddress );
+   1479              tp += Z_EXTADDR_LEN;
+   1480          
+   1481              /* Disassociate Reason */
+   1482              *tp++ = param->DisassociateReason;
+   1483          
+   1484              /* Security */
+   1485              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1486          
+   1487              /* Build and send back the response */
+   1488              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_DISASSOCIATE_IND, respLen, pRetBuf);
+   1489          
+   1490              /* Deallocate */
+   1491              osal_mem_free(pRetBuf);
+   1492            }
+   1493          }
+   1494          
+   1495          /***************************************************************************************************
+   1496           * @fn          nwk_MTCallbackSubNwkDisassociateCnf
+   1497           *
+   1498           * @brief       Process the callback subscription for nwk_disassociate_cnf
+   1499           *
+   1500           * @param       param
+   1501           *
+   1502           * @return      None
+   1503           ***************************************************************************************************/
+   1504          void nwk_MTCallbackSubNwkDisassociateCnf( ZMacDisassociateCnf_t *param )
+   1505          {
+   1506            uint8 respLen;
+   1507            uint8 *pRetBuf, *tp;
+   1508          
+   1509            respLen = MT_MAC_LEN_DISASSOCIATE_CNF;
+   1510          
+   1511            pRetBuf = osal_mem_alloc (respLen);
+   1512          
+   1513            if ( pRetBuf )
+   1514            {
+   1515              tp = pRetBuf;
+   1516          
+   1517              /* Status */
+   1518              *tp++ = param->hdr.Status;
+   1519          
+   1520              /* DeviceAddress */
+   1521              *tp++ = param->DeviceAddress.addrMode;
+   1522          
+   1523              /* Copy Address */
+   1524              MT_MacAddr2Spi( tp, &param->DeviceAddress );
+   1525              tp += Z_EXTADDR_LEN;
+   1526          
+   1527              /* Pan ID */
+   1528              *tp++ = LO_UINT16( param->panID );
+   1529              *tp = HI_UINT16( param->panID );
+   1530          
+   1531              /* Build and send back the response */
+   1532              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_DISASSOCIATE_CNF, respLen, pRetBuf);
+   1533          
+   1534              /* Deallocate */
+   1535              osal_mem_free(pRetBuf);
+   1536            }
+   1537          }
+   1538          
+   1539          /***************************************************************************************************
+   1540           * @fn          nwk_MTCallbackSubNwkOrphanInd
+   1541           *
+   1542           * @brief       Process the callback subscription for nwk_orphan_ind
+   1543           *
+   1544           * @param       pointer of type macnwk_orphan_ind_t
+   1545           *
+   1546           * @return      SUCCESS if message sent succesfully , else N_FAIL
+   1547           ***************************************************************************************************/
+   1548          void nwk_MTCallbackSubNwkOrphanInd( ZMacOrphanInd_t *param )
+   1549          {
+   1550            uint8 respLen;
+   1551            uint8 *pRetBuf, *tp;
+   1552          
+   1553            respLen = MT_MAC_LEN_ORPHAN_IND;
+   1554          
+   1555            pRetBuf = osal_mem_alloc (respLen);
+   1556          
+   1557            if ( pRetBuf )
+   1558            {
+   1559              tp = pRetBuf;
+   1560          
+   1561              /* Extended address */
+   1562              MT_MacRevExtCpy( tp, param->OrphanAddress );
+   1563              tp += Z_EXTADDR_LEN;
+   1564          
+   1565              /* Security */
+   1566              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1567          
+   1568              /* Build and send back the response */
+   1569              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_ORPHAN_IND, respLen, pRetBuf);
+   1570          
+   1571              /* Deallocate */
+   1572              osal_mem_free(pRetBuf);
+   1573            }
+   1574          }
+   1575          
+   1576          /***************************************************************************************************
+   1577           * @fn          nwk_MTCallbackSubNwkPollCnf
+   1578           *
+   1579           * @brief       Process the callback subscription for nwk_poll_cnf
+   1580           *
+   1581           * @param       byte Status
+   1582           *
+   1583           * @return      None
+   1584           ***************************************************************************************************/
+   1585          void nwk_MTCallbackSubNwkPollCnf( byte Status )
+   1586          {
+   1587            uint8 retValue;
+   1588          
+   1589            /*The only data byte is Status */
+   1590            retValue = Status;
+   1591          
+   1592            /* Build and send back the response */
+   1593            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_POLL_CNF, 1, &retValue);
+   1594          }
+   1595          
+   1596          /***************************************************************************************************
+   1597           * @fn          nwk_MTCallbackSubNwkScanCnf
+   1598           *
+   1599           * @brief       Process the callback subscription for nwk_scan_cnf
+   1600           *
+   1601           * @param       pointer of type macnwk_scan_cnf_t
+   1602           *
+   1603           * @return      SUCCESS if message sent succesfully , else N_FAIL
+   1604           ***************************************************************************************************/
+   1605          void nwk_MTCallbackSubNwkScanCnf( ZMacScanCnf_t *param )
+   1606          {
+   1607            uint8 respLen, resultLen;
+   1608            uint8 *pRetBuf, *tp;
+   1609          
+   1610            /* Depends on the type of scan, calculate the required length */
+   1611            if ( param->ScanType == ZMAC_ED_SCAN )
+   1612              resultLen = MT_MAC_ED_SCAN_MAXCHANNELS;
+   1613            else if ( param->ScanType == ZMAC_ACTIVE_SCAN )
+   1614              resultLen = (param->ResultListSize * sizeof( ZMacPanDesc_t ));
+   1615            else if ( param->ScanType == ZMAC_PASSIVE_SCAN )
+   1616              resultLen = (param->ResultListSize * sizeof( ZMacPanDesc_t ));
+   1617            else if ( param->ScanType == ZMAC_ORPHAN_SCAN )
+   1618              resultLen = 0;
+   1619            else
+   1620              return;
+   1621          
+   1622            /* Make sure the result wont be more than the size */
+   1623            resultLen = MIN(resultLen, MT_MAC_SCAN_RESULT_LEN_MAX);
+   1624          
+   1625            respLen = MT_MAC_LEN_SCAN_CNF + MT_MAC_SCAN_RESULT_LEN_MAX + 1;  /* Extra byte for the length of the list */
+   1626          
+   1627            /* Allocate */
+   1628            pRetBuf = osal_mem_alloc (respLen);
+   1629          
+   1630            if ( pRetBuf )
+   1631            {
+   1632              tp = pRetBuf;
+   1633          
+   1634              /* Status */
+   1635              *tp++ = param->hdr.Status;
+   1636          
+   1637              /* ED max energy parameter no longer used */
+   1638              *tp++ = 0;
+   1639          
+   1640              /* Scan type */
+   1641              *tp++ = param->ScanType;
+   1642          
+   1643              /* Channel page */
+   1644              *tp++ = param->ChannelPage;
+   1645          
+   1646              /* Unscanned channel list */
+   1647              *tp++ = BREAK_UINT32( param->UnscannedChannels, 0 );
+   1648              *tp++ = BREAK_UINT32( param->UnscannedChannels, 1 );
+   1649              *tp++ = BREAK_UINT32( param->UnscannedChannels, 2 );
+   1650              *tp++ = BREAK_UINT32( param->UnscannedChannels, 3 );
+   1651          
+   1652              /* Result count */
+   1653              *tp++ = param->ResultListSize;
+   1654          
+   1655              /* MAX length of the result List */
+   1656              *tp++ = MT_MAC_SCAN_RESULT_LEN_MAX;
+   1657          
+   1658              /* PAN descriptor information */
+   1659              osal_memcpy( tp, param->Result.pPanDescriptor, resultLen );
+   1660          
+   1661              /* clear extra buffer space at end, if any */
+   1662              osal_memset( tp, 0, (MT_MAC_SCAN_RESULT_LEN_MAX - resultLen));
+   1663          
+   1664              /* Build and send back the response */
+   1665              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_SCAN_CNF, respLen, pRetBuf);
+   1666          
+   1667              /* Deallocate */
+   1668              osal_mem_free(pRetBuf);
+   1669            }
+   1670          }
+   1671          
+   1672          /***************************************************************************************************
+   1673           * @fn          nwk_MTCallbackSubCommStatusInd
+   1674           *
+   1675           * @brief       Process the callback subscription for comm_status_ind.
+   1676           *
+   1677           * @param       None
+   1678           *
+   1679           * @return      None
+   1680           ***************************************************************************************************/
+   1681          void nwk_MTCallbackSubCommStatusInd ( ZMacCommStatusInd_t *param )
+   1682          {
+   1683            uint8 respLen;
+   1684            uint8 *pRetBuf, *tp;
+   1685          
+   1686            respLen = MT_MAC_LEN_COMM_STATUS_IND;
+   1687          
+   1688            pRetBuf = osal_mem_alloc (respLen);
+   1689          
+   1690            if ( pRetBuf )
+   1691            {
+   1692              tp = pRetBuf;
+   1693          
+   1694              /* Status */
+   1695              *tp++ = param->hdr.Status;
+   1696          
+   1697              /* Source address */
+   1698              *tp++ = param->SrcAddress.addrMode;
+   1699              MT_MacAddr2Spi( tp, &param->SrcAddress );
+   1700              tp += Z_EXTADDR_LEN;
+   1701          
+   1702              /* Destination address */
+   1703              *tp++ = param->DstAddress.addrMode;
+   1704              MT_MacAddr2Spi( tp, &param->DstAddress );
+   1705              tp += Z_EXTADDR_LEN;
+   1706          
+   1707              /* PAN ID */
+   1708              *tp++ = LO_UINT16( param->PANId );
+   1709              *tp++ = HI_UINT16( param->PANId );
+   1710          
+   1711              /* Reason */
+   1712              *tp++ = param->Reason;
+   1713          
+   1714              /* Security */
+   1715              MT_MacSpi2Sec ((ZMacSec_t *)tp, (uint8 *)&param->Sec);
+   1716          
+   1717              /* Build and send back the response */
+   1718              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_COMM_STATUS_IND, respLen, pRetBuf);
+   1719          
+   1720              /* Deallocate */
+   1721              osal_mem_free(pRetBuf);
+   1722            }
+   1723          }
+   1724          
+   1725          /***************************************************************************************************
+   1726           * @fn          nwk_MTCallbackSubNwkStartCnf
+   1727           *
+   1728           * @brief       Process the callback subscription for nwk_start_cnf
+   1729           *
+   1730           * @param       byte Status
+   1731           *
+   1732           * @return      None
+   1733           ***************************************************************************************************/
+   1734          void nwk_MTCallbackSubNwkStartCnf( uint8 Status )
+   1735          {
+   1736            uint8 retValue;
+   1737          
+   1738            retValue = Status;
+   1739          
+   1740            /* Build and send back the response */
+   1741            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_START_CNF, 1, &retValue);
+   1742          }
+   1743          
+   1744          /***************************************************************************************************
+   1745           * @fn          nwk_MTCallbackSubNwkRxEnableCnf
+   1746           *
+   1747           * @brief       Process the callback subscription for nwk_Rx_Enable_cnf
+   1748           *
+   1749           * @param
+   1750           *
+   1751           * @return      SUCCESS if message sent succesfully , else N_FAIL
+   1752           ***************************************************************************************************/
+   1753          void nwk_MTCallbackSubNwkRxEnableCnf ( byte Status )
+   1754          {
+   1755            uint8 retValue;
+   1756          
+   1757            /* The only data byte is Status */
+   1758            retValue = Status;
+   1759          
+   1760            /* Build and send back the response */
+   1761            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_RX_ENABLE_CNF, 1, &retValue);
+   1762          }
+   1763          
+   1764          /***************************************************************************************************
+   1765           * @fn          nwk_MTCallbackSubNwkPurgeCnf
+   1766           *
+   1767           * @brief       Process the callback subscription for nwk_purge_cnf
+   1768           *
+   1769           * @param       pointer of type ZMacPurgeCnf_t
+   1770           *
+   1771           * @return      SUCCESS if message sent succesfully , else N_FAIL
+   1772           ***************************************************************************************************/
+   1773          void nwk_MTCallbackSubNwkPurgeCnf( ZMacPurgeCnf_t *param )
+   1774          {
+   1775            uint8 respLen;
+   1776            uint8 *pRetBuf, *tp;
+   1777          
+   1778            respLen = MT_MAC_LEN_PURGE_CNF;
+   1779          
+   1780            pRetBuf = osal_mem_alloc (respLen);
+   1781          
+   1782            if ( pRetBuf )
+   1783            {
+   1784              tp = pRetBuf;
+   1785          
+   1786              /* Status */
+   1787              *tp++ = param->hdr.Status;
+   1788          
+   1789              /* Handle */
+   1790              *tp = param->msduHandle;
+   1791          
+   1792              /* Build and send back the response */
+   1793              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_MAC), MT_MAC_PURGE_CNF, respLen, pRetBuf);
+   1794          
+   1795              /* Deallocate */
+   1796              osal_mem_free(pRetBuf);
+   1797            }
+   1798          }
+   1799          
+   1800          #endif // MT_MAC_CB_FUNC
+   1801          
+   1802          /***************************************************************************************************
+   1803           * SUPPORT
+   1804           ***************************************************************************************************/
+   1805          
+   1806          /***************************************************************************************************
+   1807           * @fn      MT_MacRevExtCpy
+   1808           *
+   1809           * @brief
+   1810           *
+   1811           *   Reverse-copy an extended address.
+   1812           *
+   1813           * @param   pDst - Pointer to data destination
+   1814           * @param   pSrc - Pointer to data source
+   1815           *
+   1816           * @return  void
+   1817           ***************************************************************************************************/
+   1818          static void MT_MacRevExtCpy( uint8 *pDst, uint8 *pSrc )
+   1819          {
+   1820            int8 i;
+   1821          
+   1822            for ( i = Z_EXTADDR_LEN - 1; i >= 0; i-- )
+   1823            {
+   1824              *pDst++ = pSrc[i];
+   1825            }
+   1826          }
+   1827          
+   1828          /***************************************************************************************************
+   1829           * @fn      MT_MacSpi2Addr
+   1830           *
+   1831           * @brief   Copy an address from an SPI message to an address struct.  The
+   1832           *          addrMode in pAddr must already be set.
+   1833           *
+   1834           * @param   pDst - Pointer to address struct
+   1835           * @param   pSrc - Pointer SPI message byte array
+   1836           *
+   1837           * @return  void
+   1838           ***************************************************************************************************/
+   1839          static void MT_MacSpi2Addr( zAddrType_t *pDst, uint8 *pSrc )
+   1840          {
+   1841            if ( pDst->addrMode == Addr16Bit )
+   1842            {
+   1843              pDst->addr.shortAddr = BUILD_UINT16( pSrc[0] , pSrc[1] );
+   1844            }
+   1845            else if ( pDst->addrMode == Addr64Bit )
+   1846            {
+   1847              MT_MacRevExtCpy( pDst->addr.extAddr, pSrc );
+   1848            }
+   1849          }
+   1850          
+   1851          /***************************************************************************************************
+   1852           * @fn      MT_MacSpi2Sec
+   1853           *
+   1854           * @brief   Copy Security information from SPI message to a Sec structure
+   1855           *
+   1856           * @param   pSec - Pointer to security struct
+   1857           * @param   pSrc - Pointer SPI message byte array
+   1858           *
+   1859           * @return  void
+   1860           ***************************************************************************************************/
+   1861          static void MT_MacSpi2Sec( ZMacSec_t *pSec, uint8 *pSrc )
+   1862          {
+   1863            /* Right now, set everything to zero */
+   1864            osal_memset (pSec, 0, sizeof (ZMacSec_t));
+   1865          }
+   1866          
+   1867          /***************************************************************************************************
+   1868           * @fn      MT_MacAddr2Spi
+   1869           *
+   1870           * @brief   Copy an address from an address struct to an SPI message.
+   1871           *
+   1872           * @param   pDst - Pointer SPI message byte array
+   1873           * @param   pSrc - Pointer to address struct
+   1874           *
+   1875           * @return  void
+   1876           ***************************************************************************************************/
+   1877          static void MT_MacAddr2Spi( uint8 *pDst, zAddrType_t *pSrc )
+   1878          {
+   1879            if ( pSrc->addrMode == Addr16Bit )
+   1880            {
+   1881              *pDst++ = LO_UINT16( pSrc->addr.shortAddr );
+   1882              *pDst++ = HI_UINT16( pSrc->addr.shortAddr );
+   1883              *pDst++ = 0; *pDst++ = 0; *pDst++ = 0;
+   1884              *pDst++ = 0; *pDst++ = 0; *pDst = 0;
+   1885            }
+   1886            else if ( pSrc->addrMode == Addr64Bit )
+   1887            {
+   1888              for ( uint8 i = 0; i< Z_EXTADDR_LEN; i++ )
+   1889              {
+   1890               *pDst++ = pSrc->addr.extAddr[i];
+   1891              }
+   1892            }
+   1893            else
+   1894            {
+   1895              for ( uint8 i = 0; i< Z_EXTADDR_LEN; i++ )
+   1896              {
+   1897               *pDst++ = pSrc->addr.extAddr[i];
+   1898              }
+   1899            }
+   1900          }
+   1901          
+   1902          /***************************************************************************************************
+   1903           ***************************************************************************************************/
+   1904          #endif // MT_MAC_FUNC
+
+
+ 
+ 
+ 0 bytes of memory
+
+Errors: none
+Warnings: none

@@ -1,0 +1,15 @@
+---- 0xB4 Matches (14 in 7 files) ----
+Flash.c (app):		case 0xB4:
+KeyProc.c (app):				wlSet.m_flaCmd[1] = 0xB4;
+Led.c (hardware\led):	Rgb_IIC_ReadWord(TCS3414_ADDRESS,0xB4,ch3);
+Led.c (hardware\led):	TCS3414_ReadWord(TCS3414_ADDRESS,0xB4,rgbs+2);
+Led.c (hardware\led):	Rgb_IIC_ReadWord(TCS3414_ADDRESS,0xB4,&rcvDat);
+Spi.c (hardware\spi):		case 0xb4:
+Spi.c (hardware\spi):			//g_spiRcvData[g_spiRcvIndex++]=0xb4;
+Spi.c (hardware\spi):		case 0xb4:
+Spi.c (hardware\spi):			if((g_spiRcvData[1]&0x0f)==0x0d)   	//this determined the flash code 0xb4 1d b4 3d
+Spi.c (hardware\spi):					wlSet.m_flaCmd[0]=0xb4;
+System_stm32f10x.c (libraries\cmsis\cm3\devicesupport\st\stm32f10x):  GPIOE->CRL = 0xB44444BB;  
+Usart.c (system\usart):	//sBuf[index++] = 0xB4;
+Usart.h (system\usart):#define UART_ENCODE_GRM					0xB4
+Usart.h (system\usart):#define UART_ENCODE_RFa					0xB4

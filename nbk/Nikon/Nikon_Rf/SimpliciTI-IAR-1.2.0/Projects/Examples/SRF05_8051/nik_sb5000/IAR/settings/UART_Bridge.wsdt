@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>UART_Bridge/CC2530-LinkTo</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>230</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>949</ColumnWidth1><ColumnWidth2>261</ColumnWidth2><ColumnWidth3>65</ColumnWidth3></Build>
+    <TerminalIO/><Find-in-Files><ColumnWidth0>470</ColumnWidth0><ColumnWidth1>0</ColumnWidth1><ColumnWidth2>858</ColumnWidth2></Find-in-Files><Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1306</ColumnWidth1></Debug-Log><Disassembly><MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow></Disassembly></Static>
+    <Windows>
+      
+      
+    <Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-30540-7696</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>UART_Bridge</ExpandedNode><ExpandedNode>UART_Bridge/Components</ExpandedNode><ExpandedNode>UART_Bridge/Components/nwk</ExpandedNode><ExpandedNode>UART_Bridge/MT</ExpandedNode><ExpandedNode>UART_Bridge/mac</ExpandedNode><ExpandedNode>UART_Bridge/mac/low_level</ExpandedNode><ExpandedNode>UART_Bridge/mac/low_level/Common</ExpandedNode><ExpandedNode>UART_Bridge/mac/low_level/System</ExpandedNode><ExpandedNode>UART_Bridge/peer applications</ExpandedNode><ExpandedNode>UART_Bridge/peer applications/application</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-30017-7706</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-23125-5788</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab><Tab><Identity>TabID-8908-27812</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\drivers\code\uart.c</Filename><XPos>0</XPos><YPos>363</YPos><SelStart>12096</SelStart><SelEnd>12096</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\simpliciti\nwk_applications\nwk_link.c</Filename><XPos>0</XPos><YPos>103</YPos><SelStart>8879</SelStart><SelEnd>8879</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\simpliciti\nwk_applications\nwk_ioctl.c</Filename><XPos>0</XPos><YPos>314</YPos><SelStart>10355</SelStart><SelEnd>10355</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\bsp.c</Filename><XPos>0</XPos><YPos>49</YPos><SelStart>3508</SelStart><SelEnd>3508</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\drivers\uart.h</Filename><XPos>0</XPos><YPos>69</YPos><SelStart>3482</SelStart><SelEnd>3482</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\simpliciti\nwk\nwk.c</Filename><XPos>0</XPos><YPos>667</YPos><SelStart>21993</SelStart><SelEnd>21993</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\drivers\uart_intfc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\smpl_nwk_config.dat</Filename><XPos>0</XPos><YPos>105</YPos><SelStart>791</SelStart><SelEnd>791</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LinkTo\Exe\UART_Bridge.a51</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\LinkTo\List\UART_Bridge.map</Filename><XPos>0</XPos><YPos>534</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\LinkTo\smpl_config.dat</Filename><XPos>0</XPos><YPos>31</YPos><SelStart>2272</SelStart><SelEnd>2272</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\startup\chipcon_cstartup.s51</Filename><XPos>0</XPos><YPos>36</YPos><SelStart>2661</SelStart><SelEnd>2661</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL_Memory.c</Filename><XPos>0</XPos><YPos>38</YPos><SelStart>2430</SelStart><SelEnd>2430</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\OSAL\INCLUDE\comdef.h</Filename><XPos>0</XPos><YPos>44</YPos><SelStart>2669</SelStart><SelEnd>2669</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\mcu\cc2530\OSAL_Nv.c</Filename><XPos>0</XPos><YPos>169</YPos><SelStart>2733</SelStart><SelEnd>2733</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\HAL\INCLUDE\hal_board.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>39</SelStart><SelEnd>39</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_sleep.c</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>2744</SelStart><SelEnd>2744</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL_Clock.c</Filename><XPos>0</XPos><YPos>53</YPos><SelStart>2460</SelStart><SelEnd>2460</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\OSAL\INCLUDE\ZComdef.h</Filename><XPos>0</XPos><YPos>44</YPos><SelStart>2512</SelStart><SelEnd>2512</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\Applications\OnBoard.c</Filename><XPos>0</XPos><YPos>50</YPos><SelStart>2942</SelStart><SelEnd>2942</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mt\MT_SAPI.h</Filename><XPos>0</XPos><YPos>42</YPos><SelStart>2496</SelStart><SelEnd>2496</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\SimpliciTI\nwk\nwk.h</Filename><XPos>0</XPos><YPos>38</YPos><SelStart>3507</SelStart><SelEnd>3507</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mt\MT.c</Filename><XPos>0</XPos><YPos>510</YPos><SelStart>15546</SelStart><SelEnd>15546</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mt\MT_AF.c</Filename><XPos>0</XPos><YPos>46</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\include\hal_drivers.h</Filename><XPos>0</XPos><YPos>78</YPos><SelStart>4217</SelStart><SelEnd>4217</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\HAL\TARGET\CC2530EB\hal_types.h</Filename><XPos>0</XPos><YPos>41</YPos><SelStart>2908</SelStart><SelEnd>2908</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\services\saddr\saddr.c</Filename><XPos>0</XPos><YPos>50</YPos><SelStart>2830</SelStart><SelEnd>2830</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL.c</Filename><XPos>0</XPos><YPos>1021</YPos><SelStart>26850</SelStart><SelEnd>26850</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\MAC\HIGH_LEVEL\mac_pib.h</Filename><XPos>0</XPos><YPos>67</YPos><SelStart>3855</SelStart><SelEnd>3855</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\boards\CC2530EM\bsp_board.c</Filename><XPos>0</XPos><YPos>73</YPos><SelStart>4340</SelStart><SelEnd>4340</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\simpliciti\nwk\nwk_frame.c</Filename><XPos>0</XPos><YPos>669</YPos><SelStart>22542</SelStart><SelEnd>22542</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\drivers\code\uart_intfc.c</Filename><XPos>0</XPos><YPos>595</YPos><SelStart>20430</SelStart><SelEnd>20430</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\include\hal_uart.h</Filename><XPos>0</XPos><YPos>66</YPos><SelStart>3738</SelStart><SelEnd>3738</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_uart.c</Filename><XPos>0</XPos><YPos>63</YPos><SelStart>3175</SelStart><SelEnd>3175</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\simpliciti\nwk\nwk_api.h</Filename><XPos>0</XPos><YPos>70</YPos><SelStart>3577</SelStart><SelEnd>3577</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\SERVICES\SADDR\saddr.h</Filename><XPos>0</XPos><YPos>65</YPos><SelStart>3048</SelStart><SelEnd>3048</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\MAC\INCLUDE\mac_api.h</Filename><XPos>0</XPos><YPos>640</YPos><SelStart>38855</SelStart><SelEnd>38855</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_rffrontend.c</Filename><XPos>0</XPos><YPos>81</YPos><SelStart>4726</SelStart><SelEnd>4726</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mrfi\radios\family6\mrfi_radio.c</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>2726</SelStart><SelEnd>2726</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\mcus\bsp_8051_defs.h</Filename><XPos>0</XPos><YPos>43</YPos><SelStart>3063</SelStart><SelEnd>3063</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\bsp_macros.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\boards\CC2530EM\bsp_external\mrfi_board_defs.h</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>2672</SelStart><SelEnd>2672</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\bsp.h</Filename><XPos>0</XPos><YPos>62</YPos><SelStart>2713</SelStart><SelEnd>2713</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\bsp\boards\CC2530EM\bsp_board_defs.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>2645</SelStart><SelEnd>2645</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_board_cfg.h</Filename><XPos>0</XPos><YPos>200</YPos><SelStart>8961</SelStart><SelEnd>8961</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\common\hal_assert.c</Filename><XPos>0</XPos><YPos>231</YPos><SelStart>7876</SelStart><SelEnd>7876</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\common\hal_drivers.c</Filename><XPos>0</XPos><YPos>183</YPos><SelStart>6946</SelStart><SelEnd>6946</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\Applications\main_UART_Bridge.c</Filename><XPos>0</XPos><YPos>126</YPos><SelStart>5030</SelStart><SelEnd>5030</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\simpliciti\nwk\nwk_api.c</Filename><XPos>0</XPos><YPos>747</YPos><SelStart>22506</SelStart><SelEnd>22506</SelEnd></Tab><ActiveTab>48</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\LOW_LEVEL\srf04\SINGLE_CHIP\mac_radio_defs.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00d8dd80><key>iaridepm.enu1</key></Toolbar-00d8dd80></Sizes></Row0></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>460</Bottom><Right>321</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>196</yscreen><sizeHorzCX>146413</sizeHorzCX><sizeHorzCY>285714</sizeHorzCY><sizeVertCX>236457</sizeVertCX><sizeVertCY>673469</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>181</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>183</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>266764</sizeHorzCY><sizeVertCX>146413</sizeVertCX><sizeVertCY>285714</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

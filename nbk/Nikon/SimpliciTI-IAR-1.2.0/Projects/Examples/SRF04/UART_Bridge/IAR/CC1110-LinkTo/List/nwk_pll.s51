@@ -1,0 +1,1613 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:55 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Compone /
+//                          nts\simpliciti\nwk_applications\nwk_pll.c         /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Components\simpl /
+//                          iciti\nwk_applications\nwk_pll.c" -D              /
+//                          "MCU_H=\"ioCC1110.h\"" -D MRFI_CC1110 -lB         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\L /
+//                          ist\" -o "C:\Texas Instruments\SimpliciTI-IAR-1.2 /
+//                          .0\Projects\Examples\SRF04\UART_Bridge\IAR\CC1110 /
+//                          -LinkTo\Obj\" -e --debug --core=plain             /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\nwk_pll.s51                                    /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk_pll
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?DPS
+
+        PUBLIC nwk_processPLL
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_applications\nwk_pll.c
+//    1 
+//    2 /**************************************************************************************************
+//    3   Filename:       nwk_pll.c
+//    4   Revised:        $Date: 2008-07-02 10:50:58 -0700 (Wed, 02 Jul 2008) $
+//    5   Revision:       $Revision: 17448 $
+//    6   Author:         $Author: jnoxon $
+//    7 
+//    8   Description:    This file supports the SimpliciTI PLL network application.
+//    9 
+//   10   Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+//   11 
+//   12   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   13   the terms of a software license agreement between the user who downloaded the software,
+//   14   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   15   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   16   License. The License limits your use, and you acknowledge, that the Software may not be
+//   17   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   18   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   19   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   20   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   21   perform, display or sell this Software and/or its documentation for any purpose.
+//   22 
+//   23   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   24   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   25   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   26   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   27   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   28   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   29   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   30   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   31   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   32 
+//   33   Should you have any questions regarding your right to use this Software,
+//   34   contact Texas Instruments Incorporated at www.TI.com.
+//   35 **************************************************************************************************/
+//   36 /******************************************************************************
+//   37  * INCLUDES
+//   38  */
+//   39 #include <string.h>
+//   40 #include "mrfi.h"
+//   41 #include "nwk_types.h"
+//   42 #include "nwk.h"
+//   43 #include "nwk_frame.h"
+//   44 #include "nwk_globals.h"
+//   45 #include "nwk_api.h"
+//   46 #include "nwk_pll.h"
+//   47 
+//   48 #ifdef NWK_PLL_SHOW_LOCATION_INDICATORS
+//   49 #include "bsp_leds.h"
+//   50 #endif
+//   51 
+//   52 #ifdef NWK_PLL
+//   53 
+//   54 /******************************************************************************
+//   55  * MACROS
+//   56  */
+//   57 
+//   58 /******************************************************************************
+//   59  * CONSTANTS AND DEFINES
+//   60  */
+//   61 
+//   62 // get pointer to pll_packet_structure, hand it a mrfi_packet_t type
+//   63 #define NWK_PLL_PACKET_PTR( f ) ( (pll_Packet_t*)( MRFI_P_PAYLOAD( f ) + F_APP_PAYLOAD_OS ) )
+//   64 
+//   65 #ifndef NWK_PLL_RX_TIME_STAMP_FIFO_SZ
+//   66   #define NWK_PLL_RX_TIME_STAMP_FIFO_SZ 4
+//   67 #endif
+//   68 
+//   69 #ifndef NWK_PLL_SAMPLE_PERIOD_DEFAULT
+//   70   #define NWK_PLL_SAMPLE_PERIOD_DEFAULT 50
+//   71 #endif
+//   72 #if NWK_PLL_SAMPLE_PERIOD_DEFAULT < 20
+//   73   #error "ERROR: NWK_PLL_SAMPLE_PERIOD_DEFAULT must be at least 20ms."
+//   74 #endif
+//   75 
+//   76 #ifndef NWK_PLL_SAMPLE_PERIOD_MAX
+//   77   #define NWK_PLL_SAMPLE_PERIOD_MAX ( 0x3FFFFFFFL )  // effectively infinity
+//   78 #endif
+//   79 
+//   80 #ifndef NWK_PLL_LOOP_GAIN_Kp
+//   81   #define NWK_PLL_LOOP_GAIN_Kp 800//8192
+//   82 #endif
+//   83 #define NWK_PLL_LOOP_GAIN_Kp_x ( ( 1L * NWK_PLL_LOOP_GAIN_Kp * ( BSP_TIMER_CLK_KHZ ) ) / 1024 )
+//   84 
+//   85 #ifndef NWK_PLL_LOOP_GAIN_Ki
+//   86   #define NWK_PLL_LOOP_GAIN_Ki 100//128
+//   87 #endif
+//   88 #define NWK_PLL_LOOP_GAIN_Ki_x ( ( 1L * NWK_PLL_LOOP_GAIN_Ki * ( BSP_TIMER_CLK_KHZ ) ) / 1024 )
+//   89 
+//   90 #ifndef NWK_PLL_LOOP_GAIN_Kd
+//   91   #define NWK_PLL_LOOP_GAIN_Kd 0
+//   92 #endif
+//   93 #define NWK_PLL_LOOP_GAIN_Kd_x ( ( 1L * NWK_PLL_LOOP_GAIN_Kd * ( BSP_TIMER_CLK_KHZ ) ) / 1024 )
+//   94 
+//   95 #ifndef NWK_PLL_Kp_HOLD_OFF
+//   96   #define NWK_PLL_Kp_HOLD_OFF 0
+//   97 #endif
+//   98 
+//   99 #ifndef NWK_PLL_HI_GAIN_THRESHOLD
+//  100   #define NWK_PLL_HI_GAIN_THRESHOLD (NWK_PLL_SAMPLE_PERIOD_DEFAULT * 5L)
+//  101 #endif
+//  102 
+//  103 #ifndef NWK_PLL_LO_GAIN_THRESHOLD
+//  104   #define NWK_PLL_LO_GAIN_THRESHOLD (NWK_PLL_SAMPLE_PERIOD_DEFAULT * 50L)
+//  105 #endif
+//  106 
+//  107 #ifndef NWK_PLL_HI_GAIN_WINDOW_SZ
+//  108   #define NWK_PLL_HI_GAIN_WINDOW_SZ 1000 // 1ms
+//  109 #endif
+//  110 
+//  111 #ifndef NWK_PLL_LO_GAIN_WINDOW_SZ
+//  112   #define NWK_PLL_LO_GAIN_WINDOW_SZ 100 // 100us
+//  113 #endif
+//  114 
+//  115 #ifndef NWK_PLL_FAILURE_LIMIT
+//  116   #define NWK_PLL_FAILURE_LIMIT 10
+//  117 #endif
+//  118 
+//  119 // make sure we are not dividing by zero
+//  120 #if NWK_PLL_HI_GAIN_THRESHOLD == NWK_PLL_LO_GAIN_THRESHOLD
+//  121 
+//  122   #define NWK_PLL_GAIN_INTERP_M 0
+//  123   #define NWK_PLL_GAIN_INTERP_B \ 
+//  124        ( ( ( NWK_PLL_HI_GAIN_WINDOW_SZ + NWK_PLL_LO_GAIN_WINDOW_SZ ) + 1 ) / 2 )
+//  125 
+//  126 #else // NWK_PLL_HI_GAIN_THRESHOLD != NWK_PLL_LO_GAIN_THRESHOLD
+//  127   #define NWK_PLL_DY ( NWK_PLL_HI_GAIN_WINDOW_SZ - NWK_PLL_LO_GAIN_WINDOW_SZ )
+//  128   #define NWK_PLL_DX ( NWK_PLL_HI_GAIN_THRESHOLD - NWK_PLL_LO_GAIN_THRESHOLD )
+//  129   #define NWK_PLL_GAIN_INTERP_M  ( ( NWK_PLL_DY * 256L ) / NWK_PLL_DX )
+//  130 
+//  131   #define NWK_PLL_NUM_B \ 
+//  132               ( ( 1L * NWK_PLL_HI_GAIN_THRESHOLD ) * NWK_PLL_LO_GAIN_WINDOW_SZ \ 
+//  133               - ( 1L * NWK_PLL_LO_GAIN_THRESHOLD ) * NWK_PLL_HI_GAIN_WINDOW_SZ )
+//  134   #define NWK_PLL_B ( ( NWK_PLL_NUM_B * 2L ) / NWK_PLL_DX )
+//  135   #if NWK_PLL_B < 0
+//  136     #define NWK_PLL_GAIN_INTERP_B ( ( NWK_PLL_B - 1L ) / 2 )
+//  137   #else
+//  138     #define NWK_PLL_GAIN_INTERP_B ( ( NWK_PLL_B + 1L ) / 2 )
+//  139   #endif
+//  140 
+//  141 #endif // NWK_PLL_HI_GAIN_THRESHOLD != NWK_PLL_LO_GAIN_THRESHOLD
+//  142 
+//  143 // normalize values for comparisons and calculations to measured error
+//  144 #define NWK_PLL_HI_GAIN_WINDOW_CNT \ 
+//  145                            ( ( NWK_PLL_HI_GAIN_WINDOW_SZ * 16384L + 65 ) / 125 )
+//  146 #define NWK_PLL_LO_GAIN_WINDOW_CNT \ 
+//  147                            ( ( NWK_PLL_LO_GAIN_WINDOW_SZ * 16384L + 65 ) / 125 )
+//  148 #define NWK_PLL_GAIN_INTERP_M_CNT \ 
+//  149                                ( ( NWK_PLL_GAIN_INTERP_M * 16384L + 65 ) / 125 )
+//  150 #define NWK_PLL_GAIN_INTERP_B_CNT \ 
+//  151                                ( ( NWK_PLL_GAIN_INTERP_B * 16384L + 65 ) / 125 )
+//  152 
+//  153 // identify what type of entity we are for communications
+//  154 #ifdef NWK_PLL_REFERENCE_CLOCK
+//  155   #define NWK_PLL_ENTITY pll_ent_reference
+//  156 #elif defined ACCESS_POINT || defined RANGE_EXTENDER
+//  157   #define NWK_PLL_ENTITY pll_ent_alternate
+//  158 #else
+//  159   #define NWK_PLL_ENTITY pll_ent_slave
+//  160 #endif
+//  161 
+//  162 #define NWK_PLL_SAMPLE_ERROR ((int32_t)(0x80000001UL))
+//  163 #define NWK_PLL_NO_RXTS_AVAILABLE ((int32_t)(0x80000000UL))
+//  164 
+//  165 #define NWK_PLL_NUM_OF_PLLS 1
+//  166 
+//  167 #define NWK_PLL_LOCKED_VALUE ( ( 5 * NWK_PLL_SAMPLE_PERIOD_DEFAULT <= NWK_PLL_SAMPLE_PERIOD_MAX ) \ 
+//  168                                ? ( 5 * NWK_PLL_SAMPLE_PERIOD_DEFAULT ) : NWK_PLL_SAMPLE_PERIOD_MAX )
+//  169 
+//  170 /******************************************************************************
+//  171  * TYPEDEFS
+//  172  */
+//  173 typedef enum
+//  174 {
+//  175   NWK_PLL_STATE_OFF    = 0x01,
+//  176   NWK_PLL_STATE_ON     = 0x02,
+//  177   NWK_PLL_STATE_LOCATE = 0x04
+//  178 } pll_states_t;
+//  179 
+//  180 typedef struct
+//  181 {
+//  182   uint8_t      packetSem;
+//  183   uint8_t      MasterLQI;
+//  184   addr_t       MasterAddr;
+//  185   int32_t      Integrator;
+//  186   int16_t      HoldOff;
+//  187   int32_t      LastPreFilter;
+//  188   int32_t      ChargePumpGain;
+//  189   int32_t      ChargePumpCounter;
+//  190   uint8_t      PumpRequestSem;
+//  191   int32_t      LastSampleTime;
+//  192   pll_states_t State;
+//  193   uint8_t      Failures;
+//  194   uint16_t     dead_band;
+//  195   int8_t       locked;
+//  196   int32_t      old_err;
+//  197   int32_t      average_err;
+//  198 } pll_type;
+//  199 
+//  200 /******************************************************************************
+//  201  * LOCAL VARIABLES
+//  202  */
+//  203 // the time stamps of the most recent receive events
+//  204 static mrfi_Time_t sRxTimeStamps[NWK_PLL_RX_TIME_STAMP_FIFO_SZ];
+//  205 static pll_type splls[NWK_PLL_NUM_OF_PLLS];
+//  206 static MRFI_ms_event_t spllExistingEvent;
+//  207 static volatile uint8_t spllmscnt;
+//  208 
+//  209 /******************************************************************************
+//  210  * LOCAL FUNCTIONS
+//  211  */
+//  212 #if ( defined __IAR_SYSTEMS_ICC__ ) && ( defined __ICC8051__ )
+//  213 static __idata_reentrant void nwk_pll_1ms_event( void );
+//  214 #else
+//  215 static void nwk_pll_1ms_event( void );
+//  216 #endif
+//  217 static void nwk_pllGetChannelDelay( pll_Packet_t* ts );
+//  218 static mrfi_Time_t* nwk_pllAcquireRxTimeStamp( void );
+//  219 static void nwk_pllChargePump( pll_type* pll );
+//  220 static void nwk_pllHandleRequestCommand( pll_type* pll, pll_Packet_t* data, addr_t* addr );
+//  221 static void nwk_pllLocateResponseCommand( pll_type* pll, pll_Packet_t* data, addr_t* addr );
+//  222 static void nwk_pllPumpResponseCommand( pll_type* pll, pll_Packet_t* data, addr_t* addr );
+//  223 static void nwk_pllRunChargePump( pll_type* pll, pll_Packet_t* data, int32_t req_dly );
+//  224 static void nwk_pllRunControlLoop( pll_type* pll, pll_Packet_t* data, int32_t err_sample );
+//  225 static void nwk_pllCalcFailureRate( pll_type* pll, int32_t err_sample );
+//  226 static void nwk_pllCalcNewSamplePeriod( pll_type* pll, int32_t err_sample );
+//  227 static uint32_t nwk_pllCheckErrorThreshold( pll_type* pll, int32_t err_sample );
+//  228 static void nwk_pllResetPLL( void );
+//  229 static void nwk_pllStartPLL( void );
+//  230 static void nwk_pllJumpPLL( mrfi_Time_t* t );
+//  231 
+//  232 /******************************************************************************
+//  233  * GLOBAL VARIABLES
+//  234  */
+//  235 
+//  236 /******************************************************************************
+//  237  * GLOBAL FUNCTIONS
+//  238  */
+//  239 
+//  240 /******************************************************************************
+//  241  * @fn          nwk_PLLInit
+//  242  *
+//  243  * @brief       Initialize NWK Phase Locked Loop application.
+//  244  *
+//  245  * @return   none.
+//  246  */
+//  247 void nwk_PLLInit(void)
+//  248 {
+//  249   BSP_STATIC_ASSERT( sizeof( pll_Packet_t ) <= MAX_PLL_APP_FRAME );
+//  250   uint8_t i;
+//  251 
+//  252   // initialize the receive time stamp fifo elements
+//  253   // since the receive time stamps will never have their rxts pointer filled
+//  254   // in, we use this space as a flag for usage within the fifo.
+//  255   for( i = 0; i < NWK_PLL_RX_TIME_STAMP_FIFO_SZ; i++ ) // for each element
+//  256     sRxTimeStamps[i].rxts[0] = 0; // indicate it is not used
+//  257   
+//  258   // initialize logging of receive time stamps
+//  259   nwk_pllAcquireRxTimeStamp( );
+//  260 
+//  261   nwk_pllResetPLL( ); // reset the pll
+//  262 
+//  263   // install our 1 millisecond event manager
+//  264   BSP_CRITICAL_STATEMENT( spllExistingEvent = MRFI_Set_ms_Event( nwk_pll_1ms_event ) );
+//  265 
+//  266   return;
+//  267 }
+//  268 
+//  269 /******************************************************************************
+//  270  * @fn          nwk_pllIsLocked
+//  271  *
+//  272  * @brief       Call to determine if PLL referenced is locked.
+//  273  *
+//  274  * @return      true if PLL referenced consideres itself locked.
+//  275  */
+//  276 bool nwk_pllIsLocked( uint8_t pll_num )
+//  277 {
+//  278   return splls[pll_num].locked;
+//  279 }
+//  280 
+//  281 /******************************************************************************
+//  282  * @fn          nwk_pll_1ms_event
+//  283  *
+//  284  * @brief       This routine is called from the timer interrupt.
+//  285  *
+//  286  * @return   none.
+//  287  */
+//  288 #if ( defined __IAR_SYSTEMS_ICC__ ) && ( defined __ICC8051__ )
+//  289 __idata_reentrant void nwk_pll_1ms_event( void )
+//  290 #else
+//  291 void nwk_pll_1ms_event( void )
+//  292 #endif
+//  293 {
+//  294   if( spllExistingEvent != NULL ) // if an existing event to call
+//  295     spllExistingEvent( ); // call it
+//  296   
+//  297   spllmscnt++; // increment the millisecond counter
+//  298   
+//  299   return;
+//  300 }
+//  301 
+//  302 /******************************************************************************
+//  303  * @fn          nwk_pllGetChannelDelay
+//  304  *
+//  305  * @brief       Calculates the difference in the two time stamps provided
+//  306  *              and fills in the ChannelDelay member of the packet structure
+//  307  *              in the frame passed and the received time passed and puts the
+//  308  *              result into the ChannelDelay member of the frame passed.  If
+//  309  *              the ChannelDelay member is not large enough to hold the
+//  310  *              calculated value, the ChannelDelay member is then set to all
+//  311  *              F's to indicate overflow in the calculation.
+//  312  *              Finally, the rxTime reference is released so it is available
+//  313  *              for subsequent receive events to use it.
+//  314  *
+//  315  * @param       ts -- pointer to a pll packet structure
+//  316  *
+//  317  * @return   none.
+//  318  */
+//  319 void nwk_pllGetChannelDelay( pll_Packet_t* ts )
+//  320 {
+//  321   mrfi_Time_t* tx = &(ts->Time);
+//  322   mrfi_Time_t* rx = *((mrfi_Time_t**)&(tx->rxts));
+//  323   
+//  324   ts->misc <<= 1;
+//  325   if( tx->state.lsb.order_test != 0 )
+//  326     ts->misc |= tx->state.lsb.overflow;
+//  327   else
+//  328     ts->misc |= tx->state.msb.overflow;
+//  329   ts->misc <<= 1;
+//  330   if( rx->state.lsb.order_test != 0 )
+//  331     ts->misc |= rx->state.lsb.overflow;
+//  332   else
+//  333     ts->misc |= rx->state.msb.overflow;
+//  334   
+//  335   if( rx == NULL ) // if no receive time stamp to use
+//  336   {
+//  337     ts->ChannelDelay = NWK_PLL_NO_RXTS_AVAILABLE; // set error value
+//  338     return; // bail early
+//  339   }
+//  340   
+//  341   // calculate the channel delay time and put it back in rxts
+//  342   MRFI_GetTimeDelta( rx, tx, rx );
+//  343 
+//  344   // if channel delay value is within usable range
+//  345   if( (int32_t)(rx->milliseconds) < 0x7FFF
+//  346       && (int32_t)(rx->milliseconds) > -0x7FFF )
+//  347     ts->ChannelDelay = (int32_t)( ( rx->milliseconds << 16 ) | rx->timer );
+//  348   else // if channel delay is outside of usable range
+//  349     ts->ChannelDelay = NWK_PLL_SAMPLE_ERROR; // set invalid value
+//  350   
+//  351   // free up the receive time stamp for future use
+//  352   rx->rxts[0] = 0;
+//  353 
+//  354   return;
+//  355 }
+//  356 
+//  357 /******************************************************************************
+//  358  * @fn          nwk_pllAcquireRxTimeStamp
+//  359  *
+//  360  * @brief       Returns the pointer to the most recent time stamp received and
+//  361  *              updates the time stamp destination for the next receive
+//  362  *              operation.
+//  363  *
+//  364  * @return      none.
+//  365  */
+//  366 mrfi_Time_t* nwk_pllAcquireRxTimeStamp( void )
+//  367 {
+//  368   int i;
+//  369   mrfi_Time_t* tm = NULL; // assume failure initially
+//  370   bspIState_t s;
+//  371   
+//  372   // loop through the fifo elements
+//  373   for( i = 0; i < NWK_PLL_RX_TIME_STAMP_FIFO_SZ; i++ )
+//  374   {
+//  375     BSP_ENTER_CRITICAL_SECTION( s );
+//  376     if( sRxTimeStamps[i].rxts[0] == 0 ) // if a free one found
+//  377     {
+//  378       tm = sRxTimeStamps + i;
+//  379       tm->rxts[0] = 1; // indicate this one is in use
+//  380       BSP_EXIT_CRITICAL_SECTION( s );
+//  381       break;
+//  382     }
+//  383     BSP_EXIT_CRITICAL_SECTION( s );
+//  384   }
+//  385 
+//  386   // swap free time stamp with the one that was just filled in
+//  387   tm = MRFI_SetRxTimeStampAddr( tm );
+//  388 
+//  389   return tm; // return the time stamp most recently filled in.
+//  390 }
+//  391 
+//  392 /******************************************************************************
+//  393  * @fn          nwk_pllJumpPLL
+//  394  *
+//  395  * @brief       Jumps the PLL to a new state and resetst the control loop
+//  396  *              variables.  Used when the PLL initially locks to a new reference
+//  397  *              or has gotten lost and needs to quickly get back on top of
+//  398  *              things.
+//  399  *
+//  400  * @return   nothing
+//  401  */
+//  402 void nwk_pllJumpPLL( mrfi_Time_t* t )
+//  403 {
+//  404   bspIState_t s;
+//  405   pll_type* pll = splls;
+//  406 
+//  407   BSP_ENTER_CRITICAL_SECTION( s );
+//  408           
+//  409   // jam timer value to start, sets hop time and logical channel too
+//  410   MRFI_SetTime( t );
+//  411   pll->Integrator = 0; // clear the integrator
+//  412   pll->LastPreFilter  = 0; // clear the sample history
+//  413 
+//  414   sHopRate = MRFI_HOP_TIME_ms - 1; // set the hop rate to normal
+//  415           
+//  416   // reset the sample time
+//  417   pll->LastSampleTime = 0;
+//  418 
+//  419   // reset charge pump gains
+//  420   pll->ChargePumpCounter = pll->ChargePumpGain = NWK_PLL_SAMPLE_PERIOD_DEFAULT;
+//  421 
+//  422   BSP_EXIT_CRITICAL_SECTION( s );
+//  423   return;
+//  424 }
+//  425 
+//  426 /******************************************************************************
+//  427  * @fn          nwk_pllCheckSem
+//  428  *
+//  429  * @brief       Updates status of semaphores of the passed pll
+//  430  *
+//  431  * input parameters
+//  432  * @param       pll - pointer to a pll structure to operate on
+//  433  *
+//  434  * @return      Nothing
+//  435  */
+//  436 static void nwk_pllCheckSem( pll_type* pll )
+//  437 {
+//  438   /* count any millisecond operations since last time through the loop */
+//  439   /* no need to wrap the test in critical statement code as it is atomic */
+//  440   if( spllmscnt != 0 )
+//  441   {
+//  442     uint8_t ms_cnt;
+//  443 
+//  444     /* copy over elapsed milliseconds and clear counter */
+//  445     BSP_CRITICAL_STATEMENT( ms_cnt = spllmscnt; spllmscnt = 0 );
+//  446 
+//  447     pll->LastSampleTime += ms_cnt;
+//  448     if( pll->LastSampleTime < ms_cnt ) /* check for overflow */
+//  449       pll->LastSampleTime = 0x7FFFFFFFUL; /* saturate if needed */
+//  450 
+//  451     /* if the charge pump has timed out */
+//  452     pll->ChargePumpCounter -= ms_cnt;
+//  453     if( pll->ChargePumpCounter <= 0 )
+//  454     {
+//  455       /* reset the counter */
+//  456       pll->ChargePumpCounter += NWK_PLL_SAMPLE_PERIOD_DEFAULT;
+//  457 
+//  458       /* if the pll is on set the semaphore indicating a pump request is needed */
+//  459       if( pll->State != NWK_PLL_STATE_OFF )
+//  460         pll->PumpRequestSem = 1;
+//  461     }
+//  462   }
+//  463   return;
+//  464 }
+//  465 
+//  466 /******************************************************************************
+//  467  * @fn          nwk_pllChargePump
+//  468  *
+//  469  * @brief       Initiates a charge pump request.  Works in either locate
+//  470  *              or normal running operations
+//  471  *
+//  472  * input parameters
+//  473  * @param       pll - pointer to a pll structure to operate on
+//  474  *
+//  475  * @return      nothing
+//  476  */
+//  477 void nwk_pllChargePump( pll_type* pll )
+//  478   {
+//  479   ioctlRawSend_t pump; // a pump request context
+//  480   pll_Packet_t packet; // the payload to send
+//  481   addr_t master_addr;
+//  482     
+//  483   // clear this pump request
+//  484   pll->PumpRequestSem = 0;
+//  485   master_addr = pll->MasterAddr;
+//  486     
+//  487   // fill in the transmit context structure
+//  488   pump.addr = &master_addr; // send request to the master reference (may be broadcast)
+//  489   pump.msg  = (uint8_t*)&packet; // send the modified packet
+//  490   pump.len  = sizeof( pll_Packet_t ); // only send the packet data
+//  491   pump.port = SMPL_PORT_PLL;
+//  492       
+//  493   // if the system is attempting to locate a reference
+//  494   if( pll->State == NWK_PLL_STATE_LOCATE )
+//  495   {
+//  496     // assign the locate reference command
+//  497     packet.Cmd = pll_cmd_LocateReference;
+//  498 
+//  499     // indicate total failure rate since we locating our reference
+//  500     pll->dead_band = 65535u;
+//  501   }
+//  502   else // if a normal pump request
+//  503   {
+//  504     packet.Cmd = pll_cmd_PumpRequest; // assign the pump request command
+//  505     pll->Failures++; // increment the failure counter, cleared when a response is seen
+//  506   }
+//  507 
+//  508   // if we are locked up to our reference clock
+//  509   if( pll->ChargePumpGain > NWK_PLL_LOCKED_VALUE )
+//  510     packet.Cmd |= pll_locked; // indicate so
+//  511 
+//  512   packet.Cmd |= NWK_PLL_ENTITY; // tell the requestee what we are
+//  513 
+//  514   packet.OriginatorAddr = *nwk_getMyAddress( ); // indicate where it is coming from
+//  515   
+//  516   // delay a random amount of a millisecond, add in offset to make sure
+//  517   // calculation time offset is not favored
+//  518   MRFI_DelayUsec( ( (int16_t)MRFI_RandomByte( ) << 2 )
+//  519                   + ( MRFI_RandomByte( ) & 3 ) + 250 );
+//  520 
+//  521   // align data elements in packet for packet transmission
+//  522   PLL_PKT_COMPRESS_TO_BUFFER( &packet );
+//  523       
+//  524   // send the request, don't worry if it fails, the pll application
+//  525   // expects lost requests on occaison.
+//  526   SMPL_Ioctl( IOCTL_OBJ_RAW_IO, IOCTL_ACT_WRITE, &pump );
+//  527   
+//  528   return;
+//  529 }
+//  530 
+//  531 /******************************************************************************
+//  532  * @fn          nwk_pllHandleRequestCommand
+//  533  *
+//  534  * @brief       Sends a response to a locate or pump request packet received
+//  535  *              over the radio link.
+//  536  *
+//  537  * input parameters
+//  538  * @param       pll  - pointer to a pll structure to operate on
+//  539  * @param       data - a pll pump packet structure
+//  540  * @param       addr - reference to originating radio
+//  541  *
+//  542  * @return      nothing
+//  543  */
+//  544 void nwk_pllHandleRequestCommand( pll_type* pll, pll_Packet_t* data, addr_t* addr )
+//  545 {
+//  546   // if we are a viable reference clock but we have not yet locked to
+//  547   // another reference clock, don't allow ourselves to be used as a
+//  548   // reference clock.  By holding off this way, we guarantee that no
+//  549   // reference loops of alternate reference clocks can occur.
+//  550   // if we are not a viable reference clock
+//  551   if( ( ( NWK_PLL_ENTITY & pll_ent_reference ) == 0
+//  552       && ( ( NWK_PLL_ENTITY & pll_ent_alternate ) == 0
+//  553              || pll->ChargePumpGain <= NWK_PLL_LOCKED_VALUE ) ) )
+//  554   {
+//  555     // release the rx time stamp since we'r not responding
+//  556     (*((mrfi_Time_t**)&(data->Time.rxts)))->rxts[0] = 0;
+//  557   }
+//  558   else // we are a viable reference clock and the packet is for us
+//  559   {
+//  560     ioctlRawSend_t resp; // a response context
+//  561       
+//  562     data->misc = 0; // clear miscelaneous status data
+//  563           
+//  564     // calculate channel delay and release the rx time stamp
+//  565     nwk_pllGetChannelDelay( data );
+//  566     
+//  567     // if there was a receive time stamp then we can work on it
+//  568     if( data->ChannelDelay != NWK_PLL_NO_RXTS_AVAILABLE )
+//  569     {
+//  570       // determine how to address the response.  If the requestor is not locked
+//  571       // then use a broadcast address so others will see it allowing passive
+//  572       // operations to work and keep the network from being flooded
+//  573       if( ( data->Cmd & pll_locked ) == 0 ) // if requestor not locked
+//  574         resp.addr = (addr_t*) nwk_getBCastAddress( ); // use broadcast address
+//  575       else // if requestor locked
+//  576         resp.addr = addr; // send it back to the originating address
+//  577 
+//  578       // fill in remaining response context structure for transmitting
+//  579       resp.msg  = (uint8_t*)data; // resend the modified packet
+//  580       resp.len  = sizeof( pll_Packet_t ); // only send the packet data
+//  581       resp.port = SMPL_PORT_PLL;
+//  582 
+//  583       // assign the command response type
+//  584       if( ( data->Cmd & pll_cmd_LocateReference ) != 0 )
+//  585       {
+//  586         data->Cmd &= ~pll_cmd_LocateReference;
+//  587         data->Cmd |= pll_cmd_LocateResponse;
+//  588       }
+//  589       else
+//  590       {
+//  591         data->Cmd &= ~pll_cmd_PumpRequest;
+//  592         data->Cmd |= pll_cmd_PumpResponse;
+//  593       }
+//  594     
+//  595       data->Cmd &= ~( pll_ent_reference | pll_ent_alternate | pll_ent_slave );
+//  596       data->Cmd |= NWK_PLL_ENTITY; // tell the respondee what we are
+//  597     
+//  598       // Note that we have preserved the locked status of the requestor
+//  599 
+//  600       // delay a random amount of a millisecond, add in offset to make sure
+//  601       // calculation time offset is not favored
+//  602       MRFI_DelayUsec( ( (int16_t)MRFI_RandomByte( ) << 2 )
+//  603                      + ( MRFI_RandomByte( ) & 3 ) + 250 );
+//  604 
+//  605       // align data elements in packet for packet transmission
+//  606       PLL_PKT_COMPRESS_TO_BUFFER( data );
+//  607       
+//  608       // send the response, don't worry if it fails, the pll application
+//  609       // expects lost responses on occaison.
+//  610       SMPL_Ioctl( IOCTL_OBJ_RAW_IO, IOCTL_ACT_WRITE, &resp );
+//  611     }
+//  612   }
+//  613   return;
+//  614 }
+//  615 
+//  616 /******************************************************************************
+//  617  * @fn          nwk_pllLocateResponseCommand
+//  618  *
+//  619  * @brief       Handles responses to locate commands.
+//  620  *
+//  621  * input parameters
+//  622  * @param       pll  - pointer to a pll structure to operate on
+//  623  * @param       data - a pll pump packet structure
+//  624  * @param       addr - reference to originating radio
+//  625  *
+//  626  * @return      nothing
+//  627  */
+//  628 void nwk_pllLocateResponseCommand( pll_type* pll, pll_Packet_t* data, addr_t* addr )
+//  629 {
+//  630   // attempt to find the best reference clock, if the network reference
+//  631   // clock responds then use it otherwise, use the next best thing which
+//  632   // will be either a range extender or an access point but choose the
+//  633   // one with the best LQI value so we are more likely to get responses
+//  634   // from pump request commands.
+//  635     
+//  636   // if a better reference appears to have been found
+//  637   if( pll->MasterLQI < data->LinkQuality)
+//  638   {
+//  639     pll->MasterAddr = *addr; // save its address
+//  640     pll->MasterLQI = data->LinkQuality; // save link quality
+//  641   }
+//  642     
+//  643   // if we are still attempting to locate a reference
+//  644   if( pll->State == NWK_PLL_STATE_LOCATE )
+//  645   {
+//  646     // get address priority status for later comparisons
+//  647     int8_t my_addr = memcmp( &data->OriginatorAddr, nwk_getMyAddress( ), MRFI_ADDR_SIZE );
+//  648       
+//  649     // if the received locate response originated from an address with higher
+//  650     // priority than ours
+//  651     if( my_addr < 0 )
+//  652     {
+//  653       // reset the charge pump counter in a manner which should see multiple
+//  654       // pump requests before it times out.  That way, we will continue to
+//  655       // operate in passive mode and not flood the network with our own requests
+//  656       pll->ChargePumpCounter = 2 * NWK_PLL_LOCKED_VALUE;
+//  657 
+//  658       // jump to the current time stamp to get us close
+//  659       nwk_pllJumpPLL( &(data->Time) );
+//  660       pll->dead_band = 2560; // assume a 10ms dead band window
+//  661     }
+//  662     else if( my_addr == 0 ) // if this is our locate request
+//  663     {
+//  664       sHopRate = MRFI_HOP_TIME_ms - 1; // set the hop rate to normal
+//  665       
+//  666       // indicate the pll is now running normally
+//  667       pll->State = NWK_PLL_STATE_ON;
+//  668     }
+//  669   }
+//  670 
+//  671   // release the rx time stamp, we don't use it on locate responses
+//  672   (*((mrfi_Time_t**)&(data->Time.rxts)))->rxts[0] = 0;
+//  673   
+//  674   return;
+//  675 }
+//  676 
+//  677 /******************************************************************************
+//  678  * @fn          nwk_pllCalcFailureRate
+//  679  *
+//  680  * @brief       Updates the failure rate measurment
+//  681  *
+//  682  * input parameters
+//  683  * @param       pll  - pointer to a pll structure to operate on
+//  684  * @param       err_sample - the error input for this sample
+//  685  *
+//  686  * @return      nothing
+//  687  */
+//  688 void nwk_pllCalcFailureRate( pll_type* pll, int32_t err_sample )
+//  689 {
+//  690   // update failure rate using a first order low pass filter
+//  691   // y[n] = y[n-1]*(1-k) + x[n]*k, 0 <= k <= 1
+//  692   // sample is in q16.16 format at this point but is twice as big
+//  693   // as needed because of differential sampling so divide k by 2,
+//  694   // result will be in q8.24 format which is adjusted to q24.8 by
+//  695   // the final shift and the cast results in a q8.8 result which
+//  696   // is what we started with.
+//  697   #define k 640 // 2.5%
+//  698   if( err_sample < 0 ) // get absolute value
+//  699     err_sample = -err_sample;
+//  700   err_sample >>= 8; // change to q25.7 format
+//  701   err_sample *= k / 2; // multiply by half of gain due to diff sampling, q8.24 format
+//  702   err_sample += (int32_t)(pll->dead_band) * ( 65535L - k ); // finish low pass filtering, q24.8 format
+//  703   err_sample >>= 16; // restore to q24.8 format
+//  704   pll->dead_band = (int16_t)err_sample; // truncate to q8.8 format
+//  705   #undef k
+//  706 }
+//  707 
+//  708 /******************************************************************************
+//  709  * @fn          nwk_pllCheckErrorThreshold
+//  710  *
+//  711  * @brief       Determines if the threshold window on the pll has been violated
+//  712  *
+//  713  * input parameters
+//  714  * @param       pll  - pointer to a pll structure to operate on
+//  715  * @param       err_sample - the error input for this sample
+//  716  *
+//  717  * @return      returns true if threshold is violated
+//  718  */
+//  719 uint32_t nwk_pllCheckErrorThreshold( pll_type* pll, int32_t err_sample )
+//  720 {
+//  721   int32_t result;
+//  722   
+//  723   if( pll->ChargePumpGain < NWK_PLL_HI_GAIN_THRESHOLD / 2 )
+//  724     result = NWK_PLL_HI_GAIN_WINDOW_CNT;
+//  725   else if ( pll->ChargePumpGain > NWK_PLL_LO_GAIN_THRESHOLD * 2 )
+//  726     result = NWK_PLL_LO_GAIN_WINDOW_CNT;
+//  727   else
+//  728   {
+//  729     result = pll->ChargePumpGain;
+//  730     result *= NWK_PLL_GAIN_INTERP_M_CNT;
+//  731     result >>= 8;
+//  732     result += NWK_PLL_GAIN_INTERP_B_CNT;
+//  733     if( result < NWK_PLL_LO_GAIN_WINDOW_CNT )
+//  734       result = NWK_PLL_LO_GAIN_WINDOW_CNT;
+//  735     else if( result > NWK_PLL_HI_GAIN_WINDOW_CNT )
+//  736       result = NWK_PLL_HI_GAIN_WINDOW_CNT;
+//  737   }
+//  738 
+//  739   return result;
+//  740 }
+//  741 
+//  742 /******************************************************************************
+//  743  * @fn          nwk_pllCalcNewSamplePeriod
+//  744  *
+//  745  * @brief       Determines the new sample period to use for the upcoming sample
+//  746  *
+//  747  * input parameters
+//  748  * @param       pll  - pointer to a pll structure to operate on
+//  749  * @param       err_sample - the error input for this sample
+//  750  *
+//  751  * @return      nothing
+//  752  */
+//  753 void nwk_pllCalcNewSamplePeriod( pll_type* pll, int32_t err_sample )
+//  754 {
+//  755   uint32_t gain = (uint32_t)pll->ChargePumpGain;
+//  756   uint32_t error_thresh;
+//  757   
+//  758   error_thresh = nwk_pllCheckErrorThreshold( pll, err_sample );
+//  759 
+//  760   pll->old_err = err_sample;
+//  761 
+//  762   // by adjusting the sample period we can minimize overhead when the PLL is
+//  763   // working well.  The algorithm below increases the sample period by 1.6% each
+//  764   // time the most recent sample falls within a specified threshold.  However, if
+//  765   // the sample falls outside the threshold then the sample period is reduced by
+//  766   // 6.4%, about four times faster than it increases.  This provides a quicker
+//  767   // response to threshold failures but will still bounce around the noise floor
+//  768   // of the system including any jitter caused by application latencies.  Thus,
+//  769   // the better the application layer manages keeping the interrupts available and
+//  770   // not locked out the less overhead the system on whole will incur due to PLL
+//  771   // packet traffic.
+//  772             
+//  773   // if the sample difference is greater than a defined threshold, decrease the
+//  774   // sample period so we can increase system gain.  The value below represents
+//  775   // 250us in q16.16 format but again that is twice the actual error so this
+//  776   // adjusts the sample period at +/- 125us boundaries
+//  777 
+//  778   // get magnitude value of error sample
+//  779   if( err_sample < 0 )
+//  780     err_sample = -err_sample;
+//  781   
+//  782   // for the special case of no error
+//  783   if( err_sample == 0 )
+//  784   {
+//  785     gain += gain >> 4; // increase sample time by 6.25%
+//  786     if( gain > NWK_PLL_SAMPLE_PERIOD_MAX ) // if we passed maximum period
+//  787       gain = NWK_PLL_SAMPLE_PERIOD_MAX; // set it to maximum
+//  788   }
+//  789   else
+//  790   {
+//  791     
+//  792     // if gain will be decreasing and it can be decreased
+//  793     if( error_thresh < err_sample && gain > NWK_PLL_SAMPLE_PERIOD_DEFAULT )
+//  794     {
+//  795       // calculate reciprocal (at least a close approximation)
+//  796       uint32_t r = 0xFFFFFFFFUL / (uint32_t)err_sample;
+//  797       // multiply to get avg_err/(2*error)
+//  798       // guaranteed to be less than one so only calculate the fractional part
+//  799       uint32_t p00 = ( r & 0xFFFFUL ) * ( error_thresh & 0xFFFFUL );
+//  800       uint32_t p10 = ( r & 0xFFFFUL ) * ( error_thresh >> 16 );
+//  801       uint32_t p01 = ( r >> 16 ) * ( error_thresh & 0xFFFFUL );
+//  802       uint32_t p11;
+//  803 
+//  804       r = p00 + ( ( p10 + p01 ) << 16 );
+//  805       
+//  806       // flatten the 1/x result somewhat
+//  807       r >>= 4;
+//  808       r |= 0xF0000000UL; // it should be close to 1
+//  809     
+//  810       // calculate new gain value
+//  811       p00 = ( r & 0xFFFFUL ) * ( gain & 0xFFFFUL );
+//  812       p10 = ( r & 0xFFFFUL ) * ( gain >> 16 );
+//  813       p01 = ( r >> 16 ) * ( gain & 0xFFFFUL );
+//  814       p11 = ( r >> 16 ) * ( gain >> 16 );
+//  815       // complete multiplication
+//  816       p00 = ( ( p00 >> 8 ) + 0x80 ) >> 8; // round
+//  817       p00 += ( p10 & 0xFFFFUL ) + ( p01 & 0xFFFFUL );
+//  818       p00 >>= 8;
+//  819       p10 >>= 8;
+//  820       p01 >>= 8;
+//  821       p11 += ( p00 + p10 + p01 ) >> 8;
+//  822       
+//  823       gain -= gain >> 3; // decrease existing gain by 12.5%
+//  824       if( gain < p11 ) // if actual decrease would be less than 12.5%
+//  825         gain = p11; // use calculated decrease rate, else limit to 12.5%
+//  826     
+//  827       // calculate new gain value
+//  828       if( gain < NWK_PLL_SAMPLE_PERIOD_DEFAULT ) // if sample period got too low
+//  829         gain = NWK_PLL_SAMPLE_PERIOD_DEFAULT; // reset it to minimum sample period rate
+//  830     }
+//  831   // if sample period is not at maximum then we can increase it so system overhead
+//  832   // is minimized and gain goes down making the pll more stable by being less
+//  833   // affected by noise.
+//  834     else if( error_thresh > err_sample && gain < NWK_PLL_SAMPLE_PERIOD_MAX )
+//  835     {
+//  836       // calculate reciprocal (at least a close approximation)
+//  837       uint32_t r = 0xFFFFFFFFUL / (uint32_t)err_sample;
+//  838       // multiply to get avg_err/(2*error)
+//  839       uint32_t p00 = ( r & 0xFFFFUL ) * ( error_thresh & 0xFFFFUL );
+//  840       uint32_t p10 = ( r & 0xFFFFUL ) * ( error_thresh >> 16 );
+//  841       uint32_t p01 = ( r >> 16 ) * ( error_thresh & 0xFFFFUL );
+//  842       uint32_t p11 = ( r >> 16 ) * ( error_thresh >> 16 );
+//  843       // finish with result in q8.24 format
+//  844       r = ( p00 + 0x80 ) >> 8; // round
+//  845       r += ( ( p10 & 0xFFFFUL ) << 8 ) + ( ( p01 & 0xFFFFUL ) << 8 );
+//  846       p11 += ( p10 >> 16 ) + ( p01 >> 16 ) + ( r >> 24 );
+//  847       r &= 0xFFFFFFUL;
+//  848       r |= p11 << 24;
+//  849       p11 >>= 8;
+//  850       
+//  851       // flatten 1/x function somewhat
+//  852       pll -= 0x01000000UL; // subtract off offset
+//  853       p11 >>= 4;           // scale the remaining value
+//  854       p11 += 0x01000000UL; // restore the offset
+//  855       
+//  856       p00 = ( r & 0xFFFFUL ) * ( gain & 0xFFFFUL );
+//  857       p10 = ( r & 0xFFFFUL ) * ( gain >> 16 );
+//  858       p01 = ( r >> 16 ) * ( gain & 0xFFFFUL );
+//  859       p11 = ( r >> 16 ) * ( gain >> 16 );
+//  860       // complete the calculation
+//  861       r = ( ( p00 >> 8 ) + 0x80 ) >> 8; // round
+//  862       r += ( p10 & 0xFFUL ) + ( p01 & 0xFFUL );
+//  863       p11 = ( p11 << 8 ) + ( p10 >> 8 ) + ( p01 >> 8 ) + ( r >> 8 );
+//  864       
+//  865       gain += gain >> 4; // calculate 6% increase
+//  866       if( gain > p11 ) // if actual increase is less than 6%
+//  867         gain = p11; // use calculated gain
+//  868 
+//  869       if( gain > NWK_PLL_SAMPLE_PERIOD_MAX ) // if we passed maximum period
+//  870         gain = NWK_PLL_SAMPLE_PERIOD_MAX; // set it to maximum
+//  871     }
+//  872     BSP_CRITICAL_STATEMENT( pll->ChargePumpGain = gain ); // update loop gain 
+//  873   }
+//  874 
+//  875   pll->ChargePumpCounter += pll->ChargePumpGain - NWK_PLL_SAMPLE_PERIOD_DEFAULT;
+//  876 
+//  877   return;
+//  878 }
+//  879 
+//  880 /******************************************************************************
+//  881  * @fn          nwk_pllRunControlLoop
+//  882  *
+//  883  * @brief       Runs the control loop on the pll
+//  884  *
+//  885  * input parameters
+//  886  * @param       pll  - pointer to a pll structure to operate on
+//  887  * @param       data - a pll pump packet structure
+//  888  * @param       err_sample - the error input for this sample
+//  889  *
+//  890  * @return      nothing
+//  891  */
+//  892 void nwk_pllRunControlLoop( pll_type* pll, pll_Packet_t* data, int32_t err_sample )
+//  893 {
+//  894   int32_t derivative;
+//  895   int32_t proportional;
+//  896   int32_t integral;
+//  897   int32_t control_effort;
+//  898   int32_t last_sample_time;
+//  899 
+//  900   nwk_pllCalcFailureRate( pll, err_sample );
+//  901 
+//  902   nwk_pllCalcNewSamplePeriod( pll, err_sample );
+//  903   
+//  904   // copy over the last sample time so it doesn't change during calculations
+//  905   // and then reset it
+//  906   BSP_CRITICAL_STATEMENT( last_sample_time = pll->LastSampleTime;
+//  907                           pll->LastSampleTime = 0 );
+//  908 
+//  909 
+//  910   // calculate control effort
+//  911   //y[n] = I + kp*To*x[n] + kd*(x[n] - x[n-1])   where I = I + ki*To^2*x[n]
+//  912               
+//  913   // calculate derivitive effort, q8.24 result
+//  914   derivative = err_sample - pll->LastPreFilter;
+//  915 #if NWK_PLL_LOOP_GAIN_Kd_x != 0
+//  916   if( err_sample > 0 ) // if current sample is positive
+//  917   {
+//  918     if( pll->LastPreFilter < 0 ) // and previous sample is negative
+//  919       if( derivative < 0 ) // then check for overflow
+//  920         derivative = 0x7FFFFFFFL; // saturate on overflow detected
+//  921   }
+//  922   else // if current sample is negative
+//  923   {
+//  924     if( pll->LastPreFilter > 0 ) // and previous sample is positive
+//  925       if( derivative > 0 ) // then check for underflow
+//  926         derivative = -0x7FFFFFFFL; // saturate on underflow detected
+//  927   }
+//  928 
+//  929   // check for overflow from calculation
+//  930   if( derivative <= -0x7FFFFFFFL / NWK_PLL_LOOP_GAIN_Kd_x * ( ( NWK_PLL_LOOP_GAIN_Kd_x < 0 ) ? -1 : 1 )
+//  931       || derivative >= 0x7FFFFFFFL / NWK_PLL_LOOP_GAIN_Kd_x * ( ( NWK_PLL_LOOP_GAIN_Kd_x < 0 ) ? -1 : 1 ) )
+//  932     // saturate on underflow detected
+//  933     derivative = ( ( derivative < 0 ) ? -0x7FFFFFFFL : 0x7FFFFFFFL );
+//  934   else // if no overflow/underflow will occur
+//  935     derivative *= NWK_PLL_LOOP_GAIN_Kd_x; // use normal calculation
+//  936 #else
+//  937   derivative = 0; // set to zero if gain is zero
+//  938 #endif
+//  939 
+//  940   // calculate proportional effort, q8.24 result
+//  941   // check for overflow from calculation
+//  942 #if NWK_PLL_LOOP_GAIN_Kp_x != 0
+//  943   if( err_sample <= -0x7FFFFFFFL / NWK_PLL_LOOP_GAIN_Kp_x * ( ( NWK_PLL_LOOP_GAIN_Kp_x < 0 ) ? -1 : 1 )
+//  944       || err_sample >= 0x7FFFFFFFL / NWK_PLL_LOOP_GAIN_Kp_x * ( ( NWK_PLL_LOOP_GAIN_Kp_x < 0 ) ? -1 : 1 ) )
+//  945     // saturate on overflow/underflow detected
+//  946     proportional = ( ( err_sample < 0 ) ? -0x7FFFFFFFL : 0x7FFFFFFFL );
+//  947   else // if no overflow/underflow will occur
+//  948     proportional = err_sample * NWK_PLL_LOOP_GAIN_Kp_x; // use normal calculation
+//  949 #else
+//  950   proportional = 0; // set to zero if gain is zero
+//  951 #endif
+//  952               
+//  953   if( pll->HoldOff != 0 )
+//  954   {
+//  955     pll->HoldOff--;
+//  956     pll->Integrator = integral = 0; // set to zero
+//  957   }
+//  958   else
+//  959   {
+//  960     // calculate integral effort, q8.24 result
+//  961     // check for overflow from calculation
+//  962 #if NWK_PLL_LOOP_GAIN_Ki_x != 0
+//  963     if( err_sample <= -0x7FFFFFFFL / NWK_PLL_LOOP_GAIN_Ki_x * ( ( NWK_PLL_LOOP_GAIN_Ki_x < 0 ) ? -1 : 1 )
+//  964         || err_sample >= 0x7FFFFFFFL / NWK_PLL_LOOP_GAIN_Ki_x * ( ( NWK_PLL_LOOP_GAIN_Ki_x < 0 ) ? -1 : 1 ) )
+//  965       // saturate on underflow detected
+//  966       integral = ( ( err_sample < 0 ) ? -0x7FFFFFFFL : 0x7FFFFFFFL );
+//  967     else // if no overflow/underflow will occur
+//  968       integral = err_sample * NWK_PLL_LOOP_GAIN_Ki_x; // use normal calculation
+//  969     
+//  970     // scale the integrator term
+//  971     integral /= ( last_sample_time + 128 ) / 256 + 1;
+//  972 
+//  973     if( pll->Integrator > 0 ) // if integrator is positive
+//  974     {
+//  975       pll->Integrator += integral; // update integration value
+//  976       if( integral > 0 ) // and the additional value is positive then an overflow can occur
+//  977         if( pll->Integrator < 0 ) // if an overflow occurred
+//  978           pll->Integrator = 0x7FFFFFFFL; // saturate on overflow detected
+//  979     }
+//  980     else // if integrator is negative
+//  981     {
+//  982       pll->Integrator += integral; // update integration value
+//  983       if( integral < 0 ) // and the additional value is negative then an underflow can occur
+//  984         if( pll->Integrator > 0 ) // if an underflow occurred
+//  985           pll->Integrator = -0x7FFFFFFFL; // saturate on underflow detected
+//  986     }
+//  987               
+//  988     // saturate integrator if needed
+//  989     #if BSP_MAX_MODULATION_MAGNITUDE < 127
+//  990       if( pll->Integrator > ( (int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 ) )
+//  991         pll->Integrator = ((int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 );
+//  992       else if( pll->Integrator < -((int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 ) )
+//  993         pll->Integrator = -( (int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 );
+//  994     #endif
+//  995             
+//  996 #else
+//  997     pll->Integrator = 0; // set to zero if gain is zero
+//  998 #endif
+//  999   }              
+// 1000 
+// 1001   // update error history
+// 1002   pll->LastPreFilter = err_sample;
+// 1003 
+// 1004   // calculate overall effort
+// 1005   control_effort = proportional + derivative;
+// 1006   if( proportional > 0 )
+// 1007   {
+// 1008     if( derivative > 0 && control_effort < 0 ) // if overflow occurred
+// 1009       control_effort = 0x7FFFFFFFL; // saturate
+// 1010   }
+// 1011   else // proportional <= 0
+// 1012   {
+// 1013     if( derivative < 0 && control_effort >= 0 ) // if underflow occurred
+// 1014       control_effort = -0x7FFFFFFFL; // saturate
+// 1015   }
+// 1016 
+// 1017   // scale the proportional and derivative terms
+// 1018   control_effort /= ( last_sample_time + 128 ) / 256 + 1;
+// 1019 
+// 1020   if( control_effort > 0 )
+// 1021   {
+// 1022     control_effort += pll->Integrator;
+// 1023     if( pll->Integrator > 0 && control_effort < 0 ) // if overflow occurred
+// 1024       control_effort = 0x7FFFFFFFL; // saturate
+// 1025   }
+// 1026   else // control_effort <= 0
+// 1027   {
+// 1028     control_effort += pll->Integrator;
+// 1029     if( pll->Integrator < 0 && control_effort >= 0 ) // if underflow occurred
+// 1030       control_effort = -0x7FFFFFFFL; // saturate
+// 1031   }
+// 1032 
+// 1033 
+// 1034   // saturate control effort if needed
+// 1035   #if BSP_MAX_MODULATION_MAGNITUDE < 127
+// 1036     if( control_effort > ((int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 ) )
+// 1037       control_effort = ((int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 );
+// 1038     else if( control_effort < -((int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 ) )
+// 1039       control_effort = -((int32_t)(BSP_MAX_MODULATION_MAGNITUDE) << 24 );
+// 1040   #endif
+// 1041 
+// 1042   // effect the control effort
+// 1043   MRFI_AdjustTimerModulationRate( control_effort );
+// 1044 
+// 1045   if( pll->ChargePumpGain > NWK_PLL_LOCKED_VALUE )
+// 1046   {
+// 1047     if( pll->locked == false )
+// 1048       pll->locked = true;
+// 1049   }
+// 1050   else
+// 1051   {
+// 1052     if( pll->locked != false )
+// 1053       pll->locked = false;
+// 1054   }
+// 1055 
+// 1056   return;
+// 1057 }
+// 1058 
+// 1059 /******************************************************************************
+// 1060  * @fn          nwk_pllRunChargePump
+// 1061  *
+// 1062  * @brief       Runs the PLL charge pump and updates the control loop
+// 1063  *
+// 1064  * input parameters
+// 1065  * @param       pll  - pointer to a pll structure to operate on
+// 1066  * @param       data - a pll pump packet structure
+// 1067  * @param       req_dly - the delay time of the request packet
+// 1068  *
+// 1069  * @return      nothing
+// 1070  */
+// 1071 void nwk_pllRunChargePump( pll_type* pll, pll_Packet_t* data, int32_t req_dly )
+// 1072 {
+// 1073   int32_t err_sample;
+// 1074 
+// 1075   pll->Failures = 0; // clear the failure counter
+// 1076             
+// 1077   // calculate the delta between request and response channel delays
+// 1078   err_sample = data->ChannelDelay - req_dly;
+// 1079   
+// 1080   // update the average error distance value
+// 1081   if( err_sample < 0 ) // use absolute value of error
+// 1082     err_sample = -err_sample;
+// 1083   if( pll->average_err > err_sample ) // add emphasis to decreasing average error
+// 1084     pll->average_err += ( err_sample - pll->average_err ) >> 3;
+// 1085   else // reduce emphasis to increasing average error
+// 1086     pll->average_err += ( err_sample - pll->average_err ) >> 6;
+// 1087   if( data->ChannelDelay < req_dly ) // correct sign change if needed
+// 1088     err_sample = -err_sample;
+// 1089 
+// 1090   // if we are really out in the woods, basically if we are off by more
+// 1091   // than +/- 32 milliseconds (because measured error is twice as large
+// 1092   // as actual error due to differential measurement)
+// 1093   if( err_sample > 0x3FFFFFL || err_sample < -0x3FFFFFL )
+// 1094   {
+// 1095     // then just jump to the current time stamp to get us close
+// 1096     nwk_pllJumpPLL( &(data->Time) );
+// 1097 
+// 1098     // reset the sample time
+// 1099     pll->LastSampleTime = 0;
+// 1100 
+// 1101     // reset charge pump gains
+// 1102     pll->ChargePumpCounter = pll->ChargePumpGain = NWK_PLL_SAMPLE_PERIOD_DEFAULT;
+// 1103 
+// 1104     // reset the modulation value
+// 1105     MRFI_AdjustTimerModulationRate( 0 );
+// 1106 
+// 1107     pll->dead_band = 2560; // assume a 10ms dead band window
+// 1108   }
+// 1109   else // we are within range to run the regular control loop
+// 1110   {
+// 1111     nwk_pllRunControlLoop( pll, data, err_sample );
+// 1112   }
+// 1113   return;
+// 1114 }
+// 1115 
+// 1116 /******************************************************************************
+// 1117  * @fn          nwk_pllPumpResponseCommand
+// 1118  *
+// 1119  * @brief       Handles responses to pump request commands.
+// 1120  *
+// 1121  * input parameters
+// 1122  * @param       pll  - pointer to a pll structure to operate on
+// 1123  * @param       data - a pll pump packet structure
+// 1124  * @param       addr - the address of the responding reference
+// 1125  *
+// 1126  * @return      nothing
+// 1127  */
+// 1128 void nwk_pllPumpResponseCommand( pll_type* pll, pll_Packet_t* data, addr_t* addr )
+// 1129 {
+// 1130   // get priority of entity originating pump request
+// 1131   int8_t my_addr = memcmp( &data->OriginatorAddr, nwk_getMyAddress( ), MRFI_ADDR_SIZE );
+// 1132 
+// 1133   // if we're not locked and another system has priority over us
+// 1134   if( pll->ChargePumpGain <= NWK_PLL_LOCKED_VALUE && my_addr < 0 )
+// 1135   {
+// 1136     // then just jump to the current time stamp to get us close
+// 1137     nwk_pllJumpPLL( &(data->Time) );
+// 1138 
+// 1139     pll->dead_band = 2560; // assume a 10ms deadband window
+// 1140           
+// 1141     // reset the charge pump counter in a manner which should see multiple
+// 1142     // pump requests before it times out.  That way, we will continue to
+// 1143     // operate in passive mode and not flood the network with our own requests
+// 1144     pll->ChargePumpCounter = 2 * NWK_PLL_LOCKED_VALUE;
+// 1145     
+// 1146     // release the rx time stamp, we're done
+// 1147     (*((mrfi_Time_t**)&(data->Time.rxts)))->rxts[0] = 0;
+// 1148   }
+// 1149   else if( my_addr == 0 ) // if this response is for me
+// 1150   {
+// 1151     // if the channel delay from the pump request is invalid
+// 1152     if( data->ChannelDelay == NWK_PLL_SAMPLE_ERROR )
+// 1153     {
+// 1154       // then just jump to the current time stamp to get us close
+// 1155       nwk_pllJumpPLL( &(data->Time) );
+// 1156 
+// 1157       pll->dead_band = 2560; // assume a 10ms deadband window
+// 1158           
+// 1159       // release the rx time stamp, we're done
+// 1160       (*((mrfi_Time_t**)&(data->Time.rxts)))->rxts[0] = 0;
+// 1161     }
+// 1162     // if the channel delay from the pump request is valid
+// 1163     else
+// 1164     {
+// 1165       // copy request channel delay so we don't loose it
+// 1166       int32_t req_dly = data->ChannelDelay;
+// 1167 
+// 1168       // calculate channel delay for response packet, releases rx time stamp
+// 1169       nwk_pllGetChannelDelay( data );
+// 1170       
+// 1171       // if the delay from the pump response is valid too and its from our
+// 1172       // selected reference
+// 1173       if( data->ChannelDelay != NWK_PLL_SAMPLE_ERROR
+// 1174                 && data->ChannelDelay != NWK_PLL_NO_RXTS_AVAILABLE )
+// 1175         nwk_pllRunChargePump( pll, data, req_dly );
+// 1176     }
+// 1177   }
+// 1178   else // not anything we need to work on, release the rxts
+// 1179     (*((mrfi_Time_t**)&(data->Time.rxts)))->rxts[0] = 0;
+// 1180 
+// 1181   return;
+// 1182 }
+// 1183 /******************************************************************************
+// 1184  * @fn          nwk_pllBackgrounder
+// 1185  *
+// 1186  * @brief       User must call this routine regularly from thier main loop and
+// 1187  *              also from any functions not working with the radio which can
+// 1188  *              take a long time to execute.  The more often the better.
+// 1189  *              NOTE: this routine runs off of semaphores that are set by the
+// 1190  *                    1 millisecond timer interrupt and also by radio interrupts
+// 1191  *                    but it should not be run in the ISR's because it needs to
+// 1192  *                    manage packets over the radio and that is inappropriate
+// 1193  *                    to do in an ISR thread.
+// 1194  *
+// 1195  * input parameters
+// 1196  * @param       no_pump - true if user is wanting to hold off pump requests
+// 1197  *
+// 1198  * @return   non-zero if the PLL considers itself locked to a reference.
+// 1199  */
+// 1200 #ifdef NWK_PLL_SHOW_LOCATION_INDICATORS
+// 1201 static uint8_t nwk_pll_indicator_state = 0; // initialize indicator state
+// 1202 #endif
+// 1203 bool nwk_pllBackgrounder( bool no_pump )
+// 1204 {
+// 1205   static bool recurse = false;
+// 1206   pll_type* pll = splls;
+// 1207   
+// 1208   if( recurse == false )
+// 1209   {
+// 1210     recurse = true; // assert recursion flag
+// 1211     
+// 1212     nwk_pllCheckSem( pll ); // update semaphore status
+// 1213   
+// 1214     FHSS_ACTIVE( MRFI_FreqHoppingBckgndr( ) ); // manage changing of frequencies
+// 1215 
+// 1216     if( no_pump == false )
+// 1217     {
+// 1218       recurse = true; // assert recursion flag
+// 1219     
+// 1220       // if time to run the charge pump
+// 1221       if( pll->PumpRequestSem != 0 )
+// 1222       {
+// 1223         nwk_pllChargePump( pll );
+// 1224 #ifdef NWK_PLL_SHOW_LOCATION_INDICATORS
+// 1225         if( splls->State == NWK_PLL_STATE_LOCATE )
+// 1226         {
+// 1227           if( nwk_pll_indicator_state == 0 )
+// 1228           {
+// 1229             nwk_pll_indicator_state = 4;
+// 1230             nwk_pll_indicator_state |= ( ( BSP_LED1_IS_ON( ) ) ? 1 : 0 );
+// 1231             nwk_pll_indicator_state |= ( ( BSP_LED2_IS_ON( ) ) ? 2 : 0 );
+// 1232           }
+// 1233 
+// 1234           if( BSP_LED1_IS_ON( ) )
+// 1235             if( BSP_LED2_IS_ON( ) )
+// 1236               BSP_TURN_OFF_LED1( );
+// 1237             else
+// 1238               BSP_TURN_ON_LED2( );
+// 1239           else
+// 1240             if( BSP_LED2_IS_ON( ) )
+// 1241               BSP_TURN_OFF_LED2( );
+// 1242             else
+// 1243               BSP_TURN_ON_LED1( );
+// 1244         }
+// 1245         else if( nwk_pll_indicator_state != 0 )
+// 1246         {
+// 1247           if( ( nwk_pll_indicator_state & 1 ) == 0 )
+// 1248             BSP_TURN_ON_LED1( );
+// 1249           else
+// 1250             BSP_TURN_OFF_LED1( );
+// 1251           if( ( nwk_pll_indicator_state & 2 ) == 0 )
+// 1252             BSP_TURN_ON_LED2( );
+// 1253           else
+// 1254             BSP_TURN_OFF_LED2( );
+// 1255           nwk_pll_indicator_state = 0;
+// 1256         }
+// 1257 #endif
+// 1258       }
+// 1259 
+// 1260       // if there are one or more packets to work on
+// 1261       if( pll->packetSem != 0 )
+// 1262       {
+// 1263         pll_Packet_t pkt;
+// 1264         addr_t addr;
+// 1265         ioctlRawReceive_t rcv;
+// 1266     
+// 1267         // indicate we are consuming a packet
+// 1268         BSP_CRITICAL_STATEMENT( pll->packetSem-- );
+// 1269     
+// 1270         // fill in the receive context
+// 1271         rcv.addr = &addr;
+// 1272         rcv.msg  = (uint8_t*)(&pkt);
+// 1273         rcv.port = SMPL_PORT_PLL;
+// 1274   
+// 1275         // go get the frame and if it was found
+// 1276         if( SMPL_Ioctl( IOCTL_OBJ_RAW_IO, IOCTL_ACT_READ, &rcv ) == SMPL_SUCCESS )
+// 1277         {
+// 1278           // if this is a locate reference or pump request command
+// 1279           if( ( pkt.Cmd & ( pll_cmd_LocateReference | pll_cmd_PumpRequest ) ) != 0 )
+// 1280             nwk_pllHandleRequestCommand( pll, &pkt, &addr );
+// 1281       
+// 1282           // if a locate response command
+// 1283           else if( ( pkt.Cmd & pll_cmd_LocateResponse ) != 0 )
+// 1284             nwk_pllLocateResponseCommand( pll, &pkt, &addr );
+// 1285 
+// 1286           // if a pump response command and the PLL is running
+// 1287           else if( ( pkt.Cmd & pll_cmd_PumpResponse ) != 0
+// 1288                    && pll->State == NWK_PLL_STATE_ON )
+// 1289             nwk_pllPumpResponseCommand( pll, &pkt, &addr );
+// 1290 
+// 1291           else // an unknown command, release the receive data packet, we don't need it
+// 1292             (*((mrfi_Time_t**)&(pkt.Time.rxts)))->rxts[0] = 0;
+// 1293         }
+// 1294       }
+// 1295 
+// 1296       // finally, if we're supposed to be running, check to see if we have
+// 1297       // lost the reference clock completely and if so, restart the system
+// 1298       if( pll->State == NWK_PLL_STATE_ON && pll->Failures > NWK_PLL_FAILURE_LIMIT )
+// 1299       {
+// 1300         nwk_pllResetPLL( ); // reset the system
+// 1301         nwk_pllStartPLL( ); // now start it back up
+// 1302       }
+// 1303     }
+// 1304     
+// 1305     recurse = false; // reset recursion flag
+// 1306   }
+// 1307   
+// 1308   return sTxValid;
+// 1309 }
+// 1310 
+// 1311 /****************************************************************************************
+// 1312  * @fn          nwk_pllStartPLL
+// 1313  *
+// 1314  * @brief       Starts up the pll if it is not already running
+// 1315  *
+// 1316  * input parameters
+// 1317  *              none
+// 1318  *
+// 1319  * @return      nothing
+// 1320  */
+// 1321 void nwk_pllStartPLL( void )
+// 1322 {
+// 1323   pll_type* pll = splls;
+// 1324 
+// 1325   if( pll->State != NWK_PLL_STATE_ON ) // if we really need to start the pll
+// 1326   {
+// 1327     if( pll->State != NWK_PLL_STATE_OFF ) // if the system is not already off
+// 1328       nwk_pllResetPLL( ); // put the pll into a known state
+// 1329 
+// 1330     pll->State = NWK_PLL_STATE_LOCATE; // move to locating reference clock state
+// 1331     
+// 1332     // set hop rate to be quick so we cycle through frequencies faster than
+// 1333     // the normal hop rate so we can catch up with the reference clock.
+// 1334     sHopRate = 3 * NWK_PLL_SAMPLE_PERIOD_DEFAULT;
+// 1335   }
+// 1336 
+// 1337   return;
+// 1338 }
+// 1339 
+// 1340 /****************************************************************************************
+// 1341  * @fn          nwk_pllResetPLL
+// 1342  *
+// 1343  * @brief       Completes necessary dynamic reset operations.
+// 1344  *
+// 1345  * input parameters
+// 1346  *              none
+// 1347  *
+// 1348  * @return      nothing
+// 1349  */
+// 1350 void nwk_pllResetPLL( void )
+// 1351 {
+// 1352   pll_type* pll = splls;
+// 1353   
+// 1354   pll->State = NWK_PLL_STATE_OFF;
+// 1355     
+// 1356 #ifdef NWK_PLL_REFERENCE_CLOCK
+// 1357   // initialize the master reference to our own address
+// 1358   pll->MasterAddr = *nwk_getMyAddress( );
+// 1359 #else
+// 1360   // initialize the master reference to the broadcast address
+// 1361   pll->MasterAddr = *nwk_getBCastAddress( );
+// 1362 #endif
+// 1363   
+// 1364   pll->MasterLQI = 0; // set LQI to minimum to start
+// 1365   
+// 1366   // reset the sample time
+// 1367   pll->LastSampleTime = 0;
+// 1368 
+// 1369   // reset charge pump gains
+// 1370   pll->ChargePumpCounter = pll->ChargePumpGain = NWK_PLL_SAMPLE_PERIOD_DEFAULT;
+// 1371   // randomly backoff on first access
+// 1372   pll->ChargePumpCounter += MRFI_RandomByte( );
+// 1373 
+// 1374 #ifdef NWK_PLL_REFERENCE_CLOCK
+// 1375   pll->ChargePumpCounter = 1; // short the pump count to minimum for the reference
+// 1376 #endif
+// 1377 
+// 1378   // clear the integrator
+// 1379   pll->Integrator = 0;
+// 1380 
+// 1381   // initialize integrator holdoff
+// 1382   pll->HoldOff = NWK_PLL_Kp_HOLD_OFF;
+// 1383 
+// 1384   // clear the sample history
+// 1385   pll->LastPreFilter = 0;
+// 1386 
+// 1387   // initialize the semaphores    
+// 1388   pll->packetSem = 0;     // no packets yet
+// 1389   pll->PumpRequestSem = 0; // no charge pump requests yet
+// 1390 
+// 1391   pll->Failures = 0;
+// 1392   
+// 1393 #ifdef NWK_PLL_REFERENCE_CLOCK
+// 1394   pll->dead_band = 0; // reference clocks are always in sync
+// 1395 #else
+// 1396   pll->dead_band = 65535u; // initially we always fail
+// 1397 #endif
+// 1398 
+// 1399   pll->locked = 0;
+// 1400   pll->old_err = 0;
+// 1401 
+// 1402   return;
+// 1403 }
+// 1404 
+// 1405 /****************************************************************************************
+// 1406  * @fn          nwk_pllControl
+// 1407  *
+// 1408  * @brief       handles IOCTL requests
+// 1409  *
+// 1410  * input parameters
+// 1411  * @param   action  - requested action
+// 1412                         IOCTL_ACT_ON & IOCTL_ACT_OFF are only supported actions
+// 1413  * @param   val     - ignored, pass NULL
+// 1414  *
+// 1415  * output parameters
+// 1416  * @param   val     - not modified
+// 1417  *
+// 1418  * @return   status of operation.
+// 1419  */
+// 1420 smplStatus_t nwk_pllControl(ioctlAction_t action, void *val)
+// 1421 {
+// 1422   smplStatus_t status = SMPL_SUCCESS; // assume success initially
+// 1423 
+// 1424   switch( action )
+// 1425   {
+// 1426   case IOCTL_ACT_ON:
+// 1427     // start the charge pump by issuing a pump request
+// 1428 #ifndef NWK_PLL_REFERENCE_CLOCK
+// 1429     nwk_pllStartPLL( );
+// 1430 #endif
+// 1431     break;
+// 1432   case IOCTL_ACT_OFF:
+// 1433     nwk_pllResetPLL( );
+// 1434     break;
+// 1435   default:
+// 1436     status = SMPL_BAD_PARAM;
+// 1437     break;
+// 1438   }
+// 1439 
+// 1440   return status;
+// 1441 }
+// 1442 
+// 1443 /****************************************************************************************
+// 1444  * @fn          nwk_processPLL
+// 1445  *
+// 1446  * @brief       Process a PLL application frame.
+// 1447  *
+// 1448  * input parameters
+// 1449  * @param   frame     - pointer to frame
+// 1450  *
+// 1451  * @return   Disposition for frame: release (FHS_RELEASE) or keep (FHS_KEEP).
+// 1452  */
+// 1453 fhStatus_t nwk_processPLL( mrfiPacket_t *frame )
+// 1454 {
+// 1455   pll_type* pll = splls;
+// 1456   mrfi_Time_t* rxts = nwk_pllAcquireRxTimeStamp( );
+// 1457 
+// 1458   // if this packet is for us (in case address filtering is off)
+// 1459   if( memcmp( MRFI_P_DST_ADDR( frame ), nwk_getBCastAddress( ), sizeof( addr_t ) ) == 0
+// 1460       || memcmp( MRFI_P_DST_ADDR( frame ), nwk_getMyAddress( ), sizeof( addr_t ) ) == 0 )
+// 1461   {
+// 1462     if( rxts == NULL ) // if no receive time stamp to go with this packet
+// 1463       return FHS_RELEASE; // ignore the packet
+// 1464 
+// 1465     // we have a receive time stamp and the packet is for us
+// 1466 
+// 1467     // expand raw packet into aligned packet
+// 1468     PLL_PKT_EXPAND_FROM_BUFFER( NWK_PLL_PACKET_PTR(frame) );
+// 1469          
+// 1470     // put reference to last receive event time stamp into received data
+// 1471     memcpy( NWK_PLL_PACKET_PTR( frame )->Time.rxts, &rxts, sizeof(mrfi_Time_t*));
+// 1472   
+// 1473     // copy the link quality value into the packet
+// 1474     memcpy( &(NWK_PLL_PACKET_PTR( frame )->LinkQuality),
+// 1475             &(frame->rxMetrics[MRFI_RX_METRICS_CRC_LQI_OFS]),
+// 1476             PLL_PKT_MEMBER_SZ(LinkQuality) );
+// 1477   
+// 1478     // indicate we have a packet to manage
+// 1479     BSP_CRITICAL_STATEMENT( pll->packetSem++ );
+// 1480     
+// 1481     return FHS_KEEP; // keep it so we can work on it in the backgrounder
+// 1482   }
+// 1483 
+// 1484   // else  
+// 1485   // release the receive data packet as it's not for us
+// 1486   if( rxts != NULL ) // if a receive time stamp to go with this packet
+// 1487     rxts->rxts[0] = 0; // release it
+// 1488 
+// 1489   return FHS_RELEASE; // ignore the packet
+// 1490 }
+// 1491 
+// 1492 #else  /* NWK_PLL */
+// 1493 
+// 1494 /****************************************************************************************
+// 1495  * @fn          nwk_processPLL
+// 1496  *
+// 1497  * @brief       Process a NWK PLL application frame. Stub when NWK_PLL not defined.
+// 1498  *              This stub simply releases all frames for this port as there is
+// 1499  *              nothing for us to do.
+// 1500  *
+// 1501  * input parameters
+// 1502  * @param   frame     - pointer to frame
+// 1503  *
+// 1504  * @return   Disposition for frame: release (FHS_RELEASE).
+// 1505  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// 1506 fhStatus_t nwk_processPLL(mrfiPacket_t *frame)
+nwk_processPLL:
+        CODE
+// 1507 {
+        ; Saved register size: 0
+        ; Auto size: 0
+// 1508   return FHS_RELEASE;
+        MOV     R1,#0x0
+        ANL     ?DPS,#0xfe
+        RET
+// 1509 }
+
+        END
+// 1510 
+// 1511 #endif  /* NWK_PLL */
+// 
+// 6 bytes in segment NEAR_CODE
+// 
+// 6 bytes of CODE memory
+//
+//Errors: none
+//Warnings: none

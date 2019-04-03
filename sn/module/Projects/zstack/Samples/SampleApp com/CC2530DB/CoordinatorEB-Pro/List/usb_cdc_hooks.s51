@@ -1,0 +1,830 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        19/Jun/2016  18:16:15 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\class_cdc\usb_cdc_hooks.c                 /
+//    Command line       =  -f "C:\Users\freeman\Documents\work\SN\module\Pro /
+//                          jects\zstack\Samples\SampleApp                    /
+//                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g" (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR  /
+//                          -DDEFAULT_CHANLIST=0x00000800                     /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          "-DCONST=const __code" -DGENERIC=__generic        /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000       /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100   /
+//                          -DREJOIN_POLL_RATE=440)                           /
+//                          C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\class_cdc\usb_cdc_hooks.c -D ZIGBEEPRO    /
+//                          -D ZTOOL_P1 -lC "C:\Users\freeman\Documents\work\ /
+//                          SN\module\Projects\zstack\Samples\SampleApp       /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\"             /
+//                          --diag_suppress Pe001,Pa010 -o                    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug   /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data_rom                /
+//                          --nr_virtual_regs 16 -I                           /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp com\CC2530DB\" -I     /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\SOURCE\" -I                       /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET /
+//                          \CC2530EB\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\C /
+//                          CSOC\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLU /
+//                          DE\" -I "C:\Users\freeman\Documents\work\SN\modul /
+//                          e\Projects\zstack\Samples\SampleApp               /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI /
+//                          \" -I "C:\Users\freeman\Documents\work\SN\module\ /
+//                          Projects\zstack\Samples\SampleApp                 /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I  /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          ADDR\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          DATA\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_L /
+//                          EVEL\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\SINGLE_CHIP\" -I                        /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\librar /
+//                          y\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_ /
+//                          hid\" -I "C:\Users\freeman\Documents\work\SN\modu /
+//                          le\Projects\zstack\Samples\SampleApp              /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common /
+//                          \" -Ohz --require_prototypes                      /
+//    List file          =  C:\Users\freeman\Documents\work\SN\module\Project /
+//                          s\zstack\Samples\SampleApp                        /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\usb_cdc_hooks /
+//                          .s51                                              /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME usb_cdc_hooks
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??usbcrHookProcessIn?relay
+        FUNCTION ??usbcrHookProcessIn?relay,0203H
+        PUBLIC ??usbcrHookProcessOut?relay
+        FUNCTION ??usbcrHookProcessOut?relay,0203H
+        PUBLIC ??usbirqHookProcessEvents?relay
+        FUNCTION ??usbirqHookProcessEvents?relay,0203H
+        PUBLIC ??usbsrHookClearFeature?relay
+        FUNCTION ??usbsrHookClearFeature?relay,0203H
+        PUBLIC ??usbsrHookModifyGetStatus?relay
+        FUNCTION ??usbsrHookModifyGetStatus?relay,0203H
+        PUBLIC ??usbsrHookProcessEvent?relay
+        FUNCTION ??usbsrHookProcessEvent?relay,0203H
+        PUBLIC ??usbsrHookSetDescriptor?relay
+        FUNCTION ??usbsrHookSetDescriptor?relay,0203H
+        PUBLIC ??usbsrHookSetFeature?relay
+        FUNCTION ??usbsrHookSetFeature?relay,0203H
+        PUBLIC ??usbsrHookSynchFrame?relay
+        FUNCTION ??usbsrHookSynchFrame?relay,0203H
+        PUBLIC ??usbvrHookProcessIn?relay
+        FUNCTION ??usbvrHookProcessIn?relay,0203H
+        PUBLIC ??usbvrHookProcessOut?relay
+        FUNCTION ??usbvrHookProcessOut?relay,0203H
+        PUBLIC Max_Lun
+        PUBLIC usbcrHookProcessIn
+        FUNCTION usbcrHookProcessIn,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbcrHookProcessOut
+        FUNCTION usbcrHookProcessOut,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC usbirqHookProcessEvents
+        FUNCTION usbirqHookProcessEvents,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbsrHookClearFeature
+        FUNCTION usbsrHookClearFeature,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbsrHookModifyGetStatus
+        FUNCTION usbsrHookModifyGetStatus,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC usbsrHookProcessEvent
+        FUNCTION usbsrHookProcessEvent,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC usbsrHookSetDescriptor
+        FUNCTION usbsrHookSetDescriptor,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbsrHookSetFeature
+        FUNCTION usbsrHookSetFeature,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbsrHookSynchFrame
+        FUNCTION usbsrHookSynchFrame,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbvrHookProcessIn
+        FUNCTION usbvrHookProcessIn,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbvrHookProcessOut
+        FUNCTION usbvrHookProcessOut,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+BootRfDown          SYMBOL "BootRfDown"
+??BootRfDown?relay  SYMBOL "?relay", BootRfDown
+usbcrHookProcessIn  SYMBOL "usbcrHookProcessIn"
+??usbcrHookProcessIn?relay SYMBOL "?relay", usbcrHookProcessIn
+usbcrHookProcessOut SYMBOL "usbcrHookProcessOut"
+??usbcrHookProcessOut?relay SYMBOL "?relay", usbcrHookProcessOut
+usbirqHookProcessEvents SYMBOL "usbirqHookProcessEvents"
+??usbirqHookProcessEvents?relay SYMBOL "?relay", usbirqHookProcessEvents
+usbsrHookClearFeature SYMBOL "usbsrHookClearFeature"
+??usbsrHookClearFeature?relay SYMBOL "?relay", usbsrHookClearFeature
+usbsrHookModifyGetStatus SYMBOL "usbsrHookModifyGetStatus"
+??usbsrHookModifyGetStatus?relay SYMBOL "?relay", usbsrHookModifyGetStatus
+usbsrHookProcessEvent SYMBOL "usbsrHookProcessEvent"
+??usbsrHookProcessEvent?relay SYMBOL "?relay", usbsrHookProcessEvent
+usbsrHookSetDescriptor SYMBOL "usbsrHookSetDescriptor"
+??usbsrHookSetDescriptor?relay SYMBOL "?relay", usbsrHookSetDescriptor
+usbsrHookSetFeature SYMBOL "usbsrHookSetFeature"
+??usbsrHookSetFeature?relay SYMBOL "?relay", usbsrHookSetFeature
+usbsrHookSynchFrame SYMBOL "usbsrHookSynchFrame"
+??usbsrHookSynchFrame?relay SYMBOL "?relay", usbsrHookSynchFrame
+usbvrHookProcessIn  SYMBOL "usbvrHookProcessIn"
+??usbvrHookProcessIn?relay SYMBOL "?relay", usbvrHookProcessIn
+usbvrHookProcessOut SYMBOL "usbvrHookProcessOut"
+??usbvrHookProcessOut?relay SYMBOL "?relay", usbvrHookProcessOut
+
+        EXTERN BootRfDown
+        FUNCTION BootRfDown,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??BootRfDown?relay
+        FUNCTION ??BootRfDown?relay,00H
+        EXTERN usbSetupData
+        EXTERN usbSetupHeader
+        EXTERN usbfwData
+
+// C:\Users\freeman\Documents\work\SN\module\Components\usb\class_cdc\usb_cdc_hooks.c
+//    1 /***********************************************************************************
+//    2 
+//    3     Filename: usb_cdc_hooks.c
+//    4 
+//    5     Contains the necessary hook functions for various USB request processing
+//    6     that is featured from the USB firmware library. Some
+//    7     functions are empty.
+//    8 
+//    9 ***********************************************************************************/
+//   10 
+//   11 
+//   12 /**********************************************************************************
+//   13  * INCLUDES
+//   14  */
+//   15 
+//   16 #include "usb_firmware_library_headers.h"
+//   17 #include "usb_cdc.h"
+//   18 #include "usb_uart.h"
+//   19 #include "hal_led.h"
+//   20 
+//   21 /* Global data */
+//   22 
+//   23 extern CDC_LINE_CODING_STRUCTURE currentLineCoding;
+//   24 extern uint16 cdcRTS;
+//   25 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA32
+//   26 unsigned long Max_Lun=0;
+Max_Lun:
+        DS 4
+        REQUIRE __INIT_XDATA_Z
+//   27 //extern char g_modBoot;
+//   28 extern void BootRfDown(void);
+//   29 
+//   30 // *********************************************************************************
+//   31 // All Hooks and functions required by the USB library.
+//   32 // *********************************************************************************
+//   33 
+//   34 // **************** Process USB class requests with OUT data phase *****************
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   35 void usbcrHookProcessOut(void)
+usbcrHookProcessOut:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function usbcrHookProcessOut
+        CODE
+//   36 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   37    // Process USB class requests with OUT data phase, or stall endpoint 0 when unsupported
+//   38 #if 0
+//   39    if (usbSetupHeader.request == CDC_SET_CONTROL_LINE_STATE) {
+//   40        // Control line state from host
+//   41       if(usbfwData.ep0Status == EP_IDLE)
+//   42       {
+//   43          cdcRTS= usbSetupHeader.value;
+//   44          if (cdcRTS)
+//   45              halLedSet(2);          // Green LED
+//   46          else
+//   47              halLedClear(2);
+//   48 
+//   49          usbfwData.ep0Status = EP_RX;
+//   50       }
+//   51 
+//   52 
+//   53    } else if(usbSetupHeader.request == CDC_SET_LINE_CODING) {
+//   54 
+//   55       if(usbfwData.ep0Status == EP_IDLE)
+//   56       {
+//   57          usbSetupData.pBuffer = (uint8 __xdata *) &currentLineCoding;
+//   58          usbfwData.ep0Status = EP_RX;
+//   59       }
+//   60       else if(usbfwData.ep0Status == EP_RX) { }
+//   61 	  
+//   62    }else if(usbSetupHeader.request == MASS_STORAGE_RESET)
+//   63    {
+//   64 	 if(usbfwData.ep0Status == EP_IDLE)
+//   65       {
+//   66          usbSetupData.pBuffer = (uint8 __xdata *) &Max_Lun;
+//   67          usbfwData.ep0Status = EP_RX;
+//   68       }
+//   69       else if(usbfwData.ep0Status == EP_RX) { }
+//   70 
+//   71    }
+//   72    // Unknown request?
+//   73    else {
+//   74       usbfwData.ep0Status = EP_STALL;
+//   75    }
+//   76  #endif
+//   77 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock0
+//   78 
+//   79 // **************** Process USB class requests with IN data phase ******************
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   80 void usbcrHookProcessIn(void)
+usbcrHookProcessIn:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function usbcrHookProcessIn
+        CODE
+//   81 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   82    // Process USB class requests with IN data phase, or stall endpoint 0 when unsupported
+//   83 /*
+//   84    if (usbSetupHeader.request == CDC_GET_LINE_CODING) {
+//   85       // First the endpoint status is EP_IDLE...
+//   86       if (usbfwData.ep0Status == EP_IDLE) {
+//   87          usbSetupData.pBuffer = (uint8 __xdata *) &currentLineCoding;
+//   88          usbSetupData.bytesLeft = 7;
+//   89          usbfwData.ep0Status = EP_TX;
+//   90          // Then the endpoint status is EP_TX (remember: we did that here when setting up the buffer)
+//   91       } else if (usbfwData.ep0Status == EP_TX) {
+//   92          // usbfwData.ep0Status is automatically reset to EP_IDLE when returning to usbfwSetupHandler()
+//   93       }
+//   94    } else {
+//   95       usbfwData.ep0Status = EP_STALL;
+//   96    }*/
+//   97 
+//   98 	if (usbSetupHeader.request == GET_MAX_LUN) {
+        MOV     DPTR,#usbSetupHeader + 1
+        MOVX    A,@DPTR
+        XRL     A,#0xfe
+        MOV     DPTR,#usbfwData + 7
+        JNZ     ??usbcrHookProcessIn_0
+//   99 	// First the endpoint status is EP_IDLE...
+//  100 	if (usbfwData.ep0Status == EP_IDLE) {
+        MOVX    A,@DPTR
+        JNZ     ??usbcrHookProcessIn_1
+//  101 	 usbSetupData.pBuffer = (uint8 __xdata *) &Max_Lun;
+        MOV     DPTR,#usbSetupData
+        MOV     A,#Max_Lun & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#(Max_Lun >> 8) & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//  102 	 usbSetupData.bytesLeft = 1;
+        INC     DPTR
+        INC     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+//  103 	 usbfwData.ep0Status = EP_TX;
+        MOV     DPTR,#usbfwData + 7
+        INC     A
+        SJMP    ??usbcrHookProcessIn_2
+//  104 	 // Then the endpoint status is EP_TX (remember: we did that here when setting up the buffer)
+//  105 	} else if (usbfwData.ep0Status == EP_TX) {
+//  106 	 // usbfwData.ep0Status is automatically reset to EP_IDLE when returning to usbfwSetupHandler()
+//  107 	}
+//  108 	} else {
+//  109 	usbfwData.ep0Status = EP_STALL;
+??usbcrHookProcessIn_0:
+        MOV     A,#0x4
+??usbcrHookProcessIn_2:
+        MOVX    @DPTR,A
+//  110 	}
+//  111    
+//  112 }
+??usbcrHookProcessIn_1:
+        SJMP    ??Subroutine1_0
+        CFI EndBlock cfiBlock1
+//  113 
+//  114 // ********************************  Unsupported USB hooks *************************
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  115 void usbvrHookProcessOut(void) {usbfwData.ep0Status = EP_STALL; }
+usbvrHookProcessOut:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function usbvrHookProcessOut
+        CODE
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock2
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  116 void usbvrHookProcessIn(void) {usbfwData.ep0Status = EP_STALL; }
+usbvrHookProcessIn:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function usbvrHookProcessIn
+        CODE
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock3
+//  117 
+//  118 // ************************  unsupported/unhandled standard requests ***************
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  119 void usbsrHookSetDescriptor(void) { usbfwData.ep0Status = EP_STALL; }
+usbsrHookSetDescriptor:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function usbsrHookSetDescriptor
+        CODE
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock4
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  120 void usbsrHookSynchFrame(void) { usbfwData.ep0Status = EP_STALL; }
+usbsrHookSynchFrame:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function usbsrHookSynchFrame
+        CODE
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock5
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  121 void usbsrHookClearFeature(void) { usbfwData.ep0Status = EP_STALL; }
+usbsrHookClearFeature:
+        CODE
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI NoFunction
+        PUSH    DPL
+        CFI CFA_SP SP+-4
+        CFI DPL0 Frame(CFA_SP, 4)
+        PUSH    DPH
+        CFI CFA_SP SP+-5
+        CFI DPH0 Frame(CFA_SP, 5)
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#usbfwData + 7
+        MOV     A,#0x4
+        MOVX    @DPTR,A
+        CFI EndBlock cfiBlock6
+        REQUIRE ??Subroutine1_0
+        ; // Fall through to label ??Subroutine1_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine1_0:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock7
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  122 void usbsrHookSetFeature(void) { usbfwData.ep0Status = EP_STALL; }
+usbsrHookSetFeature:
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI Function usbsrHookSetFeature
+        CODE
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock8
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  123 void usbsrHookModifyGetStatus(uint8 recipient, uint8 index, uint16 __xdata *pStatus) { }
+usbsrHookModifyGetStatus:
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI Function usbsrHookModifyGetStatus
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock9
+//  124 
+//  125 
+//  126 // ************************ USB standard request event processing ******************
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  127 void usbsrHookProcessEvent(uint8 event, uint8 index)
+usbsrHookProcessEvent:
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function usbsrHookProcessEvent
+        CODE
+//  128 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//  129    // Process relevant events, one at a time.
+//  130    switch (event) {
+//  131    case USBSR_EVENT_CONFIGURATION_CHANGING : //(the device configuration is about to change)
+//  132       break;
+//  133    case USBSR_EVENT_CONFIGURATION_CHANGED :// (the device configuration has changed)
+//  134       break;
+//  135    case USBSR_EVENT_INTERFACE_CHANGING ://(the alternate setting of the given interface is about to change)
+//  136       break;
+//  137    case USBSR_EVENT_INTERFACE_CHANGED : //(the alternate setting of the given interface has changed)
+//  138       break;
+//  139    case USBSR_EVENT_REMOTE_WAKEUP_ENABLED ://(remote wakeup has been enabled by the host)
+//  140       break;
+//  141    case USBSR_EVENT_REMOTE_WAKEUP_DISABLED ://(remote wakeup has been disabled by the host)
+//  142       break;
+//  143    case USBSR_EVENT_EPIN_STALL_CLEARED ://(the given IN endpoint's stall condition has been cleared the host)
+//  144       break;
+//  145    case USBSR_EVENT_EPIN_STALL_SET ://(the given IN endpoint has been stalled by the host)
+//  146       break;
+//  147    case USBSR_EVENT_EPOUT_STALL_CLEARED ://(the given OUT endpoint's stall condition has been cleared the host)
+//  148       break;
+//  149    case USBSR_EVENT_EPOUT_STALL_SET ://(the given OUT endpoint has been stalled by the PC)
+//  150       break;
+//  151    }
+//  152 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock10
+//  153 
+//  154 // ************************ USB interrupt event processing *************************
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  155 void usbirqHookProcessEvents(void)
+usbirqHookProcessEvents:
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI Function usbirqHookProcessEvents
+        CODE
+//  156 {
+        FUNCALL usbirqHookProcessEvents, BootRfDown
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  157     // Handle events that require immediate processing here
+//  158     //if(!g_modBoot)
+//  159     //{
+//  160 	//g_modBoot = 1;
+//  161     //}
+//  162     BootRfDown();
+        ; Setup parameters for call to function BootRfDown
+        LCALL   ??BootRfDown?relay
+//  163 }
+        SJMP    ??Subroutine1_0
+        CFI EndBlock cfiBlock11
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbcrHookProcessOut?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbcrHookProcessOut
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbcrHookProcessIn?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbcrHookProcessIn
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbvrHookProcessOut?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbvrHookProcessOut
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbvrHookProcessIn?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbvrHookProcessIn
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbsrHookSetDescriptor?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbsrHookSetDescriptor
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbsrHookSynchFrame?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbsrHookSynchFrame
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbsrHookClearFeature?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbsrHookClearFeature
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbsrHookSetFeature?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbsrHookSetFeature
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbsrHookModifyGetStatus?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbsrHookModifyGetStatus
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbsrHookProcessEvent?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbsrHookProcessEvent
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbirqHookProcessEvents?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbirqHookProcessEvents
+
+        END
+//  164 
+//  165 /*
+//  166 +------------------------------------------------------------------------------
+//  167 |  Copyright 2004-2007 Texas Instruments Incorporated. All rights reserved.
+//  168 |
+//  169 |  IMPORTANT: Your use of this Software is limited to those specific rights
+//  170 |  granted under the terms of a software license agreement between the user who
+//  171 |  downloaded the software, his/her employer (which must be your employer) and
+//  172 |  Texas Instruments Incorporated (the "License"). You may not use this Software
+//  173 |  unless you agree to abide by the terms of the License. The License limits
+//  174 |  your use, and you acknowledge, that the Software may not be modified, copied
+//  175 |  or distributed unless embedded on a Texas Instruments microcontroller or used
+//  176 |  solely and exclusively in conjunction with a Texas Instruments radio
+//  177 |  frequency transceiver, which is integrated into your product. Other than for
+//  178 |  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//  179 |  works of, modify, distribute, perform, display or sell this Software and/or
+//  180 |  its documentation for any purpose.
+//  181 |
+//  182 |  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//  183 |  PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//  184 |  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//  185 |  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//  186 |  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//  187 |  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//  188 |  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING
+//  189 |  BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+//  190 |  CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+//  191 |  SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//  192 |  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//  193 |
+//  194 |  Should you have any questions regarding your right to use this Software,
+//  195 |  contact Texas Instruments Incorporated at www.TI.com.
+//  196 |
+//  197 +------------------------------------------------------------------------------
+//  198 */
+// 
+// 93 bytes in segment BANKED_CODE
+// 66 bytes in segment BANK_RELAYS
+//  4 bytes in segment XDATA_Z
+// 
+// 159 bytes of CODE  memory
+//   4 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

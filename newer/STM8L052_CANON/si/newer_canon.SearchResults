@@ -1,0 +1,24 @@
+---- Flash_Time_Group Matches (23 in 6 files) ----
+Canon.c (source):_Flash_Time_TypeDef  Flash_Time_Group[6][28] ={
+Canon.c (source):                Formalfrash(Flash_Time_Group[Flash_offset]);
+Canon.c (source):                Formalfrash(Flash_Time_Group[Flash_offset]); 
+Canon.c (source):                Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Canon.c (source):                Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Canon.c (source):            Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Canon.c (source):                //Formalfrash(Flash_Time_Group[Flash_offset]);
+Canon.c (source):                    Multifrash(Flash_Time_Group[(Multi_Output_Typedef+9)+6]);
+Canon.c (source):    Multifrash(Flash_Time_Group[(Multi_Output_Typedef+9)+6]);
+Canon.c (source):    Max_Count = (sizeof(Flash_Time_Group)/2);
+Canon.h (source):extern _Flash_Time_TypeDef  Flash_Time_Group[];
+Funct.c (source):            //Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Funct.c (source):            Formalfrash(Flash_Time_Group[getVolLevel()][(Flash_Output_Typedef+9)+6]);
+Funct.c (source):                Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Key_Process.c (source):            Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Key_Process.c (source):            Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Sony.c (source):_Flash_Time_TypeDef  Flash_Time_Group[] ={
+Sony.c (source):            Formalfrash(Flash_Time_Group[offset]); 
+Sony.c (source):            Formalfrash(Flash_Time_Group[(Flash_Output_Typedef+9)+6]);
+Sony.c (source):            Formalfrash(Flash_Time_Group[(Slave_Output_Typedef+9)+6]);
+Sony.c (source):                Multifrash(Flash_Time_Group[(Multi_Output_Typedef+9)+6]);
+Sony.c (source):    Multifrash(Flash_Time_Group[(Multi_Output_Typedef+9)+6]);
+Sony.h (source):extern _Flash_Time_TypeDef      Flash_Time_Group[];

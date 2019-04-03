@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2129383961</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\hw\adc\adc.c</file>
+      <file>$PROJ_DIR$\hw\uart\uart.h</file>
+      <file>$PROJ_DIR$\hw\a7105\a7105.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\boot.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\fb.pbi</file>
+      <file>$PROJ_DIR$\Debug\Exe\CanNikLight.out</file>
+      <file>$PROJ_DIR$\Debug\Obj\a7105.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8l152r8.h</file>
+      <file>$TOOLKIT_DIR$\inc\iostm8l152k4.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.__cstat.et</file>
+      <file>$PROJ_DIR$\aes\aes.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\btn.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\aes.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\boot.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_n.o</file>
+      <file>$PROJ_DIR$\hw\eeprom\eeprom.h</file>
+      <file>$PROJ_DIR$\hw\timer\timer.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\lcd.o</file>
+      <file>$PROJ_DIR$\config\lnkstm8l152r8.icf</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\boot.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\a7105.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\lcd.pbi</file>
+      <file>$PROJ_DIR$\hw\a7105\a7105.h</file>
+      <file>$PROJ_DIR$\hw\adc\adc.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\fb.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\flash.__cstat.et</file>
+      <file>$PROJ_DIR$\hw\lcd\lcd.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\a7105.__cstat.et</file>
+      <file>$PROJ_DIR$\hw\sys\sys.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\io_macros.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.pbi</file>
+      <file>$PROJ_DIR$\hw\boot\boot.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\timer.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+      <file>$PROJ_DIR$\global.h</file>
+      <file>$PROJ_DIR$\hw\flash\flash.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\aes.__cstat.et</file>
+      <file>$PROJ_DIR$\type.h</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8mln.h</file>
+      <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+      <file>$PROJ_DIR$\hw\eeprom\eeprom.c</file>
+      <file>$PROJ_DIR$\hw\lcd\btn.c</file>
+      <file>$PROJ_DIR$\aes\aes.c</file>
+      <file>$PROJ_DIR$\hw\lcd\fb.c</file>
+      <file>$PROJ_DIR$\hw\flash\flash.c</file>
+      <file>$PROJ_DIR$\hw\lcd\lcd.c</file>
+      <file>$PROJ_DIR$\hw\spi\spi_c.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\hw\moto\moto.c</file>
+      <file>$PROJ_DIR$\hw\spi\spi_n.c</file>
+      <file>$PROJ_DIR$\hw\sys\sys.c</file>
+      <file>$PROJ_DIR$\hw\timer\timer.c</file>
+      <file>$PROJ_DIR$\hw\uart\uart.c</file>
+      <file>$TOOLKIT_DIR$\lib\dbgstm8mld.a</file>
+      <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\lcd.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\lib\dlstm8mln.a</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_n.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\moto.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\fb.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\sys.__cstat.et</file>
+      <file>$PROJ_DIR$\hw\lcd\btn.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_c.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\CanNikLight.pbd</file>
+      <file>$PROJ_DIR$\Debug\Exe\CanNikLight.bin</file>
+      <file>$PROJ_DIR$\Debug\Obj\eeprom.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\eeprom.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\sys.o</file>
+      <file>$PROJ_DIR$\hw\moto\moto.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_n.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\aes.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\sys.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_c.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\moto.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\spi_c.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\flash.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\adc.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\uart.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\moto.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\flash.o</file>
+      <file>$PROJ_DIR$\hw\spi\spi.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\eeprom.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\btn.o</file>
+      <file>$PROJ_DIR$\Debug\Obj\btn.pbi</file>
+      <file>$PROJ_DIR$\hw\boot\boot.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\hw\adc\adc.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 9</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 87</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 70</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 7 34 32 39 35 45 40 31 18 26 60 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 26 43 40 7 34 32 39 45 60 44 33 35 18 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\a7105\a7105.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 6</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 30</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 40 7 1 31 43 34 25</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 25 43 40 7 34 1 31</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 5</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\CanNikLight.out</name>
+      <outputs>
+        <tool>
+          <name>OBJCOPY</name>
+          <file> 72</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ILINK</name>
+          <file> 20 23 87 78 93 74 27 90 19 79 89 85 15 75 21 80 62 59</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\boot\boot.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 3</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 14</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11 34 43 8 95 1</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 1 43 8 34 95 11</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\eeprom\eeprom.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 92</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 74</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 73</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8 43 34 16</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 16 43 8 34</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\lcd\btn.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 94</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 93</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 44 29 45 26 7 39 35 43 32 68 34 33 40 60 18</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 40 7 34 43 32 39 45 60 44 33 35 18 26 68 29</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\aes\aes.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 78</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 42</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11 43</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 11 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\lcd\fb.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 66</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 33 34 43 40 41 39 26 1 32 29 25 7 45 35 44 60 18</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 40 7 34 43 32 39 45 60 44 33 35 18 26 29 41 25 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\flash\flash.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 86</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 90</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 28</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 91 40 60 18 32 1 7 43 29 31 25 34 39 45 41 35 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 41 43 40 7 34 32 39 45 60 44 33 35 18 29 91 31 1 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\lcd\lcd.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 24</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 19</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 31 7 34 39 18 40 32 43 35 45 29 60 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 29 43 40 7 34 31 32 39 45 60 44 33 35 18</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\spi\spi_c.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 83</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 85</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 69</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39 40 7 17 32 1 45 41 25 43 34 60 18 91 35 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 91 43 40 7 34 32 39 45 60 44 33 35 18 41 17 25 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 82</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 79</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 64</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 41 43 91 17 16 26 25 34 95 11 40 76 29 31 7 1</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 1 43 95 16 11 91 40 7 34 26 76 41 29 25 31 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\moto\moto.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 65</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 89</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 84</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 7 34 39 18 32 40 1 43 35 45 76 60 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 76 40 7 34 43 32 39 45 60 44 33 35 18 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\spi\spi_n.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 63</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 39 40 17 43 34 32 25 45 41 1 7 60 18 91 35 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 91 43 40 7 34 32 39 45 60 44 33 35 18 41 17 1 25</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\sys\sys.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 81</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 75</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 40 7 34 31</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 31 43 40 7 34</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\timer\timer.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 38</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 21</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43 32 45 33 39 40 91 7 34 60 44 17 35 18</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 17 43 40 7 34 32 39 45 60 44 33 35 18 91</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\hw\uart\uart.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 36</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 80</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 88</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35 43 45 39 32 34 8 18 1 60 44 33</file>
+        </tool>
+        <tool>
+          <name>ICCSTM8</name>
+          <file> 1 43 8 34 32 39 45 60 44 33 35 18</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>ILINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+

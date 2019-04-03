@@ -1,0 +1,873 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:54 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Compone /
+//                          nts\simpliciti\nwk_applications\nwk_ioctl.c       /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Components\simpl /
+//                          iciti\nwk_applications\nwk_ioctl.c" -D            /
+//                          "MCU_H=\"ioCC1110.h\"" -D MRFI_CC1110 -lB         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\L /
+//                          ist\" -o "C:\Texas Instruments\SimpliciTI-IAR-1.2 /
+//                          .0\Projects\Examples\SRF04\UART_Bridge\IAR\CC1110 /
+//                          -LinkTo\Obj\" -e --debug --core=plain             /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\nwk_ioctl.s51                                  /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk_ioctl
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ADD_XSTACK_DISP0_8
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?DPH1
+        EXTERN ?DPL1
+        EXTERN ?DPS
+        EXTERN ?FUNC_ENTER_XDATA
+        EXTERN ?FUNC_LEAVE_XDATA
+        EXTERN ?PUSH_XSTACK8_X_TWO_2DPTR
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTACK_RESTORE_DPTRS_1
+        EXTERN ?XSTACK_SAVE_DPTRS_1
+
+        PUBLIC nwk_connectionControl
+        PUBLIC nwk_deviceAddress
+        PUBLIC nwk_radioControl
+        PUBLIC nwk_rawReceive
+        PUBLIC nwk_rawSend
+
+        EXTERN nwk_buildFrame
+        EXTERN memcpy
+        EXTERN nwk_sendFrame
+        EXTERN nwk_retrieveFrame
+        EXTERN MRFI_RxIdle
+        EXTERN MRFI_Sleep
+        EXTERN MRFI_WakeUp
+        EXTERN nwk_getConnInfo
+        EXTERN MRFI_Rssi
+        EXTERN MRFI_RxOn
+        EXTERN nwk_getMyAddress
+        EXTERN nwk_setMyAddress
+        EXTERN nwk_freeConnection
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_applications\nwk_ioctl.c
+//    1 
+//    2 /**************************************************************************************************
+//    3   Filename:       nwk_ioctl.c
+//    4   Revised:        $Date: 2009-01-13 11:31:14 -0800 (Tue, 13 Jan 2009) $
+//    5   Revision:       $Revision: 18744 $
+//    6   Author:         $Author: lfriedman $
+//    7 
+//    8   Description:    This file supports the SimpliciTI IOCTL implmentation. This interface
+//    9                   gives applications access to the "driver" network level functions
+//   10                   when necessary.
+//   11 
+//   12   Copyright 2004-2007 Texas Instruments Incorporated. All rights reserved.
+//   13 
+//   14   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   15   the terms of a software license agreement between the user who downloaded the software,
+//   16   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   17   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   18   License. The License limits your use, and you acknowledge, that the Software may not be
+//   19   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   20   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   21   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   22   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   23   perform, display or sell this Software and/or its documentation for any purpose.
+//   24 
+//   25   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   26   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   27   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   28   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   29   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   30   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   31   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   32   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   33   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   34 
+//   35   Should you have any questions regarding your right to use this Software,
+//   36   contact Texas Instruments Incorporated at www.TI.com.
+//   37 **************************************************************************************************/
+//   38 
+//   39 
+//   40 /******************************************************************************
+//   41  * INCLUDES
+//   42  */
+//   43 #include <string.h>
+//   44 #include "bsp.h"
+//   45 #include "mrfi.h"
+//   46 #include "nwk_types.h"
+//   47 #include "nwk_frame.h"
+//   48 #include "nwk.h"
+//   49 #include "nwk_ioctl.h"
+//   50 #include "nwk_globals.h"
+//   51 #include "nwk_security.h"
+//   52 #ifdef ACCESS_POINT
+//   53 #include "nwk_join.h"
+//   54 #endif
+//   55 
+//   56 #ifdef NWK_PLL
+//   57 #include "nwk_pll.h"
+//   58 #endif
+//   59 /******************************************************************************
+//   60  * MACROS
+//   61  */
+//   62 
+//   63 /******************************************************************************
+//   64  * CONSTANTS AND DEFINES
+//   65  */
+//   66 
+//   67 /******************************************************************************
+//   68  * TYPEDEFS
+//   69  */
+//   70 
+//   71 /******************************************************************************
+//   72  * LOCAL VARIABLES
+//   73  */
+//   74 
+//   75 /******************************************************************************
+//   76  * LOCAL FUNCTIONS
+//   77  */
+//   78 
+//   79 /******************************************************************************
+//   80  * GLOBAL VARIABLES
+//   81  */
+//   82 
+//   83 /******************************************************************************
+//   84  * GLOBAL FUNCTIONS
+//   85  */
+//   86 
+//   87 
+//   88 /******************************************************************************
+//   89  * @fn          nwk_rawSend
+//   90  *
+//   91  * @brief       Builds an outut frame based on information provided by the
+//   92  *              caller. This function allows a raw transmission to the target
+//   93  *              if the network address is known. this function is used a lot
+//   94  *              to support NWK applications.
+//   95  *
+//   96  * input parameters
+//   97  * @param   info    - pointer to strcuture containing info on how to build
+//   98  *                    the outgoing frame.
+//   99  * output parameters
+//  100  *
+//  101  * @return         SMPL_SUCCESS
+//  102  *                 SMPL_NOMEM       - no room in output frame queue
+//  103  *                 SMPL_TX_CCA_FAIL - CCA failure
+//  104  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  105 smplStatus_t nwk_rawSend(ioctlRawSend_t *info)
+nwk_rawSend:
+        CODE
+//  106 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 11
+        ; Auto size: 0
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+//  107   frameInfo_t *pOutFrame;
+//  108   uint8_t      hops;
+//  109 
+//  110   /* If we know frame is going to or from the AP then we can reduce the hop
+//  111    * count.
+//  112    */
+//  113   switch (info->port)
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        ADD     A,#-0x3
+        JZ      ??nwk_rawSend_0
+        ADD     A,#-0x2
+        JZ      ??nwk_rawSend_0
+        DEC     A
+        JNZ     ??nwk_rawSend_1
+//  114   {
+//  115     case SMPL_PORT_JOIN:
+//  116     case SMPL_PORT_FREQ:
+//  117     case SMPL_PORT_MGMT:
+//  118       hops = MAX_HOPS_FROM_AP;
+??nwk_rawSend_0:
+        MOV     R5,#0x1
+//  119       break;
+        SJMP    ??nwk_rawSend_2
+//  120 
+//  121     default:
+//  122       hops = MAX_HOPS;
+??nwk_rawSend_1:
+        MOV     R5,#0x3
+//  123       break;
+//  124   }
+//  125 
+//  126   if (pOutFrame = nwk_buildFrame(info->port, info->msg, info->len, hops))
+??nwk_rawSend_2:
+        ; Setup parameters for call to function nwk_buildFrame
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R4,A
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        LCALL   nwk_buildFrame
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     R0,?V0 + 0
+        MOV     R1,?V0 + 1
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??nwk_rawSend_3
+//  127   {
+//  128 #ifdef NWK_PLL
+//  129     // get access to the packet data
+//  130     void* pkt = MRFI_P_PAYLOAD(&pOutFrame->mrfiPkt)+F_APP_PAYLOAD_OS;
+//  131     // get a data logging command
+//  132     const uint8_t cmd = ( pll_cmd_LocateReference | pll_cmd_LocateResponse
+//  133                           | pll_cmd_PumpRequest | pll_cmd_PumpResponse );
+//  134     if( info->port == SMPL_PORT_PLL // if sending to a pll port
+//  135            // and its not a data logging packet
+//  136            && ( ((pll_Packet_t*)pkt)->Cmd & cmd ) != cmd )
+//  137     {
+//  138       // update the transmit time stamp address to point
+//  139       // into where the message was copied to
+//  140       MRFI_SetTxTimeStampAddr( &(((pll_Packet_t*)pkt)->Time) );
+//  141     }
+//  142 #endif
+//  143     memcpy(MRFI_P_DST_ADDR(&pOutFrame->mrfiPkt), info->addr, NET_ADDR_SIZE);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        MOV     R4,A
+        INC     DPTR/*1*/
+        MOVX    A,@DPTR/*1*/
+        MOV     R5,A
+        MOV     A,R6
+        ADD     A,#0x3
+        INC     R2
+        INC     R2
+        INC     R2
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+//  144 #ifdef SMPL_SECURE
+//  145     nwk_setSecureFrame(&pOutFrame->mrfiPkt, info->len, 0);
+//  146 #endif  /* SMPL_SECURE */
+//  147     return nwk_sendFrame(pOutFrame, MRFI_TX_TYPE_CCA);
+        ; Setup parameters for call to function nwk_sendFrame
+        MOV     R1,#0x1
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   nwk_sendFrame
+        SJMP    ??nwk_rawSend_4
+//  148   }
+//  149   return SMPL_NOMEM;
+??nwk_rawSend_3:
+        MOV     R1,#0x3
+??nwk_rawSend_4:
+        LJMP    ?Subroutine0
+//  150 }
+//  151 
+//  152 /******************************************************************************
+//  153  * @fn          nwk_rawReceive
+//  154  *
+//  155  * @brief       Retriievs specified from from the input frame queue. Additional
+//  156  *              information such as source address and hop count may also be
+//  157  *              retrieved
+//  158  *
+//  159  * input parameters
+//  160  * @param   info    - pointer to structure containing info on what to retrieve
+//  161  *
+//  162  * output parameters - actually populated by nwk_retrieveFrame()
+//  163  *      info->msg      - application payload copied here
+//  164  *      info->len      - length of received application payload
+//  165  *      info->addr     - if non-NULL points to memory to be populated with
+//  166  *                       source address of retrieved frame.
+//  167  *      info->hopCount - if non-NULL points to memory to be populated with
+//  168  *                       hop count of retrieved frame.
+//  169  *
+//  170  * @return   Status of operation.
+//  171  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  172 smplStatus_t nwk_rawReceive(ioctlRawReceive_t *info)
+nwk_rawReceive:
+        CODE
+//  173 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 11
+        ; Auto size: 3
+        MOV     A,#-0x3
+        LCALL   ?ALLOC_XSTACK8
+//  174   rcvContext_t rcv;
+//  175 
+//  176   rcv.type   = RCV_NWK_PORT;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        CLR     A
+        MOVX    @DPTR,A
+//  177   rcv.t.port = info->port;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        PUSH    A
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+        MOVX    @DPTR,A
+//  178 
+//  179   return nwk_retrieveFrame(&rcv, info->msg, &info->len, info->addr, &info->hopCount);
+        ; Setup parameters for call to function nwk_retrieveFrame
+        MOV     A,R2
+        ADD     A,#0x6
+        MOV     ?V0 + 0,A
+        MOV     A,R3
+        ADDC    A,#0x0
+        MOV     ?V0 + 1,A
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        LCALL   ?PUSH_XSTACK8_X_TWO_2DPTR
+        MOV     A,R2
+        ADD     A,#0x4
+        MOV     ?V0 + 0,A
+        MOV     A,R3
+        ADDC    A,#0x0
+        MOV     ?V0 + 1,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R4,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R5,A
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   nwk_retrieveFrame
+        MOV     A,#0x6
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     A,#0x3
+        LCALL   ?DEALLOC_XSTACK8
+        LJMP    ?Subroutine0
+//  180 }
+//  181 
+//  182 /******************************************************************************
+//  183  * @fn          nwk_radioControl
+//  184  *
+//  185  * @brief       Handle radio control functions.
+//  186  *
+//  187  * input parameters
+//  188  * @param   action   - radio operation to perform. currently suppoerted:
+//  189  *                         sleep/unsleep
+//  190  * output parameters
+//  191  *
+//  192  * @return   Status of operation.
+//  193  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  194 smplStatus_t nwk_radioControl(ioctlAction_t action, void *val)
+nwk_radioControl:
+        CODE
+//  195 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 11
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R7,A
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+//  196   smplStatus_t rc = SMPL_SUCCESS;
+        MOV     R6,#0x0
+//  197 
+//  198   if (IOCTL_ACT_RADIO_SLEEP == action)
+        MOV     A,#0x4
+        XRL     A,R7
+        JNZ     ??nwk_radioControl_0
+//  199   {
+//  200     /* go to sleep mode. */
+//  201     MRFI_RxIdle();
+        ; Setup parameters for call to function MRFI_RxIdle
+        LCALL   MRFI_RxIdle
+//  202     MRFI_Sleep();
+        ; Setup parameters for call to function MRFI_Sleep
+        LCALL   MRFI_Sleep
+        SJMP    ??nwk_radioControl_1
+//  203   }
+//  204   else if (IOCTL_ACT_RADIO_AWAKE == action)
+??nwk_radioControl_0:
+        MOV     A,#0x5
+        XRL     A,R7
+        JNZ     ??nwk_radioControl_2
+//  205   {
+//  206     MRFI_WakeUp();
+        ; Setup parameters for call to function MRFI_WakeUp
+        LCALL   MRFI_WakeUp
+        SJMP    ??nwk_radioControl_1
+//  207 
+//  208 #if !defined( END_DEVICE )
+//  209     MRFI_RxOn();
+//  210 #endif
+//  211 
+//  212   }
+//  213   else if (IOCTL_ACT_RADIO_SIGINFO == action)
+??nwk_radioControl_2:
+        MOV     A,#0x6
+        XRL     A,R7
+        JNZ     ??nwk_radioControl_3
+//  214   {
+//  215     ioctlRadioSiginfo_t *pSigInfo = (ioctlRadioSiginfo_t *)val;
+//  216     connInfo_t          *pCInfo   = nwk_getConnInfo(pSigInfo->lid);
+        ; Setup parameters for call to function nwk_getConnInfo
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    A,@DPTR/*1*/
+        MOV     R1,A
+        LCALL   nwk_getConnInfo
+//  217 
+//  218     if (!pCInfo)
+        MOV     A,R2
+        ORL     A,R3
+        JNZ     ??nwk_radioControl_4
+//  219     {
+//  220       return SMPL_BAD_PARAM;
+        MOV     R1,#0x2
+        SJMP    ??nwk_radioControl_5
+//  221     }
+//  222     memcpy(&pSigInfo->sigInfo, &pCInfo->sigInfo, sizeof(pCInfo->sigInfo));
+??nwk_radioControl_4:
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x2
+        MOV     ?V0 + 1,R6
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     A,R2
+        ADD     A,#0x6
+        MOV     R4,A
+        MOV     A,R3
+        ADDC    A,#0x0
+        MOV     R5,A
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        MOV     R2,?DPL1
+        MOV     R3,?DPH1
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        SJMP    ??nwk_radioControl_1
+//  223   }
+//  224   else if (IOCTL_ACT_RADIO_RSSI == action)
+??nwk_radioControl_3:
+        MOV     A,#0x7
+        XRL     A,R7
+        JNZ     ??nwk_radioControl_6
+//  225   {
+//  226     *((rssi_t *)val) = MRFI_Rssi();
+        ; Setup parameters for call to function MRFI_Rssi
+        LCALL   MRFI_Rssi
+        MOV     A,R1
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    @DPTR/*1*/,A
+        SJMP    ??nwk_radioControl_1
+//  227   }
+//  228   else if (IOCTL_ACT_RADIO_RXON == action)
+??nwk_radioControl_6:
+        MOV     A,#0x8
+        XRL     A,R7
+        JNZ     ??nwk_radioControl_7
+//  229   {
+//  230     MRFI_RxOn();
+        ; Setup parameters for call to function MRFI_RxOn
+        LCALL   MRFI_RxOn
+        SJMP    ??nwk_radioControl_1
+//  231   }
+//  232   else if (IOCTL_ACT_RADIO_RXIDLE == action)
+??nwk_radioControl_7:
+        MOV     A,#0x9
+        XRL     A,R7
+        JNZ     ??nwk_radioControl_8
+//  233   {
+//  234     MRFI_RxIdle();
+        ; Setup parameters for call to function MRFI_RxIdle
+        LCALL   MRFI_RxIdle
+        SJMP    ??nwk_radioControl_1
+//  235   }
+//  236 #ifdef EXTENDED_API
+//  237   else if (IOCTL_ACT_RADIO_SETPWR == action)
+//  238   {
+//  239     uint8_t idx;
+//  240 
+//  241     switch (*(ioctlLevel_t *)val)
+//  242     {
+//  243       case IOCTL_LEVEL_2:
+//  244         idx = 2;
+//  245         break;
+//  246 
+//  247       case IOCTL_LEVEL_1:
+//  248         idx = 1;
+//  249         break;
+//  250 
+//  251       case IOCTL_LEVEL_0:
+//  252         idx = 0;
+//  253         break;
+//  254 
+//  255       default:
+//  256         return SMPL_BAD_PARAM;
+//  257     }
+//  258     MRFI_SetRFPwr(idx);
+//  259     return SMPL_SUCCESS;
+//  260   }
+//  261 #endif  /* EXTENDED_API */
+//  262   else
+//  263   {
+//  264     rc = SMPL_BAD_PARAM;
+??nwk_radioControl_8:
+        INC     R6
+        INC     R6
+//  265   }
+//  266   return rc;
+??nwk_radioControl_1:
+        MOV     A,R6
+        MOV     R1,A
+??nwk_radioControl_5:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        SJMP    ??Subroutine1_0
+//  267 }
+//  268 
+//  269 /******************************************************************************
+//  270  * @fn          nwk_joinContext
+//  271  *
+//  272  * @brief       For Access Points we need a way to support changing the Join
+//  273  *              context. This will allow arbitration bewteen potentially nearby
+//  274  *              Access Points when a new device is joining.
+//  275  *
+//  276  * input parameters
+//  277  * @param   action  - Join context is either on or off.
+//  278  *
+//  279  * output parameters
+//  280  *
+//  281  * @return   Status of operation. Currently always succeeds.
+//  282  */
+//  283 #ifdef ACCESS_POINT
+//  284 smplStatus_t nwk_joinContext(ioctlAction_t action)
+//  285 {
+//  286   nwk_setJoinContext((IOCTL_ACT_ON == action) ? JOIN_CONTEXT_ON : JOIN_CONTEXT_OFF);
+//  287 
+//  288   return SMPL_SUCCESS;
+//  289 }
+//  290 #endif
+//  291 
+//  292 /******************************************************************************
+//  293  * @fn          nwk_deviceAddress
+//  294  *
+//  295  * @brief       Set or Get this device address. The Set must be done before
+//  296  *              SMPL_Init() for it to take effect. The Get is always legal but
+//  297  *              the value could be invalid if it is called before a valid set
+//  298  *              call is made.
+//  299  *
+//  300  * input parameters
+//  301  * @param   action  - Gte or Set
+//  302  * @param   addr    - pointer to address object containing value on Set
+//  303  *
+//  304  * output parameters
+//  305  * @param   addr    - pointer to address object to receive value on Get.
+//  306  *
+//  307  * @return   SMPL_SUCCESS
+//  308  *           SMPL_BAD_PARAM  Action request illegal or a Set request
+//  309  *                           was not respected.
+//  310  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  311 smplStatus_t nwk_deviceAddress(ioctlAction_t action, addr_t *addr)
+nwk_deviceAddress:
+        CODE
+//  312 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 11
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R7,A
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+//  313   smplStatus_t rc = SMPL_BAD_PARAM;
+        MOV     R6,#0x2
+//  314 
+//  315   if (IOCTL_ACT_GET == action)
+        MOV     A,#0x1
+        XRL     A,R7
+        JNZ     ??nwk_deviceAddress_0
+//  316   {
+//  317     memcpy(addr, nwk_getMyAddress(), sizeof(addr_t));
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        ; Setup parameters for call to function nwk_getMyAddress
+        LCALL   nwk_getMyAddress
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     R2,?DPL1
+        MOV     R3,?DPH1
+        LCALL   memcpy
+        MOV     A,R6
+        LCALL   ?DEALLOC_XSTACK8
+//  318     rc = SMPL_SUCCESS;
+        SJMP    ??nwk_deviceAddress_1
+//  319   }
+//  320   else if (IOCTL_ACT_SET == action)
+??nwk_deviceAddress_0:
+        MOV     A,R7
+        JNZ     ??nwk_deviceAddress_2
+//  321   {
+//  322     if (nwk_setMyAddress(addr))
+        ; Setup parameters for call to function nwk_setMyAddress
+        LCALL   nwk_setMyAddress
+        MOV     A,R1
+        JZ      ??nwk_deviceAddress_2
+//  323     {
+//  324       rc = SMPL_SUCCESS;
+??nwk_deviceAddress_1:
+        DEC     R6
+        DEC     R6
+//  325     }
+//  326   }
+//  327 
+//  328   return rc;
+??nwk_deviceAddress_2:
+        MOV     A,R6
+        MOV     R1,A
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  329 }
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        REQUIRE ??Subroutine1_0
+        ; // Fall through to label ??Subroutine1_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+??Subroutine1_0:
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        REQUIRE ??Subroutine2_0
+        ; // Fall through to label ??Subroutine2_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+??Subroutine2_0:
+        MOV     R7,#0x2
+        LJMP    ?FUNC_LEAVE_XDATA
+//  330 
+//  331 /******************************************************************************
+//  332  * @fn          nwk_connectionControl
+//  333  *
+//  334  * @brief       Access to connection table. Currently supports only deleting
+//  335  *              a connection from the table.
+//  336  *
+//  337  * input parameters
+//  338  * @param   action  - Connection control action (only delete is curently valid).
+//  339  * @param   val     - pointer to Link ID of connection on which to operate.
+//  340  *
+//  341  * output parameters
+//  342  *
+//  343  * @return   SMPL_SUCCESS
+//  344  *           SMPL_BAD_PARAM  Action is not delete
+//  345  *                           Link ID is the UUD Link ID
+//  346  *                           No connection table info for Link ID
+//  347  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  348 smplStatus_t nwk_connectionControl(ioctlAction_t action, void *val)
+nwk_connectionControl:
+        CODE
+//  349 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+//  350   connInfo_t *pCInfo;
+//  351   linkID_t    lid = *((linkID_t *)val);
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOVX    A,@DPTR
+        MOV     R1,A
+//  352 
+//  353   if (IOCTL_ACT_DELETE != action)
+        MOV     A,#0xe
+        XRL     A,R6
+        JZ      ??nwk_connectionControl_0
+//  354   {
+//  355     return SMPL_BAD_PARAM;
+??nwk_connectionControl_1:
+        MOV     R1,#0x2
+        SJMP    ??nwk_connectionControl_2
+//  356   }
+//  357 
+//  358   if ((SMPL_LINKID_USER_UUD == lid) ||
+//  359       (!(pCInfo=nwk_getConnInfo(lid))))
+??nwk_connectionControl_0:
+        MOV     A,#-0x1
+        XRL     A,R1
+        JZ      ??nwk_connectionControl_1
+        ; Setup parameters for call to function nwk_getConnInfo
+        LCALL   nwk_getConnInfo
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??nwk_connectionControl_1
+//  360   {
+//  361     return SMPL_BAD_PARAM;
+//  362   }
+//  363 
+//  364   nwk_freeConnection(pCInfo);
+        ; Setup parameters for call to function nwk_freeConnection
+        LCALL   nwk_freeConnection
+//  365 
+//  366   return SMPL_SUCCESS;
+        MOV     R1,#0x0
+??nwk_connectionControl_2:
+        SJMP    ??Subroutine2_0
+//  367 }
+
+        END
+// 
+// 544 bytes in segment NEAR_CODE
+// 
+// 544 bytes of CODE memory
+//
+//Errors: none
+//Warnings: none

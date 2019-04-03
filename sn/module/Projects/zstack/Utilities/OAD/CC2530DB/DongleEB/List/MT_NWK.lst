@@ -1,0 +1,3156 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.40338/W32 for 8051         21/Jul/2014  12:20:03 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Comp #
+#                          onents\mt\MT_NWK.c                                 #
+#    Command line       =  -f D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\P #
+#                          rojects\zstack\Utilities\OAD\CC2530DB\..\..\..\Too #
+#                          ls\CC2530DB\f8wEndev.cfg (-DCPU32MHZ               #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\Tools\ #
+#                          CC2530DB\f8wConfig.cfg (-DSECURE=0                 #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Comp #
+#                          onents\mt\MT_NWK.c -D NWK_AUTO_POLL -D ZTOOL_P1    #
+#                          -D MT_TASK -D MT_APP_FUNC -D MT_NWK_FUNC -D        #
+#                          MT_NWK_CB_FUNC -D MT_SYS_FUNC -D MT_ZDO_FUNC -D    #
+#                          MT_ZDO_CB_FUNC -D MT_UTIL_FUNC -D LCD_SUPPORTED    #
+#                          -D RFD_RCVC_ALWAYS_ON -D ZPORT -D HOLD_AUTO_START  #
+#                          -lC D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\ #
+#                          Projects\zstack\Utilities\OAD\CC2530DB\DongleEB\Li #
+#                          st\ -lA D:\WorkReserve\project\AES_BOOT\CC2530EncB #
+#                          oot\Projects\zstack\Utilities\OAD\CC2530DB\DongleE #
+#                          B\List\ -o D:\WorkReserve\project\AES_BOOT\CC2530E #
+#                          ncBoot\Projects\zstack\Utilities\OAD\CC2530DB\Dong #
+#                          leEB\Obj\ -e --debug --core=plain --dptr=16,1      #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\P #
+#                          rojects\zstack\Utilities\OAD\CC2530DB\ -I          #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\SOURCE\ -I   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\ZMAIN\ #
+#                          TI2530DB\ -I D:\WorkReserve\project\AES_BOOT\CC253 #
+#                          0EncBoot\Projects\zstack\Utilities\OAD\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MT\ -I                     #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\HAL\INCLUDE\ -I                         #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\HAL\TARGET\CC2530EB\ -I                 #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\OSAL\INCLUDE\ -I                        #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\AF\ -I D:\WorkReserve\project\AES #
+#                          _BOOT\CC2530EncBoot\Projects\zstack\Utilities\OAD\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ -I   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SEC\ -I                           #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SAPI\ -I                          #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SYS\ -I                           #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\ZDO\ -I                           #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\ZMAC\F8W\ -I D:\WorkReserve\project\AES #
+#                          _BOOT\CC2530EncBoot\Projects\zstack\Utilities\OAD\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\ -I        #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\SERVICES\SADDR\ -I                      #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\SERVICES\SDATA\ -I                      #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\INCLUDE\ -I                         #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\HIGH_LEVEL\ -I                      #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\LOW_LEVEL\srf04\ -I                 #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz   #
+#                          --require_prototypes                               #
+#    List file          =  D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\DongleEB\List\M #
+#                          T_NWK.lst                                          #
+#    Object file        =  D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\DongleEB\Obj\MT #
+#                          _NWK.r51                                           #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Components\mt\MT_NWK.c
+      1          /**************************************************************************************************
+      2            Filename:       MT_NWK.c
+      3            Revised:        $Date: 2009-08-26 14:17:16 -0700 (Wed, 26 Aug 2009) $
+      4            Revision:       $Revision: 20661 $
+      5          
+      6          
+      7              Description:    MonitorTest functions for the NWK layer.
+      8          
+      9              Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11              IMPORTANT: Your use of this Software is limited to those specific rights
+     12              granted under the terms of a software license agreement between the user
+     13              who downloaded the software, his/her employer (which must be your employer)
+     14              and Texas Instruments Incorporated (the "License").  You may not use this
+     15              Software unless you agree to abide by the terms of the License. The License
+     16              limits your use, and you acknowledge, that the Software may not be modified,
+     17              copied or distributed unless embedded on a Texas Instruments microcontroller
+     18              or used solely and exclusively in conjunction with a Texas Instruments radio
+     19              frequency transceiver, which is integrated into your product.  Other than for
+     20              the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21              works of, modify, distribute, perform, display or sell this Software and/or
+     22              its documentation for any purpose.
+     23          
+     24              YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25              PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26              INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27              NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28              TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29              NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30              LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31              INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32              OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33              OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34              (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36              Should you have any questions regarding your right to use this Software,
+     37              contact Texas Instruments Incorporated at www.TI.com.
+     38          
+     39          **************************************************************************************************/
+     40          
+     41          /***************************************************************************************************
+     42           * INCLUDES
+     43           ***************************************************************************************************/
+     44          #include "ZComDef.h"
+     45          #include "MT.h"
+     46          #include "MT_NWK.h"
+     47          #include "NLMEDE.h"
+     48          #include "nwk.h"
+     49          #include "nwk_globals.h"
+     50          #include "nwk_util.h"
+     51          #include "OSAL.h"
+     52          #include "ZDApp.h"
+     53          
+     54          #if !defined( WIN32 )
+     55            #include "OnBoard.h"
+     56          #endif
+     57          
+     58          /***************************************************************************************************
+     59           * GLOBAL VARIABLES
+     60           ***************************************************************************************************/
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     61          uint16 _nwkCallbackSub;
+   \                     _nwkCallbackSub:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     62          
+     63          /*********************************************************************
+     64           * TYPEDEFS
+     65           */
+     66          
+     67          /***************************************************************************************************
+     68           * LOCAL FUNCTIONS
+     69           ***************************************************************************************************/
+     70          #if defined (MT_NWK_FUNC)
+     71          void MT_NldeDataRequest(uint8 *pBuf);
+     72          void MT_NlmeNetworkFormationRequest(uint8 *pBuf);
+     73          void MT_NlmePermitJoiningRequest(uint8 *pBuf);
+     74          void MT_NlmeStartRouterRequest(uint8 *pBuf);
+     75          void MT_NlmeJoinRequest(uint8 *pBuf);
+     76          void MT_NlmeLeaveRequest(uint8 *pBuf);
+     77          void MT_NlmeResetRequest(uint8 *pBuf);
+     78          void MT_NlmeGetRequest(uint8 *pBuf);
+     79          void MT_NlmeSetRequest(uint8 *pBuf);
+     80          void MT_NlmeNetworkDiscoveryRequest(uint8 *pBuf);
+     81          void MT_NlmeRouteDiscoveryRequest(uint8 *pBuf);
+     82          void MT_NlmeDirectJoinRequest(uint8 *pBuf);
+     83          void MT_NlmeOrphanJoinRequest(uint8 *pBuf);
+     84          
+     85          uint8 MT_Nwk_DataRequest( uint16 dstAddr, uint8 nsduLen, uint8* nsdu,
+     86                                   uint8 nsduHandle, uint16 nsduHandleOptions,
+     87                                   uint8 secure, uint8 discoverRoute,
+     88                                   uint8 radius);
+     89          #endif /* MT_NWK_FUNC */
+     90          
+     91          #if defined (MT_NWK_FUNC)
+     92          /***************************************************************************************************
+     93           * @fn      MT_NwkCommandProcessing
+     94           *
+     95           * @brief
+     96           *
+     97           *   Process all the NWK commands that are issued by test tool
+     98           *
+     99           * @param   cmd_id - Command ID
+    100           * @param   len    - Length of received SPI data message
+    101           * @param   pData  - pointer to received SPI data message
+    102           *
+    103           * @return  status
+    104           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    105          uint8 MT_NwkCommandProcessing(uint8 *pBuf)
+   \                     MT_NwkCommandProcessing:
+    106          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+    107            uint8 status = MT_RPC_SUCCESS;
+   \   000005   7E00         MOV     R6,#0x0
+    108          
+    109            switch (pBuf[MT_RPC_POS_CMD1])
+   \   000007   8A82         MOV     DPL,R2
+   \   000009   8B83         MOV     DPH,R3
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   6029         JZ      ??MT_NwkCommandProcessing_0
+   \   000010   14           DEC     A
+   \   000011   6030         JZ      ??MT_NwkCommandProcessing_1
+   \   000013   14           DEC     A
+   \   000014   6032         JZ      ??MT_NwkCommandProcessing_2
+   \   000016   14           DEC     A
+   \   000017   6034         JZ      ??MT_NwkCommandProcessing_3
+   \   000019   14           DEC     A
+   \   00001A   6036         JZ      ??MT_NwkCommandProcessing_4
+   \   00001C   14           DEC     A
+   \   00001D   6038         JZ      ??MT_NwkCommandProcessing_5
+   \   00001F   14           DEC     A
+   \   000020   603A         JZ      ??MT_NwkCommandProcessing_6
+   \   000022   14           DEC     A
+   \   000023   603C         JZ      ??MT_NwkCommandProcessing_7
+   \   000025   14           DEC     A
+   \   000026   603E         JZ      ??MT_NwkCommandProcessing_8
+   \   000028   14           DEC     A
+   \   000029   6040         JZ      ??MT_NwkCommandProcessing_9
+   \   00002B   14           DEC     A
+   \   00002C   6042         JZ      ??MT_NwkCommandProcessing_10
+   \   00002E   14           DEC     A
+   \   00002F   6044         JZ      ??MT_NwkCommandProcessing_11
+   \   000031   14           DEC     A
+   \   000032   6046         JZ      ??MT_NwkCommandProcessing_12
+   \   000034   14           DEC     A
+   \   000035   6048         JZ      ??MT_NwkCommandProcessing_13
+   \   000037   804B         SJMP    ??MT_NwkCommandProcessing_14
+    110            {
+    111              case MT_NWK_INIT:
+    112                nwk_init(NWK_TaskID);
+   \                     ??MT_NwkCommandProcessing_0:
+   \   000039                ; Setup parameters for call to function nwk_init
+   \   000039   90....       MOV     DPTR,#NWK_TaskID
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   F9           MOV     R1,A
+   \   00003E   12....       LCALL   ??nwk_init?relay
+    113                break;
+   \   000041   8043         SJMP    ??MT_NwkCommandProcessing_15
+    114          
+    115              case MT_NLDE_DATA_REQ:
+    116                MT_NldeDataRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_1:
+   \   000043                ; Setup parameters for call to function MT_NldeDataRequest
+   \   000043   12....       LCALL   ??MT_NldeDataRequest?relay
+    117                break;
+   \   000046   803E         SJMP    ??MT_NwkCommandProcessing_15
+    118          
+    119              case MT_NLME_NETWORK_FORMATION_REQ:
+    120                MT_NlmeNetworkFormationRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_2:
+   \   000048                ; Setup parameters for call to function MT_NlmeNetworkFormationRequest
+   \   000048   12....       LCALL   ??MT_NlmeNetworkFormationRequest?relay
+    121                break;
+   \   00004B   8039         SJMP    ??MT_NwkCommandProcessing_15
+    122          
+    123              case MT_NLME_PERMIT_JOINING_REQ:
+    124                 MT_NlmePermitJoiningRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_3:
+   \   00004D                ; Setup parameters for call to function MT_NlmePermitJoiningRequest
+   \   00004D   12....       LCALL   ??MT_NlmePermitJoiningRequest?relay
+    125                break;
+   \   000050   8034         SJMP    ??MT_NwkCommandProcessing_15
+    126          
+    127               case MT_NLME_JOIN_REQ:
+    128                 MT_NlmeJoinRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_4:
+   \   000052                ; Setup parameters for call to function MT_NlmeJoinRequest
+   \   000052   12....       LCALL   ??MT_NlmeJoinRequest?relay
+    129                 break;
+   \   000055   802F         SJMP    ??MT_NwkCommandProcessing_15
+    130          
+    131               case MT_NLME_LEAVE_REQ:
+    132                 MT_NlmeLeaveRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_5:
+   \   000057                ; Setup parameters for call to function MT_NlmeLeaveRequest
+   \   000057   12....       LCALL   ??MT_NlmeLeaveRequest?relay
+    133                 break;
+   \   00005A   802A         SJMP    ??MT_NwkCommandProcessing_15
+    134          
+    135               case MT_NLME_RESET_REQ:
+    136                 MT_NlmeResetRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_6:
+   \   00005C                ; Setup parameters for call to function MT_NlmeResetRequest
+   \   00005C   12....       LCALL   ??MT_NlmeResetRequest?relay
+    137                 break;
+   \   00005F   8025         SJMP    ??MT_NwkCommandProcessing_15
+    138          
+    139               case MT_NLME_GET_REQ:
+    140                 MT_NlmeGetRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_7:
+   \   000061                ; Setup parameters for call to function MT_NlmeGetRequest
+   \   000061   12....       LCALL   ??MT_NlmeGetRequest?relay
+    141                 break;
+   \   000064   8020         SJMP    ??MT_NwkCommandProcessing_15
+    142          
+    143               case MT_NLME_SET_REQ:
+    144                 MT_NlmeSetRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_8:
+   \   000066                ; Setup parameters for call to function MT_NlmeSetRequest
+   \   000066   12....       LCALL   ??MT_NlmeSetRequest?relay
+    145                 break;
+   \   000069   801B         SJMP    ??MT_NwkCommandProcessing_15
+    146          
+    147               case MT_NLME_NETWORK_DISCOVERY_REQ:
+    148                 MT_NlmeNetworkDiscoveryRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_9:
+   \   00006B                ; Setup parameters for call to function MT_NlmeNetworkDiscoveryRequest
+   \   00006B   12....       LCALL   ??MT_NlmeNetworkDiscoveryRequest?relay
+    149                 break;
+   \   00006E   8016         SJMP    ??MT_NwkCommandProcessing_15
+    150          
+    151               case MT_NLME_ROUTE_DISCOVERY_REQ:
+    152                 MT_NlmeRouteDiscoveryRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_10:
+   \   000070                ; Setup parameters for call to function MT_NlmeRouteDiscoveryRequest
+   \   000070   12....       LCALL   ??MT_NlmeRouteDiscoveryRequest?relay
+    153                 break;
+   \   000073   8011         SJMP    ??MT_NwkCommandProcessing_15
+    154          
+    155               case MT_NLME_DIRECT_JOIN_REQ:
+    156                 MT_NlmeDirectJoinRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_11:
+   \   000075                ; Setup parameters for call to function MT_NlmeDirectJoinRequest
+   \   000075   12....       LCALL   ??MT_NlmeDirectJoinRequest?relay
+    157                 break;
+   \   000078   800C         SJMP    ??MT_NwkCommandProcessing_15
+    158          
+    159               case MT_NLME_ORPHAN_JOIN_REQ:
+    160                 MT_NlmeOrphanJoinRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_12:
+   \   00007A                ; Setup parameters for call to function MT_NlmeOrphanJoinRequest
+   \   00007A   12....       LCALL   ??MT_NlmeOrphanJoinRequest?relay
+    161                 break;
+   \   00007D   8007         SJMP    ??MT_NwkCommandProcessing_15
+    162          
+    163              case MT_NLME_START_ROUTER_REQ:
+    164                MT_NlmeStartRouterRequest(pBuf);
+   \                     ??MT_NwkCommandProcessing_13:
+   \   00007F                ; Setup parameters for call to function MT_NlmeStartRouterRequest
+   \   00007F   12....       LCALL   ??MT_NlmeStartRouterRequest?relay
+    165                break;
+   \   000082   8002         SJMP    ??MT_NwkCommandProcessing_15
+    166          
+    167              default:
+    168                status = MT_RPC_ERR_COMMAND_ID;
+   \                     ??MT_NwkCommandProcessing_14:
+   \   000084   0E           INC     R6
+   \   000085   0E           INC     R6
+    169                break;
+    170            }
+    171          
+    172            return status;
+   \                     ??MT_NwkCommandProcessing_15:
+   \   000086   EE           MOV     A,R6
+   \   000087   F9           MOV     R1,A
+   \   000088   02....       LJMP    ??Subroutine41_0 & 0xFFFF
+    173          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine41_0:
+   \   000000   7F01         MOV     R7,#0x1
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    174          
+    175          /***************************************************************************************************
+    176           * @fn      MT_NldeDataReq
+    177           *
+    178           * @brief   Process NLDE Data Request commands
+    179           *
+    180           * @param   pBuf - pointer to received buffer
+    181           *
+    182           * @return  void
+    183           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    184          void MT_NldeDataRequest(uint8 *pBuf)
+   \                     MT_NldeDataRequest:
+    185          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    186            uint8 retValue = ZFailure;
+   \   00000E   85..82       MOV     DPL,?XSP + 0
+   \   000011   85..83       MOV     DPH,?XSP + 1
+   \   000014   7401         MOV     A,#0x1
+   \   000016   F0           MOVX    @DPTR,A
+    187            uint16 dstAddr;
+    188            uint8 dataLen = 0;
+    189            uint8 *dataPtr;
+    190            uint8 cmdId;
+    191          
+    192            /* parse header */
+    193            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \   000017   12....       LCALL   ?Subroutine10 & 0xFFFF
+    194            pBuf += MT_RPC_FRAME_HDR_SZ;
+    195          
+    196            /* First read the DstAddr */
+    197            dstAddr = BUILD_UINT16( pBuf[0], pBuf[1] );
+   \                     ??CrossCallReturnLabel_6:
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   FA           MOV     R2,A
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   F9           MOV     R1,A
+   \   00001F   EA           MOV     A,R2
+   \   000020   2400         ADD     A,#0x0
+   \   000022   E4           CLR     A
+   \   000023   39           ADDC    A,R1
+   \   000024   FB           MOV     R3,A
+    198            pBuf += sizeof( dstAddr );
+   \   000025   EE           MOV     A,R6
+   \   000026   2402         ADD     A,#0x2
+   \   000028   12....       LCALL   ?Subroutine26 & 0xFFFF
+    199          
+    200            /* Get the NSDU details */
+    201            dataLen = *pBuf++;
+   \                     ??CrossCallReturnLabel_40:
+   \   00002B   E0           MOVX    A,@DPTR
+   \   00002C   F5..         MOV     ?V0 + 1,A
+    202            dataPtr = pBuf;
+   \   00002E   A3           INC     DPTR
+   \   00002F   AC82         MOV     R4,DPL
+   \   000031   AD83         MOV     R5,DPH
+    203          
+    204            /* Skip a length of ZTEST_DEFAULT_DATA_LEN */
+    205            pBuf += ZTEST_DEFAULT_DATA_LEN;
+   \   000033   EC           MOV     A,R4
+   \   000034   2466         ADD     A,#0x66
+   \   000036   FE           MOV     R6,A
+   \   000037   ED           MOV     A,R5
+   \   000038   12....       LCALL   ??Subroutine32_0 & 0xFFFF
+    206          
+    207            /* Send out Data Request */
+    208            retValue = MT_Nwk_DataRequest(dstAddr, dataLen, dataPtr, pBuf[0], BUILD_UINT16(pBuf[1], pBuf[2]),
+    209                                          pBuf[3], pBuf[4], pBuf[5]);
+   \                     ??CrossCallReturnLabel_42:
+   \   00003B   A3           INC     DPTR
+   \   00003C   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_38:
+   \   00003F   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   000042   8E82         MOV     DPL,R6
+   \   000044   8F83         MOV     DPH,R7
+   \   000046   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_39:
+   \   000049   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   00004C   8E82         MOV     DPL,R6
+   \   00004E   8F83         MOV     DPH,R7
+   \   000050   12....       LCALL   ??Subroutine30_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_37:
+   \   000053   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   000056   8E82         MOV     DPL,R6
+   \   000058   8F83         MOV     DPH,R7
+   \   00005A   A3           INC     DPTR
+   \   00005B   E0           MOVX    A,@DPTR
+   \   00005C   F5..         MOV     ?V0 + 2,A
+   \   00005E   8E82         MOV     DPL,R6
+   \   000060   8F83         MOV     DPH,R7
+   \   000062   A3           INC     DPTR
+   \   000063   A3           INC     DPTR
+   \   000064   E0           MOVX    A,@DPTR
+   \   000065   F9           MOV     R1,A
+   \   000066   E5..         MOV     A,?V0 + 2
+   \   000068   2400         ADD     A,#0x0
+   \   00006A   E4           CLR     A
+   \   00006B   39           ADDC    A,R1
+   \   00006C   F5..         MOV     ?V0 + 3,A
+   \   00006E   78..         MOV     R0,#?V0 + 2
+   \   000070   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000073   8E82         MOV     DPL,R6
+   \   000075   8F83         MOV     DPH,R7
+   \   000077   12....       LCALL   ??Subroutine31_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_36:
+   \   00007A   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   00007D   A9..         MOV     R1,?V0 + 1
+   \   00007F   12....       LCALL   ??MT_Nwk_DataRequest?relay
+   \   000082   7406         MOV     A,#0x6
+   \   000084   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000087   12....       LCALL   ?Subroutine14 & 0xFFFF
+    210          
+    211            /* Build and send back the response */
+    212            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+   \                     ??CrossCallReturnLabel_43:
+   \   00008A   AA..         MOV     R2,?V0 + 0
+   \   00008C   12....       LCALL   ?Subroutine23 & 0xFFFF
+    213          }
+   \                     ??CrossCallReturnLabel_52:
+   \   00008F   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000092   7F04         MOV     R7,#0x4
+   \   000094   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine23:
+   \   000000   7963         MOV     R1,#0x63
+   \   000002                REQUIRE ??Subroutine29_0
+   \   000002                ; // Fall through to label ??Subroutine29_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine29_0:
+   \   000000   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+   \   000003   7401         MOV     A,#0x1
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine13:
+   \   000000   A3           INC     DPTR
+   \   000001                REQUIRE ??Subroutine30_0
+   \   000001                ; // Fall through to label ??Subroutine30_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine30_0:
+   \   000000   A3           INC     DPTR
+   \   000001   A3           INC     DPTR
+   \   000002   A3           INC     DPTR
+   \   000003                REQUIRE ??Subroutine31_0
+   \   000003                ; // Fall through to label ??Subroutine31_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine31_0:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F5..         MOV     ?V0 + 2,A
+   \   000003   78..         MOV     R0,#?V0 + 2
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   8E82         MOV     DPL,R6
+   \   000002   8F83         MOV     DPH,R7
+   \   000004   A3           INC     DPTR
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   F5..         MOV     ?V0 + 0,A
+   \   000009   EE           MOV     A,R6
+   \   00000A   2403         ADD     A,#0x3
+   \   00000C   0E           INC     R6
+   \   00000D   12....       LCALL   ?Subroutine26 & 0xFFFF
+   \                     ??CrossCallReturnLabel_41:
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine26:
+   \   000000   0E           INC     R6
+   \   000001   0E           INC     R6
+   \   000002   EF           MOV     A,R7
+   \   000003                REQUIRE ??Subroutine32_0
+   \   000003                ; // Fall through to label ??Subroutine32_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine32_0:
+   \   000000   3400         ADDC    A,#0x0
+   \   000002   FF           MOV     R7,A
+   \   000003                ; Setup parameters for call to function NLME_JoinRequest
+   \   000003                ; Setup parameters for call to function MT_Nwk_DataRequest
+   \   000003   8E82         MOV     DPL,R6
+   \   000005   8F83         MOV     DPH,R7
+   \   000007   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine14:
+   \   000000   E9           MOV     A,R1
+   \   000001   85..82       MOV     DPL,?XSP + 0
+   \   000004   85..83       MOV     DPH,?XSP + 1
+   \   000007                REQUIRE ??Subroutine33_0
+   \   000007                ; // Fall through to label ??Subroutine33_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine33_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001   AC82         MOV     R4,DPL
+   \   000003   AD83         MOV     R5,DPH
+   \   000005   7B01         MOV     R3,#0x1
+   \   000007   22           RET
+    214          
+    215          
+    216          /***************************************************************************************************
+    217           * @fn      MT_NlmeNetworkFormationRequest
+    218           *
+    219           * @brief   Network Formation Request
+    220           *
+    221           * @param   pBuf - pointer to the received buffer
+    222           *
+    223           * @return  void
+    224           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    225          void MT_NlmeNetworkFormationRequest(uint8 *pBuf)
+   \                     MT_NlmeNetworkFormationRequest:
+    226          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    227            uint8 retValue = ZFailure;
+   \   00000A   12....       LCALL   ?Subroutine16 & 0xFFFF
+    228          	uint16 panId;
+    229            uint32 channelList;
+    230            uint8 cmdId;
+    231          
+    232            /* parse header */
+    233            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \                     ??CrossCallReturnLabel_15:
+   \   00000D   FE           MOV     R6,A
+    234            pBuf += MT_RPC_FRAME_HDR_SZ;
+    235          
+    236            /* Build panId */
+    237            panId = BUILD_UINT16( pBuf[0], pBuf[1]);
+    238            pBuf += sizeof(uint16);
+    239          			
+    240            /* Build the channel list */
+    241            channelList = osal_build_uint32(pBuf, 4);
+   \   00000E                ; Setup parameters for call to function osal_build_uint32
+   \   00000E   7904         MOV     R1,#0x4
+   \   000010   EA           MOV     A,R2
+   \   000011   2405         ADD     A,#0x5
+   \   000013   FA           MOV     R2,A
+   \   000014   EB           MOV     A,R3
+   \   000015   3400         ADDC    A,#0x0
+   \   000017   FB           MOV     R3,A
+   \   000018   12....       LCALL   ??osal_build_uint32?relay
+    242            pBuf += sizeof(uint32);
+    243          
+    244            if ( ZG_BUILD_COORDINATOR_TYPE && ZG_DEVICE_COORDINATOR_TYPE )
+    245            {
+    246              retValue = NLME_NetworkFormationRequest( panId, NULL, channelList, pBuf[0], pBuf[1], pBuf[2], pBuf[3] );
+    247            }
+    248            else
+    249            {
+    250              retValue = ZUnsupportedMode;
+   \   00001B   85..82       MOV     DPL,?XSP + 0
+   \   00001E   85..83       MOV     DPH,?XSP + 1
+   \   000021   7412         MOV     A,#0x12
+   \   000023   F0           MOVX    @DPTR,A
+    251            }
+    252          
+    253            /* Build and send back the response */
+    254            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+   \   000024                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000024   02....       LJMP    ?Subroutine0 & 0xFFFF
+    255          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine16:
+   \   000000   85..82       MOV     DPL,?XSP + 0
+   \   000003   85..83       MOV     DPH,?XSP + 1
+   \   000006   7401         MOV     A,#0x1
+   \   000008   F0           MOVX    @DPTR,A
+   \   000009   8A82         MOV     DPL,R2
+   \   00000B   8B83         MOV     DPH,R3
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   AC82         MOV     R4,DPL
+   \   000002   AD83         MOV     R5,DPH
+   \   000004   7B01         MOV     R3,#0x1
+   \   000006   EE           MOV     A,R6
+   \   000007                REQUIRE ??Subroutine38_0
+   \   000007                ; // Fall through to label ??Subroutine38_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine38_0:
+   \   000000   FA           MOV     R2,A
+   \   000001   7963         MOV     R1,#0x63
+   \   000003                REQUIRE ??Subroutine39_0
+   \   000003                ; // Fall through to label ??Subroutine39_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine39_0:
+   \   000000   12....       LCALL   ??Subroutine29_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_55:
+   \   000003                REQUIRE ??Subroutine40_0
+   \   000003                ; // Fall through to label ??Subroutine40_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine40_0:
+   \   000000   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000003                REQUIRE ??Subroutine41_0
+   \   000003                ; // Fall through to label ??Subroutine41_0
+    256          
+    257          /***************************************************************************************************
+    258           * @fn      MT_NlmePermitJoiningRequest
+    259           *
+    260           * @brief   Permit Joining Request
+    261           *
+    262           * @param   pBuf - pointer to the received buffer
+    263           *
+    264           * @return  void
+    265           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    266          void MT_NlmePermitJoiningRequest(uint8 *pBuf)
+   \                     MT_NlmePermitJoiningRequest:
+   \   000000   02....       LJMP    ?Subroutine1 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+    267          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004   74FF         MOV     A,#-0x1
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    268            uint8 retValue = ZFailure;
+   \   000009   12....       LCALL   ?Subroutine16 & 0xFFFF
+    269            uint8 cmdId;
+    270          
+    271            /* parse header */
+    272            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \                     ??CrossCallReturnLabel_16:
+   \   00000C   FA           MOV     R2,A
+    273            pBuf += MT_RPC_FRAME_HDR_SZ;
+    274          
+    275            if (ZSTACK_ROUTER_BUILD)
+    276            {
+    277              retValue = NLME_PermitJoiningRequest(*pBuf);
+    278            }
+    279            else
+    280            {
+    281              retValue = ZUnsupportedMode;
+   \   00000D   85..82       MOV     DPL,?XSP + 0
+   \   000010   85..83       MOV     DPH,?XSP + 1
+   \   000013   7412         MOV     A,#0x12
+   \   000015   12....       LCALL   ??Subroutine33_0 & 0xFFFF
+    282            }
+    283          
+    284            /* Build and send back the response */
+    285            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+   \                     ??CrossCallReturnLabel_50:
+   \   000018                REQUIRE ??Subroutine34_0
+   \   000018                ; // Fall through to label ??Subroutine34_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine34_0:
+   \   000000   7963         MOV     R1,#0x63
+   \   000002                REQUIRE ??Subroutine35_0
+   \   000002                ; // Fall through to label ??Subroutine35_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine35_0:
+   \   000000   12....       LCALL   ??Subroutine29_0 & 0xFFFF
+    286          }
+   \                     ??CrossCallReturnLabel_54:
+   \   000003                REQUIRE ??Subroutine36_0
+   \   000003                ; // Fall through to label ??Subroutine36_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine36_0:
+   \   000000   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000003                REQUIRE ??Subroutine37_0
+   \   000003                ; // Fall through to label ??Subroutine37_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine37_0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+    287          
+    288          /***************************************************************************************************
+    289           * @fn      MT_NlmeStartRouterRequest
+    290           *
+    291           * @brief   Start Router Request
+    292           *
+    293           * @param   pBuf - pointer to the received buffer
+    294           *
+    295           * @return  void
+    296           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    297          void MT_NlmeStartRouterRequest(uint8 *pBuf)
+   \                     MT_NlmeStartRouterRequest:
+   \   000000   02....       LJMP    ?Subroutine1 & 0xFFFF
+    298          {
+    299            uint8 retValue = ZFailure;
+    300            uint8 cmdId;
+    301          
+    302            /* parse header */
+    303            cmdId = pBuf[MT_RPC_POS_CMD1];
+    304            pBuf += MT_RPC_FRAME_HDR_SZ;
+    305          
+    306            if ( ZSTACK_ROUTER_BUILD )
+    307            {
+    308              retValue = (uint8)NLME_StartRouterRequest(pBuf[0], pBuf[1], pBuf[2]);
+    309            }
+    310            else
+    311            {
+    312              retValue = ZUnsupportedMode;
+    313            }
+    314          
+    315            /* Build and send back the response */
+    316            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+    317          }
+    318          
+    319          /***************************************************************************************************
+    320           * @fn      MT_NlmeJoinRequest
+    321           *
+    322           * @brief   Join Request
+    323           *
+    324           * @param   pBuf - pointer to the received buffer
+    325           *
+    326           * @return  void
+    327           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    328          void MT_NlmeJoinRequest(uint8 *pBuf)
+   \                     MT_NlmeJoinRequest:
+    329          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 9
+   \   000005   74F7         MOV     A,#-0x9
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    330            uint8 retValue = ZFailure;
+   \   00000E   85..82       MOV     DPL,?XSP + 0
+   \   000011   85..83       MOV     DPH,?XSP + 1
+   \   000014   7401         MOV     A,#0x1
+   \   000016   F0           MOVX    @DPTR,A
+    331            uint8 dummyExPANID[Z_EXTADDR_LEN] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+   \   000017   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001A   AC82         MOV     R4,DPL
+   \   00001C   AD83         MOV     R5,DPH
+   \   00001E   7583..       MOV     DPH,#(`?<Constant {255, 255, 255, 255, 255, 255, 255,` >> 8) & 0xff
+   \   000021   7582..       MOV     DPL,#`?<Constant {255, 255, 255, 255, 255, 255, 255,` & 0xff
+   \   000024   7408         MOV     A,#0x8
+   \   000026   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    332            uint8 cmdId;
+    333          
+    334            /* parse header */
+    335            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \   000029   12....       LCALL   ?Subroutine10 & 0xFFFF
+    336            pBuf += MT_RPC_FRAME_HDR_SZ;
+    337          
+    338          	retValue = NLME_JoinRequest(dummyExPANID, BUILD_UINT16(pBuf[0], pBuf[1]), pBuf[2], pBuf[3]);
+   \                     ??CrossCallReturnLabel_7:
+   \   00002C   A3           INC     DPTR
+   \   00002D   A3           INC     DPTR
+   \   00002E   A3           INC     DPTR
+   \   00002F   E0           MOVX    A,@DPTR
+   \   000030   F5..         MOV     ?V0 + 1,A
+   \   000032   78..         MOV     R0,#?V0 + 1
+   \   000034   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   000037   8E82         MOV     DPL,R6
+   \   000039   8F83         MOV     DPH,R7
+   \   00003B   A3           INC     DPTR
+   \   00003C   A3           INC     DPTR
+   \   00003D   E0           MOVX    A,@DPTR
+   \   00003E   F9           MOV     R1,A
+   \   00003F   8E82         MOV     DPL,R6
+   \   000041   8F83         MOV     DPH,R7
+   \   000043   E0           MOVX    A,@DPTR
+   \   000044   FC           MOV     R4,A
+   \   000045   A3           INC     DPTR
+   \   000046   E0           MOVX    A,@DPTR
+   \   000047   FB           MOV     R3,A
+   \   000048   EC           MOV     A,R4
+   \   000049   2400         ADD     A,#0x0
+   \   00004B   E4           CLR     A
+   \   00004C   3B           ADDC    A,R3
+   \   00004D   FD           MOV     R5,A
+   \   00004E   7402         MOV     A,#0x2
+   \   000050   12....       LCALL   ?XSTACK_DISP0_8
+   \   000053   AA82         MOV     R2,DPL
+   \   000055   AB83         MOV     R3,DPH
+   \   000057   12....       LCALL   ??NLME_JoinRequest?relay
+   \   00005A   7401         MOV     A,#0x1
+   \   00005C   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00005F   E9           MOV     A,R1
+   \   000060   85..82       MOV     DPL,?XSP + 0
+   \   000063   85..83       MOV     DPH,?XSP + 1
+   \   000066   F0           MOVX    @DPTR,A
+    339          
+    340            if ( pBuf[6] & CAPINFO_RCVR_ON_IDLE )
+   \   000067   8E82         MOV     DPL,R6
+   \   000069   8F83         MOV     DPH,R7
+   \   00006B   A3           INC     DPTR
+   \   00006C   A3           INC     DPTR
+   \   00006D   A3           INC     DPTR
+   \   00006E   A3           INC     DPTR
+   \   00006F   A3           INC     DPTR
+   \   000070   A3           INC     DPTR
+   \   000071   E0           MOVX    A,@DPTR
+   \   000072   A2E3         MOV     C,0xE0 /* A   */.3
+   \   000074   5015         JNC     ??MT_NlmeJoinRequest_0
+    341            {
+    342              /* The receiver is on, turn network layer polling off. */
+    343              NLME_SetPollRate( 0 );
+   \   000076                ; Setup parameters for call to function NLME_SetPollRate
+   \   000076   7A00         MOV     R2,#0x0
+   \   000078   7B00         MOV     R3,#0x0
+   \   00007A   12....       LCALL   ??NLME_SetPollRate?relay
+    344              NLME_SetQueuedPollRate( 0 );
+   \   00007D                ; Setup parameters for call to function NLME_SetQueuedPollRate
+   \   00007D   7A00         MOV     R2,#0x0
+   \   00007F   7B00         MOV     R3,#0x0
+   \   000081   12....       LCALL   ??NLME_SetQueuedPollRate?relay
+    345              NLME_SetResponseRate( 0 );
+   \   000084                ; Setup parameters for call to function NLME_SetResponseRate
+   \   000084   7A00         MOV     R2,#0x0
+   \   000086   7B00         MOV     R3,#0x0
+   \   000088   12....       LCALL   ??NLME_SetResponseRate?relay
+    346            }
+    347          
+    348            /* Build and send back the response */
+    349            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+   \                     ??MT_NlmeJoinRequest_0:
+   \   00008B                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   00008B   85..82       MOV     DPL,?XSP + 0
+   \   00008E   85..83       MOV     DPH,?XSP + 1
+   \   000091   AC82         MOV     R4,DPL
+   \   000093   AD83         MOV     R5,DPH
+   \   000095   7B01         MOV     R3,#0x1
+   \   000097   AA..         MOV     R2,?V0 + 0
+   \   000099   7963         MOV     R1,#0x63
+   \   00009B   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+    350          }
+   \   00009E   7409         MOV     A,#0x9
+   \   0000A0                REQUIRE ?Subroutine2
+   \   0000A0                ; // Fall through to label ?Subroutine2
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000003   7F02         MOV     R7,#0x2
+   \   000005   02....       LJMP    ?BANKED_LEAVE_XDATA
+    351          
+    352          /***************************************************************************************************
+    353           * @fn      MT_NlmeLeaveRequest
+    354           *
+    355           * @brief   Leave Request
+    356           *
+    357           * @param   pBuf - pointer to the received buffer
+    358           *
+    359           * @return  void
+    360           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    361          void MT_NlmeLeaveRequest(uint8 *pBuf)
+   \                     MT_NlmeLeaveRequest:
+    362          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 6
+   \   000005   74FA         MOV     A,#-0x6
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    363            NLME_LeaveReq_t req;
+    364            uint8 retValue = ZFailure;
+   \   00000A   85..82       MOV     DPL,?XSP + 0
+   \   00000D   85..83       MOV     DPH,?XSP + 1
+   \   000010   7401         MOV     A,#0x1
+   \   000012   F0           MOVX    @DPTR,A
+    365            uint8 index, cmdId;
+    366          
+    367            /* parse header */
+    368            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \   000013   12....       LCALL   ?Subroutine11 & 0xFFFF
+    369            pBuf += MT_RPC_FRAME_HDR_SZ;
+    370          
+    371            /* If extAddr is all zeros, it means null pointer */
+    372            for(index=0;((index < Z_EXTADDR_LEN) && (pBuf[index] == 0));index++);
+   \                     ??CrossCallReturnLabel_8:
+   \   000016   7800         MOV     R0,#0x0
+   \                     ??MT_NlmeLeaveRequest_0:
+   \   000018   88..         MOV     ?V0 + 0,R0
+   \   00001A   EA           MOV     A,R2
+   \   00001B   25..         ADD     A,?V0 + 0
+   \   00001D   F582         MOV     DPL,A
+   \   00001F   EB           MOV     A,R3
+   \   000020   12....       LCALL   ??Subroutine42_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_56:
+   \   000023   E0           MOVX    A,@DPTR
+   \   000024   7007         JNZ     ??MT_NlmeLeaveRequest_1
+   \   000026   08           INC     R0
+   \   000027   E8           MOV     A,R0
+   \   000028   C3           CLR     C
+   \   000029   9408         SUBB    A,#0x8
+   \   00002B   40EB         JC      ??MT_NlmeLeaveRequest_0
+    373          
+    374            if (index == Z_EXTADDR_LEN)
+   \                     ??MT_NlmeLeaveRequest_1:
+   \   00002D   7408         MOV     A,#0x8
+   \   00002F   68           XRL     A,R0
+   \   000030   700A         JNZ     ??MT_NlmeLeaveRequest_2
+    375            {
+    376              req.extAddr = NULL;
+   \   000032   7401         MOV     A,#0x1
+   \   000034   12....       LCALL   ?XSTACK_DISP0_8
+   \   000037   E4           CLR     A
+   \   000038   F0           MOVX    @DPTR,A
+   \   000039   A3           INC     DPTR
+   \   00003A   8009         SJMP    ??MT_NlmeLeaveRequest_3
+    377            }
+    378            else
+    379            {
+    380              req.extAddr = pBuf;
+   \                     ??MT_NlmeLeaveRequest_2:
+   \   00003C   7401         MOV     A,#0x1
+   \   00003E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000041   EA           MOV     A,R2
+   \   000042   F0           MOVX    @DPTR,A
+   \   000043   A3           INC     DPTR
+   \   000044   EB           MOV     A,R3
+   \                     ??MT_NlmeLeaveRequest_3:
+   \   000045   F0           MOVX    @DPTR,A
+    381            }
+    382          
+    383            /* Increment the pointer */
+    384            pBuf += Z_EXTADDR_LEN;
+    385          
+    386            req.removeChildren = FALSE;
+   \   000046   7403         MOV     A,#0x3
+   \   000048   12....       LCALL   ?XSTACK_DISP0_8
+   \   00004B   E4           CLR     A
+   \   00004C   F0           MOVX    @DPTR,A
+    387            req.rejoin         = FALSE;
+   \   00004D   7404         MOV     A,#0x4
+   \   00004F   12....       LCALL   ?XSTACK_DISP0_8
+   \   000052   E4           CLR     A
+   \   000053   F0           MOVX    @DPTR,A
+    388            req.silent         = FALSE;
+   \   000054   7405         MOV     A,#0x5
+   \   000056   12....       LCALL   ?XSTACK_DISP0_8
+   \   000059   E4           CLR     A
+   \   00005A   F0           MOVX    @DPTR,A
+    389          
+    390            retValue = NLME_LeaveReq(&req);
+   \   00005B                ; Setup parameters for call to function NLME_LeaveReq
+   \   00005B   04           INC     A
+   \   00005C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00005F   AA82         MOV     R2,DPL
+   \   000061   AB83         MOV     R3,DPH
+   \   000063   12....       LCALL   ??NLME_LeaveReq?relay
+   \   000066   12....       LCALL   ?Subroutine14 & 0xFFFF
+    391          
+    392            /* Build and send back the response */
+    393            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+   \                     ??CrossCallReturnLabel_44:
+   \   000069   EE           MOV     A,R6
+   \   00006A   FA           MOV     R2,A
+   \   00006B   7963         MOV     R1,#0x63
+   \   00006D   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+    394          }
+   \   000070   7406         MOV     A,#0x6
+   \   000072   02....       LJMP    ?Subroutine2 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   8A82         MOV     DPL,R2
+   \   000002   8B83         MOV     DPH,R3
+   \   000004   A3           INC     DPTR
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   FE           MOV     R6,A
+   \   000008   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_33:
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine27:
+   \   000000   EA           MOV     A,R2
+   \   000001   2403         ADD     A,#0x3
+   \   000003   0A           INC     R2
+   \   000004   0A           INC     R2
+   \   000005   0A           INC     R2
+   \   000006   EB           MOV     A,R3
+   \   000007   3400         ADDC    A,#0x0
+   \   000009   FB           MOV     R3,A
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine42_0:
+   \   000000   3400         ADDC    A,#0x0
+   \   000002   F583         MOV     DPH,A
+   \   000004   22           RET
+    395          
+    396          
+    397          /***************************************************************************************************
+    398           * @fn      MT_NlmeResetRequest
+    399           *
+    400           * @brief   Leave Request
+    401           *
+    402           * @param   pBuf - pointer to the received buffer
+    403           *
+    404           * @return  void
+    405           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    406          void MT_NlmeResetRequest(uint8 *pBuf)
+   \                     MT_NlmeResetRequest:
+    407          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004   74FF         MOV     A,#-0x1
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    408            uint8 retValue = NLME_ResetRequest();
+   \   000009                ; Setup parameters for call to function NLME_ResetRequest
+   \   000009   12....       LCALL   ??NLME_ResetRequest?relay
+   \   00000C   12....       LCALL   ?Subroutine14 & 0xFFFF
+    409          
+    410            /* Build and send back the response */
+    411            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), MT_NLME_RESET_REQ, 1, &retValue);
+   \                     ??CrossCallReturnLabel_45:
+   \   00000F   7A06         MOV     R2,#0x6
+   \   000011   80..         SJMP    ??Subroutine34_0
+    412          }
+    413          
+    414          /***************************************************************************************************
+    415           * @fn      MT_NlmeGetRequest
+    416           *
+    417           * @brief   Get Request
+    418           *
+    419           * @param   pBuf - pointer to the received buffer
+    420           *
+    421           * @return  void
+    422           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    423          void MT_NlmeGetRequest(uint8 *pBuf)
+   \                     MT_NlmeGetRequest:
+    424          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 11
+   \   000005   74F5         MOV     A,#-0xb
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    425            uint8 dataBuf[11];
+    426            uint8 attr, index, cmdId;
+    427          
+    428            /* parse header */
+    429            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \   00000A   12....       LCALL   ?Subroutine11 & 0xFFFF
+    430            pBuf += MT_RPC_FRAME_HDR_SZ;
+    431          
+    432            attr = *pBuf++;
+   \                     ??CrossCallReturnLabel_9:
+   \   00000D   8A82         MOV     DPL,R2
+   \   00000F   8B83         MOV     DPH,R3
+   \   000011   E0           MOVX    A,@DPTR
+   \   000012   F9           MOV     R1,A
+   \   000013   A3           INC     DPTR
+   \   000014   AA82         MOV     R2,DPL
+   \   000016   AB83         MOV     R3,DPH
+    433            index = *pBuf;
+    434          
+    435            dataBuf[0] = NLME_GetRequest((ZNwkAttributes_t )attr, index, &dataBuf[1]);
+   \   000018                ; Setup parameters for call to function NLME_GetRequest
+   \   000018   7401         MOV     A,#0x1
+   \   00001A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001D   AC82         MOV     R4,DPL
+   \   00001F   AD83         MOV     R5,DPH
+   \   000021   8A82         MOV     DPL,R2
+   \   000023   8B83         MOV     DPH,R3
+   \   000025   E0           MOVX    A,@DPTR
+   \   000026   FA           MOV     R2,A
+   \   000027   7B00         MOV     R3,#0x0
+   \   000029   12....       LCALL   ??NLME_GetRequest?relay
+   \   00002C   E9           MOV     A,R1
+   \   00002D   85..82       MOV     DPL,?XSP + 0
+   \   000030   85..83       MOV     DPH,?XSP + 1
+   \   000033   F0           MOVX    @DPTR,A
+    436          
+    437            /* Build and send back the response */
+    438            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId,
+    439                                         11, dataBuf );
+   \   000034                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000034   AC82         MOV     R4,DPL
+   \   000036   AD83         MOV     R5,DPH
+   \   000038   7B0B         MOV     R3,#0xb
+   \   00003A   EE           MOV     A,R6
+   \   00003B   FA           MOV     R2,A
+   \   00003C   7963         MOV     R1,#0x63
+   \   00003E                REQUIRE ?Subroutine5
+   \   00003E                ; // Fall through to label ?Subroutine5
+    440          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+   \   000003   740B         MOV     A,#0xb
+   \   000005   80..         SJMP    ??Subroutine40_0
+    441          
+    442          /***************************************************************************************************
+    443           * @fn      MT_NlmeSetRequest
+    444           *
+    445           * @brief   Set Request
+    446           *
+    447           * @param   pBuf - pointer to the received buffer
+    448           *
+    449           * @return  void
+    450           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    451          void MT_NlmeSetRequest(uint8 *pBuf)
+   \                     MT_NlmeSetRequest:
+    452          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   F8           MOV     R0,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   F9           MOV     R1,A
+    453            uint8 retValue = ZFailure;
+   \   00000E   85..82       MOV     DPL,?XSP + 0
+   \   000011   85..83       MOV     DPH,?XSP + 1
+   \   000014   7401         MOV     A,#0x1
+   \   000016   F0           MOVX    @DPTR,A
+    454            uint8 cmdId;
+    455          
+    456            /* parse header */
+    457            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \   000017   8882         MOV     DPL,R0
+   \   000019   8983         MOV     DPH,R1
+   \   00001B   A3           INC     DPTR
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   FE           MOV     R6,A
+    458            pBuf += MT_RPC_FRAME_HDR_SZ;
+   \   00001F   E8           MOV     A,R0
+   \   000020   2403         ADD     A,#0x3
+   \   000022   08           INC     R0
+   \   000023   08           INC     R0
+   \   000024   08           INC     R0
+   \   000025   E9           MOV     A,R1
+   \   000026   3400         ADDC    A,#0x0
+   \   000028   F9           MOV     R1,A
+    459          
+    460            retValue = NLME_SetRequest((ZNwkAttributes_t)pBuf[0], pBuf[1], &pBuf[2]);
+   \   000029                ; Setup parameters for call to function NLME_SetRequest
+   \   000029   E8           MOV     A,R0
+   \   00002A   2402         ADD     A,#0x2
+   \   00002C   FC           MOV     R4,A
+   \   00002D   E9           MOV     A,R1
+   \   00002E   3400         ADDC    A,#0x0
+   \   000030   FD           MOV     R5,A
+   \   000031   8882         MOV     DPL,R0
+   \   000033   8983         MOV     DPH,R1
+   \   000035   A3           INC     DPTR
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   FA           MOV     R2,A
+   \   000038   7B00         MOV     R3,#0x0
+   \   00003A   8882         MOV     DPL,R0
+   \   00003C   8983         MOV     DPH,R1
+   \   00003E   E0           MOVX    A,@DPTR
+   \   00003F   F9           MOV     R1,A
+   \   000040   12....       LCALL   ??NLME_SetRequest?relay
+   \   000043   E9           MOV     A,R1
+   \   000044   85..82       MOV     DPL,?XSP + 0
+   \   000047   85..83       MOV     DPH,?XSP + 1
+   \   00004A   F0           MOVX    @DPTR,A
+    461          
+    462            /* Update NV */
+    463            ZDApp_NVUpdate();
+   \   00004B                ; Setup parameters for call to function ZDApp_NVUpdate
+   \   00004B   12....       LCALL   ??ZDApp_NVUpdate?relay
+    464          
+    465            /* Build and send back the response */
+    466            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue );
+   \   00004E                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   00004E   85..82       MOV     DPL,?XSP + 0
+   \   000051   85..83       MOV     DPH,?XSP + 1
+   \   000054   80..         SJMP    ?Subroutine0
+    467          }
+    468          
+    469          /***************************************************************************************************
+    470           * @fn      MT_NlmeNetworkDiscoveryRequest
+    471           *
+    472           * @brief   Network Discovery Request
+    473           *
+    474           * @param   pBuf - pointer to the received buffer
+    475           *
+    476           * @return  void
+    477           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    478          void MT_NlmeNetworkDiscoveryRequest(uint8 *pBuf)
+   \                     MT_NlmeNetworkDiscoveryRequest:
+    479          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+    480            uint8 retValue = ZFailure;
+   \   00000A   12....       LCALL   ?Subroutine16 & 0xFFFF
+    481            uint8 cmdId;
+    482            uint32 scanChannels;
+    483          
+    484            /* parse header */
+    485            cmdId = pBuf[MT_RPC_POS_CMD1];
+   \                     ??CrossCallReturnLabel_17:
+   \   00000D   FF           MOV     R7,A
+    486            pBuf += MT_RPC_FRAME_HDR_SZ;
+   \   00000E   12....       LCALL   ?Subroutine27 & 0xFFFF
+    487          
+    488            /* Scan channels */
+    489            scanChannels = osal_build_uint32(pBuf, 4);
+    490            pBuf += sizeof(uint32);
+    491          
+    492            retValue = NLME_NetworkDiscoveryRequest(scanChannels, *pBuf);
+   \                     ??CrossCallReturnLabel_32:
+   \   000011                ; Setup parameters for call to function NLME_NetworkDiscoveryRequest
+   \   000011   8A82         MOV     DPL,R2
+   \   000013   8B83         MOV     DPH,R3
+   \   000015   A3           INC     DPTR
+   \   000016   A3           INC     DPTR
+   \   000017   A3           INC     DPTR
+   \   000018   A3           INC     DPTR
+   \   000019   E0           MOVX    A,@DPTR
+   \   00001A   FE           MOV     R6,A
+   \   00001B                ; Setup parameters for call to function osal_build_uint32
+   \   00001B   7904         MOV     R1,#0x4
+   \   00001D   12....       LCALL   ??osal_build_uint32?relay
+   \   000020   EE           MOV     A,R6
+   \   000021   F9           MOV     R1,A
+   \   000022   12....       LCALL   ??NLME_NetworkDiscoveryRequest?relay
+   \   000025   12....       LCALL   ?Subroutine14 & 0xFFFF
+    493          
+    494            /* Build and send back the response */
+    495            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue );
+   \                     ??CrossCallReturnLabel_46:
+   \   000028   EF           MOV     A,R7
+   \   000029   02....       LJMP    ??Subroutine38_0 & 0xFFFF
+    496          }
+    497          
+    498          /***************************************************************************************************
+    499           * @fn      MT_NlmeRouteDiscoveryRequest
+    500           *
+    501           * @brief   Route Discovery Request
+    502           *
+    503           * @param   pBuf - pointer to the received buffer
+    504           *
+    505           * @return  void
+    506           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    507          void MT_NlmeRouteDiscoveryRequest(uint8 *pBuf)
+   \                     MT_NlmeRouteDiscoveryRequest:
+   \   000000   02....       LJMP    ?Subroutine1 & 0xFFFF
+    508          {
+    509            uint8 retValue = ZFailure;
+    510            uint8 cmdId;
+    511          
+    512            /* parse header */
+    513            cmdId = pBuf[MT_RPC_POS_CMD1];
+    514            pBuf += MT_RPC_FRAME_HDR_SZ;
+    515          
+    516            if ( ZSTACK_ROUTER_BUILD )
+    517            {
+    518              retValue = NLME_RouteDiscoveryRequest(BUILD_UINT16(pBuf[0], pBuf[1]), pBuf[2], pBuf[3]);
+    519            }
+    520            else
+    521            {
+    522              retValue = ZUnsupportedMode;
+    523            }
+    524          
+    525            /* Build and send back the response */
+    526            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+    527          }
+    528          
+    529          /***************************************************************************************************
+    530           * @fn      MT_NlmeDirectJoinRequest
+    531           *
+    532           * @brief   Direct Join Request
+    533           *
+    534           * @param   pBuf - pointer to the received buffer
+    535           *
+    536           * @return  void
+    537           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    538          void MT_NlmeDirectJoinRequest(uint8 *pBuf)
+   \                     MT_NlmeDirectJoinRequest:
+   \   000000   02....       LJMP    ?Subroutine1 & 0xFFFF
+    539          {
+    540            uint8 retValue = ZFailure;
+    541            uint8 cmdId;
+    542          
+    543            /* parse header */
+    544            cmdId = pBuf[MT_RPC_POS_CMD1];
+    545            pBuf += MT_RPC_FRAME_HDR_SZ;
+    546          
+    547            if ( ZSTACK_ROUTER_BUILD )
+    548            {
+    549              retValue = NLME_DirectJoinRequest( pBuf, pBuf[8] );
+    550            }
+    551            else
+    552            {
+    553              retValue = ZUnsupportedMode;
+    554            }
+    555          
+    556            /* Build and send back the response */
+    557            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+    558          }
+    559          
+    560          /***************************************************************************************************
+    561           * @fn      MT_NlmeOrphanJoinRequest
+    562           *
+    563           * @brief   Orphan Join Request
+    564           *
+    565           * @param   pBuf - pointer to the received buffer
+    566           *
+    567           * @return  void
+    568           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    569          void MT_NlmeOrphanJoinRequest(uint8 *pBuf)
+   \                     MT_NlmeOrphanJoinRequest:
+    570          {
+   \   000000   74EA         MOV     A,#-0x16
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 22
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+    571            uint8 i, j, attr;
+    572            uint8 retValue = ZFailure;
+   \   00000E   85..82       MOV     DPL,?XSP + 0
+   \   000011   85..83       MOV     DPH,?XSP + 1
+   \   000014   7401         MOV     A,#0x1
+   \   000016   F0           MOVX    @DPTR,A
+    573            uint32 channelList;
+    574            uint8 cmdId;
+    575          
+    576            if ( ZSTACK_END_DEVICE_BUILD )
+    577            {
+    578              /* parse header */
+    579              cmdId = pBuf[MT_RPC_POS_CMD1];
+   \   000017   8E82         MOV     DPL,R6
+   \   000019   8F83         MOV     DPH,R7
+   \   00001B   A3           INC     DPTR
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   F5..         MOV     ?V0 + 13,A
+    580              pBuf += MT_RPC_FRAME_HDR_SZ;
+   \   000020   EE           MOV     A,R6
+   \   000021   2403         ADD     A,#0x3
+   \   000023   0E           INC     R6
+   \   000024   0E           INC     R6
+   \   000025   0E           INC     R6
+   \   000026   EF           MOV     A,R7
+   \   000027   3400         ADDC    A,#0x0
+   \   000029   FF           MOV     R7,A
+    581          
+    582              /* Channel list bit mask */
+    583              channelList = osal_build_uint32(pBuf, 4);
+   \   00002A                ; Setup parameters for call to function osal_build_uint32
+   \   00002A   7904         MOV     R1,#0x4
+   \   00002C   0A           INC     R2
+   \   00002D   0A           INC     R2
+   \   00002E   0A           INC     R2
+   \   00002F   FB           MOV     R3,A
+   \   000030   12....       LCALL   ??osal_build_uint32?relay
+   \   000033   8A..         MOV     ?V0 + 4,R2
+   \   000035   8B..         MOV     ?V0 + 5,R3
+   \   000037   8C..         MOV     ?V0 + 6,R4
+   \   000039   8D..         MOV     ?V0 + 7,R5
+    584              pBuf += sizeof(uint32);
+   \   00003B   EE           MOV     A,R6
+   \   00003C   2404         ADD     A,#0x4
+   \   00003E   FE           MOV     R6,A
+   \   00003F   EF           MOV     A,R7
+   \   000040   3400         ADDC    A,#0x0
+   \   000042   FF           MOV     R7,A
+    585          
+    586              /* Count number of channels */
+    587              j = attr = 0;
+   \   000043   75..00       MOV     ?V0 + 12,#0x0
+   \   000046   7B00         MOV     R3,#0x0
+    588          
+    589              for (i = 0; i < ED_SCAN_MAXCHANNELS; i++)
+   \   000048   7A00         MOV     R2,#0x0
+    590              {
+    591                if (channelList & (1 << i))
+   \                     ??MT_NlmeOrphanJoinRequest_0:
+   \   00004A   75..01       MOV     ?V0 + 8,#0x1
+   \   00004D   75..00       MOV     ?V0 + 9,#0x0
+   \   000050   EA           MOV     A,R2
+   \   000051   78..         MOV     R0,#?V0 + 8
+   \   000053   12....       LCALL   ?S_SHL
+   \   000056   E5..         MOV     A,?V0 + 9
+   \   000058   33           RLC     A
+   \   000059   95E0         SUBB    A,0xE0 /* A   */
+   \   00005B   F5..         MOV     ?V0 + 10,A
+   \   00005D   F5..         MOV     ?V0 + 11,A
+   \   00005F   85....       MOV     ?V0 + 0,?V0 + 4
+   \   000062   85....       MOV     ?V0 + 1,?V0 + 5
+   \   000065   8C..         MOV     ?V0 + 2,R4
+   \   000067   8D..         MOV     ?V0 + 3,R5
+   \   000069   78..         MOV     R0,#?V0 + 0
+   \   00006B   79..         MOV     R1,#?V0 + 8
+   \   00006D   12....       LCALL   ?L_AND
+   \   000070   E5..         MOV     A,?V0 + 0
+   \   000072   45..         ORL     A,?V0 + 1
+   \   000074   45..         ORL     A,?V0 + 2
+   \   000076   45..         ORL     A,?V0 + 3
+   \   000078   6003         JZ      ??MT_NlmeOrphanJoinRequest_1
+    592                {
+    593                  j++;
+   \   00007A   0B           INC     R3
+    594                  attr = i;
+   \   00007B   8A..         MOV     ?V0 + 12,R2
+    595                }
+    596              }
+   \                     ??MT_NlmeOrphanJoinRequest_1:
+   \   00007D   0A           INC     R2
+   \   00007E   EA           MOV     A,R2
+   \   00007F   C3           CLR     C
+   \   000080   941B         SUBB    A,#0x1b
+   \   000082   40C6         JC      ??MT_NlmeOrphanJoinRequest_0
+    597          
+    598              /* If only one channel specified */
+    599              if (j == 1)
+   \   000084   7401         MOV     A,#0x1
+   \   000086   6B           XRL     A,R3
+   \   000087   7041         JNZ     ??MT_NlmeOrphanJoinRequest_2
+    600              {
+    601                _NIB.scanDuration = *pBuf;
+   \   000089   8E82         MOV     DPL,R6
+   \   00008B   8F83         MOV     DPH,R7
+   \   00008D   E0           MOVX    A,@DPTR
+   \   00008E   90....       MOV     DPTR,#_NIB + 42
+   \   000091   F0           MOVX    @DPTR,A
+    602                _NIB.nwkLogicalChannel = attr;
+   \   000092   E5..         MOV     A,?V0 + 12
+   \   000094   90....       MOV     DPTR,#_NIB + 22
+   \   000097   F0           MOVX    @DPTR,A
+    603                _NIB.channelList = channelList;
+   \   000098   90....       MOV     DPTR,#_NIB + 36
+   \   00009B   78..         MOV     R0,#?V0 + 4
+   \   00009D   12....       LCALL   ?L_MOV_TO_X
+    604                if ( !_NIB.CapabilityInfo )
+   \   0000A0   90....       MOV     DPTR,#_NIB + 14
+   \   0000A3   E0           MOVX    A,@DPTR
+   \   0000A4   7008         JNZ     ??MT_NlmeOrphanJoinRequest_3
+    605                {
+    606                  _NIB.CapabilityInfo = ZDO_Config_Node_Descriptor.CapabilityFlags;
+   \   0000A6   90....       MOV     DPTR,#ZDO_Config_Node_Descriptor + 2
+   \   0000A9   E0           MOVX    A,@DPTR
+   \   0000AA   90....       MOV     DPTR,#_NIB + 14
+   \   0000AD   F0           MOVX    @DPTR,A
+    607                }
+    608          
+    609                devState = DEV_NWK_ORPHAN;
+   \                     ??MT_NlmeOrphanJoinRequest_3:
+   \   0000AE   90....       MOV     DPTR,#devState
+   \   0000B1   740A         MOV     A,#0xa
+   \   0000B3   F0           MOVX    @DPTR,A
+    610                retValue = (uint8)NLME_OrphanJoinRequest(channelList, *pBuf);
+   \   0000B4                ; Setup parameters for call to function NLME_OrphanJoinRequest
+   \   0000B4   8E82         MOV     DPL,R6
+   \   0000B6   8F83         MOV     DPH,R7
+   \   0000B8   E0           MOVX    A,@DPTR
+   \   0000B9   F9           MOV     R1,A
+   \   0000BA   AA..         MOV     R2,?V0 + 4
+   \   0000BC   AB..         MOV     R3,?V0 + 5
+   \   0000BE   12....       LCALL   ??NLME_OrphanJoinRequest?relay
+   \   0000C1   E9           MOV     A,R1
+   \   0000C2   85..82       MOV     DPL,?XSP + 0
+   \   0000C5   85..83       MOV     DPH,?XSP + 1
+   \   0000C8   8008         SJMP    ??MT_NlmeOrphanJoinRequest_4
+    611              }
+    612              else
+    613              {
+    614                retValue = ZNwkInvalidParam;
+   \                     ??MT_NlmeOrphanJoinRequest_2:
+   \   0000CA   85..82       MOV     DPL,?XSP + 0
+   \   0000CD   85..83       MOV     DPH,?XSP + 1
+   \   0000D0   74C1         MOV     A,#-0x3f
+    615              }
+    616             }
+   \                     ??MT_NlmeOrphanJoinRequest_4:
+   \   0000D2   12....       LCALL   ??Subroutine33_0 & 0xFFFF
+    617             else
+    618             {
+    619               retValue = ZUnsupportedMode;
+    620             }
+    621          
+    622            /* Build and send back the response */
+    623            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_SRSP | (uint8)MT_RPC_SYS_NWK), cmdId, 1, &retValue);
+   \                     ??CrossCallReturnLabel_51:
+   \   0000D5   AA..         MOV     R2,?V0 + 13
+   \   0000D7   12....       LCALL   ?Subroutine23 & 0xFFFF
+    624          }
+   \                     ??CrossCallReturnLabel_53:
+   \   0000DA   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000DD   7F0E         MOV     R7,#0xe
+   \   0000DF   02....       LJMP    ?BANKED_LEAVE_XDATA
+    625          
+    626          /***************************************************************************************************
+    627           * @fn      MT_Nwk_DataRequest
+    628           *
+    629           * @brief   Nwk Data Request
+    630           *
+    631           * @param   dstAddr, nsduLen, nsdu, nsduHandle, nsduHandleOptions, secure, discoverRoute, radius
+    632           *
+    633           * @return  void
+    634           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    635          uint8 MT_Nwk_DataRequest(uint16 dstAddr, uint8 nsduLen, uint8* nsdu,
+   \                     MT_Nwk_DataRequest:
+    636                                   uint8 nsduHandle, uint16 nsduHandleOptions,
+    637                                   uint8 secure, uint8 discoverRoute,
+    638                                   uint8 radius)
+    639          {
+   \   000000   74EC         MOV     A,#-0x14
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 20
+   \   000005                ; Auto size: 3
+   \   000005   74FD         MOV     A,#-0x3
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8A..         MOV     ?V0 + 10,R2
+   \   00000C   8B..         MOV     ?V0 + 11,R3
+   \   00000E   89..         MOV     ?V0 + 2,R1
+   \   000010   8C..         MOV     ?V0 + 0,R4
+   \   000012   8D..         MOV     ?V0 + 1,R5
+   \   000014   7418         MOV     A,#0x18
+   \   000016   12....       LCALL   ?XSTACK_DISP0_8
+   \   000019   E0           MOVX    A,@DPTR
+   \   00001A   F5..         MOV     ?V0 + 8,A
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   F5..         MOV     ?V0 + 9,A
+   \   000020   741A         MOV     A,#0x1a
+   \   000022   12....       LCALL   ?XSTACK_DISP0_8
+   \   000025   E0           MOVX    A,@DPTR
+   \   000026   F8           MOV     R0,A
+   \   000027   741B         MOV     A,#0x1b
+   \   000029   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002C   E0           MOVX    A,@DPTR
+   \   00002D   F5..         MOV     ?V0 + 7,A
+   \   00002F   741C         MOV     A,#0x1c
+   \   000031   12....       LCALL   ?XSTACK_DISP0_8
+   \   000034   E0           MOVX    A,@DPTR
+   \   000035   F5..         MOV     ?V0 + 3,A
+    640              uint8               status;
+    641              NLDE_DataReqAlloc_t dra;
+    642              NLDE_DataReq_t*     req;
+    643          
+    644          
+    645              dra.overhead = sizeof(NLDE_DataReq_t);
+   \   000037   85..82       MOV     DPL,?XSP + 0
+   \   00003A   85..83       MOV     DPH,?XSP + 1
+   \   00003D   7420         MOV     A,#0x20
+   \   00003F   F0           MOVX    @DPTR,A
+    646              dra.nsduLen  = nsduLen;
+   \   000040   7401         MOV     A,#0x1
+   \   000042   12....       LCALL   ?XSTACK_DISP0_8
+   \   000045   E9           MOV     A,R1
+   \   000046   F0           MOVX    @DPTR,A
+    647              dra.secure   = secure;
+   \   000047   7402         MOV     A,#0x2
+   \   000049   12....       LCALL   ?XSTACK_DISP0_8
+   \   00004C   E8           MOV     A,R0
+   \   00004D   F0           MOVX    @DPTR,A
+    648          
+    649              req = NLDE_DataReqAlloc(&dra);
+   \   00004E                ; Setup parameters for call to function NLDE_DataReqAlloc
+   \   00004E   85..82       MOV     DPL,?XSP + 0
+   \   000051   85..83       MOV     DPH,?XSP + 1
+   \   000054   AA82         MOV     R2,DPL
+   \   000056   AB83         MOV     R3,DPH
+   \   000058   12....       LCALL   ??NLDE_DataReqAlloc?relay
+   \   00005B   8A..         MOV     ?V0 + 4,R2
+   \   00005D   8B..         MOV     ?V0 + 5,R3
+   \   00005F   AE..         MOV     R6,?V0 + 4
+   \   000061   AF..         MOV     R7,?V0 + 5
+    650          
+    651              if ( req != NULL )
+   \   000063   EE           MOV     A,R6
+   \   000064   4F           ORL     A,R7
+   \   000065   605D         JZ      ??MT_Nwk_DataRequest_0
+    652              {
+    653                osal_memcpy(req->nfd.nsdu, nsdu, nsduLen);
+   \   000067                ; Setup parameters for call to function osal_memcpy
+   \   000067   85....       MOV     ?V0 + 4,?V0 + 0
+   \   00006A   85....       MOV     ?V0 + 5,?V0 + 1
+   \   00006D   75..00       MOV     ?V0 + 6,#0x0
+   \   000070   78..         MOV     R0,#?V0 + 4
+   \   000072   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000075   85....       MOV     ?V0 + 0,?V0 + 2
+   \   000078   AC..         MOV     R4,?V0 + 0
+   \   00007A   7D00         MOV     R5,#0x0
+   \   00007C   EE           MOV     A,R6
+   \   00007D   240B         ADD     A,#0xb
+   \   00007F   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_58:
+   \   000082   E0           MOVX    A,@DPTR
+   \   000083   FA           MOV     R2,A
+   \   000084   A3           INC     DPTR
+   \   000085   E0           MOVX    A,@DPTR
+   \   000086   FB           MOV     R3,A
+   \   000087   12....       LCALL   ??osal_memcpy?relay
+   \   00008A   7403         MOV     A,#0x3
+   \   00008C   12....       LCALL   ?DEALLOC_XSTACK8
+    654          
+    655                req->nfd.dstAddr           = dstAddr;
+   \   00008F   8E82         MOV     DPL,R6
+   \   000091   8F83         MOV     DPH,R7
+   \   000093   A3           INC     DPTR
+   \   000094   A3           INC     DPTR
+   \   000095   E5..         MOV     A,?V0 + 10
+   \   000097   F0           MOVX    @DPTR,A
+   \   000098   A3           INC     DPTR
+   \   000099   E5..         MOV     A,?V0 + 11
+   \   00009B   F0           MOVX    @DPTR,A
+    656                req->nfd.nsduHandleOptions = nsduHandleOptions;
+   \   00009C   EE           MOV     A,R6
+   \   00009D   240F         ADD     A,#0xf
+   \   00009F   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_59:
+   \   0000A2   E5..         MOV     A,?V0 + 8
+   \   0000A4   F0           MOVX    @DPTR,A
+   \   0000A5   A3           INC     DPTR
+   \   0000A6   E5..         MOV     A,?V0 + 9
+   \   0000A8   F0           MOVX    @DPTR,A
+    657                req->nfd.discoverRoute     = discoverRoute;
+   \   0000A9   EE           MOV     A,R6
+   \   0000AA   2412         ADD     A,#0x12
+   \   0000AC   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_60:
+   \   0000AF   E5..         MOV     A,?V0 + 7
+   \   0000B1   F0           MOVX    @DPTR,A
+    658                req->nfd.radius            = radius;
+   \   0000B2   EE           MOV     A,R6
+   \   0000B3   2413         ADD     A,#0x13
+   \   0000B5   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_61:
+   \   0000B8   E5..         MOV     A,?V0 + 3
+   \   0000BA   F0           MOVX    @DPTR,A
+    659          
+    660                status = NLDE_DataReq( req );
+   \   0000BB                ; Setup parameters for call to function NLDE_DataReq
+   \   0000BB   EE           MOV     A,R6
+   \   0000BC   FA           MOV     R2,A
+   \   0000BD   EF           MOV     A,R7
+   \   0000BE   FB           MOV     R3,A
+   \   0000BF   12....       LCALL   ??NLDE_DataReq?relay
+   \   0000C2   8002         SJMP    ??MT_Nwk_DataRequest_1
+    661              }
+    662              else
+    663              {
+    664                status = ZMemError;
+   \                     ??MT_Nwk_DataRequest_0:
+   \   0000C4   7910         MOV     R1,#0x10
+    665              }
+    666          
+    667              return status;
+   \                     ??MT_Nwk_DataRequest_1:
+   \   0000C6   7403         MOV     A,#0x3
+   \   0000C8   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0000CB                REQUIRE ?Subroutine3
+   \   0000CB                ; // Fall through to label ?Subroutine3
+    668          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   7F0C         MOV     R7,#0xc
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine17:
+   \   000000   F582         MOV     DPL,A
+   \   000002   EF           MOV     A,R7
+   \   000003                REQUIRE ??Subroutine42_0
+   \   000003                ; // Fall through to label ??Subroutine42_0
+    669          #endif /* MT_NWK_FUNC */
+    670          
+    671          #if defined ( MT_NWK_CB_FUNC )             //NWK callback commands
+    672          /***************************************************************************************************
+    673           * @fn          nwk_MTCallbackSubDataConfirm
+    674           *
+    675           * @brief       Process the callback subscription for NLDE-DATA.confirm
+    676           *
+    677           * @param       nsduHandle  - APS handle
+    678           * @param       Status      - result of data request
+    679           *
+    680           * @return      none
+    681           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    682          void nwk_MTCallbackSubDataConfirm(uint8 nsduHandle, ZStatus_t status)
+   \                     nwk_MTCallbackSubDataConfirm:
+    683          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 2
+   \   000005   74FE         MOV     A,#-0x2
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   E9           MOV     A,R1
+    684            uint8 buf[2];
+    685          
+    686            buf[0] = nsduHandle;
+   \   00000B   85..82       MOV     DPL,?XSP + 0
+   \   00000E   85..83       MOV     DPH,?XSP + 1
+   \   000011   F0           MOVX    @DPTR,A
+    687            buf[1] = (uint8)status;
+   \   000012   7401         MOV     A,#0x1
+   \   000014   12....       LCALL   ?XSTACK_DISP0_8
+   \   000017   EA           MOV     A,R2
+   \   000018   12....       LCALL   ?Subroutine15 & 0xFFFF
+    688          
+    689            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLDE_DATA_CONF, 2, buf );
+   \                     ??CrossCallReturnLabel_12:
+   \   00001B   7B02         MOV     R3,#0x2
+   \   00001D   7A80         MOV     R2,#-0x80
+   \   00001F   7943         MOV     R1,#0x43
+   \   000021   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+    690          }
+   \   000024   7402         MOV     A,#0x2
+   \   000026   02....       LJMP    ??Subroutine40_0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine15:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000001   85..82       MOV     DPL,?XSP + 0
+   \   000004   85..83       MOV     DPH,?XSP + 1
+   \   000007   AC82         MOV     R4,DPL
+   \   000009   AD83         MOV     R5,DPH
+   \   00000B   22           RET
+    691          
+    692          /***************************************************************************************************
+    693           * @fn          nwk_MTCallbackSubDataIndication
+    694           *
+    695           * @brief       Process the callback subscription for NLDE-DATA.indication
+    696           *
+    697           * @param       SrcAddress      - 16 bit address
+    698           * @param       nsduLength      - Length of incoming data
+    699           * @param       nsdu            - Pointer to incoming data
+    700           * @param       LinkQuality     - Link quality measured during
+    701           *                                reception.
+    702           *
+    703           * @return      none
+    704           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    705          void nwk_MTCallbackSubDataIndication(uint16 SrcAddress, int16 nsduLength, uint8 *nsdu, uint8 LinkQuality)
+   \                     nwk_MTCallbackSubDataIndication:
+    706          {
+   \   000000   74EC         MOV     A,#-0x14
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 20
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 4,R2
+   \   000007   8B..         MOV     ?V0 + 5,R3
+   \   000009   8C..         MOV     ?V0 + 2,R4
+   \   00000B   8D..         MOV     ?V0 + 3,R5
+   \   00000D   89..         MOV     ?V0 + 7,R1
+   \   00000F   7414         MOV     A,#0x14
+   \   000011   12....       LCALL   ?XSTACK_DISP0_8
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   F5..         MOV     ?V0 + 8,A
+   \   000017   A3           INC     DPTR
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   F5..         MOV     ?V0 + 9,A
+    707            uint8 *msgPtr;
+    708            uint8 *msg;
+    709            uint8 msgLen;
+    710          
+    711            msgLen = sizeof( uint16 ) + sizeof( uint8 ) + ZTEST_DEFAULT_DATA_LEN
+    712                      + sizeof( uint8);
+    713          
+    714            msgPtr = osal_mem_alloc( msgLen );
+   \   00001B                ; Setup parameters for call to function osal_mem_alloc
+   \   00001B   7A6A         MOV     R2,#0x6a
+   \   00001D   12....       LCALL   ?Subroutine22 & 0xFFFF
+    715            if ( msgPtr )
+   \                     ??CrossCallReturnLabel_26:
+   \   000020   6057         JZ      ??CrossCallReturnLabel_22
+    716            {
+    717              //Fill up the data bytes
+    718              msg = msgPtr;
+   \   000022   AE..         MOV     R6,?V0 + 0
+   \   000024   AF..         MOV     R7,?V0 + 1
+    719          
+    720              //First fill in details
+    721              *msg++ = LO_UINT16( SrcAddress );
+   \   000026   8E82         MOV     DPL,R6
+   \   000028   8F83         MOV     DPH,R7
+   \   00002A   E5..         MOV     A,?V0 + 4
+   \   00002C   F0           MOVX    @DPTR,A
+   \   00002D   A3           INC     DPTR
+    722              *msg++ = HI_UINT16( SrcAddress );
+   \   00002E   E5..         MOV     A,?V0 + 5
+   \   000030   F0           MOVX    @DPTR,A
+   \   000031   A3           INC     DPTR
+    723          
+    724              //Since the max packet size is less than 255 bytes, a byte is enough
+    725              //to represent nsdu length
+    726              *msg++ = ( uint8 ) nsduLength;
+   \   000032   E5..         MOV     A,?V0 + 2
+   \   000034   F0           MOVX    @DPTR,A
+   \   000035   A3           INC     DPTR
+   \   000036   AE82         MOV     R6,DPL
+   \   000038   AF83         MOV     R7,DPH
+    727          
+    728              osal_memset( msg, NULL, ZTEST_DEFAULT_DATA_LEN ); // Clear the mem
+   \   00003A                ; Setup parameters for call to function osal_memset
+   \   00003A   7C66         MOV     R4,#0x66
+   \   00003C   7D00         MOV     R5,#0x0
+   \   00003E   7900         MOV     R1,#0x0
+   \   000040   EE           MOV     A,R6
+   \   000041   FA           MOV     R2,A
+   \   000042   EF           MOV     A,R7
+   \   000043   FB           MOV     R3,A
+   \   000044   12....       LCALL   ??osal_memset?relay
+    729              osal_memcpy( msg, nsdu, nsduLength );
+   \   000047                ; Setup parameters for call to function osal_memcpy
+   \   000047   85....       MOV     ?V0 + 4,?V0 + 8
+   \   00004A   85....       MOV     ?V0 + 5,?V0 + 9
+   \   00004D   75..00       MOV     ?V0 + 6,#0x0
+   \   000050   78..         MOV     R0,#?V0 + 4
+   \   000052   12....       LCALL   ?PUSH_XSTACK_I_THREE
+   \   000055   AC..         MOV     R4,?V0 + 2
+   \   000057   AD..         MOV     R5,?V0 + 3
+   \   000059   EE           MOV     A,R6
+   \   00005A   FA           MOV     R2,A
+   \   00005B   EF           MOV     A,R7
+   \   00005C   FB           MOV     R3,A
+   \   00005D   12....       LCALL   ??osal_memcpy?relay
+   \   000060   7403         MOV     A,#0x3
+   \   000062   12....       LCALL   ?DEALLOC_XSTACK8
+    730              msg += ZTEST_DEFAULT_DATA_LEN;
+    731          
+    732              *msg++ = LinkQuality;
+   \   000065   EE           MOV     A,R6
+   \   000066   2466         ADD     A,#0x66
+   \   000068   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_62:
+   \   00006B   E5..         MOV     A,?V0 + 7
+   \   00006D   F0           MOVX    @DPTR,A
+    733          
+    734              MT_BuildAndSendZToolResponse( ((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLDE_DATA_IND, msgLen, msgPtr );
+   \   00006E                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   00006E   AC..         MOV     R4,?V0 + 0
+   \   000070   AD..         MOV     R5,?V0 + 1
+   \   000072   7B6A         MOV     R3,#0x6a
+   \   000074   7A81         MOV     R2,#-0x7f
+   \   000076   12....       LCALL   ?Subroutine20 & 0xFFFF
+    735          
+    736              osal_mem_free( msgPtr );
+    737            }
+    738          }
+   \                     ??CrossCallReturnLabel_22:
+   \   000079   02....       LJMP    ?Subroutine3 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine22:
+   \   000000   7B00         MOV     R3,#0x0
+   \   000002   12....       LCALL   ??osal_mem_alloc?relay
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   8B..         MOV     ?V0 + 1,R3
+   \   000009   EA           MOV     A,R2
+   \   00000A   45..         ORL     A,?V0 + 1
+   \   00000C   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine20:
+   \   000000   7943         MOV     R1,#0x43
+   \   000002   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+   \   000005                ; Setup parameters for call to function osal_mem_free
+   \   000005                ; Setup parameters for call to function osal_mem_free
+   \   000005   AA..         MOV     R2,?V0 + 0
+   \   000007   AB..         MOV     R3,?V0 + 1
+   \   000009   12....       LCALL   ??osal_mem_free?relay
+   \   00000C   22           RET
+    739          
+    740          /***************************************************************************************************
+    741           * @fn          nwk_MTCallbackSubInitCoordConfirm
+    742           *
+    743           * @brief       Process the callback subscription for NLME-INIT-COORD.confirm
+    744           *
+    745           * @param       Status - Result of NLME_InitCoordinatorRequest()
+    746           *
+    747           * @return      none
+    748           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    749          void nwk_MTCallbackSubInitCoordConfirm( ZStatus_t Status )
+   \                     nwk_MTCallbackSubInitCoordConfirm:
+    750          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004   74FF         MOV     A,#-0x1
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+   \   000009   12....       LCALL   ?Subroutine14 & 0xFFFF
+    751            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_NETWORK_FORMATION_CONF,
+    752                                    sizeof(uint8), (uint8*)&Status);
+   \                     ??CrossCallReturnLabel_47:
+   \   00000C   7A82         MOV     R2,#-0x7e
+   \   00000E                REQUIRE ?Subroutine6
+   \   00000E                ; // Fall through to label ?Subroutine6
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   7943         MOV     R1,#0x43
+   \   000002   02....       LJMP    ??Subroutine35_0 & 0xFFFF
+    753          }
+    754          
+    755          /***************************************************************************************************
+    756           * @fn          nwk_MTCallbackSubStartRouterConfirm
+    757           *
+    758           * @brief       Process the callback subscription for NLME-START-ROUTER.confirm
+    759           *
+    760           * @param       Status - Result of NLME_StartRouterRequest()
+    761           *
+    762           * @return      none
+    763           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    764          void nwk_MTCallbackSubStartRouterConfirm( ZStatus_t Status )
+   \                     nwk_MTCallbackSubStartRouterConfirm:
+    765          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 1
+   \   000004   74FF         MOV     A,#-0x1
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+   \   000009   12....       LCALL   ?Subroutine14 & 0xFFFF
+    766            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_START_ROUTER_CONF,
+    767                                    sizeof(uint8), (uint8*)&Status);
+   \                     ??CrossCallReturnLabel_48:
+   \   00000C   7A8A         MOV     R2,#-0x76
+   \   00000E   80..         SJMP    ?Subroutine6
+    768          }
+    769          
+    770          /***************************************************************************************************
+    771           * @fn          nwk_MTCallbackSubJoinConfirm
+    772           *
+    773           * @brief       Process the callback subscription for NLME-JOIN.confirm
+    774           *
+    775           * @param       Status - Result of NLME_JoinRequest()
+    776           *
+    777           * @return      none
+    778           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    779          void nwk_MTCallbackSubJoinConfirm(uint16 PanId, ZStatus_t Status)
+   \                     nwk_MTCallbackSubJoinConfirm:
+    780          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 11
+   \   000005   74F5         MOV     A,#-0xb
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   EA           MOV     A,R2
+   \   00000B   FE           MOV     R6,A
+   \   00000C   EB           MOV     A,R3
+   \   00000D   FF           MOV     R7,A
+   \   00000E   89..         MOV     ?V0 + 0,R1
+    781            uint8 msg[Z_EXTADDR_LEN + 3];
+    782          
+    783            /* This device's 64-bit address */
+    784            ZMacGetReq( ZMacExtAddr, msg );
+   \   000010                ; Setup parameters for call to function ZMacGetReq
+   \   000010   85..82       MOV     DPL,?XSP + 0
+   \   000013   85..83       MOV     DPH,?XSP + 1
+   \   000016   AA82         MOV     R2,DPL
+   \   000018   AB83         MOV     R3,DPH
+   \   00001A   79E2         MOV     R1,#-0x1e
+   \   00001C   12....       LCALL   ??ZMacGetReq?relay
+    785          
+    786            msg[Z_EXTADDR_LEN + 0] = LO_UINT16(PanId);
+   \   00001F   7408         MOV     A,#0x8
+   \   000021   12....       LCALL   ?XSTACK_DISP0_8
+   \   000024   EE           MOV     A,R6
+   \   000025   F0           MOVX    @DPTR,A
+    787            msg[Z_EXTADDR_LEN + 1] = HI_UINT16(PanId);
+   \   000026   7409         MOV     A,#0x9
+   \   000028   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002B   EF           MOV     A,R7
+   \   00002C   F0           MOVX    @DPTR,A
+    788            msg[Z_EXTADDR_LEN + 2] = (uint8)Status;
+   \   00002D   740A         MOV     A,#0xa
+   \   00002F   12....       LCALL   ?XSTACK_DISP0_8
+   \   000032   E5..         MOV     A,?V0 + 0
+   \   000034   12....       LCALL   ?Subroutine15 & 0xFFFF
+    789          
+    790            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_JOIN_CONF, Z_EXTADDR_LEN + 3, msg );
+   \                     ??CrossCallReturnLabel_13:
+   \   000037   7B0B         MOV     R3,#0xb
+   \   000039   7A83         MOV     R2,#-0x7d
+   \   00003B   7943         MOV     R1,#0x43
+   \   00003D   02....       LJMP    ?Subroutine5 & 0xFFFF
+    791          }
+    792          /***************************************************************************************************
+    793           * @fn          nwk_MTCallbackSubNetworkDiscoveryConfirm
+    794           *
+    795           * @brief       Process the callback subscription for NLME-NWK_DISC.confirm
+    796           *
+    797           * @param       ResultCount			- number of networks discovered
+    798           * @param				NetworkList			- pointer to list of network descriptors
+    799           *
+    800           * @return      void
+    801           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    802          void nwk_MTCallbackSubNetworkDiscoveryConfirm( uint8 ResultCount, networkDesc_t *NetworkList )
+   \                     nwk_MTCallbackSubNetworkDiscoveryConfirm:
+    803          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+   \   000007   8A..         MOV     ?V0 + 2,R2
+   \   000009   8B..         MOV     ?V0 + 3,R3
+    804          	uint8 len;
+    805          	uint8 *msgPtr;
+    806          	uint8 *msg;
+    807          	uint8 i;
+    808          
+    809            // The message cannot be bigger then SPI_TX_BUFF_MAX.  Reduce resultCount if necessary
+    810            if (ResultCount * sizeof(networkDesc_t) > MT_UART_TX_BUFF_MAX - (1 + SPI_0DATA_MSG_LEN))
+   \   00000B   E9           MOV     A,R1
+   \   00000C   75F018       MOV     B,#0x18
+   \   00000F   A4           MUL     AB
+   \   000010   F8           MOV     R0,A
+   \   000011   AAF0         MOV     R2,B
+   \   000013   E4           CLR     A
+   \   000014   2A           ADD     A,R2
+   \   000015   F9           MOV     R1,A
+   \   000016   E8           MOV     A,R0
+   \   000017   947B         SUBB    A,#0x7b
+   \   000019   E9           MOV     A,R1
+   \   00001A   9400         SUBB    A,#0x0
+   \   00001C   4003         JC      ??nwk_MTCallbackSubNetworkDiscoveryConfirm_0
+    811            {
+    812              ResultCount = (MT_UART_TX_BUFF_MAX - (1 + SPI_0DATA_MSG_LEN)) / sizeof(networkDesc_t);
+   \   00001E   75..05       MOV     ?V0 + 0,#0x5
+    813            }
+    814          
+    815          	len = 1 + ResultCount * sizeof(networkDesc_t);
+   \                     ??nwk_MTCallbackSubNetworkDiscoveryConfirm_0:
+   \   000021   75F018       MOV     B,#0x18
+   \   000024   E5..         MOV     A,?V0 + 0
+   \   000026   A4           MUL     AB
+   \   000027   04           INC     A
+   \   000028   F5..         MOV     ?V0 + 1,A
+    816            msgPtr = osal_mem_alloc( len );
+   \   00002A                ; Setup parameters for call to function osal_mem_alloc
+   \   00002A   FA           MOV     R2,A
+   \   00002B   12....       LCALL   ?Subroutine19 & 0xFFFF
+    817          	if ( msgPtr )
+   \                     ??CrossCallReturnLabel_20:
+   \   00002E   6071         JZ      ??CrossCallReturnLabel_24
+    818          	{
+    819          	  /* Fill up the data bytes */
+    820              msg = msgPtr;
+   \   000030   EE           MOV     A,R6
+   \   000031   F8           MOV     R0,A
+   \   000032   EF           MOV     A,R7
+   \   000033   F9           MOV     R1,A
+    821          
+    822          		*msg++ = ResultCount;
+   \   000034   8882         MOV     DPL,R0
+   \   000036   8983         MOV     DPH,R1
+   \   000038   E5..         MOV     A,?V0 + 0
+   \   00003A   F0           MOVX    @DPTR,A
+   \   00003B   A3           INC     DPTR
+   \   00003C   A882         MOV     R0,DPL
+   \   00003E   A983         MOV     R1,DPH
+    823          
+    824          		for ( i = 0; i < ResultCount; i++ )
+   \   000040   7C00         MOV     R4,#0x0
+   \   000042   804C         SJMP    ??nwk_MTCallbackSubNetworkDiscoveryConfirm_1
+    825          		{
+    826          		  *msg++ = LO_UINT16( NetworkList->panId );
+   \                     ??nwk_MTCallbackSubNetworkDiscoveryConfirm_2:
+   \   000044   85..82       MOV     DPL,?V0 + 2
+   \   000047   85..83       MOV     DPH,?V0 + 3
+   \   00004A   E0           MOVX    A,@DPTR
+   \   00004B   8882         MOV     DPL,R0
+   \   00004D   8983         MOV     DPH,R1
+   \   00004F   F0           MOVX    @DPTR,A
+   \   000050   A3           INC     DPTR
+   \   000051   A882         MOV     R0,DPL
+   \   000053   A983         MOV     R1,DPH
+    827          		  *msg++ = HI_UINT16( NetworkList->panId );
+   \   000055   85..82       MOV     DPL,?V0 + 2
+   \   000058   85..83       MOV     DPH,?V0 + 3
+   \   00005B   12....       LCALL   ?Subroutine12 & 0xFFFF
+    828          		  *msg++ = NetworkList->logicalChannel;
+   \                     ??CrossCallReturnLabel_10:
+   \   00005E   85..82       MOV     DPL,?V0 + 2
+   \   000061   85..83       MOV     DPH,?V0 + 3
+   \   000064   A3           INC     DPTR
+   \   000065   A3           INC     DPTR
+   \   000066   12....       LCALL   ?Subroutine9 & 0xFFFF
+    829          		  *msg++ = NetworkList->beaconOrder;
+   \                     ??CrossCallReturnLabel_4:
+   \   000069   12....       LCALL   ?Subroutine9 & 0xFFFF
+    830          		  *msg++ = NetworkList->superFrameOrder;
+   \                     ??CrossCallReturnLabel_5:
+   \   00006C   A3           INC     DPTR
+   \   00006D   12....       LCALL   ?Subroutine8 & 0xFFFF
+    831          		  *msg++ = NetworkList->routerCapacity;
+   \                     ??CrossCallReturnLabel_2:
+   \   000070   12....       LCALL   ?Subroutine8 & 0xFFFF
+    832          		  *msg++ = NetworkList->deviceCapacity;
+   \                     ??CrossCallReturnLabel_3:
+   \   000073   A3           INC     DPTR
+   \   000074   12....       LCALL   ?Subroutine7 & 0xFFFF
+    833          		  *msg++ = NetworkList->version;
+   \                     ??CrossCallReturnLabel_0:
+   \   000077   12....       LCALL   ?Subroutine7 & 0xFFFF
+    834          		  *msg++ = NetworkList->stackProfile;
+   \                     ??CrossCallReturnLabel_1:
+   \   00007A   12....       LCALL   ?Subroutine12 & 0xFFFF
+    835          		  //*msg++ = NetworkList->securityLevel;
+    836          		
+    837          			NetworkList = (networkDesc_t*)NetworkList->nextDesc;
+   \                     ??CrossCallReturnLabel_11:
+   \   00007D   E5..         MOV     A,?V0 + 2
+   \   00007F   2416         ADD     A,#0x16
+   \   000081   F582         MOV     DPL,A
+   \   000083   E5..         MOV     A,?V0 + 3
+   \   000085   12....       LCALL   ??Subroutine42_0 & 0xFFFF
+    838          		}
+   \                     ??CrossCallReturnLabel_57:
+   \   000088   E0           MOVX    A,@DPTR
+   \   000089   F5..         MOV     ?V0 + 2,A
+   \   00008B   A3           INC     DPTR
+   \   00008C   E0           MOVX    A,@DPTR
+   \   00008D   F5..         MOV     ?V0 + 3,A
+   \   00008F   0C           INC     R4
+   \                     ??nwk_MTCallbackSubNetworkDiscoveryConfirm_1:
+   \   000090   EC           MOV     A,R4
+   \   000091   C3           CLR     C
+   \   000092   95..         SUBB    A,?V0 + 0
+   \   000094   40AE         JC      ??nwk_MTCallbackSubNetworkDiscoveryConfirm_2
+    839          
+    840              MT_BuildAndSendZToolResponse (((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_NETWORK_DISCOVERY_CONF, len, msgPtr);
+   \   000096                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000096   EE           MOV     A,R6
+   \   000097   FC           MOV     R4,A
+   \   000098   EF           MOV     A,R7
+   \   000099   FD           MOV     R5,A
+   \   00009A   AB..         MOV     R3,?V0 + 1
+   \   00009C   7A89         MOV     R2,#-0x77
+   \   00009E   12....       LCALL   ?Subroutine21 & 0xFFFF
+    841          
+    842              osal_mem_free( msgPtr );
+    843          	}
+    844          }
+   \                     ??CrossCallReturnLabel_24:
+   \   0000A1                REQUIRE ?Subroutine4
+   \   0000A1                ; // Fall through to label ?Subroutine4
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   7F06         MOV     R7,#0x6
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine12:
+   \   000000   A3           INC     DPTR
+   \   000001   12....       LCALL   ?Subroutine25 & 0xFFFF
+   \                     ??CrossCallReturnLabel_31:
+   \   000004   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine25:
+   \   000000   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_35:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine28:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   8882         MOV     DPL,R0
+   \   000003   8983         MOV     DPH,R1
+   \   000005   F0           MOVX    @DPTR,A
+   \   000006   A3           INC     DPTR
+   \   000007   08           INC     R0
+   \   000008   A983         MOV     R1,DPH
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   12....       LCALL   ?Subroutine25 & 0xFFFF
+   \                     ??CrossCallReturnLabel_30:
+   \   000003   85..82       MOV     DPL,?V0 + 2
+   \   000006   85..83       MOV     DPH,?V0 + 3
+   \   000009   A3           INC     DPTR
+   \   00000A   A3           INC     DPTR
+   \   00000B   A3           INC     DPTR
+   \   00000C   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_28:
+   \   000003   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine24:
+   \   000000   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_34:
+   \   000003   85..82       MOV     DPL,?V0 + 2
+   \   000006   85..83       MOV     DPH,?V0 + 3
+   \   000009   A3           INC     DPTR
+   \   00000A   A3           INC     DPTR
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   A3           INC     DPTR
+   \   00000E   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_29:
+   \   000003   A3           INC     DPTR
+   \   000004   A3           INC     DPTR
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine21:
+   \   000000   7943         MOV     R1,#0x43
+   \   000002   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+   \   000005                ; Setup parameters for call to function osal_mem_free
+   \   000005                ; Setup parameters for call to function osal_mem_free
+   \   000005   EE           MOV     A,R6
+   \   000006   FA           MOV     R2,A
+   \   000007   EF           MOV     A,R7
+   \   000008   FB           MOV     R3,A
+   \   000009   12....       LCALL   ??osal_mem_free?relay
+   \   00000C   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine19:
+   \   000000   7B00         MOV     R3,#0x0
+   \   000002   12....       LCALL   ??osal_mem_alloc?relay
+   \   000005   8A..         MOV     ?V0 + 4,R2
+   \   000007   8B..         MOV     ?V0 + 5,R3
+   \   000009   AE..         MOV     R6,?V0 + 4
+   \   00000B   AF..         MOV     R7,?V0 + 5
+   \   00000D   EE           MOV     A,R6
+   \   00000E   4F           ORL     A,R7
+   \   00000F   22           RET
+    845          /***************************************************************************************************
+    846           * @fn          nwk_MTCallbackSubJoinIndication
+    847           *
+    848           * @brief       Process the callback subscription for NLME-INIT-COORD.indication
+    849           *
+    850           * @param       ShortAddress - 16-bit address
+    851           * @param       ExtendedAddress - IEEE (64-bit) address
+    852           * @param       CapabilityInformation - Association Capability Information
+    853           *
+    854           * @return      ZStatus_t
+    855           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    856          void nwk_MTCallbackSubJoinIndication( uint16 ShortAddress, uint8 *ExtendedAddress,
+   \                     nwk_MTCallbackSubJoinIndication:
+    857                                                uint8 CapabilityInformation )
+    858          {
+   \   000000   74EE         MOV     A,#-0x12
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 18
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 4,R2
+   \   000007   8B..         MOV     ?V0 + 5,R3
+   \   000009   8C..         MOV     ?V0 + 2,R4
+   \   00000B   8D..         MOV     ?V0 + 3,R5
+   \   00000D   89..         MOV     ?V0 + 6,R1
+    859            uint8 *msgPtr;
+    860            uint8 *msg;
+    861            uint8 len;
+    862          
+    863            len = sizeof( uint16 ) + Z_EXTADDR_LEN + sizeof( uint8 );
+    864            msgPtr = osal_mem_alloc( len );
+   \   00000F                ; Setup parameters for call to function osal_mem_alloc
+   \   00000F   7A0B         MOV     R2,#0xb
+   \   000011   12....       LCALL   ?Subroutine22 & 0xFFFF
+    865          
+    866            if ( msgPtr )
+   \                     ??CrossCallReturnLabel_27:
+   \   000014   602D         JZ      ??CrossCallReturnLabel_23
+    867            {
+    868              /* Fill up the data bytes */
+    869              msg = msgPtr;
+   \   000016   AE..         MOV     R6,?V0 + 0
+   \   000018   AF..         MOV     R7,?V0 + 1
+    870          
+    871              /* First fill in details */
+    872              *msg++ = LO_UINT16( ShortAddress );
+   \   00001A   8E82         MOV     DPL,R6
+   \   00001C   8F83         MOV     DPH,R7
+   \   00001E   E5..         MOV     A,?V0 + 4
+   \   000020   F0           MOVX    @DPTR,A
+   \   000021   A3           INC     DPTR
+    873              *msg++ = HI_UINT16( ShortAddress );
+   \   000022   E5..         MOV     A,?V0 + 5
+   \   000024   F0           MOVX    @DPTR,A
+   \   000025   A3           INC     DPTR
+   \   000026   AE82         MOV     R6,DPL
+   \   000028   AF83         MOV     R7,DPH
+    874          
+    875              osal_cpyExtAddr( msg, ExtendedAddress );
+   \   00002A                ; Setup parameters for call to function sAddrExtCpy
+   \   00002A   AC..         MOV     R4,?V0 + 2
+   \   00002C   AD..         MOV     R5,?V0 + 3
+   \   00002E   EE           MOV     A,R6
+   \   00002F   FA           MOV     R2,A
+   \   000030   EF           MOV     A,R7
+   \   000031   FB           MOV     R3,A
+   \   000032   12....       LCALL   ?Subroutine18 & 0xFFFF
+    876              msg += Z_EXTADDR_LEN;
+    877          
+    878              *msg = CapabilityInformation;
+   \                     ??CrossCallReturnLabel_18:
+   \   000035   E5..         MOV     A,?V0 + 6
+   \   000037   F0           MOVX    @DPTR,A
+    879          
+    880              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_JOIN_IND, len, msgPtr );
+   \   000038                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000038   AC..         MOV     R4,?V0 + 0
+   \   00003A   AD..         MOV     R5,?V0 + 1
+   \   00003C   7B0B         MOV     R3,#0xb
+   \   00003E   7A84         MOV     R2,#-0x7c
+   \   000040   12....       LCALL   ?Subroutine20 & 0xFFFF
+    881          
+    882              osal_mem_free( msgPtr );
+    883            }
+    884          }
+   \                     ??CrossCallReturnLabel_23:
+   \   000043   7F0A         MOV     R7,#0xa
+   \   000045   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine18:
+   \   000000   12....       LCALL   ??sAddrExtCpy?relay
+   \   000003   8E82         MOV     DPL,R6
+   \   000005   8F83         MOV     DPH,R7
+   \   000007   A3           INC     DPTR
+   \   000008   A3           INC     DPTR
+   \   000009   A3           INC     DPTR
+   \   00000A   A3           INC     DPTR
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   22           RET
+    885          
+    886          /***************************************************************************************************
+    887           * @fn          nwk_MTCallbackSubLeaveConfirm
+    888           *
+    889           * @brief       Process the callback subscription for NLME-LEAVE.confirm
+    890           *
+    891           * @param       DeviceAddress - IEEE (64-bit) address
+    892           * @param       Status - Result of NLME_LeaveRequest()
+    893           *
+    894           * @return      none
+    895           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    896          void nwk_MTCallbackSubLeaveConfirm( uint8 *DeviceAddress, ZStatus_t Status )
+   \                     nwk_MTCallbackSubLeaveConfirm:
+    897          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   8B..         MOV     ?V0 + 1,R3
+   \   000009   89..         MOV     ?V0 + 2,R1
+    898            uint8 *msgPtr;
+    899            uint8 *msg;
+    900          
+    901            msgPtr = osal_mem_alloc( Z_EXTADDR_LEN + sizeof( uint8 ) );
+   \   00000B                ; Setup parameters for call to function osal_mem_alloc
+   \   00000B   7A09         MOV     R2,#0x9
+   \   00000D   12....       LCALL   ?Subroutine19 & 0xFFFF
+    902            if ( msgPtr )
+   \                     ??CrossCallReturnLabel_21:
+   \   000010   6015         JZ      ??CrossCallReturnLabel_25
+    903            {
+    904              /* Fill up the data bytes */
+    905              msg = msgPtr;
+    906          
+    907              /* First fill in details */
+    908              osal_cpyExtAddr( msg, DeviceAddress );
+   \   000012                ; Setup parameters for call to function sAddrExtCpy
+   \   000012   AC..         MOV     R4,?V0 + 0
+   \   000014   AD..         MOV     R5,?V0 + 1
+   \   000016   12....       LCALL   ?Subroutine18 & 0xFFFF
+    909              msg += Z_EXTADDR_LEN;
+    910          
+    911              *msg = (uint8)Status;
+   \                     ??CrossCallReturnLabel_19:
+   \   000019   E5..         MOV     A,?V0 + 2
+   \   00001B   F0           MOVX    @DPTR,A
+    912          
+    913              MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_LEAVE_CONF,
+    914                                      Z_EXTADDR_LEN + sizeof( uint8 ), msgPtr );
+   \   00001C                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   00001C   EE           MOV     A,R6
+   \   00001D   FC           MOV     R4,A
+   \   00001E   EF           MOV     A,R7
+   \   00001F   FD           MOV     R5,A
+   \   000020   7B09         MOV     R3,#0x9
+   \   000022   7A85         MOV     R2,#-0x7b
+   \   000024   12....       LCALL   ?Subroutine21 & 0xFFFF
+    915          
+    916              osal_mem_free( msgPtr );
+    917            }
+    918          }
+   \                     ??CrossCallReturnLabel_25:
+   \   000027   02....       LJMP    ?Subroutine4 & 0xFFFF
+    919          /***************************************************************************************************
+    920           * @fn          nwk_MTCallbackSubLeaveIndication
+    921           *
+    922           * @brief       Process the callback subscription for NLME-LEAVE.indication
+    923           *
+    924           * @param       DeviceAddress - IEEE (64-bit) address
+    925           *
+    926           * @return      NULL
+    927           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    928          void nwk_MTCallbackSubLeaveIndication( uint8 *DeviceAddress )
+   \                     nwk_MTCallbackSubLeaveIndication:
+    929          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 9
+   \   000004   74F7         MOV     A,#-0x9
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    930            uint8 msg[Z_EXTADDR_LEN+1];
+    931          
+    932            /* First fill in details */
+    933            if ( DeviceAddress )
+   \   000009   EA           MOV     A,R2
+   \   00000A   4B           ORL     A,R3
+   \   00000B   6013         JZ      ??nwk_MTCallbackSubLeaveIndication_0
+    934            {
+    935              osal_cpyExtAddr( msg, DeviceAddress );
+   \   00000D                ; Setup parameters for call to function sAddrExtCpy
+   \   00000D   EA           MOV     A,R2
+   \   00000E   FC           MOV     R4,A
+   \   00000F   EB           MOV     A,R3
+   \   000010   FD           MOV     R5,A
+   \   000011   85..82       MOV     DPL,?XSP + 0
+   \   000014   85..83       MOV     DPH,?XSP + 1
+   \   000017   AA82         MOV     R2,DPL
+   \   000019   AB83         MOV     R3,DPH
+   \   00001B   12....       LCALL   ??sAddrExtCpy?relay
+   \   00001E   8013         SJMP    ??nwk_MTCallbackSubLeaveIndication_1
+    936            }
+    937            else
+    938            {
+    939              osal_memset( msg, 0, Z_EXTADDR_LEN );
+   \                     ??nwk_MTCallbackSubLeaveIndication_0:
+   \   000020                ; Setup parameters for call to function osal_memset
+   \   000020   7C08         MOV     R4,#0x8
+   \   000022   7D00         MOV     R5,#0x0
+   \   000024   7900         MOV     R1,#0x0
+   \   000026   85..82       MOV     DPL,?XSP + 0
+   \   000029   85..83       MOV     DPH,?XSP + 1
+   \   00002C   AA82         MOV     R2,DPL
+   \   00002E   AB83         MOV     R3,DPH
+   \   000030   12....       LCALL   ??osal_memset?relay
+    940            }
+    941          
+    942            /* Status, assume good if we get this far */
+    943            msg[Z_EXTADDR_LEN] = 0;
+   \                     ??nwk_MTCallbackSubLeaveIndication_1:
+   \   000033   7408         MOV     A,#0x8
+   \   000035   12....       LCALL   ?XSTACK_DISP0_8
+   \   000038   E4           CLR     A
+   \   000039   12....       LCALL   ?Subroutine15 & 0xFFFF
+    944          
+    945            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_LEAVE_IND, Z_EXTADDR_LEN+1, msg );
+   \                     ??CrossCallReturnLabel_14:
+   \   00003C   7B09         MOV     R3,#0x9
+   \   00003E   7A86         MOV     R2,#-0x7a
+   \   000040   7943         MOV     R1,#0x43
+   \   000042   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+    946          }
+   \   000045   7409         MOV     A,#0x9
+   \   000047   02....       LJMP    ??Subroutine36_0 & 0xFFFF
+    947          /***************************************************************************************************
+    948           * @fn          nwk_MTCallbackSubSyncIndication
+    949           *
+    950           * @brief       Process the callback subscription for NLME-SYNC.indication
+    951           *
+    952           * @param       none
+    953           *
+    954           * @return      none
+    955           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    956          void nwk_MTCallbackSubSyncIndication( void )
+   \                     nwk_MTCallbackSubSyncIndication:
+    957          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    958            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_SYNC_IND, 0, NULL );
+   \   000004                ; Setup parameters for call to function MT_BuildAndSendZToolResponse
+   \   000004   7C00         MOV     R4,#0x0
+   \   000006   7D00         MOV     R5,#0x0
+   \   000008   7B00         MOV     R3,#0x0
+   \   00000A   7A88         MOV     R2,#-0x78
+   \   00000C   7943         MOV     R1,#0x43
+   \   00000E   12....       LCALL   ??MT_BuildAndSendZToolResponse?relay
+    959          }
+   \   000011   02....       LJMP    ??Subroutine37_0 & 0xFFFF
+    960          
+    961          /***************************************************************************************************
+    962           * @fn          nwk_MTCallbackSubPollConfirm
+    963           *
+    964           * @brief       Process the callback subscription for NLME-POLL.confirm
+    965           *
+    966           * @param       status - status of the poll operation
+    967           *
+    968           * @return      none
+    969           ***************************************************************************************************/
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    970          void nwk_MTCallbackSubPollConfirm( uint8 status )
+   \                     nwk_MTCallbackSubPollConfirm:
+    971          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   12....       LCALL   ?Subroutine14 & 0xFFFF
+    972            uint8 msg = status;
+    973          
+    974            MT_BuildAndSendZToolResponse(((uint8)MT_RPC_CMD_AREQ | (uint8)MT_RPC_SYS_NWK), MT_NLME_POLL_CONF, 1, &msg );
+   \                     ??CrossCallReturnLabel_49:
+   \   00000D   7A87         MOV     R2,#-0x79
+   \   00000F   7943         MOV     R1,#0x43
+   \   000011   02....       LJMP    ??Subroutine39_0 & 0xFFFF
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NwkCommandProcessing?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NwkCommandProcessing
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NldeDataRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NldeDataRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeNetworkFormationRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeNetworkFormationRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmePermitJoiningRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmePermitJoiningRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeStartRouterRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeStartRouterRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeJoinRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeJoinRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeLeaveRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeLeaveRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeResetRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeResetRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeGetRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeGetRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeSetRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeSetRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeNetworkDiscoveryRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeNetworkDiscoveryRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeRouteDiscoveryRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeRouteDiscoveryRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeDirectJoinRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeDirectJoinRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_NlmeOrphanJoinRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_NlmeOrphanJoinRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_Nwk_DataRequest?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_Nwk_DataRequest
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubDataConfirm?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubDataConfirm
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubDataIndication?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubDataIndication
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubInitCoordConfirm?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubInitCoordConfirm
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubStartRouterConfirm?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubStartRouterConfirm
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubJoinConfirm?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubJoinConfirm
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubNetworkDiscoveryConfirm?rela:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubNetworkDiscoveryConfirm
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubJoinIndication?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubJoinIndication
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubLeaveConfirm?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubLeaveConfirm
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubLeaveIndication?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubLeaveIndication
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubSyncIndication?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubSyncIndication
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??nwk_MTCallbackSubPollConfirm?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    nwk_MTCallbackSubPollConfirm
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {255, 255, 255, 255, 255, 255, 255,`:
+   \   000000   FF           DB 255
+   \   000001   FF           DB 255
+   \   000002   FF           DB 255
+   \   000003   FF           DB 255
+   \   000004   FF           DB 255
+   \   000005   FF           DB 255
+   \   000006   FF           DB 255
+   \   000007   FF           DB 255
+    975          }
+    976          
+    977          #endif /* NWK Callback commands */
+    978          
+    979          /***************************************************************************************************
+    980           ***************************************************************************************************/
+    981          
+
+   Maximum stack usage in bytes:
+
+     Function                       ISTACK PSTACK XSTACK
+     --------                       ------ ------ ------
+     MT_NldeDataRequest                 1      0     28
+       -> MT_Nwk_DataRequest            0      0     38
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     26
+     MT_NlmeDirectJoinRequest           2      0     10
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     MT_NlmeGetRequest                  1      0     29
+       -> NLME_GetRequest               0      0     40
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     40
+     MT_NlmeJoinRequest                 2      0     29
+       -> NLME_JoinRequest              0      0     40
+       -> NLME_SetPollRate              0      0     38
+       -> NLME_SetQueuedPollRate        0      0     38
+       -> NLME_SetResponseRate          0      0     38
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     38
+     MT_NlmeLeaveRequest                1      0     25
+       -> NLME_LeaveReq                 0      0     32
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     32
+     MT_NlmeNetworkDiscoveryRequest     1      0     19
+       -> osal_build_uint32             0      0     20
+       -> NLME_NetworkDiscoveryRequest
+                                        0      0     20
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     20
+     MT_NlmeNetworkFormationRequest     0      0     19
+       -> osal_build_uint32             0      0     20
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     20
+     MT_NlmeOrphanJoinRequest           1      0     32
+       -> osal_build_uint32             0      0     46
+       -> NLME_OrphanJoinRequest        0      0     46
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     46
+     MT_NlmePermitJoiningRequest        2      0     10
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     MT_NlmeResetRequest                3      0     10
+       -> NLME_ResetRequest             4      0      2
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     MT_NlmeRouteDiscoveryRequest       2      0     10
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     MT_NlmeSetRequest                  1      0     19
+       -> NLME_SetRequest               0      0     20
+       -> ZDApp_NVUpdate                0      0     20
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     20
+     MT_NlmeStartRouterRequest          2      0     10
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     MT_NwkCommandProcessing            0      0      9
+       -> nwk_init                      0      0     18
+       -> MT_NldeDataRequest            0      0     18
+       -> MT_NlmeNetworkFormationRequest
+                                        0      0     18
+       -> MT_NlmePermitJoiningRequest
+                                        0      0     18
+       -> MT_NlmeJoinRequest            0      0     18
+       -> MT_NlmeLeaveRequest           0      0     18
+       -> MT_NlmeResetRequest           0      0     18
+       -> MT_NlmeGetRequest             0      0     18
+       -> MT_NlmeSetRequest             0      0     18
+       -> MT_NlmeNetworkDiscoveryRequest
+                                        0      0     18
+       -> MT_NlmeRouteDiscoveryRequest
+                                        0      0     18
+       -> MT_NlmeDirectJoinRequest      0      0     18
+       -> MT_NlmeOrphanJoinRequest      0      0     18
+       -> MT_NlmeStartRouterRequest     0      0     18
+     MT_Nwk_DataRequest                 1      0     45
+       -> NLDE_DataReqAlloc             0      0     46
+       -> osal_memcpy                   0      0     52
+       -> NLDE_DataReq                  0      0     46
+     nwk_MTCallbackSubDataConfirm       1      0     11
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     22
+     nwk_MTCallbackSubDataIndication
+                                        1      0     25
+       -> osal_mem_alloc                0      0     40
+       -> osal_memset                   0      0     40
+       -> osal_memcpy                   0      0     46
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     40
+       -> osal_mem_free                 0      0     40
+     nwk_MTCallbackSubInitCoordConfirm
+                                        3      0      1
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     nwk_MTCallbackSubJoinConfirm       1      0     20
+       -> ZMacGetReq                    0      0     40
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     40
+     nwk_MTCallbackSubJoinIndication
+                                        1      0     18
+       -> osal_mem_alloc                0      0     36
+       -> sAddrExtCpy                   0      0     36
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     36
+       -> osal_mem_free                 0      0     36
+     nwk_MTCallbackSubLeaveConfirm      1      0     14
+       -> osal_mem_alloc                0      0     28
+       -> sAddrExtCpy                   0      0     28
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     28
+       -> osal_mem_free                 0      0     28
+     nwk_MTCallbackSubLeaveIndication
+                                        2      0      9
+       -> sAddrExtCpy                   4      0     18
+       -> osal_memset                   4      0     18
+       -> MT_BuildAndSendZToolResponse
+                                        4      0     18
+     nwk_MTCallbackSubNetworkDiscoveryConfirm
+                                        1      0     14
+       -> osal_mem_alloc                0      0     28
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     28
+       -> osal_mem_free                 0      0     28
+     nwk_MTCallbackSubPollConfirm       1      0     10
+       -> MT_BuildAndSendZToolResponse
+                                        0      0     20
+     nwk_MTCallbackSubStartRouterConfirm
+                                        3      0      1
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      2
+     nwk_MTCallbackSubSyncIndication
+                                        2      0      0
+       -> MT_BuildAndSendZToolResponse
+                                        4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                                  Bytes
+     --------------                                  -----
+     _nwkCallbackSub                                    2
+     MT_NwkCommandProcessing                          139
+     ??Subroutine41_0                                   5
+     MT_NldeDataRequest                               151
+     ?Subroutine23                                      2
+     ??Subroutine29_0                                   6
+     ?Subroutine13                                      1
+     ??Subroutine30_0                                   3
+     ??Subroutine31_0                                   6
+     ?Subroutine10                                     17
+     ?Subroutine26                                      3
+     ??Subroutine32_0                                   8
+     ?Subroutine14                                      7
+     ??Subroutine33_0                                   8
+     MT_NlmeNetworkFormationRequest                    39
+     ?Subroutine16                                     17
+     ?Subroutine0                                       7
+     ??Subroutine38_0                                   3
+     ??Subroutine39_0                                   3
+     ??Subroutine40_0                                   3
+     MT_NlmePermitJoiningRequest                        3
+     ?Subroutine1                                      24
+     ??Subroutine34_0                                   2
+     ??Subroutine35_0                                   3
+     ??Subroutine36_0                                   3
+     ??Subroutine37_0                                   7
+     MT_NlmeStartRouterRequest                          3
+     MT_NlmeJoinRequest                               160
+     ?Subroutine2                                       8
+     MT_NlmeLeaveRequest                              117
+     ?Subroutine11                                     12
+     ?Subroutine27                                     11
+     ??Subroutine42_0                                   5
+     MT_NlmeResetRequest                               19
+     MT_NlmeGetRequest                                 62
+     ?Subroutine5                                       7
+     MT_NlmeSetRequest                                 86
+     MT_NlmeNetworkDiscoveryRequest                    44
+     MT_NlmeRouteDiscoveryRequest                       3
+     MT_NlmeDirectJoinRequest                           3
+     MT_NlmeOrphanJoinRequest                         226
+     MT_Nwk_DataRequest                               203
+     ?Subroutine3                                       5
+     ?Subroutine17                                      3
+     nwk_MTCallbackSubDataConfirm                      41
+     ?Subroutine15                                     12
+     nwk_MTCallbackSubDataIndication
+                                                      124
+     ?Subroutine22                                     13
+     ?Subroutine20                                     13
+     nwk_MTCallbackSubInitCoordConfirm
+                                                       14
+     ?Subroutine6                                       5
+     nwk_MTCallbackSubStartRouterConfirm
+                                                       16
+     nwk_MTCallbackSubJoinConfirm                      64
+     nwk_MTCallbackSubNetworkDiscoveryConfirm
+                                                      161
+     ?Subroutine4                                       5
+     ?Subroutine12                                      5
+     ?Subroutine25                                      4
+     ?Subroutine28                                     11
+     ?Subroutine9                                      13
+     ?Subroutine8                                       4
+     ?Subroutine24                                     15
+     ?Subroutine7                                       6
+     ?Subroutine21                                     13
+     ?Subroutine19                                     16
+     nwk_MTCallbackSubJoinIndication
+                                                       72
+     ?Subroutine18                                     16
+     nwk_MTCallbackSubLeaveConfirm                     42
+     nwk_MTCallbackSubLeaveIndication
+                                                       74
+     nwk_MTCallbackSubSyncIndication
+                                                       20
+     nwk_MTCallbackSubPollConfirm                      20
+     ??MT_NwkCommandProcessing?relay                    6
+     ??MT_NldeDataRequest?relay                         6
+     ??MT_NlmeNetworkFormationRequest?relay             6
+     ??MT_NlmePermitJoiningRequest?relay                6
+     ??MT_NlmeStartRouterRequest?relay                  6
+     ??MT_NlmeJoinRequest?relay                         6
+     ??MT_NlmeLeaveRequest?relay                        6
+     ??MT_NlmeResetRequest?relay                        6
+     ??MT_NlmeGetRequest?relay                          6
+     ??MT_NlmeSetRequest?relay                          6
+     ??MT_NlmeNetworkDiscoveryRequest?relay             6
+     ??MT_NlmeRouteDiscoveryRequest?relay               6
+     ??MT_NlmeDirectJoinRequest?relay                   6
+     ??MT_NlmeOrphanJoinRequest?relay                   6
+     ??MT_Nwk_DataRequest?relay                         6
+     ??nwk_MTCallbackSubDataConfirm?relay               6
+     ??nwk_MTCallbackSubDataIndication?relay            6
+     ??nwk_MTCallbackSubInitCoordConfirm?relay          6
+     ??nwk_MTCallbackSubStartRouterConfirm?relay        6
+     ??nwk_MTCallbackSubJoinConfirm?relay               6
+     ??nwk_MTCallbackSubNetworkDiscoveryConfirm?rela    6
+     ??nwk_MTCallbackSubJoinIndication?relay            6
+     ??nwk_MTCallbackSubLeaveConfirm?relay              6
+     ??nwk_MTCallbackSubLeaveIndication?relay           6
+     ??nwk_MTCallbackSubSyncIndication?relay            6
+     ??nwk_MTCallbackSubPollConfirm?relay               6
+     ?<Constant {255, 255, 255, 255, 255, 255, 255,     8
+
+ 
+ 2 246 bytes in segment BANKED_CODE
+   156 bytes in segment BANK_RELAYS
+     8 bytes in segment XDATA_ROM_C
+     2 bytes in segment XDATA_Z
+ 
+ 2 402 bytes of CODE  memory
+     8 bytes of CONST memory
+     2 bytes of XDATA memory
+
+Errors: none
+Warnings: none

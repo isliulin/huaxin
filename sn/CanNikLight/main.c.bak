@@ -1,0 +1,763 @@
+/*******************************************************************************
+*******************************蓝旗嵌入式系统***********************************
+*************************http://lenchimcu.taobao.com****************************
+*******************************************************************************/
+#include "hw\uart\uart.h"
+#include "hw\boot\boot.h"
+#include "hw\eeprom\eeprom.h"
+#include "aes\aes.h"
+#include "hw\spi\spi.h"
+#include "global.h"
+#include "hw\adc\adc.h"
+#include "hw\moto\moto.h"
+#include "hw\flash\flash.h"
+#include "hw\lcd\lcd.h"
+#include "hw\a7105\a7105.h"
+#include "hw\sys\sys.h"
+#include "hw\timer\timer.h"
+
+#define SLEEP_SECONDS 80
+#define SLAVE_SLEEP_SECONDS 3600L
+
+// $PROJ_DIR$\config\lnkstm8l152r8.icf
+
+u8 g_comStatue=0;
+u8 g_spiRcvFlag = 0;
+u8 g_spiDat = 0;
+//u8 g_tmCtrl = 0;
+WL_ArrPara *mstPara;
+MainPara mainPara = {0};
+MotoSet motoSet = {0};
+u8 g_chargeOk = 1;
+MenuPara menuPara={0};
+u8 g_shutterFlag=0;
+u8 g_vCmr=0;
+MultiSet multiSet = {0};
+u8 g_cmrLinked = 0;
+u8 *g_cmdMode;
+u8 *g_lightMode;
+u16 g_dspUpdateFlag=0;
+u16 g_bkLightCnt = 0;
+u16 g_generalTimer = 0;
+u16 g_sysSleepCnt = 0;
+extern u8 *g_cfnOption;
+extern const u8 g_a7105_id1[4];
+extern CmrPara cmrPara;
+
+void GeneralHandle(void);
+void DspToggle(void);
+extern void SlaveLedToggle(void);
+void BeeperOn(u8 cnt, u16 tms);
+
+typedef struct CAN_FONT
+{
+	char ch;
+	char wt;
+	char buf[14];
+}CanFont;
+
+const CanFont canFontCmpFeb[] =
+{
+	{'0',7,{0x00,0x0F,0x1F,0x18,0x18,0x1F,0x0F,0x00,0xF0,0xF8,0x18,0x18,0xF8,0xF0,}},
+	//{'1',7,{0x00,0x00,0x0C,0x18,0x3F,0x3F,0x00,0x00,0x00,0x00,0x00,0xF8,0xF8,0x00,}},
+	{'1',7,{0x00,0x00,0x06,0x0C,0x1F,0x1F,0x00,0x00,0x00,0x00,0x00,0xF8,0xF8,0x00,}},
+	{'2',7,{0x00,0x0C,0x1C,0x18,0x19,0x1F,0x0F,0x00,0x38,0x78,0xF8,0xD8,0x98,0x18,}},
+	{'3',7,{0x00,0x18,0x19,0x19,0x19,0x1F,0x0E,0x00,0x18,0x98,0x98,0x98,0xF8,0xF0,}},
+	{'4',7,{0x00,0x07,0x0F,0x1C,0x1F,0x1F,0x00,0x00,0xE0,0xE0,0x60,0xF8,0xF8,0x60,}},
+	{'5',7,{0x00,0x1F,0x1F,0x19,0x19,0x19,0x18,0x00,0x98,0x98,0x98,0x98,0xF8,0xF0,}},
+	{'6',7,{0x00,0x0F,0x1F,0x19,0x19,0x19,0x18,0x00,0xF0,0xF8,0x98,0x98,0xF8,0xF0,}},
+	{'7',7,{0x18,0x18,0x18,0x1B,0x1F,0x1E,0x00,0x00,0x38,0xF8,0xE0,0x80,0x00,0x00,}},
+	{'8',7,{0x00,0x0E,0x1F,0x19,0x19,0x1F,0x0E,0x00,0xF0,0xF8,0x98,0x98,0xF8,0xF0,}},
+	{'9',7,{0x00,0x0F,0x1F,0x19,0x19,0x1F,0x0F,0x00,0x18,0x98,0x98,0x98,0xF8,0xF0,}},
+	{'*',5,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x18,0x18,0x00,}},		
+	{'c',4,{0x00,0x01,0x02,0x02,0x00,0xF0,0x08,0x08,}},
+	{'h',5,{0x00,0x03,0x00,0x00,0x00,0x00,0xF8,0x80,0x80,0x78,}},
+	{'.',3,{0x00,0x00,0x00,0x00,0x08,0x00,}},
+	
+
+	{'+',7,{0x00,0x01,0x01,0x07,0x07,0x01,0x01,0x00,0x80,0x80,0xE0,0xE0,0x80,0x80,}},
+	{'%',7,{0x00,0x06,0x06,0x1F,0x1F,0x06,0x06,0x00,0x30,0x30,0xB0,0xB0,0x30,0x30}},
+	{'-',7,{0x00,0x01,0x01,0x01,0x01,0x01,0x01,0x00,0x80,0x80,0x80,0x80,0x80,0x80,}},	
+};
+
+const char font_cfn21[] = {
+0x02,0x07,0x03,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x01,0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,
+0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x1C,0x1F,0x07,0x01,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x18,0x18,0x99,
+0xDB,0x99,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xE7,0xC3,0xC3,0xE7,0x7E,0x3C,
+0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x06,0x18,
+0x60,0x80,0x00,0x00,0x00,0x00,0x00,0x66,0x66,0x66,0x66,0x66,0x66,0x00,0x00,0xFF,
+0xFF,0xFF,0xFF,0xFF,0xFF,0xE7,0xC3,0xC3,0xE7,0x7E,0x3C,0x01,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x06,0x18,0x60,0x80,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0xC3,0xC3,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+0xE7,0xC3,0xC3,0xE7,0x7E,0x3C,0x01,0x00,0x00,0x00,0x40,0xE0,0xC0,0x80,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x60,0x78,0x7E,0x7E,0xFE,0xFE,0x7E,0x1E,
+0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x06,0x18,0x60,0x80,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x60,0x78,0x7E,0x7E,0xFE,0xFE,0x7E,0x1E,0x06,0x00,0x00,0x00,0x00,
+0x00,0x00,0x06,0x18,0x60,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x38,0xF8,0xE0,0x80,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x60,0x60,
+0x78,0x7E,0xFE,0xFE,0x7E,0x1E,0x06,
+};/*22x24*///灯头扩散
+
+
+static void Init_OSC(void)
+{
+    
+    CLK_HSITRIMR|=0x04;
+    while(!(CLK_ICKCR & 0x02));
+    CLK_CKDIVR = 0;
+    ITC_SPR2 = 0;	
+}
+
+void BkLightOn(void)
+{
+	BK_LIGHT_PIN = 1;
+	//g_bkLightCnt = 10000;
+	g_bkLightCnt = 10000/50;
+}
+
+void BkLightOff(void)
+{
+	BK_LIGHT_PIN = 0;
+	g_bkLightCnt = 0;
+}
+
+void Init_GPIO(void)
+{
+     //PD_DDR_DDR4 = 1;
+     //PD_CR1_C14 = 1; 
+     //PD_CR2_C24 = 0;
+#if 0
+     // sck as int pad
+    CPU_CCR=0X28;  //等级3
+    EXTI_CONF1=0x00;//PB6->EXTI6
+    //EXTI_CR2=0x08;//下降沿触发
+    PB_DDR_DDR5=0;//PB6输入
+    //PB_CR1_C15=1;//PB6上拉
+   //PB_CR2_C25=1;//PB6中断使能
+
+   // test pin
+   PB_DDR = 0x08;
+   PB_CR1 = 0x08;         // Push-pull,
+   PB_CR2 = 0x08;         // speed 10 MHz
+   //
+   PF_DDR = 0x23;
+   PF_CR1 = 0x23;         // Push-pull,
+   PF_CR2 = 0x23;         // speed 10 MHz
+
+   PE_CR1 |= 0x01;
+
+   // moto 
+   PA_DDR &= 0x3f;
+   PA_DDR |= 0x80;           // PA6, PA7
+   PA_CR1 |= 0xC0;
+   PA_CR2 |= 0x80;
+
+   PG_DDR |= 0x03;           // PG0~PG1 
+   PG_CR1 |= 0x03;
+   PG_CR2 |= 0x03;
+   
+   PC_DDR &= ~0x80;
+   PC_CR1 |= 0x80;
+
+
+   // charge pmw
+   PD_DDR |= 0x80;
+   PD_CR1 |= 0x80;
+   PD_CR2 |= 0x80;
+
+   //PC4
+   PC_DDR |= 0x10;
+   PC_CR1 |= 0x10;
+   PC_CR2 |= 0x10;
+
+
+   //PA5 30V       PA4 FLASH    PA3 Triger
+   PA_DDR |= 0x38;                   // 
+   PA_CR1 |= 0x38;
+   PA_CR2 |= 0x38;  
+
+   //Flash in
+   PB_DDR &= ~0x10;
+   PB_CR1 |= 0x40;
+   PB_CR2 |= 0x40;
+   
+   D30V_EN = 1;                                   // ENABLE 30V, IGBT ENABLE
+   ENABLE_CHARGE();
+   //SPI_MISO_AUX ( 1 );
+   //COM_AUX = 1;
+   EN339 = 1;
+#else
+
+     // sck as int pad
+    CPU_CCR=0X28;  //??3
+    EXTI_CONF1=0x00;//PB6->EXTI6
+    //EXTI_CR2=0x08;//?????
+    PB_DDR_DDR5=0;//PB6??
+    //PB_CR1_C15=1;//PB6??
+   //PB_CR2_C25=1;//PB6????
+  
+   // test pin
+   //PB_DDR = 0x08;
+   //PB_CR1 = 0x08;         // Push-pull,
+   //PB_CR2 = 0x08;         // speed 10 MHz
+   //
+   PF_DDR = 0x63;
+   PF_CR1 = 0x63;         // Push-pull,
+   //PF_CR2 = 0x63;         // speed 10 MHz
+
+   PE_CR1 |= 0x01;
+   
+   // moto 
+   PA_DDR &= 0x3f;
+   PA_DDR |= 0x80;           // PA6, PA7
+   PA_CR1 |= 0xC0;
+   PA_CR2 |= 0x80;
+
+   PG_DDR |= 0x03;           // PG0~PG1 
+   PG_CR1 |= 0x03;
+   PG_CR2 |= 0x03;
+   
+   PC_DDR &= ~0x80;
+   PC_CR1 |= 0x80;
+
+
+   // charge pmw
+   PD_DDR |= 0x80;
+   PD_CR1 |= 0x80;
+   //PD_CR2 |= 0x80;                         // set cause unexpect result
+ /* */
+   PC_DDR |= 0x18;
+   PC_CR1 |= 0x18;
+   PC_CR2 |= 0x18;
+
+   // charge LED,   AF
+   PD_DDR |= 0x70;
+   PD_CR1 |= 0x70;
+   PD_CR2 |= 0x70;  
+
+   //PC4
+   PC_DDR |= 0x10;
+   PC_CR1 |= 0x10;
+   PC_CR2 |= 0x10;
+
+   //Flash in
+   PB_DDR &= ~0x10;
+   PB_CR1 |= 0x10;
+   PB_CR2 |= 0x10;
+   // PB4  Failing edge
+   EXTI_CR2 &= 0xFC;
+   EXTI_CR2 |= 0x02;
+
+   PB_CR1 |= 0x02;                         // PB1 pull up
+
+    //PA5 30V       PA4 FLASH    PA3 Triger
+   PA_DDR |= 0x38;                   // 
+   PA_CR1 |= 0x38;
+   PA_CR2 |= 0x38;  
+
+   // BK light
+   PE_DDR |= 0x80;
+   PE_CR1 |= 0x80;
+
+   // BEEP
+   //PA_DDR |= 0x01;
+   //PA_CR1 |= 0x01;
+    
+/*
+	#define A7105_SCK PD_ODR_ODR1
+	#define A7105_CS   PE_ODR_ODR1
+	#define A7105_ODR   PD_ODR_ODR2
+	#define A7105_IDR    PD_IDR_IDR3
+	#define A7105_IRQ    PB_IDR_IDR0
+	#define A7105_RX_AF    PE_ODR_ODR3
+	#define A7105_TX_AF    PB_ODR_ODR4
+*/  
+   
+
+   // sw
+   //PG_CR1 |= 0xC0;                          // PG2, PG3 PULL UP
+   PG_CR1 |= 0x0C;                          // PG2, PG3 PULL UP
+/*
+   if (!SW_POWER_OFF)                      // the power is not on
+   {
+   	printf ("halt\r\n");
+	asm("sim");
+	asm("halt");
+	while (1);
+   }
+*/
+
+   PC_DDR |= 0x03;
+   PC_CR1 |= 0x03;
+
+   //SPI_MISO_AUX ( 1 );
+   D30V_EN = 1;
+   BkLightOn();
+   ENABLE_CHARGE();
+   DC_ON();
+   COM_AUX = 1;                    // nikon also needed
+   EN339 = 1;
+   
+#endif
+}
+
+void UserInit(void)
+{
+	//u8 i = 0;
+	mstPara = &mainPara.modGr;
+	motoSet.mode = &mainPara.motoLoca.mode;
+	motoSet.dest_location = &mainPara.motoLoca.moto_location;
+	multiSet.eTimes = &mainPara.multi_times;
+	multiSet.frequence = &mainPara.multi_Frq;
+	multiSet.expose = &mainPara.modGr.multi_exp;
+	g_cmdMode = &mainPara.cmdMode;
+	g_lightMode = &mainPara.workMode;
+	g_cfnOption = mainPara.cfnSet;
+	
+	motoSet.moto_en = MOTO_ENABLE;
+	motoSet.autoDest = 35;
+
+	EEPROM_Read(0, (u8*)&mainPara, sizeof(mainPara));
+
+	//if ((mainPara.cmdMode > CMD_MODE_LIGH_F2) || (mainPara.cmdMode < CMD_MODE_OFF))
+        if (mainPara.cmdMode > CMD_MODE_LIGH_F2)
+	{
+		mainPara.cmdMode = CMD_MODE_OFF;
+	}
+
+	if (*multiSet.eTimes < 1)
+	{
+		*multiSet.eTimes = 1;
+	}
+
+	if (*multiSet.frequence < 1)
+	{
+		*multiSet.frequence = 1;
+	}
+
+	if ((*motoSet.dest_location < 20) || (*motoSet.dest_location > 200))
+	{
+		*motoSet.dest_location = 20;
+	}
+
+	if (*multiSet.expose > 0x50)
+	{
+		*multiSet.expose = 0x50;
+	}
+
+	//menuPara.WlmMul[MASTER]=output_table[(7-(*multiSet.expose>>4))*3];
+
+	motoSet.destRsv = *motoSet.dest_location;
+
+	SET_UPDATE_EVT(DSP_UPDATE_MODE);
+/*
+	for (i = 0;i<sizeof(mainPara); i++)
+	{
+		printf ("%x",  ((u8*)&mainPara)[i]);
+	}
+*/
+}
+
+void BeepHandleProc(void)
+{
+	if (g_beepEn > 0)
+	{
+		if (g_beepCnt > 0)
+		{
+			g_beepCnt --;
+		}else
+		{
+			g_beepEn = 0;
+			BeeperOff();
+		}
+	}
+}
+
+void GeneralEventLoop(void)
+{
+	//u8 vol;
+	u16 crtTime;
+	crtTime = get_counter();
+	//if(crtTime - g_generalTimer > 1000)
+	if(crtTime - g_generalTimer > 50000L)                      // 50 ms
+	{
+		g_generalTimer = crtTime;
+		GeneralHandle();
+	}
+}
+
+void StartSystem(void)
+{
+	MotoReset();
+	for (;;)
+	{	
+		KeyEventLoop();
+		DspUpdateEventLoop();
+		MotoEventLoop();
+		FlashEventLoop();
+		ChargeEventLoop();
+		GeneralEventLoop();
+		RfSlaveEventLoop();
+		MultiFlashEventLoop();
+		AfEventLoop();
+		//Timer1Test();
+	}
+}
+
+/*******************************************************************************
+****入口参数：无
+****出口参数：无
+****函数备注：计算机通过串口调试助手可以接收开发板UART发送的十六进制数据，跳线RXD-UT TXD-UR
+****版权信息：蓝旗嵌入式系统
+*******************************************************************************/
+//#define _A7105_DBG_
+//#define _LS_DBG_
+int main( void )
+{
+#ifdef _A7105_DBG_
+        int i = 0;
+        u8 buf[16];
+#endif
+        //u16 tm;
+        Init_OSC();
+        //asm("rim");//开中断，sim为关中断
+	Init_USART1();
+	Adc_Init();
+	UserInit();
+       Init_GPIO();
+	/*for 7105 test*/
+	//A7105_Init();
+        
+        printf("Speed light start, %s, %s\r\n",__DATE__, __TIME__);
+	printf("%d\r\n",font_cfn21[10]);
+	printf("%d\r\n",canFontCmpFeb[5].buf[2]);
+
+	Timer4Init();
+	Timer2Init();
+	 //TIM4_CNTR = 10;
+	 //TIM4_CR1 = 0x01; 
+	 //Timer4Start(0x01);
+        //Init_ExInt();
+        //SetSckInt(INT_EDGE_R);
+        //SPI_Init();
+        SPI1_Init();
+	SPI2_Init();
+	//PG_DDR_DDR5 = 1;
+	//PG_CR1_C15 = 1;                 //PG5 输出
+	//PG_CR2_C25 = 1;
+	//NikSpiTrans();
+	//SPI2_CR1 = 0xFF;
+	 NikInit();
+	 LcdInit();
+	 SetDailInt();
+	 Timer1Init();
+         asm("rim");//开中断，sim为关中断
+        //PD_DDR_DDR4=1;           //端口数据方向寄存器，输出
+        //PD_CR1_C14=1;            //端口控制寄存器1，推挽输出
+        //PD_CR2_C24=0;            //端口控制寄存器2，输出速率2MHz
+        
+        //Boot_Encrypt(__TIME__,"agc",buf,16);
+        //Boot_Decrypt(buf,"agc",buf,16);
+        //SPI2_DR = 0xFF;
+
+	// for multi flash test
+/*	*multiSet.eTimes = 10;
+	*multiSet.frequence = 20;
+	*multiSet.expose = 0x10;
+	*g_lightMode = WORKINGMODE_MULTI;
+	*g_cmdMode = CMD_MODE_OFF;
+	g_flashEnable = 1;*/
+	if (CFN_ON == g_cfnOption[CFN_BEEP])
+	{
+		BeeperOn(4,1);
+	}
+
+	//asm("halt");
+
+
+#if (defined _A7105_DBG_)
+	mainPara.s_chan = 3;
+	A7105_Init();	
+#elif (defined _LS_DBG_)
+       *g_cmdMode = CMD_MODE_LIGH_F2;
+	StartSystem();
+#else
+	StartSystem();
+#endif
+        
+        while (1)
+        {/*
+        	if (!g_tmCtrl)
+        	{
+        		g_tmCtrl = 1;
+			PF_ODR_ODR1 = 0;
+			TIM4_CNTR = 0x00;
+			//TIM4_ARR = 100;             //auto reload
+			TIM4_CR1 = 0x01;
+		}*/
+		//PG_ODR_ODR5 ^= 1;	
+		//TEST_PIN ^= 1;
+		//tm = (TIM2_CNTRH << 8 | TIM2_CNTRL);
+		//printf("%x\r\n",tm);
+		//PE_ODR_ODR5 = !PE_ODR_ODR5;
+#if (defined _A7105_DBG_)
+		if (!A7105_IRQ)
+		{
+			A7105_Read_Ram(0x05, buf, 12);
+			printf("\r\n");
+			for (i=0;i<12;i++)
+			{
+				printf("%x ",buf[i]);
+			}
+			A7105_strobe_cmd(0xF0);
+			A7105_strobe_cmd(0xC0);
+		}
+#elif (defined _LS_DBG_)
+#endif
+
+		//RfSlaveEventLoop();
+        }
+        
+        
+        //BootProc();
+}
+/*******************************************************************************
+*******************************蓝旗嵌入式系统***********************************
+*************************http://lenchimcu.taobao.com****************************
+*******************************************************************************/
+
+#pragma vector= USART1_R_OR_vector
+__interrupt void USART1_R_OR_IRQHandler(void)
+{
+      unsigned char ch;
+      ch=USART1_DR;
+      putchar(ch+1);
+}
+
+void Hal_ProcessPoll (void)
+{
+
+}
+
+void AfValidOnCheck(void)
+{
+	if(g_isAfOn>0)
+	{
+		if(cmrPara.cls>0)
+		{
+			g_afOnCnt++;   //50ms every increment
+			//if(g_afOnCnt>2000)
+			if(g_afOnCnt>40)
+			{
+				AF_OFF();
+				g_isAfOn = 0;
+				g_afOnCnt = 0;
+			}
+		}else
+		{
+			AF_OFF();
+			g_isAfOn = 0;
+			g_afOnCnt = 0;
+		}
+	}
+}
+
+void SleepPortRecord(u8 *pddr, u8 * podr, u8 *pcr1, u8 *pcr2)
+{
+	pddr[0] = PA_DDR;
+	pddr[1] = PB_DDR;
+	pddr[2] = PC_DDR;
+	pddr[3] = PD_DDR;
+	pddr[4] = PE_DDR;
+	pddr[5] = PF_DDR;
+
+	podr[0] = PA_ODR;
+	podr[1] = PB_ODR;
+	podr[2] = PC_ODR;
+	podr[3] = PD_ODR;
+	podr[4] = PE_ODR;
+	podr[5] = PF_ODR;
+
+	pcr1[0] = PA_CR1;
+	pcr1[1] = PB_CR1;
+	pcr1[2] = PC_CR1;
+	pcr1[3] = PD_CR1;
+	pcr1[4] = PE_CR1;
+	pcr1[5] = PF_CR1;
+
+	pcr2[0] = PA_CR2;
+	pcr2[1] = PB_CR2;
+	pcr2[2] = PC_CR2;
+	pcr2[3] = PD_CR2;
+	pcr2[4] = PE_CR2;
+	pcr2[5] = PF_CR2;
+
+	PA_DDR = 0x00;
+ 	PB_DDR = 0x00;
+ 	PC_DDR = 0x00; 
+ 	PD_DDR = 0x00; 
+ 	PE_DDR = 0x00; 
+ 	PF_DDR = 0x00; 
+           0x00
+ 	PA_ODR = 0x00; 
+ 	PB_ODR = 0x00; 
+ 	PC_ODR = 0x00; 
+ 	PD_ODR = 0x00; 
+ 	PE_ODR = 0x00; 
+ 	PF_ODR = 0x00; 
+           0x00
+ 	PA_CR1 = 0x00; 
+ 	PB_CR1 = 0x00; 
+ 	PC_CR1 = 0x00; 
+ 	PD_CR1 = 0x00; 
+ 	PE_CR1 = 0x00; 
+ 	PF_CR1 = 0x00; 
+           0x00
+ 	PA_CR2 = 0x00; 
+ 	PB_CR2 = 0x00; 
+ 	PC_CR2 = 0x00; 
+ 	PD_CR2 = 0x00;
+ 	PE_CR2 = 0x00; 
+ 	PF_CR2 = 0x00; 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+}
+
+void SleepPortResume(const u8 *pddr, const u8 * podr, const u8 *pcr1, const u8 *pcr2)
+{
+	
+ 	PA_DDR=pddr[0];
+ 	PB_DDR=pddr[1];
+ 	PC_DDR=pddr[2]; 
+ 	PD_DDR=pddr[3]; 
+ 	PE_DDR=pddr[4]; 
+ 	PF_DDR=pddr[5]; 
+ 
+ 	PA_ODR=podr[0]; 
+ 	PB_ODR=podr[1]; 
+ 	PC_ODR=podr[2]; 
+ 	PD_ODR=podr[3]; 
+ 	PE_ODR=podr[4]; 
+ 	PF_ODR=podr[5]; 
+
+ 	PA_CR1=pcr1[0]; 
+ 	PB_CR1=pcr1[1]; 
+ 	PC_CR1=pcr1[2]; 
+ 	PD_CR1=pcr1[3]; 
+ 	PE_CR1=pcr1[4]; 
+ 	PF_CR1=pcr1[5]; 
+ 
+ 	PA_CR2=pcr2[0]; 
+ 	PB_CR2=pcr2[1]; 
+ 	PC_CR2=pcr2[2]; 
+ 	PD_CR2=pcr2[3];
+ 	PE_CR2=pcr2[4]; 
+ 	PF_CR2=pcr2[5]; 
+
+}
+
+void WakeUpSet(void)
+{
+	
+}
+
+void SleepHandleProc(void)
+{
+	u8 pddr[6];
+	u8 podr[6];
+	u8 pcr1[6];
+	u8 pcr2[6];
+
+	SleepPortRecord(pddr,podr,pcr1,pcr2);	
+	WakeUpSet();
+
+	asm("halt");
+
+	SleepPortResume(pddr,podr,pcr1,pcr2);
+	// pilot as interrupt
+	// sck as interrupt
+	// 
+}
+
+void SystemSleepProc(void)
+{
+	if (CFN_ON == g_cfnOption[CFN_AUTO_SHUT])
+	{
+		if (CMD_MODE_OFF == *g_cmdMode)
+		{
+			if (CMR_LINK_NULL == g_cmrLinked)
+			{
+				g_sysSleepCnt ++;
+				if (g_sysSleepCnt > SLEEP_SECONDS)
+				{
+					g_sysSleepCnt = 0;
+				}
+			}
+		}else
+		{
+			g_sysSleepCnt ++;
+			if (g_sysSleepCnt > SLAVE_SLEEP_SECONDS)
+			{
+				g_sysSleepCnt = 0;
+			}
+		}
+	}
+}
+
+
+void GeneralHandle(void)
+{
+//   back light
+	if (g_bkLightCnt > 0)
+	{
+		g_bkLightCnt --;
+		if (g_bkLightCnt <=0 )
+		{
+			BkLightOff();
+		}
+	}
+
+	DspToggle();
+	SlaveLedToggle();
+	AfValidOnCheck();
+	BeepHandleProc();
+
+// power off
+	if (!SW_POWER_OFF)
+	{
+		printf ("power off\n");
+		EEPROM_Write(0, (u8*)&mainPara, sizeof(mainPara));
+	}
+	
+}
+

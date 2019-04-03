@@ -1,0 +1,1 @@
+..\obj\stm32f10x.o: ..\APP\STM32F10x.s

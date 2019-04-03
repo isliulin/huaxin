@@ -1,0 +1,205 @@
+#include "..\uart\uart.h"
+#include "iostm8l152k4.h"
+
+static unsigned char uartRcvData(void)
+{
+	unsigned int count1=0;
+	unsigned int count2=0;
+
+	while(!(UART1_SR&(1<<5)))
+	{
+     		count1++;
+     		if(count1>=5000)
+     		{
+			count1=0;
+			count2++;
+		}
+		if((count2>=5000)&&(start_flag==1))
+		{
+			start_flag=0;
+			count2 = 0;
+			return 0;
+		}
+	}
+
+	return (UART1_DR);
+}
+
+void PutString(char *str)
+{
+	while(*str!='\0')
+	{
+		Driver_UARTSendByByter(*str);
+		str++;
+	}
+}
+
+static u16 Message_Rcv(unsigned char *errCod)
+{
+	unsigned char	ucdata;
+	unsigned char rcvdat;
+	unsigned short uci;
+
+
+	
+	start_flag=1;
+	*errCod = 0;
+	
+	ucdata=uartRcvData();
+	if(ucdata!=0x7E)
+	{
+		
+		*errCod = ucdata;		
+		return 1;
+	}
+
+	start_flag=1;
+	
+      ucdata=uartRcvData();
+	if(start_flag==0)
+	{
+		return 2;
+	}
+	ucLDR_Message.cmd =  ucdata;
+	ucLDR_Message.sum =ucdata;	
+
+	//printf("sum, %x\r\n",ucLDR_Message.sum);
+	
+	ucdata=uartRcvData();
+	if(start_flag==0)
+	{
+		 return 3;
+	}
+	ucLDR_Message.addr =  ((u32)ucdata<<16);
+	ucLDR_Message.sum+=ucdata;	
+	
+	ucdata=uartRcvData();
+	if(start_flag==0)
+	{
+		 return 3;
+	}
+	ucLDR_Message.addr |=  ((u32)ucdata<<8);
+	ucLDR_Message.sum+=ucdata;	
+
+	ucdata=uartRcvData();
+	if(start_flag==0)
+	{
+		 return 3;
+	}
+	ucLDR_Message.addr |=  ((u32)ucdata);
+	ucLDR_Message.sum+=ucdata;	
+
+	//printf("sum, %x\r\n",ucLDR_Message.sum);
+	
+	ucdata=uartRcvData();
+	if(start_flag==0)
+	{
+		 return 4;
+	}
+	ucLDR_Message.data_len=  ucdata*256;
+	ucLDR_Message.sum+=ucdata;
+
+	ucdata=uartRcvData();
+	if(start_flag==0)
+	{
+		 return 4;
+	}
+	ucLDR_Message.data_len +=  ucdata;
+	ucLDR_Message.sum+=ucdata;
+	
+
+	//printf("sum, %x\r\n",ucLDR_Message.sum);
+
+	//printf("len %d\r\n",ucLDR_Message.data_len);
+	
+	for( uci=0 ; uci<ucLDR_Message.data_len ; uci++ )
+	{
+		ucdata = uartRcvData();
+		if(start_flag==0)
+		{
+			//printf("data no rcv\r\n");
+			 return (4+uci);
+		}
+		ucLDR_Message.buf[uci] = ucdata;
+		ucLDR_Message.sum+=ucdata;
+
+		//printf("data %x, sum %x\r\n",ucdata,ucLDR_Message.sum);
+	}
+	ucdata = uartRcvData();
+	rcvdat = ucLDR_Message.sum;
+
+	//printf("sum, %x\r\n",rcvdat);
+	
+	
+	if(start_flag==0)
+	{
+		//printf("sum no rcv\r\n");
+		 return (4+ucLDR_Message.data_len);
+	}
+	//if(ucLDR_Message.msg_cks==ucdata)
+	if(rcvdat==ucdata)
+	{
+      		return 0;
+	}
+	else
+	{
+		//*errCod = ucdata;
+		//printf("sum error, %x %x\r\n",rcvdat,ucdata);
+		*errCod = rcvdat;
+		return (4+ucLDR_Message.data_len+1);	
+	}
+
+}
+
+unsigned char CalcSum(unsigned char *buf, unsigned char len)
+{
+	unsigned char sum=0, i;
+	for(i=0;i<len;i++)
+	{
+		sum+=buf[i];
+	}
+	return sum;
+}
+
+static void SendData(char dat)
+{
+	Driver_UARTSendByByter(dat);
+}
+
+static void Message_Send(void)
+{
+	unsigned char  uci;
+
+	SendData(0x7E);
+
+	//ucLDR_Message.sum=ucLDR_Message.head;
+	//SendData(ucLDR_Message.head);
+	ucLDR_Message.sum = 0;
+
+	ucLDR_Message.sum+=ucLDR_Message.cmd;
+	SendData(ucLDR_Message.cmd); 	
+
+	ucLDR_Message.sum+=((ucLDR_Message.addr>>16)&0xff);
+	SendData((ucLDR_Message.addr>>16)&0xff); 
+
+	ucLDR_Message.sum+=((ucLDR_Message.addr>>8)&0xff);
+	SendData((ucLDR_Message.addr>>8)&0xff); 
+
+	ucLDR_Message.sum+=(ucLDR_Message.addr&0xff);
+	SendData(ucLDR_Message.addr&0xff); 
+
+	ucLDR_Message.sum+=((ucLDR_Message.data_len>>8)&0xff);
+	SendData((ucLDR_Message.data_len>>8)&0xff); 
+
+	ucLDR_Message.sum+=(ucLDR_Message.data_len&0xff);
+	SendData(ucLDR_Message.data_len&0xff); 
+
+	for(uci =0;uci<ucLDR_Message.data_len;uci++)
+	{
+		ucLDR_Message.sum+=ucLDR_Message.buf[uci];  
+		SendData(ucLDR_Message.buf[uci]); 	
+	}
+	ucLDR_Message.sum+=0;
+	SendData(ucLDR_Message.sum); 		
+}
+

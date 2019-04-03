@@ -1,0 +1,35 @@
+#include "eeprom.h"
+#include"iostm8l152k4.h"
+
+#define         EEPMASS1     0xAE                   //ÃÜÂëÔ¿³×1 
+#define         EEPMASS2     0x56                   //ÃÜÂëÔ¿³×2 
+#define         EEPADDR      0x4000                 //eepµØÖ·ÆğÊ¼
+
+void eeprom_read(U16 u16Addr, U8 *pdatas, U8 len) 
+{ 
+  U8 *eep=(U8 *)u16Addr; 
+  U8 j; 
+  for(j=0; j<len; j++) 
+  { 
+    pdatas[j]=eep[j];         
+  } 
+} 
+void eep_word_write(U16 u16Addr, U8 *pdatas, U8 len)
+{ 
+  U8 *eep=(U8*)u16Addr; 
+  U8 j;
+  FLASH_DUKR=EEPMASS1;                //Ëø1ÃÜÔ¿  
+  FLASH_DUKR=EEPMASS2;                //Ëø2ÃÜÔ¿ 
+  while(!(FLASH_IAPSR&0x08));         //µÈ´ı½âÃÜ¾ÍĞ÷
+ 
+  DISABLE_MAC_INTERRUPTS();
+  FLASH_CR2 |= 0x40;     //               
+  FLASH_NCR2 &= ~0x40;   //ÉèÖÃ×Ö±à³Ì 
+  for(j=0; j<len; j++) 
+  { 
+    eep[j] = pdatas[j]; 
+  }
+  while(!(FLASH_IAPSR&0x04)); 
+  FLASH_IAPSR &=0xf7;    // off the eeprom program
+  ENABLE_MAC_INTERRUPTS();       
+}

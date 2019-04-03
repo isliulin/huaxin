@@ -1,0 +1,9 @@
+Nikon_sb5000
+2016/07/17
+1、SimpliciTI OAD 功能加载oad.xcl后，报错e18，显示INTVEC不能设置在非0地址。导入chipcon_cstartup.s51编译后，解除报错
+2、程序下载后仍然不能执行，对比在将z-stack协议栈所有相关文件删除后，发现程序已经跳到app执行
+3、怀疑是中断向量没有正确配置，导入z-stack的hal，mac等层，启用z-stack的一系列初始化配置，没有正确执行
+3、用IAR的单步调试功能，发现程序会停在MRFI_Init的while (CLKCONSTA != (0x00 | OSC_32KHZ));进一步发现OSC_32KHZ在
+   Mrfi_radio.c中被重定义为0x00，而在没有32K晶振的情况下，需要设置为0x80，重新编译，启动正常
+2016/12/05
+1、SB5000的发送数据里，第7、8 BYTE（可当做闪光灯ID）如果和其他闪光灯一样，会导致相机只认其中一个。此处必须唯一

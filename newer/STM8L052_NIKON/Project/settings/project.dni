@@ -1,0 +1,112 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[InterruptLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+[Breakpoints2]
+Count=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=0
+ShowSource=1
+[Simulator]
+Freq=16000000
+[DebugChecksum]
+Checksum=1684134094
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[struct_types]
+Fmt0=CmrPara-camera_Ev	3	0
+Fmt1=CmrPara-camera_cmp1	4	0
+Fmt2=CmrPara-camera_cmp2	4	0
+Fmt3=CmrPara-cmpCode	4	0
+Fmt4=CmrPara-focLen	3	0
+Fmt5=CmrPara-pFocLen	3	0
+Fmt6=CmrPara-pIso	3	0
+Fmt7=MainPara-s_array	4	0
+Fmt8=MainPara-s_chan	4	0
+Fmt9=MainPara-s_rfMode	4	0
+Fmt10=MainPara-workMode	4	0
+Fmt11=MotoLoca-mode	4	0
+Fmt12=WL_ArrPara-cmp1	4	0
+Fmt13=WL_ArrPara-cmp2	4	0
+Fmt14=WL_ArrPara-output1	4	0
+Fmt15=WL_ArrPara-output2	4	0
+Fmt16=struct_KeyInfo-Long_Key_t	2	0
+[array_types]
+Fmt0=uint8_t[10]	3	0
+Fmt1=uint8_t[14]	4	0
+Fmt2=uint8_t[16]	4	0
+[watch_formats]
+Fmt0={W}1:M_T1_SCALE_Group[count]	3	0
+Fmt1={W}1:TEST_TIME_CNT	3	0
+Fmt2={W}1:count	3	0
+Fmt3={W}1:value	3	0
+Fmt4={W}42:EEPROM_DATA1	4	0
+Fmt5={W}42:EEPROM_DATA2	4	0
+Fmt6={W}42:EEPROM_DATA3	4	0
+Fmt7={W}42:EEPROM_DATA4	4	0
+Fmt8={W}42:EEPROM_DATA5	4	0
+Fmt9={W}42:EEPROM_DATA6	4	0
+Fmt10={W}42:EEPROM_DATA7	4	0
+Fmt11={W}42:EEPROM_DATA8	4	0
+Fmt12={W}42:M_Zoom_TypeDef	4	0
+Fmt13={W}42:Motor_Contorl_TypeDef.Motor_Value	3	0
+Fmt14={W}42:Multi_Freq_TypeDef	4	0
+Fmt15={W}42:Multi_Output_Typedef	4	0
+Fmt16={W}42:Multi_Times_TypeDef	4	0
+Fmt17={W}42:STATE_A	4	0
+Fmt18={W}42:Slave_Output_Typedef	4	0
+Fmt19={W}42:Sys_Mode_Typedef	4	0
+Fmt20={W}42:TTL_Ev_TypeDef	4	0
+Fmt21={W}42:g_nikComStatue	4	0
+Fmt22={W}42:offset	3	0
+Fmt23={W}42:ttl_expCodeRsv	4	0
+Fmt24={W}42:uwTick	3	0
+[DataSample]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Count=0
+[Aliases]
+A0=_ "D:\Works\STM8L052_SONY\Project\main.c" ""
+Count=1
+SuppressDialog=1
+[DebuggerSettings]
+DisableInterruptsWhenStepping=0

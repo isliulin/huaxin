@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>SampleApp/CoordinatorEB</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>266</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>980</ColumnWidth1><ColumnWidth2>261</ColumnWidth2><ColumnWidth3>65</ColumnWidth3></Build>
+    <Debug-Log><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1307</ColumnWidth1></Debug-Log><TerminalIO/><Disassembly><MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow></Disassembly><Find-in-Files><ColumnWidth0>470</ColumnWidth0><ColumnWidth1>67</ColumnWidth1><ColumnWidth2>806</ColumnWidth2></Find-in-Files></Static>
+    <Windows>
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-18244-24850</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>SampleApp</ExpandedNode><ExpandedNode>SampleApp/HAL</ExpandedNode><ExpandedNode>SampleApp/NWK</ExpandedNode><ExpandedNode>SampleApp/Output</ExpandedNode><ExpandedNode>SampleApp/ZMain</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-17721-24859</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-14829-5919</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab><Tab><Identity>TabID-11756-31666</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\zmac\f8w\zmac_cb.c</Filename><XPos>0</XPos><YPos>189</YPos><SelStart>8151</SelStart><SelEnd>8151</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\common\hal_drivers.c</Filename><XPos>0</XPos><YPos>260</YPos><SelStart>8661</SelStart><SelEnd>8661</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL.c</Filename><XPos>0</XPos><YPos>1019</YPos><SelStart>26722</SelStart><SelEnd>26722</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\mcu\cc2530\OSAL_Nv.c</Filename><XPos>0</XPos><YPos>449</YPos><SelStart>15716</SelStart><SelEnd>15716</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_rffrontend.c</Filename><XPos>0</XPos><YPos>98</YPos><SelStart>4727</SelStart><SelEnd>4727</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_radio.c</Filename><XPos>0</XPos><YPos>557</YPos><SelStart>18827</SelStart><SelEnd>18827</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_lcd.c</Filename><XPos>0</XPos><YPos>244</YPos><SelStart>13573</SelStart><SelEnd>13573</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_rf.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>226</SelStart><SelEnd>226</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\chipcon_cstartup.s51</Filename><XPos>0</XPos><YPos>36</YPos><SelStart>2762</SelStart><SelEnd>2762</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\IAR Systems\Embedded Workbench 6.0\8051\src\lib\iar_common.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>364</SelStart><SelEnd>364</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL_Timers.c</Filename><XPos>0</XPos><YPos>444</YPos><SelStart>12661</SelStart><SelEnd>12661</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\osal\include\comdef.h</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>3237</SelStart><SelEnd>3237</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\common\hal_assert.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_adc.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>306</SelStart><SelEnd>306</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\OnBoard.h</Filename><XPos>0</XPos><YPos>302</YPos><SelStart>9628</SelStart><SelEnd>9628</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\OnBoard.c</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>2823</SelStart><SelEnd>2823</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_adc.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\services\saddr\saddr.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mt\MT_SAPI.c</Filename><XPos>0</XPos><YPos>36</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mt\MT_SAPI.h</Filename><XPos>0</XPos><YPos>42</YPos><SelStart>2489</SelStart><SelEnd>2493</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\stack\sapi\sapi.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\mac\LOW_LEVEL\srf04\SINGLE_CHIP\mac_radio_defs.h</Filename><XPos>0</XPos><YPos>79</YPos><SelStart>3737</SelStart><SelEnd>3781</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\mac\LOW_LEVEL\srf04\mac_assert.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1036</SelStart><SelEnd>1036</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\target\CC2530EB\hal_types.h</Filename><XPos>0</XPos><YPos>39</YPos><SelStart>2851</SelStart><SelEnd>2851</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\ZMain.c</Filename><XPos>0</XPos><YPos>49</YPos><SelStart>4297</SelStart><SelEnd>4297</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\target\CC2530EB\hal_board_cfg.h</Filename><XPos>0</XPos><YPos>259</YPos><SelStart>12372</SelStart><SelEnd>12372</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\CoordinatorEB\List\mac_rffrontend.s51</Filename><XPos>0</XPos><YPos>304</YPos><SelStart>18624</SelStart><SelEnd>18624</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_board.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>44</SelStart><SelEnd>44</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_rf.c</Filename><XPos>0</XPos><YPos>6682</YPos><SelStart>166043</SelStart><SelEnd>166043</SelEnd></Tab><ActiveTab>28</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\_hal_uart_dma.c</Filename><XPos>0</XPos><YPos>720</YPos><SelStart>22040</SelStart><SelEnd>22040</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_uart.c</Filename><XPos>0</XPos><YPos>75</YPos><SelStart>582</SelStart><SelEnd>582</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_csp_tx.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>395</SelStart><SelEnd>395</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_radio_defs.c</Filename><XPos>0</XPos><YPos>262</YPos><SelStart>11843</SelStart><SelEnd>11843</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\osal\include\ZComDef.h</Filename><XPos>0</XPos><YPos>189</YPos><SelStart>8194</SelStart><SelEnd>8194</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-011edca0><key>iaridepm.enu1</key></Toolbar-011edca0></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>449</Bottom><Right>357</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>189</yscreen><sizeHorzCX>146413</sizeHorzCX><sizeHorzCY>275510</sizeHorzCY><sizeVertCX>262811</sizeVertCX><sizeVertCY>657434</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>192</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>194</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>282799</sizeHorzCY><sizeVertCX>146413</sizeVertCX><sizeVertCY>275510</sizeVertCY></Rect></Wnd2></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

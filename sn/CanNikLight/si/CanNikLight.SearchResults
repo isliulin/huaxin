@@ -1,0 +1,11 @@
+---- CMD_MODE_LIGH_F1 Matches (10 in 4 files) ----
+Btn.c (hw\lcd):			case CMD_MODE_LIGH_F1:
+Fb.c (hw\lcd):			case CMD_MODE_LIGH_F1:
+Fb.c (hw\lcd):		case CMD_MODE_LIGH_F1:
+Fb.c (hw\lcd):	if ((CMD_MODE_LIGH_F1 == *g_cmdMode) || (CMD_MODE_LIGH_F2 == *g_cmdMode))
+Fb.c (hw\lcd):				case CMD_MODE_LIGH_F1:
+Fb.c (hw\lcd):	if ((CMD_MODE_RF == *g_cmdMode)||(CMD_MODE_LIGH_F1== *g_cmdMode)||(CMD_MODE_LIGH_F2== *g_cmdMode))
+Fb.c (hw\lcd):	/*if ((CMD_MODE_RF == *g_cmdMode)||(CMD_MODE_LIGH_F1== *g_cmdMode)||(CMD_MODE_LIGH_F2== *g_cmdMode))
+Flash.c (hw\flash):		case CMD_MODE_LIGH_F1:
+Flash.c (hw\flash):		if (CMD_MODE_LIGH_F1 == *g_cmdMode)
+Global.h:#define CMD_MODE_LIGH_F1    	2

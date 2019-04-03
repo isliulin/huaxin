@@ -1,0 +1,1226 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.3.40338/W32 for 8051        22/Jul/2014  14:54:27 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Co /
+//                          mponents\usb\class_hid\usb_hid.c                  /
+//    Command line       =  -f "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav /
+//                          e\Projects\zstack\Samples\SampleApp               /
+//                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g" (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR  /
+//                          -DDEFAULT_CHANLIST=0x00000800                     /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          "-DCONST=const __code" -DGENERIC=__generic        /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000       /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100   /
+//                          -DREJOIN_POLL_RATE=440)                           /
+//                          D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Co /
+//                          mponents\usb\class_hid\usb_hid.c -D ZIGBEEPRO -D  /
+//                          ZTOOL_P1 -lC "D:\WorkReserve\project\AES_BOOT\CC2 /
+//                          531UsbSlave\Projects\zstack\Samples\SampleApp     /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA         /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\"             /
+//                          --diag_suppress Pe001,Pa010 -o                    /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug   /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data_rom                /
+//                          --nr_virtual_regs 16 -I                           /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp com\CC2530DB\"   /
+//                          -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav /
+//                          e\Projects\zstack\Samples\SampleApp               /
+//                          com\CC2530DB\..\SOURCE\" -I                       /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I         /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I    /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUD /
+//                          E\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Usb /
+//                          Slave\Projects\zstack\Samples\SampleApp           /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET /
+//                          \CC2530EB\" -I "D:\WorkReserve\project\AES_BOOT\C /
+//                          C2531UsbSlave\Projects\zstack\Samples\SampleApp   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\C /
+//                          CSOC\" -I "D:\WorkReserve\project\AES_BOOT\CC2531 /
+//                          UsbSlave\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLU /
+//                          DE\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us /
+//                          bSlave\Projects\zstack\Samples\SampleApp          /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\" /
+//                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSla /
+//                          ve\Projects\zstack\Samples\SampleApp              /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ /
+//                          " -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl /
+//                          ave\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ /
+//                          " -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl /
+//                          ave\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI /
+//                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbS /
+//                          lave\Projects\zstack\Samples\SampleApp            /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ /
+//                          " -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl /
+//                          ave\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ /
+//                          " -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl /
+//                          ave\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\" /
+//                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSla /
+//                          ve\Projects\zstack\Samples\SampleApp              /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I  /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          ADDR\" -I "D:\WorkReserve\project\AES_BOOT\CC2531 /
+//                          UsbSlave\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          DATA\" -I "D:\WorkReserve\project\AES_BOOT\CC2531 /
+//                          UsbSlave\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUD /
+//                          E\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Usb /
+//                          Slave\Projects\zstack\Samples\SampleApp           /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_L /
+//                          EVEL\" -I "D:\WorkReserve\project\AES_BOOT\CC2531 /
+//                          UsbSlave\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\" -I "D:\WorkReserve\project\AES_BOOT\C /
+//                          C2531UsbSlave\Projects\zstack\Samples\SampleApp   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\SINGLE_CHIP\" -I                        /
+//                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\librar /
+//                          y\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Usb /
+//                          Slave\Projects\zstack\Samples\SampleApp           /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_ /
+//                          hid\" -I "D:\WorkReserve\project\AES_BOOT\CC2531U /
+//                          sbSlave\Projects\zstack\Samples\SampleApp         /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common /
+//                          \" -Ohz --require_prototypes                      /
+//    List file          =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\usb_hid.s51   /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME usb_hid
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?V0
+        EXTERN __INIT_DATA_Z
+
+        PUBLIC ??halMcuWaitMs?relay
+        FUNCTION ??halMcuWaitMs?relay,0203H
+        PUBLIC ??halMcuWaitUs?relay
+        FUNCTION ??halMcuWaitUs?relay,0203H
+        PUBLIC ??usbHidInit?relay
+        FUNCTION ??usbHidInit?relay,0203H
+        PUBLIC ??usbHidProcessEvents?relay
+        FUNCTION ??usbHidProcessEvents?relay,0203H
+        PUBLIC ??usbHidProcessKeyboard?relay
+        FUNCTION ??usbHidProcessKeyboard?relay,0203H
+        PUBLIC ??usbHidProcessMouse?relay
+        FUNCTION ??usbHidProcessMouse?relay,0203H
+        PUBWEAK P1DIR
+        PUBWEAK P1SEL
+        PUBWEAK _A_P1
+        PUBLIC halMcuWaitMs
+        FUNCTION halMcuWaitMs,021203H
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC halMcuWaitUs
+        FUNCTION halMcuWaitUs,080203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUBLIC keyboard
+        PUBLIC mouse
+        PUBLIC usbHidInit
+        FUNCTION usbHidInit,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbHidProcessEvents
+        FUNCTION usbHidProcessEvents,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbHidProcessKeyboard
+        FUNCTION usbHidProcessKeyboard,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC usbHidProcessMouse
+        FUNCTION usbHidProcessMouse,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+usbfwInit           SYMBOL "usbfwInit"
+usbirqInit          SYMBOL "usbirqInit"
+halIntOn            SYMBOL "halIntOn"
+usbfwResetHandler   SYMBOL "usbfwResetHandler"
+usbfwSetupHandler   SYMBOL "usbfwSetupHandler"
+usbsuspEnter        SYMBOL "usbsuspEnter"
+hidUpdateKeyboardInReport SYMBOL "hidUpdateKeyboardInReport"
+hidSendKeyboardInReport SYMBOL "hidSendKeyboardInReport"
+hidUpdateMouseInReport SYMBOL "hidUpdateMouseInReport"
+hidSendMouseInReport SYMBOL "hidSendMouseInReport"
+??halIntOn?relay    SYMBOL "?relay", halIntOn
+??hidSendKeyboardInReport?relay SYMBOL "?relay", hidSendKeyboardInReport
+??hidSendMouseInReport?relay SYMBOL "?relay", hidSendMouseInReport
+??hidUpdateKeyboardInReport?relay SYMBOL "?relay", hidUpdateKeyboardInReport
+??hidUpdateMouseInReport?relay SYMBOL "?relay", hidUpdateMouseInReport
+??usbfwInit?relay   SYMBOL "?relay", usbfwInit
+??usbfwResetHandler?relay SYMBOL "?relay", usbfwResetHandler
+??usbfwSetupHandler?relay SYMBOL "?relay", usbfwSetupHandler
+??usbirqInit?relay  SYMBOL "?relay", usbirqInit
+??usbsuspEnter?relay SYMBOL "?relay", usbsuspEnter
+halMcuWaitMs        SYMBOL "halMcuWaitMs"
+??halMcuWaitMs?relay SYMBOL "?relay", halMcuWaitMs
+halMcuWaitUs        SYMBOL "halMcuWaitUs"
+??halMcuWaitUs?relay SYMBOL "?relay", halMcuWaitUs
+usbHidInit          SYMBOL "usbHidInit"
+??usbHidInit?relay  SYMBOL "?relay", usbHidInit
+usbHidProcessEvents SYMBOL "usbHidProcessEvents"
+??usbHidProcessEvents?relay SYMBOL "?relay", usbHidProcessEvents
+usbHidProcessKeyboard SYMBOL "usbHidProcessKeyboard"
+??usbHidProcessKeyboard?relay SYMBOL "?relay", usbHidProcessKeyboard
+usbHidProcessMouse  SYMBOL "usbHidProcessMouse"
+??usbHidProcessMouse?relay SYMBOL "?relay", usbHidProcessMouse
+
+        EXTERN usbfwInit
+        FUNCTION usbfwInit,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbirqInit
+        FUNCTION usbirqInit,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN halIntOn
+        FUNCTION halIntOn,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbfwResetHandler
+        FUNCTION usbfwResetHandler,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbfwSetupHandler
+        FUNCTION usbfwSetupHandler,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbsuspEnter
+        FUNCTION usbsuspEnter,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN hidUpdateKeyboardInReport
+        FUNCTION hidUpdateKeyboardInReport,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN hidSendKeyboardInReport
+        FUNCTION hidSendKeyboardInReport,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN hidUpdateMouseInReport
+        FUNCTION hidUpdateMouseInReport,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN hidSendMouseInReport
+        FUNCTION hidSendMouseInReport,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??halIntOn?relay
+        FUNCTION ??halIntOn?relay,00H
+        EXTERN ??hidSendKeyboardInReport?relay
+        FUNCTION ??hidSendKeyboardInReport?relay,00H
+        EXTERN ??hidSendMouseInReport?relay
+        FUNCTION ??hidSendMouseInReport?relay,00H
+        EXTERN ??hidUpdateKeyboardInReport?relay
+        FUNCTION ??hidUpdateKeyboardInReport?relay,00H
+        EXTERN ??hidUpdateMouseInReport?relay
+        FUNCTION ??hidUpdateMouseInReport?relay,00H
+        EXTERN ??usbfwInit?relay
+        FUNCTION ??usbfwInit?relay,00H
+        EXTERN ??usbfwResetHandler?relay
+        FUNCTION ??usbfwResetHandler?relay,00H
+        EXTERN ??usbfwSetupHandler?relay
+        FUNCTION ??usbfwSetupHandler?relay,00H
+        EXTERN ??usbirqInit?relay
+        FUNCTION ??usbirqInit?relay,00H
+        EXTERN ??usbsuspEnter?relay
+        FUNCTION ??usbsuspEnter?relay,00H
+        EXTERN usbirqData
+
+// D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Components\usb\class_hid\usb_hid.c
+//    1 /***********************************************************************************
+//    2 
+//    3   Filename:	usb_hid.c
+//    4 
+//    5   Description:	Application support for the HID class
+//    6 
+//    7 ***********************************************************************************/
+//    8 
+//    9 /***********************************************************************************
+//   10 * INCLUDES
+//   11 */
+//   12 #include "simple_hid.h"
+//   13 #include "hal_int.h"
+//   14 #include "hal_mcu.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,090H
+// union <unnamed> volatile __sfr _A_P1
+_A_P1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f4H
+// unsigned char volatile __sfr P1SEL
+P1SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0feH
+// unsigned char volatile __sfr P1DIR
+P1DIR:
+        DATA8
+        DS 1
+//   15 
+//   16 #include "usb_firmware_library_headers.h"
+//   17 #include "usb_hid_reports.h"
+//   18 #include "usb_class_requests.h"
+//   19 
+//   20 void halMcuWaitUs(uint16 usec);
+//   21 void halMcuWaitMs(uint16 msec);
+//   22 /***********************************************************************************
+//   23 * GLOBAL DATA
+//   24 */
+
+        RSEG DATA_Z:DATA:NOROOT(0)
+        DATA8
+//   25 KEYBOARD_IN_REPORT __data keyboard;
+keyboard:
+        DS 8
+        REQUIRE __INIT_DATA_Z
+
+        RSEG DATA_Z:DATA:NOROOT(0)
+        DATA32
+//   26 MOUSE_IN_REPORT __data mouse;
+mouse:
+        DS 4
+        REQUIRE __INIT_DATA_Z
+//   27 
+//   28 void usbHidInit(void); 
+//   29 void usbHidProcessEvents(void);
+//   30 void usbHidProcessKeyboard(uint8 *pRfData);
+//   31 void usbHidProcessMouse(uint8 *pRfData);
+//   32 /** \brief Initializes the \ref module_usb_firmware_library_config module
+//   33 *
+//   34 * This function should be called first.
+//   35 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   36 void usbHidInit(void)
+usbHidInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function usbHidInit
+        CODE
+//   37 {
+        FUNCALL usbHidInit, usbfwInit
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidInit, usbirqInit
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidInit, halIntOn
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   38     // Init USB library
+//   39     usbfwInit();
+        ; Setup parameters for call to function usbfwInit
+        LCALL   ??usbfwInit?relay
+//   40 
+//   41     // Initialize the USB interrupt handler with bit mask containing all processed USBIRQ events
+//   42     usbirqInit(0xFFFF);
+        ; Setup parameters for call to function usbirqInit
+        MOV     R2,#-0x1
+        MOV     R3,#-0x1
+        LCALL   ??usbirqInit?relay
+//   43 
+//   44     // Enable pullup on D+
+//   45     HAL_USB_PULLUP_ENABLE();
+        ANL     0xf4,#0xfe
+        SETB    0x90.0
+        ORL     0xfe,#0x1
+//   46 
+//   47     // Enable global interrupts
+//   48     halIntOn();
+        ; Setup parameters for call to function halIntOn
+        LCALL   ??halIntOn?relay
+        CFI EndBlock cfiBlock0
+//   49 
+//   50 } // usbHidInit
+        REQUIRE ?Subroutine0
+        REQUIRE P1SEL
+        REQUIRE _A_P1
+        REQUIRE P1DIR
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock1
+//   51 
+//   52 /// @}
+//   53 
+//   54 
+//   55 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   56 void usbHidProcessEvents(void)
+usbHidProcessEvents:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function usbHidProcessEvents
+        CODE
+//   57 {
+        FUNCALL usbHidProcessEvents, usbfwResetHandler
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessEvents, usbfwSetupHandler
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessEvents, usbsuspEnter
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   58     // Handle USB reset
+//   59     if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_RESET) {
+        MOV     R0,usbirqData+0x0
+        MOV     A,R0
+        ANL     A,#0x4
+        JZ      ??usbHidProcessEvents_0
+//   60         USBIRQ_CLEAR_EVENTS(0xFFFF);
+        MOV     usbirqData+0x0,#0x0
+        MOV     usbirqData+0x1,#0x0
+//   61         usbfwResetHandler();
+        ; Setup parameters for call to function usbfwResetHandler
+        LCALL   ??usbfwResetHandler?relay
+//   62         USBPOW = USBPOW_SUSPEND_EN;
+        MOV     DPTR,#0x6201
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//   63     }
+//   64 
+//   65     // Handle USB packets on EP0
+//   66     if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_SETUP) {
+??usbHidProcessEvents_0:
+        MOV     R0,usbirqData+0x0
+        MOV     A,R0
+        ANL     A,#0x10
+        JZ      ??usbHidProcessEvents_1
+//   67         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_SETUP);
+        MOV     R0,#usbirqData
+        MOV     A,@R0
+        ANL     A,#0xef
+        MOV     @R0,A
+//   68         usbfwSetupHandler();
+        ; Setup parameters for call to function usbfwSetupHandler
+        LCALL   ??usbfwSetupHandler?relay
+//   69     }
+//   70 
+//   71     // Handle USB suspend
+//   72     if (USBIRQ_GET_EVENT_MASK() & USBIRQ_EVENT_SUSPEND) {
+??usbHidProcessEvents_1:
+        MOV     R0,usbirqData+0x0
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??usbHidProcessEvents_2
+//   73         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_SUSPEND);  // Clear USB suspend interrupt
+        MOV     R0,#usbirqData
+        ANL     A,#0xfe
+        MOV     @R0,A
+//   74         usbsuspEnter();                             // Calling this function will take the chip into PM1 until a USB resume is deteceted.
+        ; Setup parameters for call to function usbsuspEnter
+        LCALL   ??usbsuspEnter?relay
+//   75         USBIRQ_CLEAR_EVENTS(USBIRQ_EVENT_RESUME);   // Clear USB resume interrupt.
+        MOV     R0,#usbirqData
+        MOV     A,@R0
+        ANL     A,#0xfd
+        MOV     @R0,A
+//   76     }
+//   77 }
+??usbHidProcessEvents_2:
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock2
+//   78 
+//   79 /***********************************************************************************
+//   80 * @fn          halMcuWaitUs
+//   81 *
+//   82 * @brief       Busy wait function. Waits the specified number of microseconds. Use
+//   83 *              assumptions about number of clock cycles needed for the various
+//   84 *              instructions. This function assumes a 32 MHz clock.
+//   85 *
+//   86 *              NB! This function is highly dependent on architecture and compiler!
+//   87 *
+//   88 * @param       uint16 usec - number of microseconds delays
+//   89 *
+//   90 * @return      none
+//   91 */
+//   92 #pragma optimize=none
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   93 void halMcuWaitUs(uint16 usec)
+halMcuWaitUs:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function halMcuWaitUs
+        CODE
+//   94 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   95     usec>>= 1;
+        MOV     A,R3
+        CLR     C
+        RRC     A
+        MOV     R3,A
+        MOV     A,R2
+        RRC     A
+        MOV     R2,A
+//   96     while(usec--)
+??halMcuWaitUs_0:
+        MOV     A,R2
+        MOV     R0,A
+        MOV     A,R3
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        MOV     R2,A
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R3,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??halMcuWaitUs_1
+//   97     {
+//   98         NOP();
+        NOP
+//   99         NOP();
+        NOP
+//  100         NOP();
+        NOP
+//  101         NOP();
+        NOP
+//  102         NOP();
+        NOP
+//  103         NOP();
+        NOP
+//  104         NOP();
+        NOP
+//  105         NOP();
+        NOP
+//  106         NOP();
+        NOP
+//  107         NOP();
+        NOP
+//  108         NOP();
+        NOP
+//  109         NOP();
+        NOP
+//  110         NOP();
+        NOP
+//  111         NOP();
+        NOP
+//  112         NOP();
+        NOP
+//  113         NOP();
+        NOP
+//  114         NOP();
+        NOP
+        SJMP    ??halMcuWaitUs_0
+//  115     }
+//  116 }
+??halMcuWaitUs_1:
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock3
+//  117 /***********************************************************************************
+//  118 * @fn          halMcuWaitMs
+//  119 *
+//  120 * @brief       Busy wait function. Waits the specified number of milliseconds. Use
+//  121 *              assumptions about number of clock cycles needed for the various
+//  122 *              instructions.
+//  123 *
+//  124 *              NB! This function is highly dependent on architecture and compiler!
+//  125 *
+//  126 * @param       uint16 millisec - number of milliseconds delay
+//  127 *
+//  128 * @return      none
+//  129 */
+//  130 #pragma optimize=none
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  131 void halMcuWaitMs(uint16 msec)
+halMcuWaitMs:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function halMcuWaitMs
+        CODE
+//  132 {
+        FUNCALL halMcuWaitMs, halMcuWaitUs
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  133     while(msec--)
+??halMcuWaitMs_0:
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        MOV     R6,A
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??halMcuWaitMs_1
+//  134         halMcuWaitUs(1000);
+        ; Setup parameters for call to function halMcuWaitUs
+        MOV     R2,#-0x18
+        MOV     R3,#0x3
+        LCALL   ??halMcuWaitUs?relay
+        SJMP    ??halMcuWaitMs_0
+//  135 }
+??halMcuWaitMs_1:
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock4
+//  136 
+//  137 
+//  138 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  139 void usbHidProcessKeyboard(uint8 *pRfData)
+usbHidProcessKeyboard:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function usbHidProcessKeyboard
+        CODE
+//  140 {
+        FUNCALL usbHidProcessKeyboard, hidUpdateKeyboardInReport
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessKeyboard, hidSendKeyboardInReport
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessKeyboard, hidUpdateKeyboardInReport
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessKeyboard, hidSendKeyboardInReport
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessKeyboard, halMcuWaitMs
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+//  141     uint8 i;
+//  142 
+//  143     keyboard.modifiers = pRfData[1];     // copy data from rx buffer.
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     keyboard,A
+//  144     keyboard.reserved = pRfData[2];
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     keyboard + 1,A
+//  145     for(i = 0; i < sizeof(keyboard.pKeyCodes); i++) {
+        MOV     R0,#0x0
+//  146         keyboard.pKeyCodes[i] = pRfData[i + 3];
+??usbHidProcessKeyboard_0:
+        MOV     ?V0 + 0,R0
+        MOV     A,R2
+        ADD     A,?V0 + 0
+        MOV     DPL,A
+        MOV     A,R3
+        ADDC    A,#0x0
+        MOV     DPH,A
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        PUSH    A
+        CFI CFA_SP SP+-1
+        MOV     A,#keyboard + 2
+        ADD     A,R0
+        MOV     R1,A
+        POP     A
+        CFI CFA_SP SP+0
+        MOV     @R1,A
+//  147     }
+        INC     R0
+        MOV     A,R0
+        CLR     C
+        SUBB    A,#0x6
+        JC      ??usbHidProcessKeyboard_0
+//  148 
+//  149     // Update and send the received HID keyboard report if USB endpoint is ready
+//  150     hidUpdateKeyboardInReport(&keyboard);
+        ; Setup parameters for call to function hidUpdateKeyboardInReport
+        MOV     R1,#keyboard
+        LCALL   ??hidUpdateKeyboardInReport?relay
+//  151     
+//  152     if (hidSendKeyboardInReport()) {
+        ; Setup parameters for call to function hidSendKeyboardInReport
+        LCALL   ??hidSendKeyboardInReport?relay
+        MOV     A,R1
+        JZ      ??usbHidProcessKeyboard_1
+//  153 
+//  154         // For each successfully sent keyboard report, also clear the HID
+//  155         // keyboard report and send a blank report to release the key
+//  156         keyboard.modifiers = 0;
+        MOV     keyboard,#0x0
+//  157         keyboard.reserved = 0;
+        MOV     keyboard + 1,#0x0
+//  158         for(i = 0; i < sizeof(keyboard.pKeyCodes); i++) {
+        MOV     R0,#0x0
+//  159             keyboard.pKeyCodes[i] = 0;
+??usbHidProcessKeyboard_2:
+        MOV     A,#keyboard + 2
+        ADD     A,R0
+        MOV     R1,A
+        MOV     @R1,#0x0
+//  160         }
+        INC     R0
+        MOV     A,R0
+        CLR     C
+        SUBB    A,#0x6
+        JC      ??usbHidProcessKeyboard_2
+//  161 
+//  162         hidUpdateKeyboardInReport(&keyboard);
+        ; Setup parameters for call to function hidUpdateKeyboardInReport
+        MOV     R1,#keyboard
+        LCALL   ??hidUpdateKeyboardInReport?relay
+//  163         for (i= 0;i<100; i++) {
+        MOV     R6,#0x64
+//  164             if (hidSendKeyboardInReport())
+??usbHidProcessKeyboard_3:
+        ; Setup parameters for call to function hidSendKeyboardInReport
+        LCALL   ??hidSendKeyboardInReport?relay
+        MOV     A,R1
+        JNZ     ??usbHidProcessKeyboard_1
+//  165                 break;
+//  166             halMcuWaitMs(1);
+        ; Setup parameters for call to function halMcuWaitMs
+        MOV     R2,#0x1
+        MOV     R3,#0x0
+        LCALL   ??halMcuWaitMs?relay
+//  167         }
+        DEC     R6
+        MOV     A,R6
+        JNZ     ??usbHidProcessKeyboard_3
+//  168     }
+//  169 }
+??usbHidProcessKeyboard_1:
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock5
+//  170 
+//  171 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  172 void usbHidProcessMouse(uint8 *pRfData)
+usbHidProcessMouse:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function usbHidProcessMouse
+        CODE
+//  173 {
+        FUNCALL usbHidProcessMouse, hidUpdateMouseInReport
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbHidProcessMouse, hidSendMouseInReport
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  174     mouse.buttons = pRfData[1];         // copy data from rx buffer.
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     mouse,A
+//  175     if (mouse.buttons==0) {
+        JNZ     ??usbHidProcessMouse_0
+//  176         mouse.dX = pRfData[2];
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     mouse + 1,A
+//  177         mouse.dY = pRfData[3];
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     mouse + 2,A
+//  178         mouse.dZ = pRfData[4];
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     mouse + 3,A
+//  179     }
+//  180 
+//  181     // Update and send the received HID mouse report if USB endpoint is ready
+//  182     hidUpdateMouseInReport(&mouse);
+??usbHidProcessMouse_0:
+        ; Setup parameters for call to function hidUpdateMouseInReport
+        MOV     R1,#mouse
+        LCALL   ??hidUpdateMouseInReport?relay
+//  183     hidSendMouseInReport();
+        ; Setup parameters for call to function hidSendMouseInReport
+        LCALL   ??hidSendMouseInReport?relay
+//  184 }
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock6
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbHidInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbHidInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbHidProcessEvents?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbHidProcessEvents
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halMcuWaitUs?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halMcuWaitUs
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halMcuWaitMs?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halMcuWaitMs
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbHidProcessKeyboard?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbHidProcessKeyboard
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbHidProcessMouse?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbHidProcessMouse
+
+        END
+//  185 
+//  186 
+//  187 /*
+//  188 +------------------------------------------------------------------------------
+//  189 |  Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+//  190 |
+//  191 |  IMPORTANT: Your use of this Software is limited to those specific rights
+//  192 |  granted under the terms of a software license agreement between the user who
+//  193 |  downloaded the software, his/her employer (which must be your employer) and
+//  194 |  Texas Instruments Incorporated (the "License"). You may not use this Software
+//  195 |  unless you agree to abide by the terms of the License. The License limits
+//  196 |  your use, and you acknowledge, that the Software may not be modified, copied
+//  197 |  or distributed unless embedded on a Texas Instruments microcontroller or used
+//  198 |  solely and exclusively in conjunction with a Texas Instruments radio
+//  199 |  frequency transceiver, which is integrated into your product. Other than for
+//  200 |  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//  201 |  works of, modify, distribute, perform, display or sell this Software and/or
+//  202 |  its documentation for any purpose.
+//  203 |
+//  204 |  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//  205 |  PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//  206 |  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//  207 |  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//  208 |  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//  209 |  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//  210 |  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING
+//  211 |  BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+//  212 |  CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+//  213 |  SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//  214 |  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//  215 |
+//  216 |  Should you have any questions regarding your right to use this Software,
+//  217 |  contact Texas Instruments Incorporated at www.TI.com.
+//  218 |
+//  219 +------------------------------------------------------------------------------
+//  220 */
+//  221 
+//  222 
+//  223 
+//  224 
+//  225 
+// 
+// 353 bytes in segment BANKED_CODE
+//  36 bytes in segment BANK_RELAYS
+//  12 bytes in segment DATA_Z
+//   3 bytes in segment SFR_AN
+// 
+// 389 bytes of CODE memory
+//  12 bytes of DATA memory (+ 3 bytes shared)
+//
+//Errors: none
+//Warnings: none

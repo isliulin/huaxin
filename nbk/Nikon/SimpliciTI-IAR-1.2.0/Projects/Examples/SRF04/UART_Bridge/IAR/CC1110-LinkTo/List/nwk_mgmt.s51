@@ -1,0 +1,688 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:54 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Compone /
+//                          nts\simpliciti\nwk_applications\nwk_mgmt.c        /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Components\simpl /
+//                          iciti\nwk_applications\nwk_mgmt.c" -D             /
+//                          "MCU_H=\"ioCC1110.h\"" -D MRFI_CC1110 -lB         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\L /
+//                          ist\" -o "C:\Texas Instruments\SimpliciTI-IAR-1.2 /
+//                          .0\Projects\Examples\SRF04\UART_Bridge\IAR\CC1110 /
+//                          -LinkTo\Obj\" -e --debug --core=plain             /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\nwk_mgmt.s51                                   /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk_mgmt
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ADD_XSTACK_DISP0_8
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?DPH1
+        EXTERN ?DPL1
+        EXTERN ?DPS
+        EXTERN ?FUNC_ENTER_XDATA
+        EXTERN ?FUNC_LEAVE_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTACK_DISP1_8
+        EXTERN ?XSTACK_RESTORE_DPTRS_1
+        EXTERN ?XSTACK_SAVE_DPTRS_1
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC nwk_mgmtInit
+        PUBLIC nwk_poll
+        PUBLIC nwk_processMgmt
+
+        EXTERN MRFI_RandomByte
+        EXTERN nwk_isValidReply
+        EXTERN MRFI_PostKillSem
+        EXTERN nwk_getMyAddress
+        EXTERN memcmp
+        EXTERN memcpy
+        EXTERN nwk_getAPAddress
+        EXTERN SMPL_Ioctl
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_applications\nwk_mgmt.c
+//    1 /**************************************************************************************************
+//    2   Filename:       nwk_mgmt.c
+//    3   Revised:        $Date: 2009-01-06 15:45:54 -0800 (Tue, 06 Jan 2009) $
+//    4   Revision:       $Revision: 18697 $
+//    5   Author:         $Author: lfriedman $
+//    6 
+//    7   Description:    This file supports the SimpliciTI Mgmt network application.
+//    8 
+//    9   Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   12   the terms of a software license agreement between the user who downloaded the software,
+//   13   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   14   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   15   License. The License limits your use, and you acknowledge, that the Software may not be
+//   16   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   17   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   18   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   19   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   20   perform, display or sell this Software and/or its documentation for any purpose.
+//   21 
+//   22   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   23   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   24   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   25   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   26   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   27   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   28   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   29   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   30   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   31 
+//   32   Should you have any questions regarding your right to use this Software,
+//   33   contact Texas Instruments Incorporated at www.TI.com.
+//   34 **************************************************************************************************/
+//   35 
+//   36 
+//   37 /******************************************************************************
+//   38  * INCLUDES
+//   39  */
+//   40 #include <string.h>
+//   41 #include "bsp.h"
+//   42 #include "mrfi.h"
+//   43 #include "nwk_types.h"
+//   44 #include "nwk_api.h"
+//   45 #include "nwk_frame.h"
+//   46 #include "nwk.h"
+//   47 #include "nwk_mgmt.h"
+//   48 #include "nwk_join.h"
+//   49 #include "nwk_globals.h"
+//   50 #include "nwk_QMgmt.h"
+//   51 
+//   52 /******************************************************************************
+//   53  * MACROS
+//   54  */
+//   55 
+//   56 /******************************************************************************
+//   57  * CONSTANTS AND DEFINES
+//   58  */
+//   59 
+//   60 /******************************************************************************
+//   61  * TYPEDEFS
+//   62  */
+//   63 
+//   64 /******************************************************************************
+//   65  * LOCAL VARIABLES
+//   66  */
+//   67 #ifndef ACCESS_POINT
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   68 static addr_t const *sAPAddr = NULL;
+sAPAddr:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   69 #else
+//   70 static uint8_t sSFMarker[NUM_STORE_AND_FWD_CLIENTS] = {0};
+//   71 #endif
+//   72 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   73 static volatile uint8_t sTid = 0;
+sTid:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   74 
+//   75 /******************************************************************************
+//   76  * LOCAL FUNCTIONS
+//   77  */
+//   78 static void  smpl_send_mgmt_reply(mrfiPacket_t *);
+//   79 #ifdef ACCESS_POINT
+//   80 static void  send_poll_reply(mrfiPacket_t *);
+//   81 #endif
+//   82 
+//   83 /******************************************************************************
+//   84  * GLOBAL VARIABLES
+//   85  */
+//   86 
+//   87 /******************************************************************************
+//   88  * GLOBAL FUNCTIONS
+//   89  */
+//   90 
+//   91 /******************************************************************************
+//   92  * @fn          nwk_mgmtInit
+//   93  *
+//   94  * @brief       Initialize Management functions.
+//   95  *
+//   96  * input parameters
+//   97  *
+//   98  * output parameters
+//   99  *
+//  100  * @return   void
+//  101  */
+//  102 
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  103 void nwk_mgmtInit(void)
+nwk_mgmtInit:
+        CODE
+//  104 {
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+//  105   sTid = MRFI_RandomByte();
+        ; Setup parameters for call to function MRFI_RandomByte
+        LCALL   MRFI_RandomByte
+        MOV     A,R1
+        MOV     DPTR,#sTid
+        MOVX    @DPTR,A
+//  106 
+//  107 #ifdef ACCESS_POINT
+//  108   memset(&sSFMarker, 0x0, sizeof(sSFMarker));
+//  109 #endif
+//  110 
+//  111   return;
+        POP     DPH
+        POP     DPL
+        RET
+//  112 }
+//  113 
+//  114 /******************************************************************************
+//  115  * @fn          nwk_processMgmt
+//  116  *
+//  117  * @brief       Process Management frame. Just save the frame for the Management
+//  118  *              app it it is a reply. If it isn't a reply, send the reply in this
+//  119  *              thread.
+//  120  *
+//  121  * input parameters
+//  122  * @param   frame   - pointer to frame to be processed
+//  123  *
+//  124  * output parameters
+//  125  *
+//  126  * @return   Keep frame for application, release frame, or replay frame.
+//  127  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  128 fhStatus_t nwk_processMgmt(mrfiPacket_t *frame)
+nwk_processMgmt:
+        CODE
+//  129 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 11
+        ; Auto size: 0
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+//  130   fhStatus_t   rc;
+//  131   uint8_t      replyType;
+//  132 
+//  133   /* If we sent this then this is the reply. Validate the
+//  134    * packet for reception by client app. If we didn't send
+//  135    * it then we are the target. send the reply.
+//  136    */
+//  137   if (SMPL_MY_REPLY == (replyType=nwk_isValidReply(frame, sTid, MB_APP_INFO_OS, MB_TID_OS)))
+        ; Setup parameters for call to function nwk_isValidReply
+        MOV     R5,#0x1
+        MOV     R4,#0x0
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   nwk_isValidReply
+        MOV     A,R1
+        JNZ     ??nwk_processMgmt_0
+//  138   {
+//  139     /* It's a match and it's a reply. Validate the received packet by
+//  140      * returning a 1 so it can be received by the client app.
+//  141      */
+//  142     MRFI_PostKillSem();
+        ; Setup parameters for call to function MRFI_PostKillSem
+        LCALL   MRFI_PostKillSem
+//  143     rc = FHS_KEEP;
+        MOV     R1,#0x1
+        SJMP    ??nwk_processMgmt_1
+//  144   }
+//  145 #if !defined( END_DEVICE )
+//  146   else if (SMPL_A_REPLY == replyType)
+//  147   {
+//  148     /* no match. if i'm not an ED this is a reply that should be passed on. */
+//  149     rc = FHS_REPLAY;
+//  150   }
+//  151 #endif  /* !END_DEVICE */
+//  152   else
+//  153   {
+//  154     /* no, we didn't send it. send reply if it's intended for us */
+//  155     if (!memcmp(MRFI_P_DST_ADDR(frame), nwk_getMyAddress(), NET_ADDR_SIZE))
+??nwk_processMgmt_0:
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        ; Setup parameters for call to function nwk_getMyAddress
+        LCALL   nwk_getMyAddress
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        MOV     R2,?DPL1
+        MOV     R3,?DPH1
+        LCALL   memcmp
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     ?V0 + 1,R3
+        MOV     A,R2
+        ORL     A,?V0 + 1
+        JNZ     ??nwk_processMgmt_2
+//  156     {
+//  157       smpl_send_mgmt_reply(frame);
+//  158 
+//  159       /* we're done with the frame. */
+//  160       rc = FHS_RELEASE;
+        MOV     R1,#0x0
+        SJMP    ??nwk_processMgmt_1
+//  161     }
+//  162     else
+//  163     {
+//  164       rc = FHS_REPLAY;
+??nwk_processMgmt_2:
+        MOV     R1,#0x2
+//  165     }
+//  166   }
+//  167 
+//  168   (void) replyType;  /* keep compiler happy */
+//  169 
+//  170   return rc;
+??nwk_processMgmt_1:
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  171 }
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x2
+        LJMP    ?FUNC_LEAVE_XDATA
+//  172 
+//  173 /******************************************************************************
+//  174  * @fn          smpl_send_mgmt_reply
+//  175  *
+//  176  * @brief       Send appropriate reply to Management frame.
+//  177  *
+//  178  * input parameters
+//  179  * @param  frame  - Pointer to frame for which reply required.
+//  180  *
+//  181  * output parameters
+//  182  *
+//  183  * @return   void
+//  184  */
+//  185 static void smpl_send_mgmt_reply(mrfiPacket_t *frame)
+//  186 {
+//  187 #ifdef ACCESS_POINT
+//  188   /* what kind of management frame is this? */
+//  189   switch (*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+MB_APP_INFO_OS))
+//  190   {
+//  191     case MGMT_REQ_POLL:
+//  192       send_poll_reply(frame);
+//  193       break;
+//  194 
+//  195     default:
+//  196       break;
+//  197   }
+//  198 #endif  /* ACCESS_POINT */
+//  199   return;
+//  200 }
+//  201 
+//  202 
+//  203 #ifdef ACCESS_POINT
+//  204 /******************************************************************************
+//  205  * @fn          send_poll_reply
+//  206  *
+//  207  * @brief       Send reply to polling frame.
+//  208  *
+//  209  * input parameters
+//  210  * @param  frame  - Pointer to frame for which reply required.
+//  211  *
+//  212  * output parameters
+//  213  *
+//  214  * @return   void
+//  215  */
+//  216 static void send_poll_reply(mrfiPacket_t *frame)
+//  217 {
+//  218   uint8_t         msgtid = *(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+MB_TID_OS);
+//  219   frameInfo_t    *pOutFrame;
+//  220   sfClientInfo_t *pClientInfo;
+//  221   uint8_t         loc, qType;
+//  222 
+//  223   /* Make sure this guy is really a client. We can tell from the source address. */
+//  224   if (!(pClientInfo=nwk_isSandFClient(MRFI_P_SRC_ADDR(frame), &loc)))
+//  225   {
+//  226     /* TODO: maybe send an error frame? */
+//  227     return;
+//  228   }
+//  229 
+//  230   /* If we have to resync the TID then do it based on the first
+//  231    * poll frame we see
+//  232   */
+//  233   if (!sSFMarker[loc])
+//  234   {
+//  235     /* If the marker flag is null then it has been initialized, i.e.,
+//  236      * there has been a reset. In this case infer that we need to update
+//  237      * a (probably) stale last TID. The test will always be true the first
+//  238      * time through after a client is established even when an NV restore
+//  239      * did not take place but this does no harm.
+//  240      */
+//  241     pClientInfo->lastTID = msgtid;
+//  242     sSFMarker[loc]       = 1;
+//  243   }
+//  244   /* If we've seen this poll frame before ignore it. Otherwise we
+//  245    * may send a stored frame when we shouldn't.
+//  246    */
+//  247   else if (nwk_checkAppMsgTID(pClientInfo->lastTID, msgtid))
+//  248   {
+//  249     pClientInfo->lastTID = msgtid;
+//  250   }
+//  251   else
+//  252   {
+//  253     return;
+//  254   }
+//  255 
+//  256   if (pOutFrame = nwk_getSandFFrame(frame, M_POLL_PORT_OS, &qType))
+//  257   {
+//  258     /* We need to adjust the order in the queue in this case. Currently
+//  259      * we know it is in the input queue and that this adjustment is safe
+//  260      * because we're in an ISR thread. This is a fragile fix, though, and
+//  261      * should be revisited when time permits.
+//  262      */
+//  263     nwk_QadjustOrder(qType, pOutFrame->orderStamp);
+//  264 
+//  265     /* reset hop count... */
+//  266     PUT_INTO_FRAME(MRFI_P_PAYLOAD(&pOutFrame->mrfiPkt), F_HOP_COUNT, MAX_HOPS_FROM_AP);
+//  267     /* It's gonna be a forwarded frame. */
+//  268     PUT_INTO_FRAME(MRFI_P_PAYLOAD(&pOutFrame->mrfiPkt), F_FWD_FRAME, 0x80);
+//  269 
+//  270     nwk_sendFrame(pOutFrame, MRFI_TX_TYPE_FORCED);
+//  271   }
+//  272   else
+//  273   {
+//  274     nwk_SendEmptyPollRspFrame(frame);
+//  275   }
+//  276 
+//  277   return;
+//  278 }
+//  279 
+//  280 /******************************************************************************
+//  281  * @fn          nwk_resetSFMarker
+//  282  *
+//  283  * @brief       Reset S&F cklient marker so the TIDs resync.
+//  284  *
+//  285  * input parameters
+//  286  * @param  idx  - index of the client that should be reset.
+//  287  *
+//  288  * output parameters
+//  289  *
+//  290  * @return   void
+//  291  */
+//  292 void nwk_resetSFMarker(uint8_t idx)
+//  293 {
+//  294   sSFMarker[idx] = 0;
+//  295 
+//  296   return;
+//  297 }
+//  298 
+//  299 #else  /* ACCESS_POINT */
+//  300 
+//  301 /******************************************************************************
+//  302  * @fn          nwk_poll
+//  303  *
+//  304  * @brief       Poll S&F server for any waiting frames.
+//  305  *
+//  306  * input parameters
+//  307  * @param  port  - Port on peer.
+//  308  * @param  addr  - SimpliciTI address of peer.
+//  309  *
+//  310  * output parameters
+//  311  *
+//  312  * @return   SMPL_SUCCESS
+//  313  *           SMPL_NO_AP_ADDRESS - We don't know Access Point's address
+//  314  *           SMPL_NOMEM         - no room in output frame queue
+//  315  *           SMPL_TX_CCA_FAIL   - CCA failure
+//  316  */
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  317 smplStatus_t nwk_poll(uint8_t port, uint8_t *addr)
+nwk_poll:
+        CODE
+//  318 {
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 11
+        ; Auto size: 13
+        MOV     A,#-0xd
+        LCALL   ?ALLOC_XSTACK8
+//  319   uint8_t        msg[MGMT_POLL_FRAME_SIZE];
+//  320   ioctlRawSend_t send;
+//  321 
+//  322   msg[MB_APP_INFO_OS] = MGMT_REQ_POLL;
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  323   msg[MB_TID_OS]      = sTid;
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        PUSH    A
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+        MOVX    @DPTR,A
+//  324   msg[M_POLL_PORT_OS] = port;
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  325   memcpy(msg+M_POLL_ADDR_OS, addr, NET_ADDR_SIZE);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     A,#0xb
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   memcpy
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+//  326 
+//  327   /* it's OK to increment the TID here because the reply will not be
+//  328    * matched based on this number. The reply to the poll comes back
+//  329    * to the client port, not the Management port.
+//  330    */
+//  331   sTid++;
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        INC     A
+        MOVX    @DPTR,A
+//  332 
+//  333   if (!sAPAddr)
+        MOV     DPTR,#sAPAddr
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??nwk_poll_0
+//  334   {
+//  335     sAPAddr = nwk_getAPAddress();
+        ; Setup parameters for call to function nwk_getAPAddress
+        LCALL   nwk_getAPAddress
+        MOV     DPTR,#sAPAddr
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  336     if (!sAPAddr)
+        MOV     DPTR,#sAPAddr
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??nwk_poll_0
+//  337     {
+//  338       return SMPL_NO_AP_ADDRESS;
+        MOV     R1,#0xb
+        SJMP    ??nwk_poll_1
+//  339     }
+//  340   }
+//  341   send.addr = (addr_t *)sAPAddr;
+??nwk_poll_0:
+        MOV     DPTR,#sAPAddr
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  342   send.msg  = msg;
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP1_8
+        MOV     A,DPL
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    @DPTR/*1*/,A
+        INC     DPTR/*1*/
+        MOV     A,DPH
+        MOVX    @DPTR/*1*/,A
+//  343   send.len  = sizeof(msg);
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x7
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOVX    @DPTR,A
+//  344   send.port = SMPL_PORT_MGMT;
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x6
+        MOVX    @DPTR,A
+//  345 
+//  346   return SMPL_Ioctl(IOCTL_OBJ_RAW_IO, IOCTL_ACT_WRITE, &send);
+        ; Setup parameters for call to function SMPL_Ioctl
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     R2,#0x3
+        MOV     R1,#0x2
+        LCALL   SMPL_Ioctl
+??nwk_poll_1:
+        MOV     A,#0xd
+        LCALL   ?DEALLOC_XSTACK8
+        LJMP    ?Subroutine0
+//  347 }
+
+        END
+//  348 
+//  349 #endif /* ACCESS_POINT */
+// 
+// 326 bytes in segment NEAR_CODE
+//   3 bytes in segment XDATA_Z
+// 
+// 326 bytes of CODE  memory
+//   3 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

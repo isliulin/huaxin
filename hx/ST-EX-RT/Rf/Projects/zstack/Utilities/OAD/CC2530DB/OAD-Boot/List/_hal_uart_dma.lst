@@ -1,0 +1,2063 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V7.60.1.40026 for 8051             26/Jun/2013  19:46:10 #
+# Copyright (C) 2004-2010 IAR Systems AB.                                     #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  near                                               #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Componen #
+#                          ts\hal\target\CC2530EB\_hal_uart_dma.c             #
+#    Command line       =  E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Componen #
+#                          ts\hal\target\CC2530EB\_hal_uart_dma.c -D          #
+#                          HAL_OAD_BOOT_CODE -lC E:\workplace\NewStep\Rf\Can_ #
+#                          Rf\CanMstOsal\Projects\zstack\Utilities\OAD\CC2530 #
+#                          DB\OAD-Boot\List\ -lA E:\workplace\NewStep\Rf\Can_ #
+#                          Rf\CanMstOsal\Projects\zstack\Utilities\OAD\CC2530 #
+#                          DB\OAD-Boot\List\ --remarks -o                     #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\OAD-Boot\Obj\ -e    #
+#                          --require_prototypes --debug --core=plain          #
+#                          --dptr=16,1 --data_model=large --code_model=near   #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data --nr_virtual_regs 16 -I     #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\ -I                 #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\SOURCE\ -I          #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\..\..\..\Tools\CC25 #
+#                          30DB\ -I E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal #
+#                          \Projects\zstack\Utilities\OAD\CC2530DB\..\..\..\Z #
+#                          MAIN\TI2530DB\ -I E:\workplace\NewStep\Rf\Can_Rf\C #
+#                          anMstOsal\Projects\zstack\Utilities\OAD\CC2530DB\. #
+#                          .\..\..\..\..\COMPONENTS\HAL\INCLUDE\ -I           #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\COMP #
+#                          ONENTS\OSAL\INCLUDE\ -I "D:\Program Files\IAR      #
+#                          Systems\Embedded Workbench 5.4\8051\INC\" -I       #
+#                          "D:\Program Files\IAR Systems\Embedded Workbench   #
+#                          5.4\8051\INC\CLIB\" -Ohz --mfc                     #
+#                          --discard_unused_publics                           #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Componen #
+#                          ts\hal\target\CC2530EB\hal_flash.c                 #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Componen #
+#                          ts\hal\target\CC2530EB\hal_oad.c                   #
+#                          E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Componen #
+#                          ts\hal\target\CC2530EB\hal_uart.c                  #
+#    List file          =  E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\OAD-Boot\List\_hal_ #
+#                          uart_dma.lst                                       #
+#    Object file        =  E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Projects #
+#                          \zstack\Utilities\OAD\CC2530DB\OAD-Boot\Obj\_hal_u #
+#                          art_dma.r51                                        #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\_hal_uart_dma.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_uart_dma.c
+      3            Revised:        $Date: 2010-01-14 18:01:17 -0800 (Thu, 14 Jan 2010) $
+      4            Revision:       $Revision: 21503 $
+      5          
+      6            Description: This file contains the interface to the H/W UART driver by DMA.
+      7          
+      8          
+      9            Copyright 2006-2010 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41           * INCLUDES
+     42           */
+     43          
+     44          #include "hal_types.h"
+     45          #include "hal_assert.h"
+     46          #include "hal_board.h"
+     47          #include "hal_defs.h"
+     48          #include "hal_dma.h"
+     49          #include "hal_mcu.h"
+     50          #include "hal_uart.h"
+     51          #if defined MT_TASK
+     52          #include "mt_uart.h"
+     53          #endif
+     54          #include "osal.h"
+     55          
+     56          /*********************************************************************
+     57           * MACROS
+     58           */
+     59          
+     60          //#define HAL_UART_ASSERT(expr)        HAL_ASSERT((expr))
+     61          #define HAL_UART_ASSERT(expr)
+     62          
+     63          #if defined HAL_BOARD_CC2430EB || defined HAL_BOARD_CC2430DB || defined HAL_BOARD_CC2430BB
+     64          #define HAL_UART_DMA_NEW_RX_BYTE(IDX)  (DMA_PAD == LO_UINT16(dmaCfg.rxBuf[(IDX)]))
+     65          #define HAL_UART_DMA_GET_RX_BYTE(IDX)  (HI_UINT16(dmaCfg.rxBuf[(IDX)]))
+     66          #define HAL_UART_DMA_CLR_RX_BYTE(IDX)  (dmaCfg.rxBuf[(IDX)] = BUILD_UINT16((DMA_PAD ^ 0xFF), 0))
+     67          #else
+     68          #define HAL_UART_DMA_NEW_RX_BYTE(IDX)  (DMA_PAD == HI_UINT16(dmaCfg.rxBuf[(IDX)]))
+     69          #define HAL_UART_DMA_GET_RX_BYTE(IDX)  (LO_UINT16(dmaCfg.rxBuf[(IDX)]))
+     70          #define HAL_UART_DMA_CLR_RX_BYTE(IDX)  (dmaCfg.rxBuf[(IDX)] = BUILD_UINT16(0, (DMA_PAD ^ 0xFF)))
+     71          #endif
+     72          
+     73          /*********************************************************************
+     74           * CONSTANTS
+     75           */
+     76          
+     77          // UxCSR - USART Control and Status Register.
+     78          #define CSR_MODE                   0x80
+     79          #define CSR_RE                     0x40
+     80          #define CSR_SLAVE                  0x20
+     81          #define CSR_FE                     0x10
+     82          #define CSR_ERR                    0x08
+     83          #define CSR_RX_BYTE                0x04
+     84          #define CSR_TX_BYTE                0x02
+     85          #define CSR_ACTIVE                 0x01
+     86          
+     87          // UxUCR - USART UART Control Register.
+     88          #define UCR_FLUSH                  0x80
+     89          #define UCR_FLOW                   0x40
+     90          #define UCR_D9                     0x20
+     91          #define UCR_BIT9                   0x10
+     92          #define UCR_PARITY                 0x08
+     93          #define UCR_SPB                    0x04
+     94          #define UCR_STOP                   0x02
+     95          #define UCR_START                  0x01
+     96          
+     97          #define UTX0IE                     0x04
+     98          #define UTX1IE                     0x08
+     99          
+    100          #define P2DIR_PRIPO                0xC0
+    101          
+    102          // Incompatible redefinitions between the 2 UART driver sub-modules:
+    103          #undef PxSEL
+    104          #undef UxCSR
+    105          #undef UxUCR
+    106          #undef UxDBUF
+    107          #undef UxBAUD
+    108          #undef UxGCR
+    109          #undef URXxIE
+    110          #undef UTXxIE
+    111          #undef UTXxIF
+    112          #if (HAL_UART_DMA == 1)
+    113          #define PxOUT                      P0
+    114          #define PxDIR                      P0DIR
+    115          #define PxSEL                      P0SEL
+    116          #define UxCSR                      U0CSR
+    117          #define UxUCR                      U0UCR
+    118          #define UxDBUF                     U0DBUF
+    119          #define UxBAUD                     U0BAUD
+    120          #define UxGCR                      U0GCR
+    121          #define URXxIE                     URX0IE
+    122          #define UTXxIE                     UTX0IE
+    123          #define UTXxIF                     UTX0IF
+    124          #else
+    125          #define PxOUT                      P1
+    126          #define PxDIR                      P1DIR
+    127          #define PxSEL                      P1SEL
+    128          #define UxCSR                      U1CSR
+    129          #define UxUCR                      U1UCR
+    130          #define UxDBUF                     U1DBUF
+    131          #define UxBAUD                     U1BAUD
+    132          #define UxGCR                      U1GCR
+    133          #define URXxIE                     URX1IE
+    134          #define UTXxIE                     UTX1IE
+    135          #define UTXxIF                     UTX1IF
+    136          #endif
+    137          
+    138          #if (HAL_UART_DMA == 1)
+    139          #define HAL_UART_PERCFG_BIT        0x01         // USART0 on P0, Alt-1; so clear this bit.
+    140          #define HAL_UART_Px_RX_TX          0x0C         // Peripheral I/O Select for Rx/Tx.
+    141          #define HAL_UART_Px_RTS            0x20         // Peripheral I/O Select for RTS.
+    142          #define HAL_UART_Px_CTS            0x10         // Peripheral I/O Select for CTS.
+    143          #else
+    144          #define HAL_UART_PERCFG_BIT        0x02         // USART1 on P1, Alt-2; so set this bit.
+    145          #define HAL_UART_Px_RTS            0x20         // Peripheral I/O Select for RTS.
+    146          #define HAL_UART_Px_CTS            0x10         // Peripheral I/O Select for CTS.
+    147          #define HAL_UART_Px_RX_TX          0xC0         // Peripheral I/O Select for Rx/Tx.
+    148          #endif
+    149          
+    150          // The timeout tick is at 32-kHz, so multiply msecs by 33.
+    151          #define HAL_UART_MSECS_TO_TICKS    33
+    152          
+    153          #if defined MT_TASK
+    154          #define HAL_UART_DMA_TX_MAX        MT_UART_DEFAULT_MAX_TX_BUFF
+    155          #define HAL_UART_DMA_RX_MAX        MT_UART_DEFAULT_MAX_RX_BUFF
+    156          #define HAL_UART_DMA_HIGH          MT_UART_DEFAULT_THRESHOLD
+    157          #define HAL_UART_DMA_IDLE         (MT_UART_DEFAULT_IDLE_TIMEOUT * HAL_UART_MSECS_TO_TICKS)
+    158          #else
+    159          #if !defined HAL_UART_DMA_RX_MAX
+    160          #define HAL_UART_DMA_RX_MAX        128
+    161          #endif
+    162          #if !defined HAL_UART_DMA_TX_MAX
+    163          #define HAL_UART_DMA_TX_MAX        HAL_UART_DMA_RX_MAX
+    164          #endif
+    165          #if !defined HAL_UART_DMA_HIGH
+    166          #define HAL_UART_DMA_HIGH         (HAL_UART_DMA_RX_MAX / 2 - 16)
+    167          #endif
+    168          #if !defined HAL_UART_DMA_IDLE
+    169          #define HAL_UART_DMA_IDLE         (6 * HAL_UART_MSECS_TO_TICKS)
+    170          #endif
+    171          #endif
+    172          #if !defined HAL_UART_DMA_FULL
+    173          #define HAL_UART_DMA_FULL         1//(HAL_UART_DMA_RX_MAX - 16)//changed by cbyi
+    174          #endif
+    175          
+    176          #if defined HAL_BOARD_CC2430EB || defined HAL_BOARD_CC2430DB || defined HAL_BOARD_CC2430BB
+    177          #define HAL_DMA_U0DBUF             0xDFC1
+    178          #define HAL_DMA_U1DBUF             0xDFF9
+    179          #else  /* CC2530 */
+    180          #define HAL_DMA_U0DBUF             0x70C1
+    181          #define HAL_DMA_U1DBUF             0x70F9
+    182          #endif
+    183          
+    184          #if (HAL_UART_DMA == 1)
+    185          #define DMATRIG_RX                 HAL_DMA_TRIG_URX0
+    186          #define DMATRIG_TX                 HAL_DMA_TRIG_UTX0
+    187          #define DMA_UDBUF                  HAL_DMA_U0DBUF
+    188          #define DMA_PAD                    U0BAUD
+    189          #define HAL_UART_PRIPO             0x00
+    190          
+    191          #else
+    192          #define DMATRIG_RX                 HAL_DMA_TRIG_URX1
+    193          #define DMATRIG_TX                 HAL_DMA_TRIG_UTX1
+    194          #define DMA_UDBUF                  HAL_DMA_U1DBUF
+    195          #define DMA_PAD                    U1BAUD
+    196          #endif
+    197          
+    198          /*********************************************************************
+    199           * TYPEDEFS
+    200           */
+    201          
+    202          typedef struct
+    203          {
+    204            uint16 rxBuf[HAL_UART_DMA_RX_MAX];
+    205          #if HAL_UART_DMA_RX_MAX < 256
+    206            uint8 rxHead;
+    207            uint8 rxTail;
+    208          #else
+    209            uint16 rxHead;
+    210            uint16 rxTail;
+    211          #endif
+    212            uint8 rxTick;
+    213            uint8 rxShdw;
+    214          
+    215            uint8 txBuf[2][HAL_UART_DMA_TX_MAX];
+    216          #if HAL_UART_DMA_TX_MAX < 256
+    217            uint8 txIdx[2];
+    218          #else
+    219            uint16 txIdx[2];
+    220          #endif
+    221            volatile uint8 txSel;
+    222            uint8 txMT;
+    223            uint8 txTick;           // 1-character time in 32kHz ticks according to baud rate,
+    224                                    // to be used in calculating time lapse since DMA ISR
+    225                                    // to allow delay margin before start firing DMA, so that
+    226                                    // DMA does not overwrite UART DBUF of previous packet
+    227            
+    228            volatile uint8 txShdw;  // Sleep Timer LSB shadow.
+    229            volatile uint8 txShdwValid; // TX shadow value is valid
+    230            uint8 txDMAPending;     // UART TX DMA is pending
+    231          
+    232            halUARTCBack_t uartCB;
+    233          } uartDMACfg_t;
+    234          
+    235          /*********************************************************************
+    236           * GLOBAL VARIABLES
+    237           */
+    238          
+    239          /*********************************************************************
+    240           * GLOBAL FUNCTIONS
+    241           */
+    242          
+    243          void HalUARTIsrDMA(void);
+    244          
+    245          /*********************************************************************
+    246           * LOCAL VARIABLES
+    247           */
+    248          
+    249          static uartDMACfg_t dmaCfg;
+    250          
+    251          /*********************************************************************
+    252           * LOCAL FUNCTIONS
+    253           */
+    254          
+    255          static uint16 findTail(void);
+    256          
+    257          // Invoked by functions in hal_uart.c when this file is included.
+    258          static void HalUARTInitDMA(void);
+    259          static void HalUARTOpenDMA(halUARTCfg_t *config);
+    260          static uint16 HalUARTReadDMA(uint8 *buf, uint16 len);
+    261          static uint16 HalUARTWriteDMA(uint8 *buf, uint16 len);
+    262          static void HalUARTPollDMA(void);
+    263          static uint16 HalUARTRxAvailDMA(void);
+    264          static void HalUARTSuspendDMA(void);
+    265          static void HalUARTResumeDMA(void);
+    266          
+    267          /*****************************************************************************
+    268           * @fn      findTail
+    269           *
+    270           * @brief   Find the rxBuf index where the DMA RX engine is working.
+    271           *
+    272           * @param   None.
+    273           *
+    274           * @return  Index of tail of rxBuf.
+    275           *****************************************************************************/
+    276          static uint16 findTail(void)
+    277          {
+    278            uint16 idx = dmaCfg.rxHead;
+    279          
+    280            do
+    281            {
+    282              if (!HAL_UART_DMA_NEW_RX_BYTE(idx))
+    283              {
+    284                break;
+    285              }
+    286          
+    287              if (++idx >= HAL_UART_DMA_RX_MAX)
+    288              {
+    289                idx = 0;
+    290              }
+    291            } while (idx != dmaCfg.rxHead);
+    292          
+    293            return idx;
+    294          }
+    295          
+    296          /******************************************************************************
+    297           * @fn      HalUARTInitDMA
+    298           *
+    299           * @brief   Initialize the UART
+    300           *
+    301           * @param   none
+    302           *
+    303           * @return  none
+    304           *****************************************************************************/
+    305          static void HalUARTInitDMA(void)
+    306          {
+    307            halDMADesc_t *ch;
+    308          
+    309            P2DIR &= ~P2DIR_PRIPO;
+    310            P2DIR |= HAL_UART_PRIPO;
+                            ^
+Error[Pe020]: identifier "HAL_UART_PRIPO" is undefined
+    311          
+    312          #if (HAL_UART_DMA == 1)
+    313            PERCFG &= ~HAL_UART_PERCFG_BIT;    // Set UART0 I/O to Alt. 1 location on P0.
+    314          #else
+    315            PERCFG |= HAL_UART_PERCFG_BIT;     // Set UART1 I/O to Alt. 2 location on P1.
+    316          #endif
+    317            PxSEL  |= HAL_UART_Px_RX_TX;       // Enable Tx and Rx on P1.
+    318            ADCCFG &= ~HAL_UART_Px_RX_TX;      // Make sure ADC doesnt use this.
+    319            UxCSR = CSR_MODE;                  // Mode is UART Mode.
+    320            UxUCR = UCR_FLUSH;                 // Flush it.
+    321          
+    322            // Setup Tx by DMA.
+    323            ch = HAL_DMA_GET_DESC1234( HAL_DMA_CH_TX );
+    324          
+    325            // The start address of the destination.
+    326            HAL_DMA_SET_DEST( ch, DMA_UDBUF );
+    327          
+    328            // Using the length field to determine how many bytes to transfer.
+    329            HAL_DMA_SET_VLEN( ch, HAL_DMA_VLEN_USE_LEN );
+    330          
+    331            // One byte is transferred each time.
+    332            HAL_DMA_SET_WORD_SIZE( ch, HAL_DMA_WORDSIZE_BYTE );
+    333          
+    334            // The bytes are transferred 1-by-1 on Tx Complete trigger.
+    335            HAL_DMA_SET_TRIG_MODE( ch, HAL_DMA_TMODE_SINGLE );
+    336            HAL_DMA_SET_TRIG_SRC( ch, DMATRIG_TX );
+    337          
+    338            // The source address is incremented by 1 byte after each transfer.
+    339            HAL_DMA_SET_SRC_INC( ch, HAL_DMA_SRCINC_1 );
+    340          
+    341            // The destination address is constant - the Tx Data Buffer.
+    342            HAL_DMA_SET_DST_INC( ch, HAL_DMA_DSTINC_0 );
+    343          
+    344            // The DMA Tx done is serviced by ISR in order to maintain full thruput.
+    345            HAL_DMA_SET_IRQ( ch, HAL_DMA_IRQMASK_ENABLE );
+    346          
+    347            // Xfer all 8 bits of a byte xfer.
+    348            HAL_DMA_SET_M8( ch, HAL_DMA_M8_USE_8_BITS );
+    349          
+    350            // DMA has highest priority for memory access.
+    351            HAL_DMA_SET_PRIORITY( ch, HAL_DMA_PRI_HIGH );
+    352          
+    353            // Setup Rx by DMA.
+    354            ch = HAL_DMA_GET_DESC1234( HAL_DMA_CH_RX );
+    355          
+    356            // The start address of the source.
+    357            HAL_DMA_SET_SOURCE( ch, DMA_UDBUF );
+    358          
+    359            // Using the length field to determine how many bytes to transfer.
+    360            HAL_DMA_SET_VLEN( ch, HAL_DMA_VLEN_USE_LEN );
+    361          
+    362            /* The trick is to cfg DMA to xfer 2 bytes for every 1 byte of Rx.
+    363             * The byte after the Rx Data Buffer is the Baud Cfg Register,
+    364             * which always has a known value. So init Rx buffer to inverse of that
+    365             * known value. DMA word xfer will flip the bytes, so every valid Rx byte
+    366             * in the Rx buffer will be preceded by a DMA_PAD char equal to the
+    367             * Baud Cfg Register value.
+    368             */
+    369            HAL_DMA_SET_WORD_SIZE( ch, HAL_DMA_WORDSIZE_WORD );
+    370          
+    371            // The bytes are transferred 1-by-1 on Rx Complete trigger.
+    372            HAL_DMA_SET_TRIG_MODE( ch, HAL_DMA_TMODE_SINGLE_REPEATED );
+    373            HAL_DMA_SET_TRIG_SRC( ch, DMATRIG_RX );
+    374          
+    375            // The source address is constant - the Rx Data Buffer.
+    376            HAL_DMA_SET_SRC_INC( ch, HAL_DMA_SRCINC_0 );
+    377          
+    378            // The destination address is incremented by 1 word after each transfer.
+    379            HAL_DMA_SET_DST_INC( ch, HAL_DMA_DSTINC_1 );
+    380            HAL_DMA_SET_DEST( ch, dmaCfg.rxBuf );
+    381            HAL_DMA_SET_LEN( ch, HAL_UART_DMA_RX_MAX );
+    382          
+    383            // The DMA is to be polled and shall not issue an IRQ upon completion.
+    384            HAL_DMA_SET_IRQ( ch, HAL_DMA_IRQMASK_DISABLE );
+    385          
+    386            // Xfer all 8 bits of a byte xfer.
+    387            HAL_DMA_SET_M8( ch, HAL_DMA_M8_USE_8_BITS );
+    388          
+    389            // DMA has highest priority for memory access.
+    390            HAL_DMA_SET_PRIORITY( ch, HAL_DMA_PRI_HIGH );
+    391          }
+    392          
+    393          /******************************************************************************
+    394           * @fn      HalUARTOpenDMA
+    395           *
+    396           * @brief   Open a port according tp the configuration specified by parameter.
+    397           *
+    398           * @param   config - contains configuration information
+    399           *
+    400           * @return  none
+    401           *****************************************************************************/
+    402          static void HalUARTOpenDMA(halUARTCfg_t *config)
+    403          {
+    404            dmaCfg.uartCB = config->callBackFunc;
+    405            // Only supporting subset of baudrate for code size - other is possible.
+    406            HAL_UART_ASSERT((config->baudRate == HAL_UART_BR_9600) ||
+    407                            (config->baudRate == HAL_UART_BR_19200) ||
+    408                            (config->baudRate == HAL_UART_BR_38400) ||
+    409                            (config->baudRate == HAL_UART_BR_57600) ||
+    410                            (config->baudRate == HAL_UART_BR_115200));
+    411            
+    412            if (config->baudRate == HAL_UART_BR_57600 ||
+    413                config->baudRate == HAL_UART_BR_115200)
+    414            {
+    415              UxBAUD = 216;
+    416            }
+    417            else
+    418            {
+    419              UxBAUD = 59;
+    420            }
+    421            
+    422            switch (config->baudRate)
+    423            {
+    424              case HAL_UART_BR_9600:
+    425                UxGCR = 8;
+    426                dmaCfg.txTick = 35; // (32768Hz / (9600bps / 10 bits))
+    427                                    // 10 bits include start and stop bits.
+    428                break;
+    429              case HAL_UART_BR_19200:
+    430                UxGCR = 9;
+    431                dmaCfg.txTick = 18;
+    432                break;
+    433              case HAL_UART_BR_38400:
+    434                UxGCR = 10;
+    435                dmaCfg.txTick = 9;
+    436                break;
+    437              case HAL_UART_BR_57600:
+    438                UxGCR = 10;
+    439                dmaCfg.txTick = 6;
+    440                break;
+    441              default:
+    442                // HAL_UART_BR_115200
+    443                UxGCR = 11;
+    444                dmaCfg.txTick = 3;
+    445                break;
+    446            }
+    447          
+    448            // 8 bits/char; no parity; 1 stop bit; stop bit hi.
+    449            if (config->flowControl)
+    450            {
+    451              UxUCR = UCR_FLOW | UCR_STOP;
+    452              PxSEL |= HAL_UART_Px_CTS;
+    453              // DMA Rx is always on (self-resetting). So flow must be controlled by the S/W polling the Rx
+    454              // buffer level. Start by allowing flow.
+    455              PxOUT &= ~HAL_UART_Px_RTS;
+    456              PxDIR |=  HAL_UART_Px_RTS;
+    457            }
+    458            else
+    459            {
+    460              UxUCR = UCR_STOP;
+    461            }
+    462          
+    463            dmaCfg.rxBuf[0] = *(volatile uint8 *)DMA_UDBUF;  // Clear the DMA Rx trigger.
+    464            HAL_DMA_CLEAR_IRQ(HAL_DMA_CH_RX);
+    465            HAL_DMA_ARM_CH(HAL_DMA_CH_RX);
+    466            osal_memset(dmaCfg.rxBuf, (DMA_PAD ^ 0xFF), HAL_UART_DMA_RX_MAX*2);
+    467          
+    468            UxCSR |= CSR_RE;
+    469            
+    470            // Initialize that TX DMA is not pending
+    471            dmaCfg.txDMAPending = FALSE;
+    472            dmaCfg.txShdwValid = FALSE;
+    473          }
+    474          
+    475          /*****************************************************************************
+    476           * @fn      HalUARTReadDMA
+    477           *
+    478           * @brief   Read a buffer from the UART
+    479           *
+    480           * @param   buf  - valid data buffer at least 'len' bytes in size
+    481           *          len  - max length number of bytes to copy to 'buf'
+    482           *
+    483           * @return  length of buffer that was read
+    484           *****************************************************************************/
+    485          static uint16 HalUARTReadDMA(uint8 *buf, uint16 len)
+    486          {
+    487            uint16 cnt;
+    488          
+    489            for (cnt = 0; cnt < len; cnt++)
+    490            {
+    491              if (!HAL_UART_DMA_NEW_RX_BYTE(dmaCfg.rxHead))
+    492              {
+    493                break;
+    494              }
+    495              *buf++ = HAL_UART_DMA_GET_RX_BYTE(dmaCfg.rxHead);
+    496              HAL_UART_DMA_CLR_RX_BYTE(dmaCfg.rxHead);
+    497              if (++(dmaCfg.rxHead) >= HAL_UART_DMA_RX_MAX)
+    498              {
+    499                dmaCfg.rxHead = 0;
+    500              }
+    501            }
+    502            PxOUT &= ~HAL_UART_Px_RTS;  // Re-enable the flow on any read.
+    503          
+    504            return cnt;
+    505          }
+    506          
+    507          /******************************************************************************
+    508           * @fn      HalUARTWriteDMA
+    509           *
+    510           * @brief   Write a buffer to the UART.
+    511           *
+    512           * @param   buf - pointer to the buffer that will be written, not freed
+    513           *          len - length of
+    514           *
+    515           * @return  length of the buffer that was sent
+    516           *****************************************************************************/
+    517          static uint16 HalUARTWriteDMA(uint8 *buf, uint16 len)
+    518          {
+    519            uint16 cnt;
+    520            halIntState_t his;
+    521            uint8 txSel;
+    522          #if HAL_UART_DMA_TX_MAX < 256
+    523            uint8 txIdx;
+    524          #else
+    525            uint16 txIdx;
+    526          #endif
+    527          
+    528            // Enforce all or none.
+    529            if ((len + dmaCfg.txIdx[dmaCfg.txSel]) > HAL_UART_DMA_TX_MAX)
+    530            {
+    531              return 0;
+    532            }
+    533          
+    534            HAL_ENTER_CRITICAL_SECTION(his);
+    535            txSel = dmaCfg.txSel;
+    536            txIdx = dmaCfg.txIdx[txSel];
+    537            HAL_EXIT_CRITICAL_SECTION(his);
+    538          
+    539            for (cnt = 0; cnt < len; cnt++)
+    540            {
+    541              dmaCfg.txBuf[txSel][txIdx++] = buf[cnt];
+    542            }
+    543          
+    544            HAL_ENTER_CRITICAL_SECTION(his);
+    545            if (txSel != dmaCfg.txSel)
+    546            {
+    547              HAL_EXIT_CRITICAL_SECTION(his);
+    548              txSel = dmaCfg.txSel;
+    549              txIdx = dmaCfg.txIdx[txSel];
+    550          
+    551              for (cnt = 0; cnt < len; cnt++)
+    552              {
+    553                dmaCfg.txBuf[txSel][txIdx++] = buf[cnt];
+    554              }
+    555              HAL_ENTER_CRITICAL_SECTION(his);
+    556            }
+    557          
+    558            dmaCfg.txIdx[txSel] = txIdx;
+    559          
+    560            if (dmaCfg.txIdx[(txSel ^ 1)] == 0)
+    561            {
+    562              // TX DMA is expected to be fired
+    563              dmaCfg.txDMAPending = TRUE;
+    564            }
+    565            HAL_EXIT_CRITICAL_SECTION(his);
+    566            return cnt;
+    567          }
+    568          
+    569          /******************************************************************************
+    570           * @fn      HalUARTPollDMA
+    571           *
+    572           * @brief   Poll a USART module implemented by DMA.
+    573           *
+    574           * @param   none
+    575           *
+    576           * @return  none
+    577           *****************************************************************************/
+    578          static void HalUARTPollDMA(void)
+    579          {
+    580            uint16 cnt = 0;
+    581            uint8 evt = 0;
+    582          
+    583            if (HAL_UART_DMA_NEW_RX_BYTE(dmaCfg.rxHead))
+    584            {
+    585              uint16 tail = findTail();
+    586          
+    587              // If the DMA has transferred in more Rx bytes, reset the Rx idle timer.
+    588              if (dmaCfg.rxTail != tail)
+    589              {
+    590                dmaCfg.rxTail = tail;
+    591          
+    592                // Re-sync the shadow on any 1st byte(s) received.
+    593                if (dmaCfg.rxTick == 0)
+    594                {
+    595                  dmaCfg.rxShdw = ST0;
+    596                }
+    597                dmaCfg.rxTick = HAL_UART_DMA_IDLE;
+    598              }
+    599              else if (dmaCfg.rxTick)
+    600              {
+    601                // Use the LSB of the sleep timer (ST0 must be read first anyway).
+    602                uint8 decr = ST0 - dmaCfg.rxShdw;
+    603          
+    604                if (dmaCfg.rxTick > decr)
+    605                {
+    606                  dmaCfg.rxTick -= decr;
+    607                  dmaCfg.rxShdw = ST0;
+    608                }
+    609                else
+    610                {
+    611                  dmaCfg.rxTick = 0;
+    612                }
+    613              }
+    614              cnt = HalUARTRxAvailDMA();
+    615            }
+    616            else
+    617            {
+    618              dmaCfg.rxTick = 0;
+    619            }
+    620          
+    621            if (cnt >= HAL_UART_DMA_FULL)
+    622            {
+    623              evt = HAL_UART_RX_FULL;
+    624            }
+    625            else if (cnt >= HAL_UART_DMA_HIGH)
+    626            {
+    627              evt = HAL_UART_RX_ABOUT_FULL;
+    628              PxOUT |= HAL_UART_Px_RTS;
+    629            }
+    630            else if (cnt && !dmaCfg.rxTick)
+    631            {
+    632              evt = HAL_UART_RX_TIMEOUT;
+    633            }
+    634          
+    635            if (dmaCfg.txMT)
+    636            {
+    637              dmaCfg.txMT = FALSE;
+    638              evt |= HAL_UART_TX_EMPTY;
+    639            }
+    640          
+    641            if (dmaCfg.txShdwValid)
+    642            {
+    643              uint8 decr = ST0;
+    644              decr -= dmaCfg.txShdw;
+    645              if (decr > dmaCfg.txTick)
+    646              {
+    647                // No protection for txShdwValid is required
+    648                // because while the shadow was valid, DMA ISR cannot be triggered
+    649                // to cause concurrent access to this variable.
+    650                dmaCfg.txShdwValid = FALSE;
+    651              }
+    652            }
+    653            
+    654            if (dmaCfg.txDMAPending && !dmaCfg.txShdwValid)
+    655            {
+    656              // UART TX DMA is expected to be fired and enough time has lapsed since last DMA ISR
+    657              // to know that DBUF can be overwritten
+    658              halDMADesc_t *ch = HAL_DMA_GET_DESC1234(HAL_DMA_CH_TX);
+    659              halIntState_t intState;
+    660          
+    661              // Clear the DMA pending flag
+    662              dmaCfg.txDMAPending = FALSE;
+    663              
+    664              HAL_DMA_SET_SOURCE(ch, dmaCfg.txBuf[dmaCfg.txSel]);
+    665              HAL_DMA_SET_LEN(ch, dmaCfg.txIdx[dmaCfg.txSel]);
+    666              dmaCfg.txSel ^= 1;
+    667              HAL_ENTER_CRITICAL_SECTION(intState);
+    668              HAL_DMA_ARM_CH(HAL_DMA_CH_TX);
+    669              do
+    670              {
+    671                asm("NOP");
+    672              } while (!HAL_DMA_CH_ARMED(HAL_DMA_CH_TX));
+    673              HAL_DMA_CLEAR_IRQ(HAL_DMA_CH_TX);
+    674              HAL_DMA_MAN_TRIGGER(HAL_DMA_CH_TX);
+    675              HAL_EXIT_CRITICAL_SECTION(intState);
+    676            }
+    677            else
+    678            {
+    679              halIntState_t his;
+    680          
+    681              HAL_ENTER_CRITICAL_SECTION(his);
+    682              if ((dmaCfg.txIdx[dmaCfg.txSel] != 0) && !HAL_DMA_CH_ARMED(HAL_DMA_CH_TX)
+    683                                                    && !HAL_DMA_CHECK_IRQ(HAL_DMA_CH_TX))
+    684              {
+    685                HAL_EXIT_CRITICAL_SECTION(his);
+    686                HalUARTIsrDMA();
+    687              }
+    688              else
+    689              {
+    690                HAL_EXIT_CRITICAL_SECTION(his);
+    691              }
+    692            }
+    693          
+    694            if (evt && (dmaCfg.uartCB != NULL))
+    695            {
+    696              dmaCfg.uartCB(HAL_UART_DMA-1, evt);
+                                   ^
+Warning[Pe068]: integer conversion resulted in a change of sign
+
+  static void HalUARTInitDMA(void)
+              ^
+"E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\_hal_uart_dma.c",305  Warning[Pe177]: 
+          function "HalUARTInitDMA" was declared but never referenced
+
+  static void HalUARTOpenDMA(halUARTCfg_t *config)
+              ^
+"E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\_hal_uart_dma.c",402  Warning[Pe177]: 
+          function "HalUARTOpenDMA" was declared but never referenced
+
+  static uint16 HalUARTReadDMA(uint8 *buf, uint16 len)
+                ^
+"E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\_hal_uart_dma.c",485  Warning[Pe177]: 
+          function "HalUARTReadDMA" was declared but never referenced
+
+  static uint16 HalUARTWriteDMA(uint8 *buf, uint16 len)
+                ^
+"E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\_hal_uart_dma.c",517  Warning[Pe177]: 
+          function "HalUARTWriteDMA" was declared but never referenced
+
+  static void HalUARTPollDMA(void)
+              ^
+"E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\_hal_uart_dma.c",578  Warning[Pe177]: 
+          function "HalUARTPollDMA" was declared but never referenced
+    697            }
+    698          }
+    699          
+    700          /**************************************************************************************************
+    701           * @fn      HalUARTRxAvailDMA()
+    702           *
+    703           * @brief   Calculate Rx Buffer length - the number of bytes in the buffer.
+    704           *
+    705           * @param   none
+    706           *
+    707           * @return  length of current Rx Buffer
+    708           **************************************************************************************************/
+    709          static uint16 HalUARTRxAvailDMA(void)
+    710          {
+    711            uint16 cnt = 0;
+    712          
+    713            if (HAL_UART_DMA_NEW_RX_BYTE(dmaCfg.rxHead))
+    714            {
+    715              uint16 idx;
+    716          
+    717              for (idx = 0; idx < HAL_UART_DMA_RX_MAX; idx++)
+    718              {
+    719                if (HAL_UART_DMA_NEW_RX_BYTE(idx))
+    720                {
+    721                  cnt++;
+    722                }
+    723              }
+    724            }
+    725          
+    726            return cnt;
+    727          }
+    728          
+    729          /******************************************************************************
+    730           * @fn      HalUARTSuspendDMA
+    731           *
+    732           * @brief   Suspend UART hardware before entering PM mode 1, 2 or 3.
+    733           *
+    734           * @param   None
+    735           *
+    736           * @return  None
+    737           *****************************************************************************/
+    738          static void HalUARTSuspendDMA( void )
+                             ^
+Warning[Pe177]: function "HalUARTSuspendDMA" was declared but never referenced
+    739          {
+    740            UxCSR &= ~CSR_RE;
+    741          }
+    742          
+    743          /******************************************************************************
+    744           * @fn      HalUARTResumeDMA
+    745           *
+    746           * @brief   Resume UART hardware after exiting PM mode 1, 2 or 3.
+    747           *
+    748           * @param   None
+    749           *
+    750           * @return  None
+    751           *****************************************************************************/
+    752          static void HalUARTResumeDMA( void )
+                             ^
+Warning[Pe177]: function "HalUARTResumeDMA" was declared but never referenced
+    753          {
+    754            UxUCR |= UCR_FLUSH;
+    755            UxCSR |= CSR_RE;
+    756          }
+    757          
+    758          /******************************************************************************
+    759           * @fn      HalUARTIsrDMA
+    760           *
+    761           * @brief   Handle the Tx done DMA ISR.
+    762           *
+    763           * @param   none
+    764           *
+    765           * @return  none
+    766           *****************************************************************************/
+    767          void HalUARTIsrDMA(void);
+    768          void HalUARTIsrDMA(void)
+    769          {
+    770            HAL_DMA_CLEAR_IRQ(HAL_DMA_CH_TX);
+    771          
+    772            // Indicate that the other buffer is free now.
+    773            dmaCfg.txIdx[(dmaCfg.txSel ^ 1)] = 0;
+    774            dmaCfg.txMT = TRUE;
+    775            
+    776            // Set TX shadow
+    777            dmaCfg.txShdw = ST0;
+    778            dmaCfg.txShdwValid = TRUE;
+    779          
+    780            // If there is more Tx data ready to go, re-start the DMA immediately on it.
+    781            if (dmaCfg.txIdx[dmaCfg.txSel])
+    782            {
+    783              // UART TX DMA is expected to be fired
+    784              dmaCfg.txDMAPending = TRUE;
+    785            }
+    786          }
+    787          
+    788          /******************************************************************************
+    789          ******************************************************************************/
+E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\hal_flash.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_flash.c
+      3            Revised:        $Date:$
+      4            Revision:       $Revision:$
+      5          
+      6            Description: This file contains the interface to the H/W Flash driver.
+      7          
+      8          
+      9            Copyright 2006-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /* ------------------------------------------------------------------------------------------------
+     41           *                                          Includes
+     42           * ------------------------------------------------------------------------------------------------
+     43           */
+     44          
+     45          #include "hal_board_cfg.h"
+     46          #include "hal_dma.h"
+     47          #include "hal_flash.h"
+     48          #include "hal_types.h"
+     49          
+     50          /* ------------------------------------------------------------------------------------------------
+     51           *                                           Macros
+     52           * ------------------------------------------------------------------------------------------------
+     53           */
+     54          
+     55          /* ------------------------------------------------------------------------------------------------
+     56           *                                          Constants
+     57           * ------------------------------------------------------------------------------------------------
+     58           */
+     59          
+     60          // These values depend on RAM_CODE_FLASH in the .xcl file used.
+     61          #if defined CC2530F64     // RemoTI is using 0x01DDD --> pg 3, offset 0x5DD.
+     62          #define OSET_OF_RAM_CODE  0x5DD
+     63          #define PAGE_OF_RAM_CODE  3
+     64          #define SIZE_OF_RAM_CODE  0x23
+     65          #elif defined HAL_OAD_BOOT_CODE
+     66                                    // OAD boot code is using 0x7E3 --> pg 0, so same as offset 0x7E3.
+     67          #define OSET_OF_RAM_CODE  0x7E3
+     68          #define PAGE_OF_RAM_CODE  0
+     69          #define SIZE_OF_RAM_CODE  0x1D
+     70          #elif defined HAL_USB_BOOT_CODE
+     71                                    // USB boot code is using 0x7DD --> pg 0, so same as offset 0x7DD.
+     72          #define OSET_OF_RAM_CODE  0x7DD
+     73          #define PAGE_OF_RAM_CODE  0
+     74          #define SIZE_OF_RAM_CODE  0x23
+     75          #else                     // Z-Stack is using 0x39EDD --> pg 51, offset 0x6DD.
+     76          #define OSET_OF_RAM_CODE  0x6DD
+     77          #define PAGE_OF_RAM_CODE  51
+     78          #define SIZE_OF_RAM_CODE  0x23
+     79          #endif
+     80          
+     81          /* ------------------------------------------------------------------------------------------------
+     82           *                                          Typedefs
+     83           * ------------------------------------------------------------------------------------------------
+     84           */
+     85          
+     86          /* ------------------------------------------------------------------------------------------------
+     87           *                                       Global Variables
+     88           * ------------------------------------------------------------------------------------------------
+     89           */
+     90          
+     91          /* ------------------------------------------------------------------------------------------------
+     92           *                                       Global Functions
+     93           * ------------------------------------------------------------------------------------------------
+     94           */
+     95          
+     96          /* ------------------------------------------------------------------------------------------------
+     97           *                                       Local Variables
+     98           * ------------------------------------------------------------------------------------------------
+     99           */
+    100          
+    101          #pragma location="RAM_CODE_XDATA"
+    102          static __no_init uint8 ramCode[SIZE_OF_RAM_CODE];
+    103          
+    104          /* ------------------------------------------------------------------------------------------------
+    105           *                                       Local Functions
+    106           * ------------------------------------------------------------------------------------------------
+    107           */
+    108          
+    109          #pragma location="RAM_CODE_FLASH"
+    110          #if defined HAL_OAD_BOOT_CODE
+    111          static void HalFlashWriteTrigger(void);
+    112          #else
+    113          static __monitor void HalFlashWriteTrigger(void);
+    114          #endif
+    115          
+    116          /**************************************************************************************************
+    117           * @fn          HalFlashInit
+    118           *
+    119           * @brief       This function initializes the environment for this module.
+    120           *
+    121           * input parameters
+    122           *
+    123           * None.
+    124           *
+    125           * output parameters
+    126           *
+    127           * None.
+    128           *
+    129           * @return      None.
+    130           **************************************************************************************************
+    131           */
+    132          void HalFlashInit(void)
+    133          {
+    134            // Load the code to run from RAM into its reserved area of RAM once at startup.
+    135            HalFlashRead(PAGE_OF_RAM_CODE, OSET_OF_RAM_CODE, ramCode, SIZE_OF_RAM_CODE);
+    136          }
+    137          
+    138          /**************************************************************************************************
+    139           * @fn          HalFlashRead
+    140           *
+    141           * @brief       This function reads 'cnt' bytes from the internal flash.
+    142           *
+    143           * input parameters
+    144           *
+    145           * @param       pg - A valid flash page number.
+    146           * @param       offset - A valid offset into the page.
+    147           * @param       buf - A valid buffer space at least as big as the 'cnt' parameter.
+    148           * @param       cnt - A valid number of bytes to read.
+    149           *
+    150           * output parameters
+    151           *
+    152           * None.
+    153           *
+    154           * @return      None.
+    155           **************************************************************************************************
+    156           */
+    157          void HalFlashRead(uint8 pg, uint16 offset, uint8 *buf, uint16 cnt)
+    158          {
+    159            // Calculate the offset into the containing flash bank as it gets mapped into XDATA.
+    160            uint8 *ptr = (uint8 *)(offset + HAL_FLASH_PAGE_MAP) +
+    161                         ((pg % HAL_FLASH_PAGE_PER_BANK) * HAL_FLASH_PAGE_SIZE);
+    162            uint8 memctr = MEMCTR;  // Save to restore.
+    163          
+    164          #if !defined HAL_OAD_BOOT_CODE
+    165            halIntState_t is;
+    166          #endif
+    167          
+    168            pg /= HAL_FLASH_PAGE_PER_BANK;  // Calculate the flash bank from the flash page.
+    169          
+    170          #if !defined HAL_OAD_BOOT_CODE
+    171            HAL_ENTER_CRITICAL_SECTION(is);
+    172          #endif
+    173          
+    174            // Calculate and map the containing flash bank into XDATA.
+    175            MEMCTR = (MEMCTR & 0xF8) | pg;
+    176          
+    177            while (cnt--)
+    178            {
+    179              *buf++ = *ptr++;
+    180            }
+    181          
+    182            MEMCTR = memctr;
+    183          
+    184          #if !defined HAL_OAD_BOOT_CODE
+    185            HAL_EXIT_CRITICAL_SECTION(is);
+    186          #endif
+    187          }
+    188          
+    189          /**************************************************************************************************
+    190           * @fn          HalFlashWrite
+    191           *
+    192           * @brief       This function writes 'cnt' bytes to the internal flash.
+    193           *
+    194           * input parameters
+    195           *
+    196           * @param       addr - Valid HAL flash write address: actual addr / 4 and quad-aligned.
+    197           * @param       buf - Valid buffer space at least as big as 'cnt' X 4.
+    198           * @param       cnt - Number of 4-byte blocks to write.
+    199           *
+    200           * output parameters
+    201           *
+    202           * None.
+    203           *
+    204           * @return      None.
+    205           **************************************************************************************************
+    206           */
+    207           #if HAL_DMA
+    208          void HalFlashWrite(uint16 addr, uint8 *buf, uint16 cnt)
+    209          {
+    210            halDMADesc_t *ch = HAL_NV_DMA_GET_DESC();
+    211          
+    212            HAL_DMA_SET_SOURCE(ch, buf);
+    213            HAL_DMA_SET_DEST(ch, &FWDATA);
+    214            HAL_DMA_SET_VLEN(ch, HAL_DMA_VLEN_USE_LEN);
+    215            HAL_DMA_SET_LEN(ch, (cnt * HAL_FLASH_WORD_SIZE));
+    216            HAL_DMA_SET_WORD_SIZE(ch, HAL_DMA_WORDSIZE_BYTE);
+    217            HAL_DMA_SET_TRIG_MODE(ch, HAL_DMA_TMODE_SINGLE);
+    218            HAL_DMA_SET_TRIG_SRC(ch, HAL_DMA_TRIG_FLASH);
+    219            HAL_DMA_SET_SRC_INC(ch, HAL_DMA_SRCINC_1);
+    220            HAL_DMA_SET_DST_INC(ch, HAL_DMA_DSTINC_0);
+    221            // The DMA is to be polled and shall not issue an IRQ upon completion.
+    222            HAL_DMA_SET_IRQ(ch, HAL_DMA_IRQMASK_DISABLE);
+    223            HAL_DMA_SET_M8( ch, HAL_DMA_M8_USE_8_BITS);
+    224            HAL_DMA_SET_PRIORITY(ch, HAL_DMA_PRI_HIGH);
+    225            HAL_DMA_CLEAR_IRQ(HAL_NV_DMA_CH);
+    226            HAL_DMA_ARM_CH(HAL_NV_DMA_CH);
+    227          
+    228            FADDRL = (uint8)addr;
+    229            FADDRH = (uint8)(addr >> 8);
+    230            HalFlashWriteTrigger();
+    231          }
+    232          #else
+    233          void HalFlashWrite(uint16 addr, uint8 *buf, uint16 cnt)
+    234          {
+    235            return;
+    236          }
+    237           #endif
+    238          
+    239          /**************************************************************************************************
+    240           * @fn          HalFlashErase
+    241           *
+    242           * @brief       This function erases the specified page of the internal flash.
+    243           *
+    244           * input parameters
+    245           *
+    246           * @param       pg - A valid flash page number to erase.
+    247           *
+    248           * output parameters
+    249           *
+    250           * None.
+    251           *
+    252           * @return      None.
+    253           **************************************************************************************************
+    254           */
+    255          void HalFlashErase(uint8 pg)
+    256          {
+    257            FADDRH = pg * (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE / 256);
+    258            FCTL |= 0x01;
+    259          }
+    260          
+    261          /**************************************************************************************************
+    262           * @fn          HalFlashWriteTrigger
+    263           *
+    264           * @brief       This function must be copied to RAM before running because it triggers and then
+    265           *              awaits completion of Flash write, which can only be done from RAM.
+    266           *
+    267           * input parameters
+    268           *
+    269           * None.
+    270           *
+    271           * output parameters
+    272           *
+    273           * None.
+    274           *
+    275           * @return      None.
+    276           **************************************************************************************************
+    277           */
+    278          #if defined HAL_OAD_BOOT_CODE
+    279          #pragma optimize=medium
+    280          static void HalFlashWriteTrigger(void)
+    281          #else
+    282          static __monitor void HalFlashWriteTrigger(void)
+    283          #endif
+    284          {
+    285            MEMCTR |= 0x08;       // Start the Memory Arbiter running CODE from RAM.
+    286            FCTL |= 0x02;         // Trigger the DMA writes.
+    287            while (FCTL & 0x80);  // Wait until writing is done.
+    288            MEMCTR &= ~0x08;      // Stop the Memory Arbiter.
+    289          }
+    290          
+    291          /**************************************************************************************************
+    292          */
+E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\hal_oad.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_oad.c
+      3            Revised:        $Date: 2008-01-17 12:32:06 -0800 (Thu, 17 Jan 2008) $
+      4            Revision:       $Revision: 16224 $
+      5          
+      6            Description:    This module contains optionally-compiled Boot Code to support OAD.
+      7                            The rest of the functionality is the H/W specific drivers to read/write
+      8                            the flash/NV containing the ACTIVE and the DOWNLOADED images.
+      9            Notes:          This version targets the Texas Instruments CC2x3x family of processors.
+     10          
+     11          
+     12            Copyright 2008-2009 Texas Instruments Incorporated. All rights reserved.
+     13          
+     14            IMPORTANT: Your use of this Software is limited to those specific rights
+     15            granted under the terms of a software license agreement between the user
+     16            who downloaded the software, his/her employer (which must be your employer)
+     17            and Texas Instruments Incorporated (the "License").  You may not use this
+     18            Software unless you agree to abide by the terms of the License. The License
+     19            limits your use, and you acknowledge, that the Software may not be modified,
+     20            copied or distributed unless embedded on a Texas Instruments microcontroller
+     21            or used solely and exclusively in conjunction with a Texas Instruments radio
+     22            frequency transceiver, which is integrated into your product.  Other than for
+     23            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     24            works of, modify, distribute, perform, display or sell this Software and/or
+     25            its documentation for any purpose.
+     26          
+     27            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     28            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     29            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     30            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     31            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     32            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     33            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     34            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     35            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     36            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     37            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     38          
+     39            Should you have any questions regarding your right to use this Software,
+     40            contact Texas Instruments Incorporated at www.TI.com.
+     41          **************************************************************************************************/
+     42          
+     43          /* ------------------------------------------------------------------------------------------------
+     44           *                                          Includes
+     45           * ------------------------------------------------------------------------------------------------
+     46           */
+     47          
+     48          #include "comdef.h"
+     49          #include "hal_board_cfg.h"
+     50          #include "hal_dma.h"
+     51          #include "hal_flash.h"
+     52          #include "hal_oad.h"
+     53          #include "hal_types.h"
+     54          
+     55          /* ------------------------------------------------------------------------------------------------
+     56           *                                           Macros
+     57           * ------------------------------------------------------------------------------------------------
+     58           */
+     59          
+     60          /* ------------------------------------------------------------------------------------------------
+     61           *                                          Constants
+     62           * ------------------------------------------------------------------------------------------------
+     63           */
+     64          
+     65          /* ------------------------------------------------------------------------------------------------
+     66           *                                          Typedefs
+     67           * ------------------------------------------------------------------------------------------------
+     68           */
+     69          
+     70          /* ------------------------------------------------------------------------------------------------
+     71           *                                       Global Variables
+     72           * ------------------------------------------------------------------------------------------------
+     73           */
+     74          
+     75          /* ------------------------------------------------------------------------------------------------
+     76           *                                       Global Functions
+     77           * ------------------------------------------------------------------------------------------------
+     78           */
+     79          
+     80          /* ------------------------------------------------------------------------------------------------
+     81           *                                       Local Variables
+     82           * ------------------------------------------------------------------------------------------------
+     83           */
+     84          
+     85          #if HAL_OAD_BOOT_CODE
+     86          halDMADesc_t dmaCh0;
+     87          #endif
+     88          
+     89          /* ------------------------------------------------------------------------------------------------
+     90           *                                       Local Functions
+     91           * ------------------------------------------------------------------------------------------------
+     92           */
+     93          
+     94          static uint16 runPoly(uint16 crc, uint8 val);
+     95          #if HAL_OAD_XNV_IS_SPI
+     96          static void HalSPIRead(uint32 addr, uint8 *pBuf, uint16 len);
+     97          static void HalSPIWrite(uint32 addr, uint8 *pBuf, uint16 len);
+     98          #endif
+     99          
+    100          #if HAL_OAD_BOOT_CODE
+    101          static void dl2rc(void);
+    102          static uint16 crcCalc(void);
+    103          
+    104          /**************************************************************************************************
+    105           * @fn          main
+    106           *
+    107           * @brief       ISR for the reset vector.
+    108           *
+    109           * input parameters
+    110           *
+    111           * None.
+    112           *
+    113           * output parameters
+    114           *
+    115           * None.
+    116           *
+    117           * @return      None.
+    118           **************************************************************************************************
+    119           */
+    120          #pragma location="NEAR_CODE"
+    121          void main(void)
+    122          {
+    123            uint16 crc[2];
+    124          
+    125            HAL_BOARD_INIT();
+    126          #if HAL_OAD_XNV_IS_SPI
+    127            XNV_SPI_INIT();
+    128          #endif
+    129            /* This is in place of calling HalDmaInit() which would require init of the other 4 DMA
+    130             * descriptors in addition to just Channel 0.
+    131             */
+    132            HAL_DMA_SET_ADDR_DESC0( &dmaCh0 );
+    133            HalFlashInit();
+    134          
+    135            HalFlashRead(HAL_OAD_CRC_ADDR / HAL_FLASH_PAGE_SIZE,
+    136                         HAL_OAD_CRC_ADDR % HAL_FLASH_PAGE_SIZE,
+    137                         (uint8 *)crc, sizeof(crc));
+    138          
+    139            if (crc[0] != crc[1])
+    140            {
+    141              // If the CRC is erased or the RC code fails a sanity check, instantiate the DL code (again).
+    142              if ((crc[0] == 0) || (crc[0] != crcCalc()))
+    143              {
+    144                dl2rc();
+    145          
+    146                /* If dl2rc() fails, a flawed image is allowed to run - 
+    147                 * maybe the damage is not fatal to OTA ops?
+    148                 */
+    149              }
+    150              else
+    151              {
+    152                crc[1] = crc[0];
+    153                HalFlashWrite((HAL_OAD_CRC_ADDR / HAL_FLASH_WORD_SIZE), (uint8 *)crc, 1);
+    154              }
+    155            }
+    156          
+    157            // Simulate a reset for the Application code by an absolute jump to location 0x0800.
+    158            asm("LJMP 0x800\n");
+    159          }
+    160          
+    161          /*********************************************************************
+    162           * @fn      dl2rc
+    163           *
+    164           * @brief   Copy the DL image to the RC image location.
+    165           *
+    166           *  NOTE:   Assumes that DL image ends on a flash word boundary.
+    167           *
+    168           * @param   None.
+    169           *
+    170           * @return  None.
+    171           *********************************************************************/
+    172          static void dl2rc(void)
+    173          {
+    174            preamble_t preamble;
+    175            uint32 oset;
+    176            uint16 addr = HAL_OAD_RC_START / HAL_FLASH_WORD_SIZE;
+    177            uint8 buf[4];
+    178          
+    179            HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_DL);
+    180          
+    181            for (oset = 0; oset < preamble.len; oset += HAL_FLASH_WORD_SIZE)
+    182            {
+    183              HalOADRead(oset, buf, HAL_FLASH_WORD_SIZE, HAL_OAD_DL);
+    184              if ((addr % (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE)) == 0)
+    185              {
+    186                HalFlashErase(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE));
+    187              }
+    188              HalFlashWrite(addr++, buf, 1);
+    189            }
+    190          }
+    191          
+    192          /*********************************************************************
+    193           * @fn      crcCalc
+    194           *
+    195           * @brief   Run the CRC16 Polynomial calculation over the RC image.
+    196           *
+    197           * @param   None.
+    198           *
+    199           * @return  The CRC16 calculated.
+    200           */
+    201          static uint16 crcCalc(void)
+    202          {
+    203            preamble_t preamble;
+    204            uint32 oset;
+    205            uint16 crc = 0;
+    206          
+    207            HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+    208          
+    209            // Run the CRC calculation over the active body of code.
+    210            for (oset = 0; oset < preamble.len; oset++)
+    211            {
+    212              if ((oset < HAL_OAD_CRC_OSET) || (oset >= HAL_OAD_CRC_OSET+4))
+    213              {
+    214                uint8 buf;
+    215                HalOADRead(oset, &buf, 1, HAL_OAD_RC);
+    216                crc = runPoly(crc, buf);
+    217              }
+    218            }
+    219          
+    220            // IAR note explains that poly must be run with value zero for each byte of crc.
+    221            crc = runPoly(crc, 0);
+    222            crc = runPoly(crc, 0);
+    223          
+    224            return crc;
+    225          }
+    226          #endif
+    227          
+    228          /*********************************************************************
+    229           * @fn      runPoly
+    230           *
+    231           * @brief   Run the CRC16 Polynomial calculation over the byte parameter.
+    232           *
+    233           * @param   crc - Running CRC calculated so far.
+    234           * @param   val - Value on which to run the CRC16.
+    235           *
+    236           * @return  crc - Updated for the run.
+    237           */
+    238          static uint16 runPoly(uint16 crc, uint8 val)
+    239          {
+    240            const uint16 poly = 0x1021;
+    241            uint8 cnt;
+    242          
+    243            for (cnt = 0; cnt < 8; cnt++, val <<= 1)
+    244            {
+    245              uint8 msb = (crc & 0x8000) ? 1 : 0;
+    246          
+    247              crc <<= 1;
+    248              if (val & 0x80)  crc |= 0x0001;
+    249              if (msb)         crc ^= poly;
+    250            }
+    251          
+    252            return crc;
+    253          }
+    254          
+    255          /*********************************************************************
+    256           * @fn      HalOADChkDL
+    257           *
+    258           * @brief   Run the CRC16 Polynomial calculation over the DL image.
+    259           *
+    260           * @param   dlImagePreambleOffset - Offset into the monolithic DL image to read the preamble.
+    261           *
+    262           * @return  SUCCESS or FAILURE.
+    263           *********************************************************************/
+    264          uint8 HalOADChkDL(uint8 dlImagePreambleOffset)
+    265          {
+    266            preamble_t preamble;
+    267            uint32 oset;
+    268            uint16 crc = 0, crc2;
+    269          
+    270            HalOADRead(dlImagePreambleOffset, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_DL);
+    271          
+    272            // Run the CRC calculation over the downloaded image.
+    273            for (oset = 0; oset < preamble.len; oset++)
+    274            {
+    275              if ((oset < HAL_OAD_CRC_OSET) || (oset >= HAL_OAD_CRC_OSET+4))
+    276              {
+    277                uint8 buf;
+    278                HalOADRead(oset, &buf, 1, HAL_OAD_DL);
+    279                crc = runPoly(crc, buf);
+    280              }
+    281            }
+    282          
+    283            // IAR note explains that poly must be run with value zero for each byte of crc.
+    284            crc = runPoly(crc, 0);
+    285            crc = runPoly(crc, 0);
+    286          
+    287            HalOADRead(HAL_OAD_CRC_OSET, (uint8 *)&crc2, sizeof(crc2), HAL_OAD_DL);
+    288            return (crc2 == crc) ? SUCCESS : FAILURE;
+    289          }
+    290          
+    291          /*********************************************************************
+    292           * @fn      HalOADInvRC
+    293           *
+    294           * @brief   Invalidate the active image so that the boot code will instantiate the DL image on the
+    295           *          next reset.
+    296           *
+    297           * @param   None.
+    298           *
+    299           * @return  None.
+    300           *********************************************************************/
+    301          void HalOADInvRC(void)
+    302          {
+    303            uint16 crc[2] = {0,0xFFFF};
+    304            HalFlashWrite((HAL_OAD_CRC_ADDR / HAL_FLASH_WORD_SIZE), (uint8 *)crc, 1);
+    305          }
+    306          
+    307          /*********************************************************************
+    308           * @fn      HalOADRead
+    309           *
+    310           * @brief   Read from the storage medium according to image type.
+    311           *
+    312           * @param   oset - Offset into the monolithic image.
+    313           * @param   pBuf - Pointer to the buffer in which to copy the bytes read.
+    314           * @param   len - Number of bytes to read.
+    315           * @param   type - Which image: HAL_OAD_RC or HAL_OAD_DL.
+    316           *
+    317           * @return  None.
+    318           *********************************************************************/
+    319          void HalOADRead(uint32 oset, uint8 *pBuf, uint16 len, image_t type)
+    320          {
+    321            if (HAL_OAD_RC != type)
+    322            {
+    323          #if HAL_OAD_XNV_IS_INT
+    324              preamble_t preamble;
+    325          
+    326              HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+    327              //oset += HAL_OAD_RC_START + preamble.len;
+    328              oset += HAL_OAD_RC_START + HAL_OAD_DL_OSET;
+    329          #elif HAL_OAD_XNV_IS_SPI
+    330              oset += HAL_OAD_DL_OSET;
+    331              HalSPIRead(oset, pBuf, len);
+    332              return;
+    333          #endif
+    334            }
+    335            else
+    336            {
+    337              oset += HAL_OAD_RC_START;
+    338            }
+    339          
+    340            HalFlashRead(oset / HAL_FLASH_PAGE_SIZE, oset % HAL_FLASH_PAGE_SIZE, pBuf, len);
+    341          }
+    342          
+    343          /*********************************************************************
+    344           * @fn      HalOADWrite
+    345           *
+    346           * @brief   Write to the storage medium according to the image type.
+    347           *
+    348           *  NOTE:   Destructive write on page boundary! When writing to the first flash word
+    349           *          of a page boundary, the page is erased without saving/restoring the bytes not written.
+    350           *          Writes anywhere else on a page assume that the location written to has been erased.
+    351           *
+    352           * @param   oset - Offset into the monolithic image, aligned to HAL_FLASH_WORD_SIZE.
+    353           * @param   pBuf - Pointer to the buffer in from which to write.
+    354           * @param   len - Number of bytes to write. If not an even multiple of HAL_FLASH_WORD_SIZE,
+    355           *                remainder bytes are overwritten with garbage.
+    356           * @param   type - Which image: HAL_OAD_RC or HAL_OAD_DL.
+    357           *
+    358           * @return  None.
+    359           *********************************************************************/
+    360          void HalOADWrite(uint32 oset, uint8 *pBuf, uint16 len, image_t type)
+    361          {
+    362            if (HAL_OAD_RC != type)
+    363            {
+    364          #if HAL_OAD_XNV_IS_INT
+    365              preamble_t preamble;
+    366          
+    367              HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+    368              //oset += HAL_OAD_RC_START + preamble.len;
+    369              oset += HAL_OAD_RC_START + HAL_OAD_DL_OSET;
+    370          #elif HAL_OAD_XNV_IS_SPI
+    371              oset += HAL_OAD_DL_OSET;
+    372              HalSPIWrite(oset, pBuf, len);
+    373              return;
+    374          #endif
+    375            }
+    376            else
+    377            {
+    378              oset += HAL_OAD_RC_START;
+    379            }
+    380          
+    381            if ((oset % HAL_FLASH_PAGE_SIZE) == 0)
+    382            {
+    383              HalFlashErase(oset / HAL_FLASH_PAGE_SIZE);
+    384            }
+    385          
+    386            HalFlashWrite(oset / HAL_FLASH_WORD_SIZE, pBuf, len / HAL_FLASH_WORD_SIZE);
+    387          }
+    388          
+    389          #if HAL_OAD_XNV_IS_INT
+    390          /*********************************************************************
+    391           * @fn      HalOADAvail
+    392           *
+    393           * @brief   Determine the space available for downloading an image.
+    394           *
+    395           * @param   None.
+    396           *
+    397           * @return  Number of bytes available for storing an OAD image.
+    398           *********************************************************************/
+    399          uint32 HalOADAvail(void)
+    400          {
+    401            /*
+    402            preamble_t preamble;
+    403          
+    404            HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+    405            return HAL_OAD_DL_MAX - preamble.len;
+    406             */
+    407            return HAL_OAD_DL_MAX - HAL_OAD_DL_OSET;
+    408          }
+    409          
+    410          #elif HAL_OAD_XNV_IS_SPI
+    411          
+    412          /*********************************************************************
+    413           * CONSTANTS
+    414           */
+    415          
+    416          #define XNV_STAT_CMD  0x05
+    417          #define XNV_WREN_CMD  0x06
+    418          #define XNV_WRPG_CMD  0x0A
+    419          #define XNV_READ_CMD  0x0B
+    420          
+    421          #define XNV_STAT_WIP  0x01
+    422          
+    423          /*********************************************************************
+    424           * @fn      xnvSPIWrite
+    425           *
+    426           * @brief   SPI write sequence for code size savings.
+    427           *
+    428           * @param   ch - The byte to write to the SPI.
+    429           *
+    430           * @return  None.
+    431           *********************************************************************/
+    432          static void xnvSPIWrite(uint8 ch);
+    433          static void xnvSPIWrite(uint8 ch)
+    434          {
+    435            XNV_SPI_TX(ch);
+    436            XNV_SPI_WAIT_RXRDY();
+    437          }
+    438          
+    439          /*********************************************************************
+    440           * @fn      HalOADAvail
+    441           *
+    442           * @brief   Determine the space available for downloading an image.
+    443           *
+    444           * @param   None.
+    445           *
+    446           * @return  Number of bytes available for storing an OAD image.
+    447           *********************************************************************/
+    448          uint32 HalOADAvail(void)
+    449          {
+    450            return HAL_OAD_DL_MAX - HAL_OAD_DL_OSET;
+    451          }
+    452          
+    453          /*********************************************************************
+    454           * @fn      HalSPIRead
+    455           *
+    456           * @brief   Read from the external NV storage via SPI.
+    457           *
+    458           * @param   addr - Offset into the external NV.
+    459           * @param   pBuf - Pointer to the buffer in which to copy the bytes read from external NV.
+    460           * @param   len - Number of bytes to read from external NV.
+    461           *
+    462           * @return  None.
+    463           *********************************************************************/
+    464          static void HalSPIRead(uint32 addr, uint8 *pBuf, uint16 len)
+    465          {
+    466          #if !HAL_OAD_BOOT_CODE
+    467            uint8 shdw = P1DIR;
+    468            halIntState_t his;
+    469            HAL_ENTER_CRITICAL_SECTION(his);
+    470            P1DIR |= BV(3);
+    471          #endif
+    472          
+    473            XNV_SPI_BEGIN();
+    474            do {
+    475              xnvSPIWrite(XNV_STAT_CMD);
+    476            } while (XNV_SPI_RX() & XNV_STAT_WIP);
+    477            XNV_SPI_END();
+    478            asm("NOP"); asm("NOP");
+    479          
+    480            XNV_SPI_BEGIN();
+    481            xnvSPIWrite(XNV_READ_CMD);
+    482            xnvSPIWrite(addr >> 16);
+    483            xnvSPIWrite(addr >> 8);
+    484            xnvSPIWrite(addr);
+    485            xnvSPIWrite(0);
+    486          
+    487            while (len--)
+    488            {
+    489              xnvSPIWrite(0);
+    490              *pBuf++ = XNV_SPI_RX();
+    491            }
+    492            XNV_SPI_END();
+    493          
+    494          #if !HAL_OAD_BOOT_CODE
+    495            P1DIR = shdw;
+    496            HAL_EXIT_CRITICAL_SECTION(his);
+    497          #endif
+    498          }
+    499          
+    500          /*********************************************************************
+    501           * @fn      HalSPIWrite
+    502           *
+    503           * @brief   Write to the external NV storage via SPI.
+    504           *
+    505           * @param   addr - Offset into the external NV.
+    506           * @param   pBuf - Pointer to the buffer in from which to write bytes to external NV.
+    507           * @param   len - Number of bytes to write to external NV.
+    508           *
+    509           * @return  None.
+    510           *********************************************************************/
+    511          static void HalSPIWrite(uint32 addr, uint8 *pBuf, uint16 len)
+    512          {
+    513            uint8 cnt;
+    514          #if !HAL_OAD_BOOT_CODE
+    515            uint8 shdw = P1DIR;
+    516            halIntState_t his;
+    517            HAL_ENTER_CRITICAL_SECTION(his);
+    518            P1DIR |= BV(3);
+    519          #endif
+    520          
+    521            while (len)
+    522            {
+    523              XNV_SPI_BEGIN();
+    524              do {
+    525                xnvSPIWrite(XNV_STAT_CMD);
+    526              } while (XNV_SPI_RX() & XNV_STAT_WIP);
+    527              XNV_SPI_END();
+    528              asm("NOP"); asm("NOP");
+    529          
+    530              XNV_SPI_BEGIN();
+    531              xnvSPIWrite(XNV_WREN_CMD);
+    532              XNV_SPI_END();
+    533              asm("NOP"); asm("NOP");
+    534          
+    535              XNV_SPI_BEGIN();
+    536              xnvSPIWrite(XNV_WRPG_CMD);
+    537              xnvSPIWrite(addr >> 16);
+    538              xnvSPIWrite(addr >> 8);
+    539              xnvSPIWrite(addr);
+    540          
+    541              // Can only write within any one page boundary, so prepare for next page write if bytes remain.
+    542              cnt = 0 - (uint8)addr;
+    543              if (cnt)
+    544              {
+    545                addr += cnt;
+    546              }
+    547              else
+    548              {
+    549                addr += 256;
+    550              }
+    551          
+    552              do
+    553              {
+    554                xnvSPIWrite(*pBuf++);
+    555                cnt--;
+    556                len--;
+    557              } while (len && cnt);
+    558              XNV_SPI_END();
+    559            }
+    560          
+    561          #if !HAL_OAD_BOOT_CODE
+    562            P1DIR = shdw;
+    563            HAL_EXIT_CRITICAL_SECTION(his);
+    564          #endif
+    565          }
+    566          #else
+    567          #error Invalid Xtra-NV for OAD.
+    568          #endif
+    569          
+    570          /**************************************************************************************************
+    571          */
+E:\workplace\NewStep\Rf\Can_Rf\CanMstOsal\Components\hal\target\CC2530EB\hal_uart.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_uart.c
+      3            Revised:        $Date: 2009-06-12 09:16:43 -0700 (Fri, 12 Jun 2009) $
+      4            Revision:       $Revision: 20142 $
+      5          
+      6            Description: This file contains the interface to the H/W UART driver.
+      7          
+      8          
+      9            Copyright 2006-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41           * INCLUDES
+     42           */
+     43          
+     44          #include "hal_board_cfg.h"
+     45          #include "hal_defs.h"
+     46          #include "hal_types.h"
+     47          #include "hal_uart.h"
+     48          
+     49          /*********************************************************************
+     50           * MACROS
+     51           */
+     52          
+     53          /*********************************************************************
+     54           * TYPEDEFS
+     55           */
+     56          
+     57          /*********************************************************************
+     58           * CONSTANTS
+     59           */
+     60          
+     61          /*********************************************************************
+     62           * GLOBAL VARIABLES
+     63           */
+     64          
+     65          /*********************************************************************
+     66           * GLOBAL FUNCTIONS
+     67           */
+     68          
+     69          /*********************************************************************
+     70           * LOCAL VARIABLES
+     71           */
+     72          
+     73          /*********************************************************************
+     74           * LOCAL FUNCTIONS
+     75           */
+     76          
+     77          #if HAL_UART_DMA
+     78          #include "_hal_uart_dma.c"
+     79          #endif
+     80          #if HAL_UART_ISR
+     81          #include "_hal_uart_isr.c"
+     82          #endif
+     83          #if HAL_UART_USB
+     84          #include "_hal_uart_usb.c"
+     85          #endif
+     86          
+     87          /******************************************************************************
+     88           * @fn      HalUARTInit
+     89           *
+     90           * @brief   Initialize the UART
+     91           *
+     92           * @param   none
+     93           *
+     94           * @return  none
+     95           *****************************************************************************/
+     96          void HalUARTInit(void)
+     97          {
+     98          #if HAL_UART_DMA
+     99            HalUARTInitDMA();
+    100          #endif
+    101          #if HAL_UART_ISR
+    102            HalUARTInitISR();
+    103          #endif
+    104          #if HAL_UART_USB
+    105            HalUARTInitUSB();
+    106          #endif
+    107          }
+    108          
+    109          /******************************************************************************
+    110           * @fn      HalUARTOpen
+    111           *
+    112           * @brief   Open a port according tp the configuration specified by parameter.
+    113           *
+    114           * @param   port   - UART port
+    115           *          config - contains configuration information
+    116           *
+    117           * @return  Status of the function call
+    118           *****************************************************************************/
+    119          uint8 HalUARTOpen(uint8 port, halUARTCfg_t *config)
+    120          {
+    121            (void)port;
+    122            (void)config;
+    123          
+    124          #if (HAL_UART_DMA == 1)
+    125            if (port == HAL_UART_PORT_0)  HalUARTOpenDMA(config);
+    126          #endif
+    127          #if (HAL_UART_DMA == 2)
+    128            if (port == HAL_UART_PORT_1)  HalUARTOpenDMA(config);
+    129          #endif
+    130          #if (HAL_UART_ISR == 1)
+    131            if (port == HAL_UART_PORT_0)  HalUARTOpenISR(config);
+    132          #endif
+    133          #if (HAL_UART_ISR == 2)
+    134            if (port == HAL_UART_PORT_1)  HalUARTOpenISR(config);
+    135          #endif
+    136          #if (HAL_UART_USB)
+    137            HalUARTOpenUSB(config);
+    138          #endif
+    139            
+    140            return HAL_UART_SUCCESS;
+    141          }
+    142          
+    143          /*****************************************************************************
+    144           * @fn      HalUARTRead
+    145           *
+    146           * @brief   Read a buffer from the UART
+    147           *
+    148           * @param   port - USART module designation
+    149           *          buf  - valid data buffer at least 'len' bytes in size
+    150           *          len  - max length number of bytes to copy to 'buf'
+    151           *
+    152           * @return  length of buffer that was read
+    153           *****************************************************************************/
+    154          uint16 HalUARTRead(uint8 port, uint8 *buf, uint16 len)
+    155          {
+    156            (void)port;
+    157            (void)buf;
+    158            (void)len;
+    159          
+    160          #if (HAL_UART_DMA == 1)
+    161            if (port == HAL_UART_PORT_0)  return HalUARTReadDMA(buf, len);
+    162          #endif
+    163          #if (HAL_UART_DMA == 2)
+    164            if (port == HAL_UART_PORT_1)  return HalUARTReadDMA(buf, len);
+    165          #endif
+    166          #if (HAL_UART_ISR == 1)
+    167            if (port == HAL_UART_PORT_0)  return HalUARTReadISR(buf, len);
+    168          #endif
+    169          #if (HAL_UART_ISR == 2)
+    170            if (port == HAL_UART_PORT_1)  return HalUARTReadISR(buf, len);
+    171          #endif
+    172          
+    173          #if HAL_UART_USB
+    174            return HalUARTRx(buf, len);
+    175          #else
+    176            return 0;
+    177          #endif
+    178          }
+    179          
+    180          /******************************************************************************
+    181           * @fn      HalUARTWrite
+    182           *
+    183           * @brief   Write a buffer to the UART.
+    184           *
+    185           * @param   port - UART port
+    186           *          buf  - pointer to the buffer that will be written, not freed
+    187           *          len  - length of
+    188           *
+    189           * @return  length of the buffer that was sent
+    190           *****************************************************************************/
+    191          uint16 HalUARTWrite(uint8 port, uint8 *buf, uint16 len)
+    192          {
+    193            (void)port;
+    194            (void)buf;
+    195            (void)len;
+    196          
+    197          #if (HAL_UART_DMA == 1)
+    198            if (port == HAL_UART_PORT_0)  return HalUARTWriteDMA(buf, len);
+    199          #endif
+    200          #if (HAL_UART_DMA == 2)
+    201            if (port == HAL_UART_PORT_1)  return HalUARTWriteDMA(buf, len);
+    202          #endif
+    203          #if (HAL_UART_ISR == 1)
+    204            if (port == HAL_UART_PORT_0)  return HalUARTWriteISR(buf, len);
+    205          #endif
+    206          #if (HAL_UART_ISR == 2)
+    207            if (port == HAL_UART_PORT_1)  return HalUARTWriteISR(buf, len);
+    208          #endif
+    209          
+    210          #if HAL_UART_USB
+    211            HalUARTTx(buf, len);
+    212            return len;
+    213          #else
+    214            return 0;
+    215          #endif
+    216          }
+    217          
+    218          /******************************************************************************
+    219           * @fn      HalUARTSuspend
+    220           *
+    221           * @brief   Suspend UART hardware before entering PM mode 1, 2 or 3.
+    222           *
+    223           * @param   None
+    224           *
+    225           * @return  None
+    226           *****************************************************************************/
+    227          void HalUARTSuspend( void )
+    228          {
+    229          #if HAL_UART_DMA
+    230            HalUARTSuspendDMA();
+    231          #endif
+    232          #if HAL_UART_ISR
+    233            HalUARTSuspendISR();
+    234          #endif
+    235          }
+    236          
+    237          /******************************************************************************
+    238           * @fn      HalUARTResume
+    239           *
+    240           * @brief   Resume UART hardware after exiting PM mode 1, 2 or 3.
+    241           *
+    242           * @param   None
+    243           *
+    244           * @return  None
+    245           *****************************************************************************/
+    246          void HalUARTResume( void )
+    247          {
+    248          #if HAL_UART_DMA
+    249            HalUARTResumeDMA();
+    250          #endif
+    251          #if HAL_UART_ISR
+    252            HalUARTResumeISR();
+    253          #endif
+    254          }
+    255          
+    256          /***************************************************************************************************
+    257           * @fn      HalUARTPoll
+    258           *
+    259           * @brief   Poll the UART.
+    260           *
+    261           * @param   none
+    262           *
+    263           * @return  none
+    264           *****************************************************************************/
+    265          void HalUARTPoll(void)
+    266          {
+    267          #if HAL_UART_DMA
+    268            HalUARTPollDMA();
+    269          #endif
+    270          #if HAL_UART_ISR
+    271            HalUARTPollISR();
+    272          #endif
+    273          #if HAL_UART_USB
+    274            HalUARTPollUSB();
+    275          #endif
+    276          }
+    277          
+    278          /**************************************************************************************************
+    279           * @fn      Hal_UART_RxBufLen()
+    280           *
+    281           * @brief   Calculate Rx Buffer length - the number of bytes in the buffer.
+    282           *
+    283           * @param   port - UART port
+    284           *
+    285           * @return  length of current Rx Buffer
+    286           **************************************************************************************************/
+    287          uint16 Hal_UART_RxBufLen( uint8 port )
+    288          {
+    289            (void)port;
+    290          
+    291          #if (HAL_UART_DMA == 1)
+    292            if (port == HAL_UART_PORT_0)  return HalUARTRxAvailDMA();
+    293          #endif
+    294          #if (HAL_UART_DMA == 2)
+    295            if (port == HAL_UART_PORT_1)  return HalUARTRxAvailDMA();
+    296          #endif
+    297          #if (HAL_UART_ISR == 1)
+    298            if (port == HAL_UART_PORT_0)  return HalUARTRxAvailISR();
+    299          #endif
+    300          #if (HAL_UART_ISR == 2)
+    301            if (port == HAL_UART_PORT_1)  return HalUARTRxAvailISR();
+    302          #endif
+    303          #if HAL_UART_USB
+    304            return HalUARTRxAvailUSB();
+    305          #else
+    306            return 0;
+    307          #endif
+    308          }
+    309          
+    310          /******************************************************************************
+    311          ******************************************************************************/
+
+Errors: 1
+Warnings: 8

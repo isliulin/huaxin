@@ -1,0 +1,935 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.40338/W32 for 8051         21/Jul/2014  21:18:24 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Com #
+#                          ponents\usb\class_hid\usb_class_requests.c         #
+#    Command line       =  -f "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                          " (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR    #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100 -DREJOIN_POLL_RATE=440)   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Com #
+#                          ponents\usb\class_hid\usb_class_requests.c -D      #
+#                          ZIGBEEPRO -D ZTOOL_P1 -lC                          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\"              #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug    #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "D:\WorkReserve\project\AE #
+#                          S_BOOT\CC2531UsbSlave\Projects\zstack\Samples\Samp #
+#                          leApp com\CC2530DB\" -I "D:\WorkReserve\project\AE #
+#                          S_BOOT\CC2531UsbSlave\Projects\zstack\Samples\Samp #
+#                          leApp com\CC2530DB\..\SOURCE\" -I                  #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I     #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE #
+#                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl #
+#                          ave\Projects\zstack\Samples\SampleApp              #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\ #
+#                          CC2530EB\" -I "D:\WorkReserve\project\AES_BOOT\CC2 #
+#                          531UsbSlave\Projects\zstack\Samples\SampleApp      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CC #
+#                          SOC\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUD #
+#                          E\" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbS #
+#                          lave\Projects\zstack\Samples\SampleApp             #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\"  #
+#                          -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ #
+#                          " -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSla #
+#                          ve\Projects\zstack\Samples\SampleApp               #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\" #
+#                           -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlav #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\"  #
+#                          -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I   #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SA #
+#                          DDR\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SD #
+#                          ATA\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE #
+#                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl #
+#                          ave\Projects\zstack\Samples\SampleApp              #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LE #
+#                          VEL\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Us #
+#                          bSlave\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\" -I "D:\WorkReserve\project\AES_BOOT\CC2 #
+#                          531UsbSlave\Projects\zstack\Samples\SampleApp      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\SINGLE_CHIP\" -I                          #
+#                          "D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\library #
+#                          \" -I "D:\WorkReserve\project\AES_BOOT\CC2531UsbSl #
+#                          ave\Projects\zstack\Samples\SampleApp              #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_h #
+#                          id\" -I "D:\WorkReserve\project\AES_BOOT\CC2531Usb #
+#                          Slave\Projects\zstack\Samples\SampleApp            #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common\ #
+#                          " -Ohz --require_prototypes                        #
+#    List file          =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\usb_class_requ #
+#                          ests.lst                                           #
+#    Object file        =  D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\usb_class_reque #
+#                          sts.r51                                            #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\WorkReserve\project\AES_BOOT\CC2531UsbSlave\Components\usb\class_hid\usb_class_requests.c
+      1          /***********************************************************************************
+      2          
+      3              Filename:		usb_class_request.c
+      4          
+      5              Description:	USB class request handler.
+      6          
+      7          ***********************************************************************************/
+      8          
+      9          
+     10          /***********************************************************************************
+     11          * INCLUDES
+     12          */
+     13          #include "usb_class_requests.h"
+     14          #include "usb_hid_reports.h"
+     15          #include "usb_framework.h"
+     16          
+     17          
+     18          /***********************************************************************************
+     19          * @fn          usbcrSetReport
+     20          *
+     21          * @brief       Implements support for the HID class request SET_REPORT.
+     22          *
+     23          * @return      none
+     24          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     25          void usbcrSetReport(void)
+   \                     usbcrSetReport:
+     26          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     27              // Received setup header?
+     28              if (usbfwData.ep0Status == EP_IDLE) {
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7036         JNZ     ??usbcrSetReport_0
+     29          
+     30                  // Sanity check the incoming setup header:
+     31                  // Only accept output report for keyboard LED status
+     32                  if ((HI_UINT16(usbSetupHeader.value) == HID_REP_TYPE_OUTPUT) &&
+     33                      (usbSetupHeader.index == KEYBOARD_INDEX) &&
+     34                      (usbSetupHeader.length == sizeof(KEYBOARD_OUT_REPORT))) {
+   \   00000A   90....       MOV     DPTR,#usbSetupHeader + 3
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   F9           MOV     R1,A
+   \   00000F   E4           CLR     A
+   \   000010   7003         JNZ     ??usbcrSetReport_1
+   \   000012   7402         MOV     A,#0x2
+   \   000014   69           XRL     A,R1
+   \                     ??usbcrSetReport_1:
+   \   000015   7023         JNZ     ??usbcrSetReport_2
+   \   000017   12....       LCALL   ?Subroutine1 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   00001A   701E         JNZ     ??usbcrSetReport_2
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   6401         XRL     A,#0x1
+   \   000020   7002         JNZ     ??usbcrSetReport_3
+   \   000022   A3           INC     DPTR
+   \   000023   E0           MOVX    A,@DPTR
+   \                     ??usbcrSetReport_3:
+   \   000024   7014         JNZ     ??usbcrSetReport_2
+     35          
+     36                      // Prepare to receive the data
+     37                      usbfwData.ep0Status = EP_RX;
+   \   000026   90....       MOV     DPTR,#usbfwData + 4
+   \   000029   7402         MOV     A,#0x2
+   \   00002B   F0           MOVX    @DPTR,A
+     38                      usbSetupData.pBuffer = (uint8 *) &hidData.keyboardOutReport.ledStatus;
+   \   00002C   90....       MOV     DPTR,#usbSetupData
+   \   00002F   74..         MOV     A,#hidData
+   \   000031   12....       LCALL   ?Subroutine3 & 0xFFFF
+     39                      usbSetupData.bytesLeft = usbSetupHeader.length;
+     40                      return;
+     41          
+     42                  } else {
+   \                     ??CrossCallReturnLabel_2:
+   \   000034   04           INC     A
+   \   000035   F0           MOVX    @DPTR,A
+   \   000036   A3           INC     DPTR
+   \   000037   E4           CLR     A
+   \   000038   8005         SJMP    ??usbcrSetReport_4
+     43          
+     44                      // Unsupported: Stall the request
+     45                      usbfwData.ep0Status = EP_STALL;
+   \                     ??usbcrSetReport_2:
+   \   00003A   90....       MOV     DPTR,#usbfwData + 4
+   \   00003D   7404         MOV     A,#0x4
+   \                     ??usbcrSetReport_4:
+   \   00003F   F0           MOVX    @DPTR,A
+     46                      return;
+     47                  }
+     48          
+     49              // Received data?
+     50              } else if (usbfwData.ep0Status == EP_RX) {
+   \                     ??usbcrSetReport_0:
+   \   000040   02....       LJMP    ?Subroutine0 & 0xFFFF
+     51          
+     52                  // The USB firmware library will return here after the data has been
+     53                  // received. This USB example only implements one-way RF link protocol
+     54                  // (i.e. keyboard device -> USB device), but can optionally be extended
+     55                  // by transmitting the received LED status (now stored in
+     56                  // hidData.keyboardOutReport.ledStatus) back to keyboard for it to
+     57                  // update itself.
+     58          
+     59              }
+     60          
+     61          } // usbcrSetReport
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   A3           INC     DPTR
+   \   000001                REQUIRE ??Subroutine5_0
+   \   000001                ; // Fall through to label ??Subroutine5_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine5_0:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F8           MOV     R0,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F9           MOV     R1,A
+   \   000005   E8           MOV     A,R0
+   \   000006   49           ORL     A,R1
+   \   000007   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   A3           INC     DPTR
+   \   000002   E4           CLR     A
+   \   000003   F0           MOVX    @DPTR,A
+   \   000004   A3           INC     DPTR
+   \   000005   F0           MOVX    @DPTR,A
+   \   000006   A3           INC     DPTR
+   \   000007   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     62          
+     63          
+     64          /***********************************************************************************
+     65          * @fn          usbcrGetReport
+     66          *
+     67          * @brief       Implements support for the HID class request GET_REPORT.
+     68          *
+     69          * @return      none
+     70          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     71          void usbcrGetReport(void)
+   \                     usbcrGetReport:
+     72          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     73              // Received setup header?
+     74              if (usbfwData.ep0Status == EP_IDLE) {
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   705A         JNZ     ??usbcrGetReport_0
+     75          
+     76                  // Asking for our keyboard report?
+     77                  if ((HI_UINT16(usbSetupHeader.value) == HID_REP_TYPE_INPUT) &&
+     78                          (usbSetupHeader.index == KEYBOARD_INDEX) &&
+     79                          (usbSetupHeader.length == sizeof(KEYBOARD_IN_REPORT))) {
+   \   00000A   90....       MOV     DPTR,#usbSetupHeader + 3
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   F9           MOV     R1,A
+   \   00000F   E4           CLR     A
+   \   000010   7002         JNZ     ??usbcrGetReport_1
+   \   000012   04           INC     A
+   \   000013   69           XRL     A,R1
+   \                     ??usbcrGetReport_1:
+   \   000014   7048         JNZ     ??usbcrGetReport_2
+   \   000016   12....       LCALL   ?Subroutine1 & 0xFFFF
+   \                     ??CrossCallReturnLabel_10:
+   \   000019   701F         JNZ     ??usbcrGetReport_3
+   \   00001B   A3           INC     DPTR
+   \   00001C   E0           MOVX    A,@DPTR
+   \   00001D   6408         XRL     A,#0x8
+   \   00001F   7002         JNZ     ??usbcrGetReport_4
+   \   000021   A3           INC     DPTR
+   \   000022   E0           MOVX    A,@DPTR
+   \                     ??usbcrGetReport_4:
+   \   000023   7039         JNZ     ??usbcrGetReport_2
+     80          
+     81                      // Prepare to send the data
+     82                      usbfwData.ep0Status = EP_TX;
+   \   000025   90....       MOV     DPTR,#usbfwData + 4
+   \   000028   7401         MOV     A,#0x1
+   \   00002A   F0           MOVX    @DPTR,A
+     83                      usbSetupData.pBuffer = (uint8 *) &hidData.keyboardInReport;
+   \   00002B   90....       MOV     DPTR,#usbSetupData
+   \   00002E   74..         MOV     A,#hidData + 1
+   \   000030   12....       LCALL   ?Subroutine3 & 0xFFFF
+     84                      usbSetupData.bytesLeft = usbSetupHeader.length;
+     85                      return;
+     86          
+     87                  // Asking for our mouse report?
+     88                  } else if ((HI_UINT16(usbSetupHeader.value) == HID_REP_TYPE_INPUT) &&
+   \                     ??CrossCallReturnLabel_3:
+   \   000033   7408         MOV     A,#0x8
+   \                     ??usbcrGetReport_5:
+   \   000035   F0           MOVX    @DPTR,A
+   \   000036   A3           INC     DPTR
+   \   000037   E4           CLR     A
+   \   000038   8029         SJMP    ??usbcrGetReport_6
+   \                     ??usbcrGetReport_3:
+   \   00003A   7401         MOV     A,#0x1
+   \   00003C   68           XRL     A,R0
+   \   00003D   7001         JNZ     ??usbcrGetReport_7
+   \   00003F   E9           MOV     A,R1
+   \                     ??usbcrGetReport_7:
+   \   000040   701C         JNZ     ??usbcrGetReport_2
+   \   000042   A3           INC     DPTR
+   \   000043   E0           MOVX    A,@DPTR
+   \   000044   6404         XRL     A,#0x4
+   \   000046   7002         JNZ     ??usbcrGetReport_8
+   \   000048   A3           INC     DPTR
+   \   000049   E0           MOVX    A,@DPTR
+   \                     ??usbcrGetReport_8:
+   \   00004A   7012         JNZ     ??usbcrGetReport_2
+     89                              (usbSetupHeader.index == MOUSE_INDEX) &&
+     90                              (usbSetupHeader.length == sizeof(MOUSE_IN_REPORT))) {
+     91          
+     92                      // Prepare to send the data
+     93                      usbfwData.ep0Status = EP_TX;
+   \   00004C   90....       MOV     DPTR,#usbfwData + 4
+   \   00004F   7401         MOV     A,#0x1
+   \   000051   F0           MOVX    @DPTR,A
+     94                      usbSetupData.pBuffer = (uint8 *) &hidData.mouseInReport;
+   \   000052   90....       MOV     DPTR,#usbSetupData
+   \   000055   74..         MOV     A,#hidData + 9
+   \   000057   12....       LCALL   ?Subroutine3 & 0xFFFF
+     95                      usbSetupData.bytesLeft = usbSetupHeader.length;
+     96                      return;
+     97          
+     98                  } else {
+   \                     ??CrossCallReturnLabel_4:
+   \   00005A   7404         MOV     A,#0x4
+   \   00005C   80D7         SJMP    ??usbcrGetReport_5
+     99          
+    100                      // Unsupported: Stall the request
+    101                      usbfwData.ep0Status = EP_STALL;
+   \                     ??usbcrGetReport_2:
+   \   00005E   90....       MOV     DPTR,#usbfwData + 4
+   \   000061   7404         MOV     A,#0x4
+   \                     ??usbcrGetReport_6:
+   \   000063   F0           MOVX    @DPTR,A
+    102                      return;
+    103                  }
+    104          
+    105              // Data transmitted?
+    106              } else if (usbfwData.ep0Status == EP_TX) {
+   \                     ??usbcrGetReport_0:
+   \   000064   02....       LJMP    ?Subroutine0 & 0xFFFF
+    107          
+    108                  // The USB firmware library will return here after the keyboard/mouse
+    109                  // report has been transmitted, but there is nothing for us to do here.
+    110              }
+    111          
+    112          } // usbcrGetReport
+    113          
+    114          
+    115          /***********************************************************************************
+    116          * @fn          usbcrSetProtocol
+    117          *
+    118          * @brief       Implements support for the HID class request SET_PROTOCOL.
+    119          *              This request is only required for HID devices in the "boot" subclass.
+    120          *
+    121          * @return      none
+    122          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    123          void usbcrSetProtocol(void)
+   \                     usbcrSetProtocol:
+    124          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    125              // Received setup header?
+    126              if (usbfwData.ep0Status == EP_IDLE) {
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7047         JNZ     ??usbcrSetProtocol_0
+    127          
+    128                  // Sanity check setup request parameters
+    129                  if ((usbSetupHeader.value & 0xFFFE) ||
+    130                      (usbSetupHeader.length != 0) ||
+    131                      (usbSetupHeader.index > MOUSE_INDEX)) {
+   \   00000A   90....       MOV     DPTR,#usbSetupHeader + 2
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   F8           MOV     R0,A
+   \   00000F   A3           INC     DPTR
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F9           MOV     R1,A
+   \   000012   E8           MOV     A,R0
+   \   000013   54FE         ANL     A,#0xfe
+   \   000015   FA           MOV     R2,A
+   \   000016   E9           MOV     A,R1
+   \   000017   FB           MOV     R3,A
+   \   000018   EA           MOV     A,R2
+   \   000019   4B           ORL     A,R3
+   \   00001A   701D         JNZ     ??usbcrSetProtocol_1
+   \   00001C   90....       MOV     DPTR,#usbSetupHeader + 6
+   \   00001F   E0           MOVX    A,@DPTR
+   \   000020   FA           MOV     R2,A
+   \   000021   A3           INC     DPTR
+   \   000022   E0           MOVX    A,@DPTR
+   \   000023   FB           MOV     R3,A
+   \   000024   EA           MOV     A,R2
+   \   000025   4B           ORL     A,R3
+   \   000026   7011         JNZ     ??usbcrSetProtocol_1
+   \   000028   90....       MOV     DPTR,#usbSetupHeader + 4
+   \   00002B   E0           MOVX    A,@DPTR
+   \   00002C   FA           MOV     R2,A
+   \   00002D   A3           INC     DPTR
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   FB           MOV     R3,A
+   \   000030   C3           CLR     C
+   \   000031   EA           MOV     A,R2
+   \   000032   9402         SUBB    A,#0x2
+   \   000034   EB           MOV     A,R3
+   \   000035   9400         SUBB    A,#0x0
+   \   000037   4008         JC      ??usbcrSetProtocol_2
+    132          
+    133                      // Unsupported: Stall the request
+    134                      usbfwData.ep0Status = EP_STALL;
+   \                     ??usbcrSetProtocol_1:
+   \   000039   90....       MOV     DPTR,#usbfwData + 4
+   \   00003C   7404         MOV     A,#0x4
+   \   00003E   F0           MOVX    @DPTR,A
+    135                      return;
+   \   00003F   8010         SJMP    ??usbcrSetProtocol_0
+    136          
+    137                  } else {
+    138                      // Check which interface is addressed and store the new protocol
+    139                      switch (LO_UINT16(usbSetupHeader.index)) {
+   \                     ??usbcrSetProtocol_2:
+   \   000041   EA           MOV     A,R2
+   \   000042   6005         JZ      ??usbcrSetProtocol_3
+   \   000044   14           DEC     A
+   \   000045   6007         JZ      ??usbcrSetProtocol_4
+   \   000047   8008         SJMP    ??usbcrSetProtocol_0
+    140          
+    141                      case KEYBOARD_INDEX:
+    142                          hidData.keyboardProtocol = LO_UINT16(usbSetupHeader.value);
+   \                     ??usbcrSetProtocol_3:
+   \   000049   E8           MOV     A,R0
+   \   00004A   F5..         MOV     hidData + 13,A
+    143                          break;
+   \   00004C   8003         SJMP    ??usbcrSetProtocol_0
+    144                      case MOUSE_INDEX:
+    145                          hidData.mouseProtocol = LO_UINT16(usbSetupHeader.value);
+   \                     ??usbcrSetProtocol_4:
+   \   00004E   E8           MOV     A,R0
+   \   00004F   F5..         MOV     hidData + 14,A
+    146                          break;
+    147                      default:
+    148                          break;
+    149                      }
+    150          
+    151                      // This request has only a setup stage (no data stage)
+    152                      return;
+    153                  }
+    154              }
+   \                     ??usbcrSetProtocol_0:
+   \   000051   80..         SJMP    ?Subroutine0
+    155          
+    156          } // usbcrSetProtocol
+    157          
+    158          
+    159          /***********************************************************************************
+    160          * @fn          usbcrGetProtocol
+    161          *
+    162          * @brief       Implements support for the HID class request GET_PROTOCOL.
+    163          *              This request is only required for HID devices in the "boot" subclass.
+    164          *
+    165          * @return      none
+    166          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    167          void usbcrGetProtocol(void)
+   \                     usbcrGetProtocol:
+    168          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    169              // Received setup header?
+    170              if (usbfwData.ep0Status == EP_IDLE) {
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7056         JNZ     ??usbcrGetProtocol_0
+    171          
+    172                  // Sanity check setup request parameters
+    173                  if ((usbSetupHeader.value != 0) ||
+    174                      (usbSetupHeader.length != 1) ||
+    175                      (usbSetupHeader.index > MOUSE_INDEX)) {
+   \   00000A   90....       MOV     DPTR,#usbSetupHeader + 2
+   \   00000D   12....       LCALL   ??Subroutine5_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   000010   701D         JNZ     ??usbcrGetProtocol_1
+   \   000012   90....       MOV     DPTR,#usbSetupHeader + 6
+   \   000015   E0           MOVX    A,@DPTR
+   \   000016   6401         XRL     A,#0x1
+   \   000018   7002         JNZ     ??usbcrGetProtocol_2
+   \   00001A   A3           INC     DPTR
+   \   00001B   E0           MOVX    A,@DPTR
+   \                     ??usbcrGetProtocol_2:
+   \   00001C   7011         JNZ     ??usbcrGetProtocol_1
+   \   00001E   90....       MOV     DPTR,#usbSetupHeader + 4
+   \   000021   E0           MOVX    A,@DPTR
+   \   000022   FC           MOV     R4,A
+   \   000023   A3           INC     DPTR
+   \   000024   E0           MOVX    A,@DPTR
+   \   000025   FD           MOV     R5,A
+   \   000026   C3           CLR     C
+   \   000027   EC           MOV     A,R4
+   \   000028   9402         SUBB    A,#0x2
+   \   00002A   ED           MOV     A,R5
+   \   00002B   9400         SUBB    A,#0x0
+   \   00002D   4007         JC      ??usbcrGetProtocol_3
+    176          
+    177                      // Unsupported: Stall the request
+    178                      usbfwData.ep0Status = EP_STALL;
+   \                     ??usbcrGetProtocol_1:
+   \   00002F   90....       MOV     DPTR,#usbfwData + 4
+   \   000032   7404         MOV     A,#0x4
+   \   000034   8029         SJMP    ??CrossCallReturnLabel_5
+    179                      return;
+    180          
+    181                  } else {
+    182                      // Check which interface is addressed and prepare to send the data
+    183                      switch (LO_UINT16(usbSetupHeader.index)) {
+   \                     ??usbcrGetProtocol_3:
+   \   000036   7B01         MOV     R3,#0x1
+   \   000038   EC           MOV     A,R4
+   \   000039   6005         JZ      ??usbcrGetProtocol_4
+   \   00003B   14           DEC     A
+   \   00003C   600D         JZ      ??usbcrGetProtocol_5
+   \   00003E   8018         SJMP    ??usbcrGetProtocol_6
+    184          
+    185                      case KEYBOARD_INDEX:
+    186                          usbSetupData.pBuffer = &hidData.keyboardProtocol;
+   \                     ??usbcrGetProtocol_4:
+   \   000040   90....       MOV     DPTR,#usbSetupData
+   \   000043   74..         MOV     A,#hidData + 13
+   \   000045   F0           MOVX    @DPTR,A
+   \   000046   A3           INC     DPTR
+   \   000047   74..         MOV     A,#(((hidData >> 7) & 0x1) & (((hidData + 13) >> 7) & 0x1 ^ 0x1)) & 0x1
+   \   000049   8009         SJMP    ??usbcrGetProtocol_7
+    187                          break;
+    188                      case MOUSE_INDEX:
+    189                          usbSetupData.pBuffer = &hidData.mouseProtocol;
+   \                     ??usbcrGetProtocol_5:
+   \   00004B   90....       MOV     DPTR,#usbSetupData
+   \   00004E   74..         MOV     A,#hidData + 14
+   \   000050   F0           MOVX    @DPTR,A
+   \   000051   A3           INC     DPTR
+   \   000052   74..         MOV     A,#(((hidData >> 7) & 0x1) & (((hidData + 14) >> 7) & 0x1 ^ 0x1)) & 0x1
+   \                     ??usbcrGetProtocol_7:
+   \   000054   F0           MOVX    @DPTR,A
+   \   000055   A3           INC     DPTR
+   \   000056   EB           MOV     A,R3
+   \   000057   F0           MOVX    @DPTR,A
+    190                          break;
+    191                      default:
+    192                          break;
+    193                      }
+    194                      usbSetupData.bytesLeft = 1;
+   \                     ??usbcrGetProtocol_6:
+   \   000058   90....       MOV     DPTR,#usbSetupData + 3
+   \   00005B   EB           MOV     A,R3
+   \   00005C   12....       LCALL   ?Subroutine4 & 0xFFFF
+    195                      usbfwData.ep0Status = EP_TX;
+   \                     ??CrossCallReturnLabel_5:
+   \   00005F   F0           MOVX    @DPTR,A
+    196                      return;
+    197                  }
+    198          
+    199              // Data transmitted?
+    200              } else if (usbfwData.ep0Status == EP_TX) {
+   \                     ??usbcrGetProtocol_0:
+   \   000060                REQUIRE ?Subroutine0
+   \   000060                ; // Fall through to label ?Subroutine0
+    201          
+    202                  // The USB firmware library will return here after the protocol data
+    203                  // has been transmitted, but there is no need for us to do anything here.
+    204              }
+    205          
+    206          } // usbcrGetProtocol
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   A3           INC     DPTR
+   \   000002   E4           CLR     A
+   \   000003   F0           MOVX    @DPTR,A
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   04           INC     A
+   \   000008   22           RET
+    207          
+    208          
+    209          /***********************************************************************************
+    210          * @fn          usbcrSetIdle
+    211          *
+    212          * @brief       Implements support for the HID class request SET_IDLE.
+    213          *              This request is optional for mouse devices, but required by keyboards.
+    214          *
+    215          * @return      none
+    216          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    217          void usbcrSetIdle(void)
+   \                     usbcrSetIdle:
+    218          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    219              // Received setup header?
+    220              if (usbfwData.ep0Status == EP_IDLE) {
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7033         JNZ     ??usbcrSetIdle_0
+    221          
+    222                  // Sanity check setup request parameters
+    223                  if ((usbSetupHeader.length != 0) ||
+    224                      (usbSetupHeader.index > MOUSE_INDEX)) {
+   \   00000A   90....       MOV     DPTR,#usbSetupHeader + 6
+   \   00000D   12....       LCALL   ??Subroutine5_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   000010   7005         JNZ     ??usbcrSetIdle_1
+   \   000012   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_0:
+   \   000015   4008         JC      ??usbcrSetIdle_2
+    225          
+    226                      // Unsupported: Stall the request
+    227                      usbfwData.ep0Status = EP_STALL;
+   \                     ??usbcrSetIdle_1:
+   \   000017   90....       MOV     DPTR,#usbfwData + 4
+   \   00001A   7404         MOV     A,#0x4
+   \   00001C   F0           MOVX    @DPTR,A
+    228                      return;
+   \   00001D   801E         SJMP    ??usbcrSetIdle_0
+    229          
+    230                  } else {
+    231                      // Check which interface is addressed and save the new idle rate
+    232                      switch (LO_UINT16(usbSetupHeader.index)) {
+   \                     ??usbcrSetIdle_2:
+   \   00001F   E8           MOV     A,R0
+   \   000020   6005         JZ      ??usbcrSetIdle_3
+   \   000022   14           DEC     A
+   \   000023   600E         JZ      ??usbcrSetIdle_4
+   \   000025   8016         SJMP    ??usbcrSetIdle_0
+    233          
+    234                      case KEYBOARD_INDEX:
+    235                          hidData.keyboardIdleRate = usbSetupHeader.value;
+   \                     ??usbcrSetIdle_3:
+   \   000027   90....       MOV     DPTR,#usbSetupHeader + 2
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   F5..         MOV     hidData + 15+0x0,A
+   \   00002D   A3           INC     DPTR
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   F5..         MOV     hidData + 15+0x1,A
+    236                          break;
+   \   000031   800A         SJMP    ??usbcrSetIdle_0
+    237                      case MOUSE_INDEX:
+    238                          hidData.mouseIdleRate = usbSetupHeader.value;
+   \                     ??usbcrSetIdle_4:
+   \   000033   90....       MOV     DPTR,#usbSetupHeader + 2
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   F5..         MOV     hidData + 17+0x0,A
+   \   000039   A3           INC     DPTR
+   \   00003A   E0           MOVX    A,@DPTR
+   \   00003B   F5..         MOV     hidData + 17+0x1,A
+    239                          break;
+    240                      default:
+    241                          break;
+    242                      }
+    243          
+    244                      // This request has only a setup stage (no data stage)
+    245                      return;
+    246                  }
+    247              }
+   \                     ??usbcrSetIdle_0:
+   \   00003D   80..         SJMP    ?Subroutine0
+    248          
+    249          } // usbcrSetIdle
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   90....       MOV     DPTR,#usbSetupHeader + 4
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F8           MOV     R0,A
+   \   000005   A3           INC     DPTR
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   F9           MOV     R1,A
+   \   000008   C3           CLR     C
+   \   000009   E8           MOV     A,R0
+   \   00000A   9402         SUBB    A,#0x2
+   \   00000C   E9           MOV     A,R1
+   \   00000D   9400         SUBB    A,#0x0
+   \   00000F   22           RET
+    250          
+    251          
+    252          /***********************************************************************************
+    253          * @fn          usbcrGetIdle
+    254          *
+    255          * @brief       Implements support for the HID class request GET_IDLE.
+    256          *              This request is optional for mouse devices, but required by keyboards.
+    257          *
+    258          * @return      none
+    259          */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    260          void usbcrGetIdle(void)
+   \                     usbcrGetIdle:
+    261          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    262              // Received setup header?
+    263              if (usbfwData.ep0Status == EP_IDLE) {
+   \   000004   90....       MOV     DPTR,#usbfwData + 4
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7042         JNZ     ??usbcrGetIdle_0
+    264          
+    265                  // Sanity check setup request parameters
+    266                  if ((usbSetupHeader.length != 1) ||
+    267                      (usbSetupHeader.index > MOUSE_INDEX)) {
+   \   00000A   90....       MOV     DPTR,#usbSetupHeader + 6
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   6401         XRL     A,#0x1
+   \   000010   7002         JNZ     ??usbcrGetIdle_1
+   \   000012   A3           INC     DPTR
+   \   000013   E0           MOVX    A,@DPTR
+   \                     ??usbcrGetIdle_1:
+   \   000014   7005         JNZ     ??usbcrGetIdle_2
+   \   000016   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_1:
+   \   000019   4007         JC      ??usbcrGetIdle_3
+    268          
+    269                      // Unsupported: Stall the request
+    270                      usbfwData.ep0Status = EP_STALL;
+   \                     ??usbcrGetIdle_2:
+   \   00001B   90....       MOV     DPTR,#usbfwData + 4
+   \   00001E   7404         MOV     A,#0x4
+   \   000020   8029         SJMP    ??CrossCallReturnLabel_6
+    271                      return;
+    272          
+    273                  } else {
+    274                      // Check which interface is addressed and prepare to send the data
+    275                      switch (LO_UINT16(usbSetupHeader.index)) {
+   \                     ??usbcrGetIdle_3:
+   \   000022   E8           MOV     A,R0
+   \   000023   6005         JZ      ??usbcrGetIdle_4
+   \   000025   14           DEC     A
+   \   000026   600D         JZ      ??usbcrGetIdle_5
+   \   000028   8019         SJMP    ??usbcrGetIdle_6
+    276          
+    277                      case KEYBOARD_INDEX:
+    278                          usbSetupData.pBuffer = LOBYTEPTR(hidData.keyboardIdleRate);
+   \                     ??usbcrGetIdle_4:
+   \   00002A   90....       MOV     DPTR,#usbSetupData
+   \   00002D   74..         MOV     A,#hidData + 16
+   \   00002F   F0           MOVX    @DPTR,A
+   \   000030   A3           INC     DPTR
+   \   000031   74..         MOV     A,#((((hidData + 15) >> 7) & 0x1) & (((hidData + 16) >> 7) & 0x1 ^ 0x1)) & 0x1
+   \   000033   8009         SJMP    ??usbcrGetIdle_7
+    279                          break;
+    280                      case MOUSE_INDEX:
+    281                          usbSetupData.pBuffer = LOBYTEPTR(hidData.mouseIdleRate);
+   \                     ??usbcrGetIdle_5:
+   \   000035   90....       MOV     DPTR,#usbSetupData
+   \   000038   74..         MOV     A,#hidData + 18
+   \   00003A   F0           MOVX    @DPTR,A
+   \   00003B   A3           INC     DPTR
+   \   00003C   74..         MOV     A,#((((hidData + 17) >> 7) & 0x1) & (((hidData + 18) >> 7) & 0x1 ^ 0x1)) & 0x1
+   \                     ??usbcrGetIdle_7:
+   \   00003E   F0           MOVX    @DPTR,A
+   \   00003F   A3           INC     DPTR
+   \   000040   7401         MOV     A,#0x1
+   \   000042   F0           MOVX    @DPTR,A
+    282                          break;
+    283                      default:
+    284                          break;
+    285                      }
+    286                      usbSetupData.bytesLeft = 1;
+   \                     ??usbcrGetIdle_6:
+   \   000043   90....       MOV     DPTR,#usbSetupData + 3
+   \   000046   7401         MOV     A,#0x1
+   \   000048   12....       LCALL   ?Subroutine4 & 0xFFFF
+    287                      usbfwData.ep0Status = EP_TX;
+   \                     ??CrossCallReturnLabel_6:
+   \   00004B   F0           MOVX    @DPTR,A
+    288                      return;
+    289                  }
+    290          
+    291              // Data transmitted?
+    292              } else if (usbfwData.ep0Status == EP_TX) {
+   \                     ??usbcrGetIdle_0:
+   \   00004C   02....       LJMP    ?Subroutine0 & 0xFFFF
+    293          
+    294                  // The USB firmware library will return here after the idle data
+    295                  // has been transmitted, but there is no need for us to do anything here.
+    296              }
+    297          
+    298          } // usbcrGetIdle
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbcrSetReport?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbcrSetReport
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbcrGetReport?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbcrGetReport
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbcrSetProtocol?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbcrSetProtocol
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbcrGetProtocol?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbcrGetProtocol
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbcrSetIdle?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbcrSetIdle
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbcrGetIdle?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbcrGetIdle
+    299          
+
+   Maximum stack usage in bytes:
+
+     Function         ISTACK PSTACK XSTACK
+     --------         ------ ------ ------
+     usbcrGetIdle         2      0      0
+     usbcrGetProtocol     2      0      0
+     usbcrGetReport       2      0      0
+     usbcrSetIdle         2      0      0
+     usbcrSetProtocol     2      0      0
+     usbcrSetReport       2      0      0
+
+
+   Segment part sizes:
+
+     Function/Label           Bytes
+     --------------           -----
+     usbcrSetReport             67
+     ?Subroutine1                1
+     ??Subroutine5_0             8
+     ?Subroutine3                8
+     ?Subroutine0                7
+     usbcrGetReport            103
+     usbcrSetProtocol           83
+     usbcrGetProtocol           96
+     ?Subroutine4                9
+     usbcrSetIdle               63
+     ?Subroutine2               16
+     usbcrGetIdle               79
+     ??usbcrSetReport?relay      6
+     ??usbcrGetReport?relay      6
+     ??usbcrSetProtocol?relay    6
+     ??usbcrGetProtocol?relay    6
+     ??usbcrSetIdle?relay        6
+     ??usbcrGetIdle?relay        6
+
+ 
+ 540 bytes in segment BANKED_CODE
+  36 bytes in segment BANK_RELAYS
+ 
+ 576 bytes of CODE memory
+
+Errors: none
+Warnings: none

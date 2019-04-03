@@ -1,0 +1,49 @@
+---- finalExpTimes Matches (48 in 7 files) ----
+ComuProc.c:					multiSet.finalExpTimes = multiSet.eTimes;
+ComuProc.c:						multiSet.finalExpTimes = (int)((((unsigned long)cameraSetting.shutter*(unsigned long)multiSet.frequence)/1000)+1);
+ComuProc.c:						multiSet.finalExpTimes = (int)((((unsigned long)cameraSetting.shutter*(unsigned long)multiSet.frequence))/1000);
+ComuProc.c:				//Tprintf("%d ",multiSet.finalExpTimes);				
+ComuProc.c:				multiSet.finalExpTimes=0;
+ComuProc.c:						multiSet.finalExpTimes=0;
+ComuProc.c:						multiSet.finalExpTimes=100;
+ComuProc.c:					multiSet.finalExpTimes=0;
+Init.c:	multiSet.finalExpTimes = 0;
+Int.c:			multiSet.finalExpTimes = multiSet.eTimes;
+Int.c:				multiSet.finalExpTimes = multiSet.eTimes;
+Int.c:				//putchar(multiSet.finalExpTimes);
+Int.c:					multiSet.finalExpTimes = (int)((((unsigned long)cameraSetting.shutter*(unsigned long)multiSet.frequence)/1000));
+Int.c:					multiSet.finalExpTimes = (int)(((((unsigned long)cameraSetting.shutter*(unsigned long)multiSet.frequence))/1000)-1);
+Int.c:			//multiSet.finalExpTimes = multiSet.eTimes;
+Int.c:		//Tprintf("%d ",multiSet.finalExpTimes);
+Int.c:		//putchar(multiSet.finalExpTimes>>8);
+Int.c:		//putchar(multiSet.finalExpTimes&0xff);
+Int.c:		if(multiSet.finalExpTimes>30)
+Int.c:		//multiSet.finalExpTimes = multiSet.eTimes;
+Int.c:		multiSet.finalExpTimes--;
+Int.c:		if(multiSet.finalExpTimes<=0)
+Int.c:			multiSet.finalExpTimes=0;
+Int.c:		//putchar(multiSet.finalExpTimes>>8);
+Int.c:		//putchar(multiSet.finalExpTimes&0xff);
+Int.c:		//putchar(multiSet.finalExpTimes);
+Main.c:		multiSet.finalExpTimes=0;
+Nikon.h:	int finalExpTimes;
+Timer.c:			//putchar(multiSet.finalExpTimes);
+Timer.c:					multiSet.finalExpTimes=0;
+Timer.c:					multiSet.finalExpTimes=0;
+Timer.c:				if(multiSet.finalExpTimes>0)
+Timer.c:						//Tprintf("%d ",multiSet.finalExpTimes);
+Timer.c:						//putchar(multiSet.finalExpTimes>>8);
+Timer.c:						//putchar(multiSet.finalExpTimes&0xff);
+Timer.c:						//if((--multiSet.finalExpTimes<=0)||(!NIKONMOSI))
+Timer.c:						//if(--multiSet.finalExpTimes<=0)
+Timer.c:						//if((FLASHCTL!=0)||(--multiSet.finalExpTimes<=0))
+Timer.c:						if(--multiSet.finalExpTimes<=0)
+Timer.c:							multiSet.finalExpTimes=0;
+Timer.c:					multiSet.finalExpTimes=0;
+Uart.c:			multiSet.finalExpTimes = multiSet.eTimes;
+Uart.c:			multiSet.finalExpTimes = (int)((((unsigned long)shortShutter[19]*(unsigned long)multiSet.frequence))/1000);
+Uart.c:				multiSet.finalExpTimes = (int)((((unsigned long)shortShutter[19]*(unsigned long)multiSet.frequence)/1000)+1);
+Uart.c:				multiSet.finalExpTimes = (int)((((unsigned long)shortShutter[19]*(unsigned long)multiSet.frequence))/1000);
+Uart.c:		//while(muitlCount<multiSet.finalExpTimes+1)
+Uart.c:		while(muitlCount<multiSet.finalExpTimes-1)
+Uart.c:		multiSet.finalExpTimes--;

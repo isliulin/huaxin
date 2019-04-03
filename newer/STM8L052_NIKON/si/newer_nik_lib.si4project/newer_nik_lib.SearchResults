@@ -1,0 +1,14 @@
+---- EXTI_CONF1 Matches (13 in 3 files) ----
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 958 : #define EXTI_CONF1_RESET_VALUE ((uint8_t)0x00)
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 990 : #define EXTI_CONF1_PBLIS   ((uint8_t)0x01) /*!< EXTI PORTB low interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 991 : #define EXTI_CONF1_PBHIS   ((uint8_t)0x02) /*!< EXTI PORTB high interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 992 : #define EXTI_CONF1_PDLIS   ((uint8_t)0x04) /*!< EXTI PORTD low interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 993 : #define EXTI_CONF1_PDHIS   ((uint8_t)0x08) /*!< EXTI PORTD high interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 994 : #define EXTI_CONF1_PELIS   ((uint8_t)0x10) /*!< EXTI PORTE low interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 995 : #define EXTI_CONF1_PEHIS   ((uint8_t)0x20) /*!< EXTI PORTE high interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 996 : #define EXTI_CONF1_PFLIS   ((uint8_t)0x40) /*!< EXTI PORTF low interrupt selector bit Mask */
+stm8l15x.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 997 : #define EXTI_CONF1_PFES    ((uint8_t)0x80) /*!< EXTI PORTF or PORTE interrupt selector bit Mask */
+EXTI_DeInit in stm8l15x_exti.c (Libraries\STM8L15x_StdPeriph_Driver\src) :   EXTI->CONF1 = EXTI_CONF1_RESET_VALUE;
+EXTI_SelectPort in stm8l15x_exti.c (Libraries\STM8L15x_StdPeriph_Driver\src) :     EXTI->CONF1 &= (uint8_t) (~EXTI_CONF1_PFES);
+EXTI_SelectPort in stm8l15x_exti.c (Libraries\STM8L15x_StdPeriph_Driver\src) :     EXTI->CONF1 |= (uint8_t) (EXTI_CONF1_PFES);
+stm8l15x_exti.h (Libraries\STM8L15x_StdPeriph_Driver\inc) line 69 :   * - Bit 7: 0 => the half port is in EXTI_CONF1 register

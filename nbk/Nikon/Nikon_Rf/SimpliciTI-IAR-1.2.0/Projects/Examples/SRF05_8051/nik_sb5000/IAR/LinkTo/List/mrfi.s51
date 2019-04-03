@@ -1,0 +1,3091 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        26/Jul/2016  22:47:49 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\mrfi\mrfi.c     /
+//    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\Configuration\LinkTo\smpl_co /
+//                          nfig.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56,     /
+//                          0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK           /
+//                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\Configuration\smp /
+//                          l_nwk_config.dat (-DMAX_HOPS=3                    /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4            /
+//                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING          /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=115200                           /
+//                          -DUART_FLOW_CONTROL=UART_FLOW_CONTROL_OFF         /
+//                          -DUART_PARITY_MODE=UART_PARITY_NONE               /
+//                          -DUART_STOP_BITS=UART_1_STOP_BIT                  /
+//                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                  /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\mrfi\mrfi.c -D  /
+//                          MCU_H=<ioCC2530.h> -D MRFI_CC2530 -D ZTOOL_P1 -D  /
+//                          MRFI_PA_LNA_ENABLED -lC                           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -lA                /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -o                 /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\Obj\ -e --debug          /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data --nr_virtual_regs  /
+//                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\N /
+//                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SR /
+//                          F05_8051\nik_sb5000\IAR\..\..\..\..\..\Components /
+//                          \bsp\ -I C:\Users\freeman\Documents\work\NBK\Niko /
+//                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples /
+//                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compone /
+//                          nts\bsp\drivers\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\bsp\boards\CC2530EM\ -I            /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\ /
+//                           -I C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          on_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 /
+//                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S /
+//                          impliciTI\nwk\ -I C:\Users\freeman\Documents\work /
+//                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects /
+//                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\Appl /
+//                          ications\ -I C:\Users\freeman\Documents\work\NBK\ /
+//                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam /
+//                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com /
+//                          ponents\SimpliciTI\nwk_applications\ -I           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\ /
+//                          INCLUDE\ -I C:\Users\freeman\Documents\work\NBK\N /
+//                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp /
+//                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp /
+//                          onents\OSAL\MCU\CCSOC\ -I                         /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\HAL\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\HAL\TARGET\CC2530EB\ -I                     /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\SERVI /
+//                          CES\SADDR\ -I C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co /
+//                          mponents\SERVICES\SDATA\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MT\   /
+//                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\..\..\..\..\..\Components\ST /
+//                          ACK\AF\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\NWK\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\STACK\SEC\ -I                      /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\STACK /
+//                          \SAPI\ -I C:\Users\freeman\Documents\work\NBK\Nik /
+//                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon /
+//                          ents\STACK\SYS\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\STACK\ZDO\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\HIGH_LEVEL\ -I                          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\L /
+//                          OW_LEVEL\srf04\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\    /
+//                          -Ohz --require_prototypes                         /
+//    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\mrfi.s51            /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME mrfi
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?CALL_IND
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?INTERRUPT_ENTER_XSP
+        EXTERN ?INTERRUPT_LEAVE_XSP
+        EXTERN ?L_ADD_X
+        EXTERN ?MOVE_LONG8_XDATA_XDATA
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?US_SHR
+        EXTERN ?V0
+        EXTERN ?VB
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_I
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??MRFI_DelayMs?relay
+        FUNCTION ??MRFI_DelayMs?relay,0203H
+        PUBLIC ??MRFI_DisableRxAddrFilter?relay
+        FUNCTION ??MRFI_DisableRxAddrFilter?relay,0203H
+        PUBLIC ??MRFI_EnableRxAddrFilter?relay
+        FUNCTION ??MRFI_EnableRxAddrFilter?relay,0203H
+        PUBLIC ??MRFI_GetRadioState?relay
+        FUNCTION ??MRFI_GetRadioState?relay,0203H
+        PUBLIC ??MRFI_Init?relay
+        FUNCTION ??MRFI_Init?relay,0203H
+        PUBLIC ??MRFI_PostKillSem?relay
+        FUNCTION ??MRFI_PostKillSem?relay,0203H
+        PUBLIC ??MRFI_RandomByte?relay
+        FUNCTION ??MRFI_RandomByte?relay,0203H
+        PUBLIC ??MRFI_Receive?relay
+        FUNCTION ??MRFI_Receive?relay,0203H
+        PUBLIC ??MRFI_ReplyDelay?relay
+        FUNCTION ??MRFI_ReplyDelay?relay,0203H
+        PUBLIC ??MRFI_Rssi?relay
+        FUNCTION ??MRFI_Rssi?relay,0203H
+        PUBLIC ??MRFI_RxIdle?relay
+        FUNCTION ??MRFI_RxIdle?relay,0203H
+        PUBWEAK `??MRFI_RxIsr??INTVEC 131`
+        PUBLIC ??MRFI_RxOn?relay
+        FUNCTION ??MRFI_RxOn?relay,0203H
+        PUBLIC ??MRFI_SetLogicalChannel?relay
+        FUNCTION ??MRFI_SetLogicalChannel?relay,0203H
+        PUBLIC ??MRFI_SetRFPwr?relay
+        FUNCTION ??MRFI_SetRFPwr?relay,0203H
+        PUBLIC ??MRFI_SetRxAddrFilter?relay
+        FUNCTION ??MRFI_SetRxAddrFilter?relay,0203H
+        PUBLIC ??MRFI_Sleep?relay
+        FUNCTION ??MRFI_Sleep?relay,0203H
+        PUBLIC ??MRFI_Transmit?relay
+        FUNCTION ??MRFI_Transmit?relay,0203H
+        PUBLIC ??MRFI_WakeUp?relay
+        FUNCTION ??MRFI_WakeUp?relay,0203H
+        FUNCTION ??Mrfi_DelayUsec?relay,0203H
+        PUBLIC ??Mrfi_DelayUsecLong?relay
+        FUNCTION ??Mrfi_DelayUsecLong?relay,0203H
+        FUNCTION ??Mrfi_RandomBackoffDelay?relay,0203H
+        FUNCTION ??Mrfi_RxModeOff?relay,0203H
+        FUNCTION ??Mrfi_RxModeOn?relay,0203H
+        FUNCTION ??mrfi_TxDone?relay,0203H
+        PUBWEAK ADCCON1
+        PUBWEAK CLKCONCMD
+        PUBWEAK CLKCONSTA
+        PUBWEAK IEN2
+        PUBLIC MRFI_DelayMs
+        FUNCTION MRFI_DelayMs,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC MRFI_DisableRxAddrFilter
+        FUNCTION MRFI_DisableRxAddrFilter,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_EnableRxAddrFilter
+        FUNCTION MRFI_EnableRxAddrFilter,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_GetRadioState
+        FUNCTION MRFI_GetRadioState,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_Init
+        FUNCTION MRFI_Init,0a1203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        PUBLIC MRFI_PostKillSem
+        FUNCTION MRFI_PostKillSem,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_RandomByte
+        FUNCTION MRFI_RandomByte,0203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUBLIC MRFI_Receive
+        FUNCTION MRFI_Receive,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_ReplyDelay
+        FUNCTION MRFI_ReplyDelay,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        PUBLIC MRFI_Rssi
+        FUNCTION MRFI_Rssi,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_RxIdle
+        FUNCTION MRFI_RxIdle,021203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_RxIsr
+        FUNCTION MRFI_RxIsr,021233H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 21, STACK
+        PUBLIC MRFI_RxOn
+        FUNCTION MRFI_RxOn,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_SetLogicalChannel
+        FUNCTION MRFI_SetLogicalChannel,021203H
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC MRFI_SetRFPwr
+        FUNCTION MRFI_SetRFPwr,021203H
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC MRFI_SetRxAddrFilter
+        FUNCTION MRFI_SetRxAddrFilter,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC MRFI_Sleep
+        FUNCTION MRFI_Sleep,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC MRFI_Transmit
+        FUNCTION MRFI_Transmit,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC MRFI_WakeUp
+        FUNCTION MRFI_WakeUp,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        FUNCTION Mrfi_DelayUsec,021203H
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC Mrfi_DelayUsecLong
+        FUNCTION Mrfi_DelayUsecLong,021203H
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 17, STACK
+        FUNCTION Mrfi_RandomBackoffDelay,021203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 9, STACK
+        FUNCTION Mrfi_RxModeOff,0203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        FUNCTION Mrfi_RxModeOn,0203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBWEAK P0DIR
+        PUBWEAK P0SEL
+        PUBWEAK RFD
+        PUBWEAK RFIRQF0
+        PUBWEAK RFIRQF1
+        PUBWEAK RFST
+        PUBWEAK RNDH
+        PUBWEAK RNDL
+        PUBWEAK S1CON
+        PUBWEAK SLEEPCMD
+        PUBWEAK SLEEPSTA
+        PUBWEAK _A_IEN0
+        PUBWEAK _A_IP0xx
+        PUBWEAK _A_IP1xx
+        PUBWEAK _A_P0
+        PUBWEAK __Constant_2
+        PUBWEAK __Constant_ffffffff
+        PUBLIC mrfiBroadcastAddr
+        FUNCTION mrfi_TxDone,0603H
+        ARGFRAME XSTACK, 0, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+memset              SYMBOL "memset"
+MRFI_RxCompleteISR  SYMBOL "MRFI_RxCompleteISR"
+BSP_Delay           SYMBOL "BSP_Delay"
+??BSP_Delay?relay   SYMBOL "?relay", BSP_Delay
+??MRFI_RxCompleteISR?relay SYMBOL "?relay", MRFI_RxCompleteISR
+??memset?relay      SYMBOL "?relay", memset
+MRFI_DelayMs        SYMBOL "MRFI_DelayMs"
+??MRFI_DelayMs?relay SYMBOL "?relay", MRFI_DelayMs
+MRFI_DisableRxAddrFilter SYMBOL "MRFI_DisableRxAddrFilter"
+??MRFI_DisableRxAddrFilter?relay SYMBOL "?relay", MRFI_DisableRxAddrFilter
+MRFI_EnableRxAddrFilter SYMBOL "MRFI_EnableRxAddrFilter"
+??MRFI_EnableRxAddrFilter?relay SYMBOL "?relay", MRFI_EnableRxAddrFilter
+MRFI_GetRadioState  SYMBOL "MRFI_GetRadioState"
+??MRFI_GetRadioState?relay SYMBOL "?relay", MRFI_GetRadioState
+MRFI_Init           SYMBOL "MRFI_Init"
+??MRFI_Init?relay   SYMBOL "?relay", MRFI_Init
+MRFI_PostKillSem    SYMBOL "MRFI_PostKillSem"
+??MRFI_PostKillSem?relay SYMBOL "?relay", MRFI_PostKillSem
+MRFI_RandomByte     SYMBOL "MRFI_RandomByte"
+??MRFI_RandomByte?relay SYMBOL "?relay", MRFI_RandomByte
+MRFI_Receive        SYMBOL "MRFI_Receive"
+??MRFI_Receive?relay SYMBOL "?relay", MRFI_Receive
+MRFI_ReplyDelay     SYMBOL "MRFI_ReplyDelay"
+??MRFI_ReplyDelay?relay SYMBOL "?relay", MRFI_ReplyDelay
+MRFI_Rssi           SYMBOL "MRFI_Rssi"
+??MRFI_Rssi?relay   SYMBOL "?relay", MRFI_Rssi
+MRFI_RxIdle         SYMBOL "MRFI_RxIdle"
+??MRFI_RxIdle?relay SYMBOL "?relay", MRFI_RxIdle
+MRFI_RxIsr          SYMBOL "MRFI_RxIsr"
+`??MRFI_RxIsr??INTVEC 131` SYMBOL "??INTVEC 131", MRFI_RxIsr
+MRFI_RxOn           SYMBOL "MRFI_RxOn"
+??MRFI_RxOn?relay   SYMBOL "?relay", MRFI_RxOn
+MRFI_SetLogicalChannel SYMBOL "MRFI_SetLogicalChannel"
+??MRFI_SetLogicalChannel?relay SYMBOL "?relay", MRFI_SetLogicalChannel
+MRFI_SetRFPwr       SYMBOL "MRFI_SetRFPwr"
+??MRFI_SetRFPwr?relay SYMBOL "?relay", MRFI_SetRFPwr
+MRFI_SetRxAddrFilter SYMBOL "MRFI_SetRxAddrFilter"
+??MRFI_SetRxAddrFilter?relay SYMBOL "?relay", MRFI_SetRxAddrFilter
+MRFI_Sleep          SYMBOL "MRFI_Sleep"
+??MRFI_Sleep?relay  SYMBOL "?relay", MRFI_Sleep
+MRFI_Transmit       SYMBOL "MRFI_Transmit"
+??MRFI_Transmit?relay SYMBOL "?relay", MRFI_Transmit
+MRFI_WakeUp         SYMBOL "MRFI_WakeUp"
+??MRFI_WakeUp?relay SYMBOL "?relay", MRFI_WakeUp
+Mrfi_DelayUsecLong  SYMBOL "Mrfi_DelayUsecLong"
+??Mrfi_DelayUsecLong?relay SYMBOL "?relay", Mrfi_DelayUsecLong
+
+        EXTERN memset
+        FUNCTION memset,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 21, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_RxCompleteISR
+        FUNCTION MRFI_RxCompleteISR,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN BSP_Delay
+        FUNCTION BSP_Delay,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??BSP_Delay?relay
+        FUNCTION ??BSP_Delay?relay,00H
+        EXTERN ??MRFI_RxCompleteISR?relay
+        FUNCTION ??MRFI_RxCompleteISR?relay,00H
+        EXTERN ??memset?relay
+        FUNCTION ??memset?relay,00H
+
+// C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\mrfi\mrfi.c
+//    1 /**************************************************************************************************
+//    2   Revised:        $Date: 2007-07-06 11:19:00 -0700 (Fri, 06 Jul 2007) $
+//    3   Revision:       $Revision: 13579 $
+//    4 
+//    5   Copyright 2007 Texas Instruments Incorporated.  All rights reserved.
+//    6 
+//    7   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//    8   the terms of a software license agreement between the user who downloaded the software,
+//    9   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   10   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   11   License. The License limits your use, and you acknowledge, that the Software may not be
+//   12   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   13   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   14   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   15   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   16   perform, display or sell this Software and/or its documentation for any purpose.
+//   17 
+//   18   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   19   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   20   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   21   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   22   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   23   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   24   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   25   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   26   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   27 
+//   28   Should you have any questions regarding your right to use this Software,
+//   29   contact Texas Instruments Incorporated at www.TI.com.
+//   30 **************************************************************************************************/
+//   31 
+//   32 /* ~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
+//   33  *   MRFI (Minimal RF Interface)
+//   34  *   Top-level code file.
+//   35  * ~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
+//   36  */
+//   37 
+//   38 /* ------------------------------------------------------------------------------------------------
+//   39  *                                          Includes
+//   40  * ------------------------------------------------------------------------------------------------
+//   41  */
+//   42 #include "mrfi.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,0a9H
+// union <unnamed> volatile __sfr _A_IP0xx
+_A_IP0xx:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b9H
+// union <unnamed> volatile __sfr _A_IP1xx
+_A_IP1xx:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,091H
+// unsigned char volatile __sfr RFIRQF1
+RFIRQF1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09aH
+// unsigned char volatile __sfr IEN2
+IEN2:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09bH
+// unsigned char volatile __sfr S1CON
+S1CON:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09dH
+// unsigned char volatile __sfr SLEEPSTA
+SLEEPSTA:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09eH
+// unsigned char volatile __sfr CLKCONSTA
+CLKCONSTA:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0a8H
+// union <unnamed> volatile __sfr _A_IEN0
+_A_IEN0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b4H
+// unsigned char volatile __sfr ADCCON1
+ADCCON1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0bcH
+// unsigned char volatile __sfr RNDL
+RNDL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0bdH
+// unsigned char volatile __sfr RNDH
+RNDH:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0beH
+// unsigned char volatile __sfr SLEEPCMD
+SLEEPCMD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c6H
+// unsigned char volatile __sfr CLKCONCMD
+CLKCONCMD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d9H
+// unsigned char volatile __sfr RFD
+RFD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e1H
+// unsigned char volatile __sfr RFST
+RFST:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e9H
+// unsigned char volatile __sfr RFIRQF0
+RFIRQF0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// unsigned char volatile __sfr P0SEL
+P0SEL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
+        DATA8
+        DS 1
+//   43 #include "mrfi_defs.h"
+//   44 
+//   45 /* ------------------------------------------------------------------------------------------------
+//   46  *                                    Global Constants
+//   47  * ------------------------------------------------------------------------------------------------
+//   48  */
+//   49 
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+//   50 const uint8_t mrfiBroadcastAddr[] = { 0xFF, 0xFF, 0xFF, 0xFF };
+mrfiBroadcastAddr:
+        DS 4
+        REQUIRE `?<Initializer for mrfiBroadcastAddr>`
+        REQUIRE __INIT_XDATA_I
+//   51 /* verify number of table entries matches the corresponding #define */
+//   52 BSP_STATIC_ASSERT(MRFI_ADDR_SIZE == ((sizeof(mrfiBroadcastAddr)/sizeof(mrfiBroadcastAddr[0])) * sizeof(mrfiBroadcastAddr[0])));
+//   53 
+//   54 
+//   55 
+//   56 /* ------------------------------------------------------------------------------------------------
+//   57  *                                       Local Variables
+//   58  * ------------------------------------------------------------------------------------------------
+//   59  */
+//   60 #ifdef MRFI_TIMER_ALWAYS_ACTIVE
+//   61 
+//   62 /* MRFI_Time holds the active time counted by the timer interrupt.
+//   63  * Only bytes beyond the size of the timer are allocated.
+//   64  */
+//   65 static volatile uint32_t MRFI_Time = 0;
+//   66 
+//   67 #endif
+//   68 
+//   69 
+//   70 
+//   71 /* ------------------------------------------------------------------------------------------------
+//   72  *                                       Local Prototypes
+//   73  * ------------------------------------------------------------------------------------------------
+//   74  */
+//   75 static void Mrfi_RxModeOn(void);
+//   76 static void Mrfi_RxModeOff(void);
+//   77 static void Mrfi_RandomBackoffDelay(void);
+//   78 
+//   79 
+//   80 
+//   81 /* ------------------------------------------------------------------------------------------------
+//   82  *                                       C Code Includes
+//   83  * ------------------------------------------------------------------------------------------------
+//   84  */
+//   85 
+//   86 /* ----- Radio Family 1 ----- */
+//   87 #if (defined MRFI_RADIO_FAMILY1)
+//   88 #include "radios/family1/mrfi_radio.c"
+//   89 #include "radios/family1/mrfi_spi.c"
+//   90 #include "radios/common/mrfi_f1f2.c"
+//   91 #include "bsp_external/mrfi_board.c"
+//   92 
+//   93 /* ----- Radio Family 2 ----- */
+//   94 #elif (defined MRFI_RADIO_FAMILY2)
+//   95 #include "radios/family2/mrfi_radio.c"
+//   96 #include "radios/common/mrfi_f1f2.c"
+//   97 
+//   98 /* ----- Radio Family 3 ----- */
+//   99 #elif (defined MRFI_RADIO_FAMILY3)
+//  100 #include "bsp_external/mrfi_board.c"
+//  101 #include "radios/family3/mrfi_spi.c"
+//  102 #include "radios/family3/mrfi_radio.c"
+//  103 
+//  104 /* ----- Radio Family 4 ----- */
+//  105 #elif (defined MRFI_RADIO_FAMILY4)
+//  106 #include "radios/family4/mrfi_radio.c"
+//  107 
+//  108 /* ----- Radio Family 5 ----- */
+//  109 #elif (defined MRFI_RADIO_FAMILY5)
+//  110 #include "radios/family5/mrfi_radio.c"
+//  111 #include "radios/family5/mrfi_radio_interface.c"
+//  112 
+//  113 /* ----- Radio Family 6 ----- */
+//  114 #elif (defined MRFI_RADIO_FAMILY6)
+//  115 #include "radios/family6/mrfi_radio.c"
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+// static unsigned char const mrfiLogicalChanTable[4]
+mrfiLogicalChanTable:
+        DS 4
+        REQUIRE `?<Initializer for mrfiLogicalChanTable>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA8
+// static unsigned char const mrfiRFPowerTable[3]
+mrfiRFPowerTable:
+        DS 3
+        REQUIRE `?<Initializer for mrfiRFPowerTable>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+__Constant_2:
+        DS 4
+        REQUIRE `?<Initializer for __Constant_2>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+__Constant_ffffffff:
+        DS 4
+        REQUIRE `?<Initializer for __Constant_ffffffff>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t mrfiRadioState
+mrfiRadioState:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static mrfiPacket_t mrfiIncomingPacket
+mrfiIncomingPacket:
+        DS 49
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t volatile sReplyDelayContext
+sReplyDelayContext:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t volatile sKillSem
+sKillSem:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+// static uint16_t sReplyDelayScalar
+sReplyDelayScalar:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_Init(void)
+MRFI_Init:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function MRFI_Init
+        CODE
+        FUNCALL MRFI_Init, memset
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Init, MRFI_SetLogicalChannel
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Init, MRFI_SetRFPwr
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Init, Mrfi_RandomBackoffDelay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        ORL     0xb9,#0x2
+        ORL     0xa9,#0x2
+        ORL     0xa9,#0x1
+        ANL     0xb9,#0xfe
+        ANL     0xa9,#0xf7
+        ANL     0xa9,#0xfb
+        ORL     0xb9,#0x8
+        ORL     0xb9,#0x4
+        ANL     0xb9,#0xef
+        ANL     0xa9,#0xef
+        ANL     0xb9,#0xdf
+        ANL     0xa9,#0xdf
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x31
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 12)
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   ??memset?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     DPTR,#0x624a
+        MOVX    A,@DPTR
+        XRL     A,#0xa5
+        JZ      ??MRFI_Init_0
+        CLR     0xa8.7
+??MRFI_Init_1:
+        SJMP    ??MRFI_Init_1
+??MRFI_Init_0:
+        MOV     DPTR,#0x6249
+        MOVX    A,@DPTR
+        JNZ     ??MRFI_Init_2
+        CLR     0xa8.7
+??MRFI_Init_3:
+        SJMP    ??MRFI_Init_3
+??MRFI_Init_2:
+        ANL     0xf3,#0xef
+        ORL     0xfd,#0x10
+        SETB    0x80.4
+        ANL     0xbe,#0xfb
+??MRFI_Init_4:
+        MOV     A,0x9d
+        MOV     C,0xE0 /* A   */.6
+        JNC     ??MRFI_Init_4
+        NOP
+        MOV     R0,#-0x8
+        MOV     R1,#0x1
+??MRFI_Init_5:
+        NOP
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R0
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_Init_5
+        MOV     0xc6,#-0x80
+??MRFI_Init_6:
+        MOV     A,#-0x80
+        XRL     A,0x9e
+        JNZ     ??MRFI_Init_6
+        ORL     0xbe,#0x4
+        MOV     DPTR,#0x61a9
+        MOV     A,#0x14
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61ab
+        MOV     A,#0x3f
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6196
+        MOV     A,#-0x8
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61a8
+        MOV     A,#-0x7b
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61ac
+        MOV     A,#0x5a
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61b2
+        MOV     A,#0x15
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6182
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61b5
+        MOV     A,#0x10
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0xe
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61fa
+        MOV     A,#0x9
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x61e5
+        MOV     A,#-0x1
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6172
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6189
+        MOVX    A,@DPTR
+        ANL     A,#0xf3
+        ORL     A,#0x8
+        MOVX    @DPTR,A
+        MOV     0xe1,#-0x1d
+??MRFI_Init_7:
+        MOV     DPTR,#0x6199
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??MRFI_Init_7
+        MOV     R0,#0x0
+        MOV     R1,#0x0
+        MOV     R4,#0x10
+??MRFI_Init_8:
+        MOV     A,R0
+        CLR     C
+        RLC     A
+        MOV     R0,A
+        MOV     A,R1
+        RLC     A
+        MOV     R1,A
+        MOV     DPTR,#0x61a7
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        CLR     A
+        RLC     A
+        MOV     R2,A
+        MOV     A,R0
+        ORL     A,R2
+        MOV     R0,A
+        DEC     R4
+        MOV     A,R4
+        JNZ     ??MRFI_Init_8
+        MOV     A,#-0x80
+        ORL     A,R0
+        MOV     0xbc,A
+        MOV     A,R1
+        MOV     0xbc,A
+        MOV     0xe1,#-0x11
+        MOV     0xe1,#-0x13
+        MOV     0xe1,#-0x13
+        MOV     DPTR,#0x6189
+        MOVX    A,@DPTR
+        ANL     A,#0xf3
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6180
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        ANL     A,#0x97
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x618a
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.0
+        MOVX    @DPTR,A
+        MOV     DPTR,#0x6194
+        MOV     A,#0x7f
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function MRFI_SetLogicalChannel
+        MOV     R1,#0x0
+        LCALL   ??MRFI_SetLogicalChannel?relay
+        ; Setup parameters for call to function MRFI_SetRFPwr
+        MOV     R1,#0x2
+        LCALL   ??MRFI_SetRFPwr?relay
+        ORL     0x9a,#0x1
+        MOV     DPTR,#sReplyDelayScalar
+        MOV     A,#0x34
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        SETB    0xa8.7
+        ; Setup parameters for call to function Mrfi_RandomBackoffDelay
+        LCALL   ??Mrfi_RandomBackoffDelay?relay
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock0
+        REQUIRE _A_IP0xx
+        REQUIRE _A_IP1xx
+        REQUIRE _A_IEN0
+        REQUIRE P0SEL
+        REQUIRE P0DIR
+        REQUIRE _A_P0
+        REQUIRE SLEEPCMD
+        REQUIRE SLEEPSTA
+        REQUIRE CLKCONCMD
+        REQUIRE CLKCONSTA
+        REQUIRE RFST
+        REQUIRE RNDL
+        REQUIRE IEN2
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// static __banked_func __xdata_reentrant bool mrfi_TxDone(void)
+mrfi_TxDone:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function mrfi_TxDone
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        MOV     A,0x91
+        MOV     C,0xE0 /* A   */.1
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock1
+        REQUIRE RFIRQF1
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant uint8_t MRFI_Transmit(mrfiPacket_t *, uint8_t)
+MRFI_Transmit:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function MRFI_Transmit
+        CODE
+        FUNCALL MRFI_Transmit, Mrfi_RxModeOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Transmit, Mrfi_DelayUsecLong
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Transmit, Mrfi_RxModeOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Transmit, Mrfi_RandomBackoffDelay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Transmit, Mrfi_DelayUsecLong
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Transmit, Mrfi_RxModeOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_Transmit, Mrfi_RxModeOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     ?V0 + 1,R1
+        MOV     ?V0 + 0,#0x0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_0
+        CLR     0xa8.7
+??MRFI_Transmit_1:
+        SJMP    ??MRFI_Transmit_1
+??MRFI_Transmit_0:
+        ; Setup parameters for call to function Mrfi_RxModeOff
+        LCALL   ??Mrfi_RxModeOff?relay
+        ANL     0x91,#0xfd
+        MOV     DPTR,#??dsn
+        MOVX    A,@DPTR
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        MOVX    @DPTR,A
+        MOV     DPTR,#??dsn
+        MOVX    A,@DPTR
+        INC     A
+        MOVX    @DPTR,A
+        MOV     0xe1,#-0x12
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     0xd9,R1
+        MOV     R0,#0x0
+        SJMP    ??MRFI_Transmit_2
+??MRFI_Transmit_3:
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     0xd9,A
+        INC     R0
+??MRFI_Transmit_2:
+        MOV     A,R0
+        CLR     C
+        SUBB    A,R1
+        JC      ??MRFI_Transmit_3
+        MOV     A,?V0 + 1
+        JNZ     ??MRFI_Transmit_4
+        MOV     0xe1,#-0x17
+        ; Setup parameters for call to function Mrfi_DelayUsecLong
+??MRFI_Transmit_5:
+        MOV     ?V0 + 2,#??mrfi_TxDone?relay & 0xff
+        MOV     ?V0 + 3,#(??mrfi_TxDone?relay >> 8) & 0xff
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 14)
+        MOV     ?V0 + 2,#0x24
+        MOV     ?V0 + 3,#0x1
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     DPTR,#__Constant_2
+        LCALL   ?XLOAD_R2345
+        LCALL   ??Mrfi_DelayUsecLong?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 12)
+        SJMP    ??MRFI_Transmit_6
+??MRFI_Transmit_4:
+        MOV     R6,#0x4
+        MOV     A,#0x1
+        XRL     A,?V0 + 1
+        JZ      ??MRFI_Transmit_7
+        CLR     0xa8.7
+??MRFI_Transmit_8:
+        SJMP    ??MRFI_Transmit_8
+??MRFI_Transmit_9:
+        DEC     R6
+        ; Setup parameters for call to function Mrfi_RxModeOff
+        LCALL   ??Mrfi_RxModeOff?relay
+        ; Setup parameters for call to function Mrfi_RandomBackoffDelay
+        LCALL   ??Mrfi_RandomBackoffDelay?relay
+??MRFI_Transmit_7:
+        MOV     0xe1,#-0x1d
+??MRFI_Transmit_10:
+        MOV     DPTR,#0x6199
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??MRFI_Transmit_10
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     0xe1,#-0x16
+        MOV     DPTR,#0x6193
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,R1
+        MOV     C,0xE0 /* A   */.3
+        JC      ??MRFI_Transmit_5
+        ; Setup parameters for call to function Mrfi_DelayUsecLong
+        MOV     A,R6
+        JNZ     ??MRFI_Transmit_9
+        MOV     ?V0 + 0,#0x1
+??MRFI_Transmit_6:
+        ; Setup parameters for call to function Mrfi_RxModeOff
+        LCALL   ??Mrfi_RxModeOff?relay
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_Transmit_11
+        ; Setup parameters for call to function Mrfi_RxModeOn
+        LCALL   ??Mrfi_RxModeOn?relay
+??MRFI_Transmit_11:
+        MOV     R1,?V0 + 0
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock2
+        REQUIRE _A_IEN0
+        REQUIRE RFIRQF1
+        REQUIRE RFST
+        REQUIRE RFD
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// uint8_t MRFI_Transmit::dsn
+??dsn:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_Receive(mrfiPacket_t *)
+MRFI_Receive:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function MRFI_Receive
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiIncomingPacket
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     A,#0x31
+        LCALL   ?MOVE_LONG8_XDATA_XDATA
+        LJMP    ??Subroutine6_0 & 0xFFFF
+        CFI EndBlock cfiBlock3
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_RxOn(void)
+MRFI_RxOn:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function MRFI_RxOn
+        CODE
+        FUNCALL MRFI_RxOn, Mrfi_RxModeOn
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_RxOn_0
+        CLR     0xa8.7
+??MRFI_RxOn_1:
+        SJMP    ??MRFI_RxOn_1
+??MRFI_RxOn_0:
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JZ      ??MRFI_RxOn_2
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function Mrfi_RxModeOn
+        LCALL   ??Mrfi_RxModeOn?relay
+??MRFI_RxOn_2:
+        LJMP    ??Subroutine6_0 & 0xFFFF
+        CFI EndBlock cfiBlock4
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_RxIdle(void)
+MRFI_RxIdle:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function MRFI_RxIdle
+        CODE
+        FUNCALL MRFI_RxIdle, Mrfi_RxModeOff
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_RxIdle_0
+        CLR     0xa8.7
+??MRFI_RxIdle_1:
+        SJMP    ??MRFI_RxIdle_1
+??MRFI_RxIdle_0:
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_RxIdle_2
+        ; Setup parameters for call to function Mrfi_RxModeOff
+        LCALL   ??Mrfi_RxModeOff?relay
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+??MRFI_RxIdle_2:
+        SJMP    ??Subroutine6_0
+        CFI EndBlock cfiBlock5
+        REQUIRE _A_IEN0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant __interrupt void MRFI_RxIsr(void)
+MRFI_RxIsr:
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI Function MRFI_RxIsr
+        CODE
+        FUNCALL MRFI_RxIsr, memset
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 21, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 21, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_RxIsr, MRFI_RxCompleteISR
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 19, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    A
+        CFI A Frame(CFA_SP, 3)
+        CFI CFA_SP SP+-3
+        MOV     A,#-0x13
+        LCALL   ?INTERRUPT_ENTER_XSP
+        CFI B load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI PSW load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R5 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R4 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R3 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI R2 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI R1 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI R0 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI CFA_XSP16 add(XSP16, 19)
+        ; Saved register size: 19
+        ; Auto size: 0
+        MOV     C,0xa8.7
+        CLR     A
+        RLC     A
+        MOV     ?V0 + 1,A
+        SETB    0xa8.7
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JZ      ??MRFI_RxIsr_0
+        CLR     0xa8.7
+??MRFI_RxIsr_1:
+        SJMP    ??MRFI_RxIsr_1
+??MRFI_RxIsr_0:
+        MOV     A,0xe9
+        MOV     C,0xE0 /* A   */.2
+        JNC     ??MRFI_RxIsr_0
+        MOV     DPTR,#0x6193
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.6
+        JNC     ??MRFI_RxIsr_2
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.7
+        JC      ??MRFI_RxIsr_2
+        MOV     0xe1,#-0x13
+        MOV     0xe1,#-0x13
+        SJMP    ??MRFI_RxIsr_3
+??MRFI_RxIsr_2:
+        ANL     0xe9,#0xfb
+        MOV     A,0xd9
+        ANL     A,#0x7f
+        MOV     ?V0 + 2,A
+        MOV     A,#0x1
+        ADD     A,?V0 + 2
+        SUBB    A,#0x32
+        JNC     ??MRFI_RxIsr_4
+        MOV     A,?V0 + 2
+        CLR     C
+        SUBB    A,#0xe
+        JNC     ??MRFI_RxIsr_5
+??MRFI_RxIsr_4:
+        MOV     R0,#0x0
+??MRFI_RxIsr_6:
+        MOV     A,R0
+        CLR     C
+        SUBB    A,?V0 + 2
+        JNC     ??MRFI_RxIsr_7
+        MOV     A,0xd9
+        INC     R0
+        SJMP    ??MRFI_RxIsr_6
+??MRFI_RxIsr_5:
+        MOV     R6,#mrfiIncomingPacket & 0xff
+        MOV     R7,#(mrfiIncomingPacket >> 8) & 0xff
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 4,#0x31
+        MOV     ?V0 + 5,#0x0
+        MOV     R0,#?V0 + 4
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 21)
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   ??memset?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 19)
+        MOV     A,?V0 + 2
+        MOV     DPTR,#mrfiIncomingPacket
+        MOVX    @DPTR,A
+        MOV     ?V0 + 0,A
+??MRFI_RxIsr_8:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        MOV     R6,DPL
+        MOV     R7,DPH
+        MOV     A,0xd9
+        MOVX    @DPTR,A
+        DEC     ?V0 + 0
+        MOV     A,?V0 + 0
+        JNZ     ??MRFI_RxIsr_8
+        MOV     A,0xd9
+        ADD     A,#-0x4c
+        MOV     DPTR,#mrfiIncomingPacket + 49
+        MOVX    @DPTR,A
+        MOV     A,0xd9
+        MOV     R0,A
+        MOV     C,0xE0 /* A   */.7
+        JNC     ??MRFI_RxIsr_7
+        MOV     A,#0x7f
+        ANL     A,R0
+        INC     DPTR
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function MRFI_RxCompleteISR
+        LCALL   ??MRFI_RxCompleteISR?relay
+??MRFI_RxIsr_7:
+        MOV     DPTR,#0x619b
+        MOVX    A,@DPTR
+        JZ      $+5
+        LJMP    ??MRFI_RxIsr_0
+??MRFI_RxIsr_3:
+        MOV     0x9b,#0x0
+        ANL     0xe9,#0xfb
+        MOV     A,?V0 + 1
+        MOV     C,0xE0 /* A   */.0
+        MOV     0xa8.7,C
+        MOV     R7,#0x6
+        LJMP    ?INTERRUPT_LEAVE_XSP
+        CFI EndBlock cfiBlock6
+        REQUIRE _A_IEN0
+        REQUIRE RFIRQF0
+        REQUIRE RFST
+        REQUIRE RFD
+        REQUIRE S1CON
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_SetLogicalChannel(uint8_t)
+MRFI_SetLogicalChannel:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function MRFI_SetLogicalChannel
+        CODE
+        FUNCALL MRFI_SetLogicalChannel, Mrfi_RxModeOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_SetLogicalChannel, Mrfi_RxModeOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+        CLR     C
+        SUBB    A,#0x4
+        JC      ??MRFI_SetLogicalChannel_0
+        CLR     0xa8.7
+??MRFI_SetLogicalChannel_1:
+        SJMP    ??MRFI_SetLogicalChannel_1
+??MRFI_SetLogicalChannel_0:
+        ; Setup parameters for call to function Mrfi_RxModeOff
+        LCALL   ??Mrfi_RxModeOff?relay
+        MOV     B,#0x5
+        MOV     ?V0 + 0,R6
+        MOV     A,#mrfiLogicalChanTable & 0xff
+        ADD     A,?V0 + 0
+        MOV     DPL,A
+        MOV     A,#(mrfiLogicalChanTable >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MUL     AB
+        ADD     A,#-0x2c
+        MOV     DPTR,#0x618f
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_SetLogicalChannel_2
+        ; Setup parameters for call to function Mrfi_RxModeOn
+        LCALL   ??Mrfi_RxModeOn?relay
+??MRFI_SetLogicalChannel_2:
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock7
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_SetRFPwr(uint8_t)
+MRFI_SetRFPwr:
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI Function MRFI_SetRFPwr
+        CODE
+        FUNCALL MRFI_SetRFPwr, Mrfi_RxModeOff
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL MRFI_SetRFPwr, Mrfi_RxModeOn
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+        ; Setup parameters for call to function Mrfi_RxModeOff
+        LCALL   ??Mrfi_RxModeOff?relay
+        MOV     ?V0 + 0,R6
+        MOV     A,#mrfiRFPowerTable & 0xff
+        ADD     A,?V0 + 0
+        MOV     DPL,A
+        MOV     A,#(mrfiRFPowerTable >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     DPTR,#0x6190
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_SetRFPwr_0
+        ; Setup parameters for call to function Mrfi_RxModeOn
+        LCALL   ??Mrfi_RxModeOn?relay
+        CFI EndBlock cfiBlock8
+??MRFI_SetRFPwr_0:
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock9
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_WakeUp(void)
+MRFI_WakeUp:
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function MRFI_WakeUp
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_WakeUp_0
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+??MRFI_WakeUp_0:
+        SJMP    ??Subroutine6_0
+        CFI EndBlock cfiBlock10
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        MOVX    @DPTR,A
+        CFI EndBlock cfiBlock11
+        REQUIRE ??Subroutine6_0
+        ; // Fall through to label ??Subroutine6_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine6_0:
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock12
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_Sleep(void)
+MRFI_Sleep:
+        CFI Block cfiBlock13 Using cfiCommon0
+        CFI Function MRFI_Sleep
+        CODE
+        FUNCALL MRFI_Sleep, MRFI_RxIdle
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JZ      ??MRFI_Sleep_0
+        ; Setup parameters for call to function MRFI_RxIdle
+        LCALL   ??MRFI_RxIdle?relay
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+??MRFI_Sleep_0:
+        SJMP    ??Subroutine6_0
+        CFI EndBlock cfiBlock13
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant uint8_t MRFI_SetRxAddrFilter(uint8_t *)
+MRFI_SetRxAddrFilter:
+        CFI Block cfiBlock14 Using cfiCommon0
+        CFI Function MRFI_SetRxAddrFilter
+        CODE
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        MOV     R0,DPL
+        MOV     R1,DPH
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOVX    A,@DPTR
+        MOV     R6,A
+        MOV     A,#-0x1
+        XRL     A,R6
+        JZ      ??MRFI_SetRxAddrFilter_0
+        MOV     A,#-0x2
+        XRL     A,R6
+        JNZ     ??MRFI_SetRxAddrFilter_1
+??MRFI_SetRxAddrFilter_0:
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOVX    A,@DPTR
+        CPL     A
+        JZ      ??MRFI_SetRxAddrFilter_2
+??MRFI_SetRxAddrFilter_1:
+        MOV     A,R2
+        ADD     A,#0x3
+        MOV     R4,A
+        MOV     A,R3
+        ADDC    A,#0x0
+        MOV     R5,A
+        MOV     A,R2
+        ADD     A,#0x2
+        INC     R2
+        INC     R2
+        MOV     A,R3
+        ADDC    A,#0x0
+        MOV     R3,A
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOVX    A,@DPTR
+        CPL     A
+        JNZ     ??MRFI_SetRxAddrFilter_3
+        MOV     DPL,R4
+        MOV     DPH,R5
+        MOVX    A,@DPTR
+        CPL     A
+        JNZ     ??MRFI_SetRxAddrFilter_3
+??MRFI_SetRxAddrFilter_2:
+        MOV     R1,#0x1
+        SJMP    ??MRFI_SetRxAddrFilter_4
+??MRFI_SetRxAddrFilter_3:
+        MOV     A,R6
+        MOV     DPTR,#0x6172
+        MOVX    @DPTR,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOVX    A,@DPTR
+        MOV     DPTR,#0x6173
+        MOVX    @DPTR,A
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOVX    A,@DPTR
+        MOV     DPTR,#0x6174
+        MOVX    @DPTR,A
+        MOV     DPL,R4
+        MOV     DPH,R5
+        MOVX    A,@DPTR
+        MOV     DPTR,#0x6175
+        MOVX    @DPTR,A
+        MOV     R1,#0x0
+        CFI EndBlock cfiBlock14
+??MRFI_SetRxAddrFilter_4:
+        REQUIRE ?Subroutine2
+        ; // Fall through to label ?Subroutine2
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiBlock15 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock15
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_EnableRxAddrFilter(void)
+MRFI_EnableRxAddrFilter:
+        CFI Block cfiBlock16 Using cfiCommon0
+        CFI Function MRFI_EnableRxAddrFilter
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#0x6172
+        MOVX    A,@DPTR
+        CPL     A
+        JZ      ??MRFI_EnableRxAddrFilter_0
+        INC     DPTR
+        MOVX    A,@DPTR
+        CPL     A
+        JNZ     ??MRFI_EnableRxAddrFilter_1
+??MRFI_EnableRxAddrFilter_0:
+        CLR     0xa8.7
+??MRFI_EnableRxAddrFilter_2:
+        SJMP    ??MRFI_EnableRxAddrFilter_2
+??MRFI_EnableRxAddrFilter_1:
+        MOV     DPTR,#0x6180
+        MOVX    A,@DPTR
+        SETB    0xE0 /* A   */.0
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock16
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_DisableRxAddrFilter(void)
+MRFI_DisableRxAddrFilter:
+        CFI Block cfiBlock17 Using cfiCommon0
+        CFI Function MRFI_DisableRxAddrFilter
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#0x6180
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.0
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock17
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant int8_t MRFI_Rssi(void)
+MRFI_Rssi:
+        CFI Block cfiBlock18 Using cfiCommon0
+        CFI Function MRFI_Rssi
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JZ      ??MRFI_Rssi_0
+        CLR     0xa8.7
+??MRFI_Rssi_1:
+        SJMP    ??MRFI_Rssi_1
+??MRFI_Rssi_0:
+        MOV     DPTR,#0x6199
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        JNC     ??MRFI_Rssi_0
+        MOV     DPTR,#0x6198
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#-0x4c
+        ADD     A,R0
+        MOV     R1,A
+        LJMP    ??Subroutine6_0 & 0xFFFF
+        CFI EndBlock cfiBlock18
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant uint8_t MRFI_RandomByte(void)
+MRFI_RandomByte:
+        CFI Block cfiBlock19 Using cfiCommon0
+        CFI Function MRFI_RandomByte
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        MOV     A,0xb4
+        ANL     A,#0xf3
+        ORL     A,#0x4
+        MOV     0xb4,A
+        MOV     R1,0xbd
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock19
+        REQUIRE ADCCON1
+        REQUIRE RNDH
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_DelayMs(uint16_t)
+MRFI_DelayMs:
+        CFI Block cfiBlock20 Using cfiCommon0
+        CFI Function MRFI_DelayMs
+        CODE
+        FUNCALL MRFI_DelayMs, Mrfi_DelayUsec
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        SJMP    ??MRFI_DelayMs_0
+??MRFI_DelayMs_1:
+        ; Setup parameters for call to function Mrfi_DelayUsec
+        MOV     R2,#-0x18
+        MOV     R3,#0x3
+        LCALL   ??Mrfi_DelayUsec?relay
+        MOV     A,R6
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R7
+        ADDC    A,#-0x1
+??MRFI_DelayMs_0:
+        MOV     R7,A
+        MOV     A,R6
+        ORL     A,R7
+        JNZ     ??MRFI_DelayMs_1
+        SJMP    ?Subroutine2
+        CFI EndBlock cfiBlock20
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_ReplyDelay()
+MRFI_ReplyDelay:
+        CFI Block cfiBlock21 Using cfiCommon0
+        CFI Function MRFI_ReplyDelay
+        CODE
+        FUNCALL MRFI_ReplyDelay, BSP_Delay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 11, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 11, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xb
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        ; Saved register size: 11
+        ; Auto size: 0
+        MOV     DPTR,#sReplyDelayScalar
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 1,A
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     DPTR,#sReplyDelayContext
+        MOV     A,#0x1
+        LCALL   ?Subroutine5 & 0xFFFF
+??CrossCallReturnLabel_6:
+        SJMP    ??MRFI_ReplyDelay_0
+??MRFI_ReplyDelay_1:
+        MOV     A,?V0 + 0
+        ADD     A,#-0x1
+        MOV     ?V0 + 0,A
+        MOV     A,?V0 + 1
+        ADDC    A,#-0x1
+        MOV     ?V0 + 1,A
+??MRFI_ReplyDelay_0:
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        JZ      ??MRFI_ReplyDelay_2
+        MOV     R6,#0x3e
+        MOV     R7,#0x0
+??MRFI_ReplyDelay_3:
+        MOV     A,0xa8
+        MOV     ?V0 + 2,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   ??BSP_Delay?relay
+        MOV     A,?V0 + 2
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     DPTR,#sKillSem
+        MOVX    A,@DPTR
+        JNZ     ??MRFI_ReplyDelay_4
+        LCALL   ?Subroutine3 & 0xFFFF
+??CrossCallReturnLabel_0:
+        JNZ     ??MRFI_ReplyDelay_3
+??MRFI_ReplyDelay_4:
+        MOVX    A,@DPTR
+        JZ      ??MRFI_ReplyDelay_1
+??MRFI_ReplyDelay_2:
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     DPTR,#sKillSem
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#sReplyDelayContext
+        LCALL   ?Subroutine5 & 0xFFFF
+??CrossCallReturnLabel_7:
+        MOV     R7,#0x3
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock21
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine5:
+        CFI Block cfiCond22 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_6
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        CFI Block cfiCond23 Using cfiCommon0
+        CFI (cfiCond23) NoFunction
+        CFI (cfiCond23) Conditional ??CrossCallReturnLabel_7
+        CFI (cfiCond23) R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond23) VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond23) V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond23) V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond23) V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond23) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond23) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond23) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond23) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond23) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond23) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond23) CFA_SP SP+0
+        CFI (cfiCond23) CFA_XSP16 add(XSP16, 11)
+        CFI Block cfiPicker24 Using cfiCommon1
+        CFI (cfiPicker24) NoFunction
+        CFI (cfiPicker24) Picker
+        MOVX    @DPTR,A
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        RET
+        CFI EndBlock cfiCond22
+        CFI EndBlock cfiCond23
+        CFI EndBlock cfiPicker24
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant bool Mrfi_DelayUsecLong(uint32_t, uint16_t, bool (*)(void))
+Mrfi_DelayUsecLong:
+        CFI Block cfiBlock25 Using cfiCommon0
+        CFI Function Mrfi_DelayUsecLong
+        CODE
+        FUNCALL Mrfi_DelayUsecLong, BSP_Delay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 17, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Mrfi_DelayUsecLong, BSP_Delay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 17, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 17, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x11
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 17)
+        ; Saved register size: 17
+        ; Auto size: 0
+        MOV     ?V0 + 4,R2
+        MOV     ?V0 + 5,R3
+        MOV     ?V0 + 6,R4
+        MOV     ?V0 + 7,R5
+        MOV     A,#0x11
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 1,A
+        MOV     A,#0x13
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     ?V0 + 2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 3,A
+        CLR     ?VB.0
+??Mrfi_DelayUsecLong_0:
+        MOV     A,?V0 + 4
+        ORL     A,?V0 + 5
+        ORL     A,?V0 + 6
+        ORL     A,?V0 + 7
+        JZ      ??Mrfi_DelayUsecLong_1
+        MOV     R6,#0x3e
+        MOV     R7,#0x0
+??Mrfi_DelayUsecLong_2:
+        MOV     A,0xa8
+        MOV     ?V0 + 8,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   ??BSP_Delay?relay
+        MOV     A,?V0 + 8
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,?V0 + 2
+        ORL     A,?V0 + 3
+        JZ      ??Mrfi_DelayUsecLong_3
+        ; Setup parameters for indirect call
+        MOV     DPL,?V0 + 2
+        MOV     DPH,?V0 + 3
+        LCALL   ?CALL_IND
+        MOV     ?VB.0,C
+        JC      ??Mrfi_DelayUsecLong_4
+??Mrfi_DelayUsecLong_3:
+        LCALL   ?Subroutine3 & 0xFFFF
+??CrossCallReturnLabel_1:
+        JNZ     ??Mrfi_DelayUsecLong_2
+??Mrfi_DelayUsecLong_4:
+        MOV     DPTR,#__Constant_ffffffff
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_ADD_X
+        MOV     C,?VB.0
+        JNC     ??Mrfi_DelayUsecLong_0
+??Mrfi_DelayUsecLong_1:
+        MOV     ?V0 + 4,?V0 + 0
+        MOV     ?V0 + 5,?V0 + 1
+        MOV     A,#0x4
+        MOV     R0,#?V0 + 4
+        LCALL   ?US_SHR
+        MOV     R6,?V0 + 4
+        MOV     R7,?V0 + 5
+        MOV     C,?VB.0
+        JC      ??Mrfi_DelayUsecLong_5
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        JZ      ??Mrfi_DelayUsecLong_5
+??Mrfi_DelayUsecLong_6:
+        LCALL   ?Subroutine4 & 0xFFFF
+??CrossCallReturnLabel_4:
+        MOV     A,?V0 + 2
+        ORL     A,?V0 + 3
+        JZ      ??Mrfi_DelayUsecLong_7
+        ; Setup parameters for indirect call
+        MOV     DPL,?V0 + 2
+        MOV     DPH,?V0 + 3
+        LCALL   ?CALL_IND
+        MOV     ?VB.0,C
+        JC      ??Mrfi_DelayUsecLong_5
+??Mrfi_DelayUsecLong_7:
+        LCALL   ?Subroutine3 & 0xFFFF
+??CrossCallReturnLabel_2:
+        JNZ     ??Mrfi_DelayUsecLong_6
+??Mrfi_DelayUsecLong_5:
+        MOV     C,?VB.0
+        MOV     R7,#0x9
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock25
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiCond26 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        CFI Block cfiCond27 Using cfiCommon0
+        CFI (cfiCond27) NoFunction
+        CFI (cfiCond27) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond27) R6 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond27) VB load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond27) V0 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond27) V1 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond27) V2 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond27) V3 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond27) V4 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond27) V5 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond27) V6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond27) V7 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond27) V8 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond27) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond27) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond27) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond27) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond27) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond27) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond27) CFA_SP SP+0
+        CFI (cfiCond27) CFA_XSP16 add(XSP16, 17)
+        CFI Block cfiCond28 Using cfiCommon0
+        CFI (cfiCond28) NoFunction
+        CFI (cfiCond28) Conditional ??CrossCallReturnLabel_2
+        CFI (cfiCond28) R6 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond28) VB load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond28) V0 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond28) V1 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond28) V2 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond28) V3 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond28) V4 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond28) V5 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond28) V6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond28) V7 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond28) V8 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond28) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond28) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond28) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond28) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond28) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond28) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond28) CFA_SP SP+0
+        CFI (cfiCond28) CFA_XSP16 add(XSP16, 17)
+        CFI Block cfiCond29 Using cfiCommon0
+        CFI (cfiCond29) NoFunction
+        CFI (cfiCond29) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond29) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond29) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond29) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond29) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond29) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond29) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond29) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond29) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond29) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond29) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond29) CFA_SP SP+0
+        CFI (cfiCond29) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker30 Using cfiCommon1
+        CFI (cfiPicker30) NoFunction
+        CFI (cfiPicker30) Picker
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        RET
+        CFI EndBlock cfiCond26
+        CFI EndBlock cfiCond27
+        CFI EndBlock cfiCond28
+        CFI EndBlock cfiCond29
+        CFI EndBlock cfiPicker30
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant void MRFI_PostKillSem(void)
+MRFI_PostKillSem:
+        CFI Block cfiBlock31 Using cfiCommon0
+        CFI Function MRFI_PostKillSem
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#sReplyDelayContext
+        MOVX    A,@DPTR
+        JZ      ??MRFI_PostKillSem_0
+        MOV     DPTR,#sKillSem
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+??MRFI_PostKillSem_0:
+        LJMP    ??Subroutine6_0 & 0xFFFF
+        CFI EndBlock cfiBlock31
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// static __banked_func __xdata_reentrant void Mrfi_RxModeOn(void)
+Mrfi_RxModeOn:
+        CFI Block cfiBlock32 Using cfiCommon0
+        CFI Function Mrfi_RxModeOn
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     0xe1,#-0x1d
+        MOV     DPTR,#0x61a3
+        MOVX    A,@DPTR
+        SETB    0xE0 /* A   */.2
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock32
+        REQUIRE RFST
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// static __banked_func __xdata_reentrant void Mrfi_RxModeOff(void)
+Mrfi_RxModeOff:
+        CFI Block cfiBlock33 Using cfiCommon0
+        CFI Function Mrfi_RxModeOff
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#0x61a3
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.2
+        MOVX    @DPTR,A
+        MOV     0xe1,#-0x11
+        MOV     0xe1,#-0x13
+        MOV     0xe1,#-0x13
+        MOV     0xe9,#-0x5
+        LJMP    ??Subroutine6_0 & 0xFFFF
+        CFI EndBlock cfiBlock33
+        REQUIRE RFST
+        REQUIRE RFIRQF0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// static __banked_func __xdata_reentrant void Mrfi_RandomBackoffDelay(void)
+Mrfi_RandomBackoffDelay:
+        CFI Block cfiBlock34 Using cfiCommon0
+        CFI Function Mrfi_RandomBackoffDelay
+        CODE
+        FUNCALL Mrfi_RandomBackoffDelay, MRFI_RandomByte
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Mrfi_RandomBackoffDelay, Mrfi_DelayUsec
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 9, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 9, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        ; Setup parameters for call to function MRFI_RandomByte
+        LCALL   ??MRFI_RandomByte?relay
+        MOV     A,R1
+        ANL     A,#0xf
+        INC     A
+        MOV     R6,A
+??Mrfi_RandomBackoffDelay_0:
+        ; Setup parameters for call to function Mrfi_DelayUsec
+        MOV     R2,#-0x6
+        MOV     R3,#0x0
+        LCALL   ??Mrfi_DelayUsec?relay
+        DEC     R6
+        MOV     A,R6
+        JNZ     ??Mrfi_RandomBackoffDelay_0
+        LJMP    ?Subroutine2 & 0xFFFF
+        CFI EndBlock cfiBlock34
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// static __banked_func __xdata_reentrant void Mrfi_DelayUsec(uint16_t)
+Mrfi_DelayUsec:
+        CFI Block cfiBlock35 Using cfiCommon0
+        CFI Function Mrfi_DelayUsec
+        CODE
+        FUNCALL Mrfi_DelayUsec, BSP_Delay
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     A,#0x4
+        MOV     R0,#?V0 + 0
+        LCALL   ?US_SHR
+        MOV     R6,?V0 + 0
+        MOV     R7,?V0 + 1
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??Mrfi_DelayUsec_0
+??Mrfi_DelayUsec_1:
+        LCALL   ?Subroutine4 & 0xFFFF
+??CrossCallReturnLabel_5:
+        LCALL   ?Subroutine3 & 0xFFFF
+??CrossCallReturnLabel_3:
+        JNZ     ??Mrfi_DelayUsec_1
+??Mrfi_DelayUsec_0:
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock35
+        REQUIRE _A_IEN0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine4:
+        CFI Block cfiCond36 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_4
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 17)
+        CFI Block cfiCond37 Using cfiCommon0
+        CFI (cfiCond37) NoFunction
+        CFI (cfiCond37) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond37) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond37) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond37) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond37) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond37) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond37) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond37) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond37) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond37) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond37) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond37) CFA_SP SP+0
+        CFI (cfiCond37) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker38 Using cfiCommon1
+        CFI (cfiPicker38) NoFunction
+        CFI (cfiPicker38) Picker
+        MOV     A,0xa8
+        MOV     ?V0 + 0,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   ??BSP_Delay?relay
+        MOV     A,?V0 + 0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        RET
+        CFI EndBlock cfiCond36
+        CFI EndBlock cfiCond37
+        CFI EndBlock cfiPicker38
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// __banked_func __xdata_reentrant uint8_t MRFI_GetRadioState(void)
+MRFI_GetRadioState:
+        CFI Block cfiBlock39 Using cfiCommon0
+        CFI Function MRFI_GetRadioState
+        CODE
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LJMP    ??Subroutine6_0 & 0xFFFF
+        CFI EndBlock cfiBlock39
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 131
+`??MRFI_RxIsr??INTVEC 131`:
+        LJMP       (MRFI_RxIsr)
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiBroadcastAddr>`:
+        DATA8
+        DB 255
+        DB 255
+        DB 255
+        DB 255
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiLogicalChanTable>`:
+        DATA8
+        DB 15
+        DB 20
+        DB 25
+        DB 26
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiRFPowerTable>`:
+        DATA8
+        DB 37
+        DB 117
+        DB 213
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for __Constant_2>`:
+        DATA32
+        DD 2
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for __Constant_ffffffff>`:
+        DATA32
+        DD 4294967295
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_Init?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_Init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??mrfi_TxDone?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    mrfi_TxDone
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_Transmit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_Transmit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_Receive?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_Receive
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_RxOn?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_RxOn
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_RxIdle?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_RxIdle
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_SetLogicalChannel?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_SetLogicalChannel
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_SetRFPwr?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_SetRFPwr
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_WakeUp?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_WakeUp
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_Sleep?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_Sleep
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_SetRxAddrFilter?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_SetRxAddrFilter
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_EnableRxAddrFilter?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_EnableRxAddrFilter
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_DisableRxAddrFilter?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_DisableRxAddrFilter
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_Rssi?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_Rssi
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_RandomByte?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_RandomByte
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_DelayMs?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_DelayMs
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_ReplyDelay?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_ReplyDelay
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Mrfi_DelayUsecLong?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Mrfi_DelayUsecLong
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_PostKillSem?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_PostKillSem
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Mrfi_RxModeOn?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Mrfi_RxModeOn
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Mrfi_RxModeOff?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Mrfi_RxModeOff
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Mrfi_RandomBackoffDelay?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Mrfi_RandomBackoffDelay
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Mrfi_DelayUsec?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Mrfi_DelayUsec
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??MRFI_GetRadioState?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    MRFI_GetRadioState
+
+        END
+//  116 
+//  117 #else
+//  118 #error "ERROR: Radio family is not defined."
+//  119 #endif
+//  120 
+//  121 
+//  122 /**************************************************************************************************
+//  123  */
+// 
+// 1 478 bytes in segment BANKED_CODE
+//   144 bytes in segment BANK_RELAYS
+//     3 bytes in segment INTVEC
+//   197 bytes in segment NEAR_CODE
+//    19 bytes in segment SFR_AN
+//    19 bytes in segment XDATA_I
+//    19 bytes in segment XDATA_ID
+//    55 bytes in segment XDATA_Z
+// 
+// 1 830 bytes of CODE  memory (+ 11 bytes shared)
+//     0 bytes of DATA  memory (+ 19 bytes shared)
+//    66 bytes of XDATA memory (+  8 bytes shared)
+//
+//Errors: none
+//Warnings: none

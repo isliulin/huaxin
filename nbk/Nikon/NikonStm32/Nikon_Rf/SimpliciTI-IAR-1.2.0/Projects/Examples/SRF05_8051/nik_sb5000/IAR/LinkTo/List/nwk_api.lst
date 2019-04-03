@@ -1,0 +1,1793 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         04/Dec/2016  22:38:10 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simpli #
+#                          citi\nwk\nwk_api.c                                 #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          Stm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\Configuration\LinkTo #
+#                          \smpl_config.dat ("-DTHIS_DEVICE_ADDRESS={0x79,    #
+#                          0x56, 0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK      #
+#                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Pro #
+#                          jects\Examples\SRF05_8051\nik_sb5000\IAR\Configura #
+#                          tion\smpl_nwk_config.dat (-DMAX_HOPS=3             #
+#                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34          #
+#                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x010203 #
+#                          04 -DDEFAULT_JOIN_TOKEN=0x05060708                 #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simpli #
+#                          citi\nwk\nwk_api.c -D MCU_H=<ioCC2530.h> -D        #
+#                          MRFI_CC2530 -D ZTOOL_P1 -lC                        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -lA        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -o         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\ -e --debug  #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          konStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Ex #
+#                          amples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co #
+#                          mponents\bsp\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\bsp\drivers\ -I                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\bsp\boards\CC2530EM\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\mrfi\ -I C:\Users\freeman\Documents\work\NBK\Ni #
+#                          kon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Proje #
+#                          cts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. #
+#                          \..\Components\SimpliciTI\nwk\ -I                  #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\Applications\  #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          Stm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo #
+#                          nents\SimpliciTI\nwk_applications\ -I              #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\OSAL\INCLUDE\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2 #
+#                          .0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\ #
+#                          ..\..\..\..\Components\OSAL\MCU\CCSOC\ -I          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\HAL\INCLUDE\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2. #
+#                          0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\. #
+#                          .\..\..\..\Components\HAL\TARGET\CC2530EB\ -I      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\SERVICES\SADDR\ -I C:\Users\freeman\Documents\w #
+#                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 #
+#                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\. #
+#                          .\..\..\..\..\Components\SERVICES\SDATA\ -I        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MT\ -I C:\Users\freeman\Documents\work\NBK\Niko #
+#                          n\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project #
+#                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\. #
+#                          .\Components\STACK\AF\ -I                          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\NWK\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\STACK\SEC\ -I                  #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\SAPI\ -I C:\Users\freeman\Documents\work\ #
+#                          NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0 #
+#                          \Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\.. #
+#                          \..\..\..\Components\STACK\SYS\ -I                 #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\ZDO\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\MAC\INCLUDE\ -I                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\HIGH_LEVEL\ -I C:\Users\freeman\Documents\w #
+#                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 #
+#                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\. #
+#                          .\..\..\..\..\Components\MAC\LOW_LEVEL\srf04\ -I   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz           #
+#                          --require_prototypes                               #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\nwk_api.lst #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\nwk_api.r51  #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk\nwk_api.c
+      1          /**************************************************************************************************
+      2            Filename:       nwk_api.c
+      3            Revised:        $Date: 2011-10-26 15:44:58 -0700 (Wed, 26 Oct 2011) $
+      4            Revision:       $Revision: 28059 $
+      5            Author:         $Author: jnoxon $
+      6          
+      7            Description:    This file supports the SimpliciTI appliction layer API.
+      8          
+      9            Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights granted under
+     12            the terms of a software license agreement between the user who downloaded the software,
+     13            his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+     14            "License"). You may not use this Software unless you agree to abide by the terms of the
+     15            License. The License limits your use, and you acknowledge, that the Software may not be
+     16            modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+     17            or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+     18            transceiver, which is integrated into your product. Other than for the foregoing purpose,
+     19            you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+     20            perform, display or sell this Software and/or its documentation for any purpose.
+     21          
+     22            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS?  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+     23            WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+     24            IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     25            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+     26            THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+     27            INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+     28            DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+     29            THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     30          
+     31            Should you have any questions regarding your right to use this Software,
+     32            contact Texas Instruments Incorporated at www.TI.com.
+     33          **************************************************************************************************/
+     34          
+     35          /******************************************************************************
+     36           * INCLUDES
+     37           */
+     38          
+     39          #include <string.h>
+     40          #include "bsp.h"  
+     41          #include "mrfi.h"
+     42          #include "nwk_types.h"
+     43          #include "nwk_api.h"
+     44          #include "nwk_frame.h"
+     45          #include "nwk.h"
+     46          #include "nwk_app.h"
+     47          #include "mrfi.h"
+     48          #include "nwk_globals.h"
+     49          #include "nwk_freq.h"
+     50          #include "nwk_pll.h"
+     51          #ifdef DEBUG_CRITICAL_SECTIONS
+     52            #include "bsp_leds.h"
+     53          #endif
+     54          #ifdef MRFI_CC430
+     55            #include "uart_intfc_cc430.h"
+     56          #else
+     57            #include "uart_intfc.h"
+     58          #endif
+     59          
+     60          /******************************************************************************
+     61           * MACROS
+     62           */
+     63          
+     64          /******************************************************************************
+     65           * CONSTANTS AND DEFINES
+     66           */
+     67          
+     68          /* These defines are in support an application listening for a link frame to
+     69           * terminate after some amount of time. The intention is that this guard be
+     70           * the exception. The intention of the SimpliciTI design is that the
+     71           * temporal contiguity between the listen and the reception of the link frame
+     72           * from the peer be very tight. The SMPL_LinkListen() should be termninated
+     73           * by the reception of the link frame. But in case it does not receive the frame
+     74           * the support below allows intervention by the application.
+     75           */
+     76          
+     77          /* The intention is for user to modify just the following single value */
+     78          #define LINKLISTEN_MILLISECONDS_2_WAIT    (5000)
+     79          
+     80          #define LINKLISTEN_POLL_PERIOD_MS         (10)
+     81          #define LINKLISTEN_POLL_COUNT             ( (LINKLISTEN_MILLISECONDS_2_WAIT) / (LINKLISTEN_POLL_PERIOD_MS) )
+     82          
+     83          /******************************************************************************
+     84           * TYPEDEFS
+     85           */
+     86          
+     87          /******************************************************************************
+     88           * LOCAL VARIABLES
+     89           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     90          static uint8_t sInit_done = 0;
+   \                     sInit_done:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     91          
+     92          /******************************************************************************
+     93           * LOCAL FUNCTIONS
+     94           */
+     95          static uint8_t ioctlPreInitAccessIsOK(ioctlObject_t);
+     96          
+     97          static void MstPacketParse(void);
+     98          
+     99          /******************************************************************************
+    100           * GLOBAL VARIABLES
+    101           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    102          frameInfo_t g_frameInfo;
+   \                     g_frameInfo:
+   \   000000                DS 51
+   \   000033                REQUIRE __INIT_XDATA_Z
+    103          extern uint8_t g_rcvPkt;
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    104          mrfiPacket_t * g_pRcvPkt;
+   \                     g_pRcvPkt:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+    105          /******************************************************************************
+    106           * GLOBAL FUNCTIONS
+    107           */
+    108          
+    109          /***********************************************************************************
+    110           * @fn          SMPL_Init
+    111           *
+    112           * @brief       Initialize the SimpliciTI stack.
+    113           *
+    114           * input parameters
+    115           * @param   f  - Pointer to call back function. Function called by NWK when
+    116           *               user application frame received. The callback is done in the
+    117           *               ISR thread. Argument is Link ID associated with frame. Function
+    118           *               returns 0 if frame is to be kept by NWK, otherwise 1. Frame
+    119           *               should be kept if application will do a SMPL_Receive() in the
+    120           *               user thread (recommended). Pointer may be NULL.
+    121           *
+    122           * output parameters
+    123           *
+    124           * @return   Status of operation:
+    125           *             SMPL_SUCCESS
+    126           *             SMPL_NO_JOIN     No Join reply. AP possibly not yet up.
+    127           *             SMPL_NO_CHANNEL  Only if Frequency Agility enabled. Channel scan
+    128           *                              failed. AP possibly not yet up.
+    129           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    130          smplStatus_t SMPL_Init(uint8_t (*f)(linkID_t))
+   \                     SMPL_Init:
+    131          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    132            smplStatus_t rc;
+    133          
+    134            if (!sInit_done)
+   \   000009   90....       MOV     DPTR,#sInit_done
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   7019         JNZ     ??SMPL_Init_0
+    135            {
+    136              /* set up radio. */
+    137              MRFI_Init();
+   \   00000F                ; Setup parameters for call to function MRFI_Init
+   \   00000F   12....       LCALL   ??MRFI_Init?relay
+    138          
+    139              /* initialize network */
+    140              if ((rc=nwk_nwkInit(f)) != SMPL_SUCCESS)
+   \   000012                ; Setup parameters for call to function nwk_nwkInit
+   \   000012   EE           MOV     A,R6
+   \   000013   FA           MOV     R2,A
+   \   000014   EF           MOV     A,R7
+   \   000015   FB           MOV     R3,A
+   \   000016   12....       LCALL   ??nwk_nwkInit?relay
+   \   000019   E9           MOV     A,R1
+   \   00001A   7015         JNZ     ??SMPL_Init_1
+    141              {
+    142                return rc;
+    143              }
+    144          
+    145              MRFI_WakeUp();
+   \   00001C                ; Setup parameters for call to function MRFI_WakeUp
+   \   00001C   12....       LCALL   ??MRFI_WakeUp?relay
+    146          #if defined( FREQUENCY_AGILITY )
+    147              {
+    148                freqEntry_t chan;
+    149          
+    150                chan.logicalChan = 0;
+    151                /* ok to set default channel explicitly now that MRFI initialized. */
+    152                nwk_setChannel(&chan);
+    153              }
+    154          #endif
+    155              /* don't turn Rx on if we're an end device that isn't always on. */
+    156              /* but do turn the radio on for PLL operations */
+    157          #if !defined( END_DEVICE ) || defined( NWK_PLL )
+    158              MRFI_RxOn();
+    159          #endif
+    160          
+    161          #if defined( END_DEVICE )
+    162              /* All except End Devices are in promiscuous mode */
+    163              MRFI_SetRxAddrFilter((uint8_t *)nwk_getMyAddress());
+   \   00001F                ; Setup parameters for call to function MRFI_SetRxAddrFilter
+   \   00001F                ; Setup parameters for call to function nwk_getMyAddress
+   \   00001F   12....       LCALL   ??nwk_getMyAddress?relay
+   \   000022   12....       LCALL   ??MRFI_SetRxAddrFilter?relay
+    164              //MRFI_EnableRxAddrFilter();
+    165              MRFI_DisableRxAddrFilter();                       //2016/07/11 cbyi
+   \   000025                ; Setup parameters for call to function MRFI_DisableRxAddrFilter
+   \   000025   12....       LCALL   ??MRFI_DisableRxAddrFilter?relay
+    166          #endif
+    167            }
+    168            sInit_done = 1;
+   \                     ??SMPL_Init_0:
+   \   000028   90....       MOV     DPTR,#sInit_done
+   \   00002B   7401         MOV     A,#0x1
+   \   00002D   F0           MOVX    @DPTR,A
+    169          
+    170          #ifdef NWK_PLL
+    171            /* If the PLL is enabled then it must get running before the join
+    172             * request or the system may lock up in the join request becuase
+    173             * PLL is not locked in.
+    174             */
+    175            // turn on the PLL
+    176            SMPL_Ioctl(IOCTL_OBJ_PLL, IOCTL_ACT_ON, NULL);
+    177            // reference clocks are by definition always locked.
+    178            #ifndef NWK_PLL_REFERENCE_CLOCK
+    179              // wait for a 5ms failure rate to be achieved
+    180              while( nwk_pllIsLocked( 0 ) == false )
+    181                nwk_pllBackgrounder( false );
+    182            #endif
+    183          #endif
+    184          
+    185            /* Join. if no AP or Join fails that status is returned. */
+    186            rc = nwk_join();
+    187          
+    188            return rc;
+   \   00002E                ; Setup parameters for call to function nwk_join
+   \   00002E   12....       LCALL   ??nwk_join?relay
+   \                     ??SMPL_Init_1:
+   \   000031   7F01         MOV     R7,#0x1
+   \   000033   02....       LJMP    ?BANKED_LEAVE_XDATA
+    189          }
+    190          
+    191          /******************************************************************************
+    192           * @fn          SMPL_LinkListen
+    193           *
+    194           * @brief       Listen for a link frame from a 'client' device.
+    195           *
+    196           * input parameters
+    197           *
+    198           * output parameters
+    199           * @param   linkID     - pointer to Link ID to be used by application to
+    200           *                       read and write to the linked peer.
+    201           *
+    202           * @return   status of operation.
+    203           *             SMPL_SUCCESS
+    204           *             SMPL_TIMEOUT  No link frame received during listen interval.
+    205          *                            Interval set in #defines above. linkID not valid.
+    206           *
+    207           */
+    208          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    209          smplStatus_t SMPL_LinkListen(linkID_t *linkID)
+   \                     SMPL_LinkListen:
+    210          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    211            uint8_t  radioState = MRFI_GetRadioState();
+   \   000009                ; Setup parameters for call to function MRFI_GetRadioState
+   \   000009   12....       LCALL   ??MRFI_GetRadioState?relay
+   \   00000C   E9           MOV     A,R1
+   \   00000D   F5..         MOV     ?V0 + 2,A
+    212            uint16_t i;
+    213            linkID_t locLinkID;
+    214          
+    215            /* Set the context. We want to reject any link frames received if
+    216             * we're not listening. For example if we're an AP we are in
+    217             * promiscuous mode and we'll see any broadcast link frames.
+    218             */
+    219            nwk_setListenContext(LINK_LISTEN_ON);
+   \   00000F                ; Setup parameters for call to function nwk_setListenContext
+   \   00000F   7900         MOV     R1,#0x0
+   \   000011   12....       LCALL   ??nwk_setListenContext?relay
+    220          
+    221            NWK_CHECK_FOR_SETRX(radioState);
+   \   000014   7403         MOV     A,#0x3
+   \   000016   65..         XRL     A,?V0 + 2
+   \   000018   600C         JZ      ??SMPL_LinkListen_0
+   \   00001A   7401         MOV     A,#0x1
+   \   00001C   65..         XRL     A,?V0 + 2
+   \   00001E   7003         JNZ     ??SMPL_LinkListen_1
+   \   000020                ; Setup parameters for call to function MRFI_WakeUp
+   \   000020   12....       LCALL   ??MRFI_WakeUp?relay
+   \                     ??SMPL_LinkListen_1:
+   \   000023                ; Setup parameters for call to function MRFI_RxOn
+   \   000023   12....       LCALL   ??MRFI_RxOn?relay
+    222          
+    223            for (i=0; i<LINKLISTEN_POLL_COUNT; ++i)
+   \                     ??SMPL_LinkListen_0:
+   \   000026   75..F4       MOV     ?V0 + 0,#-0xc
+   \   000029   75..01       MOV     ?V0 + 1,#0x1
+    224            {
+    225              /* check the semaphore. local port is assigned when the reply is sent. */
+    226              if ((locLinkID=nwk_getLocalLinkID()))
+   \                     ??SMPL_LinkListen_2:
+   \   00002C                ; Setup parameters for call to function nwk_getLocalLinkID
+   \   00002C   12....       LCALL   ??nwk_getLocalLinkID?relay
+   \   00002F   E9           MOV     A,R1
+   \   000030   F8           MOV     R0,A
+   \   000031   88..         MOV     ?V0 + 3,R0
+   \   000033   7019         JNZ     ??SMPL_LinkListen_3
+    227              {
+    228                break;
+    229              }
+    230              NWK_DELAY(LINKLISTEN_POLL_PERIOD_MS);
+   \   000035                ; Setup parameters for call to function MRFI_DelayMs
+   \   000035   7A0A         MOV     R2,#0xa
+   \   000037   7B00         MOV     R3,#0x0
+   \   000039   12....       LCALL   ??MRFI_DelayMs?relay
+    231            }
+   \   00003C   E5..         MOV     A,?V0 + 0
+   \   00003E   24FF         ADD     A,#-0x1
+   \   000040   F5..         MOV     ?V0 + 0,A
+   \   000042   E5..         MOV     A,?V0 + 1
+   \   000044   34FF         ADDC    A,#-0x1
+   \   000046   F5..         MOV     ?V0 + 1,A
+   \   000048   E5..         MOV     A,?V0 + 0
+   \   00004A   45..         ORL     A,?V0 + 1
+   \   00004C   70DE         JNZ     ??SMPL_LinkListen_2
+    232          
+    233            NWK_CHECK_FOR_RESTORE_STATE(radioState);
+   \                     ??SMPL_LinkListen_3:
+   \   00004E   7403         MOV     A,#0x3
+   \   000050   65..         XRL     A,?V0 + 2
+   \   000052   600E         JZ      ??SMPL_LinkListen_4
+   \   000054   7401         MOV     A,#0x1
+   \   000056   65..         XRL     A,?V0 + 2
+   \   000058   7005         JNZ     ??SMPL_LinkListen_5
+   \   00005A                ; Setup parameters for call to function MRFI_Sleep
+   \   00005A   12....       LCALL   ??MRFI_Sleep?relay
+   \   00005D   8003         SJMP    ??SMPL_LinkListen_4
+   \                     ??SMPL_LinkListen_5:
+   \   00005F                ; Setup parameters for call to function MRFI_RxIdle
+   \   00005F   12....       LCALL   ??MRFI_RxIdle?relay
+    234          
+    235            /* If the listen is terminated without hearing a message and setting a
+    236             * link ID the listen context must be explicitly turned off.
+    237             */
+    238            if (!(locLinkID))
+   \                     ??SMPL_LinkListen_4:
+   \   000062   E5..         MOV     A,?V0 + 3
+   \   000064   7009         JNZ     ??SMPL_LinkListen_6
+    239            {
+    240              nwk_setListenContext(LINK_LISTEN_OFF);
+   \   000066                ; Setup parameters for call to function nwk_setListenContext
+   \   000066   7901         MOV     R1,#0x1
+   \   000068   12....       LCALL   ??nwk_setListenContext?relay
+    241              return SMPL_TIMEOUT;
+   \   00006B   7901         MOV     R1,#0x1
+   \   00006D   8007         SJMP    ??SMPL_LinkListen_7
+    242            }
+    243          
+    244            *linkID = locLinkID;
+   \                     ??SMPL_LinkListen_6:
+   \   00006F   8E82         MOV     DPL,R6
+   \   000071   8F83         MOV     DPH,R7
+   \   000073   F0           MOVX    @DPTR,A
+    245          
+    246            return SMPL_SUCCESS;
+   \   000074   7900         MOV     R1,#0x0
+   \                     ??SMPL_LinkListen_7:
+   \   000076                REQUIRE ?Subroutine0
+   \   000076                ; // Fall through to label ?Subroutine0
+    247          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F04         MOV     R7,#0x4
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    248          
+    249          /******************************************************************************
+    250           * @fn          SMPL_Send
+    251           *
+    252           * @brief       Send a message to a peer application. Old API kept for
+    253           *              backward compatibility. Calls the new SMPL_SendOpt() with
+    254           *              no options.
+    255           *
+    256           * input parameters
+    257           * @param   lid     - Link ID (port) from application
+    258           * @param   msg     - pointer to message from app to be sent
+    259           * @param   len     - length of enclosed message
+    260           *
+    261           * output parameters
+    262           *
+    263           * @return   Status of operation. On a filaure the frame buffer is discarded
+    264           *           and the Send call must be redone by the app.
+    265           *             SMPL_SUCCESS
+    266           *             SMPL_BAD_PARAM    No valid Connection Table entry for Link ID
+    267           *                               Data in Connection Table entry bad
+    268           *                               No message or message too long
+    269           *             SMPL_NOMEM        No room in output frame queue
+    270           *             SMPL_TX_CCA_FAIL  CCA failure.
+    271           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    272          smplStatus_t SMPL_Send(linkID_t lid, uint8_t *msg, uint8_t len)
+   \                     SMPL_Send:
+    273          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    274            return SMPL_SendOpt(lid, msg, len, SMPL_TXOPTION_NONE);
+   \   000005                ; Setup parameters for call to function SMPL_SendOpt
+   \   000005   E4           CLR     A
+   \   000006   F5..         MOV     ?V0 + 0,A
+   \   000008   F5..         MOV     ?V0 + 1,A
+   \   00000A   78..         MOV     R0,#?V0 + 0
+   \   00000C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00000F   12....       LCALL   ??SMPL_SendOpt?relay
+   \   000012   7402         MOV     A,#0x2
+   \   000014   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000017                REQUIRE ?Subroutine1
+   \   000017                ; // Fall through to label ?Subroutine1
+    275          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    276          
+    277          /******************************************************************************
+    278           * @fn          SMPL_SendOpt
+    279           *
+    280           * @brief       Send a message to a peer application.
+    281           *
+    282           * input parameters
+    283           * @param   lid     - Link ID (port) from application
+    284           * @param   msg     - pointer to message from app to be sent
+    285           * @param   len     - length of enclosed message
+    286           * @param   options - Transmit options (bit map)
+    287           *
+    288           * output parameters
+    289           *
+    290           * @return   Status of operation. On a filaure the frame buffer is discarded
+    291           *           and the Send call must be redone by the app.
+    292           *             SMPL_SUCCESS
+    293           *             SMPL_BAD_PARAM    No valid Connection Table entry for Link ID
+    294           *                               Data in Connection Table entry bad
+    295           *                               No message or message too long
+    296           *             SMPL_NOMEM        No room in output frame queue
+    297           *             SMPL_TX_CCA_FAIL  CCA failure.
+    298           *             SMPL_NO_ACK       If application auto acknowledgement enabled
+    299           *                               and no acknowledgement is received
+    300           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    301          smplStatus_t SMPL_SendOpt(linkID_t lid, uint8_t *msg, uint8_t len, txOpt_t options)
+   \                     SMPL_SendOpt:
+    302          {
+   \   000000   74EE         MOV     A,#-0x12
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 18
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   8B..         MOV     ?V0 + 1,R3
+   \   000009   8C..         MOV     ?V0 + 3,R4
+   \   00000B   7412         MOV     A,#0x12
+   \   00000D   12....       LCALL   ?XSTACK_DISP0_8
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F5..         MOV     ?V0 + 4,A
+   \   000013   A3           INC     DPTR
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   F5..         MOV     ?V0 + 5,A
+    303            frameInfo_t  *pFrameInfo;
+    304            connInfo_t   *pCInfo     = nwk_getConnInfo(lid);
+   \   000017                ; Setup parameters for call to function nwk_getConnInfo
+   \   000017   12....       LCALL   ??nwk_getConnInfo?relay
+   \   00001A   8A..         MOV     ?V0 + 8,R2
+   \   00001C   8B..         MOV     ?V0 + 9,R3
+   \   00001E   AE..         MOV     R6,?V0 + 8
+   \   000020   AF..         MOV     R7,?V0 + 9
+    305            smplStatus_t  rc         = SMPL_BAD_PARAM;
+   \   000022   75..02       MOV     ?V0 + 2,#0x2
+    306            uint8_t       radioState = MRFI_GetRadioState();
+   \   000025                ; Setup parameters for call to function MRFI_GetRadioState
+   \   000025   12....       LCALL   ??MRFI_GetRadioState?relay
+    307            uint8_t       ackreq     = 0;
+    308          #if defined(ACCESS_POINT)
+    309            uint8_t  loc;
+    310          #endif
+    311          
+    312            /* we have the connection info for this Link ID. make sure it is valid. */
+    313             if (!pCInfo || ((rc=nwk_checkConnInfo(pCInfo, CHK_TX)) != SMPL_SUCCESS))
+   \   000028   EE           MOV     A,R6
+   \   000029   4F           ORL     A,R7
+   \   00002A   600F         JZ      ??SMPL_SendOpt_0
+   \   00002C                ; Setup parameters for call to function nwk_checkConnInfo
+   \   00002C   7901         MOV     R1,#0x1
+   \   00002E   EE           MOV     A,R6
+   \   00002F   FA           MOV     R2,A
+   \   000030   EF           MOV     A,R7
+   \   000031   FB           MOV     R3,A
+   \   000032   12....       LCALL   ??nwk_checkConnInfo?relay
+   \   000035   E9           MOV     A,R1
+   \   000036   F8           MOV     R0,A
+   \   000037   88..         MOV     ?V0 + 2,R0
+   \   000039   6007         JZ      ??SMPL_SendOpt_1
+    314            {
+    315              return rc;
+   \                     ??SMPL_SendOpt_0:
+   \   00003B   A9..         MOV     R1,?V0 + 2
+   \                     ??SMPL_SendOpt_2:
+   \   00003D   7F0A         MOV     R7,#0xa
+   \   00003F   02....       LJMP    ?BANKED_LEAVE_XDATA
+    316            }
+    317          
+    318            /* parameter sanity check... */
+    319            if (!msg || (len > MAX_APP_PAYLOAD))
+   \                     ??SMPL_SendOpt_1:
+   \   000042   E5..         MOV     A,?V0 + 0
+   \   000044   45..         ORL     A,?V0 + 1
+   \   000046   60F3         JZ      ??SMPL_SendOpt_0
+   \   000048   E5..         MOV     A,?V0 + 3
+   \   00004A   C3           CLR     C
+   \   00004B   940B         SUBB    A,#0xb
+   \   00004D   50EC         JNC     ??SMPL_SendOpt_0
+    320            {
+    321              return rc;
+    322            }
+    323          
+    324            /* Build an outgoing message frame destined for the port from the
+    325             * connection info using the destination address also from the
+    326             * connection info.
+    327             */
+    328            if (SMPL_TXOPTION_NONE == options)
+   \   00004F   E5..         MOV     A,?V0 + 4
+   \   000051   45..         ORL     A,?V0 + 5
+   \   000053   702C         JNZ     ??SMPL_SendOpt_3
+    329            {
+    330              pFrameInfo = nwk_buildFrame(pCInfo->portTx, msg, len, pCInfo->hops2target);
+   \   000055                ; Setup parameters for call to function nwk_buildFrame
+   \   000055   8E82         MOV     DPL,R6
+   \   000057   8F83         MOV     DPH,R7
+   \   000059   A3           INC     DPTR
+   \   00005A   E0           MOVX    A,@DPTR
+   \   00005B   FD           MOV     R5,A
+   \   00005C   AC..         MOV     R4,?V0 + 3
+   \   00005E   AA..         MOV     R2,?V0 + 0
+   \   000060   AB..         MOV     R3,?V0 + 1
+   \   000062   8E82         MOV     DPL,R6
+   \   000064   8F83         MOV     DPH,R7
+   \   000066   A3           INC     DPTR
+   \   000067   A3           INC     DPTR
+   \   000068   A3           INC     DPTR
+   \   000069   A3           INC     DPTR
+   \   00006A   A3           INC     DPTR
+   \   00006B   A3           INC     DPTR
+   \   00006C   A3           INC     DPTR
+   \   00006D   A3           INC     DPTR
+   \   00006E   A3           INC     DPTR
+   \   00006F   E0           MOVX    A,@DPTR
+   \   000070   F9           MOV     R1,A
+   \   000071   12....       LCALL   ??nwk_buildFrame?relay
+   \   000074   8A..         MOV     ?V0 + 0,R2
+   \   000076   8B..         MOV     ?V0 + 1,R3
+    331            }
+    332          #if defined(APP_AUTO_ACK)
+    333            else if (options & SMPL_TXOPTION_ACKREQ)
+    334            {
+    335              if (SMPL_LINKID_USER_UUD != lid)
+    336              {
+    337                pFrameInfo = nwk_buildAckReqFrame(pCInfo->portTx, msg, len, pCInfo->hops2target, &pCInfo->ackTID);
+    338                ackreq     = 1;
+    339              }
+    340              else
+    341              {
+    342                /* can't request an ack on the UUD link ID */
+    343                return SMPL_BAD_PARAM;
+    344              }
+    345            }
+    346          #endif  /* APP_AUTO_ACK */
+    347            else
+    348            {
+    349              return SMPL_BAD_PARAM;
+    350            }
+    351          
+    352            if (!pFrameInfo)
+   \   000078   EA           MOV     A,R2
+   \   000079   45..         ORL     A,?V0 + 1
+   \   00007B   7008         JNZ     ??SMPL_SendOpt_4
+    353            {
+    354              return SMPL_NOMEM;
+   \   00007D   7903         MOV     R1,#0x3
+   \   00007F   80BC         SJMP    ??SMPL_SendOpt_2
+    355            }
+   \                     ??SMPL_SendOpt_3:
+   \   000081   7902         MOV     R1,#0x2
+   \   000083   80B8         SJMP    ??SMPL_SendOpt_2
+    356            memcpy(MRFI_P_DST_ADDR(&pFrameInfo->mrfiPkt), pCInfo->peerAddr, NET_ADDR_SIZE);
+   \                     ??SMPL_SendOpt_4:
+   \   000085                ; Setup parameters for call to function memcpy
+   \   000085   75..04       MOV     ?V0 + 4,#0x4
+   \   000088   75..00       MOV     ?V0 + 5,#0x0
+   \   00008B   78..         MOV     R0,#?V0 + 4
+   \   00008D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000090   EE           MOV     A,R6
+   \   000091   2402         ADD     A,#0x2
+   \   000093   FC           MOV     R4,A
+   \   000094   EF           MOV     A,R7
+   \   000095   3400         ADDC    A,#0x0
+   \   000097   FD           MOV     R5,A
+   \   000098   EA           MOV     A,R2
+   \   000099   2406         ADD     A,#0x6
+   \   00009B   FA           MOV     R2,A
+   \   00009C   EB           MOV     A,R3
+   \   00009D   3400         ADDC    A,#0x0
+   \   00009F   FB           MOV     R3,A
+   \   0000A0   12....       LCALL   ??memcpy?relay
+   \   0000A3   7402         MOV     A,#0x2
+   \   0000A5   12....       LCALL   ?DEALLOC_XSTACK8
+    357          
+    358          #if defined(SMPL_SECURE)
+    359            {
+    360              uint32_t *pUL = 0;
+    361          
+    362              if (pCInfo->thisLinkID != SMPL_LINKID_USER_UUD)
+    363              {
+    364                pUL = &pCInfo->connTxCTR;
+    365              }
+    366              nwk_setSecureFrame(&pFrameInfo->mrfiPkt, len, pUL);
+    367            }
+    368          #endif  /* SMPL_SECURE */
+    369          
+    370          #if defined(ACCESS_POINT)
+    371            /* If we are an AP trying to send to a polling device, don't do it.
+    372             * See if the target is a store-and-forward client.
+    373             */
+    374            if (nwk_isSandFClient(MRFI_P_DST_ADDR(&pFrameInfo->mrfiPkt), &loc))
+    375            {
+    376               pFrameInfo->fi_usage = FI_INUSE_UNTIL_FWD;
+    377               return SMPL_SUCCESS;
+    378            }
+    379            else
+    380          #endif  /* ACCESS_POINT */
+    381            {
+    382              rc = nwk_sendFrame(pFrameInfo, MRFI_TX_TYPE_CCA);
+   \   0000A8                ; Setup parameters for call to function nwk_sendFrame
+   \   0000A8   7901         MOV     R1,#0x1
+   \   0000AA   AA..         MOV     R2,?V0 + 0
+   \   0000AC   AB..         MOV     R3,?V0 + 1
+   \   0000AE   12....       LCALL   ??nwk_sendFrame?relay
+   \   0000B1   E9           MOV     A,R1
+   \   0000B2   F5..         MOV     ?V0 + 2,A
+   \   0000B4   8085         SJMP    ??SMPL_SendOpt_0
+    383            }
+    384          
+    385          #if !defined(APP_AUTO_ACK)
+    386            /* save a little code space with this #if */
+    387            (void) ackreq;    /* keep compiler happy */
+    388            return rc;
+    389          #else
+    390            /* we're done if the send failed or no ack requested. */
+    391            if (SMPL_SUCCESS != rc || !ackreq)
+    392            {
+    393              return rc;
+    394            }
+    395          
+    396            NWK_CHECK_FOR_SETRX(radioState);
+    397            NWK_REPLY_DELAY();
+    398            NWK_CHECK_FOR_RESTORE_STATE(radioState);
+    399          
+    400            {
+    401              bspIState_t intState;
+    402          
+    403              /* If the saved TID hasn't been reset then we never got the ack. */
+    404              BSP_ENTER_CRITICAL_SECTION(intState);
+    405              if (pCInfo->ackTID)
+    406              {
+    407                pCInfo->ackTID = 0;
+    408                rc = SMPL_NO_ACK;
+    409              }
+    410              BSP_EXIT_CRITICAL_SECTION(intState);
+    411            }
+    412          
+    413            return rc;
+    414          #endif  /* APP_AUTO_ACK */
+    415          }
+    416          
+    417          /**************************************************************************************
+    418           * @fn          SMPL_Receive
+    419           *
+    420           * @brief       Receive a message from a peer application.
+    421           *
+    422           * input parameters
+    423           * @param   lid     - Link ID (port) from application
+    424           *
+    425           *
+    426           * output parameters
+    427           * @param   msg     - pointer to where received message should be copied.
+    428           *                    buffer should be of size == MAX_APP_PAYLOAD
+    429           * @param   len     - pointer to receive length of received message
+    430           *
+    431           * @return    Status of operation.
+    432           *            Caller should not use the value returned in 'len' to decide
+    433           *            whether there is a frame or not. It could be useful to the
+    434           *            Caller to distinguish between no frame and a frame with no data.
+    435           *            For example, in the polling case a frame with no application payload
+    436           *            is the way the AP conveys that there are no frames waiting.
+    437           *
+    438           *              SMPL_SUCCESS
+    439           *
+    440           *              SMPL_BAD_PARAM  No valid Connection Table entry for Link ID
+    441           *                              Data in Connection Table entry bad
+    442           *              SMPL_NO_FRAME   No frame received.
+    443           *              SMPL_NO_PAYLOAD Frame received with no payload (not necessarily
+    444           *                              an error and could be deduced by application
+    445           *                              because the returned length will be 0)
+    446           *
+    447           *            Polling device only:
+    448           *
+    449           *              SMPL_TIMEOUT        No response from Access Point
+    450           *              SMPL_NO_AP_ADDRESS  Access Point address unknown
+    451           *              SMPL_TX_CCA_FAIL    Could not send poll frame
+    452           *              SMPL_NOMEM          No memory in output frame queue
+    453           *              SMPL_NO_CHANNEL     Frequency Agility enabled and could not find channel
+    454           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    455          smplStatus_t SMPL_Receive(linkID_t lid, uint8_t *msg, uint8_t *len)
+   \                     SMPL_Receive:
+    456          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 3
+   \   000005   74FD         MOV     A,#-0x3
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   89..         MOV     ?V0 + 2,R1
+   \   00000C   EA           MOV     A,R2
+   \   00000D   FE           MOV     R6,A
+   \   00000E   EB           MOV     A,R3
+   \   00000F   FF           MOV     R7,A
+   \   000010   8C..         MOV     ?V0 + 0,R4
+   \   000012   8D..         MOV     ?V0 + 1,R5
+    457            connInfo_t  *pCInfo = nwk_getConnInfo(lid);
+   \   000014                ; Setup parameters for call to function nwk_getConnInfo
+   \   000014   12....       LCALL   ??nwk_getConnInfo?relay
+    458            smplStatus_t rc = SMPL_BAD_PARAM;
+   \   000017   75..02       MOV     ?V0 + 3,#0x2
+    459            rcvContext_t rcv;
+    460          
+    461            if (!pCInfo || ((rc=nwk_checkConnInfo(pCInfo, CHK_RX)) != SMPL_SUCCESS))
+   \   00001A   EA           MOV     A,R2
+   \   00001B   4B           ORL     A,R3
+   \   00001C   600B         JZ      ??SMPL_Receive_0
+   \   00001E                ; Setup parameters for call to function nwk_checkConnInfo
+   \   00001E   7900         MOV     R1,#0x0
+   \   000020   12....       LCALL   ??nwk_checkConnInfo?relay
+   \   000023   E9           MOV     A,R1
+   \   000024   F8           MOV     R0,A
+   \   000025   88..         MOV     ?V0 + 3,R0
+   \   000027   6004         JZ      ??SMPL_Receive_1
+    462            {
+    463              return rc;
+   \                     ??SMPL_Receive_0:
+   \   000029   A9..         MOV     R1,?V0 + 3
+   \   00002B   8038         SJMP    ??SMPL_Receive_2
+    464            }
+    465          
+    466            rcv.type  = RCV_APP_LID;
+   \                     ??SMPL_Receive_1:
+   \   00002D   85..82       MOV     DPL,?XSP + 0
+   \   000030   85..83       MOV     DPH,?XSP + 1
+   \   000033   7401         MOV     A,#0x1
+   \   000035   F0           MOVX    @DPTR,A
+    467            rcv.t.lid = lid;
+   \   000036   12....       LCALL   ?XSTACK_DISP0_8
+   \   000039   E5..         MOV     A,?V0 + 2
+   \   00003B   F0           MOVX    @DPTR,A
+    468          
+    469          #if defined(RX_POLLS)
+    470            {
+    471              uint8_t numChans  = 1;
+    472          #if defined(FREQUENCY_AGILITY)
+    473              freqEntry_t chans[NWK_FREQ_TBL_SIZE];
+    474              uint8_t     scannedB4 = 0;
+    475          #endif
+    476          
+    477              do
+    478              {
+    479                uint8_t radioState = MRFI_GetRadioState();
+    480          
+    481                /* I'm polling. Do the poll to stimulate the sending of a frame. If the
+    482                 * frame has application length of 0 it means there were no frames.  If
+    483                 * no reply is received infer that the channel is changed. We then need
+    484                 * to scan and then retry the poll on each channel returned.
+    485                 */
+    486                if (SMPL_SUCCESS != (rc=nwk_poll(pCInfo->portRx, pCInfo->peerAddr)))
+    487                {
+    488                  /* for some reason couldn't send the poll out. */
+    489                  return rc;
+    490                }
+    491          
+    492                /* do this before code block below which may reset it. */
+    493                numChans--;
+    494          
+    495                /* Wait until there's a frame. if the len is 0 then return SMPL_NO_FRAME
+    496                 * to the caller. In the poll case the AP always sends something.
+    497                 */
+    498                NWK_CHECK_FOR_SETRX(radioState);
+    499                NWK_REPLY_DELAY();
+    500                NWK_CHECK_FOR_RESTORE_STATE(radioState);
+    501          
+    502                /* TODO: deal with pending */
+    503                rc = nwk_retrieveFrame(&rcv, msg, len, 0, 0);
+    504          
+    505          #if defined(FREQUENCY_AGILITY)
+    506                if (SMPL_SUCCESS == rc)
+    507                {
+    508                  /* we received something... */
+    509                  return (*len) ? SMPL_SUCCESS : SMPL_NO_PAYLOAD;
+    510                }
+    511          
+    512                /* No reply. scan for other channel(s) if we haven't already. Then set
+    513                 * one and try again.
+    514                 */
+    515                if (!scannedB4)
+    516                {
+    517                  numChans  = nwk_scanForChannels(chans);
+    518                  scannedB4 = 1;
+    519                }
+    520                if (numChans)
+    521                {
+    522                  nwk_setChannel(&chans[numChans-1]);
+    523                }
+    524          #else /*  FREQUENCY_AGILITY */
+    525                return (*len) ? rc : ((SMPL_SUCCESS == rc) ? SMPL_NO_PAYLOAD : SMPL_TIMEOUT);
+    526          #endif
+    527              } while (numChans);
+    528            }
+    529          
+    530          #if defined(FREQUENCY_AGILITY)
+    531            return SMPL_NO_CHANNEL;
+    532          #endif
+    533          
+    534          #else  /* RX_POLLS */
+    535            return nwk_retrieveFrame(&rcv, msg, len, 0, 0);
+   \   00003C                ; Setup parameters for call to function nwk_retrieveFrame
+   \   00003C   E4           CLR     A
+   \   00003D   F5..         MOV     ?V0 + 4,A
+   \   00003F   F5..         MOV     ?V0 + 5,A
+   \   000041   78..         MOV     R0,#?V0 + 4
+   \   000043   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000046   78..         MOV     R0,#?V0 + 4
+   \   000048   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00004B   78..         MOV     R0,#?V0 + 0
+   \   00004D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000050   EE           MOV     A,R6
+   \   000051   FC           MOV     R4,A
+   \   000052   EF           MOV     A,R7
+   \   000053   FD           MOV     R5,A
+   \   000054   7406         MOV     A,#0x6
+   \   000056   12....       LCALL   ?XSTACK_DISP0_8
+   \   000059   AA82         MOV     R2,DPL
+   \   00005B   AB83         MOV     R3,DPH
+   \   00005D   12....       LCALL   ??nwk_retrieveFrame?relay
+   \   000060   7406         MOV     A,#0x6
+   \   000062   12....       LCALL   ?DEALLOC_XSTACK8
+   \                     ??SMPL_Receive_2:
+   \   000065   7403         MOV     A,#0x3
+   \   000067   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00006A   7F06         MOV     R7,#0x6
+   \   00006C   02....       LJMP    ?BANKED_LEAVE_XDATA
+    536          #endif  /* RX_POLLS */
+    537          }
+    538          
+    539          
+    540          /******************************************************************************
+    541           * @fn          SMPL_Link
+    542           *
+    543           * @brief       Link to a peer.
+    544           *
+    545           * input parameters
+    546           *
+    547           * output parameters
+    548           * @param   lid     - pointer to where we should write the link ID to which the
+    549           *                    application will read and write.
+    550           *
+    551           * @return   Status of operation.
+    552           *             SMPL_SUCCESS
+    553           *             SMPL_NOMEM         No room to allocate local Rx port, no more
+    554           *                                room in Connection Table, or no room in
+    555           *                                output frame queue.
+    556           *             SMPL_NO_LINK       No reply frame during wait window.
+    557           *             SMPL_TX_CCA_FAIL   Could not send Link frame.
+    558           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    559          smplStatus_t SMPL_Link(linkID_t *lid)
+   \                     SMPL_Link:
+    560          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    561            return nwk_link(lid);
+   \   000004                ; Setup parameters for call to function nwk_link
+   \   000004   12....       LCALL   ??nwk_link?relay
+   \   000007                REQUIRE ?Subroutine2
+   \   000007                ; // Fall through to label ?Subroutine2
+    562          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+    563          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    564          void NIK_Init(void)
+   \                     NIK_Init:
+    565          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    566          	//memcpy(g_frameInfo.mrfiPkt.frame,g_mstBuf,34);
+    567          	memcpy(g_frameInfo.mrfiPkt.frame,g_veriBuf,43);
+   \   000005                ; Setup parameters for call to function memcpy
+   \   000005   75..2B       MOV     ?V0 + 0,#0x2b
+   \   000008   75..00       MOV     ?V0 + 1,#0x0
+   \   00000B   78..         MOV     R0,#?V0 + 0
+   \   00000D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000010   7C..         MOV     R4,#g_veriBuf & 0xff
+   \   000012   7D..         MOV     R5,#(g_veriBuf >> 8) & 0xff
+   \   000014   7A..         MOV     R2,#(g_frameInfo + 2) & 0xff
+   \   000016   7B..         MOV     R3,#((g_frameInfo + 2) >> 8) & 0xff
+   \   000018   12....       LCALL   ??memcpy?relay
+   \   00001B   7402         MOV     A,#0x2
+   \   00001D   12....       LCALL   ?DEALLOC_XSTACK8
+    568            	g_frameInfo.fi_usage = FI_AVAILABLE;
+   \   000020   90....       MOV     DPTR,#g_frameInfo
+   \   000023   E4           CLR     A
+   \   000024   F0           MOVX    @DPTR,A
+    569          }
+   \   000025   02....       LJMP    ?Subroutine1 & 0xFFFF
+    570          
+    571          static void MstPacketParse(void)
+    572          {
+    573          	if((0x24!=g_pRcvPkt->frame[2])||(0x21!=g_pRcvPkt->frame[3]))
+    574          	{
+    575          		return;
+    576          	}
+    577          
+    578          	if(0x1E==g_pRcvPkt->frame[0])
+    579          	{
+    580          		nwk_sendFrame(&g_frameInfo,MRFI_TX_TYPE_FORCED);
+    581          	}
+    582          }
+    583          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    584          void NIK_LINK(void)
+   \                     NIK_LINK:
+    585          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    586          	//nwk_sendFrame(&g_frameInfo,MRFI_TX_TYPE_FORCED);
+    587          	
+    588          	if(g_rcvPkt>0)
+   \   000004   90....       MOV     DPTR,#g_rcvPkt
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   6040         JZ      ??NIK_LINK_0
+    589          	{
+    590          		g_rcvPkt = 0;
+   \   00000A   E4           CLR     A
+   \   00000B   F0           MOVX    @DPTR,A
+    591          		//tx_send_wait(&g_pRcvPkt->frame[35], 8);
+    592                        MRFI_DelayMs(20);
+   \   00000C                ; Setup parameters for call to function MRFI_DelayMs
+   \   00000C   7A14         MOV     R2,#0x14
+   \   00000E   FB           MOV     R3,A
+   \   00000F   12....       LCALL   ??MRFI_DelayMs?relay
+    593          		MstPacketParse();
+   \   000012   90....       MOV     DPTR,#g_pRcvPkt
+   \   000015   E0           MOVX    A,@DPTR
+   \   000016   F8           MOV     R0,A
+   \   000017   A3           INC     DPTR
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   F583         MOV     DPH,A
+   \   00001B   8882         MOV     DPL,R0
+   \   00001D   A3           INC     DPTR
+   \   00001E   A3           INC     DPTR
+   \   00001F   E0           MOVX    A,@DPTR
+   \   000020   6424         XRL     A,#0x24
+   \   000022   7026         JNZ     ??NIK_LINK_0
+   \   000024   90....       MOV     DPTR,#g_pRcvPkt + 1
+   \   000027   E0           MOVX    A,@DPTR
+   \   000028   F583         MOV     DPH,A
+   \   00002A   8882         MOV     DPL,R0
+   \   00002C   A3           INC     DPTR
+   \   00002D   A3           INC     DPTR
+   \   00002E   A3           INC     DPTR
+   \   00002F   E0           MOVX    A,@DPTR
+   \   000030   6421         XRL     A,#0x21
+   \   000032   7016         JNZ     ??NIK_LINK_0
+   \   000034   90....       MOV     DPTR,#g_pRcvPkt + 1
+   \   000037   E0           MOVX    A,@DPTR
+   \   000038   F583         MOV     DPH,A
+   \   00003A   8882         MOV     DPL,R0
+   \   00003C   E0           MOVX    A,@DPTR
+   \   00003D   641E         XRL     A,#0x1e
+   \   00003F   7009         JNZ     ??NIK_LINK_0
+   \   000041                ; Setup parameters for call to function nwk_sendFrame
+   \   000041   7900         MOV     R1,#0x0
+   \   000043   7A..         MOV     R2,#g_frameInfo & 0xff
+   \   000045   7B..         MOV     R3,#(g_frameInfo >> 8) & 0xff
+   \   000047   12....       LCALL   ??nwk_sendFrame?relay
+    594          	}
+    595                  
+    596          	//Mrfi_DelayUsecLong(800,0,NULL);	
+    597          	MRFI_DelayMs(800);
+   \                     ??NIK_LINK_0:
+   \   00004A                ; Setup parameters for call to function MRFI_DelayMs
+   \   00004A   7A20         MOV     R2,#0x20
+   \   00004C   7B03         MOV     R3,#0x3
+   \   00004E   12....       LCALL   ??MRFI_DelayMs?relay
+    598          }
+   \   000051   02....       LJMP    ?Subroutine2 & 0xFFFF
+    599          
+    600          #if defined(EXTENDED_API)
+    601          /**************************************************************************************
+    602           * @fn          SMPL_Unlink
+    603           *
+    604           * @brief       Tear down connection to a peer.
+    605           *
+    606           * input parameters
+    607           * @param   lid     - Link ID whose connection is to be terminated.
+    608           *
+    609           * output parameters
+    610           *
+    611           * @return   Status of operation. The Connection Table entry for the Link ID
+    612           *           is always freed successfuly. The returned status value is the
+    613           *           status of the _peer's_ connection tear-down as a result of the
+    614           *           message sent here.
+    615           *           SMPL_SUCCESS         Local and remote connection destroyed.
+    616           *           SMPL_BAD_PARAM       No local connection table entry for this Link ID
+    617           *           SMPL_TIMEOUT         No reply from peer.
+    618           *           SMPL_NO_PEER_UNLINK  Peer did not have a Connection Table entry for me.
+    619           */
+    620          smplStatus_t SMPL_Unlink(linkID_t lid)
+    621          {
+    622            return nwk_unlink(lid);
+    623          }
+    624          
+    625          /**************************************************************************************
+    626           * @fn          SMPL_Ping
+    627           *
+    628           * @brief       Ping a peer. Synchronous call. Although a link ID is used it is the
+    629           *              NWK Ping application that is pinged, not the peer of this Link ID. The
+    630           *              peer is not expected to be the responder to the frame sent from here.
+    631           *              This API is a proxy for a real ping since the application doesn't
+    632           *              have direct access to SimpliciTI device addresses. Kind of hokey but a
+    633           *              useful keep-alive mechanism without having to support it with
+    634           *              user application service.
+    635           *
+    636           * input parameters
+    637           * @param   lid  - The link ID whose peer device address is used to direct the NWK Ping
+    638           *
+    639           * output parameters
+    640           *
+    641           * @return   Status of operation.
+    642           */
+    643          smplStatus_t SMPL_Ping(linkID_t lid)
+    644          {
+    645            return nwk_ping(lid);
+    646          }
+    647          
+    648          /**************************************************************************************
+    649           * @fn          SMPL_Commission
+    650           *
+    651           * @brief       Commission a connection.
+    652           *
+    653           * input parameters
+    654           * @param   peerAddr  - Pointer to address of the peer for this connection
+    655           * @param    locPort  - Port on which to listen for messages from the peer
+    656           * @param    rmtPort  - Port on which to send messages to the peer.
+    657           * @param        lid  - Pointer to Link ID object. If content of location is
+    658           *                      non-zero on input the value is placed in the Connection
+    659           *                      object.
+    660           *
+    661           * output parameters
+    662           * @param        lid  - Pointer to Link ID object. If content of location is zero
+    663           *                      on input the value in the Connection object is stored there.
+    664           *
+    665           * @return   SMPL_SUCCESS
+    666           *           SMPL_NOMEM     - No room left in Connection table.
+    667           *           SMPL_BAD_PARAM - A pointer to a Link object was not supplied.
+    668           */
+    669          smplStatus_t SMPL_Commission(addr_t *peerAddr, uint8_t locPort, uint8_t rmtPort, linkID_t *lid)
+    670          {
+    671            connInfo_t   *pCInfo = nwk_getNextConnection();
+    672            smplStatus_t  rc     = SMPL_BAD_PARAM;
+    673          
+    674            do {
+    675              if (pCInfo)
+    676              {
+    677                /* sanity checks... */
+    678          
+    679                /* Check port info. */
+    680                if ((locPort > SMPL_PORT_STATIC_MAX) || (locPort < (SMPL_PORT_STATIC_MAX - PORT_USER_STATIC_NUM + 1)))
+    681                {
+    682                  continue;
+    683                }
+    684          
+    685                if ((rmtPort > SMPL_PORT_STATIC_MAX) || (rmtPort < (SMPL_PORT_STATIC_MAX - PORT_USER_STATIC_NUM + 1)))
+    686                {
+    687                  continue;
+    688                }
+    689          
+    690                /* Must supply a pointer to the Link ID object */
+    691                if (!lid)
+    692                {
+    693                  /* No Link ID pointer supplied */
+    694                  continue;
+    695                }
+    696          
+    697                /* we're sane */
+    698          
+    699                /* Use the value generated at connection object assign time. */
+    700                *lid = pCInfo->thisLinkID;
+    701          
+    702                /* store peer's address */
+    703                memcpy(pCInfo->peerAddr, peerAddr, NET_ADDR_SIZE);
+    704          
+    705                /* store port info */
+    706                pCInfo->portRx = locPort;
+    707                pCInfo->portTx = rmtPort;
+    708          
+    709                pCInfo->hops2target = MAX_HOPS;
+    710          
+    711                rc = SMPL_SUCCESS;
+    712              }
+    713              else
+    714              {
+    715                /* No room in Connection table */
+    716                rc = SMPL_NOMEM;
+    717              }
+    718            } while (0);
+    719          
+    720            if ((SMPL_SUCCESS != rc) && pCInfo)
+    721            {
+    722              nwk_freeConnection(pCInfo);
+    723            }
+    724          
+    725            return rc;
+    726          }
+    727          #endif   /* EXTENDED_API */
+    728          
+    729          /******************************************************************************
+    730           * @fn          SMPL_Ioctl
+    731           *
+    732           * @brief       This routine supplies the SimpliciTI IOCTL support.
+    733           *
+    734           * input parameters
+    735           * @param   object   - The IOCTL target object
+    736           * @param   action   - The IOCTL target action on the object
+    737           * @param   val      - pointer to value. exact forn depends on object type.
+    738           *
+    739           * output parameters
+    740           *
+    741           * @return   Status of action. Value depends on object, action, and result.
+    742           *
+    743           *           SMPL_BAD_PARAM is returned if this API is called before
+    744           *                          initialization and the object is not one of
+    745           *                          the valid exceptions.
+    746           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    747          smplStatus_t SMPL_Ioctl(ioctlObject_t object, ioctlAction_t action, void *val)
+   \                     SMPL_Ioctl:
+    748          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 0,R2
+   \   000007   EC           MOV     A,R4
+   \   000008   FE           MOV     R6,A
+   \   000009   ED           MOV     A,R5
+   \   00000A   FF           MOV     R7,A
+    749            smplStatus_t rc;
+    750          
+    751            /* if init hasn't occurred see if access is still valid */
+    752            if (!sInit_done && !ioctlPreInitAccessIsOK(object))
+   \   00000B   90....       MOV     DPTR,#sInit_done
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   700E         JNZ     ??SMPL_Ioctl_0
+   \   000011   E9           MOV     A,R1
+   \   000012   24FB         ADD     A,#-0x5
+   \   000014   6009         JZ      ??SMPL_Ioctl_0
+   \   000016   24FB         ADD     A,#-0x5
+   \   000018   6005         JZ      ??SMPL_Ioctl_0
+    753            {
+    754              return SMPL_BAD_PARAM;
+   \                     ??SMPL_Ioctl_1:
+   \   00001A   7902         MOV     R1,#0x2
+   \   00001C   02....       LJMP    ??SMPL_Ioctl_2 & 0xFFFF
+    755            }
+    756          
+    757            switch (object)
+   \                     ??SMPL_Ioctl_0:
+   \   00001F   E9           MOV     A,R1
+   \   000020   24FE         ADD     A,#-0x2
+   \   000022   6033         JZ      ??SMPL_Ioctl_3
+   \   000024   14           DEC     A
+   \   000025   604E         JZ      ??SMPL_Ioctl_4
+   \   000027   24FE         ADD     A,#-0x2
+   \   000029   6016         JZ      ??SMPL_Ioctl_5
+   \   00002B   14           DEC     A
+   \   00002C   6008         JZ      ??SMPL_Ioctl_6
+   \   00002E   14           DEC     A
+   \   00002F   604F         JZ      ??SMPL_Ioctl_7
+   \   000031   14           DEC     A
+   \   000032   6072         JZ      ??SMPL_Ioctl_8
+   \   000034   80E4         SJMP    ??SMPL_Ioctl_1
+    758            {
+    759          #if defined(EXTENDED_API)
+    760              case IOCTL_OBJ_TOKEN:
+    761                {
+    762                  ioctlToken_t *t = (ioctlToken_t *)val;
+    763          
+    764                  rc = SMPL_SUCCESS;
+    765                  if (TT_LINK == t->tokenType)
+    766                  {
+    767                    if (IOCTL_ACT_SET == action)
+    768                    {
+    769                      nwk_setLinkToken(t->token.linkToken);
+    770                    }
+    771                    else if (IOCTL_ACT_GET == action)
+    772                    {
+    773                      nwk_getLinkToken(&t->token.linkToken);
+    774                    }
+    775                    else
+    776                    {
+    777                      rc = SMPL_BAD_PARAM;
+    778                    }
+    779                  }
+    780                  else if (TT_JOIN == t->tokenType)
+    781                  {
+    782                    if (IOCTL_ACT_SET == action)
+    783                    {
+    784                      nwk_setJoinToken(t->token.joinToken);
+    785                    }
+    786                    else if (IOCTL_ACT_GET == action)
+    787                    {
+    788                      nwk_getJoinToken(&t->token.joinToken);
+    789                    }
+    790                    else
+    791                    {
+    792                      rc = SMPL_BAD_PARAM;
+    793                    }
+    794                  }
+    795                  else
+    796                  {
+    797                    rc = SMPL_BAD_PARAM;
+    798                  }
+    799                }
+    800                break;
+    801          
+    802              case IOCTL_OBJ_NVOBJ:
+    803                rc = nwk_NVObj(action, (ioctlNVObj_t *)val);
+    804                break;
+    805          #endif  /* EXTENDED_API */
+    806          
+    807              case IOCTL_OBJ_CONNOBJ:
+    808                rc = nwk_connectionControl(action, val);
+   \                     ??SMPL_Ioctl_6:
+   \   000036                ; Setup parameters for call to function nwk_connectionControl
+   \   000036   EE           MOV     A,R6
+   \   000037   FA           MOV     R2,A
+   \   000038   EF           MOV     A,R7
+   \   000039   FB           MOV     R3,A
+   \   00003A   A9..         MOV     R1,?V0 + 0
+   \   00003C   12....       LCALL   ??nwk_connectionControl?relay
+    809                break;
+   \   00003F   8076         SJMP    ??SMPL_Ioctl_2
+    810          
+    811              case IOCTL_OBJ_ADDR:
+    812                if ((IOCTL_ACT_GET == action) || (IOCTL_ACT_SET == action))
+   \                     ??SMPL_Ioctl_5:
+   \   000041   7401         MOV     A,#0x1
+   \   000043   65..         XRL     A,?V0 + 0
+   \   000045   6003         JZ      ??SMPL_Ioctl_9
+   \   000047   EA           MOV     A,R2
+   \   000048   70D0         JNZ     ??SMPL_Ioctl_1
+    813                {
+    814                  rc = nwk_deviceAddress(action, (addr_t *)val);
+   \                     ??SMPL_Ioctl_9:
+   \   00004A                ; Setup parameters for call to function nwk_deviceAddress
+   \   00004A   EE           MOV     A,R6
+   \   00004B   FA           MOV     R2,A
+   \   00004C   EF           MOV     A,R7
+   \   00004D   FB           MOV     R3,A
+   \   00004E   A9..         MOV     R1,?V0 + 0
+   \   000050   12....       LCALL   ??nwk_deviceAddress?relay
+   \   000053   8062         SJMP    ??SMPL_Ioctl_2
+    815                }
+    816                else
+    817                {
+    818                  rc = SMPL_BAD_PARAM;
+   \                     ??SMPL_Ioctl_10:
+   \   000055   80C3         SJMP    ??SMPL_Ioctl_1
+    819                }
+    820                break;
+    821          
+    822              case IOCTL_OBJ_RAW_IO:
+    823                if (IOCTL_ACT_WRITE == action)
+   \                     ??SMPL_Ioctl_3:
+   \   000057   7403         MOV     A,#0x3
+   \   000059   65..         XRL     A,?V0 + 0
+   \   00005B   7009         JNZ     ??SMPL_Ioctl_11
+    824                {
+    825                  rc = nwk_rawSend((ioctlRawSend_t *)val);
+   \   00005D                ; Setup parameters for call to function nwk_rawSend
+   \   00005D   EE           MOV     A,R6
+   \   00005E   FA           MOV     R2,A
+   \   00005F   EF           MOV     A,R7
+   \   000060   FB           MOV     R3,A
+   \   000061   12....       LCALL   ??nwk_rawSend?relay
+   \   000064   8051         SJMP    ??SMPL_Ioctl_2
+    826                }
+    827                else if (IOCTL_ACT_READ == action)
+   \                     ??SMPL_Ioctl_11:
+   \   000066   7402         MOV     A,#0x2
+   \   000068   65..         XRL     A,?V0 + 0
+   \   00006A   70AE         JNZ     ??SMPL_Ioctl_1
+    828                {
+    829                  rc = nwk_rawReceive((ioctlRawReceive_t *)val);
+   \   00006C                ; Setup parameters for call to function nwk_rawReceive
+   \   00006C   EE           MOV     A,R6
+   \   00006D   FA           MOV     R2,A
+   \   00006E   EF           MOV     A,R7
+   \   00006F   FB           MOV     R3,A
+   \   000070   12....       LCALL   ??nwk_rawReceive?relay
+   \   000073   8042         SJMP    ??SMPL_Ioctl_2
+    830                }
+    831                else
+    832                {
+    833                  rc = SMPL_BAD_PARAM;
+    834                }
+    835                break;
+    836          
+    837              case IOCTL_OBJ_RADIO:
+    838                rc = nwk_radioControl(action, val);
+   \                     ??SMPL_Ioctl_4:
+   \   000075                ; Setup parameters for call to function nwk_radioControl
+   \   000075   EE           MOV     A,R6
+   \   000076   FA           MOV     R2,A
+   \   000077   EF           MOV     A,R7
+   \   000078   FB           MOV     R3,A
+   \   000079   A9..         MOV     R1,?V0 + 0
+   \   00007B   12....       LCALL   ??nwk_radioControl?relay
+    839                break;
+   \   00007E   8037         SJMP    ??SMPL_Ioctl_2
+    840          
+    841          #if defined(ACCESS_POINT)
+    842              case IOCTL_OBJ_AP_JOIN:
+    843                rc = nwk_joinContext(action);
+    844                break;
+    845          #endif
+    846          #if defined(FREQUENCY_AGILITY)
+    847              case IOCTL_OBJ_FREQ:
+    848                rc = nwk_freqControl(action, val);
+    849                break;
+    850          #endif
+    851          #if defined NWK_PLL
+    852              case IOCTL_OBJ_PLL:
+    853                rc = nwk_pllControl(action, val);
+    854                break;
+    855          #endif
+    856              case IOCTL_OBJ_FWVER:
+    857                if (IOCTL_ACT_GET == action)
+   \                     ??SMPL_Ioctl_7:
+   \   000080   7401         MOV     A,#0x1
+   \   000082   65..         XRL     A,?V0 + 0
+   \   000084   7094         JNZ     ??SMPL_Ioctl_1
+    858                {
+    859                  memcpy(val, nwk_getFWVersion(), SMPL_FWVERSION_SIZE);
+   \   000086                ; Setup parameters for call to function memcpy
+   \   000086   75..04       MOV     ?V0 + 2,#0x4
+   \   000089   75..00       MOV     ?V0 + 3,#0x0
+   \   00008C   78..         MOV     R0,#?V0 + 2
+   \   00008E   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000091                ; Setup parameters for call to function nwk_getFWVersion
+   \   000091   12....       LCALL   ??nwk_getFWVersion?relay
+   \   000094   EA           MOV     A,R2
+   \   000095   FC           MOV     R4,A
+   \   000096   EB           MOV     A,R3
+   \   000097   FD           MOV     R5,A
+   \   000098   EE           MOV     A,R6
+   \   000099   FA           MOV     R2,A
+   \   00009A   EF           MOV     A,R7
+   \   00009B   FB           MOV     R3,A
+   \   00009C   12....       LCALL   ??memcpy?relay
+   \   00009F   7402         MOV     A,#0x2
+   \   0000A1   12....       LCALL   ?DEALLOC_XSTACK8
+    860                  rc = SMPL_SUCCESS;
+   \   0000A4   800F         SJMP    ??SMPL_Ioctl_12
+    861                }
+    862                else
+    863                {
+    864                  rc = SMPL_BAD_PARAM;
+    865                }
+    866                break;
+    867          
+    868              case IOCTL_OBJ_PROTOVER:
+    869                if (IOCTL_ACT_GET == action)
+   \                     ??SMPL_Ioctl_8:
+   \   0000A6   7401         MOV     A,#0x1
+   \   0000A8   65..         XRL     A,?V0 + 0
+   \   0000AA   70A9         JNZ     ??SMPL_Ioctl_10
+    870                {
+    871                  *((uint8_t *)val) = nwk_getProtocolVersion();
+   \   0000AC                ; Setup parameters for call to function nwk_getProtocolVersion
+   \   0000AC   12....       LCALL   ??nwk_getProtocolVersion?relay
+   \   0000AF   E9           MOV     A,R1
+   \   0000B0   8E82         MOV     DPL,R6
+   \   0000B2   8F83         MOV     DPH,R7
+   \   0000B4   F0           MOVX    @DPTR,A
+    872                  rc = SMPL_SUCCESS;
+   \                     ??SMPL_Ioctl_12:
+   \   0000B5   7900         MOV     R1,#0x0
+    873                }
+    874                else
+    875                {
+    876                  rc = SMPL_BAD_PARAM;
+    877                }
+    878                break;
+    879          
+    880              default:
+    881                rc = SMPL_BAD_PARAM;
+    882                break;
+    883            }
+    884          
+    885            return rc;
+   \                     ??SMPL_Ioctl_2:
+   \   0000B7   02....       LJMP    ?Subroutine0 & 0xFFFF
+    886          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_LinkListen?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_LinkListen
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_Send?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_Send
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_SendOpt?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_SendOpt
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_Receive?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_Receive
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_Link?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_Link
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??NIK_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    NIK_Init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??NIK_LINK?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    NIK_LINK
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SMPL_Ioctl?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SMPL_Ioctl
+    887          
+    888          /******************************************************************************
+    889           * @fn          ioctlPreInitAccessIsOK
+    890           *
+    891           * @brief       Is the request legal yet? Most requests are not legal before
+    892           *              SMPL_Init().
+    893           *
+    894           * input parameters
+    895           * @param   object   - The IOCTL target object
+    896           *
+    897           * output parameters
+    898           *
+    899           * @return   Returns non-zero if request should be honored for further
+    900           *           processing, otherwise returns 0. This function does not
+    901           *           determine of the object-action pair are valid. It only knows
+    902           *           about exceptions, i.e., those that are valid before the
+    903           *           SMPL_Init() call.
+    904           *
+    905           */
+    906          static uint8_t ioctlPreInitAccessIsOK(ioctlObject_t object)
+    907          {
+    908            uint8_t rc;
+    909          
+    910            /* Currently the only legal pre-init accesses are the address and
+    911             * the token objects.
+    912             */
+    913            switch (object)
+    914            {
+    915              case IOCTL_OBJ_ADDR:
+    916              case IOCTL_OBJ_TOKEN:
+    917                rc = 1;   /* legal */
+    918                break;
+    919          
+    920              default:
+    921                rc = 0;   /* not legal when init not done */
+    922                break;
+    923            }
+    924          
+    925            return rc;
+    926          }
+
+   Maximum stack usage in bytes:
+
+     Function                      ISTACK PSTACK XSTACK
+     --------                      ------ ------ ------
+     NIK_Init                          0      0     12
+       -> memcpy                       0      0     24
+     NIK_LINK                          2      0      0
+       -> MRFI_DelayMs                 4      0      0
+       -> nwk_sendFrame                4      0      0
+       -> MRFI_DelayMs                 4      0      0
+     SMPL_Init                         0      0      9
+       -> MRFI_Init                    0      0     18
+       -> nwk_nwkInit                  0      0     18
+       -> MRFI_WakeUp                  0      0     18
+       -> nwk_getMyAddress             0      0     18
+       -> MRFI_SetRxAddrFilter         0      0     18
+       -> MRFI_DisableRxAddrFilter     0      0     18
+       -> nwk_join                     0      0     18
+     SMPL_Ioctl                        1      0     14
+       -> nwk_connectionControl        0      0     24
+       -> nwk_deviceAddress            0      0     24
+       -> nwk_rawSend                  0      0     24
+       -> nwk_rawReceive               0      0     24
+       -> nwk_radioControl             0      0     24
+       -> nwk_getFWVersion             0      0     28
+       -> memcpy                       0      0     28
+       -> nwk_getProtocolVersion       0      0     24
+     SMPL_Link                         2      0      0
+       -> nwk_link                     4      0      0
+     SMPL_LinkListen                   1      0     12
+       -> MRFI_GetRadioState           0      0     24
+       -> nwk_setListenContext         0      0     24
+       -> MRFI_WakeUp                  0      0     24
+       -> MRFI_RxOn                    0      0     24
+       -> nwk_getLocalLinkID           0      0     24
+       -> MRFI_DelayMs                 0      0     24
+       -> MRFI_Sleep                   0      0     24
+       -> MRFI_RxIdle                  0      0     24
+       -> nwk_setListenContext         0      0     24
+     SMPL_Receive                      1      0     23
+       -> nwk_getConnInfo              0      0     34
+       -> nwk_checkConnInfo            0      0     34
+       -> nwk_retrieveFrame            0      0     46
+     SMPL_Send                         0      0     12
+       -> SMPL_SendOpt                 0      0     24
+     SMPL_SendOpt                      0      0     32
+       -> nwk_getConnInfo              0      0     36
+       -> MRFI_GetRadioState           0      0     36
+       -> nwk_checkConnInfo            0      0     36
+       -> nwk_buildFrame               0      0     36
+       -> memcpy                       0      0     40
+       -> nwk_sendFrame                0      0     36
+
+
+   Segment part sizes:
+
+     Function/Label          Bytes
+     --------------          -----
+     sInit_done                 1
+     g_frameInfo               51
+     g_pRcvPkt                  2
+     SMPL_Init                 54
+     SMPL_LinkListen          118
+     ?Subroutine0               5
+     SMPL_Send                 23
+     ?Subroutine1               5
+     SMPL_SendOpt             182
+     SMPL_Receive             111
+     SMPL_Link                  7
+     ?Subroutine2               7
+     NIK_Init                  40
+     NIK_LINK                  84
+     SMPL_Ioctl               186
+     ??SMPL_Init?relay          6
+     ??SMPL_LinkListen?relay    6
+     ??SMPL_Send?relay          6
+     ??SMPL_SendOpt?relay       6
+     ??SMPL_Receive?relay       6
+     ??SMPL_Link?relay          6
+     ??NIK_Init?relay           6
+     ??NIK_LINK?relay           6
+     ??SMPL_Ioctl?relay         6
+
+ 
+ 822 bytes in segment BANKED_CODE
+  54 bytes in segment BANK_RELAYS
+  54 bytes in segment XDATA_Z
+ 
+ 876 bytes of CODE  memory
+  54 bytes of XDATA memory
+
+Errors: none
+Warnings: none

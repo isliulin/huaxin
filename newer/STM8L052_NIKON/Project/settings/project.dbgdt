@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <ColumnWidth0>16</ColumnWidth0><ColumnWidth1>1385</ColumnWidth1></Debug-Log>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>16</ColumnWidth0><ColumnWidth1>1038</ColumnWidth1><ColumnWidth2>277</ColumnWidth2><ColumnWidth3>69</ColumnWidth3></Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>223</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        <col-names>
+          
+          
+        <item>Disassembly</item><item>_I0</item></col-names>
+        <col-widths>
+          
+          
+        <item>500</item><item>20</item></col-widths>
+        <DisasmHistory/>
+        <PreferedWindows>
+          
+          
+          
+          
+        <Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows>
+        
+        
+      <ShowCodeCoverage>1</ShowCodeCoverage><ShowInstrProfiling>1</ShowInstrProfiling></Disassembly>
+      <StaticWatch>
+        <expressions>
+          
+          
+          
+        <item>ADC_Buffer</item><item>ADC_VALUE</item><item>SysInfo</item><item>motoSet</item><item>multiSet</item><item>mainPara</item><item>cmrPara</item><item>g_nikComStatue</item><item>g_lightMode</item><item>g_nikPreTmr1</item><item>g_nikPreTmr2</item><item>ttl_expCodeRsv</item><item>Motor_Manger_TypeDef.Motor_State</item><item>g_cmrLinked</item><item>g_nikComStatue</item><item>g_flashTime</item><item>ttl_expCodeRsv</item><item>mstPara</item><item/></expressions>
+        <col-names>
+          
+          
+          
+          
+        <item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names>
+        <col-widths>
+          
+          
+          
+          
+        <item>167</item><item>150</item><item>100</item><item>167</item></col-widths>
+        <PreferedWindows>
+          
+          
+          
+          
+        <Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows>
+      </StaticWatch>
+      <Select-Ambiguous-Definitions>
+        
+        
+        
+      <ColumnWidth0>496</ColumnWidth0><ColumnWidth1>70</ColumnWidth1><ColumnWidth2>850</ColumnWidth2></Select-Ambiguous-Definitions>
+      <Register>
+        <RegFindHistory/>
+      </Register>
+      <Find-in-Files>
+        
+        
+        
+        
+      <ColumnWidth0>425</ColumnWidth0><ColumnWidth1>70</ColumnWidth1><ColumnWidth2>638</ColumnWidth2><ColumnWidth3>283</ColumnWidth3></Find-in-Files>
+      <WATCH_1>
+        <expressions>
+          
+          
+        <item>time_clk</item><item>TEST_TIME_CNT</item><item>TimeOut_Sck</item><item>value_buf1</item><item>value</item><item>count</item><item>M_T1_SCALE_Group[count]</item><item/></expressions>
+        <col-names>
+          
+          
+          
+          
+        <item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names>
+        <col-widths>
+          
+          
+          
+          
+        <item>100</item><item>150</item><item>100</item><item>100</item></col-widths>
+        <PreferedWindows>
+          
+          
+          
+          
+        <Position>1</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows>
+      </WATCH_1>
+    <Find-All-Declarations><ColumnWidth0>496</ColumnWidth0><ColumnWidth1>70</ColumnWidth1><ColumnWidth2>850</ColumnWidth2></Find-All-Declarations><Memory><MemGotoHistory/><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><FindAsHex>0</FindAsHex></Memory><Auto><PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><col-names><item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names><col-widths><item>100</item><item>150</item><item>100</item><item>100</item></col-widths></Auto></Static>
+    <Windows>
+      
+      
+      
+    <Wnd4>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-30984-27185</Identity>
+            <TabName>Debug Log</TabName>
+            <Factory>Debug-Log</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-30461-27195</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-31739-9550</Identity>
+            <TabName>Ambiguous Definitions</TabName>
+            <Factory>Select-Ambiguous-Definitions</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-28147-7962</Identity>
+            <TabName>Register</TabName>
+            <Factory>Register</Factory>
+            <Session>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+            <REG1>0</REG1><REG2>0</REG2><Group>34</Group><States>16</States><State0>ADC1_DRH</State0><State1>EXTI_CONF1</State1><State2>EXTI_CONF2</State2><State3>EXTI_CR2</State3><State4>EXTI_CR4</State4><State5>EXTI_SR1</State5><State6>EXTI_SR2</State6><State7>ITC_SPR1</State7><State8>ITC_SPR2</State8><State9>ITC_SPR3</State9><State10>ITC_SPR4</State10><State11>ITC_SPR5</State11><State12>ITC_SPR6</State12><State13>ITC_SPR7</State13><State14>ITC_SPR8</State14><State15>PG_IDR</State15></Session>
+          </Tab>
+          <Tab>
+            <Identity>TabID-21373-15048</Identity>
+            <TabName>Find in Files</TabName>
+            <Factory>Find-in-Files</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-24657-28677</Identity><TabName>Declarations</TabName><Factory>Find-All-Declarations</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd4><Wnd5>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-8964-27189</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>project</ExpandedNode><ExpandedNode>project/Header</ExpandedNode><ExpandedNode>project/Source</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd5><Wnd6><Tabs><Tab><Identity>TabID-11233-234</Identity><TabName>Live Watch</TabName><Factory>StaticWatch</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd6><Wnd7><Tabs><Tab><Identity>TabID-19061-954</Identity><TabName>Disassembly</TabName><Factory>Disassembly</Factory><Session/></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd7></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\includes.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>357</SelStart2><SelEnd2>357</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Lcd.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>140</YPos2><SelStart2>10974</SelStart2><SelEnd2>10974</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Key_Process.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\stm8l15x_conf.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\stm8l15x_it.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>0</SelStart2><SelEnd2>0</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Task.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>68</SelStart2><SelEnd2>68</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\stm8l15x_it.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>218</YPos2><SelStart2>6238</SelStart2><SelEnd2>6257</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Libraries\STM8L15x_StdPeriph_Driver\src\stm8l15x_tim2.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>352</YPos2><SelStart2>14477</SelStart2><SelEnd2>14477</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Nikon.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>196</YPos2><SelStart2>4410</SelStart2><SelEnd2>4410</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Task.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>160</YPos2><SelStart2>5457</SelStart2><SelEnd2>5472</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Change.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>706</SelStart2><SelEnd2>717</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Init.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>63</YPos2><SelStart2>5281</SelStart2><SelEnd2>5307</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Funct.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>450</YPos2><SelStart2>16403</SelStart2><SelEnd2>16413</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Change.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>201</YPos2><SelStart2>5051</SelStart2><SelEnd2>5051</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Config.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>95</YPos2><SelStart2>1758</SelStart2><SelEnd2>1758</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Funct.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>278</YPos2><SelStart2>9802</SelStart2><SelEnd2>9802</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Nikon.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>1953</YPos2><SelStart2>15275</SelStart2><SelEnd2>15275</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Key_Process.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>324</YPos2><SelStart2>10230</SelStart2><SelEnd2>10253</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Lcd.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>185</YPos2><SelStart2>6327</SelStart2><SelEnd2>6327</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Motor.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>284</YPos2><SelStart2>10787</SelStart2><SelEnd2>10799</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\Motor.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>210</YPos2><SelStart2>10344</SelStart2><SelEnd2>10344</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>21</YPos2><SelStart2>436</SelStart2><SelEnd2>436</SelEnd2></Tab><ActiveTab>21</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-02909788><key>iaridepm.enu1</key></Toolbar-02909788></Sizes></Row0><Row1><Sizes><Toolbar-091F1500><key>debuggergui.enu1</key></Toolbar-091F1500></Sizes></Row1><Row2><Sizes/></Row2></Top><Left><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>479</Bottom><Right>314</Right><x>-2</x><y>-2</y><xscreen>7419</xscreen><yscreen>311</yscreen><sizeHorzCX>5152083</sizeHorzCX><sizeHorzCY>375604</sizeHorzCY><sizeVertCX>219444</sizeVertCX><sizeVertCY>580918</sizeVertCY></Rect></Wnd5></Sizes></Row0><Row1><Sizes><Wnd6><Rect><Top>-2</Top><Left>312</Left><Bottom>479</Bottom><Right>670</Right><x>312</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>138889</sizeHorzCX><sizeHorzCY>241546</sizeHorzCY><sizeVertCX>248611</sizeVertCX><sizeVertCY>580918</sizeVertCY></Rect></Wnd6></Sizes></Row1></Left><Right><Row0><Sizes><Wnd7><Rect><Top>-2</Top><Left>-2</Left><Bottom>479</Bottom><Right>198</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>138889</sizeHorzCX><sizeHorzCY>241546</sizeHorzCY><sizeVertCX>138889</sizeVertCX><sizeVertCY>580918</sizeVertCY></Rect></Wnd7></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>280</Bottom><Right>1442</Right><x>-2</x><y>-2</y><xscreen>1444</xscreen><yscreen>282</yscreen><sizeHorzCX>1002778</sizeHorzCX><sizeHorzCY>340580</sizeHorzCY><sizeVertCX>5152083</sizeVertCX><sizeVertCY>375604</sizeVertCY></Rect></Wnd4></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+

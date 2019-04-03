@@ -1,0 +1,1229 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        04/Dec/2016  22:37:57 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simp /
+//                          liciti\nwk_applications\nwk_mgmt.c                /
+//    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          nStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\Configuration\Lin /
+//                          kTo\smpl_config.dat ("-DTHIS_DEVICE_ADDRESS={0x79 /
+//                          , 0x56, 0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK   /
+//                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF05_8051\nik_sb5000\IAR\Config /
+//                          uration\smpl_nwk_config.dat (-DMAX_HOPS=3         /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4            /
+//                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING          /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=115200                           /
+//                          -DUART_FLOW_CONTROL=UART_FLOW_CONTROL_OFF         /
+//                          -DUART_PARITY_MODE=UART_PARITY_NONE               /
+//                          -DUART_STOP_BITS=UART_1_STOP_BIT                  /
+//                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                  /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simp /
+//                          liciti\nwk_applications\nwk_mgmt.c -D             /
+//                          MCU_H=<ioCC2530.h> -D MRFI_CC2530 -D ZTOOL_P1     /
+//                          -lC C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          onStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Ex /
+//                          amples\SRF05_8051\nik_sb5000\IAR\LinkTo\List\     /
+//                          -lA C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          onStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Ex /
+//                          amples\SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -o  /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\ -e       /
+//                          --debug --core=plain --dptr=16,1                  /
+//                          --data_model=large --code_model=banked            /
+//                          --calling_convention=xdata_reentrant              /
+//                          --place_constants=data --nr_virtual_regs 16 -I    /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\bsp\ -I C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ /
+//                          ..\..\..\Components\bsp\drivers\ -I               /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\bsp\boards\CC2530EM\ -I                     /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\mrfi\ -I C:\Users\freeman\Documents\work\NB /
+//                          K\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ /
+//                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\.. /
+//                          \..\..\..\Components\SimpliciTI\nwk\ -I           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\Application /
+//                          s\ -I C:\Users\freeman\Documents\work\NBK\Nikon\N /
+//                          ikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\ /
+//                          Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\.. /
+//                          \Components\SimpliciTI\nwk_applications\ -I       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\OSAL\INCLUDE\ -I C:\Users\freeman\Documents /
+//                          \work\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IA /
+//                          R-1.2.0\Projects\Examples\SRF05_8051\nik_sb5000\I /
+//                          AR\..\..\..\..\..\Components\OSAL\MCU\CCSOC\ -I   /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\HAL\INCLUDE\ -I C:\Users\freeman\Documents\ /
+//                          work\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR /
+//                          -1.2.0\Projects\Examples\SRF05_8051\nik_sb5000\IA /
+//                          R\..\..\..\..\..\Components\HAL\TARGET\CC2530EB\  /
+//                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          nStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co /
+//                          mponents\SERVICES\SADDR\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\SERVICES\SDATA\ -I                          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MT\ -I C:\Users\freeman\Documents\work\NBK\ /
+//                          Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Pr /
+//                          ojects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\. /
+//                          .\..\..\Components\STACK\AF\ -I                   /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\NWK\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\ /
+//                          ..\..\..\..\..\Components\STACK\SEC\ -I           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\SAPI\ -I C:\Users\freeman\Documents\w /
+//                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR- /
+//                          1.2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR /
+//                          \..\..\..\..\..\Components\STACK\SYS\ -I          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\ZDO\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\ /
+//                          ..\..\..\..\..\Components\MAC\INCLUDE\ -I         /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\HIGH_LEVEL\ -I                          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\LOW_LEVEL\srf04\ -I                     /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz       /
+//                          --require_prototypes                              /
+//    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonSt /
+//                          m32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\LinkTo\List\nwk_mgmt /
+//                          .s51                                              /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk_mgmt
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??nwk_mgmtInit?relay
+        FUNCTION ??nwk_mgmtInit?relay,0203H
+        PUBLIC ??nwk_poll?relay
+        FUNCTION ??nwk_poll?relay,0203H
+        PUBLIC ??nwk_processMgmt?relay
+        FUNCTION ??nwk_processMgmt?relay,0203H
+        PUBLIC nwk_mgmtInit
+        FUNCTION nwk_mgmtInit,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC nwk_poll
+        FUNCTION nwk_poll,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 25, STACK
+        PUBLIC nwk_processMgmt
+        FUNCTION nwk_processMgmt,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+MRFI_RandomByte     SYMBOL "MRFI_RandomByte"
+nwk_isValidReply    SYMBOL "nwk_isValidReply"
+MRFI_PostKillSem    SYMBOL "MRFI_PostKillSem"
+nwk_getMyAddress    SYMBOL "nwk_getMyAddress"
+memcmp              SYMBOL "memcmp"
+memcpy              SYMBOL "memcpy"
+nwk_getAPAddress    SYMBOL "nwk_getAPAddress"
+SMPL_Ioctl          SYMBOL "SMPL_Ioctl"
+??MRFI_PostKillSem?relay SYMBOL "?relay", MRFI_PostKillSem
+??MRFI_RandomByte?relay SYMBOL "?relay", MRFI_RandomByte
+??SMPL_Ioctl?relay  SYMBOL "?relay", SMPL_Ioctl
+??memcmp?relay      SYMBOL "?relay", memcmp
+??memcpy?relay      SYMBOL "?relay", memcpy
+??nwk_getAPAddress?relay SYMBOL "?relay", nwk_getAPAddress
+??nwk_getMyAddress?relay SYMBOL "?relay", nwk_getMyAddress
+??nwk_isValidReply?relay SYMBOL "?relay", nwk_isValidReply
+nwk_mgmtInit        SYMBOL "nwk_mgmtInit"
+??nwk_mgmtInit?relay SYMBOL "?relay", nwk_mgmtInit
+nwk_poll            SYMBOL "nwk_poll"
+??nwk_poll?relay    SYMBOL "?relay", nwk_poll
+nwk_processMgmt     SYMBOL "nwk_processMgmt"
+??nwk_processMgmt?relay SYMBOL "?relay", nwk_processMgmt
+
+        EXTERN MRFI_RandomByte
+        FUNCTION MRFI_RandomByte,0202H
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_isValidReply
+        FUNCTION nwk_isValidReply,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_PostKillSem
+        FUNCTION MRFI_PostKillSem,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_getMyAddress
+        FUNCTION nwk_getMyAddress,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memcmp
+        FUNCTION memcmp,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memcpy
+        FUNCTION memcpy,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_getAPAddress
+        FUNCTION nwk_getAPAddress,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN SMPL_Ioctl
+        FUNCTION SMPL_Ioctl,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??MRFI_PostKillSem?relay
+        FUNCTION ??MRFI_PostKillSem?relay,00H
+        EXTERN ??MRFI_RandomByte?relay
+        FUNCTION ??MRFI_RandomByte?relay,00H
+        EXTERN ??SMPL_Ioctl?relay
+        FUNCTION ??SMPL_Ioctl?relay,00H
+        EXTERN ??memcmp?relay
+        FUNCTION ??memcmp?relay,00H
+        EXTERN ??memcpy?relay
+        FUNCTION ??memcpy?relay,00H
+        EXTERN ??nwk_getAPAddress?relay
+        FUNCTION ??nwk_getAPAddress?relay,00H
+        EXTERN ??nwk_getMyAddress?relay
+        FUNCTION ??nwk_getMyAddress?relay,00H
+        EXTERN ??nwk_isValidReply?relay
+        FUNCTION ??nwk_isValidReply?relay,00H
+
+// C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk_applications\nwk_mgmt.c
+//    1 /**************************************************************************************************
+//    2   Filename:       nwk_mgmt.c
+//    3   Revised:        $Date: 2009-01-06 15:45:54 -0800 (Tue, 06 Jan 2009) $
+//    4   Revision:       $Revision: 18697 $
+//    5   Author:         $Author: lfriedman $
+//    6 
+//    7   Description:    This file supports the SimpliciTI Mgmt network application.
+//    8 
+//    9   Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   12   the terms of a software license agreement between the user who downloaded the software,
+//   13   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   14   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   15   License. The License limits your use, and you acknowledge, that the Software may not be
+//   16   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   17   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   18   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   19   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   20   perform, display or sell this Software and/or its documentation for any purpose.
+//   21 
+//   22   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   23   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   24   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   25   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   26   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   27   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   28   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   29   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   30   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   31 
+//   32   Should you have any questions regarding your right to use this Software,
+//   33   contact Texas Instruments Incorporated at www.TI.com.
+//   34 **************************************************************************************************/
+//   35 
+//   36 
+//   37 /******************************************************************************
+//   38  * INCLUDES
+//   39  */
+//   40 #include <string.h>
+//   41 #include "bsp.h"
+//   42 #include "mrfi.h"
+//   43 #include "nwk_types.h"
+//   44 #include "nwk_api.h"
+//   45 #include "nwk_frame.h"
+//   46 #include "nwk.h"
+//   47 #include "nwk_mgmt.h"
+//   48 #include "nwk_join.h"
+//   49 #include "nwk_globals.h"
+//   50 #include "nwk_QMgmt.h"
+//   51 
+//   52 /******************************************************************************
+//   53  * MACROS
+//   54  */
+//   55 
+//   56 /******************************************************************************
+//   57  * CONSTANTS AND DEFINES
+//   58  */
+//   59 
+//   60 /******************************************************************************
+//   61  * TYPEDEFS
+//   62  */
+//   63 
+//   64 /******************************************************************************
+//   65  * LOCAL VARIABLES
+//   66  */
+//   67 #ifndef ACCESS_POINT
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   68 static addr_t const *sAPAddr = NULL;
+sAPAddr:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   69 #else
+//   70 static uint8_t sSFMarker[NUM_STORE_AND_FWD_CLIENTS] = {0};
+//   71 #endif
+//   72 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   73 static volatile uint8_t sTid = 0;
+sTid:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   74 
+//   75 /******************************************************************************
+//   76  * LOCAL FUNCTIONS
+//   77  */
+//   78 static void  smpl_send_mgmt_reply(mrfiPacket_t *);
+//   79 #ifdef ACCESS_POINT
+//   80 static void  send_poll_reply(mrfiPacket_t *);
+//   81 #endif
+//   82 
+//   83 /******************************************************************************
+//   84  * GLOBAL VARIABLES
+//   85  */
+//   86 
+//   87 /******************************************************************************
+//   88  * GLOBAL FUNCTIONS
+//   89  */
+//   90 
+//   91 /******************************************************************************
+//   92  * @fn          nwk_mgmtInit
+//   93  *
+//   94  * @brief       Initialize Management functions.
+//   95  *
+//   96  * input parameters
+//   97  *
+//   98  * output parameters
+//   99  *
+//  100  * @return   void
+//  101  */
+//  102 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  103 void nwk_mgmtInit(void)
+nwk_mgmtInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function nwk_mgmtInit
+        CODE
+//  104 {
+        FUNCALL nwk_mgmtInit, MRFI_RandomByte
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  105   sTid = MRFI_RandomByte();
+        ; Setup parameters for call to function MRFI_RandomByte
+        LCALL   ??MRFI_RandomByte?relay
+        MOV     A,R1
+        MOV     DPTR,#sTid
+        MOVX    @DPTR,A
+//  106 
+//  107 #ifdef ACCESS_POINT
+//  108   memset(&sSFMarker, 0x0, sizeof(sSFMarker));
+//  109 #endif
+//  110 
+//  111   return;
+        POP     DPH
+        CFI DPH0 SameValue
+        CFI CFA_SP SP+-4
+        POP     DPL
+        CFI DPL0 SameValue
+        CFI CFA_SP SP+-3
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock0
+//  112 }
+//  113 
+//  114 /******************************************************************************
+//  115  * @fn          nwk_processMgmt
+//  116  *
+//  117  * @brief       Process Management frame. Just save the frame for the Management
+//  118  *              app it it is a reply. If it isn't a reply, send the reply in this
+//  119  *              thread.
+//  120  *
+//  121  * input parameters
+//  122  * @param   frame   - pointer to frame to be processed
+//  123  *
+//  124  * output parameters
+//  125  *
+//  126  * @return   Keep frame for application, release frame, or replay frame.
+//  127  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  128 fhStatus_t nwk_processMgmt(mrfiPacket_t *frame)
+nwk_processMgmt:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function nwk_processMgmt
+        CODE
+//  129 {
+        FUNCALL nwk_processMgmt, nwk_isValidReply
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_processMgmt, MRFI_PostKillSem
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_processMgmt, nwk_getMyAddress
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_processMgmt, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  130   fhStatus_t   rc;
+//  131   uint8_t      replyType;
+//  132 
+//  133   /* If we sent this then this is the reply. Validate the
+//  134    * packet for reception by client app. If we didn't send
+//  135    * it then we are the target. send the reply.
+//  136    */
+//  137   if (SMPL_MY_REPLY == (replyType=nwk_isValidReply(frame, sTid, MB_APP_INFO_OS, MB_TID_OS)))
+        ; Setup parameters for call to function nwk_isValidReply
+        MOV     R5,#0x1
+        MOV     R4,#0x0
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   ??nwk_isValidReply?relay
+        MOV     A,R1
+        JNZ     ??nwk_processMgmt_0
+//  138   {
+//  139     /* It's a match and it's a reply. Validate the received packet by
+//  140      * returning a 1 so it can be received by the client app.
+//  141      */
+//  142     MRFI_PostKillSem();
+        ; Setup parameters for call to function MRFI_PostKillSem
+        LCALL   ??MRFI_PostKillSem?relay
+//  143     rc = FHS_KEEP;
+        MOV     R1,#0x1
+        SJMP    ??nwk_processMgmt_1
+//  144   }
+//  145 #if !defined( END_DEVICE )
+//  146   else if (SMPL_A_REPLY == replyType)
+//  147   {
+//  148     /* no match. if i'm not an ED this is a reply that should be passed on. */
+//  149     rc = FHS_REPLAY;
+//  150   }
+//  151 #endif  /* !END_DEVICE */
+//  152   else
+//  153   {
+//  154     /* no, we didn't send it. send reply if it's intended for us */
+//  155     if (!memcmp(MRFI_P_DST_ADDR(frame), nwk_getMyAddress(), NET_ADDR_SIZE))
+??nwk_processMgmt_0:
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Setup parameters for call to function nwk_getMyAddress
+        LCALL   ??nwk_getMyAddress?relay
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     A,R6
+        ADD     A,#0x4
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   ??memcmp?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+        MOV     ?V0 + 1,R3
+        MOV     A,R2
+        ORL     A,?V0 + 1
+        JNZ     ??nwk_processMgmt_2
+//  156     {
+//  157       smpl_send_mgmt_reply(frame);
+//  158 
+//  159       /* we're done with the frame. */
+//  160       rc = FHS_RELEASE;
+        MOV     R1,#0x0
+        SJMP    ??nwk_processMgmt_1
+//  161     }
+//  162     else
+//  163     {
+//  164       rc = FHS_REPLAY;
+??nwk_processMgmt_2:
+        MOV     R1,#0x2
+        CFI EndBlock cfiBlock1
+//  165     }
+//  166   }
+//  167 
+//  168   (void) replyType;  /* keep compiler happy */
+//  169 
+//  170   return rc;
+??nwk_processMgmt_1:
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  171 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock2
+//  172 
+//  173 /******************************************************************************
+//  174  * @fn          smpl_send_mgmt_reply
+//  175  *
+//  176  * @brief       Send appropriate reply to Management frame.
+//  177  *
+//  178  * input parameters
+//  179  * @param  frame  - Pointer to frame for which reply required.
+//  180  *
+//  181  * output parameters
+//  182  *
+//  183  * @return   void
+//  184  */
+//  185 static void smpl_send_mgmt_reply(mrfiPacket_t *frame)
+//  186 {
+//  187 #ifdef ACCESS_POINT
+//  188   /* what kind of management frame is this? */
+//  189   switch (*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+MB_APP_INFO_OS))
+//  190   {
+//  191     case MGMT_REQ_POLL:
+//  192       send_poll_reply(frame);
+//  193       break;
+//  194 
+//  195     default:
+//  196       break;
+//  197   }
+//  198 #endif  /* ACCESS_POINT */
+//  199   return;
+//  200 }
+//  201 
+//  202 
+//  203 #ifdef ACCESS_POINT
+//  204 /******************************************************************************
+//  205  * @fn          send_poll_reply
+//  206  *
+//  207  * @brief       Send reply to polling frame.
+//  208  *
+//  209  * input parameters
+//  210  * @param  frame  - Pointer to frame for which reply required.
+//  211  *
+//  212  * output parameters
+//  213  *
+//  214  * @return   void
+//  215  */
+//  216 static void send_poll_reply(mrfiPacket_t *frame)
+//  217 {
+//  218   uint8_t         msgtid = *(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+MB_TID_OS);
+//  219   frameInfo_t    *pOutFrame;
+//  220   sfClientInfo_t *pClientInfo;
+//  221   uint8_t         loc, qType;
+//  222 
+//  223   /* Make sure this guy is really a client. We can tell from the source address. */
+//  224   if (!(pClientInfo=nwk_isSandFClient(MRFI_P_SRC_ADDR(frame), &loc)))
+//  225   {
+//  226     /* TODO: maybe send an error frame? */
+//  227     return;
+//  228   }
+//  229 
+//  230   /* If we have to resync the TID then do it based on the first
+//  231    * poll frame we see
+//  232   */
+//  233   if (!sSFMarker[loc])
+//  234   {
+//  235     /* If the marker flag is null then it has been initialized, i.e.,
+//  236      * there has been a reset. In this case infer that we need to update
+//  237      * a (probably) stale last TID. The test will always be true the first
+//  238      * time through after a client is established even when an NV restore
+//  239      * did not take place but this does no harm.
+//  240      */
+//  241     pClientInfo->lastTID = msgtid;
+//  242     sSFMarker[loc]       = 1;
+//  243   }
+//  244   /* If we've seen this poll frame before ignore it. Otherwise we
+//  245    * may send a stored frame when we shouldn't.
+//  246    */
+//  247   else if (nwk_checkAppMsgTID(pClientInfo->lastTID, msgtid))
+//  248   {
+//  249     pClientInfo->lastTID = msgtid;
+//  250   }
+//  251   else
+//  252   {
+//  253     return;
+//  254   }
+//  255 
+//  256   if (pOutFrame = nwk_getSandFFrame(frame, M_POLL_PORT_OS, &qType))
+//  257   {
+//  258     /* We need to adjust the order in the queue in this case. Currently
+//  259      * we know it is in the input queue and that this adjustment is safe
+//  260      * because we're in an ISR thread. This is a fragile fix, though, and
+//  261      * should be revisited when time permits.
+//  262      */
+//  263     nwk_QadjustOrder(qType, pOutFrame->orderStamp);
+//  264 
+//  265     /* reset hop count... */
+//  266     PUT_INTO_FRAME(MRFI_P_PAYLOAD(&pOutFrame->mrfiPkt), F_HOP_COUNT, MAX_HOPS_FROM_AP);
+//  267     /* It's gonna be a forwarded frame. */
+//  268     PUT_INTO_FRAME(MRFI_P_PAYLOAD(&pOutFrame->mrfiPkt), F_FWD_FRAME, 0x80);
+//  269 
+//  270     nwk_sendFrame(pOutFrame, MRFI_TX_TYPE_FORCED);
+//  271   }
+//  272   else
+//  273   {
+//  274     nwk_SendEmptyPollRspFrame(frame);
+//  275   }
+//  276 
+//  277   return;
+//  278 }
+//  279 
+//  280 /******************************************************************************
+//  281  * @fn          nwk_resetSFMarker
+//  282  *
+//  283  * @brief       Reset S&F cklient marker so the TIDs resync.
+//  284  *
+//  285  * input parameters
+//  286  * @param  idx  - index of the client that should be reset.
+//  287  *
+//  288  * output parameters
+//  289  *
+//  290  * @return   void
+//  291  */
+//  292 void nwk_resetSFMarker(uint8_t idx)
+//  293 {
+//  294   sSFMarker[idx] = 0;
+//  295 
+//  296   return;
+//  297 }
+//  298 
+//  299 #else  /* ACCESS_POINT */
+//  300 
+//  301 /******************************************************************************
+//  302  * @fn          nwk_poll
+//  303  *
+//  304  * @brief       Poll S&F server for any waiting frames.
+//  305  *
+//  306  * input parameters
+//  307  * @param  port  - Port on peer.
+//  308  * @param  addr  - SimpliciTI address of peer.
+//  309  *
+//  310  * output parameters
+//  311  *
+//  312  * @return   SMPL_SUCCESS
+//  313  *           SMPL_NO_AP_ADDRESS - We don't know Access Point's address
+//  314  *           SMPL_NOMEM         - no room in output frame queue
+//  315  *           SMPL_TX_CCA_FAIL   - CCA failure
+//  316  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  317 smplStatus_t nwk_poll(uint8_t port, uint8_t *addr)
+nwk_poll:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function nwk_poll
+        CODE
+//  318 {
+        FUNCALL nwk_poll, memcpy
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 25, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 25, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_poll, nwk_getAPAddress
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 23, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_poll, SMPL_Ioctl
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 23, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 23, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 13
+        MOV     A,#-0xd
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 23)
+//  319   uint8_t        msg[MGMT_POLL_FRAME_SIZE];
+//  320   ioctlRawSend_t send;
+//  321 
+//  322   msg[MB_APP_INFO_OS] = MGMT_REQ_POLL;
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  323   msg[MB_TID_OS]      = sTid;
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        PUSH    A
+        CFI CFA_SP SP+-1
+        MOV     A,#0x7
+        LCALL   ?XSTACK_DISP0_8
+        POP     A
+        CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+//  324   msg[M_POLL_PORT_OS] = port;
+        MOV     A,#0x8
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  325   memcpy(msg+M_POLL_ADDR_OS, addr, NET_ADDR_SIZE);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 25)
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     A,#0xb
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??memcpy?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 23)
+//  326 
+//  327   /* it's OK to increment the TID here because the reply will not be
+//  328    * matched based on this number. The reply to the poll comes back
+//  329    * to the client port, not the Management port.
+//  330    */
+//  331   sTid++;
+        MOV     DPTR,#sTid
+        MOVX    A,@DPTR
+        INC     A
+        LCALL   ?Subroutine1 & 0xFFFF
+//  332 
+//  333   if (!sAPAddr)
+??CrossCallReturnLabel_0:
+        JNZ     ??nwk_poll_0
+//  334   {
+//  335     sAPAddr = nwk_getAPAddress();
+        ; Setup parameters for call to function nwk_getAPAddress
+        LCALL   ??nwk_getAPAddress?relay
+        MOV     DPTR,#sAPAddr
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        LCALL   ?Subroutine1 & 0xFFFF
+//  336     if (!sAPAddr)
+??CrossCallReturnLabel_1:
+        JNZ     ??nwk_poll_0
+//  337     {
+//  338       return SMPL_NO_AP_ADDRESS;
+        MOV     R1,#0xb
+        SJMP    ??nwk_poll_1
+//  339     }
+//  340   }
+//  341   send.addr = (addr_t *)sAPAddr;
+??nwk_poll_0:
+        MOV     DPTR,#sAPAddr
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  342   send.msg  = msg;
+        MOV     A,#0x6
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R0,DPL
+        MOV     R1,DPH
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  343   send.len  = sizeof(msg);
+        MOV     A,#0x4
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x7
+        MOVX    @DPTR,A
+//  344   send.port = SMPL_PORT_MGMT;
+        MOV     A,#0x5
+        LCALL   ?XSTACK_DISP0_8
+        MOV     A,#0x6
+        MOVX    @DPTR,A
+//  345 
+//  346   return SMPL_Ioctl(IOCTL_OBJ_RAW_IO, IOCTL_ACT_WRITE, &send);
+        ; Setup parameters for call to function SMPL_Ioctl
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     R2,#0x3
+        MOV     R1,#0x2
+        LCALL   ??SMPL_Ioctl?relay
+??nwk_poll_1:
+        MOV     A,#0xd
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock3
+//  347 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiCond4 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 23)
+        CFI Block cfiCond5 Using cfiCommon0
+        CFI (cfiCond5) NoFunction
+        CFI (cfiCond5) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond5) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond5) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond5) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond5) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond5) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond5) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond5) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond5) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond5) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond5) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond5) CFA_SP SP+0
+        CFI (cfiCond5) CFA_XSP16 add(XSP16, 23)
+        CFI Block cfiPicker6 Using cfiCommon1
+        CFI (cfiPicker6) NoFunction
+        CFI (cfiPicker6) Picker
+        MOVX    @DPTR,A
+        MOV     DPTR,#sAPAddr
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        RET
+        CFI EndBlock cfiCond4
+        CFI EndBlock cfiCond5
+        CFI EndBlock cfiPicker6
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_mgmtInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_mgmtInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_processMgmt?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_processMgmt
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_poll?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_poll
+
+        END
+//  348 
+//  349 #endif /* ACCESS_POINT */
+// 
+// 293 bytes in segment BANKED_CODE
+//  18 bytes in segment BANK_RELAYS
+//   3 bytes in segment XDATA_Z
+// 
+// 311 bytes of CODE  memory
+//   3 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,808 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         05/Dec/2016  00:17:27 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\Applicatio #
+#                          ns\main_UART_Bridge.c                              #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          _Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8 #
+#                          051\nik_sb5000\IAR\Configuration\LinkTo\smpl_confi #
+#                          g.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34,   #
+#                          0x12}" -DxNWK_PLL_REFERENCE_CLOCK -DLINK_TO) -f    #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\Configuration\smpl_nwk_config.dat  #
+#                          (-DMAX_HOPS=3 -DMAX_HOPS_FROM_AP=1                 #
+#                          -DMAX_NWK_PAYLOAD=34 -DMAX_APP_PAYLOAD=10          #
+#                          -DDEFAULT_LINK_TOKEN=0x01020304                    #
+#                          -DDEFAULT_JOIN_TOKEN=0x05060708                    #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\Applicatio #
+#                          ns\main_UART_Bridge.c -D MCU_H=<ioCC2530.h> -D     #
+#                          MRFI_CC2530 -D ZTOOL_P1 -D MRFI_PA_LNA_ENABLED     #
+#                          -lC C:\Users\freeman\Documents\work\NBK\Nikon\Niko #
+#                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_ #
+#                          8051\nik_sb5000\IAR\LinkTo\List\ -lA               #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\List\ -o                    #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\Obj\ -e --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\bs #
+#                          p\ -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\bs #
+#                          p\drivers\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo #
+#                          nents\bsp\boards\CC2530EM\ -I                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\    #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          _Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8 #
+#                          051\nik_sb5000\IAR\..\..\..\..\..\Components\Simpl #
+#                          iciTI\nwk\ -I C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\Application #
+#                          s\ -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          kon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 #
+#                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\Si #
+#                          mpliciTI\nwk_applications\ -I                      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\INC #
+#                          LUDE\ -I C:\Users\freeman\Documents\work\NBK\Nikon #
+#                          \Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\S #
+#                          RF05_8051\nik_sb5000\IAR\..\..\..\..\..\Components #
+#                          \OSAL\MCU\CCSOC\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects #
+#                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\.. #
+#                          \Components\HAL\INCLUDE\ -I                        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\HAL\TARG #
+#                          ET\CC2530EB\ -I C:\Users\freeman\Documents\work\NB #
+#                          K\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa #
+#                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com #
+#                          ponents\SERVICES\SADDR\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\SERVICES #
+#                          \SDATA\ -I C:\Users\freeman\Documents\work\NBK\Nik #
+#                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MT\ -I C:\Users\freeman\Documents\work\NBK\Niko #
+#                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\ #
+#                          SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Component #
+#                          s\STACK\AF\ -I C:\Users\freeman\Documents\work\NBK #
+#                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam #
+#                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp #
+#                          onents\STACK\NWK\ -I C:\Users\freeman\Documents\wo #
+#                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project #
+#                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\. #
+#                          .\Components\STACK\SEC\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\STACK\SA #
+#                          PI\ -I C:\Users\freeman\Documents\work\NBK\Nikon\N #
+#                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF #
+#                          05_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S #
+#                          TACK\SYS\ -I C:\Users\freeman\Documents\work\NBK\N #
+#                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl #
+#                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon #
+#                          ents\STACK\ZDO\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\ #
+#                          Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\ #
+#                          Components\MAC\INCLUDE\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\MAC\HIGH #
+#                          _LEVEL\ -I C:\Users\freeman\Documents\work\NBK\Nik #
+#                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\LOW_LEVEL\srf04\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\..\..\..\..\..\Components\MAC\LOW_ #
+#                          LEVEL\srf04\SINGLE_CHIP\ -Ohz --require_prototypes #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\List\main_UART_Bridge.lst   #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf #
+#                          \SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_8051 #
+#                          \nik_sb5000\IAR\LinkTo\Obj\main_UART_Bridge.r51    #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\Applications\main_UART_Bridge.c
+      1          /*----------------------------------------------------------------------------
+      2           *  Demo Application for SimpliciTI
+      3           *
+      4           *  L. Friedman
+      5           *  Texas Instruments, Inc.
+      6           *----------------------------------------------------------------------------
+      7           */
+      8          /******************************************************************************************
+      9          
+     10            Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+     11          
+     12            IMPORTANT: Your use of this Software is limited to those specific rights granted under
+     13            the terms of a software license agreement between the user who downloaded the software,
+     14            his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+     15            "License"). You may not use this Software unless you agree to abide by the terms of the
+     16            License. The License limits your use, and you acknowledge, that the Software may not be
+     17            modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+     19            transceiver, which is integrated into your product. Other than for the foregoing purpose,
+     20            you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+     21            perform, display or sell this Software and/or its documentation for any purpose.
+     22          
+     23            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED 揂S IS?  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+     24            WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+     25            IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     26            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+     27            THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+     28            INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+     29            DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+     30            THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     31          
+     32            Should you have any questions regarding your right to use this Software,
+     33            contact Texas Instruments Incorporated at www.TI.com.
+     34          **************************************************************************************************/
+     35          #define INDICATOR_TIME_OUT 250;
+     36          
+     37          #include <stdio.h>
+     38          #include "bsp.h"
+
+   \                                 In  segment SFR_AN, at 0x8f
+   \   unsigned char volatile __sfr P0INP
+   \                     P0INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9d
+   \   unsigned char volatile __sfr SLEEPSTA
+   \                     SLEEPSTA:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9e
+   \   unsigned char volatile __sfr CLKCONSTA
+   \                     CLKCONSTA:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xbe
+   \   unsigned char volatile __sfr SLEEPCMD
+   \                     SLEEPCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc6
+   \   unsigned char volatile __sfr CLKCONCMD
+   \                     CLKCONCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+     39          #include "mrfi.h"
+     40          #include "nwk_types.h"
+     41          #include "nwk_api.h"
+     42          #include "nwk_pll.h"
+     43          #include "bsp_leds.h"
+     44          #ifdef MRFI_CC430
+     45            #include "uart_intfc_cc430.h"
+     46          #else
+     47            #include "uart_intfc.h"
+     48          #endif
+     49          #include "ZComDef.h"
+     50          #include "hal_drivers.h"
+     51          #include "OSAL.h"
+     52          #include "hal_board.h"
+     53          #include "OnBoard.h"
+     54          #include "mac_api.h"
+     55          
+     56          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     57          const uint8 tasksCnt = 0;
+   \                     tasksCnt:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     58          uint16 *tasksEvents;
+   \                     tasksEvents:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     59          
+     60          #define MAC_ID 0x8899
+     61          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     62          unsigned char g_veriBuf[] = 
+   \                     g_veriBuf:
+   \   000000                DS 43
+   \   00002B                REQUIRE `?<Initializer for g_veriBuf>`
+   \   00002B                REQUIRE __INIT_XDATA_I
+     63          {
+     64          0x2C,0x00,0x24,0x21,0x32,0x02,0x01,/*0x77,0x26,*/0x88,0x99,0x00,0x2C,0x40,0x12,0x34,0x01,0x41,0x36,0x38,0x47,0x2C,0x50,0x01,0x01,
+     65          0x02,0x21,0x01,0x08,0x00,0xB7,0x54,0x84,0xD3,0x00,0x00,0x00,0x53,0x42,0x2D,0x35,0x30,0x30,0x30,0x00
+     66          };
+     67          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     68          unsigned char g_veriBuf2[] = 
+   \                     g_veriBuf2:
+   \   000000                DS 41
+   \   000029                REQUIRE `?<Initializer for g_veriBuf2>`
+   \   000029                REQUIRE __INIT_XDATA_I
+     69          {
+     70          0x2A,0x03,0x24,0x21,0x32,0x02,0x01,0x77,0x26,0x00,0x2C,0x40,0x12,0x34,0x01,0x41,0x36,0x38,0x47,0x2C,0x50,0xC3,0x00,
+     71          0x1E,0x82,0x08,0x23,0xA1,0xE8,0x20,0x82,0x33,0x1E,0x92,0x08,0x22,0xF1,0xEB,0x20,0x82,0x17,
+     72          };
+     73          
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     74          unsigned char g_mstBuf[] = 
+   \                     g_mstBuf:
+   \   000000                DS 34
+   \   000022                REQUIRE `?<Initializer for g_mstBuf>`
+   \   000022                REQUIRE __INIT_XDATA_I
+     75          {
+     76          0x21,0x1A,0x24,0x21,0x01,0x41,0x36,0x38,0x47,0x00,0x2C,0x40,0x12,0x34,0x25,0x2C,0x55,0x01,0x00,0x02,
+     77          0x03,0x03,0x06,0x00,0x00,0x00,0x00,0x00,0x00,0x55,0x00,0x00,0x04,0xEC,
+     78          };
+     79          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     80          uint8_t g_rcvPkt = 0;
+   \                     g_rcvPkt:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+     81          /*********************************************************************
+     82           * @fn      zmain_vdd_check
+     83           * @brief   Check if the Vdd is OK to run the processor.
+     84           * @return  Return if Vdd is ok; otherwise, flash LED, then reset
+     85           *********************************************************************/
+     86          static void zmain_vdd_check( void )
+     87          {
+     88          #if 0
+     89            uint8 vdd_passed_count = 0;
+     90            bool toggle = 0;
+     91          
+     92            // Repeat getting the sample until number of failures or successes hits MAX
+     93            // then based on the count value, determine if the device is ready or not
+     94            while ( vdd_passed_count < MAX_VDD_SAMPLES )
+     95            {
+     96              if ( HalAdcCheckVdd (ZMAIN_VDD_LIMIT) )
+     97              {
+     98                vdd_passed_count++;    // Keep track # times Vdd passes in a row
+     99                MicroWait (10000);     // Wait 10ms to try again
+    100              }
+    101              else
+    102              {
+    103                //cbyi delete for debug //vdd_passed_count = 0;  // Reset passed counter
+    104                MicroWait (50000);     // Wait 50ms
+    105                MicroWait (50000);     // Wait another 50ms to try again
+    106              }
+    107          
+    108              /* toggle LED1 and LED2 */
+    109              if (vdd_passed_count == 0)
+    110              {
+    111                if ((toggle = !(toggle)))
+    112                  HAL_TOGGLE_LED1();
+    113                else
+    114                  HAL_TOGGLE_LED2();
+    115              }
+    116            }
+    117          
+    118            /* turn off LED1 */
+    119            HAL_TURN_OFF_LED1();
+    120            HAL_TURN_OFF_LED2();
+    121          #endif
+    122          }
+    123          
+    124          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    125          void main (void)
+   \                     main:
+    126          {
+   \   000000                ; Auto size: 0
+    127          #if 1
+    128            /* holds length of current message */
+    129            //uint8_t len; 
+    130            
+    131            /* the link token */
+    132            //linkID_t LinkID = 0;
+    133            
+    134            /* the transmit and receive buffers */
+    135            //uint8_t rx[MAX_APP_PAYLOAD], tx[MAX_APP_PAYLOAD];
+    136          
+    137            /* holds led indicator time out counts */
+    138            //uint16_t led_tmr;
+    139          
+    140            // Turn off interrupts
+    141            osal_int_disable( INTS_ALL );// 关闭所有中断
+   \   000000                ; Setup parameters for call to function osal_int_disable
+   \   000000   79FF         MOV     R1,#-0x1
+   \   000002   12....       LCALL   ??osal_int_disable?relay
+    142          
+    143            // Initialization for board related stuff such as LEDs
+    144            HAL_BOARD_INIT();
+   \   000005   53BEFB       ANL     0xbe,#0xfb
+   \                     ??main_0:
+   \   000008   E59D         MOV     A,0x9d
+   \   00000A   A2E6         MOV     C,0xE0 /* A   */.6
+   \   00000C   50FA         JNC     ??main_0
+   \   00000E   00           NOP
+   \   00000F   78F8         MOV     R0,#-0x8
+   \   000011   7901         MOV     R1,#0x1
+   \                     ??main_1:
+   \   000013   00           NOP
+   \   000014   E8           MOV     A,R0
+   \   000015   24FF         ADD     A,#-0x1
+   \   000017   18           DEC     R0
+   \   000018   E9           MOV     A,R1
+   \   000019   34FF         ADDC    A,#-0x1
+   \   00001B   F9           MOV     R1,A
+   \   00001C   E8           MOV     A,R0
+   \   00001D   49           ORL     A,R1
+   \   00001E   70F3         JNZ     ??main_1
+   \   000020   75C680       MOV     0xc6,#-0x80
+   \                     ??main_2:
+   \   000023   7480         MOV     A,#-0x80
+   \   000025   659E         XRL     A,0x9e
+   \   000027   70FA         JNZ     ??main_2
+   \   000029   43BE04       ORL     0xbe,#0x4
+   \   00002C   906270       MOV     DPTR,#0x6270
+   \   00002F   7408         MOV     A,#0x8
+   \   000031   F0           MOVX    @DPTR,A
+   \   000032   43FE04       ORL     0xfe,#0x4
+   \   000035   43FD80       ORL     0xfd,#0x80
+   \   000038   438F01       ORL     0x8f,#0x1
+   \   00003B                ; Setup parameters for call to function MAC_RfFrontendSetup
+   \   00003B   12....       LCALL   ??MAC_RfFrontendSetup?relay
+   \   00003E   43FE04       ORL     0xfe,#0x4
+   \   000041   43FE08       ORL     0xfe,#0x8
+    145          
+    146            // Make sure supply voltage is high enough to run
+    147            zmain_vdd_check();
+    148          
+    149            // Initialize board I/O
+    150            InitBoard( OB_COLD );
+   \   000044                ; Setup parameters for call to function InitBoard
+   \   000044   7900         MOV     R1,#0x0
+   \   000046   12....       LCALL   ??InitBoard?relay
+    151          
+    152            // Initialze HAL drivers
+    153            HalDriverInit();
+   \   000049                ; Setup parameters for call to function HalDriverInit
+   \   000049   12....       LCALL   ??HalDriverInit?relay
+    154          
+    155          #endif
+    156          
+    157            //BSP_Init( );
+    158          
+    159            SMPL_Init( NULL );
+   \   00004C                ; Setup parameters for call to function SMPL_Init
+   \   00004C   7A00         MOV     R2,#0x0
+   \   00004E   7B00         MOV     R3,#0x0
+   \   000050   12....       LCALL   ??SMPL_Init?relay
+    160          
+    161            //OAD_test();
+    162            
+    163            //uart_intfc_init( );
+    164            DmaUartInit();
+   \   000053                ; Setup parameters for call to function DmaUartInit
+   \   000053   12....       LCALL   ??DmaUartInit?relay
+    165          
+    166            /* turn on the radio so we are always able to receive data asynchronously */
+    167            SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_RXON, NULL );
+   \   000056                ; Setup parameters for call to function SMPL_Ioctl
+   \   000056   7C00         MOV     R4,#0x0
+   \   000058   7D00         MOV     R5,#0x0
+   \   00005A   7A08         MOV     R2,#0x8
+   \   00005C   7903         MOV     R1,#0x3
+   \   00005E   12....       LCALL   ??SMPL_Ioctl?relay
+    168             
+    169            /* turn on LED. */
+    170            //BSP_TURN_ON_LED1( );
+    171          
+    172            tx_send("hello, nikon SB-5000, OK\r\n",sizeof("hello, nikon SB-5000, OK\r\n"));
+   \   000061                ; Setup parameters for call to function tx_send
+   \   000061   7C1B         MOV     R4,#0x1b
+   \   000063   7D00         MOV     R5,#0x0
+   \   000065   7A..         MOV     R2,#`?<Constant "hello, nikon SB-5000,...">` & 0xff
+   \   000067   7B..         MOV     R3,#(`?<Constant "hello, nikon SB-5000,...">` >> 8) & 0xff
+   \   000069   12....       LCALL   ??tx_send?relay
+    173          
+    174            NIK_Init();
+   \   00006C                ; Setup parameters for call to function NIK_Init
+   \   00006C   12....       LCALL   ??NIK_Init?relay
+    175          
+    176            LED_INS_UNLINK() ;
+   \   00006F   D292         SETB    0x90.2
+   \   000071   C293         CLR     0x90.3
+    177            
+    178            while(1)
+    179            {
+    180          	NIK_LINK();
+   \                     ??main_3:
+   \   000073                ; Setup parameters for call to function NIK_LINK
+   \   000073   12....       LCALL   ??NIK_LINK?relay
+    181          
+    182          	//tx_send("ran...\r\n",sizeof("ran...\r\n"));
+    183          
+    184          	HalUARTPoll();
+   \   000076                ; Setup parameters for call to function HalUARTPoll
+   \   000076   12....       LCALL   ??HalUARTPoll?relay
+   \   000079   80F8         SJMP    ??main_3
+   \   00007B                REQUIRE SLEEPCMD
+   \   00007B                REQUIRE SLEEPSTA
+   \   00007B                REQUIRE CLKCONCMD
+   \   00007B                REQUIRE CLKCONSTA
+   \   00007B                REQUIRE P1DIR
+   \   00007B                REQUIRE P0DIR
+   \   00007B                REQUIRE P0INP
+   \   00007B                REQUIRE _A_P1
+    185            }
+    186            
+    187          #if 0
+    188          #ifdef  LINK_TO
+    189            {
+    190              uint8_t cnt = 0;
+    191              tx_send_wait( "Linking to...\r\n", 15 );
+    192              while (SMPL_SUCCESS != SMPL_Link(&LinkID))
+    193                if( cnt++ == 0 )
+    194                {
+    195                  /* blink LED until we link successfully */
+    196                  BSP_TOGGLE_LED1( );
+    197                }
+    198            }
+    199          #else // ifdef LINK_LISTEN
+    200            tx_send_wait( "Listening for Link...\r\n", 23 );
+    201            while (SMPL_SUCCESS != SMPL_LinkListen(&LinkID))
+    202            {
+    203              /* blink LED until we link successfully */
+    204              BSP_TOGGLE_LED1( );
+    205            }
+    206          #endif
+    207          
+    208            tx_send_wait( "Link Established!\r\nReady...\r\n", 29 );
+    209            
+    210            /* turn off the led */
+    211            BSP_TURN_OFF_LED1( );
+    212            
+    213            main_loop:
+    214              /* Check to see if we received any characters from the other radio
+    215               * and if we have send them out the uart and reset indicator timeout.
+    216               * Prioritize on radio received links as that buffer is the most time
+    217               * critical with respect to the UART buffers.
+    218               */
+    219              if( SMPL_Receive( LinkID, tx, &len ) == SMPL_SUCCESS )
+    220              {
+    221                /* blocking call but should be ok if both ends have same uart buad rate */
+    222                tx_send_wait( tx, len );
+    223                led_tmr = INDICATOR_TIME_OUT;   /* update activity time out */
+    224              }
+    225          
+    226              FHSS_ACTIVE( if( nwk_pllBackgrounder( false ) != false ) );
+    227              {
+    228                /* check to see if the host has sent any characters and if it has
+    229                * then send them over the radio link and reset indicator timeout.
+    230                */
+    231                len = rx_receive( rx, MAX_APP_PAYLOAD );
+    232                if( len != 0 )
+    233                {
+    234                  while( SMPL_Send( LinkID, rx, len ) != SMPL_SUCCESS )
+    235                    ;
+    236                  led_tmr = INDICATOR_TIME_OUT;   /* update activity time out */
+    237                  
+    238                  /* By forcing a minimum delay between transmissions we guarantee
+    239                  * a window for receiving packets.  This is necessary as the radio
+    240                  * link is half duplex while the UART is full duplex.  Without this
+    241                  * delay mechanism, packets can get lost as both ends may attempt to
+    242                  * transmit at the same time which the CCA algorithm fails to handle.
+    243                  */
+    244                  MRFI_DelayMs( 5 );
+    245                }
+    246              }
+    247              
+    248              /* manage led indicator */
+    249              if( led_tmr != 0 )
+    250              {
+    251                led_tmr--;
+    252                BSP_TURN_ON_LED1( );
+    253              }
+    254              else
+    255                BSP_TURN_OFF_LED1( );
+    256          
+    257              goto main_loop; /* do it again and again and again and ... */
+    258          	
+    259          #endif
+    260          }
+    261          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    262          uint8 MAC_CbackCheckPending(void)
+   \                     MAC_CbackCheckPending:
+    263          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    264              return 0;
+   \   000000   7900         MOV     R1,#0x0
+   \   000002   02....       LJMP    ?BRET
+    265          }
+    266          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    267          void MAC_CbackEvent(macCbackEvent_t *pData)
+   \                     MAC_CbackEvent:
+    268          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    269              return;
+   \   000000   02....       LJMP    ?BRET
+    270          }
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "hello, nikon SB-5`:
+   \   000000   68656C6C     DB "hello, nikon SB-5000, OK\015\012"
+   \            6F2C206E
+   \            696B6F6E
+   \            2053422D
+   \            35303030
+   \            2C204F4B
+   \            0D0A00  
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for g_veriBuf>`:
+   \   000000   2C           DB 44
+   \   000001   00           DB 0
+   \   000002   24           DB 36
+   \   000003   21           DB 33
+   \   000004   32           DB 50
+   \   000005   02           DB 2
+   \   000006   01           DB 1
+   \   000007   88           DB 136
+   \   000008   99           DB 153
+   \   000009   00           DB 0
+   \   00000A   2C           DB 44
+   \   00000B   40           DB 64
+   \   00000C   12           DB 18
+   \   00000D   34           DB 52
+   \   00000E   01           DB 1
+   \   00000F   41           DB 65
+   \   000010   36           DB 54
+   \   000011   38           DB 56
+   \   000012   47           DB 71
+   \   000013   2C           DB 44
+   \   000014   50           DB 80
+   \   000015   01           DB 1
+   \   000016   01           DB 1
+   \   000017   02           DB 2
+   \   000018   21           DB 33
+   \   000019   01           DB 1
+   \   00001A   08           DB 8
+   \   00001B   00           DB 0
+   \   00001C   B7           DB 183
+   \   00001D   54           DB 84
+   \   00001E   84           DB 132
+   \   00001F   D3           DB 211
+   \   000020   00           DB 0
+   \   000021   00           DB 0
+   \   000022   00           DB 0
+   \   000023   53           DB 83
+   \   000024   42           DB 66
+   \   000025   2D           DB 45
+   \   000026   35           DB 53
+   \   000027   30           DB 48
+   \   000028   30           DB 48
+   \   000029   30           DB 48
+   \   00002A   00           DB 0
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for g_veriBuf2>`:
+   \   000000   2A           DB 42
+   \   000001   03           DB 3
+   \   000002   24           DB 36
+   \   000003   21           DB 33
+   \   000004   32           DB 50
+   \   000005   02           DB 2
+   \   000006   01           DB 1
+   \   000007   77           DB 119
+   \   000008   26           DB 38
+   \   000009   00           DB 0
+   \   00000A   2C           DB 44
+   \   00000B   40           DB 64
+   \   00000C   12           DB 18
+   \   00000D   34           DB 52
+   \   00000E   01           DB 1
+   \   00000F   41           DB 65
+   \   000010   36           DB 54
+   \   000011   38           DB 56
+   \   000012   47           DB 71
+   \   000013   2C           DB 44
+   \   000014   50           DB 80
+   \   000015   C3           DB 195
+   \   000016   00           DB 0
+   \   000017   1E           DB 30
+   \   000018   82           DB 130
+   \   000019   08           DB 8
+   \   00001A   23           DB 35
+   \   00001B   A1           DB 161
+   \   00001C   E8           DB 232
+   \   00001D   20           DB 32
+   \   00001E   82           DB 130
+   \   00001F   33           DB 51
+   \   000020   1E           DB 30
+   \   000021   92           DB 146
+   \   000022   08           DB 8
+   \   000023   22           DB 34
+   \   000024   F1           DB 241
+   \   000025   EB           DB 235
+   \   000026   20           DB 32
+   \   000027   82           DB 130
+   \   000028   17           DB 23
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for g_mstBuf>`:
+   \   000000   21           DB 33
+   \   000001   1A           DB 26
+   \   000002   24           DB 36
+   \   000003   21           DB 33
+   \   000004   01           DB 1
+   \   000005   41           DB 65
+   \   000006   36           DB 54
+   \   000007   38           DB 56
+   \   000008   47           DB 71
+   \   000009   00           DB 0
+   \   00000A   2C           DB 44
+   \   00000B   40           DB 64
+   \   00000C   12           DB 18
+   \   00000D   34           DB 52
+   \   00000E   25           DB 37
+   \   00000F   2C           DB 44
+   \   000010   55           DB 85
+   \   000011   01           DB 1
+   \   000012   00           DB 0
+   \   000013   02           DB 2
+   \   000014   03           DB 3
+   \   000015   03           DB 3
+   \   000016   06           DB 6
+   \   000017   00           DB 0
+   \   000018   00           DB 0
+   \   000019   00           DB 0
+   \   00001A   00           DB 0
+   \   00001B   00           DB 0
+   \   00001C   00           DB 0
+   \   00001D   55           DB 85
+   \   00001E   00           DB 0
+   \   00001F   00           DB 0
+   \   000020   04           DB 4
+   \   000021   EC           DB 236
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??main?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    main
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MAC_CbackCheckPending?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MAC_CbackCheckPending
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MAC_CbackEvent?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MAC_CbackEvent
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "hello, nikon SB-5000,...">`:
+   \   000000                DS 27
+   \   00001B                REQUIRE `?<Initializer for <Constant "hello, nikon SB-5`
+   \   00001B                REQUIRE __INIT_XDATA_I
+    271          
+
+   Maximum stack usage in bytes:
+
+     Function                 ISTACK PSTACK XSTACK
+     --------                 ------ ------ ------
+     MAC_CbackCheckPending        0      0      0
+     MAC_CbackEvent               0      0      0
+     main                         0      0      0
+       -> osal_int_disable        0      0      0
+       -> MAC_RfFrontendSetup     0      0      0
+       -> InitBoard               0      0      0
+       -> HalDriverInit           0      0      0
+       -> SMPL_Init               0      0      0
+       -> DmaUartInit             0      0      0
+       -> SMPL_Ioctl              0      0      0
+       -> tx_send                 0      0      0
+       -> NIK_Init                0      0      0
+       -> NIK_LINK                0      0      0
+       -> HalUARTPoll             0      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                                 Bytes
+     --------------                                 -----
+     P0INP                                             1
+     _A_P1                                             1
+     SLEEPSTA                                          1
+     CLKCONSTA                                         1
+     SLEEPCMD                                          1
+     CLKCONCMD                                         1
+     P0DIR                                             1
+     P1DIR                                             1
+     tasksCnt                                          1
+     tasksEvents                                       2
+     g_veriBuf                                        43
+     g_veriBuf2                                       41
+     g_mstBuf                                         34
+     g_rcvPkt                                          1
+     main                                            123
+     MAC_CbackCheckPending                             5
+     MAC_CbackEvent                                    3
+     ?<Initializer for <Constant "hello, nikon SB-5   27
+     ?<Initializer for g_veriBuf>                     43
+     ?<Initializer for g_veriBuf2>                    41
+     ?<Initializer for g_mstBuf>                      34
+     ??main?relay                                      6
+     ??MAC_CbackCheckPending?relay                     6
+     ??MAC_CbackEvent?relay                            6
+     ?<Constant "hello, nikon SB-5000,...">           27
+
+ 
+ 131 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+   8 bytes in segment SFR_AN
+ 145 bytes in segment XDATA_I
+ 145 bytes in segment XDATA_ID
+   4 bytes in segment XDATA_Z
+ 
+ 294 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 8 bytes shared)
+ 149 bytes of XDATA memory
+
+Errors: none
+Warnings: none

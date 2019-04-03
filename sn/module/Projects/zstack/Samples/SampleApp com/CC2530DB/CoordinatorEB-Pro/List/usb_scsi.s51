@@ -1,0 +1,2696 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        19/Jun/2016  18:16:17 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\class_cdc\usb_scsi.c                      /
+//    Command line       =  -f "C:\Users\freeman\Documents\work\SN\module\Pro /
+//                          jects\zstack\Samples\SampleApp                    /
+//                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g" (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR  /
+//                          -DDEFAULT_CHANLIST=0x00000800                     /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          "-DCONST=const __code" -DGENERIC=__generic        /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000       /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100   /
+//                          -DREJOIN_POLL_RATE=440)                           /
+//                          C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\class_cdc\usb_scsi.c -D ZIGBEEPRO -D      /
+//                          ZTOOL_P1 -lC "C:\Users\freeman\Documents\work\SN\ /
+//                          module\Projects\zstack\Samples\SampleApp          /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\"             /
+//                          --diag_suppress Pe001,Pa010 -o                    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug   /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data_rom                /
+//                          --nr_virtual_regs 16 -I                           /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp com\CC2530DB\" -I     /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\SOURCE\" -I                       /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET /
+//                          \CC2530EB\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\C /
+//                          CSOC\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLU /
+//                          DE\" -I "C:\Users\freeman\Documents\work\SN\modul /
+//                          e\Projects\zstack\Samples\SampleApp               /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI /
+//                          \" -I "C:\Users\freeman\Documents\work\SN\module\ /
+//                          Projects\zstack\Samples\SampleApp                 /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I  /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          ADDR\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          DATA\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_L /
+//                          EVEL\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\SINGLE_CHIP\" -I                        /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\librar /
+//                          y\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_ /
+//                          hid\" -I "C:\Users\freeman\Documents\work\SN\modu /
+//                          le\Projects\zstack\Samples\SampleApp              /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common /
+//                          \" -Ohz --require_prototypes                      /
+//    List file          =  C:\Users\freeman\Documents\work\SN\module\Project /
+//                          s\zstack\Samples\SampleApp                        /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\usb_scsi.s51  /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME usb_scsi
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?L_ADD
+        EXTERN ?L_ADD_TO_X
+        EXTERN ?L_ADD_X
+        EXTERN ?L_EQ_X
+        EXTERN ?L_IOR
+        EXTERN ?L_MOV_X
+        EXTERN ?L_SHL
+        EXTERN ?L_SUB
+        EXTERN ?L_SUB_FROM_X
+        EXTERN ?PUSH_XSTACK8_X_FOUR
+        EXTERN ?PUSH_XSTACK_I_FOUR
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?S_SHL
+        EXTERN ?UL_GE_X
+        EXTERN ?UL_GT
+        EXTERN ?UL_GT_X
+        EXTERN ?UL_SHR
+        EXTERN ?US_SHR
+        EXTERN ?V0
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTORE_R2345
+        EXTERN __INIT_XDATA_I
+        EXTERN __INIT_XDATA_Z
+
+        FUNCTION ??Scsi_Read10?relay,0203H
+        PUBLIC ??Scsi_Rx?relay
+        FUNCTION ??Scsi_Rx?relay,0203H
+        FUNCTION ??Scsi_Send?relay,0203H
+        FUNCTION ??Scsi_Write10?relay,0203H
+        FUNCTION ??halAesEncrDecr?relay,0203H
+        PUBWEAK DMA0CFGH
+        PUBWEAK DMA0CFGL
+        PUBLIC DiskCapacity
+        PUBWEAK ENCCS
+        PUBWEAK ENCDI
+        PUBWEAK ENCDO
+        PUBLIC MaximumCapacity
+        PUBLIC Scsi_Mode_Sense_6
+        FUNCTION Scsi_Read10,021203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 28, STACK
+        PUBLIC Scsi_Residue
+        PUBLIC Scsi_Rx
+        FUNCTION Scsi_Rx,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        FUNCTION Scsi_Send,021203H
+        ARGFRAME XSTACK, 28, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC Scsi_Standard_Inquiry_Data
+        PUBLIC Scsi_Status
+        FUNCTION Scsi_Write10,021203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME XSTACK, 26, STACK
+        PUBWEAK __Constant_0
+        PUBWEAK __Constant_1
+        PUBWEAK __Constant_10000
+        PUBWEAK __Constant_200
+        PUBWEAK __Constant_21
+        PUBWEAK __Constant_24
+        PUBWEAK __Constant_3fc0
+        PUBWEAK __Constant_4
+        PUBWEAK __Constant_40
+        PUBWEAK __Constant_41
+        PUBWEAK __Constant_4200
+        PUBWEAK __Constant_55534253
+        PUBWEAK __Constant_8
+        PUBWEAK __Constant_8200
+        PUBWEAK __Constant_9
+        PUBWEAK __Constant_c
+        PUBWEAK __Constant_d
+        PUBWEAK __Constant_ffff3e00
+        PUBWEAK __Constant_ffff7dc0
+        PUBWEAK __Constant_ffffbdc0
+        PUBWEAK __Constant_fffffdc0
+        PUBLIC cbw
+        PUBLIC csw
+        PUBLIC g_decKey
+        PUBLIC g_modBoot
+        PUBLIC g_outDataReady
+        FUNCTION halAesEncrDecr,0203H
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 18, STACK
+        PUBLIC outPacket
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+UsbSendBlock        SYMBOL "UsbSendBlock"
+usbOutDataRcv       SYMBOL "usbOutDataRcv"
+DevUpdateUartSend   SYMBOL "DevUpdateUartSend"
+HalFlashInit        SYMBOL "HalFlashInit"
+HalFlashErase       SYMBOL "HalFlashErase"
+HalFlashWrite       SYMBOL "HalFlashWrite"
+??DevUpdateUartSend?relay SYMBOL "?relay", DevUpdateUartSend
+??HalFlashErase?relay SYMBOL "?relay", HalFlashErase
+??HalFlashInit?relay SYMBOL "?relay", HalFlashInit
+??HalFlashWrite?relay SYMBOL "?relay", HalFlashWrite
+??UsbSendBlock?relay SYMBOL "?relay", UsbSendBlock
+??usbOutDataRcv?relay SYMBOL "?relay", usbOutDataRcv
+Scsi_Rx             SYMBOL "Scsi_Rx"
+??Scsi_Rx?relay     SYMBOL "?relay", Scsi_Rx
+
+        EXTERN UsbSendBlock
+        FUNCTION UsbSendBlock,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN usbOutDataRcv
+        FUNCTION usbOutDataRcv,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN DevUpdateUartSend
+        FUNCTION DevUpdateUartSend,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalFlashInit
+        FUNCTION HalFlashInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalFlashErase
+        FUNCTION HalFlashErase,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN HalFlashWrite
+        FUNCTION HalFlashWrite,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??DevUpdateUartSend?relay
+        FUNCTION ??DevUpdateUartSend?relay,00H
+        EXTERN ??HalFlashErase?relay
+        FUNCTION ??HalFlashErase?relay,00H
+        EXTERN ??HalFlashInit?relay
+        FUNCTION ??HalFlashInit?relay,00H
+        EXTERN ??HalFlashWrite?relay
+        FUNCTION ??HalFlashWrite?relay,00H
+        EXTERN ??UsbSendBlock?relay
+        FUNCTION ??UsbSendBlock?relay,00H
+        EXTERN ??usbOutDataRcv?relay
+        FUNCTION ??usbOutDataRcv?relay,00H
+        EXTERN Dbr
+        EXTERN Fat
+        EXTERN RootDir
+        EXTERN TestFileData
+        EXTERN Zeros
+        EXTERN dmaCh0
+        EXTERN g_deviceLinked
+
+// C:\Users\freeman\Documents\work\SN\module\Components\usb\class_cdc\usb_scsi.c
+//    1 //-----------------------------------------------------------------------------
+//    2 // F34x_MSD_Scsi.c
+//    3 //-----------------------------------------------------------------------------
+//    4 // Copyright 2009 Silicon Laboratories, Inc.
+//    5 // http://www.silabs.com
+//    6 //
+//    7 // Program Description:
+//    8 //
+//    9 // This file contains functions which responses to requests from USB device
+//   10 //
+//   11 //
+//   12 //
+//   13 // How To Test:    See Readme.txt
+//   14 //
+//   15 //
+//   16 // FID:            34X000051
+//   17 // Target:         C8051F34x
+//   18 // Tool chain:     Keil
+//   19 // Command Line:   See Readme.txt
+//   20 // Project Name:   F34x_USB_MSD
+//   21 //
+//   22 // Release 1.3
+//   23 //    -All changes by ES
+//   24 //    -18 DEC 2009
+//   25 //    -No changes; incremented revision number to match project revision
+//   26 //
+//   27 // Release 1.2
+//   28 //    -All changes by BD and PD
+//   29 //    -5 OCT 2007
+//   30 //    -No changes; incremented revision number to match project revision
+//   31 //
+//   32 // Release 1.1
+//   33 //    -All changes by PKC
+//   34 //    -09 JUN 2006
+//   35 //    -No changes; incremented revision number to match project revision
+//   36 //
+//   37 // Release 1.0
+//   38 //    -Initial Release
+//   39 //
+//   40 
+//   41 //-----------------------------------------------------------------------------
+//   42 // Includes
+//   43 //-----------------------------------------------------------------------------
+//   44 
+//   45 #include "usb_scsi.h"
+//   46 #include "FAT.h"
+//   47 //#include "bsp.h"
+//   48 //#include "F34x_MSD_Msd.h"
+//   49 //#include "F34x_MSD_Util.h"
+//   50 //#include "F34x_MSD_Sect_Serv.h"
+//   51 #include <stdio.h>
+//   52 #include <ioCC2530.h>
+
+        ASEGN SFR_AN:DATA:NOROOT,0b1H
+// unsigned char volatile __sfr ENCDI
+ENCDI:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b2H
+// unsigned char volatile __sfr ENCDO
+ENCDO:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b3H
+// unsigned char volatile __sfr ENCCS
+ENCCS:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d4H
+// unsigned char volatile __sfr DMA0CFGL
+DMA0CFGL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d5H
+// unsigned char volatile __sfr DMA0CFGH
+DMA0CFGH:
+        DATA8
+        DS 1
+//   53 #include "comdef.h"
+//   54 #include "hal_board_cfg.h"
+//   55 #include "hal_dma.h"
+//   56 #include "hal_flash.h"
+//   57 #include "hal_oad.h"
+//   58 #include "hal_types.h"
+//   59 #include "hal_aes.h"
+//   60 
+//   61 #define SEND_PACKET_LEN 64
+//   62 
+//   63 #define SCSI_TEST_UNIT_READY 				0x00
+//   64 #define SCSI_REQUEST_SENSE 					0x03
+//   65 #define SCSI_FORMAT_UNIT					0x04
+//   66 #define SCSI_SEND_DIAGNOSTIC				0x10
+//   67 #define SCSI_INQUIRY						0x12
+//   68 #define SCSI_MODE_SELECT_6					0x15
+//   69 #define SCSI_MODE_SENSE_6					0x1A
+//   70 #define SCSI_START_STOP_UNIT				0x1B
+//   71 #define SCSI_PREVENT_ALLOW_MEDIUM_REMOVAL 	0x1E
+//   72 #define SCSI_READ_CAPACITY_10				0x25
+//   73 #define SCSI_READ_CAPACITY_16				0x9E
+//   74 #define SCSI_READ_6							0x08
+//   75 #define SCSI_READ_10						0x28
+//   76 #define SCSI_READ_16						0x88
+//   77 #define SCSI_WRITE_10						0x2A
+//   78 #define SCSI_VERIFY_10						0x2F
+//   79 #define SCSI_READ_FORMAT_CAPACITIES 		0x23
+//   80 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   81 BYTE  Scsi_Status;
+Scsi_Status:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA32
+//   82 DWORD Scsi_Residue;
+Scsi_Residue:
+        DS 4
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   83 CBW cbw;
+cbw:
+        DS 31
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   84 CSW csw;
+csw:
+        DS 13
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   85 unsigned char g_outDataReady=0;
+g_outDataReady:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   86 char g_modBoot=0;
+g_modBoot:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+//   87 extern unsigned char g_deviceLinked;
+//   88 //BYTE xdata Msd_State=MSD_READY;
+//   89 
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+//   90 BYTE outPacket[EP1_PACKET_SIZE];
+outPacket:
+        DS 64
+        REQUIRE __INIT_XDATA_Z
+//   91 
+//   92 extern uint8 usbOutDataRcv(uint8* rBuf);
+//   93 static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr);
+//   94 static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key);
+//   95 extern void DevUpdateUartSend(char *sbuf, int len);
+//   96 
+//   97 // Buffer for read/write transfers:
+//   98 //BYTE Scratch[PHYSICAL_BLOCK_SIZE]={0};
+//   99 
+//  100 #if 0
+//  101 const BYTE Scsi_Standard_Inquiry_Data[36]= {
+//  102 0x00,0x80,0x02,0x02,0x20,0x00,0x00,0x00,0x53,0x54,0x4d,0x20,
+//  103 0x20,0x20,0x20,0x20,0x53,0x44,0x20,0x46,0x6c,0x61,0x73,0x68,
+//  104 0x20,0x44,0x69,0x73,0x6b,0x20,0x20,0x20,0x31,0x2e,0x30,0x20,
+//  105 /*
+//  106 //BYTE Scsi_Standard_Inquiry_Data[28]= {
+//  107   0x00, // Peripheral qualifier & peripheral device type
+//  108   0x80, // Removable medium
+//  109   0x05, // Version of the standard (2=obsolete, 5=SPC-3)
+//  110   0x02, // No NormACA, No HiSup, response data format=2
+//  111   0x1F, // No extra parameters
+//  112   0x00, // No flags
+//  113   0x80, // 0x80 => BQue => Basic Task Management supported
+//  114   0x00, // No flags
+//  115   'S','i','L','a','b','s',' ',' ', // Requested by Dekimo via www.t10.org
+//  116   'M','a','s','s',' ','S','t','o','r','a','g','e'
+//  117 */
+//  118 };
+//  119 #else
+//  120 
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+//  121 const BYTE Scsi_Standard_Inquiry_Data[36]=
+Scsi_Standard_Inquiry_Data:
+        DB 0
+        DB 128
+        DB 0
+        DB 1
+        DB 31
+        DB 0
+        DB 0
+        DB 0
+        DB 193
+        DB 189
+        DB 176
+        DB 209
+        DB 178
+        DB 203
+        DB 181
+        DB 182
+        DB 201
+        DB 232
+        DB 177
+        DB 184
+        DB 201
+        DB 253
+        DB 188
+        DB 182
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 49
+        DB 46
+        DB 48
+        DB 49
+//  122 {
+//  123  0x00, //磁盘设备
+//  124  0x80, //其中最高位D7为RMB。RMB=0，表示不可移除设备。如果RMB=1，则为可移除设备。
+//  125  0x00, //各种版本号0
+//  126  0x01, //数据响应格式
+//  127  0x1F, //附加数据长度，为31字节
+//  128  0x00, //保留
+//  129  0x00, //保留
+//  130  0x00, //保留
+//  131  //0xB5,0xE7,0XC4,0xD4,0xC8,0xA6,0xC8,0xA6, //厂商标识，为字符串“电脑圈圈”
+//  132  0xC1,0xbd,0xb0,0xD1,0xb2,0xcb,0xb5,0xb6,
+//  133  
+//  134  //产品标识，为字符串“自己做的假U盘”
+//  135  //0xD7,0xD4,0xBC,0xBA,0xD7,0xF6,0xB5,0xC4,0xBC,0xD9,0x55,0xC5,0xCC,0x00,0x00,0x00,
+//  136 //0x31,0x2E,0x30,0x31 //产品版本号，为1.01
+//  137 0xC9,0XE8,0XB1,0XB8,0XC9,0XFD,0XBC,0XB6,0X00,0X00,0X00,0X00,0X00,0x00,0x00,0x00,
+//  138 0x31,0x2E,0x30,0x31
+//  139 };
+//  140 #endif
+//  141 
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+//  142 const uint8 MaximumCapacity[12]=
+MaximumCapacity:
+        DB 0
+        DB 0
+        DB 0
+        DB 8
+        DB 1
+        DB 0
+        DB 0
+        DB 0
+        DB 3
+        DB 0
+        DB 2
+        DB 0
+//  143 {
+//  144 
+//  145 	0x00, 0x00, 0x00, //保留
+//  146 	0x08,  //容量列表长度
+//  147 	0x01, 0x00, 0x00, 0x00,  //块数(最大支持8GB)
+//  148 	0x03, //描述符代码为3，表示最大支持的格式化容量
+//  149 	0x00, 0x02, 0x00 //每块大小为512字节
+//  150 /*
+//  151 	0x00,0x00,0x00,0x08,0x00,0x6c,0xe0,0x00,0x02,0x00,0x02,0x00
+//  152 */
+//  153 
+//  154 };
+//  155 
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+//  156 const uint8 DiskCapacity[8]=
+DiskCapacity:
+        DB 0
+        DB 3
+        DB 255
+        DB 255
+        DB 0
+        DB 0
+        DB 2
+        DB 0
+//  157 {
+//  158 //0x00,0x6c,0xdf,0xff,0x00,0x00,0x02,0x00,
+//  159 0x00,0x03,0xFF,0xFF, //能够访问的最大逻辑块地址
+//  160 0x00,0x00,0x02,0x00  //块的长度
+//  161  //所以该磁盘的容量为
+//  162  //(0x3FFFF+1)*0x200 = 0x8000000 = 128*1024*1024 = 128MB.
+//  163  //0x00,0x6c,0xdf,0xff,0x00,0x00,0x02,0x00,
+//  164 };
+//  165 
+//  166 
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+//  167 const BYTE Scsi_Mode_Sense_6[4]= { 0x03,0,0,0 }; // No mode sense parameter
+Scsi_Mode_Sense_6:
+        DATA8
+        DB 3
+        DB 0
+        DB 0
+        DB 0
+//  168 
+//  169 //----------------------------------------------------------------------------
+//  170 // Scsi_Send
+//  171 //----------------------------------------------------------------------------
+//  172 //
+//  173 // This function sends defined numbers of bytes via USB
+//  174 //
+//  175 // Parameters   : ptr - poiter to sending bytes
+//  176 //                count - number of sending bytes
+//  177 // Return Value :
+//  178 //----------------------------------------------------------------------------
+//  179 extern uint16 halUartBufferedWrite(const uint8* buf, uint16 length);
+//  180 extern void usbInProcess(void);
+//  181 extern void UsbSendBlock(uint8 *ps, uint32 len);
+//  182 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  183 static void Scsi_Send(uint8* ptr,uint32 count)
+Scsi_Send:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function Scsi_Send
+        CODE
+//  184 {
+        FUNCALL Scsi_Send, UsbSendBlock
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+        MOV     A,#0xc
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+//  185 
+//  186 	Scsi_Residue-=count;
+        MOV     DPTR,#Scsi_Residue
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_SUB_FROM_X
+//  187 	UsbSendBlock(ptr,count);
+        ; Setup parameters for call to function UsbSendBlock
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        LCALL   ??UsbSendBlock?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI EndBlock cfiBlock0
+//  188 
+//  189 }
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock1
+//  190 
+//  191 //----------------------------------------------------------------------------
+//  192 // Scsi_Inquiry
+//  193 //----------------------------------------------------------------------------
+//  194 //
+//  195 // This function responses to inquiry from other USB device
+//  196 //
+//  197 // Parameters   :
+//  198 // Return Value :
+//  199 //----------------------------------------------------------------------------
+//  200 
+//  201 static void Scsi_Inquiry(void)
+//  202 {
+//  203 	uint8 *sp;
+//  204 	Scsi_Status=SCSI_PASSED;
+//  205 	sp = (uint8 *)Scsi_Standard_Inquiry_Data;
+//  206 	Scsi_Send(sp,sizeof(Scsi_Standard_Inquiry_Data));
+//  207 }
+//  208 
+//  209 //----------------------------------------------------------------------------
+//  210 // Scsi_Write10
+//  211 //----------------------------------------------------------------------------
+//  212 //
+//  213 // This function responses to write command
+//  214 //
+//  215 // Parameters   :
+//  216 // Return Value :
+//  217 //----------------------------------------------------------------------------
+//  218 extern halDMADesc_t dmaCh0;
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+//  219 char *g_decKey = "WorkForYourDream";
+g_decKey:
+        DATA16
+        DS 2
+        REQUIRE `?<Initializer for g_decKey>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  220 static void Scsi_Write10(void)
+Scsi_Write10:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function Scsi_Write10
+        CODE
+//  221 {
+        FUNCALL Scsi_Write10, usbOutDataRcv
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 24, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Write10, DevUpdateUartSend
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 24, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Write10, HalFlashInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 24, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Write10, usbOutDataRcv
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 24, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Write10, halAesEncrDecr
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 26, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Write10, HalFlashErase
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 24, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 24, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Write10, HalFlashWrite
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 26, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 26, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x18
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V15 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V14 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-24)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 24)
+        ; Saved register size: 24
+        ; Auto size: 0
+//  222 	uint32 rcvTotal=0;
+        MOV     DPTR,#__Constant_0
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+//  223 	uint8 rcvBlockSize=0;
+//  224 	static uint32 addr = FW_OAD_LOCA_START;
+//  225   	//uint16 oset;
+//  226   	//uint16 page=FW_OAD_LOCA_START/HAL_FLASH_PAGE_SIZE;
+//  227 	uint32 rtAddr=(((uint32)cbw.CBWCB[2]<<24)|((uint32)cbw.CBWCB[3]<<16)|((uint32)cbw.CBWCB[4]<<8)|((uint32)cbw.CBWCB[5]));
+        MOV     DPTR,#cbw + 17
+        MOVX    A,@DPTR
+        MOV     ?V0 + 4,A
+        CLR     A
+        MOV     ?V0 + 5,A
+        MOV     ?V0 + 6,A
+        MOV     ?V0 + 7,A
+        MOV     A,#0x18
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_SHL
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 8,A
+        CLR     A
+        MOV     ?V0 + 9,A
+        MOV     ?V0 + 10,A
+        MOV     ?V0 + 11,A
+        MOV     A,#0x10
+        MOV     R0,#?V0 + 8
+        LCALL   ?L_SHL
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 8
+        LCALL   ?L_IOR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 8,A
+        CLR     A
+        MOV     ?V0 + 10,A
+        MOV     A,#0x8
+        MOV     R0,#?V0 + 8
+        LCALL   ?L_SHL
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 8
+        LCALL   ?L_IOR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 8,A
+        CLR     A
+        MOV     ?V0 + 9,A
+        MOV     R0,#?V0 + 4
+        MOV     R1,#?V0 + 8
+        LCALL   ?L_IOR
+//  228 
+//  229 	if(g_deviceLinked)
+        MOV     DPTR,#g_deviceLinked
+        MOVX    A,@DPTR
+        JZ      ??Scsi_Write10_0
+//  230 	{
+//  231 		while(rcvTotal<cbw.dCBWDataTransferLength)
+??Scsi_Write10_1:
+        MOV     DPTR,#cbw + 8
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JNC     $+5
+        LJMP    ??Scsi_Write10_2 & 0xFFFF
+//  232 		{
+//  233 			rcvBlockSize=usbOutDataRcv(outPacket);
+        ; Setup parameters for call to function usbOutDataRcv
+        LCALL   ?Subroutine2 & 0xFFFF
+//  234 			rcvTotal+=rcvBlockSize;
+??CrossCallReturnLabel_0:
+        LCALL   ?L_ADD
+//  235 			if((0x00!=rtAddr)&&(0x01!=rtAddr)&&(0x41!=rtAddr)&&(0x21!=rtAddr))
+        MOV     A,?V0 + 4
+        ORL     A,?V0 + 5
+        ORL     A,?V0 + 6
+        ORL     A,?V0 + 7
+        JZ      ??Scsi_Write10_1
+        MOV     DPTR,#__Constant_1
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Write10_1
+        MOV     DPTR,#__Constant_41
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Write10_1
+        MOV     DPTR,#__Constant_21
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Write10_1
+//  236 			{
+//  237 				DevUpdateUartSend(outPacket,rcvBlockSize);
+        ; Setup parameters for call to function DevUpdateUartSend
+        MOV     R4,?V0 + 10
+        MOV     R5,#0x0
+        MOV     R2,#outPacket & 0xff
+        MOV     R3,#(outPacket >> 8) & 0xff
+        LCALL   ??DevUpdateUartSend?relay
+        SJMP    ??Scsi_Write10_1
+//  238 			}
+//  239 		}
+//  240 
+//  241 	}else
+//  242 	{
+//  243 		HAL_DMA_SET_ADDR_DESC0( &dmaCh0 );
+??Scsi_Write10_0:
+        MOV     A,#(dmaCh0 >> 8) & 0xff
+        MOV     0xd5,A
+        MOV     0xd4,#dmaCh0 & 0xff
+//  244 	  	HalFlashInit();
+        ; Setup parameters for call to function HalFlashInit
+        LCALL   ??HalFlashInit?relay
+//  245 		AES_SETMODE(ECB);
+        ANL     0xb3,#0x8f
+        ORL     0xb3,#0x40
+//  246 		halAesLoadKeyOrInitVector(g_decKey, TRUE);
+        MOV     DPTR,#g_decKey
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,0xb3
+        ANL     A,#0xf8
+        ORL     A,#0x4
+        MOV     0xb3,A
+        ORL     0xb3,#0x1
+        MOV     R2,#0x0
+??Scsi_Write10_3:
+        MOV     ?V0 + 8,R2
+        MOV     A,R0
+        ADD     A,?V0 + 8
+        MOV     DPL,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     0xb1,A
+        INC     R2
+        MOV     A,R2
+        CLR     C
+        SUBB    A,#0x10
+        JC      ??Scsi_Write10_3
+//  247 		
+//  248 		while(rcvTotal<cbw.dCBWDataTransferLength)
+??Scsi_Write10_4:
+        MOV     DPTR,#cbw + 8
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JNC     $+5
+        LJMP    ??Scsi_Write10_2 & 0xFFFF
+//  249 		{
+//  250 			rcvBlockSize=usbOutDataRcv(outPacket);
+        ; Setup parameters for call to function usbOutDataRcv
+        LCALL   ?Subroutine2 & 0xFFFF
+//  251 			rcvTotal+=rcvBlockSize;
+??CrossCallReturnLabel_1:
+        LCALL   ?L_ADD
+//  252 			halAesEncrDecr((BYTE *)outPacket, EP1_PACKET_SIZE, (BYTE *)outPacket, DECRYPT);
+        ; Setup parameters for call to function halAesEncrDecr
+        MOV     ?V0 + 8,#outPacket & 0xff
+        MOV     ?V0 + 9,#(outPacket >> 8) & 0xff
+        MOV     R0,#?V0 + 8
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 26)
+        MOV     R1,#0x1
+        MOV     R4,#0x40
+        MOV     R5,#0x0
+        MOV     R2,#outPacket & 0xff
+        MOV     R3,#(outPacket >> 8) & 0xff
+        LCALL   ??halAesEncrDecr?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 24)
+//  253 			if((0x00!=rtAddr)&&(0x01!=rtAddr)&&(0x41!=rtAddr)&&(0x21!=rtAddr)&&(addr<(FW_OAD_LOCA_END)))
+        MOV     A,?V0 + 4
+        ORL     A,?V0 + 5
+        ORL     A,?V0 + 6
+        ORL     A,?V0 + 7
+        JZ      ??Scsi_Write10_4
+        MOV     DPTR,#__Constant_1
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Write10_4
+        MOV     DPTR,#__Constant_41
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Write10_4
+        MOV     DPTR,#__Constant_21
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Write10_4
+        MOV     DPTR,#??addr
+        PUSH    DPL
+        CFI CFA_SP SP+-1
+        MOV     DPTR,#__Constant_10000
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_MOV_X
+        MOV     DPH,#(??addr >> 8) & 0xff
+        POP     DPL
+        CFI CFA_SP SP+0
+        MOV     R0,#?V0 + 12
+        LCALL   ?UL_GT_X
+        JNC     ??Scsi_Write10_4
+//  254 			{
+//  255 				if ((addr % (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE)) == 0)
+        MOV     DPTR,#??addr
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_MOV_X
+        MOV     A,?V0 + 13
+        ANL     A,#0x1
+        MOV     R1,A
+        MOV     A,?V0 + 12
+        ORL     A,R1
+        JNZ     ??Scsi_Write10_5
+//  256 				{
+//  257 					HalFlashErase(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE));
+        ; Setup parameters for call to function HalFlashErase
+        MOV     DPTR,#??addr
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_MOV_X
+        MOV     A,#0x9
+        MOV     R0,#?V0 + 12
+        LCALL   ?UL_SHR
+        MOV     ?V0 + 8,?V0 + 12
+        MOV     R1,?V0 + 8
+        LCALL   ??HalFlashErase?relay
+//  258 				}
+//  259 				HalFlashWrite(addr, outPacket, rcvBlockSize/4);
+??Scsi_Write10_5:
+        MOV     A,?V0 + 10
+        RRC     A
+        RRC     A
+        ANL     A,#0x3f
+        MOV     ?V0 + 8,A
+        ; Setup parameters for call to function HalFlashWrite
+        MOV     ?V0 + 10,A
+        MOV     R0,#?V0 + 10
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 26)
+        MOV     R4,#outPacket & 0xff
+        MOV     R5,#(outPacket >> 8) & 0xff
+        MOV     DPTR,#??addr
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_MOV_X
+        MOV     R2,?V0 + 12
+        MOV     R3,?V0 + 13
+        LCALL   ??HalFlashWrite?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 24)
+//  260 				addr += (rcvBlockSize/4);
+        CLR     A
+        MOV     ?V0 + 9,A
+        MOV     ?V0 + 10,A
+        MOV     DPTR,#??addr
+        MOV     R0,#?V0 + 8
+        LCALL   ?L_ADD_TO_X
+        LJMP    ??Scsi_Write10_4 & 0xFFFF
+        CFI EndBlock cfiBlock2
+//  261 			}
+//  262 		}
+//  263 	}
+//  264 	
+//  265 	Scsi_Status=SCSI_PASSED;
+??Scsi_Write10_2:
+        REQUIRE ?Subroutine1
+        REQUIRE DMA0CFGH
+        REQUIRE DMA0CFGL
+        REQUIRE ENCCS
+        REQUIRE ENCDI
+        ; // Fall through to label ?Subroutine1
+//  266 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 24)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-24)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V14 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V15 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     DPTR,#Scsi_Status
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     R7,#0x10
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock3
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiCond4 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-24)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V14 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V15 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 24)
+        CFI Block cfiCond5 Using cfiCommon0
+        CFI (cfiCond5) NoFunction
+        CFI (cfiCond5) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond5) R6 load(1, XDATA, add(CFA_XSP16, literal(-24)))
+        CFI (cfiCond5) VB load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI (cfiCond5) V0 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI (cfiCond5) V1 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI (cfiCond5) V2 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI (cfiCond5) V3 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI (cfiCond5) V4 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI (cfiCond5) V5 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond5) V6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond5) V7 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond5) V8 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond5) V9 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond5) V10 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond5) V11 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond5) V12 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond5) V13 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond5) V14 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond5) V15 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond5) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond5) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond5) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond5) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond5) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond5) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond5) CFA_SP SP+0
+        CFI (cfiCond5) CFA_XSP16 add(XSP16, 24)
+        CFI Block cfiPicker6 Using cfiCommon1
+        CFI (cfiPicker6) NoFunction
+        CFI (cfiPicker6) Picker
+        MOV     R2,#outPacket & 0xff
+        MOV     R3,#(outPacket >> 8) & 0xff
+        LCALL   ??usbOutDataRcv?relay
+        MOV     A,R1
+        MOV     ?V0 + 10,A
+        MOV     ?V0 + 12,A
+        CLR     A
+        MOV     ?V0 + 13,A
+        MOV     ?V0 + 14,A
+        MOV     ?V0 + 15,A
+        MOV     R0,#?V0 + 0
+        MOV     R1,#?V0 + 12
+        RET
+        CFI EndBlock cfiCond4
+        CFI EndBlock cfiCond5
+        CFI EndBlock cfiPicker6
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+??addr:
+        DATA32
+        DS 4
+        REQUIRE `?<Initializer for addr>`
+        REQUIRE __INIT_XDATA_I
+//  267 
+//  268 //----------------------------------------------------------------------------
+//  269 // Scsi_Mode_Sense6
+//  270 //----------------------------------------------------------------------------
+//  271 //
+//  272 // This function responses to mode sense information request
+//  273 //
+//  274 // Parameters   :
+//  275 // Return Value :
+//  276 //----------------------------------------------------------------------------
+//  277 
+//  278 static void Scsi_Mode_Sense6(void)
+//  279 {
+//  280 	uint8 *sp;
+//  281 	Scsi_Status=SCSI_PASSED;
+//  282 	sp = (uint8 *)Scsi_Mode_Sense_6;
+//  283 	Scsi_Send(sp,sizeof(Scsi_Mode_Sense_6));
+//  284 }
+//  285 
+//  286 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  287 static void Scsi_Read10(void)
+Scsi_Read10:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function Scsi_Read10
+        CODE
+//  288 {
+        FUNCALL Scsi_Read10, Scsi_Send
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 28, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 28, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Read10, Scsi_Send
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 28, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 28, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x18
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V15 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V14 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V13 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V12 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V11 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V10 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-19)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-20)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-21)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-22)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-23)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-24)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 24)
+        ; Saved register size: 24
+        ; Auto size: 0
+//  289 
+//  290 	uint32 index=0;
+        MOV     DPTR,#__Constant_0
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_MOV_X
+//  291 	uint32 byteAddrBlock = (((uint32)cbw.CBWCB[2]<<24)|((uint32)cbw.CBWCB[3]<<16)|((uint32)cbw.CBWCB[4]<<8)|((uint32)cbw.CBWCB[5]));
+//  292 	uint32 byteAddr=byteAddrBlock*512;
+        MOV     DPTR,#cbw + 18
+        MOVX    A,@DPTR
+        MOV     ?V0 + 12,A
+        CLR     A
+        MOV     ?V0 + 13,A
+        MOV     ?V0 + 14,A
+        MOV     ?V0 + 15,A
+        MOV     A,#0x10
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_SHL
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        CLR     A
+        MOV     ?V0 + 1,A
+        MOV     ?V0 + 2,A
+        MOV     ?V0 + 3,A
+        MOV     A,#0x8
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_SHL
+        MOV     R0,#?V0 + 12
+        MOV     R1,#?V0 + 0
+        LCALL   ?L_IOR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        CLR     A
+        MOV     ?V0 + 1,A
+        MOV     R0,#?V0 + 12
+        MOV     R1,#?V0 + 0
+        LCALL   ?L_IOR
+        MOV     A,#0x9
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_SHL
+        SJMP    ??Scsi_Read10_0
+//  293 
+//  294 	uint8* sp;
+//  295 	while(index<cbw.dCBWDataTransferLength)
+//  296 	{
+//  297 		 if(byteAddr<512) 
+//  298 		 {
+//  299 		 	sp=(uint8*)(Dbr+index); //返回DBR
+//  300 		 }else if(byteAddr==512) 
+//  301 		{
+//  302 			sp=(uint8*)Fat; //返回FAT
+//  303 		 }else if((byteAddr>=576)&&(byteAddr<16896)) 
+//  304 		 {
+//  305 		 	sp=(uint8*)Zeros;
+//  306 		}else if(byteAddr==16896)
+//  307 		{
+//  308 			sp=(uint8*)Fat; //返回FAT（备份FAT）
+//  309 		}else if((byteAddr>=16960)&&(byteAddr<33280)) 
+//  310 		{
+//  311 			sp=(uint8*)Zeros;
+//  312 		}else if(byteAddr==33280) 
+//  313 		{
+//  314 			sp=(uint8*)RootDir; //返回根目录
+//  315 		}else if((byteAddr>=33344)&&(byteAddr<49664)) 
+//  316 		{
+//  317 			sp=(uint8*)Zeros;
+//  318 		}
+//  319 #ifdef INCLUDE_TEST_FILE
+//  320 		else if((byteAddr>=49664) &&(byteAddr<(49664+512)))
+//  321 		 {
+//  322 			sp=(uint8*)(TestFileData+index); //返回文件数据
+//  323 		 }
+//  324 #endif
+//  325 		else
+//  326 		 {
+//  327 		 	sp=(uint8*)Zeros;
+//  328 		 }
+//  329 
+//  330 		 if((index+SEND_PACKET_LEN)<cbw.dCBWDataTransferLength)
+//  331 		 {
+//  332 			Scsi_Send(sp,SEND_PACKET_LEN);
+??Scsi_Read10_1:
+        ; Setup parameters for call to function Scsi_Send
+        MOV     DPTR,#__Constant_40
+        LCALL   ?PUSH_XSTACK8_X_FOUR
+        CFI CFA_XSP16 add(XSP16, 28)
+        LCALL   ??Scsi_Send?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 24)
+//  333 			index += SEND_PACKET_LEN;
+        MOV     DPTR,#__Constant_40
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_ADD_X
+//  334 		 }else
+//  335 		 {
+//  336 			Scsi_Send(sp,cbw.dCBWDataTransferLength-index);
+//  337 			break;
+//  338 		 }
+//  339 
+//  340 		byteAddr+=SEND_PACKET_LEN;
+        MOV     DPTR,#__Constant_40
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_ADD_X
+??Scsi_Read10_0:
+        MOV     DPTR,#cbw + 8
+        MOV     R0,#?V0 + 8
+        LCALL   ?L_MOV_X
+        MOV     R0,#?V0 + 8
+        MOV     R1,#?V0 + 4
+        LCALL   ?UL_GT
+        JC      $+5
+        LJMP    ??Scsi_Read10_2 & 0xFFFF
+        MOV     DPTR,#__Constant_200
+        MOV     R0,#?V0 + 12
+        LCALL   ?UL_GE_X
+        JC      ??Scsi_Read10_3
+        MOV     ?V0 + 0,?V0 + 4
+        MOV     ?V0 + 1,?V0 + 5
+        MOV     A,#Dbr & 0xff
+        ADD     A,?V0 + 0
+        MOV     R2,A
+        MOV     A,#(Dbr >> 8) & 0xff
+        LJMP    ??Scsi_Read10_4 & 0xFFFF
+??Scsi_Read10_3:
+        MOV     DPTR,#__Constant_200
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_EQ_X
+        JNZ     ??Scsi_Read10_5
+??Scsi_Read10_6:
+        MOV     R2,#Fat & 0xff
+        MOV     R3,#(Fat >> 8) & 0xff
+        LJMP    ??Scsi_Read10_7 & 0xFFFF
+??Scsi_Read10_5:
+        MOV     ?V0 + 0,?V0 + 12
+        MOV     ?V0 + 1,?V0 + 13
+        MOV     ?V0 + 2,?V0 + 14
+        MOV     ?V0 + 3,?V0 + 15
+        MOV     DPTR,#__Constant_fffffdc0
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_ADD_X
+        MOV     DPTR,#__Constant_3fc0
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JC      ??Scsi_Read10_8
+??Scsi_Read10_9:
+        MOV     R2,#Zeros & 0xff
+        MOV     R3,#(Zeros >> 8) & 0xff
+        LJMP    ??Scsi_Read10_7 & 0xFFFF
+??Scsi_Read10_8:
+        MOV     DPTR,#__Constant_4200
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_EQ_X
+        JZ      ??Scsi_Read10_6
+        MOV     ?V0 + 0,?V0 + 12
+        MOV     ?V0 + 1,?V0 + 13
+        MOV     ?V0 + 2,?V0 + 14
+        MOV     ?V0 + 3,?V0 + 15
+        MOV     DPTR,#__Constant_ffffbdc0
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_ADD_X
+        MOV     DPTR,#__Constant_3fc0
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JNC     ??Scsi_Read10_9
+        MOV     DPTR,#__Constant_8200
+        MOV     R0,#?V0 + 12
+        LCALL   ?L_EQ_X
+        JNZ     ??Scsi_Read10_10
+        MOV     R2,#RootDir & 0xff
+        MOV     R3,#(RootDir >> 8) & 0xff
+        SJMP    ??Scsi_Read10_7
+??Scsi_Read10_10:
+        MOV     ?V0 + 0,?V0 + 12
+        MOV     ?V0 + 1,?V0 + 13
+        MOV     ?V0 + 2,?V0 + 14
+        MOV     ?V0 + 3,?V0 + 15
+        MOV     DPTR,#__Constant_ffff7dc0
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_ADD_X
+        MOV     DPTR,#__Constant_3fc0
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JNC     ??Scsi_Read10_9
+        MOV     ?V0 + 0,?V0 + 12
+        MOV     ?V0 + 1,?V0 + 13
+        MOV     ?V0 + 2,?V0 + 14
+        MOV     ?V0 + 3,?V0 + 15
+        MOV     DPTR,#__Constant_ffff3e00
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_ADD_X
+        MOV     DPTR,#__Constant_200
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JC      ??Scsi_Read10_9
+        MOV     ?V0 + 0,?V0 + 4
+        MOV     ?V0 + 1,?V0 + 5
+        MOV     A,#TestFileData & 0xff
+        ADD     A,?V0 + 0
+        MOV     R2,A
+        MOV     A,#(TestFileData >> 8) & 0xff
+??Scsi_Read10_4:
+        ADDC    A,?V0 + 1
+        MOV     R3,A
+??Scsi_Read10_7:
+        MOV     ?V0 + 0,?V0 + 4
+        MOV     ?V0 + 1,?V0 + 5
+        MOV     ?V0 + 2,?V0 + 6
+        MOV     ?V0 + 3,?V0 + 7
+        MOV     DPTR,#__Constant_40
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_ADD_X
+        MOV     R0,#?V0 + 8
+        MOV     R1,#?V0 + 0
+        LCALL   ?UL_GT
+        JNC     $+5
+        LJMP    ??Scsi_Read10_1 & 0xFFFF
+        ; Setup parameters for call to function Scsi_Send
+        MOV     R0,#?V0 + 8
+        MOV     R1,#?V0 + 4
+        LCALL   ?L_SUB
+        MOV     R0,#?V0 + 8
+        LCALL   ?PUSH_XSTACK_I_FOUR
+        CFI CFA_XSP16 add(XSP16, 28)
+        LCALL   ??Scsi_Send?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 24)
+//  341 	}
+//  342 	
+//  343 	Scsi_Status=SCSI_PASSED;
+??Scsi_Read10_2:
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock7
+//  344 }
+//  345 
+//  346 
+//  347 static void Scsi_Read_Capacity10(void)
+//  348 {
+//  349 	uint8 *sp;
+//  350 	DWORD d_len = ntohl(cbw.dCBWDataTransferLength);
+//  351 	Scsi_Status=SCSI_PASSED;
+//  352 	if(d_len>sizeof(DiskCapacity))
+//  353 	{
+//  354 		d_len = sizeof(DiskCapacity);
+//  355 	}
+//  356 	sp = (uint8 *)DiskCapacity;
+//  357 	Scsi_Send(sp,d_len);
+//  358 }
+//  359 
+//  360 
+//  361 static void SCSI_ReadFormatCapacity(void)
+//  362 {
+//  363 	uint8 *sp;
+//  364 	DWORD d_len = ntohl(cbw.dCBWDataTransferLength);
+//  365 
+//  366 	Scsi_Status=SCSI_PASSED;
+//  367 	if(d_len>sizeof(MaximumCapacity))
+//  368 	{
+//  369 		d_len = sizeof(MaximumCapacity);
+//  370 	}
+//  371 	sp = (uint8 *)MaximumCapacity;
+//  372 	Scsi_Send(sp,d_len);
+//  373 }
+//  374 
+//  375 static void SCSI_RequestSense(void)
+//  376 {
+//  377 	
+//  378 }
+//  379 
+//  380 //----------------------------------------------------------------------------
+//  381 // Scsi_Rx
+//  382 //----------------------------------------------------------------------------
+//  383 //
+//  384 // This function answers to requests from USB
+//  385 //
+//  386 // Parameters   :
+//  387 // Return Value :
+//  388 //----------------------------------------------------------------------------
+//  389 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  390 void Scsi_Rx()
+Scsi_Rx:
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI Function Scsi_Rx
+        CODE
+//  391 {
+        FUNCALL Scsi_Rx, UsbSendBlock
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, Scsi_Send
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, Scsi_Send
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, Scsi_Send
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, Scsi_Read10
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, Scsi_Write10
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, Scsi_Send
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL Scsi_Rx, UsbSendBlock
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+//  392 
+//  393 	Scsi_Status=SCSI_FAILED;
+        MOV     DPTR,#Scsi_Status
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  394 	Scsi_Residue=ntohl(cbw.dCBWDataTransferLength);
+        MOV     DPTR,#cbw + 8
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#Scsi_Residue
+        LCALL   ?XSTORE_R2345
+//  395 
+//  396 	if(g_outDataReady)
+        MOV     DPTR,#g_outDataReady
+        MOVX    A,@DPTR
+        JZ      ??Scsi_Rx_0
+//  397 	{
+//  398 		UsbSendBlock((BYTE*)&csw,sizeof(CSW));
+        ; Setup parameters for call to function UsbSendBlock
+        MOV     DPTR,#__Constant_d
+        LCALL   ?PUSH_XSTACK8_X_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R2,#csw & 0xff
+        MOV     R3,#(csw >> 8) & 0xff
+        LCALL   ??UsbSendBlock?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 12)
+//  399 		g_outDataReady = 0;
+        MOV     DPTR,#g_outDataReady
+        CLR     A
+        MOVX    @DPTR,A
+//  400 	}
+//  401 
+//  402 	if(!cbw.bCBWCBLength)
+??Scsi_Rx_0:
+        MOV     DPTR,#cbw + 14
+        MOVX    A,@DPTR
+        JNZ     $+5
+        LJMP    ??Scsi_Rx_1 & 0xFFFF
+//  403 	return;
+//  404 
+//  405 	switch(cbw.CBWCB[0]) 
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADD     A,#-0x3
+        JNZ     $+5
+        LJMP    ??Scsi_Rx_2 & 0xFFFF
+        ADD     A,#-0xf
+        JZ      ??Scsi_Rx_3
+        ADD     A,#-0x8
+        JZ      ??Scsi_Rx_4
+        ADD     A,#-0x9
+        JZ      ??Scsi_Rx_5
+        ADD     A,#-0x2
+        JZ      ??Scsi_Rx_6
+        ADD     A,#-0x3
+        JZ      ??Scsi_Rx_7
+        ADD     A,#-0x2
+        JZ      ??Scsi_Rx_8
+        ADD     A,#-0x5
+        JZ      ??Scsi_Rx_9
+//  406 	{ // SCSI Operation code
+//  407 		case SCSI_TEST_UNIT_READY:
+//  408 			Scsi_Status=SCSI_PASSED;
+??Scsi_Rx_10:
+        MOV     DPTR,#Scsi_Status
+        CLR     A
+        MOVX    @DPTR,A
+//  409 		break;
+        LJMP    ??Scsi_Rx_2 & 0xFFFF
+//  410 		
+//  411 		case SCSI_INQUIRY:
+//  412 			Scsi_Inquiry();
+??Scsi_Rx_3:
+        MOV     DPTR,#Scsi_Status
+        CLR     A
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function Scsi_Send
+        MOV     DPTR,#__Constant_24
+        LCALL   ?PUSH_XSTACK8_X_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R2,#Scsi_Standard_Inquiry_Data & 0xff
+        MOV     R3,#(Scsi_Standard_Inquiry_Data >> 8) & 0xff
+        SJMP    ??Scsi_Rx_11
+        CFI CFA_XSP16 add(XSP16, 12)
+//  413 		break;
+//  414 		
+//  415 		case SCSI_MODE_SENSE_6:
+//  416 			Scsi_Mode_Sense6();
+??Scsi_Rx_4:
+        MOV     DPTR,#Scsi_Status
+        CLR     A
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function Scsi_Send
+        MOV     DPTR,#__Constant_4
+        LCALL   ?PUSH_XSTACK8_X_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R2,#Scsi_Mode_Sense_6 & 0xff
+        MOV     R3,#(Scsi_Mode_Sense_6 >> 8) & 0xff
+        SJMP    ??Scsi_Rx_11
+        CFI CFA_XSP16 add(XSP16, 12)
+//  417 		break;
+//  418 		
+//  419 		case SCSI_READ_CAPACITY_10:
+//  420 			Scsi_Read_Capacity10();
+??Scsi_Rx_6:
+        MOV     DPTR,#cbw + 8
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#Scsi_Status
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#__Constant_9
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JNC     ??Scsi_Rx_12
+        MOV     DPTR,#__Constant_8
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+??Scsi_Rx_12:
+        ; Setup parameters for call to function Scsi_Send
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R2,#DiskCapacity & 0xff
+        MOV     R3,#(DiskCapacity >> 8) & 0xff
+        SJMP    ??Scsi_Rx_11
+        CFI CFA_XSP16 add(XSP16, 12)
+//  421 		break;
+//  422 		
+//  423 		case SCSI_READ_10:
+//  424 			Scsi_Read10();
+??Scsi_Rx_7:
+        ; Setup parameters for call to function Scsi_Read10
+        LCALL   ??Scsi_Read10?relay
+//  425 		break;
+        SJMP    ??Scsi_Rx_2
+//  426 		
+//  427 		case SCSI_WRITE_10:
+//  428 			Scsi_Write10();
+??Scsi_Rx_8:
+        ; Setup parameters for call to function Scsi_Write10
+        LCALL   ??Scsi_Write10?relay
+//  429 		break;
+        SJMP    ??Scsi_Rx_2
+//  430 		
+//  431 		case SCSI_VERIFY_10:
+//  432 			Scsi_Residue=0;
+??Scsi_Rx_9:
+        MOV     DPTR,#__Constant_0
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#Scsi_Residue
+        LCALL   ?XSTORE_R2345
+        SJMP    ??Scsi_Rx_10
+//  433 			Scsi_Status=SCSI_PASSED;
+//  434 		break;
+//  435 		
+//  436 		case SCSI_START_STOP_UNIT:
+//  437 			Scsi_Status=SCSI_PASSED;
+//  438 		break;
+//  439 
+//  440 		case SCSI_READ_FORMAT_CAPACITIES:
+//  441 			SCSI_ReadFormatCapacity();
+??Scsi_Rx_5:
+        MOV     DPTR,#cbw + 8
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+        MOV     DPTR,#Scsi_Status
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#__Constant_d
+        MOV     R0,#?V0 + 0
+        LCALL   ?UL_GE_X
+        JNC     ??Scsi_Rx_13
+        MOV     DPTR,#__Constant_c
+        MOV     R0,#?V0 + 0
+        LCALL   ?L_MOV_X
+??Scsi_Rx_13:
+        ; Setup parameters for call to function Scsi_Send
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R2,#MaximumCapacity & 0xff
+        MOV     R3,#(MaximumCapacity >> 8) & 0xff
+??Scsi_Rx_11:
+        LCALL   ??Scsi_Send?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 12)
+//  442 		break;
+//  443 
+//  444 		case SCSI_REQUEST_SENSE:
+//  445 			SCSI_RequestSense();
+//  446 		break;
+//  447 			
+//  448 		case SCSI_PREVENT_ALLOW_MEDIUM_REMOVAL:
+//  449 			Scsi_Status=SCSI_PASSED;
+//  450 		break;
+//  451 		
+//  452 		default:
+//  453 		//printf("Unknown SCSI Cmd (0x%02X).\n",(int)cbw.CBWCB[0]);
+//  454 			Scsi_Status=SCSI_PASSED;
+//  455 			//Scsi_Read10();
+//  456 		break;
+//  457 	}
+//  458 
+//  459 	//if(SCSI_WRITE_10!=cbw.CBWCB[0])
+//  460 	{
+//  461 	  	csw.dCSWSignature=CSW_SIGNATURE;
+??Scsi_Rx_2:
+        MOV     DPTR,#__Constant_55534253
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#csw
+        LCALL   ?XSTORE_R2345
+//  462 	  	csw.dCSWTag=cbw.dCBWTag;
+        MOV     DPTR,#cbw + 4
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#csw + 4
+        LCALL   ?XSTORE_R2345
+//  463 	  	csw.bCSWStatus=Scsi_Status;
+        MOV     DPTR,#Scsi_Status
+        MOVX    A,@DPTR
+        MOV     DPTR,#csw + 12
+        MOVX    @DPTR,A
+//  464 	  	csw.dCSWDataResidue=ntohl(Scsi_Residue);
+        MOV     DPTR,#Scsi_Residue
+        LCALL   ?XLOAD_R2345
+        MOV     DPTR,#csw + 8
+        LCALL   ?XSTORE_R2345
+//  465 	  	UsbSendBlock((BYTE*)&csw,sizeof(CSW));
+        ; Setup parameters for call to function UsbSendBlock
+        MOV     DPTR,#__Constant_d
+        LCALL   ?PUSH_XSTACK8_X_FOUR
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     R2,#csw & 0xff
+        MOV     R3,#(csw >> 8) & 0xff
+        LCALL   ??UsbSendBlock?relay
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 12)
+//  466 	}
+//  467 
+//  468       //USB_In((BYTE*)&csw,sizeof(CSW));
+//  469 
+//  470 	  
+//  471 }
+??Scsi_Rx_1:
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock8
+//  472 
+//  473 static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key)
+//  474 {
+//  475    UINT8 i;
+//  476 
+//  477    // Checking whether to load a key or an initialisation vector.
+//  478    if(key){
+//  479       AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_KEY);
+//  480    }
+//  481    else {
+//  482       AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_IV);
+//  483    }
+//  484    // Starting loading of key or vector.
+//  485    AES_START();
+//  486 
+//  487    // loading the data (key or vector)
+//  488    for(i = 0; i < 16; i++){
+//  489       ENCDI = pData[i];
+//  490    }
+//  491 }
+//  492 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  493 static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr)
+halAesEncrDecr:
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI Function halAesEncrDecr
+        CODE
+//  494 {
+        MOV     A,#-0x12
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 18)
+        ; Saved register size: 18
+        ; Auto size: 0
+        MOV     ?V0 + 6,R1
+        MOV     A,#0x12
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        MOV     R6,A
+        MOV     A,R1
+        MOV     R7,A
+//  495    UINT16  i;
+//  496    UINT8   j, k;
+//  497    BYTE    mode;
+//  498    UINT16  nbrOfBlocks;
+//  499    UINT16  convertedBlock;
+//  500    UINT8   delay;
+//  501 
+//  502    nbrOfBlocks = length / 16;
+        MOV     ?V0 + 0,R4
+        MOV     ?V0 + 1,R5
+        MOV     A,#0x4
+        MOV     R0,#?V0 + 0
+        LCALL   ?US_SHR
+        MOV     ?V0 + 2,?V0 + 0
+        MOV     ?V0 + 3,?V0 + 1
+//  503    mode = 0;
+//  504 
+//  505    if( (length % 16) != 0){
+        MOV     A,R4
+        ANL     A,#0xf
+        JZ      ??halAesEncrDecr_0
+//  506       // length not multiplum of 16, convert one block extra with zeropadding
+//  507       nbrOfBlocks++;
+        MOV     A,?V0 + 2
+        ADD     A,#0x1
+        MOV     ?V0 + 2,A
+        MOV     A,?V0 + 3
+        ADDC    A,#0x0
+        MOV     ?V0 + 3,A
+//  508    }
+//  509 
+//  510    // Loading the IV.
+//  511    //halAesLoadKeyOrInitVector(pInitVector, FALSE);
+//  512 
+//  513    // Starting either encryption or decryption
+//  514    if(decr){
+??halAesEncrDecr_0:
+        MOV     A,?V0 + 6
+        JZ      ??halAesEncrDecr_1
+//  515       AES_SET_ENCR_DECR_KEY_IV(AES_DECRYPT);
+        MOV     A,0xb3
+        ANL     A,#0xf8
+        ORL     A,#0x2
+        MOV     0xb3,A
+        SJMP    ??halAesEncrDecr_2
+//  516    } else {
+//  517       AES_SET_ENCR_DECR_KEY_IV(AES_ENCRYPT);
+??halAesEncrDecr_1:
+        ANL     0xb3,#0xf8
+//  518    }
+//  519 
+//  520    // Getting the operation mode.
+//  521    mode = ENCCS & 0x70;
+??halAesEncrDecr_2:
+        MOV     A,0xb3
+        ANL     A,#0x70
+        MOV     ?V0 + 7,A
+//  522 
+//  523    for(convertedBlock = 0; convertedBlock < nbrOfBlocks; convertedBlock++){
+        MOV     ?V0 + 0,#0x0
+        MOV     ?V0 + 1,#0x0
+        SJMP    ??halAesEncrDecr_3
+//  524       // Starting the conversion.
+//  525       AES_START();
+//  526 
+//  527       i = convertedBlock * 16;
+//  528       // Counter, Output Feedback and Cipher Feedback operates on 4 bytes and not 16 bytes.
+//  529       if((mode == CFB) || (mode == OFB) || (mode == CTR))
+//  530 	 {
+//  531 /*
+//  532          for(j = 0; j < 4; j++){
+//  533             // Writing the input data
+//  534             // Zeropadding the remainder of the block
+//  535             for(k = 0; k < 4; k++){
+//  536                ENCDI = ((i + 4*j + k < length) ? pDataIn[i + 4*j + k] : 0x00 );
+//  537             }
+//  538             // wait for data ready
+//  539             delay = DELAY;
+//  540             while(delay--);
+//  541             // Read out data for every 4th byte
+//  542             for(k = 0; k < 4; k++){
+//  543                pDataOut[i + 4*j + k] = ENCDO;
+//  544             }
+//  545          }
+//  546 */
+//  547       }
+//  548       else if(mode == CBC_MAC){/*
+//  549          // Writing the input data
+//  550          // Zeropadding the remainder of the block
+//  551          for(j = 0; j < 16; j++){
+//  552             ENCDI = ((i + j < length) ? pDataIn[i + j] : 0x00 );
+//  553          }
+//  554          // The last block of the CBC-MAC is computed by using CBC mode.
+//  555          if(convertedBlock == nbrOfBlocks - 2){
+//  556             AES_SETMODE(CBC);
+//  557             delay = DELAY;
+//  558             while(delay--);
+//  559          }
+//  560          // The CBC-MAC does not produce an output on the n-1 first blocks
+//  561          // only the last block is read out
+//  562          else if(convertedBlock == nbrOfBlocks - 1){
+//  563             // wait for data ready
+//  564             delay = DELAY;
+//  565             while(delay--);
+//  566             for(j = 0; j < 16; j++){
+//  567                pDataOut[j] = ENCDO;
+//  568             }
+//  569          }*/
+//  570       }
+//  571       else{
+//  572          // Writing the input data
+//  573          // Zeropadding the remainder of the block
+//  574          for(j = 0; j < 16; j++){
+//  575             ENCDI = ((i+j < length) ? pDataIn[i+j] : 0x00 );
+??halAesEncrDecr_4:
+        CLR     A
+??halAesEncrDecr_5:
+        MOV     0xb1,A
+        INC     ?V0 + 9
+        MOV     A,?V0 + 9
+        CLR     C
+        SUBB    A,#0x10
+        JC      ??halAesEncrDecr_6
+//  576          }
+//  577          // wait for data ready
+//  578          delay = DELAY;
+        MOV     ?V0 + 4,#0xf
+//  579          while(delay--);
+??halAesEncrDecr_7:
+        MOV     ?V0 + 8,?V0 + 4
+        MOV     A,#-0x1
+        ADD     A,?V0 + 8
+        MOV     ?V0 + 4,A
+        INC     A
+        JNZ     ??halAesEncrDecr_7
+//  580          // Read out data
+//  581          for(j = 0; j < 16; j++){
+        MOV     ?V0 + 9,#0x0
+//  582             pDataOut[i+j] = ENCDO;
+??halAesEncrDecr_8:
+        MOV     A,0xb2
+        PUSH    A
+        CFI CFA_SP SP+-1
+        LCALL   ?Subroutine3 & 0xFFFF
+//  583          }
+??CrossCallReturnLabel_2:
+        MOV     A,R6
+        ADD     A,?V0 + 4
+        MOV     DPL,A
+        MOV     A,R7
+        ADDC    A,?V0 + 5
+        MOV     DPH,A
+        POP     A
+        CFI CFA_SP SP+0
+        MOVX    @DPTR,A
+        INC     ?V0 + 9
+        MOV     A,?V0 + 9
+        CLR     C
+        SUBB    A,#0x10
+        JC      ??halAesEncrDecr_8
+??halAesEncrDecr_9:
+        MOV     A,?V0 + 0
+        ADD     A,#0x1
+        MOV     ?V0 + 0,A
+        MOV     A,?V0 + 1
+        ADDC    A,#0x0
+        MOV     ?V0 + 1,A
+??halAesEncrDecr_3:
+        CLR     C
+        MOV     A,?V0 + 0
+        SUBB    A,?V0 + 2
+        MOV     A,?V0 + 1
+        SUBB    A,?V0 + 3
+        JNC     ??halAesEncrDecr_10
+        ORL     0xb3,#0x1
+        MOV     ?V0 + 4,?V0 + 0
+        MOV     ?V0 + 5,?V0 + 1
+        MOV     A,#0x4
+        MOV     R0,#?V0 + 4
+        LCALL   ?S_SHL
+        MOV     R0,?V0 + 4
+        MOV     R1,?V0 + 5
+        MOV     A,#0x10
+        XRL     A,?V0 + 7
+        JZ      ??halAesEncrDecr_9
+        MOV     A,#0x20
+        XRL     A,?V0 + 7
+        JZ      ??halAesEncrDecr_9
+        MOV     A,#0x30
+        XRL     A,?V0 + 7
+        JZ      ??halAesEncrDecr_9
+        MOV     A,#0x50
+        XRL     A,?V0 + 7
+        JZ      ??halAesEncrDecr_9
+        MOV     ?V0 + 9,#0x0
+??halAesEncrDecr_6:
+        LCALL   ?Subroutine3 & 0xFFFF
+//  584       }
+//  585    }
+??CrossCallReturnLabel_3:
+        CLR     C
+        MOV     A,?V0 + 4
+        SUBB    A,R4
+        MOV     A,?V0 + 5
+        SUBB    A,R5
+        JC      $+5
+        LJMP    ??halAesEncrDecr_4 & 0xFFFF
+        MOV     A,R2
+        ADD     A,?V0 + 4
+        MOV     DPL,A
+        MOV     A,R3
+        ADDC    A,?V0 + 5
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        LJMP    ??halAesEncrDecr_5 & 0xFFFF
+//  586 }
+??halAesEncrDecr_10:
+        MOV     R7,#0xa
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock9
+        REQUIRE ENCCS
+        REQUIRE ENCDI
+        REQUIRE ENCDO
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiCond10 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_2
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V8 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V9 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+-1
+        CFI CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiCond11 Using cfiCommon0
+        CFI (cfiCond11) NoFunction
+        CFI (cfiCond11) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond11) R6 load(1, XDATA, add(CFA_XSP16, literal(-18)))
+        CFI (cfiCond11) VB load(1, XDATA, add(CFA_XSP16, literal(-17)))
+        CFI (cfiCond11) V0 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond11) V1 load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond11) V2 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond11) V3 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond11) V4 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond11) V5 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond11) V6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond11) V7 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond11) V8 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond11) V9 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond11) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond11) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond11) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond11) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond11) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond11) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond11) CFA_SP SP+0
+        CFI (cfiCond11) CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiPicker12 Using cfiCommon1
+        CFI (cfiPicker12) NoFunction
+        CFI (cfiPicker12) Picker
+        MOV     ?V0 + 4,?V0 + 9
+        MOV     A,R0
+        ADD     A,?V0 + 4
+        MOV     ?V0 + 4,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        MOV     ?V0 + 5,A
+        RET
+        CFI EndBlock cfiCond10
+        CFI EndBlock cfiCond11
+        CFI EndBlock cfiPicker12
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for g_decKey>`:
+        DATA16
+        DW `?<Constant "WorkForYourDream">`
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for addr>`:
+        DATA32
+        DD 32768
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Scsi_Send?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Scsi_Send
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Scsi_Write10?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Scsi_Write10
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Scsi_Read10?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Scsi_Read10
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Scsi_Rx?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Scsi_Rx
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??halAesEncrDecr?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    halAesEncrDecr
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA8
+`?<Constant "WorkForYourDream">`:
+        DB "WorkForYourDream"
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_0:
+        DD 0
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_1:
+        DD 1
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_41:
+        DD 65
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_21:
+        DD 33
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_10000:
+        DD 65536
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_40:
+        DD 64
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_200:
+        DD 512
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_fffffdc0:
+        DD 4294966720
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_3fc0:
+        DD 16320
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_4200:
+        DD 16896
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_ffffbdc0:
+        DD 4294950336
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_8200:
+        DD 33280
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_ffff7dc0:
+        DD 4294933952
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_ffff3e00:
+        DD 4294917632
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_d:
+        DD 13
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_24:
+        DD 36
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_4:
+        DD 4
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_9:
+        DD 9
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_8:
+        DD 8
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_c:
+        DD 12
+
+        RSEG XDATA_ROM_C:CONST:REORDER:NOROOT(0)
+        DATA32
+__Constant_55534253:
+        DD 1431519827
+
+        END
+//  587 
+//  588 
+//  589 
+//  590 
+//  591 
+// 
+// 1 494 bytes in segment BANKED_CODE
+//    30 bytes in segment BANK_RELAYS
+//     5 bytes in segment SFR_AN
+//     6 bytes in segment XDATA_I
+//     6 bytes in segment XDATA_ID
+//   161 bytes in segment XDATA_ROM_C
+//   115 bytes in segment XDATA_Z
+// 
+// 1 530 bytes of CODE  memory
+//    77 bytes of CONST memory (+ 84 bytes shared)
+//     0 bytes of DATA  memory (+  5 bytes shared)
+//   121 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: 6

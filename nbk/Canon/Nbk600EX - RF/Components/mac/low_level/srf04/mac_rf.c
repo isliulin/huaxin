@@ -1,0 +1,6804 @@
+#include "mac_api.h"
+#include "mac_rf.h"
+#include "mac_radio_defs.h"
+#include "mac_mem.h"
+#include "comdef.h"
+#include "osal.h"
+#include "hal_types.h"
+#include "AF.h"
+#include "mac_low_level.h"
+#include "mac_rx_onoff.h"
+#include "hal_uart.h"
+#include "mac_rx.h"
+#include <stdio.h>
+#include "OSAL_Nv.h"
+#include "hal_flash.h"
+
+#ifdef IO_INDEX_TEST
+#include "ioCC2531.h"
+#endif
+
+extern void osal_sleep_timers(void);
+extern void halSleep( uint16 osal_timeout );
+extern void macTxDoneCallback(void);
+//-C $PROJ_DIR$\..\..\..\Libraries\TI2530DB\bin\Security.lib
+//-f $PROJ_DIR$\..\..\..\Tools\CC2530DB\f8wConfig.cfg
+#define MODELING_STYLE_APERT 	0
+#define MODELING_STYLE_STEX	1
+#define MODELING_STYLE_BOTH	2
+#define MODELING_STYLE_OFF		3
+
+#define	MAX_UART_DATA_LEN	64
+
+#define DEVICE_ATTRIBUTE_SLAVE		0
+#define DEVICE_ATTRIBUTE_MAST 		1
+#define DEVICE_ATTRIBUTE_LINKSHOT	2
+
+#define TI_EXTADDR  PXREG( 0x780C )  /* Pointer to Start of Flash Information Page          */
+#define MACEX_READ_IEEE_ADDR(p)                macMemReadRam((macRam_t *) &TI_EXTADDR, p, 8)
+static uint8 txMpdu[BASIC_RF_MAX_PAYLOAD_SIZE+BASIC_RF_PACKET_OVERHEAD_SIZE+1];
+static uint8 g_extAddr[8];// = {0x38,0x15,0xC6,0xFE,0xFF,0x17,0x87,0x88};
+static uint8 g_extAddrSrc[8];
+static uint8 g_extAddrVef[8];
+uint8 g_modelingStyle = 1;
+//static uint8 pilotCommand[] = {0x17,0x00,0xFF,0x47,0x00,0x00,0x48,0x0A,0x06,0x98,0x07,0x06,0x98,0x07,0x06,0x98,0x07,0x06,0x98,0x07,0x06,0x98,0x07};
+const uint8 preCmdBuf[] = 	{0x17,0x00,0xFF,0x47};//0x75,0x30,0x60,0x04,0x01,0xA0,0x04,0x01,0xA0,0x04,0x01,0xA0,0x04,0x01,0x00,0x00,0x01,0x00,0x00};
+//uint8 flashCmd[] = 	{0x17,0x00,0xFF,0x47,0x75,0x30,0x60,0x04,0x01,0x9E,0x03,0x01,0x9E,0x03,0x01,0x9E,0x03,0x01,0x00,0x00,0x01,0x00,0x00};
+const uint8 multiCmd[] = {0x0F,0x00,0xFF,0x48};
+unsigned char rcvBuf[UART_RCVBUF_LEN];
+basicRfCfg_t* pConfig;
+static basicRfCfg_t basicRfConfig;
+static basicRfTxState_t txState=  { 0x00 }; // initialised and distinct
+uint8 macEx_taskId;
+uint8 g_quireFlag=0;
+//uint8 g_linkedMode = 0;
+//uint8 g_isMaster = CMD_MODE_RF_MST;
+//uint8 g_isMaster = MSTDEV_MODE_DEV;
+uint8 g_isMaster = CMD_MODE_OFF;
+//uint8 g_isMaster = CMD_MODE_RF_SLA;
+//uint8 g_isMaster = CMD_MODE_RFLS_SLA;
+uint8 g_mstHold = 0;				
+//DeviceInfo deviceInfo[128];
+basicRfRxInfo_t  rxi={ 0xFF };
+uint8 g_sendLen = 0;
+//static uint8 g_netCheckFlag=0;
+DeviceInfo * pCurrentDev=NULL;
+int16 g_msTick=0;
+uint8 g_slaLinkSta=0;
+static int8 s_rxFlag=0;
+static int8 s_ready=0; 
+uint8 g_netStart=0;
+//uint8 g_expireCounter = 0;
+uint8 g_initCheck=0;
+uint8 g_swMode=0;
+uint8 g_swRfChan=0;
+uint16 g_swRfId=0;
+uint8 g_grInfo = 0;
+IpReserve ipRsv={0x0E,0x00};
+uint8 g_devLinkFlag=0;
+uint8 g_flaStatus=0;
+uint8 g_hpFlag=0;
+uint8 g_devCmd=0;
+
+unsigned char gBUartTotalByte=0;
+unsigned char   gBUartLen=0;
+unsigned char	gBUartBuf[MAX_UART_DATA_LEN];
+unsigned char uart_tran_flag=0;
+
+//static uint8 pRxData[APP_PAYLOAD_LENGTH];
+static uint8 pTxData[APP_PAYLOAD_LENGTH]={0};
+//void (*veriPckSendCallback)();
+static void    (* veriPckSendCallback)(macRx_t*);
+macRx_t  *callbackPara;
+DevCheck g_devCheck={0};
+RadioSet radioSet={0};
+//int32 g_slvPwrDnTmr=0;
+
+//****************************************************************
+// relative with AES
+//****************************************************************
+#define DELAY 0x0F
+// _mode_ is one of
+#define CBC         0x00
+#define CFB         0x10
+#define OFB         0x20
+#define CTR         0x30
+#define ECB         0x40
+#define CBC_MAC     0x50
+
+#define AES_BUSY    0x08
+#define ENCRYPT     0x00
+#define DECRYPT     0x01
+
+// Where _mode_ is one of
+#define AES_ENCRYPT     0x00;
+#define AES_DECRYPT     0x02;
+#define AES_LOAD_KEY    0x04;
+#define AES_LOAD_IV     0x06;
+
+// Macro for starting or stopping encryption or decryption
+#define AES_SET_ENCR_DECR_KEY_IV(mode) \
+   do {                                \
+    ENCCS = (ENCCS & ~0x07) | mode     \
+   } while(0)
+
+// Macro for setting the mode of the AES operation
+#define AES_SETMODE(mode) do { ENCCS &= ~0x70; ENCCS |= mode; } while (0)
+
+// Macro for starting the AES module for either encryption, decryption,
+// key or initialisation vector loading.
+#define AES_START()     ENCCS |= 0x01
+
+//****************************************************************
+// END
+//****************************************************************
+
+const char cpuIdKey[16] = {0x24,0x98,0xb7,0xA0,0xCB,0xDF,0xE6,0x5D,0xD1,0x4B,0xF7,0x51,0xA6,0x01,0x98,0x22};
+  //char cpuIdRst[16] = {0xE8,0xF7,0x0C,0x78,0xCB,0xDF,0xE6,0x5D,0xD1,0x4B,0xF7,0x51,0xA6,0x01,0x98,0x22};
+char cpuIdRst[16]  = {0x3f,0xdd,0xfb,0xb7,0x20,0xb1,0x95,0x89,0x75,0xd6,0x6e,0x92,0x3f,0xf7,0xf0,0xad};
+
+#ifdef DEBUG_TRACE
+macTx_t macDataTx;
+#endif
+
+#ifdef SEND_OBEY_ZSTACK
+macTx_t macDataTx;
+#endif
+
+MAC_DATAREQ_API static void macRollPolingProc(macRx_t* pck);
+#ifndef SEND_UNIFIED
+MAC_DATAREQ_API static void VeriResponse(macRx_t* pck);
+MAC_DATAREQ_API static void LinkedModeShortAddrAlloc(macRx_t* pck);
+MAC_DATAREQ_API static void LinkedModeRollPoling(macRx_t* pck);
+#endif
+MAC_DATAREQ_API void PreFlashInfo(macRx_t* pck);
+MAC_DATAREQ_API void CountDown(macRx_t* pck);
+MAC_DATAREQ_API void FlashConfirm(macRx_t* pck);
+MAC_DATAREQ_API void InqureConfirm(macRx_t* pck);
+MAC_DATAREQ_API void ReConfirm(macRx_t* pck);
+MAC_DATAREQ_API void ReadyInfo(macRx_t* pck);
+MAC_DATAREQ_API void Pilot(macRx_t* pck);
+MAC_DATAREQ_API void LinkedShotRel(macRx_t* pck);
+MAC_INTERNAL_API void SetSleepMode(macRx_t *pMsg);
+MAC_DATAREQ_API void ChanScan(macRx_t* pck);
+MAC_DATAREQ_API void RflsStart(macRx_t* pck);
+MAC_DATAREQ_API static void VeriAndAllocID(macRx_t* pck);
+MAC_DATAREQ_API void CmdModeSwitch(macRx_t* pck);
+MAC_DATAREQ_API void CmdModeSwitchEx(macRx_t* pck);
+MAC_DATAREQ_API static void RfMstExit(macRx_t* pck);
+MAC_DATAREQ_API static void ExitAndSetChan_exit(macRx_t* pck);
+MAC_DATAREQ_API static void ExitAndSetChan_setCh(macRx_t* pck);
+MAC_DATAREQ_API static void ExitAndSetRfId(macRx_t* pck);
+MAC_DATAREQ_API void MstBridgeInfoInqure(macRx_t* pck);
+MAC_DATAREQ_API static void BridgedMstReadyRes(macRx_t* pck);
+MAC_DATAREQ_API static void devChangeGroup(macRx_t* pck);
+MAC_DATAREQ_API void DevShotRel(macRx_t* pck);
+LINKMODE_DEFINE void linkedNoneCoordinatorProc(macRx_t *payload);
+void BuildPilotInfoData(uint8 * buf, uint8 * len);
+static uint8 UartSctSend(unsigned char id, unsigned char pa1, unsigned char pa2);
+static uint16 NoneUsedShortAddrSearch(uint8 attr);
+static uint8 LoadUartSendBuf(unsigned char id, unsigned char pa1, unsigned char pa2);
+static void TrigerUartSend(void);
+
+static void macExRxEnable(void);
+static void macExRxDisable(void);
+static void CalcEachRssi(int8 *valBuf, uint16 tms, uint16 dly);
+
+static uint8 UartBulkSend(uint8 *sBuf, uint8 len);
+static void UartSendByte(char aByte);
+
+static void macExUartInit (void);
+static void macExUartRcvHandle(uint8 *rcv, uint8 len);
+static void RfModCheck(uint8 mod);
+
+static void macExUartIntSet(void);
+
+extern void macWaitSendOk(void);
+static void macDelay(unsigned int de);
+static void macPreDelay(uint16 microSecs);
+
+extern void UartDMAIntRcv(void);
+extern void UartDMAIntSend(void);
+
+static unsigned char CalcSum(uint8 *rcv, uint8 len);
+
+unsigned char RfMcodeInvert(unsigned char src, uint8 hpMod);
+static void macExUartIntOutSet(void);
+static uint8 MstDevInfoSend(void);
+static uint8 MstDevInfoSendEx(uint8 gr, uint8 isReady);
+
+static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key);
+static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr);
+static void MemReadRam(macRam_t * pRam, uint8 * pData, uint8 len);
+
+void znpTestRF(void);
+
+
+#ifdef DEBUG_TRACE
+void DeviceInfoPrint(void);
+void BufferPrint(uint8* buf, uint16 size);
+int Printf(const char *fmt, ...);
+#endif
+
+//CurrentVeriDev currentVeriDev;
+#define NOP()  asm("NOP")
+
+
+static void halRfReceiveOn(void)
+{
+	MAC_ISFLUSHRX();     // Making sure that the TX FIFO is empty.
+	MAC_ISRXON();
+}
+
+
+/*
+static DeviceInfo* SearchForDevice(uint16 shortAddr)
+{
+	DeviceInfo *pDev;
+	for(pDev=pConfig->devHead;pDev!=NULL;pDev=pDev->pNext)
+	{
+		if(pDev->shortAddr==shortAddr)
+		{
+			return pDev;
+		}
+	}
+	return NULL;
+}
+*/
+static uint8 SearchForDevice(uint16 shortAddr)
+{
+	uint8 pDev;
+	for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+	{
+		if((shortAddr==pConfig->devHead[pDev].shortAddr)
+			&&(DEVICE_VERIFIED==pConfig->devHead[pDev].veriFlag))
+		{
+			return pDev;
+		}
+	}
+
+	return DEVICE_TOTAL;
+}
+
+/*
+static uint8 RemoveCurrent(void)
+{
+	DeviceInfo *tmpDev;
+	tmpDev = pCurrentDev;
+	pCurrentDev = pCurrentDev->pFront;
+	osal_mem_free(tmpDev);	
+}
+*/
+
+
+static uint8 RemoveDevice(uint16 shortAddr)
+{
+	uint8 pDev;
+#ifdef DEBUG_TRACE
+	Printf("RmDev: %x\r\n", shortAddr);
+#endif
+	pDev = SearchForDevice(shortAddr);
+	if(pDev>=DEVICE_TOTAL)
+	{
+		return DEVICE_TOTAL;
+	}
+	
+	if(pConfig->totalDev>0)
+	{
+		pConfig->totalDev--;
+	}
+	if(DEVICE_ATTRIBUTE_MAST==pConfig->devHead[pDev].attribute)
+	{
+		if(pConfig->mstRcd>0)
+		{
+			pConfig->mstRcd--;
+		}
+		if(shortAddr>ipRsv.mst)
+		{
+			ipRsv.mst = shortAddr;
+		}
+	}else
+	{
+#ifdef DEBUG_TRACE
+		Printf("remove a device\r\n");
+#endif
+		if(pConfig->arrCnt[pConfig->devHead[pDev].group]>0)
+		{
+			pConfig->arrCnt[pConfig->devHead[pDev].group]--;
+		}
+		//UartSctSend(UART_CC_DEV,pConfig->devHead[pDev].group,pConfig->arrCnt[pConfig->devHead[pDev].group]);
+		MstDevInfoSend();
+#ifdef DEBUG_TRACE
+		Printf("slave %d\r\n",pConfig->slvRcd);
+#endif
+		if(pConfig->slvRcd>0)
+		{
+			pConfig->slvRcd--;
+		}
+		if(shortAddr<ipRsv.sla)
+		{
+			ipRsv.sla = shortAddr;
+		}
+	}
+
+	pConfig->devHead[pDev].veriFlag = DEVICE_UNVERIFIED;
+	pConfig->devHead[pDev].group = 0x0F;
+	pConfig->devHead[pDev].info = 0;
+	pConfig->devHead[pDev].ready = 0;
+	osal_memset(pConfig->devHead[pDev].extAddr, 0x00, 8); 
+	
+	pConfig->isIdOccupied[shortAddr]=0;
+	if(pConfig->totalDev<=0)
+	{
+		LED_INS_UNLINK();
+	}
+	
+        return shortAddr;
+}
+
+#if 0
+static uint8 RemoveDevice(uint16 shortAddr)
+{
+	DeviceInfo *nowDev;
+	DeviceInfo *preDev;
+	uint8 rtAddr;
+	nowDev = preDev = pConfig->devHead;
+#ifdef DEBUG_TRACE
+	Printf("RmDev: %x\r\n", shortAddr);
+#endif
+	while(nowDev!=NULL)
+	{
+		if(nowDev->shortAddr==shortAddr)
+		{
+			if(pConfig->totalDev>0)
+			{
+				pConfig->totalDev--;
+			}
+			if(DEVICE_ATTRIBUTE_MAST==nowDev->attribute)
+			{
+				if(pConfig->mstRcd>0)
+				{
+					pConfig->mstRcd--;
+				}
+				if(shortAddr>ipRsv.mst)
+				{
+					ipRsv.mst= shortAddr;
+				}
+				//return (0x0E-nowDev->shortAddr);
+			}else
+			{
+				//if(pConfig->arrCnt[nowDev->group]>0)
+				//{
+				//	pConfig->arrCnt[nowDev->group]--;
+				//}
+#ifdef DEBUG_TRACE
+				Printf("remove a device\r\n");
+#endif
+				if(pConfig->arrCnt[pConfig->idInGroup[shortAddr]]>0)
+				{
+					pConfig->arrCnt[pConfig->idInGroup[shortAddr]]--;
+				}
+				UartSctSend(UART_CC_DEV,pConfig->idInGroup[shortAddr],pConfig->arrCnt[pConfig->idInGroup[shortAddr]]);
+				pConfig->idInGroup[shortAddr]=0;
+				//pConfig->isIdOccupied[shortAddr]=0;
+#ifdef DEBUG_TRACE
+				Printf("slave %d\r\n",pConfig->slvRcd);
+#endif
+				if(pConfig->slvRcd>0)
+				{
+					pConfig->slvRcd--;
+				}
+				if(shortAddr<ipRsv.sla)
+				{
+					ipRsv.sla = shortAddr;
+				}
+				//return nowDev->shortAddr;
+			}
+			if(nowDev==pCurrentDev)
+			{
+#ifdef DEBUG_TRACE
+				Printf("remove current\r\n");
+#endif
+				if(nowDev==pConfig->devHead)
+				{
+#ifdef DEBUG_TRACE
+					Printf("remove head\r\n");
+					Printf("nowDev: %x\r\n",nowDev);
+#endif
+					pCurrentDev = NULL;
+				}else
+				{
+#ifdef DEBUG_TRACE
+					Printf("pCurrentDev: %x\r\n",pCurrentDev);
+					Printf("nowDev->pFront: %x\r\n",nowDev->pFront);
+#endif
+					pCurrentDev = nowDev->pFront;
+				}
+			}
+			if(nowDev==pConfig->devHead)
+			{
+				//pConfig->devHead = NULL;
+#ifdef DEBUG_TRACE
+				Printf("devHead->pNext: %x\r\n",pConfig->devHead->pNext);
+				Printf("devHead->pNext->pNext: %x\r\n",pConfig->devHead->pNext->pNext);
+				Printf("remove: %x\r\n",nowDev);
+#endif
+				pConfig->devHead = pConfig->devHead->pNext;
+				//pCurrentDev = pConfig->devHead;
+				rtAddr = nowDev->shortAddr;
+				osal_mem_free(nowDev);
+				
+			}else
+			{
+#ifdef DEBUG_TRACE
+				Printf("remove: %x\r\n",nowDev);
+#endif
+				preDev->pNext = nowDev ->pNext;
+				nowDev->pNext->pFront = preDev;
+				rtAddr = nowDev->shortAddr;
+				osal_mem_free(nowDev);
+			}
+			
+			pConfig->isIdOccupied[shortAddr]=0;
+			
+			if(pConfig->totalDev<=0)
+			{
+				LED_INS_UNLINK();
+			}
+
+#ifdef DEBUG_TRACE
+			Printf("slvRcd: %d\r\n",pConfig->slvRcd);
+			Printf("mstRcd: %d\r\n",pConfig->mstRcd);
+			Printf("totalDev: %d\r\n; ",pConfig->totalDev);
+			Printf("arrCnt: ");
+			BufferPrint(pConfig->arrCnt, 5);
+			Printf("idInGroup: ");
+			BufferPrint(pConfig->idInGroup, 16);
+			DeviceInfoPrint();
+#endif
+
+			return rtAddr;
+			
+		}
+		preDev = nowDev;
+		nowDev = preDev->pNext;
+	}
+	return 0x0;
+}
+#endif
+
+static uint16 NoneUsedShortAddrSearch(uint8 attr)
+{
+#if 0
+	uint16 st=0;
+	DeviceInfo *nowDev;
+	DeviceInfo *preDev;
+	nowDev = preDev = pConfig->devHead;
+	st = (DEVICE_ATTRIBUTE_MAST==attr)? 0x0E:0;
+	while(st<16)
+	{
+		while(nowDev!=NULL)
+		{
+			if(st==nowDev->shortAddr)
+			{
+				st=(DEVICE_ATTRIBUTE_MAST==attr)?(st-1):(st+1);
+				nowDev = pConfig->devHead;
+			}else
+			{
+				preDev = nowDev;
+				nowDev = preDev->pNext;
+			}
+		}
+		return st;
+	}
+        return 0xFF;
+#endif
+	uint16 rtAddr=0;
+	if(DEVICE_ATTRIBUTE_MAST==attr)
+	{
+		rtAddr = ipRsv.mst;
+		ipRsv.mst--;
+		while(ipRsv.mst>0)
+		{
+			//if(!SearchForDevice(ipRsv.mst))
+			if(SearchForDevice(ipRsv.mst)>=DEVICE_TOTAL)
+			{
+				//HAL_ASSERT(ipRsv.mst>ipRsv.sla);
+				pConfig->isIdOccupied[rtAddr] = 1;
+				return rtAddr;
+			}
+			ipRsv.mst--;
+		}
+	}else
+	{
+		rtAddr = ipRsv.sla;
+		ipRsv.sla++;
+		while(ipRsv.sla<0x0E)
+		{
+			//if(!SearchForDevice(ipRsv.sla))
+			if(SearchForDevice(ipRsv.sla)>=DEVICE_TOTAL)
+			{
+				//HAL_ASSERT(ipRsv.mst>ipRsv.sla);
+				pConfig->isIdOccupied[rtAddr] = 1;
+				return rtAddr;
+			}
+			ipRsv.sla++;
+		}
+	}
+
+	HAL_ASSERT(0);
+	return rtAddr;
+}
+
+
+
+//void halRfWaitTransceiverReady()
+//{
+//	while(MAC_RADIO_TRANS_NOREADY);
+//}
+
+static void macRfReceiveOn(void)
+{
+    txState.receiveOn = TRUE;
+    halRfReceiveOn();
+}
+
+#if 0
+static void macRvsBuf(uint8* pBuf, uint8 length)
+{
+	uint8 temp;
+	uint8* pBufLast = (pBuf + length - 1);
+
+	while(pBufLast > pBuf)
+	{
+		temp = *pBuf;
+		*pBuf++ = *pBufLast;
+		*pBufLast-- = temp;	
+	}
+}
+#endif
+
+static uint8 basicRfBuildHeader(uint8* buffer, uint16 destAddr, uint8 payloadLength, uint8 sendMod)
+{
+    basicRfPktHdr_t *pHdr;
+    uint16 fcf;
+
+    pHdr= (basicRfPktHdr_t*)buffer;
+
+    // Populate packet header
+//#ifndef SEND_OBEY_ZSTACK
+    pHdr->packetLength = payloadLength + BASIC_RF_PACKET_OVERHEAD_SIZE;
+//#endif
+    //pHdr->frameControlField = pConfig->ackRequest ? BASIC_RF_FCF_ACK : BASIC_RF_FCF_NOACK;
+   // fcf= pConfig->ackRequest ? BASIC_RF_FCF_ACK : BASIC_RF_FCF_NOACK;
+    fcf = pConfig->frameHead;
+    pHdr->fcf0 = LO_UINT16(fcf);
+    pHdr->fcf1 = HI_UINT16(fcf);
+    pHdr->seqNumber= txState.txSeqNumber;
+    pHdr->panId= pConfig->panId;
+    pHdr->destAddr= destAddr;
+    pHdr->srcAddr= pConfig->myAddr;
+
+#ifdef SECURITY_CCM
+
+    // Add security to FCF, length and security header
+    pHdr->fcf0 |= BASIC_RF_SEC_ENABLED_FCF_BM_L;
+    pHdr->packetLength += PKT_LEN_MIC;
+    pHdr->packetLength += BASIC_RF_AUX_HDR_LENGTH;
+
+    pHdr->securityControl= SECURITY_CONTROL;
+    pHdr->frameCounter[0]=   LO_UINT16(LO_UINT32(txState.frameCounter));
+    pHdr->frameCounter[1]=   HI_UINT16(LO_UINT32(txState.frameCounter));
+    pHdr->frameCounter[2]=   LO_UINT16(HI_UINT32(txState.frameCounter));
+    pHdr->frameCounter[3]=   HI_UINT16(HI_UINT32(txState.frameCounter));
+	
+#endif
+
+    // Make sure bytefields are network byte order
+    //UINT16_HTON(pHdr->panId);
+   // UINT16_HTON(pHdr->destAddr);
+    //UINT16_HTON(pHdr->srcAddr);
+#ifdef SEND_OBEY_ZSTACK
+    if(SEND_MODE_UNSLOTTED==sendMod)
+    {
+    	//return BASIC_RF_HDR_SIZE-1;
+    	return BASIC_RF_HDR_SIZE;
+    }else
+    {
+	return BASIC_RF_HDR_SIZE;
+    }
+#else
+    return BASIC_RF_HDR_SIZE;
+#endif
+}
+
+static uint8 LongAddrBuildHeader(uint8* buffer, uint8 *extAddr, uint8 payloadLength, uint8 sendMod)
+{
+	extRfPktHdr_t *pHdr;
+	uint16 fcf;
+
+	pHdr= (extRfPktHdr_t*)buffer;
+
+	// Populate packet header
+//#ifndef SEND_OBEY_ZSTACK
+	pHdr->packetLength = payloadLength + 19;
+//#endif
+	//pHdr->frameControlField = pConfig->ackRequest ? BASIC_RF_FCF_ACK : BASIC_RF_FCF_NOACK;
+	//fcf= pConfig->ackRequest ? BASIC_RF_FCF_ACK : BASIC_RF_FCF_NOACK;
+	fcf = pConfig->frameHead;
+	pHdr->fcf0 = LO_UINT16(fcf);
+	pHdr->fcf1 = HI_UINT16(fcf);
+	pHdr->seqNumber= txState.txSeqNumber;
+	pHdr->panId= 0xFFFF;
+    	osal_memcpy(pHdr->extAddr,extAddr,8);
+    	//for(i=0;i<8;i++) pHdr->extAddr[i] = pConfig->extAddr[i];
+    	pHdr->srcPan= pConfig->panId;
+	pHdr->srcAddr = pConfig->myAddr;
+
+#ifdef SEND_OBEY_ZSTACK
+       if(SEND_MODE_UNSLOTTED==sendMod)
+       {
+       	return (2+1+2+8+2+2+1);
+       }else
+       {
+		return (2+1+2+8+2+2+1);
+	}
+#else
+	return (2+1+2+8+2+2+1);
+#endif
+}
+
+static void macWriteTxBuf(uint8* pData, uint8 length)
+{
+	MAC_ISFLUSHTX();
+	MAC_CLEAR_TX_INT();
+	macMemWriteTxFifo(pData,length);	
+}
+
+static uint8 macBuildMpdu(uint16 destAddr, uint8* pPayload, uint8 payloadLength,uint8 *extAddr,uint8 buMode, uint8 sendMod)
+{
+	uint8 hdrLength, n;
+	
+	if(0==buMode)
+	{
+		hdrLength = basicRfBuildHeader(txMpdu, destAddr, payloadLength,sendMod);
+	}else
+	{
+		hdrLength = LongAddrBuildHeader(txMpdu, extAddr,payloadLength,sendMod);
+	}
+
+	for(n=0;n<payloadLength;n++)
+	{
+		txMpdu[hdrLength+n] = pPayload[n];
+	}
+	return hdrLength + payloadLength; // total mpdu length
+}
+
+static uint8 halRfTransmit(void)
+{
+	uint8 status;
+
+	MAC_ISTXON(); // Sending
+
+	// Waiting for transmission to finish
+	txState.txDone = TXSTATE_TXDONE_PENDING;
+#ifndef RF_SEND_INT
+	while(!(RFIRQF1 & IRQ_TXDONE) );
+	RFIRQF1 = ~IRQ_TXDONE;
+#endif
+
+	status= SUCCESS;
+
+	return status;
+}
+
+//uint8 macRfSendPacket(uint16 destAddr, uint8* pPayload,uint8 length,uint8* extAddr ,uint8 addrMod)
+uint8 macRfSendPacket(uint16 destAddr, uint8* pPayload,uint8 length,uint8* extAddr ,uint8 addrMod,uint8 sendMod)
+{
+	uint8 mpduLength;
+	uint8 status;
+
+
+	// Turn on receiver if its not on
+/*
+	if(!txState.receiveOn) 
+	{
+		halRfReceiveOn();
+	}
+*/
+
+	if(TXSTATE_TXDONE_PENDING==txState.txDone)
+	{
+		//while(!(RFIRQF1 & IRQ_TXDONE) );					//wait till the previous send completed
+		txState.txDone = TXSTATE_TXDONE_CLEAR;
+		//return FAILURE;
+	}
+
+#ifdef _RT_AP_
+
+	AP_TXEN = 1;
+
+#endif
+
+	// Check packet length
+	length = min(length, BASIC_RF_MAX_PAYLOAD_SIZE);
+
+	// Wait until the transceiver is idle
+	halRfWaitTransceiverReady();
+
+	// Turn off RX frame done interrupt to avoid interference on the SPI interface
+	macDisableRxInterrupt();
+
+	//mpduLength = macBuildMpdu(destAddr, pPayload, length,pConfig->devHead[pConfig->pCurrentDev].extAddr,addrMod);
+	//mpduLength = macBuildMpdu(destAddr, pPayload, length,pCurrentDev->extAddr,addrMod);
+	mpduLength = macBuildMpdu(destAddr, pPayload, length,extAddr,addrMod,sendMod);
+
+#ifdef SECURITY_CCM
+	halRfWriteTxBufSecure(txMpdu, mpduLength, length, BASIC_RF_LEN_AUTH, BASIC_RF_SECURITY_M);
+	txState.frameCounter++;     // Increment frame counter field
+#else
+
+#ifdef SEND_OBEY_ZSTACK
+	if(SEND_MODE_UNSLOTTED==sendMod)
+	{
+		pMacDataTx = &macDataTx;
+		pMacDataTx->msdu.p = txMpdu+1;
+		pMacDataTx->msdu.len = mpduLength-1;			//why
+		//macTxFrame(MAC_TX_TYPE_SLOTTED_CSMA);
+		macTxFrame(MAC_TX_TYPE_UNSLOTTED_CSMA);
+		//macWaitSendOk();
+	}else
+	{
+		macWriteTxBuf(txMpdu, mpduLength);
+	}
+#else
+	macWriteTxBuf(txMpdu, mpduLength);
+#endif
+	//pMacDataTx->msdu.p = txMpdu;
+	//pMacDataTx->msdu.len = mpduLength;
+	//macTxFrame(MAC_TX_TYPE_SLOTTED_CSMA);
+#endif
+
+
+	// Turn on RX frame done interrupt for ACK reception
+	macEnableRxInterrupt();
+
+	//FINGER2 = 0;
+	// Send frame with CCA. return FAILED if not successful
+	//its takes the most time
+#ifdef SEND_OBEY_ZSTACK
+	//macTxDoneCallback();
+	if(SEND_MODE_UNSLOTTED==sendMod)
+	{
+		status = SUCCESS;
+	}else
+	{
+		if(halRfTransmit() != SUCCESS) 
+		{
+			status = FAILURE;
+		}else
+		{
+			status = SUCCESS;
+		}
+	}
+#else
+	if(halRfTransmit() != SUCCESS) 
+	{
+		status = FAILURE;
+	}else
+	{
+		status = SUCCESS;
+	}
+#endif
+	//FINGER2 = 1;
+
+	// Wait for the acknowledge to be received, if any
+#if 0					//skip waitting for ack for debug
+	if (pConfig->ackRequest) {
+	txState.ackReceived = FALSE;
+
+	// We'll enter RX automatically, so just wait until we can be sure that the ack reception should have finished
+	// The timeout consists of a 12-symbol turnaround time, the ack packet duration, and a small margin
+	halMcuWaitUs((12 * BASIC_RF_SYMBOL_DURATION) + (BASIC_RF_ACK_DURATION) + (2 * BASIC_RF_SYMBOL_DURATION) + 10);
+
+	// If an acknowledgment has been received (by RxFrmDoneIsr), the ackReceived flag should be set
+	status = txState.ackReceived ? SUCCESS : FAILED;
+
+	} else {
+	status = SUCCESS;
+	}
+#endif 
+
+	// Turn off the receiver if it should not continue to be enabled
+/*
+	if (!txState.receiveOn) 
+	{
+		macReceiveOff();
+	}
+*/
+
+	if(status == SUCCESS) 
+	{
+		txState.txSeqNumber++;
+	}
+
+#ifdef SECURITY_CCM
+	halRfIncNonceTx();          // Increment nonce value
+#endif
+
+
+	return status;
+
+}
+
+static void macSetChan(uint8 chan)
+{
+	MAC_INT_OFF();
+	MAC_RADIO_SET_CHANNEL(chan);
+	MAC_INT_ON();
+}
+
+static void macSetShortAddr(uint16 sAddr)
+{
+	MAC_INT_OFF();
+	MAC_RADIO_SET_SHORT_ADDR(sAddr);
+	MAC_INT_ON();
+}
+
+static void macSetPanID(uint16 panID)
+{
+	MAC_INT_OFF();
+	MAC_RADIO_SET_PAN_ID(panID);
+	MAC_INT_ON();
+}
+
+
+static void macParameterSet(void)
+{
+	MAC_INT_OFF();
+
+	// Set channel
+	if(RF_CHAN_AUTO==pConfig->channel)
+	{
+		//MAC_RADIO_SET_CHANNEL(RF_CHANNEL);
+		MAC_RADIO_SET_CHANNEL(pConfig->autoChan);
+	}else
+	{
+		MAC_RADIO_SET_CHANNEL(pConfig->channel);
+	}
+
+	// Write the short address and the PAN ID to the CC2520 RAM
+	MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+	MAC_RADIO_SET_PAN_ID(pConfig->panId);
+
+	//MAC_RADIO_SET_IEEE_ADDR(pConfig->extAddr);	
+
+	MAC_MCU_OR_RFIRQM1(IRQ_TXDONE);			//Enable TxDone interrupt
+	MAC_MCU_OR_RFIRQM1(IRQ_TXACKDONE);
+	MAC_INT_ON();
+}
+
+MAC_DATAREQ_API static void devChangeGroup(macRx_t* pck)
+{
+	//pConfig->group++;
+	if(pConfig->group>4)
+	{
+		pConfig->group = 0;
+	}
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	pTxData[0] = 0x04;
+	pTxData[1] = 0x00;
+	pTxData[2] = 0x31;
+	pTxData[3] = pConfig->group;
+	g_sendLen = 4;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);	
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);	
+	veriPckSendCallback=&ReadyInfo;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 50+(osal_rand()&0x0F));	
+}
+
+MAC_DATAREQ_API static void macNetCheck(macRx_t* pck)
+{
+	static uint8 netChk = 0;
+	static uint8 chanRsv = 0;
+	//static uint8 chkCnt=0;
+	//static uint8 netStart=0;
+
+	//if(MSTDEV_MODE_HOLD==g_isMaster)
+	if((CMD_MODE_RF_MST!=g_isMaster)&&(CMD_MODE_RF_SLA!=g_isMaster)&&
+		(CMD_MODE_RFLS_MST!=g_isMaster)&&(CMD_MODE_RFLS_SLA!=g_isMaster))
+	{
+		return;
+	}
+
+	if(RF_CHAN_AUTO==pConfig->channel)
+	{
+/*
+		if(!g_netStart)
+		{
+			chanRsv = pConfig->autoChan;
+			pConfig->autoChan = RF_CHANNEL;
+			g_mstHold = 0;
+			g_netStart = 1;
+		}else if(g_mstHold)
+		{
+			g_netStart = 0;
+		}
+*/
+		if(!netChk)
+		{
+			netChk++;
+			chanRsv = pConfig->autoChan;
+			pConfig->autoChan = RF_CHANNEL;
+		}
+		
+		//if((pConfig->autoChan<(RF_CHANNEL+15))&&(!g_mstHold)&&(netChk<2))
+		if(netChk<3)
+		{
+			macParameterSet();
+			pConfig->autoChan++;
+			pConfig->frameHead = 0xc801;
+			pConfig->destAddr = 0x000f;
+			pConfig->myAddr = 0xFFFF;
+			osal_memcpy(pTxData,g_extAddr,8);
+			//pConfig->myAddr = ADDR;
+			pTxData[8]=0x91;
+			//pTxData[9]=0x00;
+			//pTxData[10]=0x30;
+			//pTxData[11]=0x00;
+			//pTxData[10]=(uint8)((pConfig->panId)>>8);
+			//pTxData[11]=(pConfig->panId)&0xFF;
+			pTxData[9]=(pConfig->panId)&0xFF;
+			pTxData[10]=(uint8)((pConfig->panId)>>8);
+			pTxData[11]=0x01;
+			g_sendLen = 12;
+			//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+			macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+			pConfig->myAddr = 0x000F;
+			veriPckSendCallback = &macNetCheck;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 50);
+			if(pConfig->autoChan>=(RF_CHANNEL+15))
+			{
+				netChk++;
+				pConfig->autoChan = RF_CHANNEL;
+				
+			}
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 450);
+		}//else if(pConfig->autoChan>=(RF_CHANNEL+15))
+		else
+		{
+			netChk = 0;
+			pConfig ->autoChan = chanRsv;
+			macParameterSet();
+			veriPckSendCallback = &macRollPolingProc;
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 80+(osal_rand()&0x0f));	
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 70+(osal_rand()&0x0f));
+		}
+		
+	}else
+	{
+		if(netChk++<2)
+		{
+			pConfig->frameHead = 0xc801;
+			pConfig->destAddr = 0x000f;
+			pConfig->myAddr = 0xFFFF;
+			osal_memcpy(pTxData,g_extAddr,8);
+			//pConfig->myAddr = ADDR;
+			pTxData[8]=0x91;
+			//pTxData[9]=0x00;
+			//pTxData[10]=0x30;
+			//pTxData[11]=0x00;
+			//pTxData[10]=(uint8)((pConfig->panId)>>8);
+			//pTxData[11]=(pConfig->panId)&0xFF;
+			pTxData[9]=(pConfig->panId)&0xFF;
+			pTxData[10]=(uint8)((pConfig->panId)>>8);
+			pTxData[11]=0x00;
+			g_sendLen = 12;
+			//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+			macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+			pConfig->myAddr = 0x000F;
+			veriPckSendCallback = &macNetCheck;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 30);		
+		}else
+		{
+			netChk = 0;
+			veriPckSendCallback = &macRollPolingProc;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 80);	
+			
+		}
+	}
+	
+}
+
+MAC_DATAREQ_API void RflsStart(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//arrcpy(pTxData,preCmdBuf,sizeof(preCmdBuf));
+	pTxData[0] = 0x04;
+	pTxData[1] = 0x00;//0x01;
+	pTxData[2] = 0xFF;
+	pTxData[3] = 0x4B;
+	g_sendLen = 4;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+
+#if 0
+	if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+	{
+#ifdef SEND_UNIFIED
+		veriPckSendCallback=&macRollPolingProc;
+#else
+		veriPckSendCallback=&LinkedModeRollPoling;
+#endif
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);
+	}else
+	{
+		veriPckSendCallback=NULL;
+	}
+#endif
+	
+}
+
+MAC_DATAREQ_API static void LinkedShotShut(macRx_t* pck)
+{
+	LED_INS_LINKED();
+	veriPckSendCallback = &macRollPolingProc;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200+(osal_rand()&0x0f));
+}
+
+MAC_DATAREQ_API static void macRollPolingProc(macRx_t* pck)
+{
+	uint8 sdCnt=0;
+	uint8 cn=0;
+	uint8 pDev=0;
+
+
+	if(CMD_MODE_RF_MST==g_isMaster)
+	{
+		for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+		{
+			if((DEVICE_ONVERI==pConfig->devHead[pDev].veriFlag)
+				||(DEVICE_RESPOND==pConfig->devHead[pDev].veriFlag))
+			{
+				pConfig->devHead[pDev].veriFlag = DEVICE_UNVERIFIED;
+				pConfig->totalDev--;
+			}
+		}
+	}
+
+#ifdef DEBUG_TRACE
+	for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+	Printf("%d ",pConfig->devHead[pDev].veriFlag);
+	Printf("\r\n");
+#endif
+
+	
+	switch(g_isMaster)
+	{
+		//case MSTDEV_MODE_DEV:
+		case CMD_MODE_RF_SLA:
+		if(RF_CHAN_AUTO==pConfig->channel)
+		{
+			pConfig->autoChan++;
+			if(pConfig->autoChan>(RF_CHANNEL+15))
+			{
+				pConfig->autoChan = RF_CHANNEL;
+			}
+			macParameterSet();
+
+			macDelay(1);
+		}
+		basicRfConfig.ackRequest = 0;
+		pConfig->frameHead = 0xc801;
+		pConfig->destAddr = 0x000f;
+		pConfig->myAddr = 0xFFFF;
+		osal_cpyExtAddr(pTxData,g_extAddr);
+		//pConfig->myAddr = ADDR;
+		pTxData[8]=0x91;
+		//pTxData[9]=0x00;
+		//pTxData[10]=0x30;
+		//pTxData[11]=0x00;
+		//pTxData[10]=(uint8)((pConfig->panId)>>8);
+		//pTxData[11]=(pConfig->panId)&0xFF;
+		pTxData[9]=(pConfig->panId)&0xFF;
+		pTxData[10]=(uint8)((pConfig->panId)>>8);
+		//pTxData[11]=0x00;
+		pTxData[11] = (RF_CHAN_AUTO==pConfig->channel)?0X01:0X00;
+		g_sendLen = 12;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);	
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);	
+		veriPckSendCallback = &macRollPolingProc;
+		//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);
+		if(RF_CHAN_AUTO==pConfig->channel)
+		{
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 50+(osal_rand()&0x0f));
+
+			//while(WAIT_RF_SEND_OK());
+/*
+			WAIT_RF_SEND_OK();
+			
+			pConfig->autoChan++;
+			if(pConfig->autoChan>(RF_CHANNEL+15))
+			{
+				pConfig->autoChan = RF_CHANNEL;
+			}
+			macParameterSet();			
+*/
+		}else
+		{
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 800+(osal_rand()&0x0f));
+		}
+		break;
+
+		//case MSTDEV_MODE_MST:
+		//case MSTDEV_MODE_MLINK:
+		//case MSTDEV_MODE_SLINK:
+		case CMD_MODE_RF_MST:
+		case CMD_MODE_RFLS_MST:
+		case CMD_MODE_RFLS_SLA:
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		pTxData[sdCnt++] = 0x9A;
+		pTxData[sdCnt++] = pConfig->evtCnt;//0x01;
+		pTxData[sdCnt++] = pConfig->totalDev;//0x01;
+		pTxData[sdCnt++] = pConfig->mstRcd+1;//0x01;
+		pTxData[sdCnt++] = ((1<<pConfig->slvRcd)-1)&0xFF;//(1<<pTxData[2])-1;//0x01;
+		pTxData[sdCnt++] = 0x00;
+		pTxData[sdCnt++] = ((1<<pConfig->slvRcd)-1)&0xFF;//pConfig->slvRcd;
+		pTxData[sdCnt++] = (0xFF00>>(pConfig->mstRcd+1))&0xFF;
+		for(cn=0;cn<pConfig->mstRcd;cn++)
+		{
+			pTxData[sdCnt++] = 0x0E-cn;
+		}
+		//pTxData[sdCnt++] = 0x80;
+		//g_sendLen = 8;
+		//macRfSendPacket(pConfig->destAddr, pTxData, sdCnt,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, sdCnt,NULL,0,SEND_MODE_UNSLOTTED);
+		veriPckSendCallback = &macRollPolingProc;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000+(osal_rand()&0x0f));
+		break;
+
+		case CMD_MODE_OFF:
+		break;
+
+/*
+		default:
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x9A;
+		pTxData[1] = pConfig->evtCnt;//0x01;
+		pTxData[2] = pConfig->totalDev;//0x01;
+		pTxData[3] = 0x01;
+		pTxData[4] = (1<<pTxData[2])-1;//0x01;
+		pTxData[5] = 0x00;
+		pTxData[6] = pTxData[4];
+		pTxData[7] = 0x80;
+		g_sendLen = 8;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+		veriPckSendCallback = &macRollPolingProc;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);
+		break;
+*/
+	}
+#ifdef DEBUG_TRACE	
+	//DeviceInfoPrint();
+#endif
+/*
+	if(MSTDEV_MODE_DEV==g_isMaster)
+	{
+		basicRfConfig.ackRequest = 0;
+		pConfig->frameHead = 0xc801;
+		pConfig->destAddr = 0x000f;
+		pConfig->myAddr = 0xFFFF;
+		osal_cpyExtAddr(pTxData,g_extAddr);
+		//pConfig->myAddr = ADDR;
+		pTxData[8]=0x91;
+		pTxData[9]=0x00;
+		//pTxData[10]=0x30;
+		//pTxData[11]=0x00;
+		pTxData[10]=(uint8)((pConfig->panId)>>8);
+		pTxData[11]=(pConfig->panId)&0xFF;
+		g_sendLen = 12;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);	
+	}else
+	{
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x9A;
+		pTxData[1] = pConfig->evtCnt;//0x01;
+		pTxData[2] = pConfig->totalDev;//0x01;
+		pTxData[3] = 0x01;
+		pTxData[4] = (1<<pTxData[2])-1;//0x01;
+		pTxData[5] = 0x00;
+		pTxData[6] = pTxData[4];
+		pTxData[7] = 0x80;
+		g_sendLen = 8;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+		
+	} 
+	veriPckSendCallback = &macRollPolingProc;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);
+*/
+}
+
+#ifndef SEND_UNIFIED
+MAC_DATAREQ_API static void LinkedModeRollPoling(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x000F;
+	pTxData[0] = 0x9A;
+	pTxData[1] = pConfig->evtCnt;//0x01;
+	pTxData[2] = pConfig->totalDev;//0x01;
+	pTxData[3] = 0x02;
+	pTxData[4] = pConfig->mstRcd;//pConfig->mstRcd;//0x00;//0x01;
+	pTxData[5] = 0x00;
+	pTxData[6] = pConfig->totalDev-pConfig->mstRcd;//0x00;
+	pTxData[7] = 0xC0;
+	pTxData[8] = 0x0E;
+	g_sendLen = 9;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	veriPckSendCallback = &LinkedModeRollPoling;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);
+
+}
+#endif
+
+static void PortInit(void)
+{
+	//LED_RED_ON();
+	LED_INS_ALLOFF();
+#ifdef LED_TOGGLE_DEBUG
+	osal_start_timerEx( macEx_taskId, MACEX_LED_FLASH, 500);
+#endif
+
+}
+
+static void macExRxEnable(void)
+{
+	//static int8 rxFlag=0;
+	//macRxEnable(1);
+
+	if(!s_rxFlag)
+	{
+		macRxEnable(1);
+		s_rxFlag = 1;
+	}
+}
+
+static void macExRxDisable(void)
+{
+	//macRxDisable(1);
+
+	if(s_rxFlag)
+	{
+		//macRxEnable(1);
+		//S1CON = 0x00;
+		macRxDisable(1);
+		s_rxFlag = 0;
+	}
+}
+
+static void VeriKeyInitial(void)
+{
+  	uint16 *cpuIdAddr;
+	uint8 veriBuf[20];
+	char *decKey = "MakeTomorrowBest";
+
+	HalFlashRead(CPUID_VERI_ADDR / HAL_FLASH_PAGE_SIZE,
+               CPUID_VERI_ADDR % HAL_FLASH_PAGE_SIZE,
+               veriBuf, sizeof(veriBuf));
+
+	halAesLoadKeyOrInitVector(decKey, TRUE);
+
+	halAesEncrDecr((BYTE *)veriBuf, CPUID_VERI_LEN, (BYTE *)veriBuf/*, ucLDR_Message.com_data*/, DECRYPT); 
+
+	osal_memcpy(g_extAddrSrc, veriBuf+4, 8);
+	
+	halAesLoadKeyOrInitVector((BYTE*)cpuIdKey, TRUE);
+	halAesEncrDecr(cpuIdRst, 16, cpuIdRst, DECRYPT);
+	cpuIdAddr = (uint16*)(cpuIdRst+2);
+	MemReadRam((macRam_t *)(PXREG(*cpuIdAddr)),g_extAddrVef, 8);	
+}
+
+//extern macTx_t *pMacDataTx;
+void macTaskInitEx(uint8 taskId)
+{
+	//uint8 buf[8];
+	uint8 rssiBuf[16];
+	uint8 dev=0;
+	uint8 i = 0;
+
+	macEx_taskId = taskId;
+	pConfig = &basicRfConfig;
+	
+#ifdef DEBUG_TRACE
+	macDataTx.msdu.p = pTxData;
+	pMacDataTx = &macDataTx;
+	
+#endif
+	
+	//MAC_AUTO_CRC_ACK();
+	//MAC_RECOMMEND_SETTING();
+	//macEnableRxInterrupt();
+	macLowLevelInit();
+#ifdef DEBUG_TRACE
+	g_isMaster = CMD_MODE_RF_MST;
+	macRxEnable(1);
+#endif
+
+#ifdef DEBUG_NOTRACE
+	//g_isMaster = CMD_MODE_RF_MST;
+	g_isMaster = CMD_MODE_RF_SLA;
+	pConfig->group = 0;
+	macRxEnable(1);
+	RfModCheck(g_isMaster);
+#endif
+
+//#if((defined HAL_UART_DMA)&&(HAL_UART_DMA==1))
+	//macExUartIntSet();		//this set should take effort after initialization
+//#endif
+	macExUartInit();
+	PortInit();
+	//macRadioSetTxPower(0xF5);
+	//macRadioSetTxPower(0x05);
+#ifdef HAL_MAC_USE_REGISTER_POWER_VALUES
+	macRadioSetTxPower(0xf5);
+#endif
+
+	//FRMCTRL0 |= 0x10;
+
+	//CalcEachRssi(rssiBuf,1,0);
+	//pConfig->autoChan = RF_CHANNEL;
+	macMemReadRam((macRam_t *) TI_EXTADDR, g_extAddr, 8);
+#ifdef DEBUG_TRACE
+	Printf("ExtAddr: ");
+	BufferPrint(g_extAddr, 8);
+#endif
+	MAC_RADIO_SET_IEEE_ADDR(g_extAddr);
+
+	VeriKeyInitial();
+	
+#ifdef DEBUG_TRACE
+	Printf("ExtAddrSrc: ");
+       BufferPrint(g_extAddrSrc, 8);
+	Printf("\r\nExtAddrVef: ");
+	BufferPrint(g_extAddrVef, 8);
+	if(TRUE==osal_memcmp(g_extAddrSrc,g_extAddrVef,8))
+	{
+		Printf("\r\ncheck ok ");
+	}
+#endif
+	
+	
+/*
+	HalFlashInit();
+	HalFlashErase(20);
+	HalFlashWrite(20, g_extAddr, 8);
+	HalFlashRead(20,0,buf,8);*/
+	//macRxOn();
+
+	//g_linkedMode = 1;
+	//g_linkedMode = 0;				//linked mode
+	// Config basicRF
+	//if((MSTDEV_MODE_MLINK==g_isMaster)||(MSTDEV_MODE_SLINK==g_isMaster))
+
+	basicRfConfig.panId = 0x3000;
+
+	basicRfConfig.channel = RF_CHANNEL;
+	//basicRfConfig.ackRequest = 0;//TRUE;
+	if(CMD_MODE_RF_SLA==g_isMaster)
+	{
+		//basicRfConfig.myAddr = ADDR; 
+		//basicRfConfig.myAddr = 0xFFFF; 
+		basicRfConfig.myAddr = 0x00FF; 
+	}else
+	{
+		basicRfConfig.myAddr = ADDR; 
+	}
+	basicRfConfig.extAddr = g_extAddr;
+	pCurrentDev = (void *)NULL;
+	//basicRfConfig.devHead = deviceInfo;
+	basicRfConfig.totalDev = 0;
+	basicRfConfig.evtCnt = 0;
+	basicRfConfig.mstRcd = 0;
+	basicRfConfig.slvRcd = 0;
+	osal_memset(basicRfConfig.idInGroup, 0x00, 16);
+	osal_memset(basicRfConfig.arrCnt, 0x00, 5);
+	osal_memset(basicRfConfig.isIdOccupied,0x00,16);
+	//basicRfConfig.group = 1;
+
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		pConfig->devHead[dev].veriFlag = DEVICE_UNVERIFIED;
+		pConfig->devHead[dev].ready = 0;
+		pConfig->devHead[dev].shortAddr = 0x0F;
+		pConfig->devHead[dev].info = 0;
+	}
+
+	//basicRfConfig.panId = 6666;
+
+	//RfModCheck(g_isMaster);
+
+	txState.txDone = 0;
+
+	//pConfig = &basicRfConfig;
+	rxi.pPayload   = NULL;
+	txState.receiveOn = TRUE;
+	txState.frameCounter = 0;
+
+	ipRsv.mst = 0x0E;
+	ipRsv.sla = 0x00;
+
+	macParameterSet();
+
+	//pConfig->autoChan = RF_CHANNEL;
+
+	CalcEachRssi(rssiBuf,50,10);
+	//macExRxEnable();
+
+	//macRfReceiveOn();
+	g_initCheck = 0;
+	
+#ifndef DEBUG_NOTRACE
+	UartSctSend(UART_CC_INIT,1,0);
+	osal_start_timerEx(macEx_taskId, MACEX_INIT_CHECK, 1000);
+#endif
+
+#ifdef LED_TOGGLE_DEBUG
+	osal_start_timerEx( macEx_taskId, MACEX_LED_FLASH, 500);
+#endif	
+
+	//macNetCheck();
+	
+	//osal_start_timerEx(macEx_taskId,MACEX_ROLL_POLING_EVENT,30);
+	macNetCheck(callbackPara);
+	
+	
+}
+
+MAC_DATAREQ_API static void VerfiInqure(macRx_t* pck)
+{
+#if 0
+	static uint8 veriCnt=0;
+	if(veriCnt++<2)
+	{
+		pConfig->frameHead = 0x8C21;
+		pConfig->destAddr = 0xffff;
+		pTxData[0]=0x92;
+		pTxData[1]=((pConfig->panId)&0xFF);//0x00;
+		pTxData[2]=((pConfig->panId)>>8);
+		//pTxData[2]=0x30;
+		/*
+		if(g_linkedMode)
+		{
+			pTxData[2]=((pConfig->panId)>>8);
+		}else
+		{
+			pTxData[2]=((pConfig->panId)>>8);
+		}*/
+		if(RF_CHAN_AUTO==pConfig->channel)
+		{
+			pTxData[3]=0x01;
+		}else
+		{
+			pTxData[3]=0x00;
+		}
+		g_sendLen = 4;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1);
+		veriPckSendCallback = &VerfiInqure;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10);
+	}else
+	{
+		veriCnt = 0;
+		g_quireFlag = 0;
+		RemoveCurrent();
+		veriPckSendCallback = &macRollPolingProc;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,500);
+	}
+#endif
+
+	uint8 dev = 0;
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(DEVICE_ONVERI==pConfig->devHead[dev].veriFlag)
+		{
+			pConfig->devHead[dev].veriFlag = DEVICE_RESPOND;
+			break;
+		}
+	}
+
+	if(dev>=DEVICE_TOTAL)
+	{
+		//veriPckSendCallback = &macRollPolingProc;
+		veriPckSendCallback = &VeriAndAllocID;
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,300+(osal_rand()&0x0f));
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,100+(osal_rand()&0x0f));
+	}else
+	{
+		pConfig->frameHead = 0x8C21;
+		pConfig->destAddr = 0xffff;
+		pTxData[0]=0x92;
+		pTxData[1]=((pConfig->panId)&0xFF);//0x00;
+		pTxData[2]=((pConfig->panId)>>8);
+		//pTxData[2]=0x30;
+		if(RF_CHAN_AUTO==pConfig->channel)
+		{
+			pTxData[3]=0x01;
+		}else
+		{
+			pTxData[3]=0x00;
+		}
+		g_sendLen = 4;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1);
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,pConfig->devHead[dev].extAddr,1);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,pConfig->devHead[dev].extAddr,1,SEND_MODE_UNSLOTTED);
+		veriPckSendCallback = &VerfiInqure;
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10+(osal_rand()&0x07));
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));
+	}
+	
+	
+}
+
+static uint8 macMallocNewDev(uint8* extAddr)
+{
+	//MSGpkt = (afIncomingMSGPacket_t *)osal_msg_allocate( len );
+	uint8 dev=0;
+	//DeviceInfo *newDevice;
+	//newDevice = (DeviceInfo*)osal_mem_alloc(sizeof(DeviceInfo));
+	//newDevice ->pNext= NULL;
+	//newDevice->pFront = NULL;
+	//newDevice->veriFlag = DEVICE_UNVERIFIED;
+
+
+	if(pConfig->totalDev>=DEVICE_TOTAL)
+	{
+		return ALLOC_FULL;
+	}
+
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(TRUE==osal_ExtAddrEqual(extAddr, pConfig->devHead[dev].extAddr))
+		{
+			//pConfig->devHead[dev].veriFlag = DEVICE_ONVERI;
+			if(DEVICE_UNVERIFIED==pConfig->devHead[dev].veriFlag)
+			{
+				//RemoveDevice(dev);
+				pConfig->devHead[dev].veriFlag = DEVICE_ONVERI;
+				pConfig->totalDev++;
+			}else if(DEVICE_VERIFIED==pConfig->devHead[dev].veriFlag)
+			{
+				RemoveDevice(pConfig->devHead[dev].shortAddr);
+				osal_cpyExtAddr(pConfig->devHead[dev].extAddr, extAddr);
+				pConfig->devHead[dev].veriFlag = DEVICE_ONVERI;
+				pConfig->totalDev++;
+			}else			
+			{
+				pConfig->devHead[dev].veriFlag = DEVICE_ONVERI;
+			}
+			return ALLOC_SUCCESS;
+		}
+	}
+
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(DEVICE_UNVERIFIED==pConfig->devHead[dev].veriFlag)
+		{
+			if(NULL!=extAddr)
+			{
+				osal_cpyExtAddr(pConfig->devHead[dev].extAddr, extAddr);
+			}
+
+			pConfig->devHead[dev].veriFlag = DEVICE_ONVERI;
+			pConfig->totalDev++;
+#ifdef DEBUG_TRACE
+			Printf("dev %d\r\n",dev);
+			Printf("total %d\r\n",pConfig->totalDev);
+#endif
+			return ALLOC_SUCCESS;
+		}
+	}
+
+	return ALLOC_ERROR;
+
+	
+#if 0	
+	if(NULL!=extAddr)
+	{
+		osal_cpyExtAddr(newDevice->extAddr,extAddr);
+	}
+#ifdef DEBUG_TRACE
+		Printf("pCurrentDev %x\r\n",pCurrentDev);
+		Printf("newDevice %x\r\n",newDevice);
+#endif
+	//if(NULL==pCurrentDev)
+	if(!pConfig->totalDev)
+	{
+		pCurrentDev = newDevice;
+		pConfig->devHead = newDevice;
+		newDevice->pFront = NULL;
+#ifdef DEBUG_TRACE
+	Printf("first dev %x\r\n",pCurrentDev);
+#endif
+		//pConfig->devRear = newDevice;
+	}else
+	{
+		//pConfig->pCurrentDev->pNext= newDevice;
+		//newDevice->pFront = pConfig->pCurrentDev;
+		//(pConfig->devRear) ->pNext = pConfig->pCurrentDev;
+#ifdef DEBUG_TRACE
+		Printf("pCurrentDev %x\r\n",pCurrentDev);
+		Printf("newDevice %x\r\n",newDevice);
+#endif
+		newDevice ->pFront = pCurrentDev;
+		pCurrentDev->pNext = newDevice;
+		pCurrentDev = newDevice;
+	}
+#ifdef DEBUG_TRACE
+	Printf("pCurrentDev %x\r\n",pCurrentDev);
+	Printf("pCurrentDev->pNext %x\r\n",pCurrentDev->pNext);
+#endif
+#endif
+
+}
+
+static void macDeleteAllDevice(void)
+{
+	uint8 pDev;
+	for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+	{
+		pConfig->devHead[pDev].attribute = 0;
+		osal_memset(pConfig->devHead[pDev].extAddr,0,8);
+		pConfig->devHead[pDev].shortAddr = 0x0F;
+		pConfig->devHead[pDev].group = 0x00;
+		pConfig->devHead[pDev].info = 0;
+	}
+	pConfig->totalDev = 0;
+	pConfig->slvRcd = 0;
+	pConfig->mstRcd = 0;
+	//pConfig->isRflsCoordinator = 0;
+	pConfig->evtCnt = 0;
+
+	ipRsv.mst = 0x0E;
+	ipRsv.sla = 0x00;
+
+	s_ready = 3;
+
+	osal_memset(pConfig->arrCnt,0,5);
+	osal_memset(pConfig->isIdOccupied, 0, 16);
+	if((CMD_MODE_RF_MST==g_isMaster)||(CMD_MODE_RF_SLA==g_isMaster)
+		||(CMD_MODE_RFLS_MST==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster))
+	{
+		LED_INS_UNLINK();
+	}
+}
+
+#if 0
+static void macDeleteAllDevice(void)
+{
+	DeviceInfo *fDev;
+	DeviceInfo *bDev;
+	fDev = pConfig->devHead;
+	bDev = fDev;
+	if(fDev!=NULL)
+	{
+		while(fDev->pNext!=NULL)
+		{
+			bDev = fDev;
+			fDev = fDev->pNext;
+			osal_mem_free(bDev);
+		}
+	}
+	if(fDev!=NULL)
+	{
+		osal_mem_free(fDev);
+	}
+	/*
+	if(pConfig->devHead!=NULL)
+	{
+		while(pDev!=NULL)
+		{
+			pCurrentDev = pDev->pFront;
+			osal_mem_free(pDev);
+			pDev = pCurrentDev;
+		}
+		pConfig->devHead=NULL;
+	}*/
+
+	pCurrentDev = pConfig->devHead=NULL;
+	pConfig->totalDev = 0;
+	pConfig->slvRcd = 0;
+	pConfig->mstRcd = 0;
+	//pConfig->isRflsCoordinator = 0;
+	pConfig->evtCnt = 0;
+
+	ipRsv.mst = 0x0E;
+	ipRsv.sla = 0x00;
+
+	s_ready = 3;
+
+	osal_memset(pConfig->arrCnt,0,5);
+	osal_memset(pConfig->isIdOccupied, 0, 16);
+	LED_INS_UNLINK();
+	
+}
+#endif
+
+static void VeriFailedProc(void)
+{
+}
+
+#if 0
+MAC_DATAREQ_API static void DevReadyInfo(macRx_t* pck)
+{
+	static uint8 sr=2;
+
+	if(sr!=s_ready)
+	{
+		UartSctSend(UART_CC_READY,s_ready,0);
+		sr = s_ready;
+	}
+
+#ifdef SEND_UNIFIED
+	veriPckSendCallback = &macRollPolingProc;
+#else
+	if(0X01==pCurrentDev->group)
+	{
+		veriPckSendCallback = &LinkedModeRollPoling;
+	}else
+	{
+		veriPckSendCallback = &macRollPolingProc;
+	}
+#endif
+
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10);
+	
+}
+#endif
+
+MAC_DATAREQ_API static void BridgedMstReadyRes(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;	
+	//pConfig->myAddr = 0x000F;
+	pTxData[0] = 0x05;
+	pTxData[1] = 0x00;
+	pTxData[2] = 0xFF;
+	pTxData[3] = 0x32;
+	pTxData[4] = 0x01;//0x01;//0xAA;//0x01;
+	g_sendLen = 5;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	veriPckSendCallback = &macRollPolingProc;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,8+(osal_rand()&0x07));
+	
+
+}
+
+
+#if 0
+MAC_DATAREQ_API static void DeviceReadyRespond(macRx_t* pck)
+{
+	static uint8 rspMk=0;
+	//DeviceInfo *pDevice;
+	uint8 pDevice=0;
+	pDevice = SearchForDevice(pck->mac.srcAddr.addr.shortAddr);
+	//pDevice->ready = pck->msdu.p[4];
+	pConfig->devHead[pDevice].ready = pck->msdu.p[4];
+
+	//if(pDevice->ready)
+	if(pConfig->devHead[pDevice].ready)
+	{
+		rspMk = 0;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;	
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x32;
+		pTxData[4] = pConfig->devHead[pDevice].ready;//pDevice->ready;//0x01;//0xAA;//0x01;
+		g_sendLen = 5;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	}else if(!rspMk)
+	{
+		rspMk = 1;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;	
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x32;
+		pTxData[4] = pConfig->devHead[pDevice].ready;//pDevice->ready;//0x01;//0xAA;//0x01;
+		g_sendLen = 5;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	}
+
+	//while(!(RFIRQF1 & IRQ_TXDONE) );				//failed
+	//UartSctSend(UART_CC_READY,pDevice->ready,0);
+	//s_ready = pDevice->ready;
+	s_ready = pConfig->devHead[pDevice].ready;
+	veriPckSendCallback = &DevReadyInfo;
+
+/*
+	if(0X01==pCurrentDev->group)
+	{
+		veriPckSendCallback = &LinkedModeRollPoling;
+
+	}else
+	{
+		veriPckSendCallback = &macRollPolingProc;
+
+	}
+*/
+
+	
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,4+(osal_rand()&0x03));
+
+	
+}
+#else
+MAC_DATAREQ_API static void DeviceReadyRespond(macRx_t* pck)
+{
+	static uint8 rspMk=0;
+	uint8 dev=0;
+	//DeviceInfo *pDevice;
+	uint8 pDevice=0;
+	pDevice = SearchForDevice(pck->mac.srcAddr.addr.shortAddr);
+	//pDevice->ready = pck->msdu.p[4];
+	if(pConfig->devHead[pDevice].ready!=pck->msdu.p[4])
+	{
+		pConfig->devHead[pDevice].ready = pck->msdu.p[4];
+		//if(pConfig->devHead[pDevice].ready>0)
+		//{
+		//	pConfig->devHead[pDevice].info = 1;
+		//}
+		//UartSctSend(UART_CC_READY,pConfig->devHead[pDevice].ready,0);
+		UartSctSend(UART_CC_READY, pConfig->devHead[pDevice].group, pConfig->devHead[pDevice].ready);
+	}
+
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if((DEVICE_VERIFIED==pConfig->devHead[dev].veriFlag)
+			&&(!pConfig->devHead[dev].info))
+		{
+			break;
+		}
+	}
+
+	//if(dev<DEVICE_TOTAL)
+	if((dev<DEVICE_TOTAL)||(!pConfig->devHead[pDevice].ready))
+	{
+		//rspMk = 1;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;	
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x32;
+		pTxData[4] = 0x00;//pDevice->ready;//0x01;//0xAA;//0x01;
+		g_sendLen = 5;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+		veriPckSendCallback = &macRollPolingProc;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10+(osal_rand()&0x03));
+		osal_start_timerEx(macEx_taskId,MACEX_INFO_INQ,60+(osal_rand()&0x03));
+	}else
+	{
+		//rspMk = 1;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;	
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x32;
+		pTxData[4] = 0x01;//pDevice->ready;//0x01;//0xAA;//0x01;
+		g_sendLen = 5;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+		veriPckSendCallback = &macRollPolingProc;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10+(osal_rand()&0x03));
+	}
+
+/*	//if(pDevice->ready)
+	if(pConfig->devHead[pDevice].ready)
+	{
+		rspMk = 0;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;	
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x32;
+		pTxData[4] = pConfig->devHead[pDevice].ready;//pDevice->ready;//0x01;//0xAA;//0x01;
+		g_sendLen = 5;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	}else if(!rspMk)
+	{
+		rspMk = 1;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;	
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x32;
+		pTxData[4] = pConfig->devHead[pDevice].ready;//pDevice->ready;//0x01;//0xAA;//0x01;
+		g_sendLen = 5;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	}
+
+	//while(!(RFIRQF1 & IRQ_TXDONE) );				//failed
+	//UartSctSend(UART_CC_READY,pDevice->ready,0);
+	//s_ready = pDevice->ready;
+	s_ready = pConfig->devHead[pDevice].ready;
+	veriPckSendCallback = &DevReadyInfo;
+	
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,4+(osal_rand()&0x03));
+*/
+	
+}
+#endif
+
+//uint16 devCnt=0;
+static uint16 FirstCheckAndAlloc(void)
+{
+	pConfig->evtCnt++;
+	pConfig->totalDev++;
+	return 0x0000;
+}
+
+
+MAC_DATAREQ_API static void CheckEachDeviceAlloc(macRx_t* pck)
+{
+	uint8 pDev=0;
+	if(g_devCheck.checkCount++<MACEX_DEVICE_CHECK_NUM)
+	{
+		pConfig->frameHead = 0x8861;
+		//pConfig->destAddr = (DEVICE_ATTRIBUTE_MAST==g_devCheck.pChk->attribute)?(0x0E-g_devCheck.checkTurn):g_devCheck.checkTurn;
+		//pConfig->destAddr = g_devCheck.pChk->shortAddr;//(DEVICE_ATTRIBUTE_SLAVE==g_devCheck.pChk->attribute)?g_devCheck.checkTurn:(0x0E-g_devCheck.checkTurn);
+		pConfig->destAddr = pConfig->devHead[g_devCheck.checkTurn].shortAddr;
+		pTxData[0] = 0x9B;
+		g_sendLen = 1;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+		veriPckSendCallback = &CheckEachDeviceAlloc;
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,8);	
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,8+(osal_rand()&0x07));
+	}else
+	{
+	
+		pConfig->evtCnt++;
+
+//		RemoveDevice(g_devCheck.checkTurn);
+		RemoveDevice(pConfig->devHead[g_devCheck.checkTurn].shortAddr);
+		
+		while(g_devCheck.checkTurn<DEVICE_TOTAL)
+		{
+			g_devCheck.checkTurn++;
+			if(DEVICE_VERIFIED==pConfig->devHead[g_devCheck.checkTurn].veriFlag)
+			{
+				break;
+			}
+		}
+		//g_devCheck.checkTurn++;
+		if(g_devCheck.checkTurn>=DEVICE_TOTAL)
+		{
+			for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+			{
+				if(DEVICE_WAITIP==pConfig->devHead[pDev].veriFlag)
+				{
+					pConfig->devHead[pDev].shortAddr= NoneUsedShortAddrSearch(pConfig->devHead[pDev].attribute);
+				}
+			}
+			veriPckSendCallback = &VeriAndAllocID;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 3+(osal_rand()&0x03));
+		}else
+		{
+			g_devCheck.checkCount = 0;
+			veriPckSendCallback = &CheckEachDeviceAlloc;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));
+		}
+#if 0
+		//g_devCheck.checkTurn++;
+		//if(g_devCheck.checkTurn>=pConfig->totalDev)
+		//if(NULL==g_devCheck.pChk->pNext)
+		if(pCurrentDev==g_devCheck.pChk->pNext)
+		{
+			//pCurrentDev->shortAddr = g_devCheck.checkTurn;
+			RemoveDevice(g_devCheck.pChk->shortAddr);
+			pConfig->totalDev++;
+			pCurrentDev->shortAddr = NoneUsedShortAddrSearch(pCurrentDev->attribute);
+			VeriAndAllocID(pck);
+			LED_INS_LINKED();
+		}else
+		{
+
+			RemoveDevice(g_devCheck.pChk->shortAddr);
+			g_devCheck.checkCount = 0;
+			g_devCheck.pChk = g_devCheck.pChk->pNext;
+			veriPckSendCallback = &CheckEachDeviceAlloc;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+		}
+#endif
+		
+	}
+	
+}
+
+#ifndef SEND_UNIFIED
+MAC_DATAREQ_API static void VeriResponse(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8C21;
+	pConfig->destAddr = 0xffff;
+	pTxData[0]=0x96;
+	pTxData[1]=0x00;
+	pTxData[2]=(pCurrentDev->shortAddr&0xFF);
+	pTxData[3]=pTxData[2];
+	pTxData[4]=0x00;
+	pTxData[5]=pTxData[2]+1;
+	pTxData[6] = pTxData[5];
+	pTxData[7] = 0x01;
+	pTxData[8] = (1<<pTxData[6]) - 1;
+	pTxData[9]=0x00;
+	pTxData[10]= pTxData[8];
+	pTxData[11]=0x80;	
+	g_sendLen = 12;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1,SEND_MODE_UNSLOTTED);
+#ifdef SEND_UNIFIED
+	veriPckSendCallback = &macRollPolingProc;
+#else
+	if(pConfig->mstRcd>0)
+	{
+		veriPckSendCallback = &LinkedModeRollPoling;
+	}else
+	{
+		veriPckSendCallback = &macRollPolingProc;
+	}
+#endif
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5);
+}
+#endif
+
+
+MAC_DATAREQ_API static void VeriAndAllocID(macRx_t* pck)
+{
+/*
+	uint8 sdCnt=0;
+	uint8 cn=0;
+	pConfig->frameHead = 0x8C21;
+	pConfig->destAddr = 0xffff;
+	pTxData[sdCnt++]=0x96;
+	pTxData[sdCnt++]=0x00;
+	pTxData[sdCnt++]=(pCurrentDev->shortAddr&0xFF);
+	pTxData[sdCnt++]=(pCurrentDev->shortAddr&0xFF);
+	pTxData[sdCnt++]=0x00;
+	pTxData[sdCnt++]=pConfig->evtCnt;
+	pTxData[sdCnt++]=(pConfig->totalDev>0)?pConfig->totalDev:1;
+	pTxData[sdCnt++]=pConfig->mstRcd+1;
+	pTxData[sdCnt++]=((1<<pConfig->slvRcd)-1)&0xFF;
+	pTxData[sdCnt++]=0x00;
+	pTxData[sdCnt++]=pConfig->slvRcd;
+	pTxData[sdCnt++]=(0xFF00>>(pConfig->mstRcd+1))&0xFF;	
+	for(cn=0;cn<pConfig->mstRcd;cn++)
+	{
+		pTxData[sdCnt++]=0x0E-cn;
+	}	
+	//g_sendLen = 12;
+	macRfSendPacket(pConfig->destAddr, pTxData, sdCnt,NULL,1);
+	veriPckSendCallback = &macRollPolingProc;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5);
+*/
+
+	uint8 dev=0;
+	uint8 sdCnt=0;
+	uint8 cn=0;
+	static uint8 devRsv;
+	static uint8 waitAckFlag=0;
+
+	if(waitAckFlag>0)
+	{
+		if(TXSTATE_TXACKDONE_RCVD == txState.ackReceived)
+		{
+			pConfig->devHead[devRsv].veriFlag = DEVICE_VERIFIED;
+		}
+		waitAckFlag = 0;
+	}
+
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(DEVICE_ONVERI==pConfig->devHead[dev].veriFlag)
+		{
+			veriPckSendCallback = &VerfiInqure;
+			osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);
+			return;
+		}
+	}
+	
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(DEVICE_WAITIP==pConfig->devHead[dev].veriFlag)
+		{
+			//pConfig->devHead[dev].veriFlag = DEVICE_VERIFIED;//2015/08/26
+			break;
+		}
+	}
+
+	if(dev>=DEVICE_TOTAL)
+	{
+		veriPckSendCallback = &macRollPolingProc;
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5+(osal_rand()&0x03));
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);
+		osal_start_timerEx(macEx_taskId,MACEX_INFO_INQ,60+(osal_rand()&0x0f));
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,2);
+	}else
+	{
+		pConfig->frameHead = 0x8C21;
+		pConfig->destAddr = 0xffff;
+		pTxData[sdCnt++]=0x96;
+		pTxData[sdCnt++]=0x00;
+		pTxData[sdCnt++]=(pConfig->devHead[dev].shortAddr&0xFF);
+		pTxData[sdCnt++]=(pConfig->devHead[dev].shortAddr&0xFF);
+		pTxData[sdCnt++]=0x00;
+		pTxData[sdCnt++]=pConfig->evtCnt;
+		pTxData[sdCnt++]=(pConfig->totalDev>0)?pConfig->totalDev:1;
+		pTxData[sdCnt++]=pConfig->mstRcd+1;
+		pTxData[sdCnt++]=((1<<pConfig->slvRcd)-1)&0xFF;
+		pTxData[sdCnt++]=0x00;
+		pTxData[sdCnt++]=pConfig->slvRcd;
+		pTxData[sdCnt++]=(0xFF00>>(pConfig->mstRcd+1))&0xFF;	
+		for(cn=0;cn<pConfig->mstRcd;cn++)
+		{
+			pTxData[sdCnt++]=0x0E-cn;
+		}	
+		//g_sendLen = 12;
+		//macRfSendPacket(NULL, pTxData, sdCnt,pConfig->devHead[dev].extAddr,1);
+		macRfSendPacket(NULL, pTxData, sdCnt,pConfig->devHead[dev].extAddr,1,SEND_MODE_UNSLOTTED);
+		txState.ackReceived = TXSTATE_TXACKDONE_WAIT;
+		devRsv = dev;
+		waitAckFlag = 1;
+		veriPckSendCallback = &VeriAndAllocID;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3+(osal_rand()&0x03));
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);
+	}
+}
+
+
+#ifndef SEND_UNIFIED
+MAC_DATAREQ_API static void LinkedModeShortAddrAlloc(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8C21;
+	pConfig->destAddr = 0xffff;
+	pTxData[0]=0x96;
+	pTxData[1]=0x00;
+	pTxData[2]=0x0E-(pCurrentDev->shortAddr&0xFF);
+	pTxData[3]=pTxData[2];
+	pTxData[4]=0x00;
+	pTxData[5]=(pCurrentDev->shortAddr&0xFF)+1;
+	pTxData[6] = pTxData[5];
+	pTxData[7] = 0x02;
+	pTxData[8] = 0x00;
+	pTxData[9]=0x00;
+	pTxData[10]= 0x00;
+	pTxData[11]=0xC0;	
+	pTxData[12]=0x0E;
+	g_sendLen = 13;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,1,SEND_MODE_UNSLOTTED);
+#ifdef SEND_UNIFIED
+	veriPckSendCallback = &macRollPolingProc;
+#else
+	veriPckSendCallback = &LinkedModeRollPoling;
+#endif
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5);
+}
+#endif
+
+#ifndef SEND_UNIFIED
+MAC_DATAREQ_API static void LinkModeResp(macRx_t* pck)
+{
+	pConfig->frameHead = 0xc821;
+	pConfig->destAddr = 0x000f;
+	pConfig->myAddr = 0xFFFF;//ADDR;			aviod wrong receive
+	//halRfSetShortAddr(pConfig->myAddr);
+	osal_cpyExtAddr(pTxData,g_extAddr);
+	pTxData[8]=0x95;
+	//pTxData[9]=0x02;
+	//pTxData[9]=basicRfConfig.group+2;
+	pTxData[9]=0x01;
+	g_sendLen = 10;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0,SEND_MODE_UNSLOTTED);
+	pConfig->myAddr = 0xFFFE;//ADDR;			aviod wrong receive
+	MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+	veriPckSendCallback = NULL;
+	osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);	
+}
+#endif
+
+static bool SearchDevByMac(uint8* extAddr,uint8* devIndex)
+{
+	uint8 dev=0;
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(TRUE == osal_ExtAddrEqual(extAddr,pConfig->devHead[dev].extAddr))
+		{
+			*devIndex = dev;
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+static uint8 MstDevInfoSend(void)
+{
+	uint8 bufIndex=0;
+	//uint8 devSBuf[20];
+	uint8 devSBuf[20]={0};	
+
+	bufIndex = 0;
+	devSBuf[bufIndex++] = 0xAA;			//
+	devSBuf[bufIndex++] = 7;	
+	devSBuf[bufIndex++] = UART_CC_DEV;//SAI_INFO_HEAD;//0xA2;				
+
+	devSBuf[bufIndex++] = pConfig->arrCnt[0];
+	devSBuf[bufIndex++] = pConfig->arrCnt[1];
+	devSBuf[bufIndex++] = pConfig->arrCnt[2];
+	devSBuf[bufIndex++] = pConfig->arrCnt[3];
+	devSBuf[bufIndex++] = pConfig->arrCnt[4];
+
+	devSBuf[bufIndex++] = CalcSum(devSBuf+2,6);
+	
+	UartBulkSend(devSBuf,bufIndex);
+	
+}
+
+static uint8 MstDevInfoSendEx(uint8 gr, uint8 isReady)
+{
+	uint8 bufIndex=0;
+	//uint8 devSBuf[20];
+	uint8 devSBuf[20]={0};	
+
+	bufIndex = 0;
+	devSBuf[bufIndex++] = 0xAA;			//
+	devSBuf[bufIndex++] = 7+3;	
+	devSBuf[bufIndex++] = UART_CC_DEV;//SAI_INFO_HEAD;//0xA2;				
+
+	devSBuf[bufIndex++] = pConfig->arrCnt[0];
+	devSBuf[bufIndex++] = pConfig->arrCnt[1];
+	devSBuf[bufIndex++] = pConfig->arrCnt[2];
+	devSBuf[bufIndex++] = pConfig->arrCnt[3];
+	devSBuf[bufIndex++] = pConfig->arrCnt[4];
+
+	devSBuf[bufIndex++] = UART_CC_READY;
+	devSBuf[bufIndex++] = gr;
+	devSBuf[bufIndex++] = isReady;
+
+	devSBuf[bufIndex++] = CalcSum(devSBuf+2,6+3);
+	
+	UartBulkSend(devSBuf,bufIndex);
+}
+
+//UartSctSend(UART_CC_READY, pConfig->devHead[pDevice].group, pConfig->devHead[pDevice].ready);
+
+/*
+static bool SetStateByMac(uint8* extAddr,uint8 state)
+{
+	uint8 dev=0;
+	for(dev=0;dev<DEVICE_TOTAL;dev++)
+	{
+		if(TRUE == osal_ExtAddrEqual(extAddr,pConfig->devHead[dev].extAddr))
+		{
+			pConfig->devHead[dev].veriFlag = state;
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}*/
+
+//pRxBuf->mac.dstAddr.addr.extAddr
+static void MstVerifyProc(macRx_t *payload)
+{
+	static uint8 relCmdCnt=0; 
+	static uint8 slaCmdRel=0;
+	static uint8 slaCmdModel=0;
+	static uint8 slaCmdTest=0;
+	//static uint8 veriFlag=0;
+	//static uint8 quireFlag=0;
+	//static uint16 rsvAddr;
+	//static uint8 readyFlag=0;
+	//DeviceInfo *pDev;
+	uint8 pDev=0;
+
+	//if((veriFlag>0)&&((payload->msdu.p[0]!=0x9c)||(rsvAddr!=payload->mac.srcAddr.addr.shortAddr)))
+	//{
+	//	veriFlag = 0;
+	//}
+
+	//if((quireFlag>0)&&(payload->msdu.p[0]!=0x91))
+	//{
+	//	quireFlag = 0;
+	//}
+	//if((g_quireFlag>0)&&(payload->msdu.p[0]!=0x91))
+	//{
+	//	g_quireFlag = 0;
+	//}
+
+	//rsvAddr = payload->mac.srcAddr.addr.shortAddr;
+
+	switch(payload->msdu.p[0])
+	{
+		case 0x91:
+		//if((pConfig->panId+0x3000)==MAKEWORD(payload->msdu.p[2], payload->msdu.p[1]))
+		//if(!quireFlag)
+		if(ALLOC_SUCCESS==macMallocNewDev(payload->mac.srcAddr.addr.extAddr))
+		{
+			veriPckSendCallback = &VerfiInqure;
+			//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+			//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE, 3+(osal_rand()&0x03));
+			osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));
+		}
+		/*
+		if(!g_quireFlag)
+		{
+			//quireFlag = 1;
+			g_quireFlag = 1;
+			macMallocNewDev(payload->mac.srcAddr.addr.extAddr);
+			veriPckSendCallback = &VerfiInqure;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+			//VerfiInqure();
+		}*/
+		break;
+
+		case 0x95:
+		//if(TRUE==osal_ExtAddrEqual(pCurrentDev->extAddr,payload->mac.srcAddr.addr.extAddr))
+		if(TRUE==SearchDevByMac(payload->mac.srcAddr.addr.extAddr,&pDev))
+		{
+			//pCurrentDev->group = payload->msdu.p[1]-2;
+
+			pConfig->devHead[pDev].veriFlag = DEVICE_WAITIP;
+
+			g_devCheck.checkTurn = 0;
+
+#ifdef DEBUG_TRACE
+			Printf("checkTurn: %d\r\n",g_devCheck.checkTurn);
+#endif
+			
+			while(g_devCheck.checkTurn<DEVICE_TOTAL)
+			{
+#ifdef DEBUG_TRACE
+				Printf("%d,%d\r\n",g_devCheck.checkTurn,pConfig->devHead[g_devCheck.checkTurn].veriFlag);
+#endif
+				if(DEVICE_VERIFIED==pConfig->devHead[g_devCheck.checkTurn].veriFlag)
+				{
+					break;
+				}
+				g_devCheck.checkTurn++;
+			}
+			
+#ifdef DEBUG_TRACE
+			Printf("checkTurn: %d\r\n",g_devCheck.checkTurn);
+#endif
+			
+
+			//if(pConfig->totalDev>0)
+			if(g_devCheck.checkTurn<DEVICE_TOTAL)
+			{
+				g_devCheck.checkCount = 0;
+				//g_devCheck.checkTurn = 0;
+				//g_devCheck.pChk = pConfig->devHead;
+				//g_devCheck.pChk = 0;
+#ifdef DEBUG_TRACE
+				Printf("CHK DEV: %d\r\n",pConfig->devHead->shortAddr);
+#endif
+				veriPckSendCallback = &CheckEachDeviceAlloc;
+
+				//if(0x01==pCurrentDev->group)
+				if(0x01== payload->msdu.p[1])
+				{
+					//pCurrentDev->attribute = DEVICE_ATTRIBUTE_MAST;
+					pConfig->devHead[pDev].attribute = DEVICE_ATTRIBUTE_MAST;
+					pConfig->mstRcd++;
+					//pCurrentDev->group = 0x0F;
+					pConfig->devHead[pDev].group = 0x0F;
+				}else
+				{
+					//pCurrentDev->attribute = DEVICE_ATTRIBUTE_SLAVE;
+					pConfig->devHead[pDev].attribute = DEVICE_ATTRIBUTE_SLAVE;
+					//pConfig->idInGroup[pCurrentDev->shortAddr] = payload->msdu.p[1]-2;    //2014/10/29
+					//pConfig->arrCnt[payload->msdu.p[1]-2]++;							//2014/10/29
+					pConfig->slvRcd++;
+					g_grInfo = 1;
+					//pCurrentDev->group = payload->msdu.p[1]-2;						//2014/10/29
+					//UartSctSend(UART_CC_DEV,pCurrentDev->group,pConfig->arrCnt[pCurrentDev->group]);  //2014/10/29
+				}
+				
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));
+			}else
+			{
+
+				if(0x01==payload->msdu.p[1])				//the linking device is a master
+				{
+					//veriPckSendCallback = &LinkedModeShortAddrAlloc;
+					//pCurrentDev->attribute = DEVICE_ATTRIBUTE_MAST;
+					pConfig->devHead[pDev].attribute = DEVICE_ATTRIBUTE_MAST;
+					pConfig->mstRcd++;
+					//pCurrentDev->group = 0x0F;
+					pConfig->devHead[pDev].group = 0x0F;
+					//pCurrentDev->shortAddr = 0x0E-FirstCheckAndAlloc();
+					//pCurrentDev->shortAddr = ipRsv.mst;
+					pConfig->devHead[pDev].shortAddr = ipRsv.mst;
+					pConfig->isIdOccupied[ipRsv.mst] = 1;
+					ipRsv.mst--;
+					pConfig->evtCnt++;
+					//pConfig->devHead[pDev].veriFlag = DEVICE_WAITIP;
+					//pConfig->totalDev++;
+				}else
+				{
+					//veriPckSendCallback = &VeriResponse;
+					//pCurrentDev->shortAddr = FirstCheckAndAlloc();
+					//pCurrentDev->shortAddr = ipRsv.sla;
+					pConfig->devHead[pDev].attribute = DEVICE_ATTRIBUTE_SLAVE;
+					//pConfig->devHead[pDev].veriFlag = DEVICE_WAITIP;
+					pConfig->devHead[pDev].shortAddr = ipRsv.sla;
+					pConfig->isIdOccupied[ipRsv.sla] = 1; 
+					ipRsv.sla++;
+					pConfig->evtCnt++;
+					//pConfig->totalDev++;
+					//pCurrentDev->attribute = DEVICE_ATTRIBUTE_SLAVE;
+					pConfig->slvRcd++;
+					g_grInfo = 1;
+					//pConfig->idInGroup[pCurrentDev->shortAddr]=payload->msdu.p[1]-2;
+					//pConfig->arrCnt[payload->msdu.p[1]-2]++;
+					//pCurrentDev->group = payload->msdu.p[1]-2;
+					//UartSctSend(UART_CC_DEV,pCurrentDev->group,pConfig->arrCnt[pCurrentDev->group]);
+				}
+				LED_INS_LINKED();
+				veriPckSendCallback = &VeriAndAllocID;
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 7+(osal_rand()&0x03));
+				
+			}
+		}else
+		{
+			VeriFailedProc();
+		}
+		break;
+
+		case 0x05:
+		switch(MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]))
+		//if(g_linkedMode)
+		{
+			case 0x00FF:
+				pDev = SearchForDevice(payload->mac.srcAddr.addr.shortAddr);
+				if(!pConfig->devHead[pDev].info)
+				{	
+					pConfig->devHead[pDev].info = 1;
+				}
+				veriPckSendCallback = &BridgedMstReadyRes;
+				callbackPara = payload;
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 6+(osal_rand()&0x07));
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 60+(osal_rand()&0x0F));
+			break;
+			
+			case 0x0020:
+			//pConfig->devHead->ready = payload->msdu.p[4];	
+			//pCurrentDev->ready = payload->msdu.p[4];
+			pDev = SearchForDevice(payload->mac.srcAddr.addr.shortAddr);
+			
+			//if(g_grInfo>0)
+			if(!pConfig->devHead[pDev].info)
+			{
+				//g_grInfo = 0;
+				pConfig->devHead[pDev].info = 1;
+				//pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr] = payload->msdu.p[3];    //2014/10/29
+				pConfig->devHead[pDev].group = payload->msdu.p[3];
+				pConfig->arrCnt[payload->msdu.p[3]]++;							//2014/10/29
+				pConfig->isIdOccupied[payload->mac.srcAddr.addr.shortAddr]= 1;
+			//		pConfig->slvRcd++;
+				//pCurrentDev->group = payload->msdu.p[1];						//2014/10/29
+				//UartSctSend(UART_CC_DEV,pCurrentDev->group,pConfig->arrCnt[pCurrentDev->group]);  //2014/10/29
+				//UartSctSend(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[payload->msdu.p[3]]);
+				//UartSctSend(UART_CC_DEV,pConfig->devHead[pDev].group,pConfig->arrCnt[payload->msdu.p[3]]);
+				MstDevInfoSend();
+			}
+			//if(pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]!=payload->msdu.p[3])
+			else if(pConfig->devHead[pDev].group!=payload->msdu.p[3])
+			{
+				//if(pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]>0)
+				if(pConfig->arrCnt[pConfig->devHead[pDev].group]>0)
+				{
+					//pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]--;
+					pConfig->arrCnt[pConfig->devHead[pDev].group]--;
+					//UartSctSend(UART_CC_DEV, pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr], pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]);
+					//UartSctSend(UART_CC_DEV,pConfig->devHead[pDev].group,pConfig->arrCnt[pConfig->devHead[pDev].group]);
+					//MstDevInfoSend();
+				}
+				
+				//pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr] = payload->msdu.p[3];
+				pConfig->devHead[pDev].group = payload->msdu.p[3];
+				pConfig->arrCnt[payload->msdu.p[3]]++;
+				//UartSctSend(UART_CC_DEV, payload->msdu.p[3], pConfig->arrCnt[payload->msdu.p[3]]);
+				MstDevInfoSend();
+				
+			}
+			//pConfig->devHead[pDev].info = 1;
+			//if(readyFlag !=payload->msdu.p[4])
+			//{
+			//	readyFlag = payload->msdu.p[4];
+			//	UartSctSend(UART_CC_READY,readyFlag,0);
+			//}			
+			veriPckSendCallback = &DeviceReadyRespond;
+			callbackPara = payload;
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 60+(osal_rand()&0x0F));
+			break;
+
+			case 0x0049:
+				switch(payload->msdu.p[3])
+				{
+					case 0x01:				//slave REL
+					//veriPckSendCallback = NULL;	
+					if((++slaCmdRel)>=9)
+					{
+						//UartSctSend(UART_CC_REL,0,0);
+						LED_INS_BRIGDE();
+						UartSctSend(UART_CC_REL,UART_CC_REL_FLA,0);
+						if(BRIDGE_MST_NORMAL==g_mstHold)
+						{
+							//veriPckSendCallback = &macRollPolingProc;
+							veriPckSendCallback = &LinkedShotShut;
+							osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 100+(osal_rand()&0x0f));
+						}else
+						{
+							osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+						}
+						slaCmdRel = 0;
+					}
+					//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 500);
+					break;
+
+					case 0x02:				//slave MODEL
+					//veriPckSendCallback = NULL;
+					if((++slaCmdModel)>=9)
+					{
+						UartSctSend(UART_CC_SLACMD,UART_CC_SLACMD_MODEL,0);
+						if(BRIDGE_MST_NORMAL==g_mstHold)
+						{
+							veriPckSendCallback = &macRollPolingProc;
+						}else
+						{
+							osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+						}
+						slaCmdModel = 0;
+					}
+					//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 500);
+					break;
+
+					case 0x03:				//slave TEST
+					//veriPckSendCallback = NULL;
+					if((++slaCmdTest)>=9)
+					{
+						UartSctSend(UART_CC_SLACMD,UART_CC_SLACMD_TEST,0);
+						if(BRIDGE_MST_NORMAL==g_mstHold)
+						{
+							veriPckSendCallback = &macRollPolingProc;
+						}else
+						{
+							osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+						}
+						slaCmdTest = 0;
+					}
+					//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 500);
+					break;
+				}
+			break;
+
+			
+		}
+		break;
+
+		case 0x04:				//slave switch the group
+		if(CMD_MODE_RF_MST==g_isMaster)
+		{
+			//pConfig->arrCnt[pConfig->idInGroup[payload->msdu.p[1]]]--; //assumed the msdu.p[1] is the short address
+#ifdef DEBUG_TRACE
+			Printf("\r\n");
+			Printf("GR %x to %x\r\n", pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],payload->msdu.p[3]);
+			Printf("arrCnt: ");
+			BufferPrint(pConfig->arrCnt, 5);
+#endif
+			pDev = SearchForDevice(payload->mac.srcAddr.addr.shortAddr);
+			//pDev->group = payload->msdu.p[3];
+			if(pConfig->devHead[pDev].group!=payload->msdu.p[3])
+			{
+				if(pConfig->arrCnt[pConfig->devHead[pDev].group]>0)
+				{
+					pConfig->arrCnt[pConfig->devHead[pDev].group]--;
+				}
+				pConfig->devHead[pDev].group = payload->msdu.p[3];
+
+				pConfig->arrCnt[pConfig->devHead[pDev].group]++;
+			/*
+				pConfig->devHead[pDev].group = payload->msdu.p[3];
+				if(pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]>0)
+				{
+					pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]--;
+				}
+				//LoadUartSendBuf(UART_CC_DEV,pConfig->idInGroup[payload->msdu.p[1]],pConfig->arrCnt[pConfig->idInGroup[payload->msdu.p[1]]]);
+				//LoadUartSendBuf(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]);
+				pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr] = payload->msdu.p[3];
+				pConfig->arrCnt[payload->msdu.p[3]]++;
+				*/
+				//Printf("GR %x to %x\r\n", pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],payload->msdu.p[3]);
+#ifdef DEBUG_TRACE
+				Printf("totalDev: %d; ",pConfig->totalDev);
+				Printf("arrCnt: ");
+				BufferPrint(pConfig->arrCnt, 5);
+				Printf("idInGroup: ");
+				BufferPrint(pConfig->idInGroup, 16);
+#endif
+				//LoadUartSendBuf(UART_CC_DEV,payload->msdu.p[3],pConfig->arrCnt[payload->msdu.p[3]]);
+				//TrigerUartSend();
+				MstDevInfoSendEx(pConfig->devHead[pDev].group,1);
+			}
+		}else if(CMD_MODE_RFLS_MST==g_isMaster)//linked shot mode switch
+		{
+			if(0xFF4B==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				g_isMaster = CMD_MODE_RFLS_SLA;
+				UartSctSend(UART_CC_MSTSW,0,0);
+			}
+		}
+		break;
+
+		case 0x06:
+		//veriPckSendCallback = NULL;	
+		if((++relCmdCnt)>=9)
+		{
+			//UartSctSend(UART_CC_REL,0,0);
+			UartSctSend(UART_CC_REL,UART_CC_REL_FLA,0);
+			if(BRIDGE_MST_NORMAL==g_mstHold)
+			{
+				veriPckSendCallback = &macRollPolingProc;
+			}else
+			{
+				osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+			}
+			relCmdCnt = 0;
+		}
+		//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 500);
+		break;
+
+		case 0x9C:
+			g_devCheck.checkTurn = SearchForDevice(payload->mac.srcAddr.addr.shortAddr);
+			
+			while(g_devCheck.checkTurn<DEVICE_TOTAL)
+			{
+				g_devCheck.checkTurn++;
+				if(DEVICE_VERIFIED==pConfig->devHead[g_devCheck.checkTurn].veriFlag)
+				{
+					break;
+				}
+			}
+
+			if(g_devCheck.checkTurn>=DEVICE_TOTAL)
+			{
+				for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+				{
+					if(DEVICE_WAITIP==pConfig->devHead[pDev].veriFlag)
+					{
+						pConfig->devHead[pDev].shortAddr= NoneUsedShortAddrSearch(pConfig->devHead[pDev].attribute);
+					}	
+				}
+				pConfig->evtCnt++;
+				veriPckSendCallback = &VeriAndAllocID;
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1+(osal_rand()&0x03));
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 3+(osal_rand()&0x03));
+			}else
+			{
+				g_devCheck.checkCount=0;
+				veriPckSendCallback = &CheckEachDeviceAlloc;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));
+			}
+
+#if 0			
+			if(!veriFlag)
+			{
+				g_devCheck.checkTurn++;
+				g_devCheck.checkCount=0;
+				//g_devCheck.pChk = g_devCheck.pChk->pNext;
+				//if(g_devCheck.checkTurn>=pConfig->totalDev)
+				//if(NULL==g_devCheck.pChk->pNext)
+				if(pCurrentDev==g_devCheck.pChk->pNext)
+				{
+					//pCurrentDev->shortAddr = g_devCheck.checkTurn;
+					//pCurrentDev->shortAddr = (DEVICE_ATTRIBUTE_SLAVE==g_devCheck.pChk->attribute)?g_devCheck.checkTurn:(0x0E-g_devCheck.checkTurn);
+					pCurrentDev->shortAddr = NoneUsedShortAddrSearch(pCurrentDev->attribute);//(DEVICE_ATTRIBUTE_SLAVE==pCurrentDev->attribute)?(pConfig->slvRcd-1):(0x0E-(pConfig->mstRcd-1));
+					pConfig->totalDev++;
+					pConfig->evtCnt++;
+#ifdef SEND_UNIFIED	
+					veriPckSendCallback = &VeriAndAllocID;
+#else
+					veriPckSendCallback = &VeriResponse;
+#endif
+					LED_INS_LINKED();
+					osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+				}else
+				{
+					//g_devCheck.pChk = pConfig->devHead;
+					g_devCheck.pChk = g_devCheck.pChk->pNext;
+					veriPckSendCallback = &CheckEachDeviceAlloc;
+					osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+				}
+				veriFlag = 1;
+			}
+#endif
+		break;
+
+		case 0x97:
+			//if(0x02==payload->msdu.p[2])
+			{
+				//UartSctSend(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]);
+				RemoveDevice(payload->mac.srcAddr.addr.shortAddr);
+				//pConfig->totalDev--;
+				pConfig->evtCnt++;
+				//if(pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]>0)
+				//{
+				//	pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]--;
+				//}
+				//UartSctSend(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]);
+				
+			}
+		break;
+
+		case 0x92:			//already have a master
+			//if(pConfig->panId==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				veriPckSendCallback = &InqureConfirm;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+				osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+				pConfig->isRflsCoordinator = RFLS_COORDINATOR_S;
+				g_mstHold = 1;
+				g_netStart = 0;
+				if(CMD_MODE_RF_MST==g_isMaster)
+				{
+					LED_INS_BRIGDE();
+				}else
+				{
+					LED_INS_LINKED();
+				}
+			}				
+		break;
+
+/*
+		case 0x96:
+			pConfig->myAddr = MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]);
+			MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+			veriPckSendCallback = NULL;
+			//veriPckSendCallback=&ReadyInfo;
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);	
+			//osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+			//g_mstHold = 1;
+		break;
+*/
+
+		case 0x9A:
+			if(1==g_mstHold)
+			{
+				osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+			}
+		break;
+
+		case 0x9B:
+			veriPckSendCallback = &ReConfirm;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+		break;
+
+			
+	}
+}
+
+unsigned char RfMcodeInvert(unsigned char src, uint8 hpMod)
+{
+	if(!src)
+	{
+		return 0;
+	}
+	
+	if(HP_FLASHMODE_OFF==hpMod)
+	{
+		//src = 0x38 -src;
+		if(src>=0xC0)
+		{
+			src = 0x38;			
+		}else if(src>=0x88)
+		{
+			src -= 0x88;
+		}else
+		{
+			src = 0x00;
+		}
+		//return (src + 0x88);
+		return (0x38-src);
+	}else
+	{
+		//src = 0x38 -src;
+		if(src>=0xA0)
+		{
+			src = 0x38;
+		}else if(src>=0x68)
+		{
+			src -= 0x68;
+		}else
+		{
+			src = 0x00;
+		}
+		//return (src + 0x68);
+		return (0x38-src);
+	}
+}
+
+#pragma optimize=none
+static void macExMcuWaitUs(uint16 usec)
+{
+    usec>>= 1;
+    while(usec--)
+    {
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+        NOP();
+    }
+}
+/***********************************************************************************
+* @fn          halMcuWaitMs
+*
+* @brief       Busy wait function. Waits the specified number of milliseconds. Use
+*              assumptions about number of clock cycles needed for the various
+*              instructions.
+*
+*              NB! This function is highly dependent on architecture and compiler!
+*
+* @param       uint16 millisec - number of milliseconds delay
+*
+* @return      none
+*/
+#pragma optimize=none
+static void macExMcuWaitMs(uint16 msec)
+{
+    while(msec--)
+        macExMcuWaitUs(1000);
+}
+
+
+
+//#define UART_SEND_DELAY()    {macExMcuWaitMs(2);}
+#define UART_SEND_DELAY()    //{macExMcuWaitMs(1);}
+//#define UART_SEND_DELAY()     {macExMcuWaitUs(1500);}
+
+#define LOW_ASCII(x)  (((x)&0x0f)>9?((((x)&0x0f)-10)+'A'):(((x)&0x0f)+'0'))
+#define HIGH_ASCII(x) (((x)>>4)>9?((((x)>>4)-10)+'A'):(((x)>>4)+'0'))
+
+//#define SN_DELAY_1   (600+90)//(600+190)//60//600
+#define SN_DELAY_1   (600+90)
+#define SN_DELAY_2 60
+static void DevParsInfo(uint8 *chicken, uint8 cnt)
+{
+	uint8 i;
+	uint8 preMask=0;
+	uint8 hpMask=0;
+	//uint8 tmp;
+	uint8 bufIndex=0;
+	//uint8 devSBuf[20];
+	uint8 devSBuf[100]={0};
+	
+	radioSet.shutter = chicken[4];
+	radioSet.apert = chicken[5];
+	radioSet.isoCmp = chicken[6];
+
+#if 0
+	bufIndex = 0;
+	devSBuf[bufIndex++] = 0xA2;
+	devSBuf[bufIndex++] = LOW_ASCII(radioSet.apert);
+	devSBuf[bufIndex++] = HIGH_ASCII(radioSet.apert);
+	devSBuf[bufIndex++] = LOW_ASCII(radioSet.shutter);
+	devSBuf[bufIndex++] = HIGH_ASCII(radioSet.shutter);
+	devSBuf[bufIndex++] = LOW_ASCII(radioSet.isoCmp);
+	devSBuf[bufIndex++] = HIGH_ASCII(radioSet.isoCmp);
+	UartBulkSend(devSBuf,bufIndex);
+	macExMcuWaitMs(1);
+#endif
+
+	bufIndex = 0;
+
+	
+	for(i=0;i<5;i++)
+	{
+		if((0x01==chicken[PARA_GR_A+i*3])&&(0xA0==chicken[PARA_GR_A+i*3+1])&&(0x04==chicken[PARA_GR_A+i*3+2]))
+		{
+			preMask |= (1<<i);			//preflash
+		}
+	}
+
+	if(preMask>0)	
+	{
+		if(!cnt)
+		{
+			bufIndex = 0;
+			devSBuf[bufIndex++] = 0xAA;			//
+			devSBuf[bufIndex++] = 6;	
+			devSBuf[bufIndex++] = UART_SLAVE_PRE;//SAI_INFO_HEAD;//0xA2;				
+/*
+			devSBuf[bufIndex++] = LOW_ASCII(radioSet.apert);
+			devSBuf[bufIndex++] = HIGH_ASCII(radioSet.apert);
+			devSBuf[bufIndex++] = LOW_ASCII(radioSet.shutter);
+			devSBuf[bufIndex++] = HIGH_ASCII(radioSet.shutter);
+			devSBuf[bufIndex++] = LOW_ASCII(radioSet.isoCmp);
+			devSBuf[bufIndex++] = HIGH_ASCII(radioSet.isoCmp);
+*/
+			devSBuf[bufIndex++] = radioSet.apert;
+			devSBuf[bufIndex++] = radioSet.shutter;
+			devSBuf[bufIndex++] = radioSet.isoCmp;
+			devSBuf[bufIndex++] = preMask;
+
+			devSBuf[bufIndex++] = CalcSum(devSBuf+2,5);
+			
+			UartBulkSend(devSBuf,bufIndex);
+			//macExMcuWaitMs(1);
+			UART_SEND_DELAY();
+
+#ifdef DEBUG_NOTRACE
+			LED_GREEN_TOGGLE();
+#endif
+
+			g_flaStatus = 0x01;
+#if 0			
+			bufIndex = 0;
+			
+			g_flaStatus = 0x01;
+			devSBuf[bufIndex++] = 0xAA;
+			devSBuf[bufIndex++] = 4;	
+			devSBuf[bufIndex++] = 0xB4;			/*0xB4*/
+			//devSBuf[bufIndex++] = '3';
+			switch(preMask)
+			{
+				case 0x07:
+					//devSBuf[bufIndex++] = 0xB4;
+					//devSBuf[bufIndex++] = '3';
+					devSBuf[bufIndex++] = '2';
+				break;
+
+				case 0x01:
+					//devSBuf[bufIndex++] = 0xB4;
+					//devSBuf[bufIndex++] = '3';
+					devSBuf[bufIndex++] = '6';
+				break;
+
+				case 0x02:
+					//devSBuf[bufIndex++] = 0xB4;
+					//devSBuf[bufIndex++] = '3';
+					devSBuf[bufIndex++] = 'A';
+				break;
+
+				case 0x04:
+					//devSBuf[bufIndex++] = 0xB4;
+					//devSBuf[bufIndex++] = '3';
+					devSBuf[bufIndex++] = 'E';
+				break;
+
+				case 0x08:
+					//devSBuf[bufIndex++] = 0xB4;
+					//devSBuf[bufIndex++] = '3';
+					devSBuf[bufIndex++] = 'B';
+				break;
+
+				//case 0x0A:
+				case 0x10:
+					//devSBuf[bufIndex++] = 0xB4;
+					//devSBuf[bufIndex++] = '3';
+					devSBuf[bufIndex++] = 'F';
+				break;
+				
+			}
+
+			tmp = SN_DELAY_1&0xFF;
+			devSBuf[bufIndex++] = LOW_ASCII(tmp);//devSBuf[bufIndex++] = '0'+(tmp&0x0f);
+			devSBuf[bufIndex++] = HIGH_ASCII(tmp);//devSBuf[bufIndex++] = '0'+(tmp>>4);
+			tmp = SN_DELAY_1>>8;
+			devSBuf[bufIndex++] = LOW_ASCII(tmp);//'0'+(tmp&0x0f);
+			devSBuf[bufIndex++] = HIGH_ASCII(tmp);//'0'+(tmp>>4);
+			UartBulkSend(devSBuf,bufIndex);
+#endif
+		}
+	}else				//not preflash
+	{
+		if(0==cnt)
+		{
+			bufIndex = 0;
+			//devSBuf[bufIndex++] = 0xA2;
+			devSBuf[bufIndex++] = 0xAA;
+			devSBuf[bufIndex++] = 0x00;
+			devSBuf[bufIndex++] = UART_SLAVE_FLA;//SAI_INFO_HEAD;
+			
+/*
+			devSBuf[bufIndex++] = LOW_ASCII(radioSet.apert);
+			devSBuf[bufIndex++] = HIGH_ASCII(radioSet.apert);
+			devSBuf[bufIndex++] = LOW_ASCII(radioSet.shutter);
+			devSBuf[bufIndex++] = HIGH_ASCII(radioSet.shutter);
+			devSBuf[bufIndex++] = LOW_ASCII(radioSet.isoCmp);
+			devSBuf[bufIndex++] = HIGH_ASCII(radioSet.isoCmp);
+*/
+			//devSBuf[bufIndex++] = radioSet.adept;
+			devSBuf[bufIndex++] = radioSet.apert;
+			devSBuf[bufIndex++] = radioSet.shutter;
+			devSBuf[bufIndex++] = radioSet.isoCmp;
+
+			g_flaStatus = 0x02;
+			//bufIndex = 0;
+			//devSBuf[bufIndex++] = 0xA6;
+			for(i=0;i<5;i++)
+			{
+				if((0x06==chicken[PARA_GR_A+i*3+2])||(0x05==chicken[PARA_GR_A+i*3+2]))
+				{
+					hpMask |= (1<<i);
+				}
+			}
+			for(i=0;i<5;i++)
+			{
+				//if((0x06==chicken[PARA_GR_A+i*3+2])||(0x05==chicken[PARA_GR_A+i*3+2]))
+				//{
+				//	hpMask |= (1<<i);
+				//}
+				if((0x01==chicken[PARA_GR_A+i*3])&&(chicken[PARA_GR_A+i*3+1]>0))
+				{
+					devSBuf[bufIndex++] = 0x00 |((hpMask>0)<<7);
+					devSBuf[bufIndex++] = chicken[PARA_GR_A+i*3+1];
+				}else if((0x02==chicken[PARA_GR_A+i*3])&&(chicken[PARA_GR_A+i*3+1]>0))
+				{
+					devSBuf[bufIndex++] = 0x01|((hpMask>0)<<7);
+					devSBuf[bufIndex++] = chicken[PARA_GR_A+i*3+1];
+				}else if((0x06==chicken[PARA_GR_A+i*3])&&(chicken[PARA_GR_A+i*3+1]>0))
+				{
+					devSBuf[bufIndex++] = 0x10;					//moulding
+					devSBuf[bufIndex++] = 0x00;
+				}else if(0x08==chicken[PARA_GR_A+i*3])
+				{
+					devSBuf[bufIndex++] = WORKINGMODE_EXTA;
+					devSBuf[bufIndex++] = chicken[PARA_GR_A+i*3+1];	
+				}
+				else 
+				{
+					devSBuf[bufIndex++] = 0x07;
+					devSBuf[bufIndex++] = 0x00;
+					//devSBuf[bufIndex++] = 0x00;
+				}
+				//if((0x06==chicken[PARA_GR_A+i*3+2])||(0x05==chicken[PARA_GR_A+i*3+2]))
+				//{
+				//	hpMask |= (1<<i);
+				//}
+			}
+
+			//devSBuf[bufIndex++] = CalcSum(devSBuf+2,bufIndex-3);
+			devSBuf[bufIndex++] = CalcSum(devSBuf+2,bufIndex-2);
+
+			devSBuf[1] = bufIndex-2;
+			
+			UartBulkSend(devSBuf,bufIndex);
+			//macExMcuWaitMs(1);
+			UART_SEND_DELAY();
+
+#ifdef DEBUG_NOTRACE
+			LED_GREEN_TOGGLE();
+#endif
+			
+			///bufIndex = 0;
+			
+			g_flaStatus = 0x02;
+			//bufIndex = 0;
+			//devSBuf[bufIndex++] = 0xA6;
+			//for(i=0;i<5;i++)
+			//{
+				//if((0x01==chicken[PARA_GR_A+i*3])&&(chicken[PARA_GR_A+i*3+1]>0))
+				//{
+				//	devSBuf[bufIndex++] = 0x00;
+				//}else if((0x02==chicken[PARA_GR_A+i*3])&&(chicken[PARA_GR_A+i*3+1]>0))
+				//{
+				//	devSBuf[bufIndex++] = 0x01;
+				//}else if((0x06==chicken[PARA_GR_A+i*3])&&(chicken[PARA_GR_A+i*3+1]>0))
+				//{
+				//	devSBuf[bufIndex++] = 0x05;					//moulding
+				//}else 
+				//{
+				//	devSBuf[bufIndex++] = 0x07;
+					//devSBuf[bufIndex++] = 0x00;
+				//}
+			//}
+			//devSBuf[bufIndex++] = '0';
+			//devSBuf[bufIndex++] = '0';
+			//devSBuf[bufIndex++] = '0';
+			//devSBuf[bufIndex++] = '0';			//Multi parameter
+
+			//devSBuf[bufIndex++] = 0x00;			//20141028
+			//devSBuf[bufIndex++] = 0x00;
+
+			//UartBulkSend(devSBuf,bufIndex);
+
+			//halMcuWaitMs(1);
+			//UpDelay(11);
+			//macExMcuWaitMs(1);
+			//UART_SEND_DELAY();
+
+			//bufIndex = 0;
+
+			//for(i=0;i<5;i++)
+			//{
+
+				//if(chicken[PARA_GR_A+i*3+2]>0x04)
+				//if((0x06==chicken[PARA_GR_A+i*3+2])||(0x05==chicken[PARA_GR_A+i*3+2]))
+				//{
+				//	hpMask |= (1<<i);
+				//}
+			//}
+
+			if(hpMask>0)
+			{
+				g_hpFlag = HP_FLASHMODE_ON;
+			}else
+			{
+				g_hpFlag = HP_FLASHMODE_OFF;
+			}
+
+
+			//devSBuf[bufIndex++] = 0xB2;
+#if 0
+
+			for(i=0;i<5;i++)
+			{
+				if(0x01==chicken[PARA_GR_A+i*3])
+				{
+					devSBuf[bufIndex++] = LOW_ASCII(chicken[PARA_GR_A+i*3+1]);
+					devSBuf[bufIndex++] = HIGH_ASCII(chicken[PARA_GR_A+i*3+1]);
+					//devSBuf[bufIndex++] = LOW_ASCII(0x85);
+					//devSBuf[bufIndex++] = HIGH_ASCII(0x85);
+				}else if(0x02==chicken[PARA_GR_A+i*3])
+				{
+					tmp = RfMcodeInvert(chicken[PARA_GR_A+i*3+1],g_hpFlag)+1;
+					devSBuf[bufIndex++] = LOW_ASCII(tmp);
+					devSBuf[bufIndex++] = HIGH_ASCII(tmp);
+				}else 
+				{
+					devSBuf[bufIndex++] = 0x00;
+					devSBuf[bufIndex++] = 0x00;
+				}
+			}
+
+		//devSBuf[bufIndex++] = 0x00;		//20141028
+		//devSBuf[bufIndex++] = 0x00;
+
+		UartBulkSend(devSBuf,bufIndex);
+		
+		//halMcuWaitMs(1);
+		//macExMcuWaitMs(1);
+		UART_SEND_DELAY();
+
+		bufIndex = 0;
+
+		devSBuf[bufIndex++] = 0xB4;
+
+/*
+		for(i=0;i<5;i++)
+		{
+
+			if(chicken[PARA_GR_A+i*3+2]>0x04)
+			{
+				hpMask |= (1<<i);
+			}
+		}
+*/
+
+		if(g_hpFlag>0)
+		{
+			devSBuf[bufIndex++] = '5';
+			devSBuf[bufIndex++] = '2';
+			//g_hpFlag = 1;
+		}else
+		{
+			devSBuf[bufIndex++] = 'D';
+			devSBuf[bufIndex++] = '2';
+			//g_hpFlag = 0;
+		}
+
+		devSBuf[bufIndex++] = LOW_ASCII(SN_DELAY_2&0xff);
+		devSBuf[bufIndex++] = HIGH_ASCII(SN_DELAY_2&0xff);
+
+		devSBuf[bufIndex++] = LOW_ASCII(SN_DELAY_2>>8);
+		devSBuf[bufIndex++] = HIGH_ASCII(SN_DELAY_2>>8);
+
+		UartBulkSend(devSBuf,bufIndex);	
+#endif
+
+		
+	}
+	
+}
+}
+
+static unsigned char WlMultiTimeConver(unsigned char rec)
+{
+	unsigned char recTmp;
+	recTmp = rec;
+	//recTmp =  ((rec>>4)*4+((rec&0x0f) - 0x08));
+	//recTmp =  ((rec>>4)*4+(rec&0x0f));
+	if(recTmp<20)
+	{
+		return recTmp;
+	}else if(recTmp<26)
+	{
+		return (20 + 5*(recTmp-20));
+	}else 
+	{
+		return (50+10*(recTmp-26));
+	}
+}
+
+static void MultiInfoPars(uint8 *chicken, uint8 cnt)
+{
+	//uint8 tmp=0;
+	uint8 i=0;
+	uint8 bufIndex=0;
+	uint8 devSBuf[20];
+	
+	if(0==cnt)
+	{
+		radioSet.shutter = chicken[4];
+		radioSet.apert = chicken[5];
+		radioSet.isoCmp = chicken[6];
+
+		g_flaStatus = 0x02;
+		g_hpFlag = HP_FLASHMODE_OFF;
+
+#if 1
+		bufIndex = 0;
+		//devSBuf[bufIndex++] = 0xA2;
+		//devSBuf[bufIndex++] = SAI_INFO_HEAD;
+		devSBuf[bufIndex++] = 0xAA;
+		devSBuf[bufIndex++] = 0;
+		devSBuf[bufIndex++] = UART_SLAVE_MULFLA;
+		//devSBuf[bufIndex++] = LOW_ASCII(radioSet.apert);
+		//devSBuf[bufIndex++] = HIGH_ASCII(radioSet.apert);
+		//devSBuf[bufIndex++] = LOW_ASCII(radioSet.shutter);
+		//devSBuf[bufIndex++] = HIGH_ASCII(radioSet.shutter);
+		//devSBuf[bufIndex++] = LOW_ASCII(radioSet.isoCmp);
+		//devSBuf[bufIndex++] = HIGH_ASCII(radioSet.isoCmp);
+		devSBuf[bufIndex++] = radioSet.adept;
+		devSBuf[bufIndex++] = radioSet.shutter;
+		devSBuf[bufIndex++] = radioSet.isoCmp;
+
+		for(i=0;i<5;i++)
+		{
+			if(0x02==chicken[PARA_MULTI_A+i*2+1])
+			{
+				devSBuf[bufIndex++] = WORKINGMODE_MULTI;
+				devSBuf[bufIndex++] = chicken[PARA_MULTI_A+i*2];
+			}else
+			{
+				devSBuf[bufIndex++] = 0x07;
+				devSBuf[bufIndex++] = 0x00;
+			}
+			
+		}
+
+		devSBuf[bufIndex++] = chicken[PARA_MULTI_HZ];
+		devSBuf[bufIndex++] = chicken[PARA_MULTI_TM];
+
+		//devSBuf[bufIndex++] = CalcSum(devSBuf+2,bufIndex-3);
+		devSBuf[bufIndex++] = CalcSum(devSBuf+2,bufIndex-2);
+
+		devSBuf[1] = bufIndex-2;
+
+		UartBulkSend(devSBuf,bufIndex);
+
+		UART_SEND_DELAY();
+		
+
+		
+//		UartBulkSend(devSBuf,bufIndex);	
+
+		//macExMcuWaitMs(1);		
+//		UART_SEND_DELAY();
+#else
+
+		g_flaStatus = 0x02;
+		bufIndex = 0;
+		devSBuf[bufIndex++] = 0xA6;
+		devSBuf[bufIndex++] = 0x02;
+		devSBuf[bufIndex++] = 0x02;
+		devSBuf[bufIndex++] = 0x02;
+		devSBuf[bufIndex++] = 0x07;
+		devSBuf[bufIndex++] = 0x07;
+
+		//tmp = WlMultiFrqConver(chicken[PARA_MULTI_HZ]);
+		tmp = chicken[PARA_MULTI_HZ];
+		devSBuf[bufIndex++] = LOW_ASCII(tmp);
+		devSBuf[bufIndex++] = HIGH_ASCII(tmp);
+
+		tmp = WlMultiTimeConver(chicken[PARA_MULTI_TM]);
+		if(!tmp)
+		{
+			tmp = 100;
+		}
+		devSBuf[bufIndex++] = LOW_ASCII(tmp);
+		devSBuf[bufIndex++] = HIGH_ASCII(tmp);
+
+		//devSBuf[bufIndex++] = 0X00;
+		//devSBuf[bufIndex++] = 0X00;
+
+		UartBulkSend(devSBuf,bufIndex);	
+
+		//macExMcuWaitMs(1);
+		UART_SEND_DELAY();
+
+	       bufIndex = 0;
+		devSBuf[bufIndex++] = 0xB2;
+
+		for(i=0;i<3;i++)
+		{
+			tmp = RfMcodeInvert(chicken[PARA_MULTI_A+i*2],HP_FLASHMODE_OFF)+1;
+			devSBuf[bufIndex++] = LOW_ASCII(tmp);
+			devSBuf[bufIndex++] = HIGH_ASCII(tmp);
+		}
+
+		for(i=0;i<2;i++)
+		{
+			tmp = 0;
+			devSBuf[bufIndex++] = LOW_ASCII(tmp);
+			devSBuf[bufIndex++] = HIGH_ASCII(tmp);
+		}
+
+		//devSBuf[bufIndex++] = 0X00;
+		//devSBuf[bufIndex++] = 0X00;
+
+		UartBulkSend(devSBuf,bufIndex);	
+		//macExMcuWaitMs(1);
+		UART_SEND_DELAY();
+
+		bufIndex = 0;
+
+		devSBuf[bufIndex++] = 0xB4;
+
+		devSBuf[bufIndex++] = 'D';
+		devSBuf[bufIndex++] = '2';
+
+		devSBuf[bufIndex++] = LOW_ASCII(SN_DELAY_2&0xff);
+		devSBuf[bufIndex++] = HIGH_ASCII(SN_DELAY_2&0xff);
+
+		devSBuf[bufIndex++] = LOW_ASCII(SN_DELAY_2>>8);
+		devSBuf[bufIndex++] = HIGH_ASCII(SN_DELAY_2>>8);
+
+		UartBulkSend(devSBuf,bufIndex);	
+
+		g_hpFlag = HP_FLASHMODE_OFF;
+#endif
+
+	}
+}
+
+
+
+DEVICE_DEFINE static void devJoinNetProc(macRx_t *payload)
+{
+	static int8 rcvCnt=0;
+	static int8 flaFlag=0;
+	switch(payload->msdu.p[0])
+	{
+		case 0x92:
+			veriPckSendCallback = &InqureConfirm;
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 2);	
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));	
+		break;
+
+		case 0x96:
+			//pConfig->myAddr = MAKEWORD(mpdu[1],mpdu[2]);
+			pConfig->myAddr = MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]);
+			//MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+			//macParameterSet();
+			macSetShortAddr(pConfig->myAddr);
+			g_devLinkFlag = 1;
+			//UartSendByte(0xA4);
+			LED_INS_LINKED();
+			UartSctSend(UART_SLAVE_LINKED,0x01,0);		//2015/10/25 for debug
+			UART_INT_SET();				//2015/10/25 for debug
+			veriPckSendCallback=&ReadyInfo;
+			//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 7+(osal_rand()&0x03));
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 7+(osal_rand()&0x0f));
+			//osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,2000);
+		break;
+
+		case 0x9B:
+			if(g_devLinkFlag>0)
+			{
+				veriPckSendCallback = &ReConfirm;
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x0F));	
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+			}
+		break;
+
+		case 0x90:
+			//SIGNAL = !SIGNAL;
+			//UartSendByte(0xAA);
+#if 1
+			if(0x0000==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				if(flaFlag>0)
+				{
+					flaFlag = 0;
+					return;
+				}
+				macExRxDisable();
+				if(0x01==g_flaStatus)
+				{
+					//UartSendByte(0xAA);
+					//UartSendByte(0x00);			//preflash
+					UART_INT_SET();
+					
+#ifdef DEBUG_NOTRACE
+					LED_RED_TOGGLE();
+#endif
+					g_flaStatus = 0;
+					rcvCnt = 0;
+				}else if(0x02==g_flaStatus)
+				{
+				/*
+					if(g_hpFlag>0)
+					{
+						UartSendByte(0xAC);
+						UartSendByte(0x00);		//high speed
+					}else
+					{
+						UartSendByte(0xAB);
+						UartSendByte(0x00);
+					}
+				*/
+					UART_INT_SET();
+				
+#ifdef DEBUG_NOTRACE
+					LED_RED_TOGGLE();
+#endif
+					g_flaStatus = 0;
+					rcvCnt = 0;
+				}
+				macExRxEnable();
+				//rcvCnt = 0;								
+			}else if(0x03e8==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				//macDelay(2);					//2015/7/1
+				//macPreDelay(100);
+				macExRxDisable();
+				if(0x01==g_flaStatus)
+				{
+					//UartSendByte(0xAA);
+					//UartSendByte(0x00);
+					//UART_INT_SET();
+					UartSctSend(UART_SLAVE_PREFLA, 0,0);
+#ifdef DEBUG_NOTRACE
+					LED_RED_TOGGLE();
+#endif
+					g_flaStatus = 0;
+					rcvCnt = 0;
+				}else if(0x02==g_flaStatus)
+				{
+					macDelay(1);
+					if(g_hpFlag>0)
+					{
+						//UartSendByte(0xAC);
+						//UartSendByte(0x00);
+						UART_INT_SET();
+#ifdef DEBUG_NOTRACE
+						LED_RED_TOGGLE();
+#endif
+					}else
+					{
+						//UartSendByte(0xAB);
+						//UartSendByte(0x00);
+						UART_INT_SET();
+#ifdef DEBUG_NOTRACE
+						LED_RED_TOGGLE();
+#endif
+					}
+					g_flaStatus = 0;
+					rcvCnt = 0;
+				}
+				macExRxEnable();
+				//rcvCnt = 0;
+			}else if(0x07d0==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{	
+				//macDelay(3);    //2015/7/1//debug		//7DII
+				//macDelay(2);
+				macDelay(1);
+				macExRxDisable();
+				//LED_GREEN_TOGGLE();
+				if(0x01==g_flaStatus)
+				{
+					//UartSendByte(0xAA);
+					//UartSendByte(0x00);
+					//UART_INT_SET();
+					UartSctSend(UART_SLAVE_PREFLA, 0,0);
+#ifdef DEBUG_NOTRACE
+					LED_RED_TOGGLE();
+#endif
+					g_flaStatus = 0;
+					rcvCnt = 0;
+				}else if(0x02==g_flaStatus)
+				{
+				/*
+					if(g_hpFlag>0)
+					{
+						UartSendByte(0xAC);
+						UartSendByte(0x00);
+					}else
+					{
+						UartSendByte(0xAB);
+						UartSendByte(0x00);
+					}
+				*/
+					//macDelay(2);
+					macDelay(2);
+					UART_INT_SET();
+#ifdef DEBUG_NOTRACE
+					LED_RED_TOGGLE();
+#endif
+					g_flaStatus = 0;
+					rcvCnt = 0;
+				}
+				macExRxEnable();
+				flaFlag = 1;
+			}
+			//rcvCnt = 0;
+			//UartBulkSend("abcdefghij",sizeof("abcdefghij")-1);
+#else
+		g_flaStatus = 0;
+#endif
+		break;
+
+		case 0x05:
+			if(g_devLinkFlag>0)
+			{
+				switch(MAKEWORD(payload->msdu.p[3],payload->msdu.p[4]))
+				{
+					case 0x3200:
+					case 0x3300:
+					veriPckSendCallback=&ReadyInfo;
+					osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);
+					break;
+
+					case 0x3201:
+					veriPckSendCallback = NULL;
+					break;
+					
+					
+				}
+			}
+			/*
+			if(0x3200==MAKEWORD(payload->msdu.p[3],payload->msdu.p[4]))
+			{
+				veriPckSendCallback=&ReadyInfo;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);	
+			}*/
+		break;
+
+		case 0x9A:
+			//osal_stop_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT);
+			/*
+			if(payload->msdu.p[2]>0)
+			{
+				osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000+(osal_rand()&0xFF));
+			}else if(g_devLinkFlag>0)
+			{
+				g_devLinkFlag = 0;
+				UartSendByte(0xA5);
+				veriPckSendCallback=&macRollPolingProc;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200+(osal_rand()&0xFF));	
+			}*/
+			if(g_devLinkFlag>0)
+			{
+				if(payload->msdu.p[2]>0)
+				{
+					osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000+(osal_rand()&0xFF));
+				}else
+				{
+					g_devLinkFlag = 0;
+					//UartSendByte(0xA5);
+					LED_INS_UNLINK();
+					veriPckSendCallback=&macRollPolingProc;
+					osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200+(osal_rand()&0xFF));	
+				}				
+			}
+			//g_expireCounter = 0;
+			//HalUARTWrite(0,&payload->msdu.p[0],1);
+		break;
+
+		case 0x97:
+			if(0x0FFE==MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]))
+			{
+				g_devLinkFlag = 0;
+				//UartSendByte(0xA5);
+				LED_INS_UNLINK();
+				UartSctSend(UART_SLAVE_LINKED,0x00,0);
+				//MAC_RADIO_SET_SHORT_ADDR(ADDR);
+				//HAL_DISABLE_INTERRUPTS();
+				//macLowLevelReset();
+				//HAL_ENABLE_INTERRUPTS();
+				//MAC_RADIO_MCU_INIT();
+				//MAC_RADIO_FLUSH_RX_FIFO();
+				//MAC_RADIO_FLUSH_TX_FIFO();
+				//macLowLevelInit();
+				osal_stop_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE);
+				veriPckSendCallback=&macRollPolingProc;
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200);	
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, osal_rand()&0xFF);
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200+pConfig->myAddr*200);
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200+(osal_rand()&0xFF));
+				//asm("LJMP 0x800\n");
+			}
+		break;
+
+		case 0x17:					//preflash and flash inform
+			//UartSendByte(0xBB);
+			if(0xFF47==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				//if(!rcvCnt)
+				//{
+					macExRxDisable();
+					DevParsInfo(&(payload->msdu.p[0]),rcvCnt++);
+					macExRxEnable();
+					osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000+(osal_rand()&0xFF));
+					//rcvCnt++;
+				//}								
+			}
+			//UartBulkSend("ABCDEFGHIJ",sizeof("ABCDEFGHIJ")-1);
+		break;
+
+		case 0x0F:
+			if(0xFF48==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				macExRxDisable();
+				MultiInfoPars(&(payload->msdu.p[0]),rcvCnt++);
+				macExRxEnable();
+				osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000+(osal_rand()&0xFF));
+			}
+		break;
+
+		
+	}
+}
+
+
+static uint8 macMallocNoMac(void)
+{
+	uint8 pDev=0;
+	for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+	{
+		if(DEVICE_UNVERIFIED==pConfig->devHead[pDev].veriFlag)
+		{
+			return pDev;
+		}
+	}
+	return DEVICE_TOTAL;
+}
+
+static void MstBridgeHandle(macRx_t *payload)
+{
+
+	static uint8 relCmdCnt=0; 
+	uint16 tm;
+	//DeviceInfo *pDev;
+	uint8 pDev;
+	
+	switch(payload->msdu.p[0])
+	{
+		case 0x9B:
+			veriPckSendCallback = &ReConfirm;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+		break;
+
+		case 0x05:
+			switch(MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]))
+			{
+				case 0x0020:
+					pDev = SearchForDevice(payload->mac.srcAddr.addr.shortAddr);
+					if(pDev>=DEVICE_TOTAL)
+					{
+						//NoneUsedShortAddrSearch()
+						pDev = macMallocNoMac();
+						pConfig->isIdOccupied[payload->mac.srcAddr.addr.shortAddr]= 1;
+						pConfig->devHead[pDev].shortAddr = payload->mac.srcAddr.addr.shortAddr;
+						pConfig->devHead[pDev].veriFlag = DEVICE_VERIFIED;
+						pConfig->devHead[pDev].group = payload->msdu.p[3]; 
+						pConfig->arrCnt[pConfig->devHead[pDev].group]++;
+						pConfig->slvRcd++;
+						pConfig->totalDev++;
+						MstDevInfoSend();
+					}else if(pConfig->devHead[pDev].group!=payload->msdu.p[3])
+					{
+						if(pConfig->arrCnt[pConfig->devHead[pDev].group]>0)
+						{
+							pConfig->arrCnt[pConfig->devHead[pDev].group]--;
+						}
+						pConfig->devHead[pDev].group = payload->msdu.p[3];
+						pConfig->arrCnt[pConfig->devHead[pDev].group]++;
+						MstDevInfoSend();
+					}/*
+					//UartSctSend(payload->mac.srcAddr.addr.shortAddr,payload->msdu.p[3],pConfig->arrCnt[payload->msdu.p[3]]);
+					if(!pConfig->isIdOccupied[payload->mac.srcAddr.addr.shortAddr])
+					{
+#ifdef DEBUG_TRACE
+						Printf("BRG %x,%x",payload->mac.srcAddr.addr.shortAddr,payload->msdu.p[3]);
+#endif
+						//UartSctSend(payload->mac.srcAddr.addr.shortAddr,payload->msdu.p[3],pConfig->arrCnt[payload->msdu.p[3]]);
+						pConfig->isIdOccupied[payload->mac.srcAddr.addr.shortAddr]= 1;
+						macMallocNewDev(NULL);
+						//UartSctSend(payload->mac.srcAddr.addr.shortAddr,payload->msdu.p[3],pConfig->arrCnt[payload->msdu.p[3]]);
+						pCurrentDev->shortAddr = payload->mac.srcAddr.addr.shortAddr;
+						pCurrentDev->veriFlag = DEVICE_VERIFIED;
+						pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr] = payload->msdu.p[3];    //2014/10/29
+						pConfig->arrCnt[payload->msdu.p[3]]++;							//2014/10/29
+						pConfig->slvRcd++;
+						pConfig->totalDev++;
+						//pCurrentDev->group = payload->msdu.p[1];						//2014/10/29
+						//UartSctSend(UART_CC_DEV,pCurrentDev->group,pConfig->arrCnt[pCurrentDev->group]);  //2014/10/29
+						//UartSctSend(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[payload->msdu.p[3]]);
+						MstDevInfoSend();
+						//UartSctSend(payload->mac.srcAddr.addr.shortAddr,payload->msdu.p[3],pConfig->arrCnt[payload->msdu.p[3]]);
+						//veriPckSendCallback=&ReadyInfo;
+						//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);	
+					}*/
+					//UartSctSend(UART_CC_READY,payload->msdu.p[4],0);
+					veriPckSendCallback=&ReadyInfo;
+					//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);	
+					//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10+(osal_rand()&0x07));	
+					osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 60+(osal_rand()&0x07));	
+				break;
+			}/*
+			if(0x3200==MAKEWORD(payload->msdu.p[3],payload->msdu.p[4]))
+			{
+				if(!pConfig->isIdOccupied[payload->mac.srcAddr.addr.shortAddr])
+				{
+					macMallocNewDev(payload->mac.srcAddr.addr.extAddr);
+					pCurrentDev->shortAddr = payload->mac.srcAddr.addr.shortAddr;
+					pCurrentDev->veriFlag = DEVICE_VERIFIED;
+					pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr] = payload->msdu.p[3];    //2014/10/29
+					pConfig->arrCnt[payload->msdu.p[3]]++;							//2014/10/29
+					pConfig->slvRcd++;
+					pConfig->totalDev++;
+					pConfig->isIdOccupied[payload->mac.srcAddr.addr.shortAddr]= 1;
+					//pCurrentDev->group = payload->msdu.p[1];						//2014/10/29
+					//UartSctSend(UART_CC_DEV,pCurrentDev->group,pConfig->arrCnt[pCurrentDev->group]);  //2014/10/29
+					UartSctSend(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[payload->msdu.p[3]]);
+				}
+				//veriPckSendCallback=&ReadyInfo;
+				//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);	
+			}*/
+		break;
+
+		case 0x06:
+		veriPckSendCallback = NULL;
+		if((++relCmdCnt)>=9)
+		{
+			//UartSctSend(UART_CC_REL,0,0);
+			UartSctSend(UART_CC_REL,UART_CC_REL_FLA,0);
+			relCmdCnt = 0;
+		}
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 500);
+		break;
+
+		case 0x9A:
+			if(1==g_mstHold)
+			{
+				if(payload->msdu.p[2]>0)
+				{
+					osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+				}else
+				{
+					if(payload->mac.srcAddr.addr.shortAddr>pConfig->myAddr)
+					{
+						tm = 50+(payload->mac.srcAddr.addr.shortAddr-pConfig->myAddr-1)*1000;
+					}else
+					{
+						tm = 50;
+					}
+					osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,tm);
+				}
+			}
+		break;		
+
+		case 0x96:
+			pConfig->myAddr = MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]);
+			MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+			//veriPckSendCallback = NULL;
+			veriPckSendCallback=&MstBridgeInfoInqure;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));	
+			//osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+			//g_mstHold = 1;
+		break;
+
+		case 0x97:
+			if(0x0FFE==MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]))
+			{
+				if(payload->mac.srcAddr.addr.shortAddr>pConfig->myAddr)
+				{
+					tm = 50+(payload->mac.srcAddr.addr.shortAddr-pConfig->myAddr-1)*1000;
+				}else
+				{
+					tm = 50;
+				}
+				osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,tm);
+			}else
+			{
+				//when exit the network, the device send information to the coordinater, it is a problem to handle this
+				RemoveDevice(payload->mac.srcAddr.addr.shortAddr);		
+				//pConfig->totalDev--;
+				pConfig->evtCnt++;
+			}
+		break;
+
+		case 0x04:
+		if(CMD_MODE_RF_MST==g_isMaster)
+		{
+			//pConfig->arrCnt[pConfig->idInGroup[payload->msdu.p[1]]]--; //assumed the msdu.p[1] is the short address
+#ifdef DEBUG_TRACE
+			Printf("\r\n");
+			Printf("GR %x to %x\r\n", pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],payload->msdu.p[3]);
+			Printf("arrCnt: ");
+			BufferPrint(pConfig->arrCnt, 5);
+#endif
+			pDev = SearchForDevice(payload->mac.srcAddr.addr.shortAddr);
+			if(pConfig->devHead[pDev].group!=payload->msdu.p[3])
+			{
+				//pDev->group = payload->msdu.p[3];
+				if(pConfig->arrCnt[pConfig->devHead[pDev].group]>0)
+				{
+					pConfig->arrCnt[pConfig->devHead[pDev].group]--;
+				}
+				pConfig->devHead[pDev].group = payload->msdu.p[3];
+				pConfig->arrCnt[pConfig->devHead[pDev].group]++;
+				/*
+				if(pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]>0)
+				{
+					pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]--;
+				}
+				//LoadUartSendBuf(UART_CC_DEV,pConfig->idInGroup[payload->msdu.p[1]],pConfig->arrCnt[pConfig->idInGroup[payload->msdu.p[1]]]);
+				//LoadUartSendBuf(UART_CC_DEV,pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],pConfig->arrCnt[pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr]]);
+				//MstDevInfoSend();
+				pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr] = payload->msdu.p[3];
+				pConfig->arrCnt[payload->msdu.p[3]]++;
+				*/
+				//Printf("GR %x to %x\r\n", pConfig->idInGroup[payload->mac.srcAddr.addr.shortAddr],payload->msdu.p[3]);
+#ifdef DEBUG_TRACE
+				Printf("totalDev: %d; ",pConfig->totalDev);
+				Printf("arrCnt: ");
+				BufferPrint(pConfig->arrCnt, 5);
+				Printf("idInGroup: ");
+				BufferPrint(pConfig->idInGroup, 16);
+#endif
+				//LoadUartSendBuf(UART_CC_DEV,payload->msdu.p[3],pConfig->arrCnt[payload->msdu.p[3]]);
+				//TrigerUartSend();
+				//MstDevInfoSend();
+				MstDevInfoSendEx(pConfig->devHead[pDev].group,1);
+			}
+		}		else if(CMD_MODE_RFLS_MST==g_isMaster)//linked shot mode switch
+		{
+			if(0xFF4B==MAKEWORD(payload->msdu.p[2],payload->msdu.p[3]))
+			{
+				g_isMaster = CMD_MODE_RFLS_SLA;
+				UartSctSend(UART_CC_MSTSW,0,0);
+			}
+		}
+		break;
+
+		
+	}
+}
+
+#if 0
+DEVICE_DEFINE static void devJoinNetProc(macRx_t *payload)
+{
+	switch(payload->msdu.p[0])
+	{
+		case 0x92:
+			veriPckSendCallback = &InqureConfirm;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);		
+		break;
+
+		case 0x96:
+			//pConfig->myAddr = MAKEWORD(mpdu[1],mpdu[2]);
+			pConfig->myAddr = MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]);
+			MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+			veriPckSendCallback=&ReadyInfo;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);
+			//osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,2000);
+		break;
+
+		case 0x9B:
+			veriPckSendCallback = &ReConfirm;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+		break;
+
+		case 0x05:
+			switch(MAKEWORD(payload->msdu.p[3],payload->msdu.p[4]))
+			{
+				case 0x3200:
+				case 0x3300:
+				veriPckSendCallback=&ReadyInfo;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);
+				break;
+				
+			}
+			/*
+			if(0x3200==MAKEWORD(payload->msdu.p[3],payload->msdu.p[4]))
+			{
+				veriPckSendCallback=&ReadyInfo;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 10);	
+			}*/
+		break;
+
+		case 0x9A:
+			//osal_stop_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT);
+			osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+			//g_expireCounter = 0;
+			//HalUARTWrite(0,&payload->msdu.p[0],1);
+		break;
+
+		case 0x97:
+			if(0x0FFE==MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]))
+			{
+				veriPckSendCallback=&macRollPolingProc;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200);	
+			}
+		break;
+
+		
+	}
+}
+#endif
+
+#ifndef SEND_UNIFIED
+LINKMODE_DEFINE static void linkVeriProc(macRx_t *payload)
+{
+	static uint8 relCmdCnt=0; 
+		
+	switch(payload->msdu.p[0])
+	{
+
+		case 0x91:
+		macMallocNewDev(payload->mac.srcAddr.addr.extAddr);
+		veriPckSendCallback = &VerfiInqure;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+		break;
+
+		case 0x95:
+		if(TRUE==osal_ExtAddrEqual(pCurrentDev->extAddr,payload->mac.srcAddr.addr.extAddr))
+		{
+			pCurrentDev->group = payload->msdu.p[1];
+#ifdef SEND_UNIFIED
+			if(pConfig->totalDev>0)
+			{
+				g_devCheck.checkCount = 0;
+				g_devCheck.checkTurn = 0;
+				g_devCheck.pChk = pConfig->devHead;
+				veriPckSendCallback = &CheckEachDeviceAlloc;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+			}else
+			{
+
+				pCurrentDev->shortAddr = 0x0E-FirstCheckAndAlloc();
+				veriPckSendCallback = &VeriAndAllocID;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+			}
+#else
+			if(pConfig->totalDev>0)
+			{
+				g_devCheck.checkCount = 0;
+				g_devCheck.checkTurn = 0;
+				g_devCheck.pChk = pConfig->devHead;
+				veriPckSendCallback = &CheckEachDeviceAlloc;
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+			}else
+			{
+
+				pCurrentDev->shortAddr = FirstCheckAndAlloc();
+				veriPckSendCallback = &LinkedModeShortAddrAlloc;		
+				osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+			}
+#endif
+			
+		}else
+		{
+			VeriFailedProc();
+		}
+		break;
+	
+		case 0x92:
+		veriPckSendCallback = &LinkModeResp;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+		pConfig->isRflsCoordinator = RFLS_COORDINATOR_S;
+		break;
+
+		case 0x96:
+		pConfig->myAddr = MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]);
+		MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+		veriPckSendCallback = NULL;
+		
+		break;
+
+		case 0x9B:
+		veriPckSendCallback = &ReConfirm;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+		break;
+
+		case 0x9A:
+		veriPckSendCallback = NULL;	
+		osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);		
+		break;
+
+		case 0x06:
+		if((++relCmdCnt)>=9)
+		{
+			UartSctSend(UART_CC_REL,0,0);
+			veriPckSendCallback = NULL;	
+			relCmdCnt = 0;
+		}
+		break;
+	}
+
+}
+#endif
+
+#ifndef SEND_UNIFIED
+LINKMODE_DEFINE void linkedNoneCoordinatorProc(macRx_t *payload)
+{
+	static uint8 relCmdCnt=0; 
+		
+	switch(payload->msdu.p[0])
+	{
+	
+		case 0x92:
+		veriPckSendCallback = &LinkModeResp;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);	
+		pConfig->isRflsCoordinator = RFLS_COORDINATOR_S;
+		break;
+
+		case 0x96:
+		pConfig->myAddr = MAKEWORD(payload->msdu.p[1],payload->msdu.p[2]);
+		MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+		veriPckSendCallback = NULL;
+		
+		break;
+
+		case 0x9B:
+		veriPckSendCallback = &ReConfirm;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5);
+		break;
+
+		case 0x9A:
+		veriPckSendCallback = NULL;	
+		osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);		
+		break;
+
+		case 0x06:
+		if((++relCmdCnt)>=9)
+		{
+			UartSctSend(UART_CC_REL,0,0);
+			veriPckSendCallback = NULL;	
+			relCmdCnt = 0;
+		}
+		break;
+	}
+
+}
+//macMsg_t *MsgPkt;
+#endif
+
+MAC_INTERNAL_API void macRxCompleteCallbackEx(macRx_t *pMsg)
+{
+	macMsg_t *MsgPkt;
+	MsgPkt = (macMsg_t *)osal_msg_allocate( sizeof(macRx_t));
+	MsgPkt ->hdEvt.event= MAC_INCOMING_MSG_CMD;
+	MsgPkt->macPayload = pMsg;
+	if(pMsg->msdu.len)
+	{
+		osal_msg_send( macEx_taskId, (uint8 *)MsgPkt );		
+	}
+	//macRxOn();
+	//macRxOnRequest();
+}
+
+static unsigned char CalcSum(uint8 *rcv, uint8 len)
+{
+	uint8 i=0,sum=0;
+	for(i=0;i<len;i++)
+	{
+		sum+=rcv[i];
+	}
+	return sum;
+}
+
+static void SetWakeupInt(void)
+{
+	P0IEN |= 0X20;  // P11 设置为中断方式 
+	PICTL |= 0X01; // 下降沿触发   
+	IEN1 |= 0X20;   // 允许P0口中断;
+	P0   |= 0X20;
+	P0IFG = 0x00;   // 初始化中断标志位
+	EA = 1;
+	
+}
+
+static void ClearWakeupInt(void)
+{
+	IEN1 &= ~0X20; 
+}
+
+MAC_INTERNAL_API void SetSleepMode(macRx_t *pMsg)
+{
+	//SetWakeupInt();
+	//SET_POWER_MODE(3);
+	halSleep(0);
+	ClearWakeupInt();
+	LED_RED_ON();
+	asm("LJMP 0x800\n");
+	//
+}
+
+void LoadGrPara(RfGroup_ArrPara *rfg, unsigned char mode, unsigned char para)
+{
+	switch(mode)
+	{
+		case WORKINGMODE_TTL:
+			rfg->ttlExpVal = para;
+		break;
+
+		case WORKINGMODE_MANU:
+			rfg->optCode = para;
+		break;
+
+		case WORKINGMODE_MULTI:
+			rfg->mulOtpVal = para;
+		break;
+
+		case WORKINGMODE_EXTA:
+			rfg->extaTmp = para;
+		break;
+
+	}
+}
+
+
+static void RfModCheck(uint8 mod)
+{
+#if 0
+	switch(g_isMaster)
+	{
+		case MSTDEV_MODE_DEV:
+		case MSTDEV_MODE_MST:
+		case MSTDEV_MODE_HOLD:
+			basicRfConfig.panId -= MST_PAN_ID;
+		break;
+
+		case MSTDEV_MODE_MLINK:
+		case MSTDEV_MODE_SLINK:
+			basicRfConfig.panId -= LINKED_PAN_ID;
+		break;
+	}
+#endif
+	if(basicRfConfig.panId>=LINKED_PAN_ID)
+	{
+		basicRfConfig.panId-=LINKED_PAN_ID;
+	}else if(basicRfConfig.panId>=LINKED_PAN_ID_AUTO)
+	{
+		basicRfConfig.panId-=LINKED_PAN_ID_AUTO;
+	}else if(basicRfConfig.panId>=MST_PAN_ID)
+	{
+		basicRfConfig.panId-=MST_PAN_ID;
+	}else
+	{
+		basicRfConfig.panId-=MST_PAN_ID_AUTO;
+	}
+
+	switch(mod)
+	{
+
+		case CMD_MODE_LIGH_MST:
+		case CMD_MODE_LIGH_SLA:
+		case CMD_MODE_OFF:
+			basicRfConfig.panId += (RF_CHAN_AUTO==pConfig->channel)?MST_PAN_ID_AUTO:MST_PAN_ID;
+			macExRxDisable();
+			LED_INS_ALLOFF();
+		break;
+		
+		case CMD_MODE_RF_SLA://case MSTDEV_MODE_DEV:
+		case CMD_MODE_RF_MST://case MSTDEV_MODE_MST:
+		//case MSTDEV_MODE_HOLD:
+			basicRfConfig.panId += (RF_CHAN_AUTO==pConfig->channel)?MST_PAN_ID_AUTO:MST_PAN_ID;
+			macExRxEnable();
+			LED_INS_UNLINK();
+		break;
+
+		//case MSTDEV_MODE_MLINK:
+		//case MSTDEV_MODE_SLINK:
+		case CMD_MODE_RFLS_MST:
+		case CMD_MODE_RFLS_SLA:
+			basicRfConfig.panId +=(RF_CHAN_AUTO==pConfig->channel)?LINKED_PAN_ID_AUTO:LINKED_PAN_ID;
+			macExRxEnable();
+			LED_INS_UNLINK();
+		break;
+	}
+
+#if((defined HAL_UART_DMA)&&(HAL_UART_DMA==1))
+	//if(CMD_MODE_RF_SLA==mod)
+	if(CMD_MODE_RF_MST==mod)
+	{
+		//macExUartIntOutSet();
+		macExUartIntSet();
+	}else
+	{
+		//macExUartIntSet();
+		macExUartIntOutSet();
+	}
+#endif
+
+}
+
+MAC_DATAREQ_API static void RfModExit(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x000F;
+	pTxData[0] = 0x97;
+	pTxData[1] = pConfig->myAddr;//0x01;
+	if(((CMD_MODE_RF_MST==g_isMaster)||(CMD_MODE_RFLS_MST==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster)||
+		(CMD_MODE_RF_SLA==g_isMaster))&&(BRIDGE_MST_NORMAL==g_mstHold))
+	{
+		pTxData[2] = 0xFE;
+	}else
+	{
+		pTxData[2] = 0x01;
+	}
+	
+	//pTxData[2] = pConfig->totalDev;//0x01;
+	g_sendLen = 3;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	//veriPckSendCallback = &LinkedModeRollPoling;
+	//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);	
+}
+
+MAC_DATAREQ_API static void RfMstExit(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x000F;
+	pTxData[0] = 0x97;
+	pTxData[1] = pConfig->myAddr;//0x01;
+	pTxData[2] = 0xFE;	
+	//pTxData[2] = pConfig->totalDev;//0x01;
+	g_sendLen = 3;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	veriPckSendCallback = NULL;
+	//veriPckSendCallback = &LinkedModeRollPoling;
+	//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);	
+}
+
+MAC_DATAREQ_API static void ExitAndSetChan_exit(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x000F;
+	pTxData[0] = 0x97;
+	pTxData[1] = pConfig->myAddr;//0x01;
+	pTxData[2] = 0xFE;	
+	//pTxData[2] = pConfig->totalDev;//0x01;
+	g_sendLen = 3;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+
+	//WAIT_RF_SEND_OK();
+/*
+	if(g_swRfChan==0)
+	{
+		pConfig->channel = RF_CHAN_AUTO;
+	}else
+	{
+		pConfig->channel = g_swRfChan -1+RF_CHANNEL;
+	}
+
+	RfModCheck(g_isMaster);
+	macParameterSet();
+	veriPckSendCallback = &macNetCheck;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);
+*/
+
+	veriPckSendCallback = &ExitAndSetChan_setCh;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,1);
+	
+}
+
+MAC_DATAREQ_API static void ExitAndSetChan_setCh(macRx_t* pck)
+{
+	if(g_swRfChan==0)
+	{
+		pConfig->channel = RF_CHAN_AUTO;
+	}else
+	{
+		pConfig->channel = g_swRfChan -1+RF_CHANNEL;
+	}
+	//osal_memset(pConfig->arrCnt,0,5);
+	//LED_INS_UNLINK();
+	RfModCheck(g_isMaster);
+	macParameterSet();
+	veriPckSendCallback = &macNetCheck;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);
+
+}
+
+MAC_DATAREQ_API static void ExitAndSetRfId(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x000F;
+	pTxData[0] = 0x97;
+	pTxData[1] = pConfig->myAddr;//0x01;
+	pTxData[2] = 0xFE;	
+	//pTxData[2] = pConfig->totalDev;//0x01;
+	g_sendLen = 3;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+
+	if((CMD_MODE_RFLS_MST==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster))
+	{
+		if(RF_CHAN_AUTO==pConfig->channel)
+		{
+			basicRfConfig.panId = LINKED_PAN_ID_AUTO+g_swRfId;
+		}else
+		{
+			basicRfConfig.panId = LINKED_PAN_ID+g_swRfId;
+		}
+	}else
+	{
+		if(RF_CHAN_AUTO==pConfig->channel)
+		{
+			basicRfConfig.panId = MST_PAN_ID_AUTO+g_swRfId;
+		}else
+		{
+			basicRfConfig.panId = MST_PAN_ID+g_swRfId;
+		}
+	}
+	macParameterSet();
+
+	//osal_memset(pConfig->arrCnt,0,5);
+	//LED_INS_UNLINK();
+       //osal_memset(pConfig->idInGroup, 0, int len)
+
+	veriPckSendCallback = &macNetCheck;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,100);
+}
+
+#pragma optimize=none
+static void macDelay(unsigned int de)
+{
+	//while(de--);
+	 uint16 i,j;
+	 for(i=de;i>0;i--)
+	   for(j=587;j>0;j--);
+}
+
+#pragma optimize=none
+static void macPreDelay(uint16 microSecs)
+{
+  while(microSecs--)
+  {
+    /* 32 NOPs == 1 usecs */
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop");
+  }
+}
+
+MAC_DATAREQ_API void CmdModeSwitchEx(macRx_t* pck)
+{
+	g_isMaster = g_swMode;
+	//RfModCheck(g_isMaster);
+	//macDeleteAllDevice();
+	//macParameterSet();
+	if((CMD_MODE_RF_MST==g_isMaster)||(CMD_MODE_RF_SLA==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster))
+	{
+		RfModCheck(g_isMaster);
+		macDeleteAllDevice();
+		macParameterSet();
+		g_netStart = 0;
+		pConfig->isRflsCoordinator = RFLS_COORDINATOR_M;
+		veriPckSendCallback = &macNetCheck;
+	}else if(CMD_MODE_RFLS_MST==g_isMaster)
+	{
+		//macParameterSet();
+		//if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+		if(!g_mstHold)
+		{
+#ifdef SEND_UNIFIED
+			veriPckSendCallback=&macRollPolingProc;
+#else
+			veriPckSendCallback=&LinkedModeRollPoling;
+#endif
+		}else
+		{
+			veriPckSendCallback=NULL;
+		}
+	}
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 100);
+}
+
+MAC_DATAREQ_API void CmdModeSwitch(macRx_t* pck)
+{
+	if((CMD_MODE_RF_MST==g_isMaster)||(CMD_MODE_RF_SLA==g_isMaster)||(CMD_MODE_RFLS_MST==g_isMaster))
+	{
+		RfModExit(callbackPara);
+	}else if(CMD_MODE_RFLS_SLA==g_isMaster)
+	{
+		RflsStart(callbackPara);
+	}
+	veriPckSendCallback = &CmdModeSwitchEx;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 2+(osal_rand()&0x03));
+	//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 50);
+
+#if 0
+	//macDelay(20);
+	//while(!(RFIRQF1 & IRQ_TXDONE) );
+	g_isMaster = g_swMode;
+	RfModCheck(g_isMaster);
+	macDeleteAllDevice();
+	macParameterSet();
+	if((CMD_MODE_RF_MST==g_isMaster)||(CMD_MODE_RF_SLA==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster))
+	{
+		g_netStart = 0;
+		pConfig->isRflsCoordinator = RFLS_COORDINATOR_M;
+		veriPckSendCallback = &macNetCheck;
+	}else if(CMD_MODE_RFLS_MST==g_isMaster)
+	{
+		if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+		{
+#ifdef SEND_UNIFIED
+			veriPckSendCallback=&macRollPolingProc;
+#else
+			veriPckSendCallback=&LinkedModeRollPoling;
+#endif
+		}else
+		{
+			veriPckSendCallback=NULL;
+		}
+	}
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 100);
+#endif
+}
+
+MAC_INTERNAL_API static void macExUartRcvHandle(uint8 *rcv,uint8 len)
+{
+	unsigned char veri=0;
+	unsigned char i=0;
+	veri = CalcSum(rcv,len-1);
+	//FingerIndex();
+	//uint8 *p;
+	//veri=rcv[0]+rcv[1]+rcv[2];
+	//if(veri!=rcv[3])
+	if(veri!=rcv[len-1])
+	{
+		veri = 0;
+		return;
+	}
+
+	while(i<(len-1))
+	{
+		switch(rcv[i])
+		{
+			case UART_ENCODE_RFID:
+				//pConfig->panId = MAKEWORD(rcv[i+1], rcv[i+2]);
+				//if((MSTDEV_MODE_MLINK==g_isMaster)||(MSTDEV_MODE_SLINK==g_isMaster))
+				if((CMD_MODE_RFLS_MST==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster))
+				{
+					if(RF_CHAN_AUTO==pConfig->channel)
+					{
+						basicRfConfig.panId = LINKED_PAN_ID_AUTO+MAKEWORD(rcv[i+1], rcv[i+2]);
+					}else
+					{
+						basicRfConfig.panId = LINKED_PAN_ID+MAKEWORD(rcv[i+1], rcv[i+2]);
+					}
+				}else
+				{
+					if(RF_CHAN_AUTO==pConfig->channel)
+					{
+						basicRfConfig.panId = MST_PAN_ID_AUTO+MAKEWORD(rcv[i+1], rcv[i+2]);
+					}else
+					{
+						basicRfConfig.panId = MST_PAN_ID+MAKEWORD(rcv[i+1], rcv[i+2]);
+					}
+				}
+				macParameterSet();
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFIDEX:
+				g_swRfId = MAKEWORD(rcv[i+1], rcv[i+2]);
+				veriPckSendCallback = &ExitAndSetRfId;
+				//osal_memset(pConfig->arrCnt,0,5);
+				//LED_INS_UNLINK();
+				macDeleteAllDevice();
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5);	
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFMOD:
+/*
+				//g_isMaster = rcv[i+1];
+				RfModCheck(rcv[i+1]);
+				g_isMaster = rcv[i+1];
+				macDeleteAllDevice();
+				macParameterSet();
+				if(CMD_MODE_RFLS_MST==g_isMaster)
+				{
+					veriPckSendCallback = &RflsStart;
+				}else
+				{
+					g_netStart = 0;
+					pConfig->isRflsCoordinator = RFLS_COORDINATOR_M;
+					veriPckSendCallback = &macNetCheck;
+				}
+*/
+				if(!g_initCheck)
+				{
+					g_isMaster = rcv[i+1];;
+					if(CMD_MODE_RF_SLA==g_isMaster)
+					{
+						pConfig->group = rcv[i+2];
+					}
+					RfModCheck(g_isMaster);
+					macDeleteAllDevice();
+					macParameterSet();
+					veriPckSendCallback = &macNetCheck;
+					g_initCheck = 1;
+				}else
+				{
+					g_swMode = rcv[i+1];
+					if(CMD_MODE_RF_SLA==g_swMode)
+					{
+						pConfig->group = rcv[i+2];
+					}
+					veriPckSendCallback = &CmdModeSwitch;
+				}
+/*
+				if(CMD_MODE_RFLS_SLA==g_isMaster)
+				{
+					pConfig->isRflsCoordinator = RFLS_COORDINATOR_M;
+				}
+				if(CMD_MODE_RFLS_MST==g_isMaster)
+				{
+					veriPckSendCallback = &RflsStart;	
+				}else
+				{				
+					veriPckSendCallback = &macNetCheck;		
+				}				
+*/
+				//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,20);	
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);
+				//macNetCheck(callbackPara);
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFCH:
+				if(EXIT_BEFORE_SET==rcv[i+2])
+				{
+					g_swRfChan = rcv[i+1];
+					//osal_memset(pConfig->arrCnt,0,5);
+					//LED_INS_UNLINK();
+					macDeleteAllDevice();
+					veriPckSendCallback = &ExitAndSetChan_exit;
+					//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);
+				}else
+				{
+					if(rcv[i+1]==0)
+					{
+						pConfig->channel = RF_CHAN_AUTO;
+					}else
+					{
+						pConfig->channel = rcv[i+1]-1+RF_CHANNEL;
+					}
+					//osal_memset(pConfig->arrCnt,0,5);
+					//LED_INS_UNLINK();
+					macDeleteAllDevice();
+					RfModCheck(g_isMaster);
+					macParameterSet();
+					veriPckSendCallback = &macNetCheck;
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);
+					//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);
+				}
+				i+=3;
+			break;
+
+			case  UART_ENCODE_SLAGR:
+				if(g_devLinkFlag)
+				{
+					if(pConfig->group!=rcv[i+1])
+					{
+						pConfig->group = rcv[i+1];
+						veriPckSendCallback = &devChangeGroup;
+						//devChangeGroup();
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10+(osal_rand()&0x07));
+					}
+				}else
+				{
+					if((rcv[i+1]>=0)&&(rcv[i+1]<5))
+					{
+						pConfig->group = rcv[i+1];
+					}
+				}
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFADDR:
+				//osal_memcpy(pConfig->extAddr, &rcv[i+1], 8);
+				//macParameterSet();
+				i+=9;
+			break;
+		
+			case UART_ENCODE_APERTSHUTER:
+				radioSet.shutter = rcv[i+1];
+				radioSet.apert = rcv[i+2];
+				i+=3;
+			break;
+
+			case UART_ENCODE_ISOCMP:
+				radioSet.isoCmp = rcv[i+1];
+				radioSet.adept = rcv[i+2];
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFPREARR:
+				radioSet.workMode = (rcv[i+1]&0x07);			//(mainPara.synMode<<3)|(mainPara.workMode&0x07)
+				radioSet.synMod = (rcv[i+1]>>3)&0x03;
+				radioSet.preflashIndex = rcv[i+2];
+				veriPckSendCallback = &PreFlashInfo;
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFCOUNTDOWN:
+				g_msTick = MAKEWORD(rcv[i+1], rcv[i+2]);
+				//veriPckSendCallback = &CountDown;
+				CountDown(NULL);
+				//veriPckSendCallback = &CountDown;
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,300);	
+				//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,1000);	
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFRECOVER:
+				if(g_mstHold == BRIDGE_MST_NORMAL)
+				{
+					veriPckSendCallback = &macRollPolingProc;
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,900);	
+				}
+				i+=3;
+			break;
+
+#if 0
+			case UART_ENCODE_RFa:
+				radioSet.rfGr_arrPara[RF_GROUP_A].mode = rcv[i+1];
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_A],rcv[i+1], rcv[i+2]);
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFb:
+				radioSet.rfGr_arrPara[RF_GROUP_B].mode = rcv[i+1];
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_B],rcv[i+1], rcv[i+2]);
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFc:
+				radioSet.rfGr_arrPara[RF_GROUP_C].mode = rcv[i+1];
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_C],rcv[i+1], rcv[i+2]);
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFd:
+				radioSet.rfGr_arrPara[RF_GROUP_D].mode = rcv[i+1];
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_D],rcv[i+1], rcv[i+2]);
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFe:
+				radioSet.rfGr_arrPara[RF_GROUP_E].mode = rcv[i+1];
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_E],rcv[i+1], rcv[i+2]);
+				i+=3;
+			break;
+#endif
+
+			case UART_ENCODE_GRM:
+				radioSet.rfGr_arrPara[RF_GROUP_A].mode = (rcv[i+1]>>4);
+				radioSet.rfGr_arrPara[RF_GROUP_B].mode = (rcv[i+1]&0x0F);
+				radioSet.rfGr_arrPara[RF_GROUP_C].mode = (rcv[i+2]>>4);
+				radioSet.rfGr_arrPara[RF_GROUP_D].mode = (rcv[i+2]&0x0F);
+				radioSet.rfGr_arrPara[RF_GROUP_E].mode = (rcv[i+3]>>4);
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_A],radioSet.rfGr_arrPara[RF_GROUP_A].mode, rcv[i+4]);
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_B],radioSet.rfGr_arrPara[RF_GROUP_B].mode, rcv[i+5]);
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_C],radioSet.rfGr_arrPara[RF_GROUP_C].mode, rcv[i+6]);
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_D],radioSet.rfGr_arrPara[RF_GROUP_D].mode, rcv[i+7]);
+				LoadGrPara(&radioSet.rfGr_arrPara[RF_GROUP_E],radioSet.rfGr_arrPara[RF_GROUP_E].mode, rcv[i+8]);
+				i+=9;
+			break;
+
+			case UART_ENCODE_RFCMD:
+				switch(rcv[i+1])
+				{
+					case UART_ENCODE_RFCMD_FLA:
+						veriPckSendCallback = &FlashConfirm;
+						radioSet.workMode = rcv[i+2]&0x07;
+						radioSet.synMod = (rcv[i+2]>>3)&0x03;
+						radioSet.hpFlash = (rcv[i+2]>>5)&0x01;
+						radioSet.fPilot = (rcv[i+2]>>6)&0x01;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+					break;
+
+					case UART_ENCODE_RFCMD_PILOT:
+						//veriPckSendCallback = &Pilot;
+						//radioSet.workMode = rcv[i+2];
+						//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);	
+					break;
+
+					case UART_ENCODE_RFCMD_REL:
+						if(CMD_MODE_RFLS_MST==rcv[i+2])
+						{
+							veriPckSendCallback = &LinkedShotRel;
+						}else if(CMD_MODE_RF_SLA==rcv[i+2])
+						{
+							g_devCmd = 0x01;
+							veriPckSendCallback = &DevShotRel;
+						}
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,30);	
+					break;
+
+					case UART_ENCODE_RFCMD_MODEL:
+						g_devCmd = 0x02;
+						veriPckSendCallback = &DevShotRel;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,30);
+					break;
+
+					case UART_ENCODE_RFCMD_TEST:
+						g_devCmd = 0x03;
+						veriPckSendCallback = &DevShotRel;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,30);
+					break;
+						
+
+					case UART_ENCODE_RFCMD_SLEEP:
+						//SetSleepMode();
+						veriPckSendCallback=&SetSleepMode;
+						macRxHardDisable();
+						LED_INS_ALLOFF();
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5);
+					break;
+
+				}
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFMUL:
+				radioSet.mul_times = rcv[i+1];
+				radioSet.mul_frq = rcv[i+2];
+				i+=3;
+			break;
+
+			case UART_ENCODE_EXIT:
+				if((CMD_MODE_RF_MST==g_isMaster)||(CMD_MODE_RFLS_MST==g_isMaster)||(CMD_MODE_RFLS_SLA==g_isMaster)||
+				(CMD_MODE_RF_SLA==g_isMaster))
+				{
+				g_isMaster = CMD_MODE_OFF;
+				veriPckSendCallback = &RfMstExit;
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,(osal_rand()&0x07));
+				}
+				i+=3;
+			break;
+/*
+			case UART_ENCODE_SLASLEEP:
+				if(rcv[i+1]>0)
+				{
+					g_slvPwrDnTmr = 360;
+					//osal_start_timerEx(macEx_taskId,MACEX_SLAVE_PWRDOWN,60000);
+				}else
+				{
+					//osal_start_timerEx(macEx_taskId,MACEX_SLAVE_PWRDOWN,60000);
+					g_slvPwrDnTmr = 360*8;
+				}
+					osal_start_timerEx(macEx_taskId,MACEX_SLAVE_PWRDOWN,10000);
+				i+=3;
+			break;
+*/
+			case UART_ENCODE_PILOT:
+#if 1
+				//if(rcv[i+1])
+				if(rcv[i+1]<3)
+				{
+					veriPckSendCallback = &Pilot;
+					radioSet.workMode = rcv[i+2];
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);	
+				}
+				i+=3;
+#else
+				g_msTick = 7000;
+				veriPckSendCallback = &CountDown;
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,30);
+				i+=3;
+#endif
+			break;
+
+			case UART_ENCODE_CHSCAN:
+				veriPckSendCallback = &ChanScan;
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,50);
+				i+=3;
+			break;
+
+			case UART_ENCODE_RFFLA:
+				radioSet.adept = rcv[i+1];
+				veriPckSendCallback = &FlashConfirm;
+				radioSet.workMode = rcv[i+2]&0x07;
+				radioSet.synMod = (rcv[i+2]>>3)&0x03;
+				radioSet.hpFlash = (rcv[i+2]>>5)&0x01;
+				radioSet.fPilot = (rcv[i+2]>>6)&0x01;
+				osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				i+=3;
+			break;
+
+			case UART_ENCODE_UNMODULATE:
+				LED_INS_ALLOFF();
+				znpTestRF();
+			break;
+
+			
+
+
+#if 0
+			case UART_ENCODE_RADIO:
+			radioSet.ratio = (rcv[i+1]>>4)&0x0f;	
+			radioSet.cmdSta = (rcv[i+1]&0x0f);
+			switch(radioSet.cmdSta)
+			{
+				case RADIO_STATUE_PRE:
+					//FingerIndex();
+					if(!rcv[i+2])
+					{
+						veriPckSendCallback = &PreFlashInfo;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+					}else
+					{
+						veriPckSendCallback = &CountDown;
+						g_msTick = 7000;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+					}
+				break;
+
+				case RADIO_STATUE_FLACFM:
+					radioSet.arrExpVal[0] = rcv[i+2];
+					flashCmd[9] = flashCmd[12] = flashCmd[15] = rcv[i+2];
+					veriPckSendCallback = &FlashConfirm;
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				break;
+
+				case RADIO_STATUE_FLASH:
+					g_msTick = 6000;
+					veriPckSendCallback = &CountDown;		
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				break;
+
+				case RADIO_STATUE_RECOVER:
+					veriPckSendCallback = &macRollPolingProc;
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				break;
+			}
+			break;
+#endif
+
+			default:
+			i++;				//this keep the loop jump out
+			break; 
+		}		
+		//i+=3;
+	}
+
+#if 0	
+	switch(rcv[0])
+	{
+		case UART_ENCODE_RADIO:
+			radioSet.ratio = (rcv[1]>>4)&0x0f;	
+			radioSet.cmdSta = (rcv[1]&0x0f);
+			switch(radioSet.cmdSta)
+			{
+				case RADIO_STATUE_PRE:
+					FingerIndex();
+					if(!rcv[2])
+					{
+						veriPckSendCallback = &PreFlashInfo;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+					}else
+					{
+						veriPckSendCallback = &CountDown;
+						g_msTick = 7000;
+						osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+					}
+				break;
+
+				case RADIO_STATUE_FLACFM:
+					radioSet.arrExpVal[0] = rcv[2];
+					flashCmd[9] = flashCmd[12] = flashCmd[15] = rcv[2];
+					veriPckSendCallback = &FlashConfirm;
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				break;
+
+				case RADIO_STATUE_FLASH:
+					g_msTick = 6000;
+					veriPckSendCallback = &CountDown;		
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				break;
+
+				case RADIO_STATUE_RECOVER:
+					veriPckSendCallback = &macRollPolingProc;
+					osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+				break;
+			}
+		break;
+
+		default:
+		break;
+	}
+#endif
+}
+
+//unsigned char veriSum=0;
+static void macEx_UartProcessData(uint8 port, uint8 event)
+{
+	//unsigned char ch[20];
+	//uint8 ch;
+	//static uint8 loaden=0;
+	//static uint16 bufIndex=0;
+	
+
+	//HalUARTRead (port, &ch, 1);
+
+#if((defined HAL_UART_DMA)&&(HAL_UART_DMA==1))
+	//uint16 rxBufLen  = Hal_UART_RxBufLen(0);
+	//static uint8 rcvLen=0;
+	//unsigned char uartBuf[128];
+	uint8 rcvLen=0;
+	//unsigned char uartBufIndex=0;
+	//uint16 rxBufLen;
+	
+	rcvLen = Hal_UART_RxBufLen(0);
+	osal_memset(rcvBuf, 0x00, UART_RCVBUF_LEN);
+	HalUARTRead (port, rcvBuf, rcvLen);
+
+	if(0xAA==rcvBuf[0])
+	{
+		macExUartRcvHandle(&rcvBuf[2],rcvBuf[1]);
+		
+	}else if(0xAB==rcvBuf[0])
+	{
+		g_msTick = 0;
+		CountDown(NULL);
+	}
+	
+#if 0	
+	if(!loaden)
+	{
+		//if(Hal_UART_RxBufLen(0)<2)
+		//{
+			//return;
+		//}
+		HalUARTRead (port, &ch, 1);
+		if(0xaa==ch)
+		{
+			//loaden = 1;
+			HalUARTRead(port, &rcvLen, 1);
+			rxBufLen = Hal_UART_RxBufLen(0);
+			if(rcvLen>UART_RCVBUF_LEN)
+			{
+				return;
+			}else if(rcvLen<=rxBufLen)
+			{
+				HalUARTRead(port,rcvBuf,rcvLen);
+				macExUartRcvHandle(rcvBuf,rcvLen);
+			}else
+			{
+				HalUARTRead(port,rcvBuf,rxBufLen);
+				rcvLen-=rxBufLen;
+				bufIndex+=rxBufLen;
+				loaden = 1;
+			}
+			
+		}else if(0xAB==ch)
+		{
+			g_msTick = 0;
+			CountDown(NULL);
+		}
+	}else
+	{
+		rxBufLen = Hal_UART_RxBufLen(0);
+		if(rcvLen<=rxBufLen)
+		{
+			HalUARTRead(port,(rcvBuf+bufIndex),rcvLen);
+			macExUartRcvHandle(rcvBuf,rcvLen+bufIndex);
+			bufIndex=0;
+			rcvLen=0;
+			loaden=0;
+		}else
+		{
+			HalUARTRead(port,(rcvBuf+bufIndex),rxBufLen);
+			rcvLen-=rxBufLen;
+			bufIndex+=rxBufLen;
+		}
+	}
+#endif
+#else
+	//static uint8 rcvLen=0;
+	static uint8 rcvLen=0;
+	HalUARTRead (port, &ch, 1);
+	//FingerIndex_2();
+
+	if(!loaden)
+	{
+		if(0xaa==ch)
+		{
+			loaden = 1;
+			//FingerIndex_1();
+		}else if(0xAB==ch)
+		{
+			g_msTick = 0;
+			CountDown(NULL);
+		}
+	}else if(1==loaden)
+	{
+		rcvLen = ch;
+              bufIndex = 0;
+		if(rcvLen>UART_RCVBUF_LEN)
+		{
+			rcvLen = 0;
+			loaden = 0;
+			return;
+		}
+		loaden = 2;
+		
+	}else if(2==loaden)
+	{
+		if(bufIndex<(rcvLen-1))
+		{
+			rcvBuf[bufIndex++] = ch;
+			//FingerIndex_2();
+		}else
+		{
+			rcvBuf[bufIndex++] = ch;
+			macExUartRcvHandle(rcvBuf,rcvLen);
+			rcvLen = 0;
+			loaden = 0;
+			bufIndex = 0;
+			//FingerIndex_1();
+		}
+	}
+#endif
+	
+/*
+	if(loaden)
+	{
+		rcvBuf[bufIndex++] =  ch;
+		if(bufIndex>=4)
+		{
+			//veriSum = (rcvBuf[0]+rcvBuf[1]+rcvBuf[2]);
+			macExUartRcvHandle(rcvBuf);
+			bufIndex = 0;
+			loaden = 0;
+			//return;
+		}
+	}else if(0xaa==ch)
+	{
+		loaden = 1;
+	}
+*/
+
+}
+
+static void macExUartIntSet(void)
+{
+	P0SEL&=~(1<<4);//设置P0_4为一般IO口功能
+	P0DIR&=~(1<<4);//设置P0_4为输入功能
+	P0INP&=~(1<<4);//设置为上拉
+
+	P0IEN|=(1<<4);//P0_4中断使能
+	PICTL|=(1<<0);//下降沿中断
+	EA=1;//开启总中断
+	IEN1|=(1<<5);//端口1中断使能
+	P0IFG=0;//初始化中断标志位
+}
+
+static void macExUartIntOutSet(void)
+{
+	P0SEL&=~(1<<4);//设置P0_4为一般IO口功能
+	P0DIR|=(1<<4);
+	
+	P0IEN&=~(1<<4);//P0_4中断禁止
+
+	P0_4 = 1;
+}
+
+static void macExUartInit (void)
+{
+	halUARTCfg_t uartConfig;
+
+	/* Initialize APP ID */
+	//App_TaskID = 0;
+
+	/* UART Configuration */
+	uartConfig.configured           = TRUE;
+	uartConfig.baudRate             = MACEX_UART_DEFAULT_BAUDRATE;
+	uartConfig.flowControl          = MACEX_UART_DEFAULT_OVERFLOW;
+	uartConfig.flowControlThreshold = MACEX_UART_DEFAULT_THRESHOLD;
+	uartConfig.rx.maxBufSize        = MACEX_UART_DEFAULT_MAX_RX_BUFF;
+	uartConfig.tx.maxBufSize        = MACEX_UART_DEFAULT_MAX_TX_BUFF;
+	uartConfig.idleTimeout          = MACEX_UART_DEFAULT_IDLE_TIMEOUT;
+	uartConfig.intEnable            = TRUE;
+	uartConfig.callBackFunc         = macEx_UartProcessData;
+
+	/* Start UART */
+	HalUARTOpen (MACEX_PORT, &uartConfig);
+
+#ifdef IO_INDEX_TEST
+	P1DIR |= 0x0C;
+	FINGER1 = 0;
+	FINGER2 = 0;
+#endif
+	//HalUARTWrite(0,"UART START\n",sizeof("UART START\n"));	
+	//HalUARTWrite(0,"lucky day 20130806\r\n",sizeof("lucky day 20130806\r\n"));
+       //HalUARTWrite(0,"xiao xin, dad love you\r\n",sizeof("xiao xin, dad love you\r\n"));	
+	//HalUARTWrite(0,"power20140218\r\n",sizeof("power20140218\r\n"));
+	//HalUARTWrite(0,"Boot test 0720-1\r\n",sizeof("Boot test 0720-1\r\n"));
+	//HalUARTWrite(0,"module test\r\n",sizeof("module test\r\n"));
+	//HalUARTWrite(0,"fireware test\r\n",sizeof("fireware test\r\n"));
+	HalUARTWrite(0,"2015/11/13 OK\r\n",sizeof("2015/11/13 OK\r\n"));
+	//HalUARTPoll();
+	UartDMAIntSend();
+	
+}
+
+static uint8 LoadUartSendBuf(unsigned char id, unsigned char pa1, unsigned char pa2)
+{
+	if(0==gBUartTotalByte)
+	{
+		gBUartBuf[gBUartTotalByte++] = 0xAA;
+		gBUartBuf[gBUartTotalByte++] = 0;			//len
+	}
+	gBUartBuf[gBUartTotalByte++] = id;
+	gBUartBuf[gBUartTotalByte++] = pa1;
+	gBUartBuf[gBUartTotalByte++] = pa2;
+#ifdef DEBUG_TRACE
+	Printf("\r\n");
+#endif
+	return gBUartTotalByte;		
+}
+
+static uint8 LoadUartArray(uint8 id, uint8 *pBuf, uint8 len)
+{
+	if(0==gBUartTotalByte)
+	{
+		gBUartBuf[gBUartTotalByte++] = 0xAA;
+		gBUartBuf[gBUartTotalByte++] = len;			//len
+	}
+	gBUartBuf[gBUartTotalByte++] = id;
+	osal_memcpy(gBUartBuf+gBUartTotalByte,pBuf,len);
+	gBUartTotalByte+=len;
+	return gBUartTotalByte;
+	
+}
+
+static void TrigerUartSend(void)
+{
+	char i=0;
+	unsigned char sum=0;
+	for(i=2;i<gBUartTotalByte;i++)
+	{
+		sum+= gBUartBuf[i];
+	}
+	gBUartBuf[gBUartTotalByte++] = sum;
+	gBUartBuf[1] = (gBUartTotalByte-2);
+	uart_tran_flag = 1;
+
+	HalUARTWrite(0,gBUartBuf,gBUartTotalByte);
+	UartDMAIntSend();
+	//HalUARTPoll();
+
+	uart_tran_flag = 0;
+
+	gBUartTotalByte = 0;
+	
+	
+}
+
+static void UartSendByte(char aByte)
+{
+#if((defined HAL_UART_DMA)&&(HAL_UART_DMA==1))
+	HalUARTWrite(0, &aByte, 1);
+	UartDMAIntSend();
+	//HalUARTPoll();
+#else
+	U0DBUF = aByte; 
+	while(UTX0IF == 0); //发送完成标志位
+	UTX0IF = 0; 	
+#endif
+/*
+	HalUARTWrite(0, &aByte, 1);
+*/
+}
+
+static uint8 UartSctSend(unsigned char id, unsigned char pa1, unsigned char pa2)
+{
+	while(uart_tran_flag);
+	LoadUartSendBuf(id, pa1,pa2);
+	TrigerUartSend();	
+        return 1;
+}
+
+static uint8 UartBulkSend(uint8 *sBuf, uint8 len)
+{
+	//uint8 i;
+#if((defined HAL_UART_DMA)&&(HAL_UART_DMA==1))
+	HalUARTWrite(0, sBuf, len);
+	UartDMAIntSend();
+	//HalUARTPoll();
+#else
+	for(i=0;i<len;i++)
+	{
+		UartSendByte(sBuf[i]);
+	}
+	//HalUARTWrite(0, sBuf, len);
+#endif
+}
+
+void BuildPreFlashInfoData(uint8 *buf, uint8 *len)
+{
+	uint8 loadIndex=0;
+	uint8 i=0;
+	//g_sendLen = 0;
+	osal_memcpy(buf,preCmdBuf,4);					//the fixed head datas 0x17 00 ff 47
+	loadIndex+= 4;
+	buf[loadIndex++] = radioSet.shutter;
+	buf[loadIndex++] = radioSet.apert;
+	buf[loadIndex++] = radioSet.isoCmp;
+	buf[loadIndex++] = 0x04;							//fixed?
+	for(i=0;i<5;i++)
+	{
+		buf[loadIndex++] = 0x01;
+		buf[loadIndex++] = 0x00;
+		buf[loadIndex++] = 0x00;
+	}
+	switch(radioSet.preflashIndex)
+	{
+		case 0:
+			for(i=0;i<3;i++)
+			{
+				buf[PARA_GR_A+i*3] = 0x01;
+				buf[PARA_GR_A+i*3+1] = 0xA0;
+				buf[PARA_GR_A+i*3+2] = 0x04;
+			}
+		break;
+
+		case 1:
+			buf[PARA_GR_A] = 0x01;
+			buf[PARA_GR_A+1] = 0xA0;
+			buf[PARA_GR_A+2] = 0x04;
+		break;
+
+		case 2:
+			buf[PARA_GR_B] = 0x01;
+			buf[PARA_GR_B+1] = 0xA0;
+			buf[PARA_GR_B+2] = 0x04;
+		break;
+
+		case 3:
+			buf[PARA_GR_C] = 0x01;
+			buf[PARA_GR_C+1] = 0xA0;
+			buf[PARA_GR_C+2] = 0x04;
+		break;
+
+		case 4:
+			buf[PARA_GR_D] = 0x01;
+			buf[PARA_GR_D+1] = 0xA0;
+			buf[PARA_GR_D+2] = 0x04;
+		break;
+
+		case 5:
+			buf[PARA_GR_E] = 0x01;
+			buf[PARA_GR_E+1] = 0xA0;
+			buf[PARA_GR_E+2] = 0x04;
+		break;
+	}
+	 *len = loadIndex;	
+	
+}
+
+unsigned char RfMcodeCovert(unsigned char src, uint8 hpMod)
+{
+	if(HP_FLASHMODE_OFF==hpMod)
+	{
+		src = 0x38 -src;
+		return (src + 0x88);
+	}else
+	{
+		src = 0x38 -src;
+		return (src + 0x68);
+	}
+}
+
+void BuildFlashInfoData(uint8 *buf, uint8 *len)
+{
+	uint8 loadIndex=0; 
+	uint8 i=0;
+	
+	if(WORKINGMODE_MULTI==radioSet.workMode)
+	{
+		osal_memcpy(buf,multiCmd,4);
+		loadIndex+= 4;
+		//buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.shutter:0xFF;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.shutter:0x38;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.apert:0;
+		//buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.isoCmp:0x48;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.isoCmp:0x60;
+
+		for(i=0;i<3;i++)
+		{
+			if(WORKINGMODE_OFF==radioSet.rfGr_arrPara[i].mode)
+			{
+				buf[loadIndex++] = 0x00;
+				buf[loadIndex++] = 0x00;
+			}else
+			{
+				buf[loadIndex++] = RfMcodeCovert(radioSet.rfGr_arrPara[i].mulOtpVal,radioSet.hpFlash);
+				buf[loadIndex++] = 0x02;
+			}
+		}
+		//buf[loadIndex++] = radioSet.mul_times;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.mul_times:(radioSet.mul_times>0?radioSet.mul_times:0x18);
+		buf[loadIndex++] = radioSet.mul_frq;
+		
+	}else
+	{
+		osal_memcpy(buf,preCmdBuf,4);
+		loadIndex+= 4;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.shutter:0;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.apert:0;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.isoCmp:0x48;
+		//buf[loadIndex++] = radioSet.synMod==SYNC_MODE_FP?0x48:0x04;//0x04;
+		buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?((radioSet.hpFlash==HP_FLASHMODE_ON)?0x48:0x04):0x0A;
+		
+		for(i=0;i<RF_GROUP_TOTAL;i++)
+		{
+			switch(radioSet.rfGr_arrPara[i].mode)
+			{
+				case WORKINGMODE_TTL:
+					buf[loadIndex++] = 0x01;
+					buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?radioSet.rfGr_arrPara[i].ttlExpVal:0x98;
+					//buf[loadIndex++] = radioSet.synMod==SYNC_MODE_FP?0x06:0x03;
+					buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?((radioSet.hpFlash==HP_FLASHMODE_ON)?0x06:0x03):0x08;
+				break;
+
+				case WORKINGMODE_MANU:
+					buf[loadIndex++] = 0x02;
+					buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?RfMcodeCovert(radioSet.rfGr_arrPara[i].optCode,radioSet.hpFlash):RfMcodeCovert(radioSet.rfGr_arrPara[i].optCode,HP_FLASHMODE_OFF);//radioSet.rfGr_arrPara[i].optCode;
+					//buf[loadIndex++] =  radioSet.synMod==SYNC_MODE_FP?0x05:0x02;
+					buf[loadIndex++] = (FLASH_PILOT_OFF==radioSet.fPilot)?((radioSet.hpFlash==HP_FLASHMODE_ON)?0x05:0x02):0x02;
+				break;
+
+				case WORKINGMODE_EXTA:
+					buf[loadIndex++] = 0x08;
+					buf[loadIndex++] = radioSet.rfGr_arrPara[i].extaTmp;
+					buf[loadIndex++] = 0x02;
+				break;
+
+				case WORKINGMODE_OFF:
+					if(WORKINGMODE_GR==radioSet.workMode)
+					{
+						buf[loadIndex++] =0x00;
+						buf[loadIndex++] =0x00;
+						buf[loadIndex++] =0x00;
+					}else if(WORKINGMODE_TTL==radioSet.workMode)
+					{
+						buf[loadIndex++] =0x01;
+						buf[loadIndex++] =0x00;
+						buf[loadIndex++] =0x00;
+					}else if(WORKINGMODE_MANU==radioSet.workMode)
+					{
+						buf[loadIndex++] =0x01;
+						buf[loadIndex++] =0x00;
+						buf[loadIndex++] =0x00;
+					}
+				break;
+			}
+		}
+
+	}
+	
+	*len = loadIndex;	
+	
+}
+
+void BuildPilotInfoData(uint8 * buf, uint8 * len)
+{
+	uint8 loadIndex=0; 
+	uint8 i=0;
+	osal_memcpy(buf,preCmdBuf,4);
+	loadIndex+=4;
+	buf[loadIndex++]=0;
+	buf[loadIndex++]=0;
+	buf[loadIndex++]=0x48;
+	buf[loadIndex++]=0x0A;
+	
+	switch(g_modelingStyle)
+	{
+		case MODELING_STYLE_APERT:
+			if(radioSet.workMode==WORKINGMODE_GR)
+			{
+				for(i=0;i<RF_GROUP_TOTAL;i++)
+				{
+					buf[loadIndex++] = 0x01;
+					buf[loadIndex++] = 0x98;
+					buf[loadIndex++] = 0x08;					
+				}
+			}else
+			{
+				for(i=0;i<3;i++)
+				{
+					buf[loadIndex++] = 0x01;
+					buf[loadIndex++] = 0x98;
+					buf[loadIndex++] = 0x08;					
+				}
+				osal_memset(buf+loadIndex,0x00,6);
+			}
+		break;
+
+		case MODELING_STYLE_STEX:
+		case MODELING_STYLE_BOTH:
+			if(radioSet.workMode==WORKINGMODE_GR)
+			{
+				for(i=0;i<RF_GROUP_TOTAL;i++)
+				{
+					buf[loadIndex++] = 0x06;
+					buf[loadIndex++] = 0x98;
+					buf[loadIndex++] = 0x07;					
+				}
+			}else
+			{
+				for(i=0;i<RF_GROUP_TOTAL;i++)
+				{
+					buf[loadIndex++] = 0x06;
+					buf[loadIndex++] = i>2?0x00:0x98;
+					buf[loadIndex++] = i>2?0x00:0x07;					
+				}
+				
+			}
+		break;
+
+		case MODELING_STYLE_OFF:			//inspire it later, should analysize respectively
+			if(radioSet.workMode==WORKINGMODE_GR)
+			{
+				for(i=0;i<RF_GROUP_TOTAL;i++)
+				{
+					buf[loadIndex++] = 0x01;
+					buf[loadIndex++] = 0x98;
+					buf[loadIndex++] = 0x08;					
+				}
+			}else
+			{
+				for(i=0;i<3;i++)
+				{
+					buf[loadIndex++] = 0x01;
+					buf[loadIndex++] = 0x98;
+					buf[loadIndex++] = 0x08;					
+				}
+				osal_memset(buf+loadIndex,0x00,6);
+			}
+		break;
+	}
+
+	*len = loadIndex;	
+
+}
+
+
+
+MAC_DATAREQ_API void PreFlashInfo(macRx_t* pck)
+{
+	static uint8 flaCmdCnt=0;
+	if(TRUE==osal_memcmp(g_extAddrSrc,g_extAddrVef,8))
+	//if(FALSE==osal_memcmp(g_extAddrSrc,g_extAddrVef,8))
+	{
+		//if(flaCmdCnt++<8)
+		if(flaCmdCnt++<radioSet.adept)
+		{
+			pConfig->frameHead = 0x8841;
+			pConfig->destAddr = 0xFFFF;
+			//osal_memcpy(pTxData,preCmdBuf,sizeof(preCmdBuf));
+			//g_sendLen = sizeof(preCmdBuf);
+			BuildPreFlashInfoData(pTxData,&g_sendLen);
+			//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+			macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_FLUSH);
+			veriPckSendCallback = &PreFlashInfo;
+			osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,2);		
+		}else
+		{
+			flaCmdCnt = 0;
+			veriPckSendCallback = NULL;
+		}
+	}
+	
+}
+
+MAC_DATAREQ_API void CountDown(macRx_t* pck)
+{
+#if 0
+	if(g_msTick>=0)
+	{
+		//
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//arrcpy(pTxData,preCmdBuf,sizeof(preCmdBuf));
+		pTxData[0] = 0x90;
+		pTxData[1] = 0x00;//0x01;
+		pTxData[2] = g_msTick>>8;
+		pTxData[3] = g_msTick&0xFF;
+		g_sendLen = 4;
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+		g_msTick-=1000;
+		veriPckSendCallback = &CountDown;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,1);	
+	}else
+	{
+		g_msTick = 0;
+		 veriPckSendCallback=&macRollPolingProc;
+		 osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 1000);
+		//veriPckSendCallback = NULL;
+		
+	}
+#endif
+	while(g_msTick>=0)
+	{
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//arrcpy(pTxData,preCmdBuf,sizeof(preCmdBuf));
+		pTxData[0] = 0x90;
+		pTxData[1] = 0x00;//0x01;
+		pTxData[2] = g_msTick>>8;
+		pTxData[3] = g_msTick&0xFF;
+		g_sendLen = 4;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_FLUSH);
+#if 1
+		if(g_msTick>0)
+		{
+			txState.txSeqNumber--;
+		}
+#endif
+
+		g_msTick-=1000;
+
+		//veriPckSendCallback = NULL;
+		//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,0);	
+	}
+	if(BRIDGE_MST_NORMAL==g_mstHold)
+	{
+#ifdef SEND_UNIFIED
+		veriPckSendCallback=&macRollPolingProc;
+#else
+		if(pConfig->mstRcd>0)
+		{
+			veriPckSendCallback=&LinkedModeRollPoling;
+		}else
+		{
+			veriPckSendCallback=&macRollPolingProc;
+		}
+#endif
+	}else
+	{
+		veriPckSendCallback = NULL;
+	}
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 300);
+	//osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 2000);
+	
+	
+}
+
+MAC_DATAREQ_API void FlashConfirm(macRx_t* pck)
+{
+	static uint8 flaCmdCnt=0;
+	//if(flaCmdCnt++<8)
+	if(flaCmdCnt++<radioSet.adept)
+	{
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//osal_memcpy(pTxData,flashCmd,sizeof(flashCmd));
+		//g_sendLen = sizeof(flashCmd);
+		BuildFlashInfoData(pTxData, &g_sendLen);
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_FLUSH);
+		veriPckSendCallback = &FlashConfirm;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,2);	
+	}else
+	{
+		flaCmdCnt = 0;
+		veriPckSendCallback = NULL;
+	}
+}
+
+#ifndef CARRY_WAVE_TEST
+MAC_DATAREQ_API void Pilot(macRx_t* pck)
+{
+	static uint8 pilotCmdCnt=0;
+	if(pilotCmdCnt++<2)
+	{
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		BuildPilotInfoData(pTxData, &g_sendLen);
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+		veriPckSendCallback = &Pilot;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);	
+	}else
+	{
+		pilotCmdCnt = 0;
+		g_msTick = 1000;
+		veriPckSendCallback = &CountDown;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,10);	
+	}
+}
+#else
+MAC_DATAREQ_API void Pilot(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	BuildPilotInfoData(pTxData, &g_sendLen);
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	veriPckSendCallback = &Pilot;
+	osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,3);
+	
+}
+#endif
+
+static void ScanDelay(unsigned int de)
+{
+	while(de--);
+}
+
+static uint8 InqureAutoChan(uint8 *rssiVal)
+{
+	uint8 ich;
+	uint8 rtCh=0;
+	for(ich=0;ich<15;ich++)
+	{
+		if(rssiVal[rtCh]<=rssiVal[ich])
+		{
+			rtCh = ich;
+		}
+	}
+	return (rtCh+RF_CHANNEL);
+}
+
+static void ChanScanRollPoling(void)
+{
+	uint8 sdCnt=0;
+	uint8 cn=0;
+	switch(g_isMaster)
+	{
+		//case MSTDEV_MODE_DEV:
+		case CMD_MODE_RF_SLA:
+		break;
+
+		case CMD_MODE_RF_MST:
+		case CMD_MODE_RFLS_MST:
+		case CMD_MODE_RFLS_SLA:
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		pTxData[sdCnt++] = 0x9A;
+		pTxData[sdCnt++] = pConfig->evtCnt;//0x01;
+		pTxData[sdCnt++] = pConfig->totalDev;//0x01;
+		pTxData[sdCnt++] = pConfig->mstRcd+1;//0x01;
+		pTxData[sdCnt++] = ((1<<pConfig->slvRcd)-1)&0xFF;//(1<<pTxData[2])-1;//0x01;
+		pTxData[sdCnt++] = 0x00;
+		pTxData[sdCnt++] = ((1<<pConfig->slvRcd)-1)&0xFF;//pConfig->slvRcd;
+		pTxData[sdCnt++] = (0xFF00>>(pConfig->mstRcd+1))&0xFF;
+		for(cn=0;cn<pConfig->mstRcd;cn++)
+		{
+			pTxData[sdCnt++] = 0x0E-cn;
+		}
+		//pTxData[sdCnt++] = 0x80;
+		//g_sendLen = 8;
+		//macRfSendPacket(pConfig->destAddr, pTxData, sdCnt,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, sdCnt,NULL,0,SEND_MODE_UNSLOTTED);
+		break;
+
+		case CMD_MODE_OFF:
+		break;
+
+	}
+
+}
+
+
+static void CalcEachRssi(int8 *valBuf, uint16 tms, uint16 dly)
+{
+	uint16 chRsv;
+	int8 rssiSum=0;
+	uint16 panIdRsv=0;
+	uint16 tm=0;
+	int8 rssiTmp=0;
+	//int16 randVer=0;
+	uint8 bufIndex=0;
+	//uint8 rssiDbm;
+	//uint8 rollCnt=0;
+	//uint16 rollChRsv=0;
+
+	//ChanScanRollPoling();
+
+	chRsv = pConfig->channel;
+	panIdRsv = pConfig->panId;
+	
+	pConfig->channel = RF_CHANNEL;
+	pConfig->panId = 0xffff;
+
+	while(pConfig->channel<(RF_CHANNEL+15))
+	{
+		macExRxDisable();
+		macParameterSet();
+		macExRxEnable();
+
+		rssiSum=0;
+		ScanDelay(dly);		
+
+		//NLME_EDScanRequest(1,10);
+
+		for(tm=0;tm<tms;tm++)
+		{
+#if 0
+			while(!(RSSISTAT&0x01));
+			rssiTmp = RSSI;
+			if(rssiTmp>rssiSum) rssiSum = rssiTmp;
+			//rssiSum+=RSSI;
+			ScanDelay(dly);	
+#else
+			macRadioEnergyDetectStart();
+			ScanDelay(dly);
+			rssiTmp = macRadioEnergyDetectStop();
+			//rssiSum = (rssiTmp>rssiSum)?rssiTmp:rssiSum;
+			if(rssiTmp>rssiSum) rssiSum = rssiTmp;
+#endif
+		}
+
+		//rssiDbm = rssiSum + MAC_RADIO_RSSI_OFFSET;
+		//MAC_RADIO_RSSI_LNA_OFFSET(rssiDbm);
+  		//valBuf[bufIndex++] = radioComputeEDEx(rssiDbm);
+		//valBuf[bufIndex++] = (rssiSum/tms);
+		/*
+		randVer = rssiSum+((int8)MAC_RADIO_RANDOM_BYTE())/10;
+		if((randVer>0)&&(randVer<0xFF))
+		{
+			valBuf[bufIndex++] = 0xFF-randVer;
+		}else
+		{
+			valBuf[bufIndex++] = 0xFF-rssiSum;
+		}*/
+		if(rssiSum<76)
+		{
+			valBuf[bufIndex++] = 0xFF-rssiSum*3;			
+		}else
+		{
+			valBuf[bufIndex++] = 25;
+		}		
+/*
+		if(rollCnt++>3)
+		{
+			rollCnt = 0;
+			rollChRsv = pConfig->channel;
+			pConfig->channel = chRsv;
+			pConfig->panId = panIdRsv;
+			//macExRxDisable();
+			macParameterSet();
+			//macExRxEnable();
+
+			ScanDelay(dly);
+
+			ChanScanRollPoling();
+
+			pConfig->channel = rollChRsv;
+			pConfig->panId = 0xFFFF;
+			
+		}
+*/
+		
+		pConfig->channel++;
+		if(BRIDGE_MST_HOLD==g_mstHold)
+		{
+			osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+		}
+		
+	}
+
+	pConfig->autoChan = InqureAutoChan(valBuf);
+
+	pConfig->channel = chRsv;
+	pConfig->panId = panIdRsv;
+
+	macParameterSet();
+	
+
+}
+
+MAC_DATAREQ_API void ChanScan(macRx_t* pck)
+{
+	//uint16 chRsv;
+	//uint16 rssiSum=0;
+	//uint8 tm=0;
+	int8 rssiBuf[16];
+	uint8 regRsv=0;
+	//uint8 bufIndex=0;
+
+/*	
+	chRsv = pConfig->channel;
+
+	pConfig->channel = RF_CHANNEL;
+
+	while(pConfig->channel<(RF_CHANNEL+15))
+	{
+		macExRxDisable();
+		macParameterSet(pConfig);
+		macExRxEnable();
+
+		rssiSum=0;
+		ScanDelay(5000);		
+
+		for(tm=0;tm<50;tm++)
+		{
+			while(!(RSSISTAT&0x01));
+			rssiSum+=RSSI;
+		}
+
+		prtBuf[bufIndex++] = (rssiSum/50);
+		pConfig->channel++;
+	}
+*/
+	//FRMCTRL0 |= 0x10;
+	regRsv = FRMCTRL0;
+	FRMCTRL0 |= 0x10;
+	CalcEachRssi(rssiBuf,300,800);
+	 FRMCTRL0 = regRsv;
+
+	//FRMCTRL0 &= 0xEF;
+
+	//pConfig->autoChan = InqureAutoChan(rssiBuf);
+
+	LoadUartArray(UART_CC_RTSCAN,rssiBuf,15);
+	TrigerUartSend();
+
+	//macParameterSet();
+
+	//if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+	if(BRIDGE_MST_NORMAL==g_mstHold)
+	{
+		veriPckSendCallback=&macRollPolingProc;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 50);
+	}else
+	{
+		//osal_clear_event(macEx_taskId,MACEX_LINK_TIMEOUT_EVENT);
+		osal_start_timerEx(macEx_taskId, MACEX_LINK_TIMEOUT_EVENT,5000);
+		veriPckSendCallback = NULL;
+	}
+	
+
+	
+}
+
+MAC_DATAREQ_API void LinkedShotRel(macRx_t* pck)
+{
+	static uint8 relCnt=0;
+	static uint8 linkRelCnt = 0;
+	if(relCnt++<9)
+	{
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x06;
+		pTxData[1] = 0x00;//0x01;
+		pTxData[2] = 0xFF;//0x01;
+		pTxData[3] = 0x4A;
+		pTxData[4] = 0x01;//0x01;
+		pTxData[5] = linkRelCnt+1;//0x07;
+		g_sendLen = 6;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+		//relCnt++;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,7);		
+	}else
+	{
+		relCnt = 0;
+		//veriPckSendCallback=&macRollPolingProc;
+		linkRelCnt++;
+		if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+		{
+#ifdef SEND_UNIFIED
+			veriPckSendCallback = &macRollPolingProc;
+#else
+			veriPckSendCallback = &LinkedModeRollPoling;
+#endif
+		}else
+		{
+			veriPckSendCallback = NULL;
+		}
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200);	
+		
+	}
+}
+
+MAC_DATAREQ_API void DevShotRel(macRx_t* pck)
+{
+	static uint8 relCnt=0;
+	static uint8 linkRelCnt = 0;
+	if(relCnt++<9)
+	{
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		pTxData[0] = 0x05;
+		pTxData[1] = 0x00;//0x01;
+		pTxData[2] = 0x49;//0x01;
+		pTxData[3] = g_devCmd;
+		pTxData[4] =  linkRelCnt+1;//0x01;
+		//pTxData[5] = linkRelCnt+1;//0x07;
+		g_sendLen = 5;
+		//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+		macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+		//relCnt++;
+		osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,5+(osal_rand()&0x03));		
+	}else
+	{
+		relCnt = 0;
+		//veriPckSendCallback=&macRollPolingProc;
+		linkRelCnt++;
+		/*
+		if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+		{
+#ifdef SEND_UNIFIED
+			veriPckSendCallback = &macRollPolingProc;
+#else
+			veriPckSendCallback = &LinkedModeRollPoling;
+#endif
+		}else
+		{
+			veriPckSendCallback = NULL;
+		}*/
+		veriPckSendCallback = NULL;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200);	
+		
+	}
+
+}
+
+MAC_DATAREQ_API void InqureConfirm(macRx_t* pck)
+{
+	basicRfConfig.ackRequest = 1;
+	pConfig->frameHead = 0xc821;
+	pConfig->destAddr = 0x000f;
+	pConfig->myAddr = 0xFFFF;
+	//pConfig->myAddr = ADDR;
+	osal_cpyExtAddr(pTxData,g_extAddr);
+	pTxData[8]=0x95;
+	//pTxData[9]=0x02;
+	//if(MSTDEV_MODE_DEV==g_isMaster)
+	if(CMD_MODE_RF_SLA==g_isMaster)
+	{
+		pTxData[9]=basicRfConfig.group+2;
+	}else
+	{
+		pTxData[9]=0x01;
+	}
+	g_sendLen = 10;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	//veriPckSendCallback = NULL;
+	veriPckSendCallback = &macRollPolingProc;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 200);	
+}
+
+MAC_DATAREQ_API void ReConfirm(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8861;
+	pConfig->destAddr = 0x000f;
+	//pConfig->myAddr = ADDR;
+	pTxData[0] = 0x9C;
+	g_sendLen = 1;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);	
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);	
+	veriPckSendCallback = NULL;
+}
+
+MAC_DATAREQ_API void ReadyInfo(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x0000;
+	pTxData[0] = 0x05;
+	pTxData[1] = 0x00;
+	//if(MSTDEV_MODE_DEV==g_isMaster)
+	if(CMD_MODE_RF_SLA==g_isMaster)
+	{
+		pTxData[2] = 0x20;
+		pTxData[3] = pConfig->group;//0x03;
+	}else
+	{
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x33;//0x03;
+	}
+	pTxData[4] = 0x01;			//this indicate the 
+	g_sendLen = 5;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	//veriPckSendCallback = NULL;
+	veriPckSendCallback = &ReadyInfo;
+	osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, (60+(osal_rand()&0x0f)));	
+	//osal_start_timerEx(macEx_taskId, MACEX_VERI_SEND_INQURE,2);	
+}
+
+MAC_DATAREQ_API void MstBridgeInfoInqure(macRx_t* pck)
+{
+	pConfig->frameHead = 0x8841;
+	pConfig->destAddr = 0xFFFF;
+	//pConfig->myAddr = 0x0000;
+	pTxData[0] = 0x05;
+	pTxData[1] = 0x00;
+	//if(MSTDEV_MODE_DEV==g_isMaster)
+	if(CMD_MODE_RF_SLA==g_isMaster)
+	{
+		pTxData[2] = 0x20;
+		pTxData[3] = pConfig->group;//0x03;
+	}else
+	{
+		pTxData[2] = 0xFF;
+		pTxData[3] = 0x33;//0x03;
+	}
+	//pTxData[4] = 0x00;			//this indicate the 
+	//pTxData[4] = 0x01;
+	pTxData[4] = 0x00;
+	g_sendLen = 5;
+	//macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0);
+	macRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,NULL,0,SEND_MODE_UNSLOTTED);
+	veriPckSendCallback = NULL;
+}
+
+static void macExProcessOSALMsg( macMsg_t *msgPtr )
+{
+	switch (msgPtr->hdEvt.event)
+	{
+
+		case MAC_INCOMING_MSG_CMD:
+			switch(g_isMaster)
+			{
+				//case MSTDEV_MODE_MST:
+				case CMD_MODE_RF_MST:
+				case CMD_MODE_RFLS_MST:
+				case CMD_MODE_RFLS_SLA:
+					if(BRIDGE_MST_NORMAL==g_mstHold)
+					{
+						MstVerifyProc(msgPtr->macPayload);
+					}else
+					{
+						MstBridgeHandle(msgPtr->macPayload);
+					}
+				break;
+
+				//case MSTDEV_MODE_DEV:
+				case CMD_MODE_RF_SLA:
+					devJoinNetProc(msgPtr->macPayload);
+				break;
+
+				//case MSTDEV_MODE_MLINK:
+				//case MSTDEV_MODE_SLINK:
+				//case CMD_MODE_RFLS_MST:
+				//case CMD_MODE_RFLS_SLA:
+					//if(RFLS_COORDINATOR_M==pConfig->isRflsCoordinator)
+					//{
+					//	linkVeriProc(msgPtr->macPayload);
+					//}else
+					//{
+					//	linkedNoneCoordinatorProc(msgPtr->macPayload);
+					//}
+				//break;
+
+				//case MSTDEV_MODE_HOLD:
+                                case CMD_MODE_OFF:
+				break;
+			}
+		break;
+
+		default:
+		break;
+	}
+	MAC_RADIO_FLUSH_RX_FIFO();
+}
+
+
+uint16 macEventLoopEx(uint8 taskId, uint16 events)
+{
+	  macMsg_t *MSGpkt;
+  	  (void)taskId;  // Intentionally unreferenced parameter
+  	 // static uint16 tick=0;
+
+	if ( events & SYS_EVENT_MSG )
+	{
+		MSGpkt = (macMsg_t*)osal_msg_receive(macEx_taskId);
+		while ( MSGpkt )
+		{
+			macExProcessOSALMsg(MSGpkt);
+
+			// Release the memory
+			osal_msg_deallocate( (uint8 *)MSGpkt );
+
+			// Next - if one is available
+			MSGpkt = (macMsg_t *)osal_msg_receive( macEx_taskId );
+		}
+
+		// return unprocessed events
+		return (events ^ SYS_EVENT_MSG);
+	}
+
+		// Send a message out - This event is generated by a timer
+		//  (setup in SampleApp_Init()).
+/*
+	if ( events & MACEX_ROLL_POLING_EVENT )
+	{
+		// Send the periodic message
+		if(g_netCheckFlag<2)
+		{
+			macNetCheck();
+			g_netCheckFlag++;
+			osal_start_timerEx( macEx_taskId, MACEX_ROLL_POLING_EVENT, 30);
+		}else
+		{
+			macRollPolingProc();
+		}
+
+		// Setup to send message again in normal periodb 
+
+		// return unprocessed events
+		return (events ^ MACEX_ROLL_POLING_EVENT);
+	}
+*/
+
+	if(events & MACEX_VERI_SEND_INQURE)
+	{
+		if(NULL!=veriPckSendCallback)
+		{
+			veriPckSendCallback(callbackPara);
+		}
+		return (events ^ MACEX_VERI_SEND_INQURE);
+	}
+
+	if(events & MACEX_INFO_INQ)
+	{
+		if(&macRollPolingProc == veriPckSendCallback)
+		{
+			veriPckSendCallback = &DeviceReadyRespond;
+			osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 5+(osal_rand()&0x03));
+		}else
+		{
+			osal_start_timerEx( macEx_taskId, MACEX_INFO_INQ, 60+(osal_rand()&0x0F));
+		}
+		return (events ^ MACEX_INFO_INQ);
+	}
+
+	if(events & MACEX_LINK_TIMEOUT_EVENT)
+	{
+		g_mstHold = BRIDGE_MST_NORMAL;
+		pConfig->isRflsCoordinator = RFLS_COORDINATOR_M;
+		pConfig->myAddr = 0x000F;
+		pConfig->evtCnt++;
+		if(pConfig->totalDev>0)
+		{
+			LED_INS_LINKED();
+		}else
+		{
+			LED_INS_UNLINK();
+		}
+		MAC_RADIO_SET_SHORT_ADDR(pConfig->myAddr);
+		if(CMD_MODE_RF_SLA==g_isMaster)
+		{
+			UartSctSend(UART_SLAVE_LINKED,0x00,0);
+		}
+		veriPckSendCallback=&macRollPolingProc;
+		osal_start_timerEx( macEx_taskId, MACEX_VERI_SEND_INQURE, 0);
+		return (events ^ MACEX_LINK_TIMEOUT_EVENT);
+	}
+
+#ifdef LED_TOGGLE_DEBUG
+	if(events & MACEX_LED_FLASH)
+	{
+		HAL_TOGGLE_LED2();
+		osal_start_timerEx( macEx_taskId, MACEX_LED_FLASH, 500);
+		return (events ^ MACEX_LED_FLASH);
+	}
+#endif
+
+#ifdef DEBUG_TRACE
+	if(events & MACEX_INIT_CHECK)
+	{
+		return (events^MACEX_INIT_CHECK);
+	}
+#else
+	if(events & MACEX_INIT_CHECK)
+	{
+		if(!g_initCheck)
+		{
+			UartSctSend(UART_CC_INIT,1,0);
+			osal_start_timerEx( macEx_taskId, MACEX_INIT_CHECK, 500);
+		}
+		return (events^MACEX_INIT_CHECK);
+	}
+#endif
+	//if(tick++>10000)
+	//{
+	//	LED_RED = !LED_RED;
+	//	tick = 0;
+	//}
+
+/*
+	if(events & MACEX_SLAVE_PWRDOWN)
+	{
+		g_slvPwrDnTmr--;
+		if(g_slvPwrDnTmr<=0)
+		{
+			UART_INT_SET();
+			macDelay(100);
+			UartSctSend(UART_ENCODE_SLAPWROFF,1,0);
+		}
+	}
+*/
+	// Discard unknown events
+	return 0;
+}
+
+
+
+void macExTxDoneCallback(void)
+{
+	txState.txDone = TXSTATE_TXDONE_CLEAR;
+#ifdef _RT_AP_
+	AP_TXEN = 0;
+#endif
+	return;
+}
+
+void macExTxAckDoneCallback(void)
+{
+	txState.ackReceived= TXSTATE_TXACKDONE_RCVD;
+#ifdef _RT_AP_
+	AP_TXEN = 0;
+#endif
+	return;
+}
+
+
+#ifdef IO_INDEX_TEST
+void FingerIndex_1(void)
+{
+	FINGER1 = ~FINGER1;
+}
+
+void FingerIndex_2(void)
+{
+	FINGER2 = ~FINGER2;
+}
+#endif
+
+
+#if 0
+void pilot()
+{
+	if(g_linkedMode)
+	{
+		//basicRfConfig.ackRequest = 0;
+		pConfig->frameHead = 0x8841;
+		pConfig->destAddr = 0xFFFF;
+		//pConfig->myAddr = 0x000F;
+		arrcpy(pTxData,pilotCommand,sizeof(pilotCommand));
+		g_sendLen = sizeof(pilotCommand);
+		//g_sendFlag = 1;
+		basicRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+		halMcuWaitMs(2);
+		basicRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+		halMcuWaitMs(2);
+		pTxData[0] = 0x90;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0x03;
+		pTxData[3] = 0xe8;
+		g_sendLen = 4;
+		basicRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+		halMcuWaitMs(2);
+		pTxData[0] = 0x90;
+		pTxData[1] = 0x00;
+		pTxData[2] = 0x00;
+		pTxData[3] = 0x00;
+		g_sendLen = 4;
+		basicRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+	}else
+	{
+		//s_veriState = 7;
+		if(linkedRelCnt<9)
+		{
+			pConfig->frameHead = 0x8841;
+			pConfig->destAddr = 0xFFFF;
+			//pConfig->myAddr = 0x000F;
+			pTxData[0] = 0x06;
+			pTxData[1] = 0x00;//0x01;
+			pTxData[2] = 0xFF;//0x01;
+			pTxData[3] = 0x4A;
+			pTxData[4] = 0x01;//0x01;
+			pTxData[5] = g_linkRelCnt;//0x07;
+			g_sendLen = 6;
+			basicRfSendPacket(pConfig->destAddr, pTxData, g_sendLen,0);
+			linkedRelCnt++;
+			halMcuWaitMs(7);
+		}else
+		{
+			linkedRelCnt = 0;
+			s_veriState = 0xFF;
+			g_linkRelCnt ++;
+		}
+	}
+}
+#endif
+
+/*
+#pragma vector = P0INT_VECTOR    //格式：#pragma vector = 中断向量，紧接着是中断处理程序
+  __interrupt void P0_ISR(void) 
+{ 
+  P0IFG = 0;             //清中断标志 
+  P0IF = 0;              //清中断标志 
+}*/
+
+#if((defined HAL_UART_DMA)&&(HAL_UART_DMA==1))
+#if 0
+static void macExUartInterrupt(void)
+{
+	//MAC_UART_EX_INT_IFG = 1;
+	//MAC_KEY_CPU_PORT_0_IF = 1;
+	//LED_RED_TOGGLE();
+	UartDMAIntRcv();
+	//dmaCfg.uartCB(HAL_UART_DMA-1, 0);
+	//HalUARTPoll();					//uart read
+	//if (HAL_UART_DMA_NEW_RX_BYTE(dmaCfg.rxHead))
+	//{
+	//	dmaCfg.uartCB(HAL_UART_DMA-1, 0);
+	//}
+	return;
+}
+#endif
+
+HAL_ISR_FUNCTION( halKeyPort0Isr, P0INT_VECTOR )
+{
+   //P0IFG = 0;             //清中断标志 
+   //P0IF = 0;              //清中断标志 
+	if (MAC_UART_EX_INT_IFG & MAC_UART_EX_INT_BIT)
+	{
+		//macExUartInterrupt();
+		UartDMAIntRcv();
+	}
+	MAC_UART_EX_INT_IFG = 0;
+	MAC_KEY_CPU_PORT_0_IF = 0;
+}
+#endif
+
+
+#ifdef DEBUG_TRACE
+static void PutChar(const char Tbyte)
+{
+	U0DBUF = Tbyte; 
+	while(UTX0IF == 0);   //发送完成标志位
+	UTX0IF = 0;  
+}
+
+static void putsStr(const char *str)
+{
+	while(*str!='0')
+		PutChar(*str++);
+	//HalUARTWrite(0, (unsigned char*)str++, 1);
+}
+
+static char *mac_itoa(long n, int base)
+ {
+  	char *p;
+ 	int minus;
+ 	static char buf[16];
+
+//	puts_("enter _itoa\n");
+//	put_hex(n);
+
+ 	p = &buf[16];
+ 	*--p =  0;
+ 	if (n < 0) 
+	{
+  		minus = 1;
+  		n = -n;
+ 	}
+ 	else
+  		minus = 0;
+
+
+ 	if (n == 0)
+	{
+  		*--p = '0';
+	}
+ 	else
+  		while (n > 0) 
+		{  
+	//		puts_("_itoa ");
+   			*--p = "0123456789abcdef"[n % base];
+	//		putchar(*p);
+   			n /= base;
+  		}
+
+ 	if (minus)
+  		*--p = '-';
+
+ 	return p;
+}
+
+
+
+int Printf(const char *fmt, ...)
+{
+	int i;
+	const char *s;
+ 	int d;
+	char buf[128];
+	char *p = buf;
+//	char buf[16];
+//	char *p = buf;
+ 	va_list ap;
+
+    va_start(ap, fmt);
+	i = 16;
+
+    while (*fmt) 
+	{
+        if (*fmt != '%') 
+		{
+            PutChar(*fmt++);
+            continue;
+        }
+		
+		switch(*++fmt)
+		{
+            case 's':
+                s = va_arg(ap, const char *);
+                for ( ; *s; s++) 
+		 {
+                   PutChar(*s);
+                }
+                break;
+            case 'd':			
+                d = va_arg(ap, int);
+				//d>>=8;
+                p = mac_itoa(d, 10);
+                for (s = p; *s; s++) 
+				{
+                    PutChar(*s);
+                }
+
+				break;
+
+            case 'x':
+			case 'X':
+                d = va_arg(ap, int);
+                p = mac_itoa(d, 16);
+                for (s = p; *s; s++) 
+				{
+                    PutChar(*s);
+                }
+                break;
+             //Add other specifiers here...              
+            default:  
+                putsStr(fmt);
+                break;
+        } 
+        fmt++;
+    }
+    va_end(ap);
+
+    return 1;   /* Dummy return value */
+}
+
+void DeviceInfoPrint(void)
+{
+	uint8 pDev;
+	Printf("total device %d\r\n",pConfig->totalDev);
+	for(pDev=0;pDev<DEVICE_TOTAL;pDev++)
+	{
+		if(DEVICE_VERIFIED==pConfig->devHead[pDev].veriFlag)
+		{
+			Printf("addr: %d;",pConfig->devHead[pDev].shortAddr);
+			Printf("group: %d;", pConfig->devHead[pDev].group);
+			Printf("attribute: %d;",pConfig->devHead[pDev].attribute);
+		}
+	}
+}
+
+void BufferPrint(uint8* buf, uint16 size)
+{
+	uint16 i;
+	for(i=0;i<size;i++)
+	{
+		Printf("%x ",buf[i]);
+	}
+	Printf("\r\n");
+}
+#endif
+
+#if 1
+/**************************************************************************************************
+* @fn znpTestRF
+*
+* @brief This function initializes and checks the ZNP RF Test Mode NV items. It is designed
+* to be invoked before/instead of MAC radio initialization.
+*
+* input parameters
+*
+* None.
+*
+* output parameters
+*
+* None.
+*
+* @return None.
+*/
+#define MAC_RADIO_TX_ON()    st( RFST = ISTXON;)
+#define TX_PWR_TONE_SET(x)    st( MDMTEST0 = x;)
+#define TX_PWR_MOD__SET(x)    st(if(x){MDMTEST1|=0x10; })
+void znpTestRF(void)
+{
+	//uint8 rfTestParms[4] = { 0, 0, 0, 0 };
+	uint8 rfTestParms[4] = { 2, 11, 0xF5, 0x55};
+	/*
+	if ((SUCCESS != osal_nv_item_init(ZNP_NV_RF_TEST_PARMS, 4, rfTestParms)) ||
+	(SUCCESS != osal_nv_read(ZNP_NV_RF_TEST_PARMS, 0, 4, rfTestParms)) ||
+	(rfTestParms[0] == 0))
+	{
+	return;
+	}
+	*/
+
+	/* Recommended settings */
+	MDMCTRL0 = 0x85;
+	RXCTRL = 0x3F;
+	FSCTRL = 0x55;
+	FSCAL1 = 0x01;
+	AGCCTRL1 = 0x15;
+	ADCTEST0 = 0x10;
+	ADCTEST1 = 0x0E;
+	ADCTEST2 = 0x03;
+
+	FRMCTRL0 = 0x43;
+	FRMCTRL1 = 0x00;
+
+	MAC_RADIO_RXTX_OFF();
+	//MAC_RADIO_SET_CHANNEL(rfTestParms[1]);
+	MAC_RADIO_SET_CHANNEL(pConfig->channel);
+	MAC_RADIO_SET_TX_POWER(rfTestParms[2]);
+	TX_PWR_TONE_SET(rfTestParms[3]);
+
+	switch (rfTestParms[0])
+	{
+	case 1: /* Rx promiscuous mode. */
+	MAC_RADIO_RX_ON();
+	break;
+
+	case 2: /* Un-modulated Tx. */
+	TX_PWR_MOD__SET(1);
+	/* no break; */
+
+	case 3: /* Modulated Tx. */
+	/* Modulated is default register setting, so no special action. */
+
+	/* Now turn on Tx power for either mod or un-modulated Tx test*/
+	MAC_RADIO_TX_ON();
+	//MAC_RADIO_RX_ON();
+	break;
+
+	default: /* Not expected. */
+	break;
+	}
+
+
+	/* Clear the RF test mode. */
+	/*
+	(void)osal_memset(rfTestParms, 0, 4);
+	(void)osal_nv_write(ZNP_NV_RF_TEST_PARMS, 0, 4, rfTestParms);
+	*/
+
+	while (1); /* Spin in RF test mode until a hard reset. */
+}
+#endif
+
+
+static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key)
+{
+   UINT8 i;
+
+   // Checking whether to load a key or an initialisation vector.
+   if(key){
+      AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_KEY);
+   }
+   else {
+      AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_IV);
+   }
+   // Starting loading of key or vector.
+   AES_START();
+
+   // loading the data (key or vector)
+   for(i = 0; i < 16; i++){
+      ENCDI = pData[i];
+   }
+}
+
+static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr)
+{
+   UINT16  i;
+   //UINT8   j, k;
+   UINT8   j;
+   BYTE    mode;
+   UINT16  nbrOfBlocks;
+   UINT16  convertedBlock;
+   UINT8   delay;
+
+   nbrOfBlocks = length / 16;
+   mode = 0;
+
+   if( (length % 16) != 0){
+      // length not multiplum of 16, convert one block extra with zeropadding
+      nbrOfBlocks++;
+   }
+
+   // Loading the IV.
+   //halAesLoadKeyOrInitVector(pInitVector, FALSE);
+
+   // Starting either encryption or decryption
+   if(decr){
+      AES_SET_ENCR_DECR_KEY_IV(AES_DECRYPT);
+   } else {
+      AES_SET_ENCR_DECR_KEY_IV(AES_ENCRYPT);
+   }
+
+   // Getting the operation mode.
+   mode = ENCCS & 0x70;
+
+   for(convertedBlock = 0; convertedBlock < nbrOfBlocks; convertedBlock++){
+      // Starting the conversion.
+      AES_START();
+
+      i = convertedBlock * 16;
+      // Counter, Output Feedback and Cipher Feedback operates on 4 bytes and not 16 bytes.
+      if((mode == CFB) || (mode == OFB) || (mode == CTR))
+	 {
+/*
+         for(j = 0; j < 4; j++){
+            // Writing the input data
+            // Zeropadding the remainder of the block
+            for(k = 0; k < 4; k++){
+               ENCDI = ((i + 4*j + k < length) ? pDataIn[i + 4*j + k] : 0x00 );
+            }
+            // wait for data ready
+            delay = DELAY;
+            while(delay--);
+            // Read out data for every 4th byte
+            for(k = 0; k < 4; k++){
+               pDataOut[i + 4*j + k] = ENCDO;
+            }
+         }
+*/
+      }
+      else if(mode == CBC_MAC){/*
+         // Writing the input data
+         // Zeropadding the remainder of the block
+         for(j = 0; j < 16; j++){
+            ENCDI = ((i + j < length) ? pDataIn[i + j] : 0x00 );
+         }
+         // The last block of the CBC-MAC is computed by using CBC mode.
+         if(convertedBlock == nbrOfBlocks - 2){
+            AES_SETMODE(CBC);
+            delay = DELAY;
+            while(delay--);
+         }
+         // The CBC-MAC does not produce an output on the n-1 first blocks
+         // only the last block is read out
+         else if(convertedBlock == nbrOfBlocks - 1){
+            // wait for data ready
+            delay = DELAY;
+            while(delay--);
+            for(j = 0; j < 16; j++){
+               pDataOut[j] = ENCDO;
+            }
+         }*/
+      }
+      else{
+         // Writing the input data
+         // Zeropadding the remainder of the block
+         for(j = 0; j < 16; j++){
+            ENCDI = ((i+j < length) ? pDataIn[i+j] : 0x00 );
+         }
+         // wait for data ready
+         delay = DELAY;
+         while(delay--);
+         // Read out data
+         for(j = 0; j < 16; j++){
+            pDataOut[i+j] = ENCDO;
+         }
+      }
+   }
+}
+
+static void MemReadRam(macRam_t * pRam, uint8 * pData, uint8 len)
+{
+  while (len)
+  {
+    len--;
+    *pData = *pRam;
+    pRam++;
+    pData++;
+  }
+}
+
+

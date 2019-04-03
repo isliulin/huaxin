@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>Boot/OAD Boot Loader</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>195</Column0><Column1>0</Column1><Column2>27</Column2><Column3>1242260</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1005</ColumnWidth1><ColumnWidth2>268</ColumnWidth2><ColumnWidth3>67</ColumnWidth3></Build>
+      <TerminalIO/>
+    <Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1340</ColumnWidth1></Debug-Log><Disassembly><MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow></Disassembly></Static>
+    <Windows>
+      
+      
+    <Wnd2>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-20359-26329</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>Boot</ExpandedNode><ExpandedNode>Boot/HAL</ExpandedNode><ExpandedNode>Boot/HAL/Target</ExpandedNode><ExpandedNode>Boot/HAL/Target/CC2530EB</ExpandedNode><ExpandedNode>Boot/HAL/Target/CC2530EB/Config</ExpandedNode><ExpandedNode>Boot/HAL/Target/CC2530EB/Drivers</ExpandedNode><ExpandedNode>Boot/Tools</ExpandedNode><ExpandedNode>Boot/ZMain</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-23559-26678</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-9408-31428</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_defs.h</Filename><XPos>0</XPos><YPos>90</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_flash.h</Filename><XPos>0</XPos><YPos>83</YPos><SelStart>4400</SelStart><SelEnd>4400</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_dma.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_mcu.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_oad.h</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>2885</SelStart><SelEnd>2885</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_types.h</Filename><XPos>0</XPos><YPos>65</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_oad.c</Filename><XPos>0</XPos><YPos>205</YPos><SelStart>8241</SelStart><SelEnd>8241</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_flash.c</Filename><XPos>0</XPos><YPos>41</YPos><SelStart>3035</SelStart><SelEnd>3035</SelEnd></Tab><ActiveTab>7</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\OSAL\INCLUDE\ZComDef.h</Filename><XPos>0</XPos><YPos>108</YPos><SelStart>2512</SelStart><SelEnd>2512</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\interrupt_stubs.s51</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>2344</SelStart><SelEnd>2344</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\HAL\INCLUDE\hal_board.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2</SelStart><SelEnd>2</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-02f41e50><key>iaridepm.enu1</key></Toolbar-02f41e50></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>513</Bottom><Right>242</Right><x>-2</x><y>-2</y><xscreen>20</xscreen><yscreen>59</yscreen><sizeHorzCX>20725</sizeHorzCX><sizeHorzCY>79622</sizeHorzCY><sizeVertCX>252850</sizeVertCX><sizeVertCY>695007</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>183</Bottom><Right>967</Right><x>-2</x><y>-2</y><xscreen>969</xscreen><yscreen>185</yscreen><sizeHorzCX>1004145</sizeHorzCX><sizeHorzCY>249663</sizeHorzCY><sizeVertCX>20725</sizeVertCX><sizeVertCY>79622</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

@@ -1,0 +1,1903 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         04/Dec/2016  22:38:11 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\bsp\dr #
+#                          ivers\code\uart_intfc.c                            #
+#    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          Stm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\Configuration\LinkTo #
+#                          \smpl_config.dat ("-DTHIS_DEVICE_ADDRESS={0x79,    #
+#                          0x56, 0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK      #
+#                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK\ #
+#                          Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Pro #
+#                          jects\Examples\SRF05_8051\nik_sb5000\IAR\Configura #
+#                          tion\smpl_nwk_config.dat (-DMAX_HOPS=3             #
+#                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34          #
+#                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x010203 #
+#                          04 -DDEFAULT_JOIN_TOKEN=0x05060708                 #
+#                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK               #
+#                          -DxEXTENDED_API -DxSMPL_SECURE                     #
+#                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                    #
+#                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4             #
+#                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING           #
+#                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                 #
+#                          -DUART_NUMBER=UART_NUMBER_0                        #
+#                          -DUART_LOCATION=UART_LOCATION_1                    #
+#                          -DUART_BAUD_RATE=115200 -DUART_FLOW_CONTROL=UART_F #
+#                          LOW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON #
+#                          E -DUART_STOP_BITS=UART_1_STOP_BIT                 #
+#                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\bsp\dr #
+#                          ivers\code\uart_intfc.c -D MCU_H=<ioCC2530.h> -D   #
+#                          MRFI_CC2530 -D ZTOOL_P1 -lC                        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -lA        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\ -o         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\ -e --debug  #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data --nr_virtual_regs    #
+#                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\Ni #
+#                          konStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Ex #
+#                          amples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co #
+#                          mponents\bsp\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\bsp\drivers\ -I                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\bsp\boards\CC2530EM\ -I                         #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\mrfi\ -I C:\Users\freeman\Documents\work\NBK\Ni #
+#                          kon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Proje #
+#                          cts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. #
+#                          \..\Components\SimpliciTI\nwk\ -I                  #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\Applications\  #
+#                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Nikon #
+#                          Stm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp #
+#                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo #
+#                          nents\SimpliciTI\nwk_applications\ -I              #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\OSAL\INCLUDE\ -I C:\Users\freeman\Documents\wor #
+#                          k\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2 #
+#                          .0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\ #
+#                          ..\..\..\..\Components\OSAL\MCU\CCSOC\ -I          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\HAL\INCLUDE\ -I C:\Users\freeman\Documents\work #
+#                          \NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2. #
+#                          0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\. #
+#                          .\..\..\..\Components\HAL\TARGET\CC2530EB\ -I      #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\SERVICES\SADDR\ -I C:\Users\freeman\Documents\w #
+#                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 #
+#                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\. #
+#                          .\..\..\..\..\Components\SERVICES\SDATA\ -I        #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MT\ -I C:\Users\freeman\Documents\work\NBK\Niko #
+#                          n\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project #
+#                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\. #
+#                          .\Components\STACK\AF\ -I                          #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\NWK\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\STACK\SEC\ -I                  #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\SAPI\ -I C:\Users\freeman\Documents\work\ #
+#                          NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0 #
+#                          \Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\.. #
+#                          \..\..\..\Components\STACK\SYS\ -I                 #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\STACK\ZDO\ -I C:\Users\freeman\Documents\work\N #
+#                          BK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\ #
+#                          Projects\Examples\SRF05_8051\nik_sb5000\IAR\..\..\ #
+#                          ..\..\..\Components\MAC\INCLUDE\ -I                #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\HIGH_LEVEL\ -I C:\Users\freeman\Documents\w #
+#                          ork\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1 #
+#                          .2.0\Projects\Examples\SRF05_8051\nik_sb5000\IAR\. #
+#                          .\..\..\..\..\Components\MAC\LOW_LEVEL\srf04\ -I   #
+#                          C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Componen #
+#                          ts\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz           #
+#                          --require_prototypes                               #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\List\uart_intfc. #
+#                          lst                                                #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm #
+#                          32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples #
+#                          \SRF05_8051\nik_sb5000\IAR\LinkTo\Obj\uart_intfc.r #
+#                          51                                                 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Nikon\NikonStm32\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\bsp\drivers\code\uart_intfc.c
+      1          /**************************************************************************************************
+      2            Filename:       uart_intfc.c
+      3            Revised:        $Date: 2009-08-17 10:50:58 -0700 (Mon, 17 Aug 2009) $
+      4            Author:         $Author: jnoxon $
+      5          
+      6            Description:    This file supports the SimpliciTI-compatible UART API functions.
+      7          
+      8            Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+      9          
+     10            IMPORTANT: Your use of this Software is limited to those specific rights granted under
+     11            the terms of a software license agreement between the user who downloaded the software,
+     12            his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+     13            "License"). You may not use this Software unless you agree to abide by the terms of the
+     14            License. The License limits your use, and you acknowledge, that the Software may not be
+     15            modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+     16            or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+     17            transceiver, which is integrated into your product. Other than for the foregoing purpose,
+     18            you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+     19            perform, display or sell this Software and/or its documentation for any purpose.
+     20          
+     21            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS?  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+     22            WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+     23            IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     24            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+     25            THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+     26            INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+     27            DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+     28            THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     29          
+     30            Should you have any questions regarding your right to use this Software,
+     31            contact Texas Instruments Incorporated at www.TI.com.
+     32          **************************************************************************************************/
+     33          
+     34          /******************************************************************************
+     35           * INCLUDES
+     36           */
+     37          #include "uart_intfc.h"
+
+   \                                 In  segment SFR_AN, at 0xa8
+   \   union <unnamed> volatile __sfr _A_IEN0
+   \                     _A_IEN0:
+   \   000000                DS 1
+     38          #include <stdlib.h>
+     39          
+     40          #include "bsp.h"
+     41          #ifdef FREQUENCY_HOPPING
+     42          #include "nwk_pll.h"
+     43          #endif
+     44          
+     45          #include "hal_uart.h"
+     46          #include "osal.h"
+     47          
+     48          /******************************************************************************
+     49           * CONSTANTS AND DEFINES
+     50           */
+     51          #ifndef RX_TX_BUFFER_SIZE       /* this value must be at least 2. */
+     52          #define RX_TX_BUFFER_SIZE 50
+     53          #endif
+     54          
+     55          //serial setting
+     56          #define UART_DEFAULT_BAUDRATE			HAL_UART_BR_115200//HAL_UART_BR_57600
+     57          #define UART_DEFAULT_OVERFLOW			FALSE
+     58          #define UART_DEFAULT_THRESHOLD		(128/2)
+     59          #define UART_DEFAULT_MAX_RX_BUFF		128		
+     60          #define UART_DEFAULT_MAX_TX_BUFF		128
+     61          #define UART_DEFAULT_IDLE_TIMEOUT		6
+     62          
+     63          //#define UART_PORT HAL_UART_PORT_0
+     64          
+     65          /******************************************************************************
+     66           * MACROS
+     67           */
+     68          #define RX_TX_BUFFER_THROTTLE_LIMIT ( ( ( UART_BAUD_RATE ) > 15000 \
+     69                                                 && ( RX_TX_BUFFER_SIZE ) > 8 ) \
+     70                                                       ? ( ( RX_TX_BUFFER_SIZE ) - 4 )\
+     71                                                       : ( ( RX_TX_BUFFER_SIZE ) - 1 ) )
+     72          
+     73          /******************************************************************************
+     74           * LOCAL VARIABLES
+     75           */
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     76          static unsigned char rx_buff[RX_TX_BUFFER_SIZE];
+   \                     rx_buff:
+   \   000000                DS 50
+   \   000032                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     77          static unsigned char tx_buff[RX_TX_BUFFER_SIZE];
+   \                     tx_buff:
+   \   000000                DS 50
+   \   000032                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     78          static unsigned char* rx_head = rx_buff;
+   \                     rx_head:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for rx_head>`
+   \   000002                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     79          static unsigned char* rx_tail = rx_buff;
+   \                     rx_tail:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for rx_tail>`
+   \   000002                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     80          static unsigned char* tx_head = tx_buff;
+   \                     tx_head:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for tx_head>`
+   \   000002                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+     81          static unsigned char* tx_tail = tx_buff;
+   \                     tx_tail:
+   \   000000                DS 2
+   \   000002                REQUIRE `?<Initializer for tx_tail>`
+   \   000002                REQUIRE __INIT_XDATA_I
+     82          
+     83          /******************************************************************************
+     84           * LOCAL FUNCTIONS
+     85           */
+     86          
+     87          /* uart data handler function prototypes */
+     88          bool tx_handler( unsigned char* c );
+     89          bool rx_handler( unsigned char c );
+     90          
+     91          int buffer_free_space( unsigned char* head, unsigned char* tail );
+     92          int buffer_used_space( unsigned char* head, unsigned char* tail );
+     93          bool push_buffer( unsigned char** head, unsigned char* tail,
+     94                            unsigned char* buff, unsigned char* data, int len );
+     95          int pop_buffer( unsigned char* head, unsigned char** tail,
+     96                          unsigned char* buff, unsigned char* data, int max_len );
+     97          
+     98          static void UartProcessData(uint8 port, uint8 event);
+     99          
+    100          extern void UartDMAIntSend(void);
+    101          
+    102          /******************************************************************************
+    103           * GLOBAL FUNCTIONS
+    104           */
+    105          
+    106          /******************************************************************************
+    107           * @fn          uart_intfc_init
+    108           *
+    109           * @brief       Initialize UART interface. Buffer pointers are initialized.
+    110           *
+    111           * input parameters
+    112           *
+    113           * output parameters
+    114           *
+    115           * @return   void
+    116           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    117          void uart_intfc_init( void )
+   \                     uart_intfc_init:
+    118            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    119            /* initialize the buffer pointers in case we are re-initialized */
+    120            rx_head = rx_buff;
+   \   000004   90....       MOV     DPTR,#rx_head
+   \   000007   74..         MOV     A,#rx_buff & 0xff
+   \   000009   F0           MOVX    @DPTR,A
+   \   00000A   A3           INC     DPTR
+   \   00000B   74..         MOV     A,#(rx_buff >> 8) & 0xff
+   \   00000D   F0           MOVX    @DPTR,A
+    121            rx_tail = rx_buff;
+   \   00000E   90....       MOV     DPTR,#rx_tail
+   \   000011   74..         MOV     A,#rx_buff & 0xff
+   \   000013   F0           MOVX    @DPTR,A
+   \   000014   A3           INC     DPTR
+   \   000015   74..         MOV     A,#(rx_buff >> 8) & 0xff
+   \   000017   F0           MOVX    @DPTR,A
+    122            tx_head = tx_buff;
+   \   000018   90....       MOV     DPTR,#tx_head
+   \   00001B   74..         MOV     A,#tx_buff & 0xff
+   \   00001D   F0           MOVX    @DPTR,A
+   \   00001E   A3           INC     DPTR
+   \   00001F   74..         MOV     A,#(tx_buff >> 8) & 0xff
+   \   000021   F0           MOVX    @DPTR,A
+    123            tx_tail = tx_buff;
+   \   000022   90....       MOV     DPTR,#tx_tail
+   \   000025   74..         MOV     A,#tx_buff & 0xff
+   \   000027   F0           MOVX    @DPTR,A
+   \   000028   A3           INC     DPTR
+   \   000029   74..         MOV     A,#(tx_buff >> 8) & 0xff
+   \   00002B   F0           MOVX    @DPTR,A
+    124          
+    125            uart_init( ); /* initialize the uart for operations */
+   \   00002C                ; Setup parameters for call to function uart_init
+   \   00002C   12....       LCALL   ??uart_init?relay
+    126            uart_rx_message( rx_handler ); /* enable us to receive uart data */
+   \   00002F                ; Setup parameters for call to function uart_rx_message
+   \   00002F   7A..         MOV     R2,#??rx_handler?relay & 0xff
+   \   000031   7B..         MOV     R3,#(??rx_handler?relay >> 8) & 0xff
+   \   000033   12....       LCALL   ??uart_rx_message?relay
+    127          
+    128          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    129             UART_ASSERT_RTS( UART_RTS_DEASSERTED ); /* release flow control */
+    130          #endif
+    131          
+    132            return;
+   \   000036   02....       LJMP    ?Subroutine0 & 0xFFFF
+    133            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+    134          
+    135          /******************************************************************************
+    136           * @fn          buffer_free_space
+    137           *
+    138           * @brief       Calculates amount of freespace in buffer from <head> and <tail>
+    139           *              addresses
+    140           *
+    141           * input parameters
+    142           * @param   head       - pointer to buffer head
+    143           * @param   tail       - pointer to buffer tail
+    144           *
+    145           * output parameters
+    146           *
+    147           * @return   Buffer free space count in bytes
+    148           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    149          int buffer_free_space( unsigned char* head, unsigned char* tail )
+   \                     buffer_free_space:
+    150            {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    151            /* the free count is the buffer size minus the used count minus one
+    152             * because we don't want the pointers to ever get back on top of each other
+    153             * because that would indicate an empty buffer. */
+    154            return RX_TX_BUFFER_SIZE - buffer_used_space( head, tail ) - 1;
+   \   000005                ; Setup parameters for call to function buffer_used_space
+   \   000005   12....       LCALL   ??buffer_used_space?relay
+   \   000008   8A..         MOV     ?V0 + 0,R2
+   \   00000A   8B..         MOV     ?V0 + 1,R3
+   \   00000C   7431         MOV     A,#0x31
+   \   00000E   C3           CLR     C
+   \   00000F   95..         SUBB    A,?V0 + 0
+   \   000011   FA           MOV     R2,A
+   \   000012   E4           CLR     A
+   \   000013   95..         SUBB    A,?V0 + 1
+   \   000015   FB           MOV     R3,A
+   \   000016   80..         SJMP    ??Subroutine8_0
+    155            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine8_0:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    156          
+    157          /******************************************************************************
+    158           * @fn          buffer_used_space
+    159           *
+    160           * @brief       Calculates amount of used space in buffer from <head> and <tail>
+    161           *              addresses
+    162           *
+    163           * input parameters
+    164           * @param   head       - pointer to buffer head
+    165           * @param   tail       - pointer to buffer tail
+    166           *
+    167           * output parameters
+    168           *
+    169           * @return   Buffer used space count in bytes
+    170           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    171          int buffer_used_space( unsigned char* head, unsigned char* tail )
+   \                     buffer_used_space:
+    172            {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    173            ptrdiff_t used;
+    174            
+    175            used = head - tail; /* get used count */
+   \   000000   EA           MOV     A,R2
+   \   000001   C3           CLR     C
+   \   000002   9C           SUBB    A,R4
+   \   000003   FA           MOV     R2,A
+   \   000004   EB           MOV     A,R3
+   \   000005   9D           SUBB    A,R5
+   \   000006   FB           MOV     R3,A
+    176            if( used < 0 ) /* if the pointers were wrapped */
+   \   000007   C3           CLR     C
+   \   000008   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   00000B   5008         JNC     ??buffer_used_space_0
+    177              used += RX_TX_BUFFER_SIZE; /* correct the count */
+   \   00000D   EA           MOV     A,R2
+   \   00000E   2432         ADD     A,#0x32
+   \   000010   FA           MOV     R2,A
+   \   000011   EB           MOV     A,R3
+   \   000012   3400         ADDC    A,#0x0
+   \   000014   FB           MOV     R3,A
+    178            
+    179            return used; /* return used count */
+   \                     ??buffer_used_space_0:
+   \   000015   02....       LJMP    ?BRET
+    180            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   9400         SUBB    A,#0x0
+   \   000002   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000004   65D0         XRL     A,PSW
+   \   000006   33           RLC     A
+   \   000007   22           RET
+    181          
+    182          /******************************************************************************
+    183           * @fn          push_buffer
+    184           *
+    185           * @brief       Pushes bytes of data onto the specified buffer. Assumes on 
+    186           *              entry that <data>, <buff>, <tail>, and <head> are all valid 
+    187           *              pointers
+    188           *
+    189           * input parameters
+    190           * @param   tail       - pointer to buffer tail
+    191           * @param   buff       - pointer to buffer (push target)
+    192           * @param   data       - pointer to data to be pushed into buffer
+    193           * @param   len        - length in bytes of data to be pushed
+    194           *
+    195           * output parameters
+    196           * @param   head       - updated buffer head pointer
+    197           *
+    198           * @return   status of operation.
+    199           *             true          Data successfully pushed into buffer
+    200           *             false         Data not pushed into buffer
+    201           */
+    202          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    203          bool push_buffer( unsigned char** head, unsigned char* tail,
+   \                     push_buffer:
+    204                            unsigned char* buff, unsigned char* data, int len )
+    205            {
+   \   000000   74EE         MOV     A,#-0x12
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 18
+   \   000005                ; Auto size: 0
+   \   000005   8A..         MOV     ?V0 + 6,R2
+   \   000007   8B..         MOV     ?V0 + 7,R3
+   \   000009   7412         MOV     A,#0x12
+   \   00000B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F5..         MOV     ?V0 + 4,A
+   \   000011   A3           INC     DPTR
+   \   000012   E0           MOVX    A,@DPTR
+   \   000013   F5..         MOV     ?V0 + 5,A
+   \   000015   7414         MOV     A,#0x14
+   \   000017   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   F5..         MOV     ?V0 + 0,A
+   \   00001D   A3           INC     DPTR
+   \   00001E   E0           MOVX    A,@DPTR
+   \   00001F   F5..         MOV     ?V0 + 1,A
+   \   000021   7416         MOV     A,#0x16
+   \   000023   12....       LCALL   ?XSTACK_DISP0_8
+   \   000026   E0           MOVX    A,@DPTR
+   \   000027   F5..         MOV     ?V0 + 2,A
+   \   000029   A3           INC     DPTR
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   F5..         MOV     ?V0 + 3,A
+    206            unsigned char* local_head;
+    207            unsigned char* local_tail = tail;
+    208          
+    209            BSP_CRITICAL_STATEMENT( local_head = *head );
+   \   00002D   E5A8         MOV     A,0xa8
+   \   00002F   F8           MOV     R0,A
+   \   000030   C2AF         CLR     0xa8.7
+   \   000032   8A82         MOV     DPL,R2
+   \   000034   8B83         MOV     DPH,R3
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   FE           MOV     R6,A
+   \   000038   A3           INC     DPTR
+   \   000039   E0           MOVX    A,@DPTR
+   \   00003A   FF           MOV     R7,A
+   \   00003B   E8           MOV     A,R0
+   \   00003C   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00003E   92AF         MOV     0xa8.7,C
+   \   000040   E5A8         MOV     A,0xa8
+    210            
+    211            /* if no room in the buffer */
+    212            if( buffer_free_space( local_head, local_tail ) < len )
+   \   000042                ; Setup parameters for call to function buffer_free_space
+   \   000042   EE           MOV     A,R6
+   \   000043   FA           MOV     R2,A
+   \   000044   EF           MOV     A,R7
+   \   000045   FB           MOV     R3,A
+   \   000046   12....       LCALL   ??buffer_free_space?relay
+   \   000049   C3           CLR     C
+   \   00004A   EA           MOV     A,R2
+   \   00004B   95..         SUBB    A,?V0 + 2
+   \   00004D   EB           MOV     A,R3
+   \   00004E   95..         SUBB    A,?V0 + 3
+   \   000050   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000052   65D0         XRL     A,PSW
+   \   000054   33           RLC     A
+   \   000055   5003         JNC     ??push_buffer_0
+    213              return false; /* indicate failure to enqueue message */
+   \   000057   C3           CLR     C
+   \   000058   8068         SJMP    ??push_buffer_1
+    214            
+    215            /* there is room for the data, put in the buffer */
+    216            
+    217            do /* put the data in the buffer */
+    218              {
+    219              if( local_head == buff + RX_TX_BUFFER_SIZE ) /* if wrapping around */
+   \                     ??push_buffer_0:
+   \   00005A   E5..         MOV     A,?V0 + 4
+   \   00005C   2432         ADD     A,#0x32
+   \   00005E   F8           MOV     R0,A
+   \   00005F   E5..         MOV     A,?V0 + 5
+   \   000061   3400         ADDC    A,#0x0
+   \   000063   F9           MOV     R1,A
+   \   000064   EE           MOV     A,R6
+   \   000065   68           XRL     A,R0
+   \   000066   7002         JNZ     ??push_buffer_2
+   \   000068   EF           MOV     A,R7
+   \   000069   69           XRL     A,R1
+   \                     ??push_buffer_2:
+   \   00006A   7004         JNZ     ??push_buffer_3
+    220                local_head = buff; /* reset pointer */
+   \   00006C   AE..         MOV     R6,?V0 + 4
+   \   00006E   AF..         MOV     R7,?V0 + 5
+    221              
+    222              *local_head++ = *data++; /* copy over this byte of data */
+   \                     ??push_buffer_3:
+   \   000070   85..82       MOV     DPL,?V0 + 0
+   \   000073   85..83       MOV     DPH,?V0 + 1
+   \   000076   E0           MOVX    A,@DPTR
+   \   000077   8E82         MOV     DPL,R6
+   \   000079   8F83         MOV     DPH,R7
+   \   00007B   F0           MOVX    @DPTR,A
+   \   00007C   85..82       MOV     DPL,?V0 + 0
+   \   00007F   85..83       MOV     DPH,?V0 + 1
+   \   000082   A3           INC     DPTR
+   \   000083   8582..       MOV     ?V0 + 0,DPL
+   \   000086   8583..       MOV     ?V0 + 1,DPH
+   \   000089   8E82         MOV     DPL,R6
+   \   00008B   8F83         MOV     DPH,R7
+   \   00008D   A3           INC     DPTR
+   \   00008E   AE82         MOV     R6,DPL
+   \   000090   AF83         MOV     R7,DPH
+    223              } while( --len > 0 ); /* copy all the data to the buffer */
+   \   000092   E5..         MOV     A,?V0 + 2
+   \   000094   24FF         ADD     A,#-0x1
+   \   000096   F5..         MOV     ?V0 + 2,A
+   \   000098   E5..         MOV     A,?V0 + 3
+   \   00009A   34FF         ADDC    A,#-0x1
+   \   00009C   F5..         MOV     ?V0 + 3,A
+   \   00009E   C3           CLR     C
+   \   00009F   E5..         MOV     A,?V0 + 2
+   \   0000A1   9401         SUBB    A,#0x1
+   \   0000A3   E5..         MOV     A,?V0 + 3
+   \   0000A5   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   0000A8   50B0         JNC     ??push_buffer_0
+    224            
+    225            BSP_CRITICAL_STATEMENT( *head = local_head ); /* update reference value */
+   \   0000AA   E5A8         MOV     A,0xa8
+   \   0000AC   F8           MOV     R0,A
+   \   0000AD   C2AF         CLR     0xa8.7
+   \   0000AF   85..82       MOV     DPL,?V0 + 6
+   \   0000B2   85..83       MOV     DPH,?V0 + 7
+   \   0000B5   EE           MOV     A,R6
+   \   0000B6   F0           MOVX    @DPTR,A
+   \   0000B7   A3           INC     DPTR
+   \   0000B8   EF           MOV     A,R7
+   \   0000B9   F0           MOVX    @DPTR,A
+   \   0000BA   E8           MOV     A,R0
+   \   0000BB   A2E7         MOV     C,0xE0 /* A   */.7
+   \   0000BD   92AF         MOV     0xa8.7,C
+   \   0000BF   E5A8         MOV     A,0xa8
+    226            
+    227            return true;
+   \   0000C1   D3           SETB    C
+   \                     ??push_buffer_1:
+   \   0000C2   7F0A         MOV     R7,#0xa
+   \   0000C4   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   0000C7                REQUIRE _A_IEN0
+    228            }
+    229          
+    230          /******************************************************************************
+    231           * @fn          pop_buffer
+    232           *
+    233           * @brief       Pops the specified number of bytes off of the specified buffer. 
+    234           *              Assumes on entry that <data>, <buff>, <tail>, and <head> are 
+    235           *              all valid pointers.
+    236           *
+    237           * input parameters
+    238           * @param   head       - pointer to buffer head
+    239           * @param   buff       - pointer to buffer (pop source)
+    240           * @param   data       - pointer to location to store popped data
+    241           * @param   len        - amount of bytes to be popped from buffer
+    242           *
+    243           * output parameters
+    244           * @param   tail       - updated buffer tail pointer
+    245           *
+    246           * @return   number of bytes popped from buffer
+    247           */
+    248          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    249          int pop_buffer( unsigned char* head, unsigned char** tail,
+   \                     pop_buffer:
+    250                          unsigned char* buff, unsigned char* data, int max_len )
+    251            {
+   \   000000   74F0         MOV     A,#-0x10
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 16
+   \   000005                ; Auto size: 0
+   \   000005   8C..         MOV     ?V0 + 2,R4
+   \   000007   8D..         MOV     ?V0 + 3,R5
+   \   000009   7410         MOV     A,#0x10
+   \   00000B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F5..         MOV     ?V0 + 0,A
+   \   000011   A3           INC     DPTR
+   \   000012   E0           MOVX    A,@DPTR
+   \   000013   F5..         MOV     ?V0 + 1,A
+   \   000015   7412         MOV     A,#0x12
+   \   000017   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001A   E0           MOVX    A,@DPTR
+   \   00001B   FE           MOV     R6,A
+   \   00001C   A3           INC     DPTR
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   FF           MOV     R7,A
+   \   00001F   7414         MOV     A,#0x14
+   \   000021   12....       LCALL   ?XSTACK_DISP0_8
+   \   000024   E0           MOVX    A,@DPTR
+   \   000025   F5..         MOV     ?V0 + 4,A
+   \   000027   A3           INC     DPTR
+   \   000028   E0           MOVX    A,@DPTR
+   \   000029   F5..         MOV     ?V0 + 5,A
+    252            unsigned char* local_tail;
+    253            unsigned char* local_head = head;
+    254            int cnt = 0;
+   \   00002B   7C00         MOV     R4,#0x0
+   \   00002D   7D00         MOV     R5,#0x0
+    255          
+    256            BSP_CRITICAL_STATEMENT( local_tail = *tail );
+   \   00002F   E5A8         MOV     A,0xa8
+   \   000031   F5..         MOV     ?V0 + 6,A
+   \   000033   C2AF         CLR     0xa8.7
+   \   000035   85..82       MOV     DPL,?V0 + 2
+   \   000038   85..83       MOV     DPH,?V0 + 3
+   \   00003B   E0           MOVX    A,@DPTR
+   \   00003C   F8           MOV     R0,A
+   \   00003D   A3           INC     DPTR
+   \   00003E   E0           MOVX    A,@DPTR
+   \   00003F   F9           MOV     R1,A
+   \   000040   E5..         MOV     A,?V0 + 6
+   \   000042   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000044   92AF         MOV     0xa8.7,C
+   \   000046   E5A8         MOV     A,0xa8
+    257            
+    258            /* if the buffer is empty or no data requested */
+    259            if( local_tail == local_head || max_len <= 0 )
+   \   000048   EA           MOV     A,R2
+   \   000049   68           XRL     A,R0
+   \   00004A   7002         JNZ     ??pop_buffer_0
+   \   00004C   EB           MOV     A,R3
+   \   00004D   69           XRL     A,R1
+   \                     ??pop_buffer_0:
+   \   00004E   600C         JZ      ??pop_buffer_1
+   \   000050   C3           CLR     C
+   \   000051   E5..         MOV     A,?V0 + 4
+   \   000053   9401         SUBB    A,#0x1
+   \   000055   E5..         MOV     A,?V0 + 5
+   \   000057   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   00005A   5006         JNC     ??pop_buffer_2
+    260              return 0; /* indicate so */
+   \                     ??pop_buffer_1:
+   \   00005C   7A00         MOV     R2,#0x0
+   \   00005E   7B00         MOV     R3,#0x0
+   \   000060   806F         SJMP    ??pop_buffer_3
+    261            
+    262            do /* retrieve the data from the buffer */
+    263              {
+    264              if( local_tail == buff + RX_TX_BUFFER_SIZE ) /* if wrapping around */
+   \                     ??pop_buffer_2:
+   \   000062   E5..         MOV     A,?V0 + 0
+   \   000064   2432         ADD     A,#0x32
+   \   000066   F5..         MOV     ?V0 + 6,A
+   \   000068   E5..         MOV     A,?V0 + 1
+   \   00006A   3400         ADDC    A,#0x0
+   \   00006C   F5..         MOV     ?V0 + 7,A
+   \   00006E   E8           MOV     A,R0
+   \   00006F   65..         XRL     A,?V0 + 6
+   \   000071   7003         JNZ     ??pop_buffer_4
+   \   000073   E9           MOV     A,R1
+   \   000074   65..         XRL     A,?V0 + 7
+   \                     ??pop_buffer_4:
+   \   000076   7004         JNZ     ??pop_buffer_5
+    265                local_tail = buff; /* reset pointer */
+   \   000078   A8..         MOV     R0,?V0 + 0
+   \   00007A   A9..         MOV     R1,?V0 + 1
+    266              
+    267              *data++ = *local_tail++; /* copy data from buffer */
+   \                     ??pop_buffer_5:
+   \   00007C   8882         MOV     DPL,R0
+   \   00007E   8983         MOV     DPH,R1
+   \   000080   E0           MOVX    A,@DPTR
+   \   000081   8E82         MOV     DPL,R6
+   \   000083   8F83         MOV     DPH,R7
+   \   000085   F0           MOVX    @DPTR,A
+   \   000086   8882         MOV     DPL,R0
+   \   000088   8983         MOV     DPH,R1
+   \   00008A   A3           INC     DPTR
+   \   00008B   A882         MOV     R0,DPL
+   \   00008D   A983         MOV     R1,DPH
+   \   00008F   8E82         MOV     DPL,R6
+   \   000091   8F83         MOV     DPH,R7
+   \   000093   A3           INC     DPTR
+   \   000094   AE82         MOV     R6,DPL
+   \   000096   AF83         MOV     R7,DPH
+    268                
+    269              /* while the user needs more data and there is data left in the fifo */
+    270              } while( ++cnt < max_len && local_tail != local_head );
+   \   000098   EC           MOV     A,R4
+   \   000099   2401         ADD     A,#0x1
+   \   00009B   0C           INC     R4
+   \   00009C   ED           MOV     A,R5
+   \   00009D   3400         ADDC    A,#0x0
+   \   00009F   FD           MOV     R5,A
+   \   0000A0   C3           CLR     C
+   \   0000A1   EC           MOV     A,R4
+   \   0000A2   95..         SUBB    A,?V0 + 4
+   \   0000A4   ED           MOV     A,R5
+   \   0000A5   95..         SUBB    A,?V0 + 5
+   \   0000A7   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   0000A9   65D0         XRL     A,PSW
+   \   0000AB   33           RLC     A
+   \   0000AC   5008         JNC     ??pop_buffer_6
+   \   0000AE   EA           MOV     A,R2
+   \   0000AF   68           XRL     A,R0
+   \   0000B0   7002         JNZ     ??pop_buffer_7
+   \   0000B2   EB           MOV     A,R3
+   \   0000B3   69           XRL     A,R1
+   \                     ??pop_buffer_7:
+   \   0000B4   70AC         JNZ     ??pop_buffer_2
+    271              
+    272            BSP_CRITICAL_STATEMENT( *tail = local_tail ); /* update reference value */
+   \                     ??pop_buffer_6:
+   \   0000B6   E5A8         MOV     A,0xa8
+   \   0000B8   FA           MOV     R2,A
+   \   0000B9   C2AF         CLR     0xa8.7
+   \   0000BB   85..82       MOV     DPL,?V0 + 2
+   \   0000BE   85..83       MOV     DPH,?V0 + 3
+   \   0000C1   E8           MOV     A,R0
+   \   0000C2   F0           MOVX    @DPTR,A
+   \   0000C3   A3           INC     DPTR
+   \   0000C4   E9           MOV     A,R1
+   \   0000C5   F0           MOVX    @DPTR,A
+   \   0000C6   EA           MOV     A,R2
+   \   0000C7   A2E7         MOV     C,0xE0 /* A   */.7
+   \   0000C9   92AF         MOV     0xa8.7,C
+   \   0000CB   E5A8         MOV     A,0xa8
+    273            
+    274            return cnt; /* return number of characters retrieved from the buffer */
+   \   0000CD   EC           MOV     A,R4
+   \   0000CE   FA           MOV     R2,A
+   \   0000CF   ED           MOV     A,R5
+   \   0000D0   FB           MOV     R3,A
+   \                     ??pop_buffer_3:
+   \   0000D1   7F08         MOV     R7,#0x8
+   \   0000D3   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   0000D6                REQUIRE _A_IEN0
+    275            }
+    276          
+    277          /******************************************************************************
+    278           * @fn          tx_send_wait
+    279           *
+    280           * @brief       Enqueue's the message bointed to by <data> which is of length 
+    281           *              <len> and initiates its transfer across the UART.  This is a 
+    282           *              blocking function in that if the transmit fifo doesn't have 
+    283           *              enough room to enqueue the data in its entirety it will push 
+    284           *              the data out a piece at a time as the room in the FIFO becomes 
+    285           *              available.  The function returns true upon completion of moving 
+    286           *              all the data into the FIFO and false if either a NULL pointer 
+    287           *              or a length of zero was passed.
+    288           *
+    289           * input parameters
+    290           * @param   data       - pointer to data to be sent
+    291           * @param   len        - length in bytes of data to be sent
+    292           *
+    293           * output parameters
+    294           *
+    295           * @return   status of operation.
+    296           *             true          Data successfully pushed into transmit buffer
+    297           *             false         Invalid length or NULL data pointer
+    298           */
+    299          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    300          bool tx_send_wait( const void* data, size_t len )
+   \                     tx_send_wait:
+    301            {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+   \   000009   8C..         MOV     ?V0 + 2,R4
+   \   00000B   8D..         MOV     ?V0 + 3,R5
+    302            if( len > 0 && data != NULL ) /* if the information looks viable */
+   \   00000D   EC           MOV     A,R4
+   \   00000E   45..         ORL     A,?V0 + 3
+   \   000010   604F         JZ      ??tx_send_wait_0
+   \   000012   EE           MOV     A,R6
+   \   000013   4F           ORL     A,R7
+   \   000014   604B         JZ      ??tx_send_wait_0
+    303              {
+    304              while( len > 0 )            /* while there is data left to transfer */
+    305                {
+    306                int sz = tx_peek( );      /* get free space in the fifo */
+   \                     ??tx_send_wait_1:
+   \   000016                ; Setup parameters for call to function tx_peek
+   \   000016   12....       LCALL   ??tx_peek?relay
+   \   000019   8A..         MOV     ?V0 + 0,R2
+   \   00001B   8B..         MOV     ?V0 + 1,R3
+    307          
+    308                if( sz > 0 )              /* if there is room for at least some data */
+   \   00001D   C3           CLR     C
+   \   00001E   EA           MOV     A,R2
+   \   00001F   9401         SUBB    A,#0x1
+   \   000021   EB           MOV     A,R3
+   \   000022   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   000025   40EF         JC      ??tx_send_wait_1
+    309                  {
+    310                  if( sz > len )          /* if more room than required          */
+   \   000027   C3           CLR     C
+   \   000028   E5..         MOV     A,?V0 + 2
+   \   00002A   95..         SUBB    A,?V0 + 0
+   \   00002C   E5..         MOV     A,?V0 + 3
+   \   00002E   95..         SUBB    A,?V0 + 1
+   \   000030   5006         JNC     ??tx_send_wait_2
+    311                    sz = len;             /* limit size to just the data to send */
+   \   000032   85....       MOV     ?V0 + 0,?V0 + 2
+   \   000035   85....       MOV     ?V0 + 1,?V0 + 3
+    312          
+    313                  tx_send( data, sz );    /* send this portion of the information */
+   \                     ??tx_send_wait_2:
+   \   000038                ; Setup parameters for call to function tx_send
+   \   000038   AC..         MOV     R4,?V0 + 0
+   \   00003A   AD..         MOV     R5,?V0 + 1
+   \   00003C   EE           MOV     A,R6
+   \   00003D   FA           MOV     R2,A
+   \   00003E   EF           MOV     A,R7
+   \   00003F   FB           MOV     R3,A
+   \   000040   12....       LCALL   ??tx_send?relay
+    314          
+    315                  data = (unsigned char*)data + sz; /* move the pointer */
+   \   000043   EE           MOV     A,R6
+   \   000044   25..         ADD     A,?V0 + 0
+   \   000046   FE           MOV     R6,A
+   \   000047   EF           MOV     A,R7
+   \   000048   35..         ADDC    A,?V0 + 1
+   \   00004A   FF           MOV     R7,A
+    316          
+    317                  len -= sz;              /* adjust the count of remaining data to send */
+   \   00004B   C3           CLR     C
+   \   00004C   E5..         MOV     A,?V0 + 2
+   \   00004E   95..         SUBB    A,?V0 + 0
+   \   000050   F5..         MOV     ?V0 + 2,A
+   \   000052   E5..         MOV     A,?V0 + 3
+   \   000054   95..         SUBB    A,?V0 + 1
+   \   000056   F5..         MOV     ?V0 + 3,A
+    318                  }
+    319                #ifdef FREQUENCY_HOPPING
+    320                // run the pll charge pump if frequency hopping active
+    321                //   only send pump requests if there are still characters still to send
+    322                nwk_pllBackgrounder( len == 0 );
+    323                #endif
+    324                }
+   \   000058   E5..         MOV     A,?V0 + 2
+   \   00005A   45..         ORL     A,?V0 + 3
+   \   00005C   70B8         JNZ     ??tx_send_wait_1
+    325              
+    326              return true; /* indicate success */
+   \   00005E   D3           SETB    C
+   \   00005F   8001         SJMP    ??tx_send_wait_3
+    327              }
+    328            
+    329            return false; /* otherwise indicate failure */
+   \                     ??tx_send_wait_0:
+   \   000061   C3           CLR     C
+   \                     ??tx_send_wait_3:
+   \   000062   7F06         MOV     R7,#0x6
+   \   000064   02....       LJMP    ?BANKED_LEAVE_XDATA
+    330            }
+    331          
+    332          /******************************************************************************
+    333           * @fn          tx_send
+    334           *
+    335           * @brief       Enqueue's the message pointed to by <data> which is of length 
+    336           *              <len> and initiates its transfer across the uart.  true is 
+    337           *              returned if there was space in the FIFO to send the data, false 
+    338           *              if the FIFO didn't have enough free space to enqueue the data. 
+    339           *
+    340           * input parameters
+    341           * @param   data       - pointer to data to be sent
+    342           * @param   len        - length in bytes of data to be sent
+    343           *
+    344           * output parameters
+    345           *
+    346           * @return   status of operation.
+    347           *             true          Data successfully pushed into transmit buffer
+    348           *             false         Data not successfully pushed into transmit buffer
+    349           */
+    350          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    351          bool tx_send( const void* data, size_t len )
+   \                     tx_send:
+    352            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    353          #if 0
+    354            bool status;
+    355            unsigned char* tail;
+    356            
+    357            /* get current state of tail pointer */
+    358            BSP_CRITICAL_STATEMENT( tail = tx_tail );
+    359          
+    360            /* put data into transmit buffer */
+    361            status = push_buffer( &tx_head, tail, tx_buff, (unsigned char*)data, len );
+    362          
+    363            if( status != false ) /* if data was put in the buffer properly */
+    364              uart_tx_message( tx_handler ); /* notify the irq that data is ready to send */
+    365            
+    366            return status; /* return status */
+    367          #endif
+    368          
+    369          	HalUARTWrite(0,(uint8*)data,len);
+   \   000004                ; Setup parameters for call to function HalUARTWrite
+   \   000004   12....       LCALL   ?Subroutine7 & 0xFFFF
+    370          	//HalUARTPoll();
+    371          	UartDMAIntSend();
+    372            }
+                   ^
+Warning[Pe940]: missing return statement at end of non-void function "tx_send"
+   \                     ??CrossCallReturnLabel_10:
+   \   000007   80..         SJMP    ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   7900         MOV     R1,#0x0
+   \   000002   12....       LCALL   ??HalUARTWrite?relay
+   \   000005                ; Setup parameters for call to function UartDMAIntSend
+   \   000005                ; Setup parameters for call to function UartDMAIntSend
+   \   000005                ; Setup parameters for call to function UartDMAIntSend
+   \   000005                ; Setup parameters for call to function UartDMAIntSend
+   \   000005   12....       LCALL   ??UartDMAIntSend?relay
+   \   000008   22           RET
+    373          
+    374          /******************************************************************************
+    375           * @fn          tx_peek
+    376           *
+    377           * @brief       Returns the number of bytes of free space in the transmit FIFO. 
+    378           *
+    379           * input parameters
+    380           *
+    381           * output parameters
+    382           *
+    383           * @return   Number of bytes of free space in the transmit FIFO
+    384           */
+    385          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    386          int tx_peek( void )
+   \                     tx_peek:
+    387            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    388            unsigned char* head;
+    389            unsigned char* tail;
+    390            
+    391            BSP_CRITICAL_STATEMENT( head = tx_head; tail = tx_tail );
+   \   000004   12....       LCALL   ?Subroutine5 & 0xFFFF
+    392            
+    393            return buffer_free_space( head, tail );
+   \                     ??CrossCallReturnLabel_6:
+   \   000007   12....       LCALL   ??buffer_free_space?relay
+   \   00000A                REQUIRE ?Subroutine0
+   \   00000A                REQUIRE _A_IEN0
+   \   00000A                ; // Fall through to label ?Subroutine0
+    394            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   E5A8         MOV     A,0xa8
+   \   000002   C2AF         CLR     0xa8.7
+   \   000004   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000006   92AF         MOV     0xa8.7,C
+   \   000008   E5A8         MOV     A,0xa8
+   \   00000A                ; Setup parameters for call to function buffer_free_space
+   \   00000A                ; Setup parameters for call to function buffer_used_space
+   \   00000A   90....       MOV     DPTR,#tx_tail
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   FC           MOV     R4,A
+   \   00000F   A3           INC     DPTR
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   FD           MOV     R5,A
+   \   000012   90....       MOV     DPTR,#tx_head
+   \   000015   E0           MOVX    A,@DPTR
+   \   000016   FA           MOV     R2,A
+   \   000017   A3           INC     DPTR
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   FB           MOV     R3,A
+   \   00001A   22           RET
+    395          
+    396          /******************************************************************************
+    397           * @fn          rx_peek
+    398           *
+    399           * @brief       Returns the number of bytes currently available to be read from
+    400           *              the receive FIFO. 
+    401           *
+    402           * input parameters
+    403           *
+    404           * output parameters
+    405           *
+    406           * @return   Number of bytes of available in the receive FIFO
+    407           */
+    408          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    409          int rx_peek( void )
+   \                     rx_peek:
+    410            {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    411            unsigned char* head;
+    412            unsigned char* tail;
+    413            
+    414            BSP_CRITICAL_STATEMENT( head = rx_head; tail = rx_tail );
+   \   000004   12....       LCALL   ?Subroutine3 & 0xFFFF
+    415            
+    416            return buffer_used_space( head, tail );
+   \                     ??CrossCallReturnLabel_0:
+   \   000007   80..         SJMP    ?Subroutine0
+   \   000009                REQUIRE _A_IEN0
+    417            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   E5A8         MOV     A,0xa8
+   \   000002   C2AF         CLR     0xa8.7
+   \   000004   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000006   92AF         MOV     0xa8.7,C
+   \   000008   E5A8         MOV     A,0xa8
+   \   00000A                ; Setup parameters for call to function buffer_used_space
+   \   00000A                ; Setup parameters for call to function buffer_used_space
+   \   00000A   90....       MOV     DPTR,#rx_tail
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   FC           MOV     R4,A
+   \   00000F   A3           INC     DPTR
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   FD           MOV     R5,A
+   \   000012   90....       MOV     DPTR,#rx_head
+   \   000015   E0           MOVX    A,@DPTR
+   \   000016   FA           MOV     R2,A
+   \   000017   A3           INC     DPTR
+   \   000018   E0           MOVX    A,@DPTR
+   \   000019   FB           MOV     R3,A
+   \   00001A   12....       LCALL   ??buffer_used_space?relay
+   \   00001D   22           RET
+    418          
+    419          /******************************************************************************
+    420           * @fn          rx_receive
+    421           *
+    422           * @brief       Fills in the buffer <data> with data from the receive FIFO until
+    423           *              either <max_len> bytes have been transferred into <data> or the 
+    424           *              receive queue is emptied.  The actual number of bytes put into 
+    425           *              <data> is returned. 
+    426           *
+    427           * input parameters
+    428           * @param   data           - pointer to data to be sent
+    429           * @param   max_len        - length in bytes of data to be sent
+    430           *
+    431           * output parameters
+    432           *
+    433           * @return   status of operation.
+    434           *             true          Data successfully pushed into transmit buffer
+    435           *             false         Data not successfully pushed into transmit buffer
+    436           */
+    437          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000003                REQUIRE ??Subroutine8_0
+   \   000003                ; // Fall through to label ??Subroutine8_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    438          int rx_receive( void* data, int max_len )
+   \                     rx_receive:
+    439            {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    440            int cnt;
+    441            unsigned char* head;
+    442            
+    443            /* get current state of head pointer */
+    444            BSP_CRITICAL_STATEMENT( head = rx_head );
+   \   000005   E5A8         MOV     A,0xa8
+   \   000007   C2AF         CLR     0xa8.7
+   \   000009   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00000B   92AF         MOV     0xa8.7,C
+   \   00000D   E5A8         MOV     A,0xa8
+    445            
+    446            /* retrieve data from buffer */
+    447            cnt = pop_buffer( head, &rx_tail, rx_buff, data, max_len );
+    448          
+    449          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    450            /* if we need to hold off the remote transmitter */
+    451            if( rx_peek( ) < RX_TX_BUFFER_THROTTLE_LIMIT )
+    452               UART_ASSERT_RTS( UART_RTS_DEASSERTED ); /* deassert the RTS line */
+    453          #endif
+    454          
+    455            return cnt; /* indicate the number of bytes retrieved from the buffer */
+   \   00000F                ; Setup parameters for call to function pop_buffer
+   \   00000F   8C..         MOV     ?V0 + 0,R4
+   \   000011   8D..         MOV     ?V0 + 1,R5
+   \   000013   78..         MOV     R0,#?V0 + 0
+   \   000015   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000018   8A..         MOV     ?V0 + 0,R2
+   \   00001A   8B..         MOV     ?V0 + 1,R3
+   \   00001C   78..         MOV     R0,#?V0 + 0
+   \   00001E   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000021   75....       MOV     ?V0 + 0,#rx_buff & 0xff
+   \   000024   75....       MOV     ?V0 + 1,#(rx_buff >> 8) & 0xff
+   \   000027   78..         MOV     R0,#?V0 + 0
+   \   000029   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00002C   7C..         MOV     R4,#rx_tail & 0xff
+   \   00002E   7D..         MOV     R5,#(rx_tail >> 8) & 0xff
+   \   000030   90....       MOV     DPTR,#rx_head
+   \   000033   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   000036   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   000039                REQUIRE _A_IEN0
+    456            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   FA           MOV     R2,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   FB           MOV     R3,A
+   \   000005   12....       LCALL   ??pop_buffer?relay
+   \   000008   7406         MOV     A,#0x6
+   \   00000A   22           RET
+    457          
+    458          /******************************************************************************
+    459           * @fn          uart_busy
+    460           *
+    461           * @brief       Returns true if there are characters in the receive FIFO or 
+    462           *              transmit buffer and returns false if both FIFOs are empty. 
+    463           *
+    464           * input parameters
+    465           *
+    466           * output parameters
+    467           *
+    468           * @return   UART status
+    469           *             true          Data in receive and/or transmit FIFO
+    470           *             false         Both receive and transmit FIFOS empty
+    471           */
+    472          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    473          bool uart_busy( void )
+   \                     uart_busy:
+    474            {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    475            int cnt;
+    476            unsigned char* head;
+    477            unsigned char* tail;
+    478            
+    479            /* get receive buffer count */
+    480            BSP_CRITICAL_STATEMENT( head = rx_head; tail = rx_tail );
+   \   000005   12....       LCALL   ?Subroutine3 & 0xFFFF
+    481            cnt = buffer_used_space( head, tail );
+   \                     ??CrossCallReturnLabel_1:
+   \   000008   8A..         MOV     ?V0 + 0,R2
+   \   00000A   8B..         MOV     ?V0 + 1,R3
+   \   00000C   AE..         MOV     R6,?V0 + 0
+   \   00000E   AF..         MOV     R7,?V0 + 1
+    482            
+    483            /* get transmit buffer count */
+    484            BSP_CRITICAL_STATEMENT( head = tx_head; tail = tx_tail );
+   \   000010   12....       LCALL   ?Subroutine5 & 0xFFFF
+    485            cnt += buffer_used_space( head, tail );
+    486            
+    487            return ( ( cnt == 0 ) ? false : true ); /* return status of uart */
+   \                     ??CrossCallReturnLabel_7:
+   \   000013   12....       LCALL   ??buffer_used_space?relay
+   \   000016   8A..         MOV     ?V0 + 0,R2
+   \   000018   8B..         MOV     ?V0 + 1,R3
+   \   00001A   EE           MOV     A,R6
+   \   00001B   25..         ADD     A,?V0 + 0
+   \   00001D   F8           MOV     R0,A
+   \   00001E   EF           MOV     A,R7
+   \   00001F   35..         ADDC    A,?V0 + 1
+   \   000021   F9           MOV     R1,A
+   \   000022   E8           MOV     A,R0
+   \   000023   49           ORL     A,R1
+   \   000024   6004         JZ      ??uart_busy_0
+   \   000026   D2F0         SETB    B.0
+   \   000028   8002         SJMP    ??uart_busy_1
+   \                     ??uart_busy_0:
+   \   00002A   C2F0         CLR     B.0
+   \                     ??uart_busy_1:
+   \   00002C                REQUIRE ?Subroutine2
+   \   00002C                REQUIRE _A_IEN0
+   \   00002C                ; // Fall through to label ?Subroutine2
+    488            }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   A2F0         MOV     C,B.0
+   \   000002   02....       LJMP    ??Subroutine8_0 & 0xFFFF
+    489          
+    490          /******************************************************************************
+    491           * @fn          tx_handler
+    492           *
+    493           * @brief       Called by UART transmit interrupt service routine. Pops a byte 
+    494           *              off of the transmit FIFO and stores in <c>. The UART
+    495           *              interrupt service routine will transmit the byte in <c> after
+    496           *              calling this function. Returns true if there is still data left
+    497           *              in the transmit FIFO and false if the FIFO has been emptied.
+    498           *
+    499           * input parameters
+    500           * @param   c              - pointer to store byte to be sent
+    501           *
+    502           * output parameters
+    503           *
+    504           * @return   status of operation.
+    505           *             true          Byte in <c> is NOT the last byte in the buffer
+    506           *             false         Byte in <c> IS the last byte in the buffer
+    507           */
+    508          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    509          bool tx_handler( unsigned char* c )
+   \                     tx_handler:
+    510            {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 0
+    511            bool status;
+    512            unsigned char* head;
+    513          
+    514            /* get current state of head pointer */
+    515            BSP_CRITICAL_STATEMENT( head = tx_head );
+   \   000005   E5A8         MOV     A,0xa8
+   \   000007   C2AF         CLR     0xa8.7
+   \   000009   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00000B   92AF         MOV     0xa8.7,C
+   \   00000D   E5A8         MOV     A,0xa8
+    516          
+    517            /* get data off of the transmit buffer */
+    518            pop_buffer( head, &tx_tail, tx_buff, c, 1 );
+   \   00000F                ; Setup parameters for call to function pop_buffer
+   \   00000F   75..01       MOV     ?V0 + 0,#0x1
+   \   000012   75..00       MOV     ?V0 + 1,#0x0
+   \   000015   78..         MOV     R0,#?V0 + 0
+   \   000017   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00001A   8A..         MOV     ?V0 + 0,R2
+   \   00001C   8B..         MOV     ?V0 + 1,R3
+   \   00001E   78..         MOV     R0,#?V0 + 0
+   \   000020   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000023   75....       MOV     ?V0 + 0,#tx_buff & 0xff
+   \   000026   75....       MOV     ?V0 + 1,#(tx_buff >> 8) & 0xff
+   \   000029   78..         MOV     R0,#?V0 + 0
+   \   00002B   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00002E   7C..         MOV     R4,#tx_tail & 0xff
+   \   000030   7D..         MOV     R5,#(tx_tail >> 8) & 0xff
+   \   000032   90....       MOV     DPTR,#tx_head
+   \   000035   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   000038   12....       LCALL   ?DEALLOC_XSTACK8
+    519            
+    520            /* check status of buffer */
+    521            BSP_CRITICAL_STATEMENT( status = tx_head != tx_tail );
+   \   00003B   A2AF         MOV     C,0xa8.7
+   \   00003D   E4           CLR     A
+   \   00003E   33           RLC     A
+   \   00003F   FA           MOV     R2,A
+   \   000040   C2AF         CLR     0xa8.7
+   \   000042   90....       MOV     DPTR,#tx_head
+   \   000045   E0           MOVX    A,@DPTR
+   \   000046   F8           MOV     R0,A
+   \   000047   A3           INC     DPTR
+   \   000048   E0           MOVX    A,@DPTR
+   \   000049   F9           MOV     R1,A
+   \   00004A   90....       MOV     DPTR,#tx_tail
+   \   00004D   E0           MOVX    A,@DPTR
+   \   00004E   68           XRL     A,R0
+   \   00004F   7003         JNZ     ??tx_handler_0
+   \   000051   A3           INC     DPTR
+   \   000052   E0           MOVX    A,@DPTR
+   \   000053   69           XRL     A,R1
+   \                     ??tx_handler_0:
+   \   000054   6004         JZ      ??tx_handler_1
+   \   000056   D2F0         SETB    B.0
+   \   000058   8002         SJMP    ??tx_handler_2
+   \                     ??tx_handler_1:
+   \   00005A   C2F0         CLR     B.0
+   \                     ??tx_handler_2:
+   \   00005C   EA           MOV     A,R2
+   \   00005D   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00005F   92AF         MOV     0xa8.7,C
+   \   000061   E5A8         MOV     A,0xa8
+    522            
+    523            return status; /* indicate if this is the last byte in the buffer */
+   \   000063   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \   000066                REQUIRE _A_IEN0
+    524            }
+    525          
+    526          /******************************************************************************
+    527           * @fn          rx_handler
+    528           *
+    529           * @brief       Called by UART receive interrupt service routine. Pushes byte 
+    530           *              <c> into the receive FIFO <c>.
+    531           *
+    532           * input parameters
+    533           * @param   c              - byte of data to be pushed onto receive FIFO
+    534           *
+    535           * output parameters
+    536           *
+    537           * @return   Always returns true
+    538           */
+    539          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    540          bool rx_handler( unsigned char c )
+   \                     rx_handler:
+    541            {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   E9           MOV     A,R1
+   \   00000B   85..82       MOV     DPL,?XSP + 0
+   \   00000E   85..83       MOV     DPH,?XSP + 1
+   \   000011   F0           MOVX    @DPTR,A
+    542            unsigned char* tail;
+    543          
+    544            /* get current state of tail pointer */
+    545            BSP_CRITICAL_STATEMENT( tail = rx_tail );
+   \   000012   E5A8         MOV     A,0xa8
+   \   000014   C2AF         CLR     0xa8.7
+   \   000016   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000018   92AF         MOV     0xa8.7,C
+   \   00001A   E5A8         MOV     A,0xa8
+    546            
+    547            /* put data onto the receive buffer */
+    548            push_buffer( &rx_head, tail, rx_buff, &c, 1 );
+   \   00001C                ; Setup parameters for call to function push_buffer
+   \   00001C   75..01       MOV     ?V0 + 0,#0x1
+   \   00001F   75..00       MOV     ?V0 + 1,#0x0
+   \   000022   78..         MOV     R0,#?V0 + 0
+   \   000024   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000027   7402         MOV     A,#0x2
+   \   000029   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002C   8582..       MOV     ?V0 + 0,DPL
+   \   00002F   8583..       MOV     ?V0 + 1,DPH
+   \   000032   78..         MOV     R0,#?V0 + 0
+   \   000034   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000037   75....       MOV     ?V0 + 0,#rx_buff & 0xff
+   \   00003A   75....       MOV     ?V0 + 1,#(rx_buff >> 8) & 0xff
+   \   00003D   78..         MOV     R0,#?V0 + 0
+   \   00003F   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000042   90....       MOV     DPTR,#rx_tail
+   \   000045   E0           MOVX    A,@DPTR
+   \   000046   FC           MOV     R4,A
+   \   000047   A3           INC     DPTR
+   \   000048   E0           MOVX    A,@DPTR
+   \   000049   FD           MOV     R5,A
+   \   00004A   7A..         MOV     R2,#rx_head & 0xff
+   \   00004C   7B..         MOV     R3,#(rx_head >> 8) & 0xff
+   \   00004E   12....       LCALL   ??push_buffer?relay
+   \   000051   7406         MOV     A,#0x6
+   \   000053   12....       LCALL   ?DEALLOC_XSTACK8
+    549          
+    550          #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+    551            /* if we need to hold off the remote transmitter */
+    552            if( rx_peek( ) >= RX_TX_BUFFER_THROTTLE_LIMIT )
+    553              UART_ASSERT_RTS( UART_RTS_ASSERTED ); /* assert the RTS line */
+    554          #endif
+    555            
+    556            return true; /* always accept data received from the uart */
+   \   000056   D3           SETB    C
+   \   000057   7401         MOV     A,#0x1
+   \   000059   02....       LJMP    ?Subroutine1 & 0xFFFF
+   \   00005C                REQUIRE _A_IEN0
+    557            }
+    558          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    559          void DmaUartInit (void)
+   \                     DmaUartInit:
+    560          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 29
+   \   000004   74E3         MOV     A,#-0x1d
+   \   000006   12....       LCALL   ?ALLOC_XSTACK8
+    561          	halUARTCfg_t uartConfig;
+    562          	/* Initialize APP ID */
+    563          	//App_TaskID = 0;
+    564          
+    565          	/* UART Configuration */
+    566          	uartConfig.configured           = TRUE;
+   \   000009   7401         MOV     A,#0x1
+   \   00000B   85..82       MOV     DPL,?XSP + 0
+   \   00000E   85..83       MOV     DPH,?XSP + 1
+   \   000011   F0           MOVX    @DPTR,A
+    567          	uartConfig.baudRate             = UART_DEFAULT_BAUDRATE;
+   \   000012   12....       LCALL   ?XSTACK_DISP0_8
+   \   000015   7404         MOV     A,#0x4
+   \   000017   F0           MOVX    @DPTR,A
+    568          	uartConfig.flowControl          = UART_DEFAULT_OVERFLOW;
+   \   000018   7402         MOV     A,#0x2
+   \   00001A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00001D   E4           CLR     A
+   \   00001E   F0           MOVX    @DPTR,A
+    569          	uartConfig.flowControlThreshold = UART_DEFAULT_THRESHOLD;
+   \   00001F   7403         MOV     A,#0x3
+   \   000021   12....       LCALL   ?XSTACK_DISP0_8
+   \   000024   7440         MOV     A,#0x40
+   \   000026   F0           MOVX    @DPTR,A
+   \   000027   A3           INC     DPTR
+   \   000028   E4           CLR     A
+   \   000029   F0           MOVX    @DPTR,A
+    570          	uartConfig.rx.maxBufSize        = UART_DEFAULT_MAX_RX_BUFF;
+   \   00002A   740A         MOV     A,#0xa
+   \   00002C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00002F   7480         MOV     A,#-0x80
+   \   000031   F0           MOVX    @DPTR,A
+   \   000032   A3           INC     DPTR
+   \   000033   E4           CLR     A
+   \   000034   F0           MOVX    @DPTR,A
+    571          	uartConfig.tx.maxBufSize        = UART_DEFAULT_MAX_TX_BUFF;
+   \   000035   7412         MOV     A,#0x12
+   \   000037   12....       LCALL   ?XSTACK_DISP0_8
+   \   00003A   7480         MOV     A,#-0x80
+   \   00003C   F0           MOVX    @DPTR,A
+   \   00003D   A3           INC     DPTR
+   \   00003E   E4           CLR     A
+   \   00003F   F0           MOVX    @DPTR,A
+    572          	uartConfig.idleTimeout          = UART_DEFAULT_IDLE_TIMEOUT;
+   \   000040   7405         MOV     A,#0x5
+   \   000042   12....       LCALL   ?XSTACK_DISP0_8
+   \   000045   7406         MOV     A,#0x6
+   \   000047   F0           MOVX    @DPTR,A
+    573          	uartConfig.intEnable            = TRUE;
+   \   000048   7416         MOV     A,#0x16
+   \   00004A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00004D   7401         MOV     A,#0x1
+   \   00004F   F0           MOVX    @DPTR,A
+    574          	uartConfig.callBackFunc         = UartProcessData;
+   \   000050   741B         MOV     A,#0x1b
+   \   000052   12....       LCALL   ?XSTACK_DISP0_8
+   \   000055   74..         MOV     A,#??UartProcessData?relay & 0xff
+   \   000057   F0           MOVX    @DPTR,A
+   \   000058   A3           INC     DPTR
+   \   000059   74..         MOV     A,#(??UartProcessData?relay >> 8) & 0xff
+   \   00005B   F0           MOVX    @DPTR,A
+    575          
+    576          	/* Start UART */
+    577          	HalUARTOpen (HAL_UART_PORT_0, &uartConfig);
+   \   00005C                ; Setup parameters for call to function HalUARTOpen
+   \   00005C   85..82       MOV     DPL,?XSP + 0
+   \   00005F   85..83       MOV     DPH,?XSP + 1
+   \   000062   AA82         MOV     R2,DPL
+   \   000064   AB83         MOV     R3,DPH
+   \   000066   7900         MOV     R1,#0x0
+   \   000068   12....       LCALL   ??HalUARTOpen?relay
+    578          
+    579          	HalUARTWrite(0,"2015/11/13 OK\r\n",sizeof("2015/11/13 OK\r\n"));
+   \   00006B                ; Setup parameters for call to function HalUARTWrite
+   \   00006B   7C10         MOV     R4,#0x10
+   \   00006D   7D00         MOV     R5,#0x0
+   \   00006F   7A..         MOV     R2,#`?<Constant "2015/11/13 OK\\r\\n">` & 0xff
+   \   000071   7B..         MOV     R3,#(`?<Constant "2015/11/13 OK\\r\\n">` >> 8) & 0xff
+   \   000073   12....       LCALL   ?Subroutine7 & 0xFFFF
+    580          	//HalUARTPoll();
+    581          	UartDMAIntSend();
+    582          	
+    583          }
+   \                     ??CrossCallReturnLabel_11:
+   \   000076   741D         MOV     A,#0x1d
+   \   000078   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00007B   02....       LJMP    ?Subroutine0 & 0xFFFF
+    584          
+    585          static void UartRcvHandle(uint8 *rcv,uint8 len)
+    586          {
+    587          	HalUARTWrite(0,"Receive data\r\n",sizeof("Receive data\r\n"));
+    588          	UartDMAIntSend();
+    589          	HalUARTWrite(0,rcv,len);
+    590          	UartDMAIntSend();
+    591          	//HalUARTPoll();
+    592          	UartDMAIntSend();
+    593          }
+    594          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    595          static void UartProcessData(uint8 port, uint8 event)
+   \                     UartProcessData:
+    596          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+    597          	//uint16 rxBufLen  = Hal_UART_RxBufLen(0);
+    598          	//static uint8 rcvLen=0;
+    599          	//unsigned char uartBuf[128];
+    600          	uint8 ch;
+                 	      ^
+Warning[Pe177]: variable "ch" was declared but never referenced
+    601          	static uint8 loaden=0;
+                 	             ^
+Warning[Pe177]: variable "loaden" was declared but never referenced
+    602          	static uint16 bufIndex=0;
+                 	              ^
+Warning[Pe177]: variable "bufIndex" was declared but never referenced
+    603          	uint8 rcvLen=0;
+    604          	//unsigned char uartBufIndex=0;
+    605          	//uint16 rxBufLen;
+    606          	
+    607          	rcvLen = Hal_UART_RxBufLen(0);
+   \   000007                ; Setup parameters for call to function Hal_UART_RxBufLen
+   \   000007   7900         MOV     R1,#0x0
+   \   000009   12....       LCALL   ??Hal_UART_RxBufLen?relay
+   \   00000C   8A..         MOV     ?V0 + 2,R2
+    608          	osal_memset(rx_buff, 0x00, RX_TX_BUFFER_SIZE);
+   \   00000E                ; Setup parameters for call to function osal_memset
+   \   00000E   7C32         MOV     R4,#0x32
+   \   000010   7D00         MOV     R5,#0x0
+   \   000012   7900         MOV     R1,#0x0
+   \   000014   7A..         MOV     R2,#rx_buff & 0xff
+   \   000016   7B..         MOV     R3,#(rx_buff >> 8) & 0xff
+   \   000018   12....       LCALL   ??osal_memset?relay
+    609          	HalUARTRead (port, rx_buff, rcvLen);
+   \   00001B                ; Setup parameters for call to function HalUARTRead
+   \   00001B   AC..         MOV     R4,?V0 + 2
+   \   00001D   7D00         MOV     R5,#0x0
+   \   00001F   7A..         MOV     R2,#rx_buff & 0xff
+   \   000021   7B..         MOV     R3,#(rx_buff >> 8) & 0xff
+   \   000023   A9..         MOV     R1,?V0 + 0
+   \   000025   12....       LCALL   ??HalUARTRead?relay
+    610          
+    611          	UartRcvHandle(&rx_buff[2],rx_buff[1]);
+   \   000028   90....       MOV     DPTR,#rx_buff + 1
+   \   00002B   E0           MOVX    A,@DPTR
+   \   00002C   F5..         MOV     ?V0 + 2,A
+   \   00002E                ; Setup parameters for call to function HalUARTWrite
+   \   00002E   7C0F         MOV     R4,#0xf
+   \   000030   7D00         MOV     R5,#0x0
+   \   000032   7A..         MOV     R2,#`?<Constant "Receive data\\r\\n">` & 0xff
+   \   000034   7B..         MOV     R3,#(`?<Constant "Receive data\\r\\n">` >> 8) & 0xff
+   \   000036   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_12:
+   \   000039                ; Setup parameters for call to function HalUARTWrite
+   \   000039   AC..         MOV     R4,?V0 + 2
+   \   00003B   7D00         MOV     R5,#0x0
+   \   00003D   7A..         MOV     R2,#(rx_buff + 2) & 0xff
+   \   00003F   7B..         MOV     R3,#((rx_buff + 2) >> 8) & 0xff
+   \   000041   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
+   \   000044                ; Setup parameters for call to function UartDMAIntSend
+   \   000044   12....       LCALL   ??UartDMAIntSend?relay
+    612          }
+   \   000047   7F04         MOV     R7,#0x4
+   \   000049   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "2015/11/13 OK\\r\\n`:
+   \   000000   32303135     DB "2015/11/13 OK\015\012"
+   \            2F31312F
+   \            3133204F
+   \            4B0D0A00
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "Receive data\\r\\n"`:
+   \   000000   52656365     DB "Receive data\015\012"
+   \            69766520
+   \            64617461
+   \            0D0A00  
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for rx_head>`:
+   \   000000   ....         DW rx_buff
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for rx_tail>`:
+   \   000000   ....         DW rx_buff
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for tx_head>`:
+   \   000000   ....         DW tx_buff
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for tx_tail>`:
+   \   000000   ....         DW tx_buff
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_intfc_init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_intfc_init
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??buffer_free_space?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    buffer_free_space
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??buffer_used_space?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    buffer_used_space
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??push_buffer?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    push_buffer
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??pop_buffer?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    pop_buffer
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??tx_send_wait?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    tx_send_wait
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??tx_send?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    tx_send
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??tx_peek?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    tx_peek
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??rx_peek?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    rx_peek
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??rx_receive?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    rx_receive
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??uart_busy?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    uart_busy
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??tx_handler?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    tx_handler
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??rx_handler?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    rx_handler
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??DmaUartInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    DmaUartInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??UartProcessData?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    UartProcessData
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "2015/11/13 OK\\r\\n">`:
+   \   000000                DS 16
+   \   000010                REQUIRE `?<Initializer for <Constant "2015/11/13 OK\\r\\n`
+   \   000010                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "Receive data\\r\\n">`:
+   \   000000                DS 15
+   \   00000F                REQUIRE `?<Initializer for <Constant "Receive data\\r\\n"`
+   \   00000F                REQUIRE __INIT_XDATA_I
+    613          
+    614          
+
+   Maximum stack usage in bytes:
+
+     Function               ISTACK PSTACK XSTACK
+     --------               ------ ------ ------
+     DmaUartInit                3      0     29
+       -> HalUARTOpen           4      0     58
+       -> HalUARTWrite          4      0     58
+       -> UartDMAIntSend        4      0     58
+     UartProcessData            0      0     12
+       -> Hal_UART_RxBufLen     0      0     24
+       -> osal_memset           0      0     24
+       -> HalUARTRead           0      0     24
+       -> HalUARTWrite          0      0     24
+       -> UartDMAIntSend        0      0     24
+       -> HalUARTWrite          0      0     24
+       -> UartDMAIntSend        0      0     24
+       -> UartDMAIntSend        0      0     24
+     buffer_free_space          0      0     28
+       -> buffer_used_space     0      0     20
+     buffer_used_space          0      0     10
+     pop_buffer                 1      0     32
+     push_buffer                1      0     35
+       -> buffer_free_space     0      0     36
+     rx_handler                 1      0     17
+       -> push_buffer           0      0     34
+     rx_peek                    2      0      0
+       -> buffer_used_space     4      0      0
+     rx_receive                 0      0     16
+       -> pop_buffer            0      0     32
+     tx_handler                 0      0     16
+       -> pop_buffer            0      0     32
+     tx_peek                    2      0     14
+       -> buffer_free_space     4      0      0
+     tx_send                    2      0     14
+       -> HalUARTWrite          4      0      0
+       -> UartDMAIntSend        4      0      0
+     tx_send_wait               0      0     14
+       -> tx_peek               0      0     28
+       -> tx_send               0      0     28
+     uart_busy                  0      0     10
+       -> buffer_used_space     0      0     20
+       -> buffer_used_space     0      0     20
+     uart_intfc_init            2      0      0
+       -> uart_init             4      0      0
+       -> uart_rx_message       4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                                 Bytes
+     --------------                                 -----
+     _A_IEN0                                           1
+     rx_buff                                          50
+     tx_buff                                          50
+     rx_head                                           2
+     rx_tail                                           2
+     tx_head                                           2
+     tx_tail                                           2
+     uart_intfc_init                                  57
+     ?Subroutine0                                      7
+     buffer_free_space                                24
+     ??Subroutine8_0                                   5
+     buffer_used_space                                24
+     ?Subroutine4                                      8
+     push_buffer                                     199
+     pop_buffer                                      214
+     tx_send_wait                                    103
+     tx_send                                           9
+     ?Subroutine7                                      9
+     tx_peek                                          10
+     ?Subroutine5                                     27
+     rx_peek                                           9
+     ?Subroutine3                                     30
+     ?Subroutine1                                      3
+     rx_receive                                       57
+     ?Subroutine6                                     11
+     uart_busy                                        44
+     ?Subroutine2                                      5
+     tx_handler                                      102
+     rx_handler                                       92
+     DmaUartInit                                     126
+     UartProcessData                                  76
+     ?<Initializer for <Constant "2015/11/13 OK\r\n   16
+     ?<Initializer for <Constant "Receive data\r\n"   15
+     ?<Initializer for rx_head>                        2
+     ?<Initializer for rx_tail>                        2
+     ?<Initializer for tx_head>                        2
+     ?<Initializer for tx_tail>                        2
+     ??uart_intfc_init?relay                           6
+     ??buffer_free_space?relay                         6
+     ??buffer_used_space?relay                         6
+     ??push_buffer?relay                               6
+     ??pop_buffer?relay                                6
+     ??tx_send_wait?relay                              6
+     ??tx_send?relay                                   6
+     ??tx_peek?relay                                   6
+     ??rx_peek?relay                                   6
+     ??rx_receive?relay                                6
+     ??uart_busy?relay                                 6
+     ??tx_handler?relay                                6
+     ??rx_handler?relay                                6
+     ??DmaUartInit?relay                               6
+     ??UartProcessData?relay                           6
+     ?<Constant "2015/11/13 OK\r\n">                  16
+     ?<Constant "Receive data\r\n">                   15
+
+ 
+ 1 251 bytes in segment BANKED_CODE
+    90 bytes in segment BANK_RELAYS
+     1 byte  in segment SFR_AN
+    39 bytes in segment XDATA_I
+    39 bytes in segment XDATA_ID
+   100 bytes in segment XDATA_Z
+ 
+ 1 380 bytes of CODE  memory
+     0 bytes of DATA  memory (+ 1 byte shared)
+   139 bytes of XDATA memory
+
+Errors: none
+Warnings: 4

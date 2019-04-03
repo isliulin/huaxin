@@ -1,0 +1,481 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         19/Jun/2016  18:16:17 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\SN\module\Componen #
+#                          ts\usb\library\cc2531\usb_suspend.c                #
+#    Command line       =  -f "C:\Users\freeman\Documents\work\SN\module\Proj #
+#                          ects\zstack\Samples\SampleApp                      #
+#                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cfg #
+#                          " (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR    #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100 -DREJOIN_POLL_RATE=440)   #
+#                          C:\Users\freeman\Documents\work\SN\module\Componen #
+#                          ts\usb\library\cc2531\usb_suspend.c -D ZIGBEEPRO   #
+#                          -D ZTOOL_P1 -lC "C:\Users\freeman\Documents\work\S #
+#                          N\module\Projects\zstack\Samples\SampleApp         #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA          #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\"              #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug    #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "C:\Users\freeman\Document #
+#                          s\work\SN\module\Projects\zstack\Samples\SampleApp #
+#                           com\CC2530DB\" -I "C:\Users\freeman\Documents\wor #
+#                          k\SN\module\Projects\zstack\Samples\SampleApp      #
+#                          com\CC2530DB\..\SOURCE\" -I                        #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I          #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I     #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUDE #
+#                          \" -I "C:\Users\freeman\Documents\work\SN\module\P #
+#                          rojects\zstack\Samples\SampleApp                   #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET\ #
+#                          CC2530EB\" -I "C:\Users\freeman\Documents\work\SN\ #
+#                          module\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\CC #
+#                          SOC\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLUD #
+#                          E\" -I "C:\Users\freeman\Documents\work\SN\module\ #
+#                          Projects\zstack\Samples\SampleApp                  #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\"  #
+#                          -I "C:\Users\freeman\Documents\work\SN\module\Proj #
+#                          ects\zstack\Samples\SampleApp                      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI\ #
+#                          " -I "C:\Users\freeman\Documents\work\SN\module\Pr #
+#                          ojects\zstack\Samples\SampleApp                    #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\" #
+#                           -I "C:\Users\freeman\Documents\work\SN\module\Pro #
+#                          jects\zstack\Samples\SampleApp                     #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\"  #
+#                          -I "C:\Users\freeman\Documents\work\SN\module\Proj #
+#                          ects\zstack\Samples\SampleApp                      #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I   #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SA #
+#                          DDR\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\SD #
+#                          ATA\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUDE #
+#                          \" -I "C:\Users\freeman\Documents\work\SN\module\P #
+#                          rojects\zstack\Samples\SampleApp                   #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_LE #
+#                          VEL\" -I "C:\Users\freeman\Documents\work\SN\modul #
+#                          e\Projects\zstack\Samples\SampleApp                #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\" -I "C:\Users\freeman\Documents\work\SN\ #
+#                          module\Projects\zstack\Samples\SampleApp           #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LEV #
+#                          EL\srf04\SINGLE_CHIP\" -I                          #
+#                          "C:\Users\freeman\Documents\work\SN\module\Project #
+#                          s\zstack\Samples\SampleApp                         #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\library #
+#                          \" -I "C:\Users\freeman\Documents\work\SN\module\P #
+#                          rojects\zstack\Samples\SampleApp                   #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_h #
+#                          id\" -I "C:\Users\freeman\Documents\work\SN\module #
+#                          \Projects\zstack\Samples\SampleApp                 #
+#                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common\ #
+#                          " -Ohz --require_prototypes                        #
+#    List file          =  C:\Users\freeman\Documents\work\SN\module\Projects #
+#                          \zstack\Samples\SampleApp                          #
+#                          com\CC2530DB\CoordinatorEB-Pro\List\usb_suspend.ls #
+#                          t                                                  #
+#    Object file        =  C:\Users\freeman\Documents\work\SN\module\Projects #
+#                          \zstack\Samples\SampleApp                          #
+#                          com\CC2530DB\CoordinatorEB-Pro\Obj\usb_suspend.r51 #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\SN\module\Components\usb\library\cc2531\usb_suspend.c
+      1          /***********************************************************************************
+      2          
+      3              Filename:     usb_suspend.c
+      4          
+      5              Description:  USB library common functionality.
+      6          
+      7          ***********************************************************************************/
+      8          
+      9          /// \addtogroup module_usb_suspend
+     10          /// @{
+     11          #include "usb_firmware_library_headers.h"
+
+   \                                 In  segment SFR_AN, at 0x8b
+   \   unsigned char volatile __sfr P2IFG
+   \                     P2IFG:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9a
+   \   unsigned char volatile __sfr IEN2
+   \                     IEN2:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9d
+   \   unsigned char volatile __sfr SLEEPSTA
+   \                     SLEEPSTA:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xac
+   \   unsigned char volatile __sfr P2IEN
+   \                     P2IEN:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xbe
+   \   unsigned char volatile __sfr SLEEPCMD
+   \                     SLEEPCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xe8
+   \   union <unnamed> volatile __sfr _A_IRCON2
+   \                     _A_IRCON2:
+   \   000000                DS 1
+     12          #include "hal_board.h"
+     13          #include "hal_int.h"
+     14          #include "hal_mcu.h"
+     15          #include "clock.h"
+     16          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     17          __xdata VFPTR pFnSuspendEnterHook=  NULL;
+   \                     pFnSuspendEnterHook:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     18          __xdata VFPTR pFnSuspendExitHook=   NULL;
+   \                     pFnSuspendExitHook:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     19          
+     20          extern void halMcuWaitMs(uint16 msec);
+     21          
+     22          extern void halEnterPowerMode(void);
+     23          
+     24          /** \brief Puts the chip into power mode 1 during USB suspend.
+     25           *
+     26           * This function must be called from main (i.e. not from interrupt context) upon the reception of a
+     27           * \ref USBIRQ_EVENT_SUSPEND event. To comply with the USB specification, this must happen within 10 ms
+     28           * after the event occurs. The chip will stay in power mode 1 until a USB resume or USB reset is detected
+     29           * on the USB bus, or remote wakeup is used. During this period, the MCU can only run code from
+     30           * interrupt context.
+     31           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     32          void usbsuspEnter(void)
+   \                     usbsuspEnter:
+     33          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     34              if (pFnSuspendEnterHook!=NULL)
+   \   000004   90....       MOV     DPTR,#pFnSuspendEnterHook
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   F8           MOV     R0,A
+   \   000009   A3           INC     DPTR
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   F9           MOV     R1,A
+   \   00000C   E8           MOV     A,R0
+   \   00000D   49           ORL     A,R1
+   \   00000E   6008         JZ      ??usbsuspEnter_0
+     35                  pFnSuspendEnterHook();
+   \   000010                ; Setup parameters for indirect call
+   \   000010   E0           MOVX    A,@DPTR
+   \   000011   F583         MOV     DPH,A
+   \   000013   8882         MOV     DPL,R0
+   \   000015   12....       LCALL   ?CALL_IND
+     36          
+     37              HAL_USB_INT_CLEAR();
+   \                     ??usbsuspEnter_0:
+   \   000018   758B00       MOV     0x8b,#0x0
+   \   00001B   C2E8         CLR     0xe8.0
+     38              HAL_USB_INT_ENABLE();
+   \   00001D   43AC20       ORL     0xac,#0x20
+   \   000020   439A02       ORL     0x9a,#0x2
+     39          
+     40              // Disable USB clock (PLL) before entering PM1
+     41              HAL_USB_PLL_DISABLE();
+   \   000023   90620F       MOV     DPTR,#0x620f
+   \   000026   E0           MOVX    A,@DPTR
+   \   000027   C2E1         CLR     0xE0 /* A   */.1
+   \   000029   F0           MOVX    @DPTR,A
+   \                     ??usbsuspEnter_1:
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   A2E7         MOV     C,0xE0 /* A   */.7
+   \   00002D   40FB         JC      ??usbsuspEnter_1
+     42              
+     43              //HAL_LED_CLR_1();
+     44          
+     45              do {
+     46                  // Enter PM1, in prescribed manner as explained in CC253x User's Guide
+     47                  SLEEPCMD = 0x05;
+   \                     ??usbsuspEnter_2:
+   \   00002F   75BE05       MOV     0xbe,#0x5
+     48                  //halEnterPowerMode();		//cbyi
+     49              } while ( usbirqData.inSuspend );
+   \   000032   E5..         MOV     A,usbirqData + 2
+   \   000034   70F9         JNZ     ??usbsuspEnter_2
+     50          
+     51              // .... we are now up and running again
+     52          
+     53              // First make sure that the crystal oscillator is stable
+     54              while (!CC2530_IS_XOSC_STABLE());
+   \                     ??usbsuspEnter_3:
+   \   000036   E59D         MOV     A,0x9d
+   \   000038   A2E6         MOV     C,0xE0 /* A   */.6
+   \   00003A   50FA         JNC     ??usbsuspEnter_3
+     55          
+     56              // Restart the USB clock (PLL)
+     57              HAL_USB_ENABLE();
+   \   00003C   7403         MOV     A,#0x3
+   \   00003E   F0           MOVX    @DPTR,A
+   \                     ??usbsuspEnter_4:
+   \   00003F   E0           MOVX    A,@DPTR
+   \   000040   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000042   50FB         JNC     ??usbsuspEnter_4
+     58          
+     59              if (pFnSuspendExitHook!=NULL)
+   \   000044   90....       MOV     DPTR,#pFnSuspendExitHook
+   \   000047   E0           MOVX    A,@DPTR
+   \   000048   F8           MOV     R0,A
+   \   000049   A3           INC     DPTR
+   \   00004A   E0           MOVX    A,@DPTR
+   \   00004B   F9           MOV     R1,A
+   \   00004C   E8           MOV     A,R0
+   \   00004D   49           ORL     A,R1
+   \   00004E   6008         JZ      ??usbsuspEnter_5
+     60                  pFnSuspendExitHook();
+   \   000050                ; Setup parameters for indirect call
+   \   000050   E0           MOVX    A,@DPTR
+   \   000051   F583         MOV     DPH,A
+   \   000053   8882         MOV     DPL,R0
+   \   000055   12....       LCALL   ?CALL_IND
+     61          } // usbsuspEnter
+   \                     ??usbsuspEnter_5:
+   \   000058                REQUIRE ?Subroutine0
+   \   000058                REQUIRE P2IFG
+   \   000058                REQUIRE _A_IRCON2
+   \   000058                REQUIRE P2IEN
+   \   000058                REQUIRE IEN2
+   \   000058                REQUIRE SLEEPCMD
+   \   000058                REQUIRE SLEEPSTA
+   \   000058                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     62          
+     63          
+     64          
+     65          /** \brief Attempts USB remote wakeup.
+     66           *
+     67           * This function can be called from interrupt context while the USB device is suspend mode. If the device
+     68           * is privileged to do so (see \c usbfwData.remoteWakeup and the \ref USBSR_EVENT_REMOTE_WAKEUP_ENABLED
+     69           * and \ref USBSR_EVENT_REMOTE_WAKEUP_DISABLED events), remote wakeup will be performed. Note that this
+     70           * function will block for 10 ms while the resume signal is set on the bus. Note: This function can only
+     71           * be called when the 48 MHz XOSC is stable.
+     72           *
+     73           * \return
+     74           *     \c TRUE if the remote wakeup was performed (the privilege had been granted), otherwise \c FALSE
+     75           *     (the device is still in suspend mode).
+     76           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     77          uint8 usbsuspDoRemoteWakeup(void)
+   \                     usbsuspDoRemoteWakeup:
+     78          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     79             // Make sure that it's OK
+     80             if (!usbfwData.remoteWakeup) return FALSE;
+   \   000004   90....       MOV     DPTR,#usbfwData + 15
+   \   000007   E0           MOVX    A,@DPTR
+   \   000008   7004         JNZ     ??usbsuspDoRemoteWakeup_0
+   \   00000A   7900         MOV     R1,#0x0
+   \   00000C   8025         SJMP    ??usbsuspDoRemoteWakeup_1
+     81          
+     82             halIntOff();
+   \                     ??usbsuspDoRemoteWakeup_0:
+   \   00000E                ; Setup parameters for call to function halIntOff
+   \   00000E   12....       LCALL   ??halIntOff?relay
+     83          
+     84             // Make sure that the suspend loop does not power down the chip again
+     85             usbirqData.inSuspend = FALSE;
+   \   000011   75..00       MOV     usbirqData + 2,#0x0
+     86          
+     87             // Perform remote wakeup by holding the USB resume signal for 10 ms
+     88             USBPOW |= USBPOW_RESUME;
+   \   000014   906201       MOV     DPTR,#0x6201
+   \   000017   E0           MOVX    A,@DPTR
+   \   000018   D2E2         SETB    0xE0 /* A   */.2
+   \   00001A   F0           MOVX    @DPTR,A
+     89             halMcuWaitMs(10);
+   \   00001B                ; Setup parameters for call to function halMcuWaitMs
+   \   00001B   7A0A         MOV     R2,#0xa
+   \   00001D   7B00         MOV     R3,#0x0
+   \   00001F   12....       LCALL   ??halMcuWaitMs?relay
+     90             USBPOW &= ~USBPOW_RESUME;
+   \   000022   906201       MOV     DPTR,#0x6201
+   \   000025   E0           MOVX    A,@DPTR
+   \   000026   C2E2         CLR     0xE0 /* A   */.2
+   \   000028   F0           MOVX    @DPTR,A
+     91          
+     92             // Clear the interrupt flag
+     93             HAL_USB_INT_CLEAR();
+   \   000029   758B00       MOV     0x8b,#0x0
+   \   00002C   C2E8         CLR     0xe8.0
+     94          
+     95             halIntOn();
+   \   00002E                ; Setup parameters for call to function halIntOn
+   \   00002E   12....       LCALL   ??halIntOn?relay
+     96             return TRUE;
+   \   000031   7901         MOV     R1,#0x1
+   \                     ??usbsuspDoRemoteWakeup_1:
+   \   000033   80..         SJMP    ?Subroutine0
+   \   000035                REQUIRE P2IFG
+   \   000035                REQUIRE _A_IRCON2
+     97          
+     98          } // usbsuspDoRemoteWakeup
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbsuspEnter?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbsuspEnter
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??usbsuspDoRemoteWakeup?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    usbsuspDoRemoteWakeup
+     99          
+    100          
+    101          
+    102          //@}
+    103          /*
+    104          +------------------------------------------------------------------------------
+    105          |  Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+    106          |
+    107          |  IMPORTANT: Your use of this Software is limited to those specific rights
+    108          |  granted under the terms of a software license agreement between the user who
+    109          |  downloaded the software, his/her employer (which must be your employer) and
+    110          |  Texas Instruments Incorporated (the "License"). You may not use this Software
+    111          |  unless you agree to abide by the terms of the License. The License limits
+    112          |  your use, and you acknowledge, that the Software may not be modified, copied
+    113          |  or distributed unless embedded on a Texas Instruments microcontroller or used
+    114          |  solely and exclusively in conjunction with a Texas Instruments radio
+    115          |  frequency transceiver, which is integrated into your product. Other than for
+    116          |  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+    117          |  works of, modify, distribute, perform, display or sell this Software and/or
+    118          |  its documentation for any purpose.
+    119          |
+    120          |  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+    121          |  PROVIDED “AS IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+    122          |  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+    123          |  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+    124          |  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+    125          |  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+    126          |  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING
+    127          |  BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+    128          |  CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+    129          |  SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+    130          |  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+    131          |
+    132          |  Should you have any questions regarding your right to use this Software,
+    133          |  contact Texas Instruments Incorporated at www.TI.com.
+    134          |
+    135          +------------------------------------------------------------------------------
+    136          */
+
+   Maximum stack usage in bytes:
+
+     Function              ISTACK PSTACK XSTACK
+     --------              ------ ------ ------
+     usbsuspDoRemoteWakeup     2      0      0
+       -> halIntOff            4      0      0
+       -> halMcuWaitMs         4      0      0
+       -> halIntOn             4      0      0
+     usbsuspEnter              2      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                Bytes
+     --------------                -----
+     P2IFG                            1
+     IEN2                             1
+     SLEEPSTA                         1
+     P2IEN                            1
+     SLEEPCMD                         1
+     _A_IRCON2                        1
+     pFnSuspendEnterHook              2
+     pFnSuspendExitHook               2
+     usbsuspEnter                    88
+     ?Subroutine0                     7
+     usbsuspDoRemoteWakeup           53
+     ??usbsuspEnter?relay             6
+     ??usbsuspDoRemoteWakeup?relay    6
+
+ 
+ 148 bytes in segment BANKED_CODE
+  12 bytes in segment BANK_RELAYS
+   6 bytes in segment SFR_AN
+   4 bytes in segment XDATA_Z
+ 
+ 160 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 6 bytes shared)
+   4 bytes of XDATA memory
+
+Errors: none
+Warnings: none

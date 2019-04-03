@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>SampleApp/CoordinatorEB-Pro</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>347</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>980</ColumnWidth1><ColumnWidth2>261</ColumnWidth2><ColumnWidth3>65</ColumnWidth3></Build>
+    <TerminalIO/><Debug-Log><ColumnWidth0>22</ColumnWidth0><ColumnWidth1>1305</ColumnWidth1></Debug-Log></Static>
+    <Windows>
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-8378-31374</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>SampleApp</ExpandedNode><ExpandedNode>SampleApp/MAC</ExpandedNode><ExpandedNode>SampleApp/MAC/Low Level</ExpandedNode><ExpandedNode>SampleApp/MAC/Low Level/Common</ExpandedNode><ExpandedNode>SampleApp/MAC/Low Level/System</ExpandedNode><ExpandedNode>SampleApp/Output</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-30983-31769</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-8985-3548</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_rf.h</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>1986</SelStart><SelEnd>1986</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\HAL\INCLUDE\hal_uart.h</Filename><XPos>0</XPos><YPos>130</YPos><SelStart>5511</SelStart><SelEnd>5511</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_lcd.c</Filename><XPos>0</XPos><YPos>352</YPos><SelStart>17327</SelStart><SelEnd>17327</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\Source\OSAL_SampleApp.c</Filename><XPos>0</XPos><YPos>57</YPos><SelStart>3117</SelStart><SelEnd>3117</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\mac\LOW_LEVEL\srf04\mac_rx_onoff.h</Filename><XPos>0</XPos><YPos>47</YPos><SelStart>963</SelStart><SelEnd>963</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_dma.c</Filename><XPos>0</XPos><YPos>108</YPos><SelStart>4435</SelStart><SelEnd>4435</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\..\..\..\..\Program Files (x86)\IAR Systems\Embedded Workbench 6.0\8051\inc\ioCC2531.h</Filename><XPos>0</XPos><YPos>81</YPos><SelStart>1391</SelStart><SelEnd>1391</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL_Timers.c</Filename><XPos>0</XPos><YPos>468</YPos><SelStart>12733</SelStart><SelEnd>12733</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\osal\common\OSAL.c</Filename><XPos>0</XPos><YPos>1027</YPos><SelStart>26722</SelStart><SelEnd>26722</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\common\hal_assert.c</Filename><XPos>0</XPos><YPos>181</YPos><SelStart>6328</SelStart><SelEnd>6328</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\_hal_uart_isr.c</Filename><XPos>0</XPos><YPos>386</YPos><SelStart>12405</SelStart><SelEnd>12405</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_csp_tx.c</Filename><XPos>0</XPos><YPos>849</YPos><SelStart>31387</SelStart><SelEnd>31411</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_tx.c</Filename><XPos>0</XPos><YPos>152</YPos><SelStart>6129</SelStart><SelEnd>6129</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\mac_radio_defs.h</Filename><XPos>0</XPos><YPos>343</YPos><SelStart>10200</SelStart><SelEnd>10200</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_mem.c</Filename><XPos>0</XPos><YPos>118</YPos><SelStart>4923</SelStart><SelEnd>4923</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_low_level.h</Filename><XPos>0</XPos><YPos>51</YPos><SelStart>3314</SelStart><SelEnd>3314</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_radio.c</Filename><XPos>0</XPos><YPos>411</YPos><SelStart>14527</SelStart><SelEnd>14527</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\single_chip\mac_mcu.c</Filename><XPos>0</XPos><YPos>579</YPos><SelStart>18895</SelStart><SelEnd>18895</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_rx.c</Filename><XPos>0</XPos><YPos>546</YPos><SelStart>20969</SelStart><SelEnd>20969</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_uart.c</Filename><XPos>0</XPos><YPos>148</YPos><SelStart>5295</SelStart><SelEnd>5295</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\mac\low_level\srf04\mac_rf.c</Filename><XPos>0</XPos><YPos>78</YPos><SelStart>2922</SelStart><SelEnd>2922</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\_hal_uart_dma.c</Filename><XPos>0</XPos><YPos>777</YPos><SelStart>19366</SelStart><SelEnd>19366</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\OnBoard.c</Filename><XPos>0</XPos><YPos>118</YPos><SelStart>4268</SelStart><SelEnd>4268</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\Components\hal\common\hal_drivers.c</Filename><XPos>0</XPos><YPos>273</YPos><SelStart>8876</SelStart><SelEnd>8876</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\..\..\COMPONENTS\HAL\TARGET\CC2530EB\hal_board_cfg.h</Filename><XPos>0</XPos><YPos>336</YPos><SelStart>3365</SelStart><SelEnd>3365</SelEnd></Tab><ActiveTab>24</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\ZMain.c</Filename><XPos>0</XPos><YPos>121</YPos><SelStart>4189</SelStart><SelEnd>4189</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\ZMain\TI2530DB\chipcon_cstartup.s51</Filename><XPos>0</XPos><YPos>369</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00d3dc98><key>iaridepm.enu1</key></Toolbar-00d3dc98></Sizes></Row0></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>463</Bottom><Right>438</Right><x>-2</x><y>-2</y><xscreen>3563</xscreen><yscreen>2537</yscreen><sizeHorzCX>2608346</sizeHorzCX><sizeHorzCY>3698251</sizeHorzCY><sizeVertCX>322108</sizeVertCX><sizeVertCY>677843</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>178</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>180</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>262391</sizeHorzCY><sizeVertCX>2608346</sizeVertCX><sizeVertCY>3698251</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

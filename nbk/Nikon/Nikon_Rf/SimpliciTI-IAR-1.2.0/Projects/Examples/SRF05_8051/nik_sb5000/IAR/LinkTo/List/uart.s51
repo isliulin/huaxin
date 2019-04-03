@@ -1,0 +1,1559 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        22/Jul/2016  20:57:17 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\bsp\drivers\cod /
+//                          e\uart.c                                          /
+//    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\Configuration\LinkTo\smpl_co /
+//                          nfig.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56,     /
+//                          0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK           /
+//                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\Configuration\smp /
+//                          l_nwk_config.dat (-DMAX_HOPS=3                    /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4            /
+//                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING          /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=115200                           /
+//                          -DUART_FLOW_CONTROL=UART_FLOW_CONTROL_OFF         /
+//                          -DUART_PARITY_MODE=UART_PARITY_NONE               /
+//                          -DUART_STOP_BITS=UART_1_STOP_BIT                  /
+//                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                  /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\bsp\drivers\cod /
+//                          e\uart.c -D MCU_H=<ioCC2530.h> -D MRFI_CC2530 -D  /
+//                          ZTOOL_P1 -D MRFI_PA_LNA_ENABLED -lC               /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -lA                /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -o                 /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\Obj\ -e --debug          /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data --nr_virtual_regs  /
+//                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\N /
+//                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SR /
+//                          F05_8051\nik_sb5000\IAR\..\..\..\..\..\Components /
+//                          \bsp\ -I C:\Users\freeman\Documents\work\NBK\Niko /
+//                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples /
+//                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compone /
+//                          nts\bsp\drivers\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\bsp\boards\CC2530EM\ -I            /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\ /
+//                           -I C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          on_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 /
+//                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S /
+//                          impliciTI\nwk\ -I C:\Users\freeman\Documents\work /
+//                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects /
+//                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\Appl /
+//                          ications\ -I C:\Users\freeman\Documents\work\NBK\ /
+//                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam /
+//                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com /
+//                          ponents\SimpliciTI\nwk_applications\ -I           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\ /
+//                          INCLUDE\ -I C:\Users\freeman\Documents\work\NBK\N /
+//                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp /
+//                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp /
+//                          onents\OSAL\MCU\CCSOC\ -I                         /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\HAL\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\HAL\TARGET\CC2530EB\ -I                     /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\SERVI /
+//                          CES\SADDR\ -I C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co /
+//                          mponents\SERVICES\SDATA\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MT\   /
+//                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\..\..\..\..\..\Components\ST /
+//                          ACK\AF\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\NWK\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\STACK\SEC\ -I                      /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\STACK /
+//                          \SAPI\ -I C:\Users\freeman\Documents\work\NBK\Nik /
+//                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon /
+//                          ents\STACK\SYS\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\STACK\ZDO\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\HIGH_LEVEL\ -I                          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\L /
+//                          OW_LEVEL\srf04\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\    /
+//                          -Ohz --require_prototypes                         /
+//    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\uart.s51            /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME uart
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?CALL_IND
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?INTERRUPT_ENTER_SP
+        EXTERN ?INTERRUPT_LEAVE_SP
+        EXTERN ?XSP
+        EXTERN __INIT_XDATA_Z
+
+        PUBWEAK `??uart_0_rx_irq??INTVEC 19`
+        PUBWEAK `??uart_0_tx_irq??INTVEC 59`
+        PUBWEAK `??uart_1_rx_irq??INTVEC 27`
+        PUBWEAK `??uart_1_tx_irq??INTVEC 115`
+        PUBLIC ??uart_init?relay
+        FUNCTION ??uart_init?relay,0203H
+        PUBLIC ??uart_rx_irq?relay
+        FUNCTION ??uart_rx_irq?relay,0203H
+        PUBLIC ??uart_rx_message?relay
+        FUNCTION ??uart_rx_message?relay,0203H
+        PUBLIC ??uart_tx_irq?relay
+        FUNCTION ??uart_tx_irq?relay,0203H
+        PUBLIC ??uart_tx_message?relay
+        FUNCTION ??uart_tx_message?relay,0203H
+        PUBWEAK U0BAUD
+        PUBWEAK U0DBUF
+        PUBWEAK _A_IEN0
+        PUBWEAK _A_IRCON2
+        PUBWEAK _A__ADCCFG_
+        PUBWEAK _A__IEN2_
+        PUBWEAK _A__P0SEL_
+        PUBWEAK _A__P2SEL_
+        PUBWEAK _A__PERCFG_
+        PUBWEAK _A__U0CSR_
+        PUBWEAK _A__U0GCR_
+        PUBWEAK _A__U0UCR_
+        PUBLIC uart_0_rx_irq
+        FUNCTION uart_0_rx_irq,021233H
+        ARGFRAME ISTACK, 0, STACK
+        LOCFRAME ISTACK, 13, STACK
+        PUBLIC uart_0_tx_irq
+        FUNCTION uart_0_tx_irq,021233H
+        ARGFRAME ISTACK, 0, STACK
+        LOCFRAME ISTACK, 13, STACK
+        PUBLIC uart_1_rx_irq
+        FUNCTION uart_1_rx_irq,021233H
+        ARGFRAME ISTACK, 0, STACK
+        LOCFRAME ISTACK, 13, STACK
+        PUBLIC uart_1_tx_irq
+        FUNCTION uart_1_tx_irq,021233H
+        ARGFRAME ISTACK, 0, STACK
+        LOCFRAME ISTACK, 13, STACK
+        PUBLIC uart_init
+        FUNCTION uart_init,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME XSTACK, 2, STACK
+        PUBLIC uart_rx_irq
+        FUNCTION uart_rx_irq,0203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC uart_rx_message
+        FUNCTION uart_rx_message,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC uart_tx_irq
+        FUNCTION uart_tx_irq,0203H
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME XSTACK, 1, STACK
+        PUBLIC uart_tx_message
+        FUNCTION uart_tx_message,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 Undefined
+        CFI DPH0 Undefined
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+uart_0_rx_irq       SYMBOL "uart_0_rx_irq"
+`??uart_0_rx_irq??INTVEC 19` SYMBOL "??INTVEC 19", uart_0_rx_irq
+uart_0_tx_irq       SYMBOL "uart_0_tx_irq"
+`??uart_0_tx_irq??INTVEC 59` SYMBOL "??INTVEC 59", uart_0_tx_irq
+uart_1_rx_irq       SYMBOL "uart_1_rx_irq"
+`??uart_1_rx_irq??INTVEC 27` SYMBOL "??INTVEC 27", uart_1_rx_irq
+uart_1_tx_irq       SYMBOL "uart_1_tx_irq"
+`??uart_1_tx_irq??INTVEC 115` SYMBOL "??INTVEC 115", uart_1_tx_irq
+uart_init           SYMBOL "uart_init"
+??uart_init?relay   SYMBOL "?relay", uart_init
+uart_rx_irq         SYMBOL "uart_rx_irq"
+??uart_rx_irq?relay SYMBOL "?relay", uart_rx_irq
+uart_rx_message     SYMBOL "uart_rx_message"
+??uart_rx_message?relay SYMBOL "?relay", uart_rx_message
+uart_tx_irq         SYMBOL "uart_tx_irq"
+??uart_tx_irq?relay SYMBOL "?relay", uart_tx_irq
+uart_tx_message     SYMBOL "uart_tx_message"
+??uart_tx_message?relay SYMBOL "?relay", uart_tx_message
+
+// C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\bsp\drivers\code\uart.c
+//    1 /**************************************************************************************************
+//    2   Filename:       uart.c
+//    3   Revised:        $Date: 2009-08-17 10:50:58 -0700 (Mon, 17 Aug 2009) $
+//    4   Author:         $Author: jnoxon $
+//    5 
+//    6   Description:    This file supports the SimpliciTI-compatible UART driver.
+//    7 
+//    8   Copyright 2004-2009 Texas Instruments Incorporated. All rights reserved.
+//    9 
+//   10   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   11   the terms of a software license agreement between the user who downloaded the software,
+//   12   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   13   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   14   License. The License limits your use, and you acknowledge, that the Software may not be
+//   15   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   16   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   17   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   18   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   19   perform, display or sell this Software and/or its documentation for any purpose.
+//   20 
+//   21   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   22   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   23   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   24   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   25   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   26   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   27   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   28   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   29   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   30 
+//   31   Should you have any questions regarding your right to use this Software,
+//   32   contact Texas Instruments Incorporated at www.TI.com.
+//   33 **************************************************************************************************/
+//   34 
+//   35 /******************************************************************************
+//   36  * INCLUDES
+//   37  */
+//   38 #include "bsp.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,0a8H
+// union <unnamed> volatile __sfr _A_IEN0
+_A_IEN0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c1H
+// unsigned char volatile __sfr U0DBUF
+U0DBUF:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c2H
+// unsigned char volatile __sfr U0BAUD
+U0BAUD:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e8H
+// union <unnamed> volatile __sfr _A_IRCON2
+_A_IRCON2:
+        DATA8
+        DS 1
+//   39 #include "uart.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,09aH
+// union <unnamed> volatile __sfr _A__IEN2_
+_A__IEN2_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f1H
+// union <unnamed> volatile __sfr _A__PERCFG_
+_A__PERCFG_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f2H
+// union <unnamed> volatile __sfr _A__ADCCFG_
+_A__ADCCFG_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f3H
+// union <unnamed> volatile __sfr _A__P0SEL_
+_A__P0SEL_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0f5H
+// union <unnamed> volatile __sfr _A__P2SEL_
+_A__P2SEL_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,086H
+// union <unnamed> volatile __sfr _A__U0CSR_
+_A__U0CSR_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c4H
+// union <unnamed> volatile __sfr _A__U0UCR_
+_A__U0UCR_:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c5H
+// union <unnamed> volatile __sfr _A__U0GCR_
+_A__U0GCR_:
+        DATA8
+        DS 1
+//   40 
+//   41 /******************************************************************************
+//   42  * MACROS
+//   43  */
+//   44 
+//   45 /******************************************************************************
+//   46  * CONSTANTS AND DEFINES
+//   47  */
+//   48 
+//   49 /******************************************************************************
+//   50  * TYPEDEFS
+//   51  */
+//   52 
+//   53 /******************************************************************************
+//   54  * LOCAL VARIABLES
+//   55  */
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   56 static uart_get_tx_data_type uart_tx_handler = NULL;
+uart_tx_handler:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   57 static uart_put_rx_data_type uart_rx_handler = NULL;
+uart_rx_handler:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   58 
+//   59 /******************************************************************************
+//   60  * LOCAL FUNCTIONS
+//   61  */
+//   62 void uart_tx_irq( void );
+//   63 void uart_rx_irq( void );
+//   64 
+//   65 /******************************************************************************
+//   66  * IRQs for all 8051 variants using IAR
+//   67  */
+//   68 
+//   69 #if ( defined __IAR_SYSTEMS_ICC__ ) && ( defined __ICC8051__ )
+//   70 
+//   71 /* vector all interrupts to common routines */
+//   72 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, TX )
+//   73 __idata_reentrant __interrupt void uart_0_tx_irq( void );
+//   74 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, TX )
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//   75 __idata_reentrant __interrupt void uart_0_tx_irq( void )
+uart_0_tx_irq:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function uart_0_tx_irq
+        CODE
+        FUNCALL uart_0_tx_irq, uart_tx_irq
+        LOCFRAME ISTACK, 13, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 13, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock0
+        REQUIRE _A_IEN0
+//   76 {
+//   77   /* work-a-round for XCH instruction */
+//   78   bspIState_t istate;
+//   79   istate = __bsp_GET_ISTATE__();
+//   80   BSP_ENABLE_INTERRUPTS();
+//   81 
+//   82   uart_tx_irq( );
+//   83 
+//   84   /* work-a-round for XCH instruction */
+//   85   __bsp_RESTORE_ISTATE__(istate);
+//   86   
+//   87   return;
+//   88 }
+//   89 
+//   90 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, TX )
+//   91 __idata_reentrant __interrupt void uart_1_tx_irq( void );
+//   92 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, TX )
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//   93 __idata_reentrant __interrupt void uart_1_tx_irq( void )
+uart_1_tx_irq:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function uart_1_tx_irq
+        CODE
+        FUNCALL uart_1_tx_irq, uart_tx_irq
+        LOCFRAME ISTACK, 13, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 13, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock1
+        REQUIRE _A_IEN0
+//   94 {
+//   95   /* work-a-round for XCH instruction */
+//   96   bspIState_t istate;
+//   97   istate = __bsp_GET_ISTATE__();
+//   98   BSP_ENABLE_INTERRUPTS();
+//   99 
+//  100   uart_tx_irq( );
+//  101 
+//  102   /* work-a-round for XCH instruction */
+//  103   __bsp_RESTORE_ISTATE__(istate);
+//  104   
+//  105   return;
+//  106 }
+//  107 
+//  108 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, RX )
+//  109 __idata_reentrant __interrupt void uart_0_rx_irq( void );
+//  110 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_0, RX )
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  111 __idata_reentrant __interrupt void uart_0_rx_irq( void )
+uart_0_rx_irq:
+        CODE
+        FUNCALL uart_0_rx_irq, uart_rx_irq
+        LOCFRAME ISTACK, 13, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 13, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        REQUIRE ?Subroutine2
+        REQUIRE _A_IEN0
+        ; // Fall through to label ?Subroutine2
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+//  112 {
+        PUSH    A
+        CFI CFA_SP SP+-3
+        CFI A Frame(CFA_SP, 3)
+        MOV     A,#0x1
+        LCALL   ?INTERRUPT_ENTER_SP
+        CFI CFA_SP SP+-17
+        CFI VB Frame(CFA_SP, 16)
+        CFI B Frame(CFA_SP, 15)
+        CFI PSW Frame(CFA_SP, 14)
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI R0 Frame(CFA_SP, 6)
+        CFI R1 Frame(CFA_SP, 7)
+        CFI R2 Frame(CFA_SP, 8)
+        CFI R3 Frame(CFA_SP, 9)
+        CFI R4 Frame(CFA_SP, 10)
+        CFI R5 Frame(CFA_SP, 11)
+        CFI R6 Frame(CFA_SP, 12)
+        CFI R7 Frame(CFA_SP, 13)
+        CFI V0 Frame(CFA_SP, 17)
+        ; Saved register size: 13
+        ; Auto size: 0
+//  113   /* work-a-round for XCH instruction */
+//  114   bspIState_t istate;
+//  115   istate = __bsp_GET_ISTATE__();
+        ; Saved register size: 13
+        ; Auto size: 0
+        MOV     A,0xa8
+        MOV     R6,A
+//  116   BSP_ENABLE_INTERRUPTS();
+        SETB    0xa8.7
+//  117 
+//  118   uart_rx_irq( );
+        ; Setup parameters for call to function uart_rx_irq
+        ; Setup parameters for call to function uart_rx_irq
+        LCALL   ??uart_rx_irq?relay
+//  119 
+//  120   /* work-a-round for XCH instruction */
+//  121   __bsp_RESTORE_ISTATE__(istate);
+        SJMP    ??Subroutine4_0
+        CFI EndBlock cfiBlock2
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI NoFunction
+        PUSH    A
+        CFI CFA_SP SP+-3
+        CFI A Frame(CFA_SP, 3)
+        MOV     A,#0x1
+        LCALL   ?INTERRUPT_ENTER_SP
+        CFI CFA_SP SP+-17
+        CFI VB Frame(CFA_SP, 16)
+        CFI B Frame(CFA_SP, 15)
+        CFI PSW Frame(CFA_SP, 14)
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI R0 Frame(CFA_SP, 6)
+        CFI R1 Frame(CFA_SP, 7)
+        CFI R2 Frame(CFA_SP, 8)
+        CFI R3 Frame(CFA_SP, 9)
+        CFI R4 Frame(CFA_SP, 10)
+        CFI R5 Frame(CFA_SP, 11)
+        CFI R6 Frame(CFA_SP, 12)
+        CFI R7 Frame(CFA_SP, 13)
+        CFI V0 Frame(CFA_SP, 17)
+        ; Saved register size: 13
+        ; Auto size: 0
+        ; Saved register size: 13
+        ; Auto size: 0
+        MOV     A,0xa8
+        MOV     R6,A
+        SETB    0xa8.7
+        ; Setup parameters for call to function uart_tx_irq
+        ; Setup parameters for call to function uart_tx_irq
+        LCALL   ??uart_tx_irq?relay
+        CFI EndBlock cfiBlock3
+        REQUIRE ??Subroutine4_0
+        ; // Fall through to label ??Subroutine4_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+??Subroutine4_0:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-17
+        CFI VB Frame(CFA_SP, 16)
+        CFI B Frame(CFA_SP, 15)
+        CFI A Frame(CFA_SP, 3)
+        CFI PSW Frame(CFA_SP, 14)
+        CFI R0 Frame(CFA_SP, 6)
+        CFI R1 Frame(CFA_SP, 7)
+        CFI R2 Frame(CFA_SP, 8)
+        CFI R3 Frame(CFA_SP, 9)
+        CFI R4 Frame(CFA_SP, 10)
+        CFI R5 Frame(CFA_SP, 11)
+        CFI R6 Frame(CFA_SP, 12)
+        CFI R7 Frame(CFA_SP, 13)
+        CFI V0 Frame(CFA_SP, 17)
+        MOV     A,R6
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+//  122   
+//  123   return;
+        MOV     R7,#0x1
+        LJMP    ?INTERRUPT_LEAVE_SP
+        CFI EndBlock cfiBlock4
+//  124 }
+//  125 
+//  126 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, RX )
+//  127 __idata_reentrant __interrupt void uart_1_rx_irq( void );
+//  128 #pragma vector=UART_IRQ_VECTOR( UART_NUMBER_1, RX )
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//  129 __idata_reentrant __interrupt void uart_1_rx_irq( void )
+uart_1_rx_irq:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function uart_1_rx_irq
+        CODE
+        FUNCALL uart_1_rx_irq, uart_rx_irq
+        LOCFRAME ISTACK, 13, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 13, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        SJMP    ?Subroutine2
+        CFI EndBlock cfiBlock5
+        REQUIRE _A_IEN0
+//  130 {
+//  131   /* work-a-round for XCH instruction */
+//  132   bspIState_t istate;
+//  133   istate = __bsp_GET_ISTATE__();
+//  134   BSP_ENABLE_INTERRUPTS();
+//  135 
+//  136   uart_rx_irq( );
+//  137 
+//  138   /* work-a-round for XCH instruction */
+//  139   __bsp_RESTORE_ISTATE__(istate);
+//  140   
+//  141   return;
+//  142 }
+//  143 
+//  144 
+//  145 /******************************************************************************
+//  146  * IRQs for MSP430+CCxxxx using IAR
+//  147  */
+//  148 
+//  149 #elif ( defined __IAR_SYSTEMS_ICC__ ) && ( defined __ICC430__ )
+//  150 
+//  151 #pragma vector=USCIAB0TX_VECTOR
+//  152 __interrupt void uart_tx_enter_irq( void );
+//  153 #pragma vector=USCIAB0TX_VECTOR
+//  154 __interrupt void uart_tx_enter_irq( void )
+//  155 {
+//  156 #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+//  157   /* if remote device can accept more data */ 
+//  158   if( UART_CTS_GET_STATE( ) == UART_CTS_DEASSERTED )
+//  159     uart_tx_irq( ); /* handle the transmit request */
+//  160   
+//  161   else /* if remote device is holding us off then disable interrupts,
+//  162         * they will get re-enabled when the CTS interrupt is triggered.
+//  163         * this way we don't get stuck in an infinite loop because we are not
+//  164         * handling the transmit interrupt, we will get back here once the
+//  165         * CTS interrupt is generated because it will enable interrupts again. */
+//  166     UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+//  167 #else
+//  168   uart_tx_irq( ); /* handle the transmit request */ 
+//  169 #endif
+//  170   return;
+//  171 }
+//  172 
+//  173 #pragma vector=USCIAB0RX_VECTOR
+//  174 __interrupt void uart_rx_enter_irq( void );
+//  175 #pragma vector=USCIAB0RX_VECTOR
+//  176 __interrupt void uart_rx_enter_irq( void )
+//  177 {
+//  178   uart_rx_irq( );
+//  179   return;
+//  180 }
+//  181 
+//  182 #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+//  183 #pragma vector=INFIX( PORT, UART_CTS_PORT_NUM, _VECTOR )
+//  184 __interrupt void uart_cts_irq( void );
+//  185 #pragma vector=INFIX( PORT, UART_CTS_PORT_NUM, _VECTOR )
+//  186 __interrupt void uart_cts_irq( void )
+//  187 {
+//  188   /* if a handler exists then a message must be currently in the buffer so
+//  189    * it is safe to re-enable interrupts */
+//  190   if( uart_tx_handler != NULL )
+//  191     UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, TX );
+//  192   
+//  193   UART_CTS_CLEAR_INTERRUPT( );
+//  194   
+//  195   return;
+//  196 }
+//  197 #endif
+//  198 
+//  199 
+//  200 /******************************************************************************
+//  201  * IRQs for MSP430+CCxxxx using Code Composer
+//  202  */
+//  203 
+//  204 #elif  defined __TI_COMPILER_VERSION__ 
+//  205 
+//  206 BSP_ISR_FUNCTION( uart_tx_enter_irq, USCIAB0TX_VECTOR )
+//  207 {
+//  208 #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+//  209   /* if remote device can accept more data */
+//  210   if( UART_CTS_GET_STATE( ) == UART_CTS_DEASSERTED )
+//  211     uart_tx_irq( ); /* handle the transmit request */ 
+//  212   
+//  213   else /* if remote device is holding us off then disable interrupts,
+//  214         * they will get re-enabled when the CTS interrupt is triggered.
+//  215         * this way we don't get stuck in an infinite loop because we are not
+//  216         * handling the transmit interrupt, we will get back here once the
+//  217         * CTS interrupt is generated because it will enable interrupts again. */
+//  218     UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+//  219 #else
+//  220   uart_tx_irq( ); /* handle the transmit request */
+//  221 #endif
+//  222   return;
+//  223 }
+//  224 
+//  225 BSP_ISR_FUNCTION( uart_rx_enter_irq, USCIAB0RX_VECTOR )
+//  226 {
+//  227   uart_rx_irq( );
+//  228   return;
+//  229 }
+//  230 
+//  231 #if( defined UART_HARDWARE_HANDSHAKE_IN_SOFTWARE )
+//  232 BSP_ISR_FUNCTION( uart_cts_irq, INFIX( PORT, UART_CTS_PORT_NUM, _VECTOR ) )
+//  233 {
+//  234   /* if a handler exists then a message must be currently in the buffer so
+//  235    * it is safe to re-enable interrupts */
+//  236   if( uart_tx_handler != NULL )
+//  237     UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, TX );
+//  238   
+//  239   UART_CTS_CLEAR_INTERRUPT( );
+//  240   
+//  241   return;
+//  242 }
+//  243 #endif
+//  244 
+//  245 
+//  246 
+//  247 
+//  248 #else
+//  249 #error "Undefined target processor or unknown compiler."
+//  250 #endif
+//  251 
+//  252 
+//  253 /******************************************************************************
+//  254  * Interrupt Service Routines (ISRs)
+//  255  */
+//  256 
+//  257 /******************************************************************************
+//  258  * @fn          uart_tx_irq
+//  259  *
+//  260  * @brief       TX interrupt service routine
+//  261  *
+//  262  * input parameters
+//  263  *
+//  264  * output parameters
+//  265  *
+//  266  * @return   
+//  267  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  268 void uart_tx_irq( void )
+uart_tx_irq:
+        CFI Block cfiBlock6 Using cfiCommon1
+        CFI Function uart_tx_irq
+        CODE
+//  269   {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 1
+        MOV     A,#-0x1
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 1)
+//  270   unsigned char c;
+//  271   uart_get_tx_data_type handler;
+//  272   
+//  273   BSP_CRITICAL_STATEMENT( handler = uart_tx_handler );
+        MOV     A,0xa8
+        MOV     R2,A
+        CLR     0xa8.7
+        MOV     DPTR,#uart_tx_handler
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R2
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+//  274   
+//  275   /* if a handler exists */ 
+//  276   if( handler != NULL )
+        MOV     A,R0
+        ORL     A,R1
+        JZ      ??uart_tx_irq_0
+//  277     {
+//  278     if( (*handler)( &c ) != false ) /* if this is not the last byte to send */
+        ; Setup parameters for indirect call
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R2,DPL
+        MOV     R3,DPH
+        MOV     DPL,R0
+        MOV     DPH,R1
+        LCALL   ?CALL_IND
+        MOV     A,0xa8
+        JNC     ??uart_tx_irq_1
+//  279       {
+//  280       bspIState_t intState;
+//  281       BSP_ENTER_CRITICAL_SECTION( intState );
+        CLR     0xa8.7
+//  282       
+//  283       /* only reset the interrupt flag if we have additional data to send
+//  284        * that way, if we are done then the interrupt is still pending and
+//  285        * will be immediately entered upon re-enabling it.*/
+//  286       UART_IRQ_FLAG_CLR( UART_NUMBER, UART_LOCATION, TX ); /* eset the interrupt */
+        CLR     0xe8.1
+//  287       
+//  288       BSP_EXIT_CRITICAL_SECTION( intState );
+        SJMP    ??uart_tx_irq_2
+//  289       }
+//  290     else
+//  291       {
+//  292       bspIState_t intState;
+//  293       BSP_ENTER_CRITICAL_SECTION( intState );
+??uart_tx_irq_1:
+        MOV     R0,A
+        CLR     0xa8.7
+//  294       
+//  295       /* we're done sending data.  since we left the interrupt pending,
+//  296        * disable it so we don't re-enter the isr.  the interrupt will be
+//  297        * re-enabled when there is another message to send. */
+//  298       UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+        ANL     0x9a,#0xfb
+//  299       
+//  300       /* no more data to send, reset the handler to flag not busy */
+//  301       uart_tx_handler = NULL;
+        MOV     DPTR,#uart_tx_handler
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//  302       
+//  303       BSP_EXIT_CRITICAL_SECTION( intState );
+        MOV     A,R0
+??uart_tx_irq_2:
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+//  304       }
+//  305 
+//  306     UART_SEND( UART_NUMBER, UART_LOCATION, c ); /* send the byte */
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     0xc1,A
+        SJMP    ??uart_tx_irq_3
+//  307     }
+//  308   else /* if no handler exists?!?!?!? */
+//  309     /* something went wrong, disable interrupts so we don't get stuck here */
+//  310     UART_IRQ_DISABLE( UART_NUMBER, UART_LOCATION, TX );
+??uart_tx_irq_0:
+        ANL     0x9a,#0xfb
+//  311 
+//  312   return;
+??uart_tx_irq_3:
+        MOV     A,#0x1
+        CFI EndBlock cfiBlock6
+        REQUIRE ?Subroutine3
+        REQUIRE _A_IEN0
+        REQUIRE _A_IRCON2
+        REQUIRE _A__IEN2_
+        REQUIRE U0DBUF
+        ; // Fall through to label ?Subroutine3
+//  313 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiBlock7 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI CFA_XSP16 add(XSP16, 1)
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI Invalid
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 XSP16+0
+        CFI Valid
+        SJMP    ??Subroutine5_0
+        CFI EndBlock cfiBlock7
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock8 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        MOV     A,R4
+        MOV     C,0xE0 /* A   */.0
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     C,B.0
+        CFI EndBlock cfiBlock8
+        REQUIRE ??Subroutine5_0
+        ; // Fall through to label ??Subroutine5_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine5_0:
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock9
+//  314 
+//  315 /******************************************************************************
+//  316  * @fn          uart_rx_irq
+//  317  *
+//  318  * @brief       RX interrupt service routine
+//  319  *
+//  320  * input parameters
+//  321  *
+//  322  * output parameters
+//  323  *
+//  324  * @return   
+//  325  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  326 void uart_rx_irq( void )
+uart_rx_irq:
+        CFI Block cfiBlock10 Using cfiCommon1
+        CFI Function uart_rx_irq
+        CODE
+//  327   {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  328   uart_put_rx_data_type handler;
+//  329   
+//  330   /* read in the received data, this will clear the interrupt also */
+//  331   unsigned char c = UART_RECEIVE( UART_NUMBER, UART_LOCATION );
+        MOV     A,0xc1
+        MOV     R1,A
+//  332   
+//  333   BSP_CRITICAL_STATEMENT( handler = uart_rx_handler );
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     DPTR,#uart_rx_handler
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+//  334   
+//  335   if( handler != NULL ) /* if a handler exists to receive data */
+        MOV     A,DPL
+        ORL     A,DPH
+        JZ      ??uart_rx_irq_0
+//  336     if( ( *handler)( c ) == false ) /* if the user is done receiveing */
+        ; Setup parameters for indirect call
+        LCALL   ?CALL_IND
+        JC      ??uart_rx_irq_0
+//  337       /* indicate the receiver is available */
+//  338       BSP_CRITICAL_STATEMENT( uart_rx_handler = NULL );
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     DPTR,#uart_rx_handler
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+//  339     
+//  340   return;
+??uart_rx_irq_0:
+        SJMP    ??Subroutine5_0
+        CFI EndBlock cfiBlock10
+        REQUIRE U0DBUF
+        REQUIRE _A_IEN0
+//  341   }
+//  342 
+//  343 /******************************************************************************
+//  344  * GLOBAL FUNCTIONS
+//  345  */ 
+//  346 
+//  347 /******************************************************************************
+//  348  * @fn          uart_init
+//  349  *
+//  350  * @brief       Configures UART and sets up transmit and receive interrupts
+//  351  *
+//  352  * input parameters
+//  353  *
+//  354  * output parameters
+//  355  *
+//  356  * @return   
+//  357  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  358 void uart_init( void )
+uart_init:
+        CFI Block cfiBlock11 Using cfiCommon1
+        CFI Function uart_init
+        CODE
+//  359   {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 2
+        MOV     A,#-0x2
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 2)
+//  360   volatile unsigned int i;
+//  361 
+//  362   /* make sure the handler functions are cleared in case we are re-initialized */
+//  363   uart_tx_handler = NULL;
+        MOV     DPTR,#uart_tx_handler
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//  364   uart_rx_handler = NULL;
+        MOV     DPTR,#uart_rx_handler
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//  365 
+//  366   /* initialize the uart interface for operations */
+//  367   UART_INIT( UART_NUMBER,
+//  368              UART_LOCATION,
+//  369              UART_FLOW_CONTROL,    /* enable/disable flow control */
+//  370              UART_PARITY_MODE,     /* enable/disable parity */
+//  371              UART_STOP_BITS,       /* number of stop bits */
+//  372              UART_BAUD_RATE );     /* baud rate to use */
+        ORL     0x86,#0x80
+        ORL     0x86,#0x40
+        ANL     0xf1,#0xfe
+        ANL     0xf2,#0xf7
+        ANL     0xf2,#0xfb
+        ORL     0xf3,#0x8
+        ORL     0xf3,#0x4
+        ANL     0xf5,#0xbf
+        ANL     0xf5,#0xdf
+        ANL     0xf5,#0xf7
+        ANL     0xc4,#0xbf
+        ANL     0xc4,#0xf7
+        ANL     0xc4,#0xfb
+        ORL     0xc4,#0x2
+        ANL     0xc4,#0xfe
+        ANL     0xc5,#0xdf
+        MOV     A,0xc5
+        ANL     A,#0xe0
+        ORL     A,#0xb
+        MOV     0xc5,A
+        MOV     0xc2,#-0x28
+        ORL     0xc4,#0x80
+//  373    
+//  374   i = UART_BAUD_RATE >> 5; /* delay approximately 1 bit time */
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,#0x10
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0xe
+        MOVX    @DPTR,A
+//  375   while( --i != 0 ) /* give the uart some time to initialize */
+??uart_init_0:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        ADD     A,#-0x1
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADDC    A,#-0x1
+        MOV     R1,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??uart_init_0
+//  376       ; /* null statement */
+//  377 
+//  378   /* set the interrupt flag so that a transmit interrupt will be pending
+//  379    * that way when a message is sent and the irq is enabled, the interrupt
+//  380    * will happen immediately to start the transmission */
+//  381   UART_IRQ_FLAG_SET( UART_NUMBER, UART_LOCATION, TX ); /* set the interrupt */
+        SETB    0xe8.1
+//  382   
+//  383   /* enable receive interrupts, they are always welcome. */
+//  384   UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, RX ); 
+        SETB    0xa8.2
+//  385 
+//  386   return;
+        MOV     A,#0x2
+        LJMP    ?Subroutine3 & 0xFFFF
+        CFI EndBlock cfiBlock11
+        REQUIRE _A__U0CSR_
+        REQUIRE _A__PERCFG_
+        REQUIRE _A__ADCCFG_
+        REQUIRE _A__P0SEL_
+        REQUIRE _A__P2SEL_
+        REQUIRE _A__U0UCR_
+        REQUIRE _A__U0GCR_
+        REQUIRE U0BAUD
+        REQUIRE _A_IRCON2
+        REQUIRE _A_IEN0
+//  387   }
+//  388 
+//  389 /******************************************************************************
+//  390  * @fn          uart_tx_message
+//  391  *
+//  392  * @brief       Installs transmit handler if no message currently being sent
+//  393  *
+//  394  * input parameters
+//  395  * @param   handler - UART transmit handler
+//  396  *
+//  397  * @return   Status of the operation.
+//  398  *           true                 Transmit handler successfully installed
+//  399  *           false                Message being sent or handler is invalid
+//  400  *                                
+//  401  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  402 bool uart_tx_message( uart_get_tx_data_type handler )
+uart_tx_message:
+        CFI Block cfiBlock12 Using cfiCommon1
+        CFI Function uart_tx_message
+        CODE
+//  403   {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  404   bspIState_t  intState;
+//  405   bool status = false; /* assume failure initially */
+        CLR     B.0
+//  406 
+//  407   /* updates required, store interrupt state and disable interrupts */
+//  408   BSP_ENTER_CRITICAL_SECTION(intState);
+        MOV     C,0xa8.7
+        CLR     A
+        RLC     A
+        MOV     R4,A
+        CLR     0xa8.7
+//  409 
+//  410   /* if no message is currently being sent and handler looks valid */
+//  411   if( uart_tx_handler == NULL && handler != NULL )
+        MOV     DPTR,#uart_tx_handler
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??uart_tx_message_0
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??uart_tx_message_0
+//  412     {
+//  413     uart_tx_handler = handler; /* install the handler */
+        MOV     DPTR,#uart_tx_handler
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  414 
+//  415     /* once the handler has been setup, enable the interrupt.
+//  416      * this will cause the message to begin transmission */
+//  417     UART_IRQ_ENABLE( UART_NUMBER, UART_LOCATION, TX ); 
+        ORL     0x9a,#0x4
+//  418 
+//  419     status = true; /* indicate success */    
+        SETB    B.0
+//  420     }
+//  421 
+//  422   BSP_EXIT_CRITICAL_SECTION(intState); /* restore interrupt state */
+??uart_tx_message_0:
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock12
+        REQUIRE _A_IEN0
+        REQUIRE _A__IEN2_
+//  423     
+//  424   return status; /* indicate status */
+//  425   }
+//  426 
+//  427 /******************************************************************************
+//  428  * @fn          uart_rx_message
+//  429  *
+//  430  * @brief       Installs receive handler if no message currently being received
+//  431  *
+//  432  * input parameters
+//  433  * @param   handler - UART receive handler
+//  434  *
+//  435  * @return   Status of the operation.
+//  436  *           true                 Receive handler successfully installed
+//  437  *           false                Message being received or handler is invalid
+//  438  *                                
+//  439  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  440 bool uart_rx_message( uart_put_rx_data_type handler )
+uart_rx_message:
+        CFI Block cfiBlock13 Using cfiCommon1
+        CFI Function uart_rx_message
+        CODE
+//  441   {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  442   bspIState_t intState;
+//  443   bool status = false;  /* assume failure initially */
+        CLR     B.0
+//  444   
+//  445   /* updates required, store interrupt state and disable interrupts */
+//  446   BSP_ENTER_CRITICAL_SECTION(intState);
+        MOV     C,0xa8.7
+        CLR     A
+        RLC     A
+        MOV     R4,A
+        CLR     0xa8.7
+//  447 
+//  448   /* if no message is being received and the handler looks valid */
+//  449   if( uart_rx_handler == NULL && handler != NULL )
+        MOV     DPTR,#uart_rx_handler
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??uart_rx_message_0
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??uart_rx_message_0
+//  450     {
+//  451     uart_rx_handler = handler; /* install the handler */
+        MOV     DPTR,#uart_rx_handler
+        MOV     A,R2
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R3
+        MOVX    @DPTR,A
+//  452 
+//  453     status = true; /* indicate success */
+        SETB    B.0
+//  454     }
+//  455   
+//  456   BSP_EXIT_CRITICAL_SECTION(intState); /* restore interrupt state */
+??uart_rx_message_0:
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock13
+        REQUIRE _A_IEN0
+//  457     
+//  458   return status; /* indicate status */
+//  459   }
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 19
+`??uart_0_rx_irq??INTVEC 19`:
+        LJMP       (uart_0_rx_irq)
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 27
+`??uart_1_rx_irq??INTVEC 27`:
+        LJMP       (uart_1_rx_irq)
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 59
+`??uart_0_tx_irq??INTVEC 59`:
+        LJMP       (uart_0_tx_irq)
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 115
+`??uart_1_tx_irq??INTVEC 115`:
+        LJMP       (uart_1_tx_irq)
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??uart_tx_irq?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    uart_tx_irq
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??uart_rx_irq?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    uart_rx_irq
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??uart_init?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    uart_init
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??uart_tx_message?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    uart_tx_message
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??uart_rx_message?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    uart_rx_message
+
+        END
+// 
+// 403 bytes in segment BANKED_CODE
+//  30 bytes in segment BANK_RELAYS
+//  12 bytes in segment INTVEC
+//  48 bytes in segment NEAR_CODE
+//  12 bytes in segment SFR_AN
+//   4 bytes in segment XDATA_Z
+// 
+// 481 bytes of CODE  memory (+ 12 bytes shared)
+//   0 bytes of DATA  memory (+ 12 bytes shared)
+//   4 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

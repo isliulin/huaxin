@@ -1,0 +1,4248 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        22/Jul/2016  20:57:14 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk\ /
+//                          nwk.c                                             /
+//    Command line       =  -f C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\Configuration\LinkTo\smpl_co /
+//                          nfig.dat ("-DTHIS_DEVICE_ADDRESS={0x79, 0x56,     /
+//                          0x34, 0x12}" -DxNWK_PLL_REFERENCE_CLOCK           /
+//                          -DLINK_TO) -f C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\Configuration\smp /
+//                          l_nwk_config.dat (-DMAX_HOPS=3                    /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DNUM_CONNECTIONS=2 -DSIZE_INFRAME_Q=4            /
+//                          -DSIZE_OUTFRAME_Q=2 -DxFREQUENCY_HOPPING          /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=115200                           /
+//                          -DUART_FLOW_CONTROL=UART_FLOW_CONTROL_OFF         /
+//                          -DUART_PARITY_MODE=UART_PARITY_NONE               /
+//                          -DUART_STOP_BITS=UART_1_STOP_BIT                  /
+//                          -DBSP_TIMER_USED=1 -DEND_DEVICE)                  /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk\ /
+//                          nwk.c -D MCU_H=<ioCC2530.h> -D MRFI_CC2530 -D     /
+//                          ZTOOL_P1 -D MRFI_PA_LNA_ENABLED -lC               /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -lA                /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\ -o                 /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\Obj\ -e --debug          /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data --nr_virtual_regs  /
+//                          16 -I C:\Users\freeman\Documents\work\NBK\Nikon\N /
+//                          ikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SR /
+//                          F05_8051\nik_sb5000\IAR\..\..\..\..\..\Components /
+//                          \bsp\ -I C:\Users\freeman\Documents\work\NBK\Niko /
+//                          n\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples /
+//                          \SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compone /
+//                          nts\bsp\drivers\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\bsp\boards\CC2530EM\ -I            /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\mrfi\ /
+//                           -I C:\Users\freeman\Documents\work\NBK\Nikon\Nik /
+//                          on_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF0 /
+//                          5_8051\nik_sb5000\IAR\..\..\..\..\..\Components\S /
+//                          impliciTI\nwk\ -I C:\Users\freeman\Documents\work /
+//                          \NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects /
+//                          \Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\Appl /
+//                          ications\ -I C:\Users\freeman\Documents\work\NBK\ /
+//                          Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exam /
+//                          ples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Com /
+//                          ponents\SimpliciTI\nwk_applications\ -I           /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\OSAL\ /
+//                          INCLUDE\ -I C:\Users\freeman\Documents\work\NBK\N /
+//                          ikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Examp /
+//                          les\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Comp /
+//                          onents\OSAL\MCU\CCSOC\ -I                         /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\HAL\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\HAL\TARGET\CC2530EB\ -I                     /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\SERVI /
+//                          CES\SADDR\ -I C:\Users\freeman\Documents\work\NBK /
+//                          \Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exa /
+//                          mples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Co /
+//                          mponents\SERVICES\SDATA\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MT\   /
+//                          -I C:\Users\freeman\Documents\work\NBK\Nikon\Niko /
+//                          n_Rf\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05 /
+//                          _8051\nik_sb5000\IAR\..\..\..\..\..\Components\ST /
+//                          ACK\AF\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\STACK\NWK\ -I C:\Users\freeman\Documents\wo /
+//                          rk\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\.. /
+//                          \..\Components\STACK\SEC\ -I                      /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\STACK /
+//                          \SAPI\ -I C:\Users\freeman\Documents\work\NBK\Nik /
+//                          on\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compon /
+//                          ents\STACK\SYS\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\STACK\ZDO\ -I                       /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\I /
+//                          NCLUDE\ -I C:\Users\freeman\Documents\work\NBK\Ni /
+//                          kon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Projects\Exampl /
+//                          es\SRF05_8051\nik_sb5000\IAR\..\..\..\..\..\Compo /
+//                          nents\MAC\HIGH_LEVEL\ -I                          /
+//                          C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\..\..\..\..\..\Components\MAC\L /
+//                          OW_LEVEL\srf04\ -I C:\Users\freeman\Documents\wor /
+//                          k\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF05_8051\nik_sb5000\IAR\..\..\..\..\ /
+//                          ..\Components\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\    /
+//                          -Ohz --require_prototypes                         /
+//    List file          =  C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_R /
+//                          f\SimpliciTI-IAR-1.2.0\Projects\Examples\SRF05_80 /
+//                          51\nik_sb5000\IAR\LinkTo\List\nwk.s51             /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME nwk
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?V0
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTORE_R2345
+        EXTERN __INIT_XDATA_I
+
+        FUNCTION ??map_lid2idx?relay,0203H
+        PUBLIC ??nwk_NVObj?relay
+        FUNCTION ??nwk_NVObj?relay,0203H
+        PUBLIC ??nwk_allocateLocalRxPort?relay
+        FUNCTION ??nwk_allocateLocalRxPort?relay,0203H
+        PUBLIC ??nwk_checkAppMsgTID?relay
+        FUNCTION ??nwk_checkAppMsgTID?relay,0203H
+        PUBLIC ??nwk_checkConnInfo?relay
+        FUNCTION ??nwk_checkConnInfo?relay,0203H
+        PUBLIC ??nwk_findAddressMatch?relay
+        FUNCTION ??nwk_findAddressMatch?relay,0203H
+        PUBLIC ??nwk_findPeer?relay
+        FUNCTION ??nwk_findPeer?relay,0203H
+        PUBLIC ??nwk_freeConnection?relay
+        FUNCTION ??nwk_freeConnection?relay,0203H
+        PUBLIC ??nwk_getConnInfo?relay
+        FUNCTION ??nwk_getConnInfo?relay,0203H
+        PUBLIC ??nwk_getNextConnection?relay
+        FUNCTION ??nwk_getNextConnection?relay,0203H
+        PUBLIC ??nwk_getNumObjectFromMsg?relay
+        FUNCTION ??nwk_getNumObjectFromMsg?relay,0203H
+        PUBLIC ??nwk_isConnectionValid?relay
+        FUNCTION ??nwk_isConnectionValid?relay,0203H
+        PUBLIC ??nwk_isLinkDuplicate?relay
+        FUNCTION ??nwk_isLinkDuplicate?relay,0203H
+        PUBLIC ??nwk_isValidReply?relay
+        FUNCTION ??nwk_isValidReply?relay,0203H
+        PUBLIC ??nwk_nwkInit?relay
+        FUNCTION ??nwk_nwkInit?relay,0203H
+        PUBLIC ??nwk_putNumObjectIntoMsg?relay
+        FUNCTION ??nwk_putNumObjectIntoMsg?relay,0203H
+        FUNCTION map_lid2idx,0203H
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 9, STACK
+        PUBLIC nwk_NVObj
+        FUNCTION nwk_NVObj,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC nwk_allocateLocalRxPort
+        FUNCTION nwk_allocateLocalRxPort,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 20, STACK
+        PUBLIC nwk_checkAppMsgTID
+        FUNCTION nwk_checkAppMsgTID,0203H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC nwk_checkConnInfo
+        FUNCTION nwk_checkConnInfo,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC nwk_findAddressMatch
+        FUNCTION nwk_findAddressMatch,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC nwk_findPeer
+        FUNCTION nwk_findPeer,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC nwk_freeConnection
+        FUNCTION nwk_freeConnection,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC nwk_getConnInfo
+        FUNCTION nwk_getConnInfo,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC nwk_getNextConnection
+        FUNCTION nwk_getNextConnection,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC nwk_getNumObjectFromMsg
+        FUNCTION nwk_getNumObjectFromMsg,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 13, STACK
+        PUBLIC nwk_isConnectionValid
+        FUNCTION nwk_isConnectionValid,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 1, STACK
+        LOCFRAME XSTACK, 18, STACK
+        PUBLIC nwk_isLinkDuplicate
+        FUNCTION nwk_isLinkDuplicate,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        PUBLIC nwk_isValidReply
+        FUNCTION nwk_isValidReply,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        PUBLIC nwk_nwkInit
+        FUNCTION nwk_nwkInit,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        PUBLIC nwk_putNumObjectIntoMsg
+        FUNCTION nwk_putNumObjectIntoMsg,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 19, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+memset              SYMBOL "memset"
+nwk_globalsInit     SYMBOL "nwk_globalsInit"
+nwk_frameInit       SYMBOL "nwk_frameInit"
+nwk_QInit           SYMBOL "nwk_QInit"
+nwk_freqInit        SYMBOL "nwk_freqInit"
+nwk_pingInit        SYMBOL "nwk_pingInit"
+nwk_joinInit        SYMBOL "nwk_joinInit"
+nwk_mgmtInit        SYMBOL "nwk_mgmtInit"
+nwk_linkInit        SYMBOL "nwk_linkInit"
+nwk_securityInit    SYMBOL "nwk_securityInit"
+nwk_getBCastAddress SYMBOL "nwk_getBCastAddress"
+memcpy              SYMBOL "memcpy"
+memcmp              SYMBOL "memcmp"
+MRFI_PostKillSem    SYMBOL "MRFI_PostKillSem"
+nwk_getMyAddress    SYMBOL "nwk_getMyAddress"
+memmove             SYMBOL "memmove"
+??MRFI_PostKillSem?relay SYMBOL "?relay", MRFI_PostKillSem
+??memcmp?relay      SYMBOL "?relay", memcmp
+??memcpy?relay      SYMBOL "?relay", memcpy
+??memmove?relay     SYMBOL "?relay", memmove
+??memset?relay      SYMBOL "?relay", memset
+??nwk_QInit?relay   SYMBOL "?relay", nwk_QInit
+??nwk_frameInit?relay SYMBOL "?relay", nwk_frameInit
+??nwk_freqInit?relay SYMBOL "?relay", nwk_freqInit
+??nwk_getBCastAddress?relay SYMBOL "?relay", nwk_getBCastAddress
+??nwk_getMyAddress?relay SYMBOL "?relay", nwk_getMyAddress
+??nwk_globalsInit?relay SYMBOL "?relay", nwk_globalsInit
+??nwk_joinInit?relay SYMBOL "?relay", nwk_joinInit
+??nwk_linkInit?relay SYMBOL "?relay", nwk_linkInit
+??nwk_mgmtInit?relay SYMBOL "?relay", nwk_mgmtInit
+??nwk_pingInit?relay SYMBOL "?relay", nwk_pingInit
+??nwk_securityInit?relay SYMBOL "?relay", nwk_securityInit
+nwk_NVObj           SYMBOL "nwk_NVObj"
+??nwk_NVObj?relay   SYMBOL "?relay", nwk_NVObj
+nwk_allocateLocalRxPort SYMBOL "nwk_allocateLocalRxPort"
+??nwk_allocateLocalRxPort?relay SYMBOL "?relay", nwk_allocateLocalRxPort
+nwk_checkAppMsgTID  SYMBOL "nwk_checkAppMsgTID"
+??nwk_checkAppMsgTID?relay SYMBOL "?relay", nwk_checkAppMsgTID
+nwk_checkConnInfo   SYMBOL "nwk_checkConnInfo"
+??nwk_checkConnInfo?relay SYMBOL "?relay", nwk_checkConnInfo
+nwk_findAddressMatch SYMBOL "nwk_findAddressMatch"
+??nwk_findAddressMatch?relay SYMBOL "?relay", nwk_findAddressMatch
+nwk_findPeer        SYMBOL "nwk_findPeer"
+??nwk_findPeer?relay SYMBOL "?relay", nwk_findPeer
+nwk_freeConnection  SYMBOL "nwk_freeConnection"
+??nwk_freeConnection?relay SYMBOL "?relay", nwk_freeConnection
+nwk_getConnInfo     SYMBOL "nwk_getConnInfo"
+??nwk_getConnInfo?relay SYMBOL "?relay", nwk_getConnInfo
+nwk_getNextConnection SYMBOL "nwk_getNextConnection"
+??nwk_getNextConnection?relay SYMBOL "?relay", nwk_getNextConnection
+nwk_getNumObjectFromMsg SYMBOL "nwk_getNumObjectFromMsg"
+??nwk_getNumObjectFromMsg?relay SYMBOL "?relay", nwk_getNumObjectFromMsg
+nwk_isConnectionValid SYMBOL "nwk_isConnectionValid"
+??nwk_isConnectionValid?relay SYMBOL "?relay", nwk_isConnectionValid
+nwk_isLinkDuplicate SYMBOL "nwk_isLinkDuplicate"
+??nwk_isLinkDuplicate?relay SYMBOL "?relay", nwk_isLinkDuplicate
+nwk_isValidReply    SYMBOL "nwk_isValidReply"
+??nwk_isValidReply?relay SYMBOL "?relay", nwk_isValidReply
+nwk_nwkInit         SYMBOL "nwk_nwkInit"
+??nwk_nwkInit?relay SYMBOL "?relay", nwk_nwkInit
+nwk_putNumObjectIntoMsg SYMBOL "nwk_putNumObjectIntoMsg"
+??nwk_putNumObjectIntoMsg?relay SYMBOL "?relay", nwk_putNumObjectIntoMsg
+
+        EXTERN memset
+        FUNCTION memset,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 20, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_globalsInit
+        FUNCTION nwk_globalsInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_frameInit
+        FUNCTION nwk_frameInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_QInit
+        FUNCTION nwk_QInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_freqInit
+        FUNCTION nwk_freqInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_pingInit
+        FUNCTION nwk_pingInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_joinInit
+        FUNCTION nwk_joinInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_mgmtInit
+        FUNCTION nwk_mgmtInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_linkInit
+        FUNCTION nwk_linkInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_securityInit
+        FUNCTION nwk_securityInit,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_getBCastAddress
+        FUNCTION nwk_getBCastAddress,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memcpy
+        FUNCTION memcpy,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memcmp
+        FUNCTION memcmp,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 20, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN MRFI_PostKillSem
+        FUNCTION MRFI_PostKillSem,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN nwk_getMyAddress
+        FUNCTION nwk_getMyAddress,0202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN memmove
+        FUNCTION memmove,010202H
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        EXTERN ??MRFI_PostKillSem?relay
+        FUNCTION ??MRFI_PostKillSem?relay,00H
+        EXTERN ??memcmp?relay
+        FUNCTION ??memcmp?relay,00H
+        EXTERN ??memcpy?relay
+        FUNCTION ??memcpy?relay,00H
+        EXTERN ??memmove?relay
+        FUNCTION ??memmove?relay,00H
+        EXTERN ??memset?relay
+        FUNCTION ??memset?relay,00H
+        EXTERN ??nwk_QInit?relay
+        FUNCTION ??nwk_QInit?relay,00H
+        EXTERN ??nwk_frameInit?relay
+        FUNCTION ??nwk_frameInit?relay,00H
+        EXTERN ??nwk_freqInit?relay
+        FUNCTION ??nwk_freqInit?relay,00H
+        EXTERN ??nwk_getBCastAddress?relay
+        FUNCTION ??nwk_getBCastAddress?relay,00H
+        EXTERN ??nwk_getMyAddress?relay
+        FUNCTION ??nwk_getMyAddress?relay,00H
+        EXTERN ??nwk_globalsInit?relay
+        FUNCTION ??nwk_globalsInit?relay,00H
+        EXTERN ??nwk_joinInit?relay
+        FUNCTION ??nwk_joinInit?relay,00H
+        EXTERN ??nwk_linkInit?relay
+        FUNCTION ??nwk_linkInit?relay,00H
+        EXTERN ??nwk_mgmtInit?relay
+        FUNCTION ??nwk_mgmtInit?relay,00H
+        EXTERN ??nwk_pingInit?relay
+        FUNCTION ??nwk_pingInit?relay,00H
+        EXTERN ??nwk_securityInit?relay
+        FUNCTION ??nwk_securityInit?relay,00H
+
+// C:\Users\freeman\Documents\work\NBK\Nikon\Nikon_Rf\SimpliciTI-IAR-1.2.0\Components\simpliciti\nwk\nwk.c
+//    1 /**************************************************************************************************
+//    2   Filename:       nwk.c
+//    3   Revised:        $Date: 2011-10-26 15:44:58 -0700 (Wed, 26 Oct 2011) $
+//    4   Revision:       $Revision: 28059 $
+//    5   Author          $Author: jnoxon $
+//    6 
+//    7   Description:    This file supports the SimpliciTI network layer.
+//    8 
+//    9   Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+//   10 
+//   11   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   12   the terms of a software license agreement between the user who downloaded the software,
+//   13   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   14   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   15   License. The License limits your use, and you acknowledge, that the Software may not be
+//   16   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   17   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   18   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   19   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   20   perform, display or sell this Software and/or its documentation for any purpose.
+//   21 
+//   22   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS?  WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   23   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   24   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   25   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   26   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   27   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   28   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   29   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   30 
+//   31   Should you have any questions regarding your right to use this Software,
+//   32   contact Texas Instruments Incorporated at www.TI.com.
+//   33 **************************************************************************************************/
+//   34 
+//   35 /******************************************************************************
+//   36  * INCLUDES
+//   37  */
+//   38 #include <string.h>
+//   39 #include "bsp.h"
+//   40 #include "mrfi.h"
+//   41 #include "nwk_types.h"
+//   42 #include "nwk_frame.h"  
+//   43 #include "nwk.h"
+//   44 #include "nwk_app.h"
+//   45 #include "nwk_globals.h"
+//   46 #include "nwk_QMgmt.h"
+//   47 #include "nwk_pll.h"
+//   48 
+//   49 /******************************************************************************
+//   50  * MACROS
+//   51  */
+//   52 /************************* NETWORK MANIFEST CONSTANT SANITY CHECKS ****************************/
+//   53 #if !defined(ACCESS_POINT) && !defined(RANGE_EXTENDER) && !defined(END_DEVICE)
+//   54 #error ERROR: No SimpliciTI device type defined
+//   55 #endif
+//   56 
+//   57 #if defined(END_DEVICE) && !defined(RX_POLLS)
+//   58 #define RX_USER
+//   59 #endif
+//   60 
+//   61 #ifndef MAX_HOPS
+//   62 #define MAX_HOPS  3
+//   63 #elif MAX_HOPS > 4
+//   64 #error ERROR: MAX_HOPS must be 4 or fewer
+//   65 #endif
+//   66 
+//   67 #ifndef MAX_APP_PAYLOAD
+//   68 #error ERROR: MAX_APP_PAYLOAD must be defined
+//   69 #endif
+//   70 
+//   71 #if defined NWK_PLL && ( MAX_PAYLOAD < MAX_PLL_APP_FRAME )
+//   72 #error ERROR: Application payload size too small for PLL frame
+//   73 #endif
+//   74 
+//   75 #if ( MAX_PAYLOAD < MAX_FREQ_APP_FRAME )
+//   76 #error ERROR: Application payload size too small for Frequency frame
+//   77 #endif
+//   78 
+//   79 #if ( MAX_PAYLOAD < MAX_JOIN_APP_FRAME )
+//   80 #error ERROR: Application payload size too small for Join frame
+//   81 #endif
+//   82 
+//   83 #if ( MAX_PAYLOAD < MAX_LINK_APP_FRAME )
+//   84 #error ERROR: Application payload size too small for Link frame
+//   85 #endif
+//   86 
+//   87 #if ( MAX_PAYLOAD < MAX_MGMT_APP_FRAME )
+//   88 #error ERROR: Application payload size too small for Management frame
+//   89 #endif
+//   90 
+//   91 #if ( MAX_PAYLOAD < MAX_SEC_APP_FRAME )
+//   92 #error ERROR: Application payload size too small for Security frame
+//   93 #endif
+//   94 
+//   95 #if ( MAX_PAYLOAD < MAX_PING_APP_FRAME )
+//   96 #error ERROR: Application payload size too small for Ping frame
+//   97 #endif
+//   98 
+//   99 #if NWK_FREQ_TBL_SIZE < 1
+//  100 #error ERROR: NWK_FREQ_TBL_SIZE must be > 0
+//  101 #endif
+//  102 
+//  103 /************************* END NETWORK MANIFEST CONSTANT SANITY CHECKS ************************/
+//  104 
+//  105 /******************************************************************************
+//  106  * CONSTANTS AND DEFINES
+//  107  */
+//  108 #define SYS_NUM_CONNECTIONS   (NUM_CONNECTIONS+1)
+//  109 
+//  110 /* Increment this if the persistentContext_t structure is changed. It will help
+//  111  * detect the upgrade context: any saved values will have a version with a
+//  112  * lower number.
+//  113  */
+//  114 #define  CONNTABLEINFO_STRUCTURE_VERSION   1
+//  115 
+//  116 #define  SIZEOF_NV_OBJ   sizeof(sPersistInfo)
+//  117 
+//  118 /******************************************************************************
+//  119  * TYPEDEFS
+//  120  */
+//  121 /* This structure aggregates eveything necessary to save if we want to restore
+//  122  * the connection information later.
+//  123  */
+//  124 typedef struct
+//  125 {
+//  126   const uint8_t    structureVersion; /* to dectect upgrades... */
+//  127         uint8_t    numConnections;   /* count includes the UUD port/link ID */
+//  128 /* The next two are used to detect overlapping port assignments. When _sending_ a
+//  129  * link frame the local port is assigned from the top down. When sending a _reply_
+//  130  * the assignment is bottom up. Overlapping assignments are rejected. That said it
+//  131  * is extremely unlikely that this will ever happen. If it does the test implemented
+//  132  * here is overly cautious (it will reject assignments when it needn't). But we leave
+//  133  * it that way on the assumption that it will never happen anyway.
+//  134  */
+//  135         uint8_t    curNextLinkPort;
+//  136         uint8_t    curMaxReplyPort;
+//  137         linkID_t   nextLinkID;
+//  138 #ifdef ACCESS_POINT
+//  139         sfInfo_t   sSandFContext;
+//  140 #endif
+//  141 /* Connection table entries last... */
+//  142         connInfo_t connStruct[SYS_NUM_CONNECTIONS];
+//  143 } persistentContext_t;
+//  144 
+//  145 /******************************************************************************
+//  146  * LOCAL VARIABLES
+//  147  */
+//  148 
+//  149 /* This will be overwritten if we restore the structure from NV for example.
+//  150  * Note that restoring will not permit overwriting the version element as it
+//  151  * is declared 'const'.
+//  152  */
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+//  153 static persistentContext_t sPersistInfo = {CONNTABLEINFO_STRUCTURE_VERSION};
+sPersistInfo:
+        DATA8
+        DS 38
+        REQUIRE `?<Initializer for sPersistInfo>`
+        REQUIRE __INIT_XDATA_I
+//  154 
+//  155 /******************************************************************************
+//  156  * LOCAL FUNCTIONS
+//  157  */
+//  158 static uint8_t map_lid2idx(linkID_t, uint8_t *);
+//  159 static void    initializeConnection(connInfo_t *);
+//  160 
+//  161 /******************************************************************************
+//  162  * GLOBAL VARIABLES
+//  163  */
+//  164 
+//  165 /******************************************************************************
+//  166  * GLOBAL FUNCTIONS
+//  167  */
+//  168 
+//  169 /******************************************************************************
+//  170  * @fn          nwk_nwkInit
+//  171  *
+//  172  * @brief       Initialize NWK conext.
+//  173  *
+//  174  * input parameters
+//  175  *
+//  176  * output parameters
+//  177  *
+//  178  * @return   Status of operation.
+//  179  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  180 smplStatus_t nwk_nwkInit(uint8_t (*f)(linkID_t))
+nwk_nwkInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function nwk_nwkInit
+        CODE
+//  181 {
+        FUNCALL nwk_nwkInit, memset
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_globalsInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_frameInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_QInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_freqInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_pingInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_joinInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_mgmtInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_linkInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_securityInit
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, nwk_getBCastAddress
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_nwkInit, memcpy
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  182   /* Truly ugly initialization because CCE won't initialize properly. Must
+//  183    * skip first const element. Yuk.
+//  184    */
+//  185   memset((((uint8_t *)&sPersistInfo)+1), 0x0, (sizeof(sPersistInfo)-1));
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x25
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 12)
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#(sPersistInfo + 1) & 0xff
+        MOV     R3,#((sPersistInfo + 1) >> 8) & 0xff
+        LCALL   ??memset?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+//  186   /* OK. The zeroed elements are set. Now go back and do fixups...  */
+//  187 
+//  188   sPersistInfo.numConnections   = SYS_NUM_CONNECTIONS;
+        MOV     DPTR,#sPersistInfo + 1
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+//  189   sPersistInfo.curNextLinkPort  = SMPL_PORT_USER_MAX;
+        INC     DPTR
+        MOV     A,#0x3d
+        MOVX    @DPTR,A
+//  190   sPersistInfo.curMaxReplyPort  = PORT_BASE_NUMBER;
+        INC     DPTR
+        MOV     A,#0x20
+        MOVX    @DPTR,A
+//  191   sPersistInfo.nextLinkID       = 1;
+        INC     DPTR
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  192 
+//  193   /* initialize globals */
+//  194   nwk_globalsInit();
+        ; Setup parameters for call to function nwk_globalsInit
+        LCALL   ??nwk_globalsInit?relay
+//  195 
+//  196   /* initialize frame processing */
+//  197   nwk_frameInit(f);
+        ; Setup parameters for call to function nwk_frameInit
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   ??nwk_frameInit?relay
+//  198 
+//  199   /* initialize queue manager */
+//  200   nwk_QInit();
+        ; Setup parameters for call to function nwk_QInit
+        LCALL   ??nwk_QInit?relay
+//  201 	
+//  202   /* initialize each network application. */
+//  203   nwk_freqInit();
+        ; Setup parameters for call to function nwk_freqInit
+        LCALL   ??nwk_freqInit?relay
+//  204   nwk_pingInit();
+        ; Setup parameters for call to function nwk_pingInit
+        LCALL   ??nwk_pingInit?relay
+//  205   nwk_joinInit(f);
+        ; Setup parameters for call to function nwk_joinInit
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   ??nwk_joinInit?relay
+//  206   nwk_mgmtInit();
+        ; Setup parameters for call to function nwk_mgmtInit
+        LCALL   ??nwk_mgmtInit?relay
+//  207   nwk_linkInit();
+        ; Setup parameters for call to function nwk_linkInit
+        LCALL   ??nwk_linkInit?relay
+//  208   nwk_securityInit();
+        ; Setup parameters for call to function nwk_securityInit
+        LCALL   ??nwk_securityInit?relay
+//  209 #ifdef NWK_PLL
+//  210   nwk_PLLInit();
+//  211 #endif
+//  212 
+//  213   /* set up the last connection as the broadcast port mapped to the broadcast Link ID */
+//  214   if (CONNSTATE_FREE == sPersistInfo.connStruct[NUM_CONNECTIONS].connState)
+        MOV     DPTR,#sPersistInfo + 27
+        MOVX    A,@DPTR
+        JNZ     ??nwk_nwkInit_0
+//  215   {
+//  216     sPersistInfo.connStruct[NUM_CONNECTIONS].connState   = CONNSTATE_CONNECTED;
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+//  217     sPersistInfo.connStruct[NUM_CONNECTIONS].hops2target = MAX_HOPS;
+        INC     DPTR
+        INC     A
+        MOVX    @DPTR,A
+//  218     sPersistInfo.connStruct[NUM_CONNECTIONS].portRx      = SMPL_PORT_USER_BCAST;
+        MOV     DPTR,#sPersistInfo + 35
+        MOV     A,#0x3f
+        MOVX    @DPTR,A
+//  219     sPersistInfo.connStruct[NUM_CONNECTIONS].portTx      = SMPL_PORT_USER_BCAST;
+        INC     DPTR
+        MOVX    @DPTR,A
+//  220     sPersistInfo.connStruct[NUM_CONNECTIONS].thisLinkID  = SMPL_LINKID_USER_UUD;
+        INC     DPTR
+        MOV     A,#-0x1
+        MOVX    @DPTR,A
+//  221     /* set peer address to broadcast so it is used when Application sends to the broadcast Link ID */
+//  222     memcpy(sPersistInfo.connStruct[NUM_CONNECTIONS].peerAddr, nwk_getBCastAddress(), NET_ADDR_SIZE);
+        ; Setup parameters for call to function memcpy
+        MOV     ?V0 + 0,#0x4
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Setup parameters for call to function nwk_getBCastAddress
+        LCALL   ??nwk_getBCastAddress?relay
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     R2,#(sPersistInfo + 29) & 0xff
+        MOV     R3,#((sPersistInfo + 29) >> 8) & 0xff
+        LCALL   ??memcpy?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+//  223   }
+//  224 
+//  225   return SMPL_SUCCESS;
+??nwk_nwkInit_0:
+        MOV     R1,#0x0
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock0
+//  226 }
+//  227 
+//  228 /******************************************************************************
+//  229  * @fn          nwk_getNextConnection
+//  230  *
+//  231  * @brief       Return the next free connection structure if on is available.
+//  232  *
+//  233  * input parameters
+//  234  *
+//  235  * output parameters
+//  236  *      The returned structure has the Rx port number populated based on the
+//  237  *      free strucure found. This is the port queried when the app wants to
+//  238  *      do a receive.
+//  239  *
+//  240  * @return   pointer to the new connInfo_t structure. NULL if there is
+//  241  *           no room in connection structure array.
+//  242  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  243 connInfo_t *nwk_getNextConnection()
+nwk_getNextConnection:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function nwk_getNextConnection
+        CODE
+//  244 {
+        FUNCALL nwk_getNextConnection, map_lid2idx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 1
+        MOV     A,#-0x1
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+//  245   uint8_t  i;
+//  246 
+//  247   for (i=0; i<SYS_NUM_CONNECTIONS; ++i)
+        MOV     R3,#0x0
+//  248   {
+//  249     if (sPersistInfo.connStruct[i].connState == CONNSTATE_CONNECTED)
+??nwk_getNextConnection_0:
+        MOV     A,R3
+        LCALL   ?Subroutine6 & 0xFFFF
+??CrossCallReturnLabel_0:
+        JNZ     ??nwk_getNextConnection_1
+//  250     {
+//  251       continue;
+//  252     }
+//  253     break;
+//  254   }
+        INC     R3
+        MOV     A,R3
+        CLR     C
+        SUBB    A,#0x3
+        JC      ??nwk_getNextConnection_0
+//  255 
+//  256   if (SYS_NUM_CONNECTIONS == i)
+??nwk_getNextConnection_1:
+        MOV     A,#0x3
+        XRL     A,R3
+        JNZ     ??nwk_getNextConnection_2
+//  257   {
+//  258     return (connInfo_t *)0;
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        SJMP    ??nwk_getNextConnection_3
+//  259   }
+//  260 
+//  261   initializeConnection(&sPersistInfo.connStruct[i]);
+??nwk_getNextConnection_2:
+        MOV     A,R3
+        MOV     B,#0xb
+        MUL     AB
+        MOV     R0,A
+        MOV     R1,B
+        MOV     A,#(sPersistInfo + 5) & 0xff
+        ADD     A,R0
+        MOV     R6,A
+        MOV     A,#((sPersistInfo + 5) >> 8) & 0xff
+        ADDC    A,R1
+        MOV     R7,A
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+        MOV     DPTR,#sPersistInfo + 4
+        MOVX    A,@DPTR
+        MOV     DPL,R0
+        MOV     DPH,R1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+??nwk_getNextConnection_4:
+        MOV     DPTR,#sPersistInfo + 4
+        MOVX    A,@DPTR
+        INC     A
+        MOVX    @DPTR,A
+        MOVX    A,@DPTR
+        MOV     R1,A
+        JZ      ??nwk_getNextConnection_4
+        MOV     A,#-0x1
+        XRL     A,R1
+        JZ      ??nwk_getNextConnection_4
+        ; Setup parameters for call to function map_lid2idx
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??map_lid2idx?relay
+        MOV     A,R1
+        JNZ     ??nwk_getNextConnection_4
+//  262 
+//  263   return &sPersistInfo.connStruct[i];
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        CFI EndBlock cfiBlock1
+??nwk_getNextConnection_3:
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+//  264 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     A,#0x1
+        LCALL   ?DEALLOC_XSTACK8
+        CFI EndBlock cfiBlock2
+        REQUIRE ??Subroutine13_0
+        ; // Fall through to label ??Subroutine13_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine13_0:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x1
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock3
+//  265 
+//  266 /************************************************************************************
+//  267  * @fn          initializeConnection
+//  268  *
+//  269  * @brief       Initialize some elements of a Connection table entry.
+//  270  *
+//  271  * input parameters
+//  272  * @param   pCInfo  - pointer to Connection Table entry to initialize. The file
+//  273  *                    scope variable holding the next link ID value is also updated.
+//  274  *
+//  275  * output parameters
+//  276  * @param   pCInfo  - certain elements are set to specific values.
+//  277  *
+//  278  *
+//  279  * @return   void
+//  280  */
+//  281 static void initializeConnection(connInfo_t *pCInfo)
+//  282 {
+//  283   linkID_t *locLID = &sPersistInfo.nextLinkID;
+//  284   uint8_t   tmp;
+//  285 
+//  286     /* this element will be populated during the exchange with the peer. */
+//  287   pCInfo->portTx = 0;
+//  288 
+//  289   pCInfo->connState  =  CONNSTATE_CONNECTED;
+//  290   pCInfo->thisLinkID = *locLID;
+//  291 
+//  292   /* Generate the next Link ID. This isn't foolproof. If the count wraps
+//  293    * we can end up with confusing duplicates. We can protect aginst using
+//  294    * one that is already in use but we can't protect against a stale Link ID
+//  295    * remembered by an application that doesn't know its connection has been
+//  296    * torn down. The test for 0 will hopefully never be true (indicating a wrap).
+//  297    */
+//  298   (*locLID)++;
+//  299 
+//  300   while (!*locLID || (*locLID == SMPL_LINKID_USER_UUD) || map_lid2idx(*locLID, &tmp))
+//  301   {
+//  302     (*locLID)++;
+//  303   }
+//  304 
+//  305   return;
+//  306 }
+//  307 
+//  308 
+//  309 /******************************************************************************
+//  310  * @fn          nwk_freeConnection
+//  311  *
+//  312  * @brief       Return the connection structure to the free pool. Currently
+//  313  *              this routine is only called when a link freame is sent and
+//  314  *              no reply is received so the freeing steps are pretty simple.
+//  315  *              But eventually this will be more complex so this place-holder
+//  316  *              is introduced.
+//  317  *
+//  318  * input parameters
+//  319  * @param   pCInfo    - pointer to entry to be freed
+//  320  *
+//  321  * output parameters
+//  322  *
+//  323  * @return   None.
+//  324  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  325 void nwk_freeConnection(connInfo_t *pCInfo)
+nwk_freeConnection:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function nwk_freeConnection
+        CODE
+//  326 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//  327 #if NUM_CONNECTIONS > 0
+//  328   pCInfo->connState = CONNSTATE_FREE;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        CLR     A
+        MOVX    @DPTR,A
+        CFI EndBlock cfiBlock4
+//  329 #endif
+//  330 }
+        REQUIRE ?Subroutine1
+        ; // Fall through to label ?Subroutine1
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock5
+//  331 
+//  332 /******************************************************************************
+//  333  * @fn          nwk_getConnInfo
+//  334  *
+//  335  * @brief       Return the connection info structure to which the input Link ID maps.
+//  336  *
+//  337  * input parameters
+//  338  * @param   port    - port for which mapping desired
+//  339  *
+//  340  * output parameters
+//  341  *
+//  342  * @return   pointer to connInfo_t structure found. NULL if no mapping
+//  343  *           found or entry not valid.
+//  344  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  345 connInfo_t *nwk_getConnInfo(linkID_t linkID)
+nwk_getConnInfo:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function nwk_getConnInfo
+        CODE
+//  346 {
+        FUNCALL nwk_getConnInfo, map_lid2idx
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 1
+        MOV     A,#-0x1
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 10)
+//  347   uint8_t idx, rc;
+//  348 
+//  349   rc = map_lid2idx(linkID, &idx);
+//  350 
+//  351   return (rc && (CONNSTATE_CONNECTED == sPersistInfo.connStruct[idx].connState)) ? &sPersistInfo.connStruct[idx] : (connInfo_t *)0;
+        ; Setup parameters for call to function map_lid2idx
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??map_lid2idx?relay
+        MOV     A,R1
+        JZ      ??nwk_getConnInfo_0
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        LCALL   ?Subroutine6 & 0xFFFF
+??CrossCallReturnLabel_1:
+        JZ      ??nwk_getConnInfo_1
+??nwk_getConnInfo_0:
+        MOV     DPL,#0x0
+        MOV     DPH,#0x0
+??nwk_getConnInfo_1:
+        MOV     R2,DPL
+        MOV     R3,DPH
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock6
+//  352 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine6:
+        CFI Block cfiCond7 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond8 Using cfiCommon0
+        CFI (cfiCond8) NoFunction
+        CFI (cfiCond8) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond8) R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond8) VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond8) V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond8) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond8) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond8) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond8) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond8) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond8) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond8) CFA_SP SP+0
+        CFI (cfiCond8) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker9 Using cfiCommon1
+        CFI (cfiPicker9) NoFunction
+        CFI (cfiPicker9) Picker
+        MOV     B,#0xb
+        MUL     AB
+        MOV     R0,A
+        MOV     R1,B
+        MOV     A,#(sPersistInfo + 5) & 0xff
+        ADD     A,R0
+        MOV     DPL,A
+        MOV     A,#((sPersistInfo + 5) >> 8) & 0xff
+        ADDC    A,R1
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        RET
+        CFI EndBlock cfiCond7
+        CFI EndBlock cfiCond8
+        CFI EndBlock cfiPicker9
+//  353 
+//  354 /******************************************************************************
+//  355  * @fn          nwk_isLinkDuplicate
+//  356  *
+//  357  * @brief       Help determine if the link has already been established.. Defense
+//  358  *              against duplicate link frames. This file owns the data structure
+//  359  *              so the comparison is done here.
+//  360  *
+//  361  * input parameters
+//  362  * @param   addr       - pointer to address of linker in question
+//  363  * @param   remotePort - remote port number provided by linker
+//  364  *
+//  365  * output parameters
+//  366  *
+//  367  * @return   Returns pointer to connection entry if the address and remote Port
+//  368  *           match an existing entry, otherwise 0.
+//  369  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  370 connInfo_t *nwk_isLinkDuplicate(uint8_t *addr, uint8_t remotePort)
+nwk_isLinkDuplicate:
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function nwk_isLinkDuplicate
+        CODE
+//  371 {
+        FUNCALL nwk_isLinkDuplicate, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xe
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 14
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     ?V0 + 3,R1
+//  372 #if NUM_CONNECTIONS > 0
+//  373   uint8_t       i;
+//  374   connInfo_t   *ptr = sPersistInfo.connStruct;
+        MOV     ?V0 + 0,#(sPersistInfo + 5) & 0xff
+        MOV     ?V0 + 1,#((sPersistInfo + 5) >> 8) & 0xff
+//  375 
+//  376   for (i=0; i<NUM_CONNECTIONS; ++i,++ptr)
+        MOV     ?V0 + 2,#0x2
+//  377   {
+//  378     if (CONNSTATE_CONNECTED == ptr->connState)
+??nwk_isLinkDuplicate_0:
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        JNZ     ??nwk_isLinkDuplicate_1
+//  379     {
+//  380       if (!(memcmp(ptr->peerAddr, addr, NET_ADDR_SIZE)) &&
+//  381           (ptr->portTx == remotePort))
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 4,#0x4
+        MOV     ?V0 + 5,#0x0
+        MOV     R0,#?V0 + 4
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     A,R6
+        MOV     R4,A
+        MOV     A,R7
+        LCALL   ??Subroutine14_0 & 0xFFFF
+??CrossCallReturnLabel_16:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 14)
+        MOV     ?V0 + 5,R3
+        MOV     A,R2
+        ORL     A,?V0 + 5
+        JNZ     ??nwk_isLinkDuplicate_1
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        XRL     A,?V0 + 3
+        JNZ     ??nwk_isLinkDuplicate_1
+//  382       {
+//  383         return ptr;
+        MOV     R2,?V0 + 0
+        MOV     R3,?V0 + 1
+        SJMP    ??nwk_isLinkDuplicate_2
+//  384       }
+//  385     }
+//  386   }
+??nwk_isLinkDuplicate_1:
+        LCALL   ?Subroutine7 & 0xFFFF
+??CrossCallReturnLabel_2:
+        JNZ     ??nwk_isLinkDuplicate_0
+//  387 #endif
+//  388 
+//  389   return (connInfo_t *)NULL;
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        CFI EndBlock cfiBlock10
+??nwk_isLinkDuplicate_2:
+        REQUIRE ?Subroutine2
+        ; // Fall through to label ?Subroutine2
+//  390 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 14)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x6
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock11
+//  391 
+//  392 /******************************************************************************
+//  393  * @fn          nwk_findAddressMatch
+//  394  *
+//  395  * @brief       Used to look for an address match in the Connection table.
+//  396  *              Match is based on source address in frame.
+//  397  *
+//  398  * input parameters
+//  399  * @param   frame    - pointer to frame in question
+//  400  *
+//  401  * output parameters
+//  402  *
+//  403  * @return   Returns non-zero if a match is found, otherwise 0.
+//  404  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  405 uint8_t nwk_findAddressMatch(mrfiPacket_t *frame)
+nwk_findAddressMatch:
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI Function nwk_findAddressMatch
+        CODE
+//  406 {
+        FUNCALL nwk_findAddressMatch, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xe
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 14
+        ; Auto size: 0
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+//  407 #if NUM_CONNECTIONS > 0
+//  408   uint8_t       i;
+//  409   connInfo_t   *ptr = sPersistInfo.connStruct;
+        MOV     R6,#(sPersistInfo + 5) & 0xff
+        MOV     R7,#((sPersistInfo + 5) >> 8) & 0xff
+//  410 
+//  411   for (i=0; i<NUM_CONNECTIONS; ++i,++ptr)
+        MOV     ?V0 + 2,#0x2
+//  412   {
+//  413 
+//  414     if (CONNSTATE_CONNECTED == ptr->connState)
+??nwk_findAddressMatch_0:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        JNZ     ??nwk_findAddressMatch_1
+//  415     {
+//  416       if (!(memcmp(ptr->peerAddr, MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE)))
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 4,#0x4
+        MOV     ?V0 + 5,#0x0
+        MOV     R0,#?V0 + 4
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     A,?V0 + 0
+        ADD     A,#0x8
+        MOV     R4,A
+        MOV     A,?V0 + 1
+        ADDC    A,#0x0
+        MOV     R5,A
+        MOV     A,R6
+        ADD     A,#0x2
+        LCALL   ?Subroutine10 & 0xFFFF
+??CrossCallReturnLabel_10:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 14)
+        MOV     ?V0 + 5,R3
+        MOV     A,R2
+        ORL     A,?V0 + 5
+        JNZ     ??nwk_findAddressMatch_1
+//  417       {
+//  418         return 1;
+        MOV     R1,#0x1
+        SJMP    ??nwk_findAddressMatch_2
+//  419       }
+//  420     }
+//  421   }
+??nwk_findAddressMatch_1:
+        MOV     A,R6
+        ADD     A,#0xb
+        MOV     R6,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R7,A
+        DEC     ?V0 + 2
+        MOV     A,?V0 + 2
+        JNZ     ??nwk_findAddressMatch_0
+//  422 #endif
+//  423 
+//  424   return 0;
+        MOV     R1,#0x0
+??nwk_findAddressMatch_2:
+        SJMP    ?Subroutine2
+        CFI EndBlock cfiBlock12
+//  425 }
+//  426 
+//  427 #ifdef ACCESS_POINT
+//  428 /******************************************************************************
+//  429  * @fn          nwk_getSFInfoPtr
+//  430  *
+//  431  * @brief       Get pointer to store-and-forward information object kept in the
+//  432  *              NV object aggregate.
+//  433  *
+//  434  * input parameters
+//  435  *
+//  436  * output parameters
+//  437  *
+//  438  * @return   Returns pointer to the store-nad-forward object.
+//  439  */
+//  440 sfInfo_t *nwk_getSFInfoPtr(void)
+//  441 {
+//  442   return &sPersistInfo.sSandFContext;
+//  443 }
+//  444 
+//  445 #if defined(AP_IS_DATA_HUB)
+//  446 /***************************************************************************************
+//  447  * @fn          nwk_saveJoinedDevice
+//  448  *
+//  449  * @brief       Save the address of a joining device on the Connection Table expecting
+//  450  *              a Link frame to follow. Only for when AP is a data hub. We want to
+//  451  *              use the space already allocated for a connection able entry instead
+//  452  *              of having redundant arrays for alread-joined devices in the data hub
+//  453  *              case.
+//  454  *
+//  455  * input parameters
+//  456  * @param   frame  - pointer to frame containing address or joining device.
+//  457  *
+//  458  * output parameters
+//  459  *
+//  460  * @return   Returns non-zero if this is a new device and it is saved. Returns
+//  461  *           0 if device already there or there is no room in the Connection
+//  462  *           Table.
+//  463  */
+//  464 uint8_t nwk_saveJoinedDevice(mrfiPacket_t *frame)
+//  465 {
+//  466   uint8_t     i;
+//  467   connInfo_t *avail = 0;
+//  468   connInfo_t *ptr   = sPersistInfo.connStruct;
+//  469 
+//  470   for (i=0; i<NUM_CONNECTIONS; ++i, ++ptr)
+//  471   {
+//  472     if ((ptr->connState == CONNSTATE_CONNECTED) || (ptr->connState == CONNSTATE_JOINED))
+//  473     {
+//  474       if (!memcmp(ptr->peerAddr, MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE))
+//  475       {
+//  476         return 0;
+//  477       }
+//  478     }
+//  479     else
+//  480     {
+//  481       avail = ptr;
+//  482     }
+//  483   }
+//  484 
+//  485   if (!avail)
+//  486   {
+//  487     return 0;
+//  488   }
+//  489 
+//  490   avail->connState = CONNSTATE_JOINED;
+//  491   memcpy(avail->peerAddr, MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE);
+//  492 
+//  493   return 1;
+//  494 }
+//  495 
+//  496 /***********************************************************************************
+//  497  * @fn          nwk_findAlreadyJoined
+//  498  *
+//  499  * @brief       Used when AP is a data hub to look for an address match in the
+//  500  *              Connection table for a device that is already enterd in the joined
+//  501  *              state. This means that the Connection Table resource is already
+//  502  *              allocated so the link-listen doesn't have to do it again. Match is
+//  503  *              based on source address in frame. Thsi shoudl only be called from
+//  504  *              the Link-listen context during the link frame reply.
+//  505  *
+//  506  *              If found the Connection Table entry is initialized as if it were
+//  507  *              found using the nwk_getNextConnection() method.
+//  508  *
+//  509  * input parameters
+//  510  * @param   frame    - pointer to frame in question
+//  511  *
+//  512  * output parameters
+//  513  *
+//  514  * @return   Returns pointer to Connection Table entry if match is found, otherwise
+//  515  *           0. This call will only fail if the Connection Table was full when the
+//  516  *           device tried to join initially.
+//  517  */
+//  518 connInfo_t *nwk_findAlreadyJoined(mrfiPacket_t *frame)
+//  519 {
+//  520   uint8_t     i;
+//  521   connInfo_t *ptr = sPersistInfo.connStruct;
+//  522 
+//  523   for (i=0; i<NUM_CONNECTIONS; ++i,++ptr)
+//  524   {
+//  525     /* Look for an entry in the JOINED state */
+//  526     if (CONNSTATE_JOINED == ptr->connState)
+//  527     {
+//  528       /* Is this it? */
+//  529       if (!(memcmp(&ptr->peerAddr, MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE)))
+//  530       {
+//  531         /* Yes. Initilize tabel entry and return the pointer. */
+//  532         initializeConnection(ptr);
+//  533         return ptr;
+//  534       }
+//  535     }
+//  536   }
+//  537 
+//  538   /* Nothing found... */
+//  539   return (connInfo_t *)NULL;
+//  540 }
+//  541 #endif  /* AP_IS_DATA_HUB */
+//  542 #endif  /* ACCESS_POINT */
+//  543 
+//  544 /******************************************************************************
+//  545  * @fn          nwk_checkConnInfo
+//  546  *
+//  547  * @brief       Do a sanity/validity check on the connection info
+//  548  *
+//  549  * input parameters
+//  550  * @param   ptr     - pointer to a valid connection info structure to validate
+//  551  * @param   which   - Tx or Rx port checked
+//  552  *
+//  553  * output parameters
+//  554  *
+//  555  * @return   Status of operation.
+//  556  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  557 smplStatus_t nwk_checkConnInfo(connInfo_t *ptr, uint8_t which)
+nwk_checkConnInfo:
+        CFI Block cfiBlock13 Using cfiCommon0
+        CFI Function nwk_checkConnInfo
+        CODE
+//  558 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     A,R1
+//  559   uint8_t  port;
+//  560 
+//  561   /* make sure port isn't null and that the entry is active */
+//  562   port = (CHK_RX == which) ? ptr->portRx : ptr->portTx;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        JZ      ??nwk_checkConnInfo_0
+        INC     DPTR
+??nwk_checkConnInfo_0:
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+//  563   if (!port || (CONNSTATE_FREE == ptr->connState))
+        MOV     A,R1
+        JZ      ??nwk_checkConnInfo_1
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOVX    A,@DPTR
+        JNZ     ??nwk_checkConnInfo_2
+//  564   {
+//  565     return SMPL_BAD_PARAM;
+??nwk_checkConnInfo_1:
+        MOV     R1,#0x2
+        SJMP    ??nwk_checkConnInfo_3
+//  566   }
+//  567 
+//  568   /* validate port number */
+//  569   if (port < PORT_BASE_NUMBER)
+??nwk_checkConnInfo_2:
+        MOV     A,R1
+        CLR     C
+        SUBB    A,#0x20
+        JC      ??nwk_checkConnInfo_1
+//  570   {
+//  571     return SMPL_BAD_PARAM;
+//  572   }
+//  573 
+//  574   return SMPL_SUCCESS;
+        MOV     R1,#0x0
+??nwk_checkConnInfo_3:
+        LJMP    ?Subroutine1 & 0xFFFF
+        CFI EndBlock cfiBlock13
+//  575 }
+//  576 
+//  577 /******************************************************************************
+//  578  * @fn          nwk_isConnectionValid
+//  579  *
+//  580  * @brief       Do a sanity/validity check on the frame target address by
+//  581  *              validating frame against connection info
+//  582  *
+//  583  * input parameters
+//  584  * @param   frame   - pointer to frame in question
+//  585  *
+//  586  * output parameters
+//  587  * @param   lid   - link ID of found connection
+//  588  *
+//  589  * @return   0 if connection specified in frame is not valid, otherwise non-zero.
+//  590  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  591 uint8_t nwk_isConnectionValid(mrfiPacket_t *frame, linkID_t *lid)
+nwk_isConnectionValid:
+        CFI Block cfiBlock14 Using cfiCommon0
+        CFI Function nwk_isConnectionValid
+        CODE
+//  592 {
+        FUNCALL nwk_isConnectionValid, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 18, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 18, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_isConnectionValid, MRFI_PostKillSem
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     ?V0 + 2,R4
+        MOV     ?V0 + 3,R5
+//  593   uint8_t       i;
+//  594   connInfo_t   *ptr  = sPersistInfo.connStruct;
+        MOV     ?V0 + 0,#(sPersistInfo + 5) & 0xff
+        MOV     ?V0 + 1,#((sPersistInfo + 5) >> 8) & 0xff
+//  595   uint8_t       port = GET_FROM_FRAME(MRFI_P_PAYLOAD(frame), F_PORT_OS);
+        MOV     A,R6
+        ADD     A,#0xc
+        MOV     DPL,A
+        MOV     A,R7
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_6:
+        ANL     A,#0x3f
+        MOV     ?V0 + 5,A
+//  596 
+//  597   for (i=0; i<SYS_NUM_CONNECTIONS; ++i,++ptr)
+        MOV     ?V0 + 4,#0x3
+//  598   {
+//  599     if (CONNSTATE_CONNECTED == ptr->connState)
+??nwk_isConnectionValid_0:
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        JNZ     ??nwk_isConnectionValid_1
+//  600     {
+//  601       /* check port first since we're done if the port is the user bcast port. */
+//  602       if (port == ptr->portRx)
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        XRL     A,?V0 + 5
+        JNZ     ??nwk_isConnectionValid_1
+//  603       {
+//  604         /* yep...ports match. */
+//  605         if ((SMPL_PORT_USER_BCAST == port) || !(memcmp(ptr->peerAddr, MRFI_P_SRC_ADDR(frame), NET_ADDR_SIZE)))
+        MOV     A,#0x3f
+        XRL     A,?V0 + 5
+        JZ      ??nwk_isConnectionValid_2
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 6,#0x4
+        MOV     ?V0 + 7,#0x0
+        MOV     R0,#?V0 + 6
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 18)
+        MOV     A,R6
+        ADD     A,#0x8
+        LCALL   ?Subroutine5 & 0xFFFF
+??CrossCallReturnLabel_14:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     ?V0 + 7,R3
+        MOV     A,R2
+        ORL     A,?V0 + 7
+        JNZ     ??nwk_isConnectionValid_1
+//  606         {
+//  607           uint8_t rc = 1;
+//  608 
+//  609           /* we're done. */
+//  610           *lid = ptr->thisLinkID;
+??nwk_isConnectionValid_2:
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     DPL,?V0 + 2
+        MOV     DPH,?V0 + 3
+        MOVX    @DPTR,A
+//  611 #ifdef APP_AUTO_ACK
+//  612           /* can't ack the broadcast port... */
+//  613           if (!(SMPL_PORT_USER_BCAST == port))
+//  614           {
+//  615             if (GET_FROM_FRAME(MRFI_P_PAYLOAD(frame), F_ACK_REQ))
+//  616             {
+//  617               /* Ack requested. Send ack now */
+//  618               nwk_sendAckReply(frame, ptr->portTx);
+//  619             }
+//  620             else if (GET_FROM_FRAME(MRFI_P_PAYLOAD(frame), F_ACK_RPLY))
+//  621             {
+//  622               /* This is a reply. Signal that it was received by resetting the
+//  623                * saved transaction ID in the connection object if they match. The
+//  624                * main thread is polling this value. The setting here is in the
+//  625                * Rx ISR thread.
+//  626                */
+//  627               if (ptr->ackTID == GET_FROM_FRAME(MRFI_P_PAYLOAD(frame), F_TRACTID_OS))
+//  628               {
+//  629                 ptr->ackTID = 0;
+//  630               }
+//  631               /* This causes the frame to be dropped. All ack frames are
+//  632                * dropped.
+//  633                */
+//  634               rc = 0;
+//  635             }
+//  636           }
+//  637 #endif  /* APP_AUTO_ACK */
+//  638           /* Unconditionally kill the reply delay semaphore. This used to be done
+//  639            * unconditionally in the calling routine.
+//  640            */
+//  641           MRFI_PostKillSem();
+        ; Setup parameters for call to function MRFI_PostKillSem
+        LCALL   ??MRFI_PostKillSem?relay
+//  642           return rc;
+        MOV     R1,#0x1
+        SJMP    ??nwk_isConnectionValid_3
+//  643         }
+//  644       }
+//  645     }
+//  646   }
+??nwk_isConnectionValid_1:
+        LCALL   ?Subroutine8 & 0xFFFF
+??CrossCallReturnLabel_4:
+        DEC     ?V0 + 4
+        MOV     A,?V0 + 4
+        JNZ     ??nwk_isConnectionValid_0
+//  647 
+//  648   /* no matches */
+//  649   return 0;
+        MOV     R1,#0x0
+        CFI EndBlock cfiBlock14
+??nwk_isConnectionValid_3:
+        REQUIRE ?Subroutine3
+        ; // Fall through to label ?Subroutine3
+//  650 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiBlock15 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x8
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock15
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine5:
+        CFI Block cfiCond16 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_14
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiCond17 Using cfiCommon0
+        CFI (cfiCond17) NoFunction
+        CFI (cfiCond17) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond17) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond17) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond17) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond17) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond17) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond17) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond17) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond17) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond17) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond17) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond17) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond17) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond17) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond17) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond17) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond17) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond17) CFA_SP SP+0
+        CFI (cfiCond17) CFA_XSP16 add(XSP16, 20)
+        CFI Block cfiPicker18 Using cfiCommon1
+        CFI (cfiPicker18) NoFunction
+        CFI (cfiPicker18) Picker
+        MOV     R4,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        CFI EndBlock cfiCond16
+        CFI EndBlock cfiCond17
+        CFI EndBlock cfiPicker18
+        REQUIRE ??Subroutine14_0
+        ; // Fall through to label ??Subroutine14_0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+??Subroutine14_0:
+        CFI Block cfiCond19 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_16
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond20 Using cfiCommon0
+        CFI (cfiCond20) NoFunction
+        CFI (cfiCond20) Conditional ??CrossCallReturnLabel_14
+        CFI (cfiCond20) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond20) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond20) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond20) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond20) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond20) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond20) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond20) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond20) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond20) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond20) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond20) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond20) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond20) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond20) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond20) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond20) CFA_SP SP+0
+        CFI (cfiCond20) CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiCond21 Using cfiCommon0
+        CFI (cfiCond21) NoFunction
+        CFI (cfiCond21) Conditional ??CrossCallReturnLabel_15
+        CFI (cfiCond21) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond21) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond21) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond21) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond21) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond21) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond21) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond21) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond21) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond21) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond21) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond21) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond21) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond21) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond21) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond21) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond21) CFA_SP SP+0
+        CFI (cfiCond21) CFA_XSP16 add(XSP16, 20)
+        CFI Block cfiPicker22 Using cfiCommon1
+        CFI (cfiPicker22) NoFunction
+        CFI (cfiPicker22) Picker
+        MOV     R5,A
+        MOV     A,?V0 + 0
+        ADD     A,#0x2
+        MOV     R2,A
+        MOV     A,?V0 + 1
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_17:
+        RET
+        CFI EndBlock cfiCond19
+        CFI EndBlock cfiCond20
+        CFI EndBlock cfiCond21
+        CFI EndBlock cfiPicker22
+//  651 
+//  652 /******************************************************************************
+//  653  * @fn          nwk_allocateLocalRxPort
+//  654  *
+//  655  * @brief       Allocate a local port on which to receive frames from a peer.
+//  656  *
+//  657  *              Allocation differs depending on whether the allocation is for
+//  658  *              a link reply frame or a link frame. In the former case we
+//  659  *              know the address of the peer so we can ensure allocating a
+//  660  *              unique port number for that address. The same port number can be
+//  661  *              used mulitple times for distinct peers. Allocations are done from
+//  662  *              the bottom of the namespace upward.
+//  663  *
+//  664  *              If allocation is for a link frame we do not yet know the peer
+//  665  *              address so we must ensure the port number is unique now.
+//  666  *              Allocations are done from the top of the namespace downward.
+//  667  *
+//  668  *              The two allocation methods track the extreme values used in each
+//  669  *              case to detect overlap, i.e., exhausted namespace. This can only
+//  670  *              happen if the number of connections supported is greater than the
+//  671  *              total namespace available.
+//  672  *
+//  673  * input parameters
+//  674  * @param   which   - Sending a link frame or a link reply frame
+//  675  * @param   newPtr  - pointer to connection info structure to be populated
+//  676  *
+//  677  * output parameters
+//  678  * @param   newPtr->portRx  - element is populated with port number.
+//  679  *
+//  680  * @return   Non-zero if port number assigned. 0 if no port available.
+//  681  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  682 uint8_t nwk_allocateLocalRxPort(uint8_t which, connInfo_t *newPtr)
+nwk_allocateLocalRxPort:
+        CFI Block cfiBlock23 Using cfiCommon0
+        CFI Function nwk_allocateLocalRxPort
+        CODE
+//  683 {
+        FUNCALL nwk_allocateLocalRxPort, memset
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 20, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 20, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_allocateLocalRxPort, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 20, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 20, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0x10
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        ; Saved register size: 16
+        ; Auto size: 2
+        MOV     A,#-0x2
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 18)
+        MOV     ?V0 + 4,R1
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+//  684 #if NUM_CONNECTIONS > 0
+//  685   uint8_t     num, i;
+//  686   uint8_t     marker[NUM_CONNECTIONS];
+//  687   connInfo_t *ptr = sPersistInfo.connStruct;
+        MOV     ?V0 + 0,#(sPersistInfo + 5) & 0xff
+        MOV     ?V0 + 1,#((sPersistInfo + 5) >> 8) & 0xff
+//  688 
+//  689   memset(&marker, 0x0, sizeof(marker));
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 2,#0x2
+        MOV     ?V0 + 3,#0x0
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 20)
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   ??memset?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 18)
+//  690 
+//  691   for (i=0; i<NUM_CONNECTIONS; ++i,++ptr)
+        MOV     ?V0 + 5,#0x2
+//  692   {
+//  693     /* Mark the port number as used unless it's a statically allocated port */
+//  694     if ((ptr != newPtr) && (CONNSTATE_CONNECTED == ptr->connState) && (ptr->portRx <= SMPL_PORT_USER_MAX))
+??nwk_allocateLocalRxPort_0:
+        MOV     A,R6
+        XRL     A,?V0 + 0
+        JNZ     ??nwk_allocateLocalRxPort_1
+        MOV     A,R7
+        XRL     A,?V0 + 1
+??nwk_allocateLocalRxPort_1:
+        JNZ     $+5
+        LJMP    ??nwk_allocateLocalRxPort_2 & 0xFFFF
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        JZ      $+5
+        LJMP    ??nwk_allocateLocalRxPort_2 & 0xFFFF
+        MOV     A,?V0 + 0
+        ADD     A,#0x8
+        MOV     ?V0 + 2,A
+        MOV     A,?V0 + 1
+        ADDC    A,#0x0
+        MOV     ?V0 + 3,A
+        MOV     DPL,?V0 + 2
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     R0,A
+        CLR     C
+        SUBB    A,#0x3e
+        JNC     ??nwk_allocateLocalRxPort_2
+//  695     {
+//  696       if (LINK_SEND == which)
+        MOV     A,#0x1
+        XRL     A,?V0 + 4
+        JNZ     ??nwk_allocateLocalRxPort_3
+//  697       {
+//  698         if (ptr->portRx > sPersistInfo.curNextLinkPort)
+        MOV     DPTR,#sPersistInfo + 2
+        MOVX    A,@DPTR
+        CLR     C
+        SUBB    A,R0
+        JNC     ??nwk_allocateLocalRxPort_2
+//  699         {
+//  700           marker[SMPL_PORT_USER_MAX - ptr->portRx] = 1;
+        CLR     C
+        CLR     A
+        SUBB    A,R0
+        MOV     R0,A
+        SUBB    A,0xE0 /* A   */
+        MOV     R1,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,DPL
+        ADD     A,R0
+        MOV     R0,A
+        MOV     A,DPH
+        ADDC    A,R1
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#0x3d
+        MOV     DPL,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        SJMP    ??nwk_allocateLocalRxPort_4
+//  701         }
+//  702       }
+//  703       else if (!memcmp(ptr->peerAddr, newPtr->peerAddr, NET_ADDR_SIZE))
+??nwk_allocateLocalRxPort_3:
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 6,#0x4
+        MOV     ?V0 + 7,#0x0
+        MOV     R0,#?V0 + 6
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 20)
+        MOV     A,R6
+        ADD     A,#0x2
+        LCALL   ?Subroutine5 & 0xFFFF
+??CrossCallReturnLabel_15:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 18)
+        MOV     ?V0 + 7,R3
+        MOV     A,R2
+        ORL     A,?V0 + 7
+        JNZ     ??nwk_allocateLocalRxPort_2
+//  704       {
+//  705           marker[ptr->portRx - PORT_BASE_NUMBER] = 1;
+        MOV     DPL,?V0 + 2
+        MOV     DPH,?V0 + 3
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,DPL
+        ADD     A,R0
+        MOV     R0,A
+        MOV     A,DPH
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x20
+        MOV     DPL,A
+        MOV     A,R1
+        ADDC    A,#-0x1
+??nwk_allocateLocalRxPort_4:
+        MOV     DPH,A
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+//  706       }
+//  707     }
+//  708   }
+??nwk_allocateLocalRxPort_2:
+        LCALL   ?Subroutine8 & 0xFFFF
+??CrossCallReturnLabel_5:
+        DEC     ?V0 + 5
+        MOV     A,?V0 + 5
+        JZ      $+5
+        LJMP    ??nwk_allocateLocalRxPort_0 & 0xFFFF
+//  709 
+//  710   num = 0;
+        MOV     R1,#0x0
+//  711   for (i=0; i<NUM_CONNECTIONS; ++i)
+        MOV     R0,#0x0
+//  712   {
+//  713     if (!marker[i])
+??nwk_allocateLocalRxPort_5:
+        MOV     ?V0 + 0,R0
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,DPL
+        ADD     A,?V0 + 0
+        MOV     DPL,A
+        MOV     A,DPH
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_7:
+        JNZ     ??nwk_allocateLocalRxPort_6
+//  714     {
+//  715       if (LINK_REPLY == which)
+        MOV     A,#0x2
+        XRL     A,?V0 + 4
+        JNZ     ??nwk_allocateLocalRxPort_7
+//  716       {
+//  717         num = PORT_BASE_NUMBER + i;
+        MOV     A,#0x20
+        ADD     A,R0
+        MOV     R1,A
+        SJMP    ??nwk_allocateLocalRxPort_8
+//  718       }
+//  719       else
+//  720       {
+//  721         num = SMPL_PORT_USER_MAX - i;
+??nwk_allocateLocalRxPort_7:
+        MOV     A,#0x3d
+        CLR     C
+        SUBB    A,R0
+        MOV     R1,A
+//  722       }
+//  723       break;
+//  724     }
+//  725   }
+//  726 
+//  727   if (LINK_REPLY == which)
+//  728   {
+//  729     /* if the number we have doesn't overlap the assignment of ports used
+//  730      * for sending link frames, use it.
+//  731      */
+//  732     if (num <= sPersistInfo.curNextLinkPort)
+//  733     {
+//  734       if (num > sPersistInfo.curMaxReplyPort)
+//  735       {
+//  736         /* remember maximum port number used */
+//  737         sPersistInfo.curMaxReplyPort = num;
+//  738       }
+//  739     }
+//  740     else
+//  741     {
+//  742       /* the port number we need has already been used in the other context. It may or
+//  743        * may not have been used for the same address but we don't bother to check...we
+//  744        * just reject the asignment. This is the overly cautious part but is extermely
+//  745        * unlikely to ever occur.
+//  746        */
+//  747       num = 0;
+//  748     }
+//  749   }
+//  750   else
+//  751   {
+//  752     /* if the number we have doesn't overlap the assignment of ports used
+//  753      * for sending link frame replies, use it.
+//  754      */
+//  755     if (num >= sPersistInfo.curMaxReplyPort)
+??nwk_allocateLocalRxPort_9:
+        MOV     DPTR,#sPersistInfo + 3
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,R1
+        CLR     C
+        SUBB    A,R0
+        JC      ??nwk_allocateLocalRxPort_10
+//  756     {
+//  757       if (num == sPersistInfo.curNextLinkPort)
+        MOV     DPTR,#sPersistInfo + 2
+        MOVX    A,@DPTR
+        XRL     A,R1
+        JNZ     ??nwk_allocateLocalRxPort_11
+//  758       {
+//  759         sPersistInfo.curNextLinkPort--;
+        MOVX    A,@DPTR
+        DEC     A
+??nwk_allocateLocalRxPort_12:
+        MOVX    @DPTR,A
+//  760       }
+//  761     }
+//  762     else
+//  763     {
+//  764       /* the port number we need has already been used in the other context. It may or
+//  765        * may not have been used for the same address but we don't bother to check...we
+//  766        * just reject the asignment. This is the overly cautious part but is extermely
+//  767        * unlikely to ever occur.
+//  768        */
+//  769       num = 0;
+//  770     }
+//  771   }
+//  772 
+//  773   newPtr->portRx = num;
+??nwk_allocateLocalRxPort_11:
+        MOV     A,R1
+        MOV     DPL,R6
+        MOV     DPH,R7
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    @DPTR,A
+//  774 
+//  775   return num;
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 16)
+        LJMP    ?Subroutine3 & 0xFFFF
+        CFI CFA_XSP16 add(XSP16, 18)
+??nwk_allocateLocalRxPort_6:
+        INC     R0
+        MOV     A,R0
+        CLR     C
+        SUBB    A,#0x2
+        JC      ??nwk_allocateLocalRxPort_5
+        MOV     A,#0x2
+        XRL     A,?V0 + 4
+        JNZ     ??nwk_allocateLocalRxPort_9
+??nwk_allocateLocalRxPort_8:
+        MOV     DPTR,#sPersistInfo + 2
+        MOVX    A,@DPTR
+        CLR     C
+        SUBB    A,R1
+        JC      ??nwk_allocateLocalRxPort_10
+        INC     DPTR
+        MOVX    A,@DPTR
+        CLR     C
+        SUBB    A,R1
+        JNC     ??nwk_allocateLocalRxPort_11
+        MOV     A,R1
+        SJMP    ??nwk_allocateLocalRxPort_12
+??nwk_allocateLocalRxPort_10:
+        MOV     R1,#0x0
+        SJMP    ??nwk_allocateLocalRxPort_11
+        CFI EndBlock cfiBlock23
+//  776 #else
+//  777   return 0;
+//  778 #endif  /* NUM_CONNECTIONS > 0 */
+//  779 
+//  780 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine9:
+        CFI Block cfiCond24 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_6
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond25 Using cfiCommon0
+        CFI (cfiCond25) NoFunction
+        CFI (cfiCond25) Conditional ??CrossCallReturnLabel_7
+        CFI (cfiCond25) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond25) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond25) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond25) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond25) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond25) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond25) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond25) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond25) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond25) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond25) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond25) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond25) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond25) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond25) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond25) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond25) CFA_SP SP+0
+        CFI (cfiCond25) CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiCond26 Using cfiCommon0
+        CFI (cfiCond26) NoFunction
+        CFI (cfiCond26) Conditional ??CrossCallReturnLabel_8
+        CFI (cfiCond26) R6 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond26) VB load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond26) V0 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond26) V1 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond26) V2 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond26) V3 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond26) V4 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond26) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond26) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond26) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond26) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond26) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond26) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond26) CFA_SP SP+0
+        CFI (cfiCond26) CFA_XSP16 add(XSP16, 13)
+        CFI Block cfiCond27 Using cfiCommon0
+        CFI (cfiCond27) NoFunction
+        CFI (cfiCond27) Conditional ??CrossCallReturnLabel_9
+        CFI (cfiCond27) R6 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond27) VB load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond27) V0 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond27) V1 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond27) V2 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond27) V3 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond27) V4 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond27) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond27) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond27) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond27) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond27) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond27) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond27) CFA_SP SP+0
+        CFI (cfiCond27) CFA_XSP16 add(XSP16, 13)
+        CFI Block cfiPicker28 Using cfiCommon1
+        CFI (cfiPicker28) NoFunction
+        CFI (cfiPicker28) Picker
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        RET
+        CFI EndBlock cfiCond24
+        CFI EndBlock cfiCond25
+        CFI EndBlock cfiCond26
+        CFI EndBlock cfiCond27
+        CFI EndBlock cfiPicker28
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine8:
+        CFI Block cfiCond29 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_4
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond30 Using cfiCommon0
+        CFI (cfiCond30) NoFunction
+        CFI (cfiCond30) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond30) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond30) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond30) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond30) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond30) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond30) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond30) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond30) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond30) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond30) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond30) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond30) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond30) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond30) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond30) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond30) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond30) CFA_SP SP+0
+        CFI (cfiCond30) CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiPicker31 Using cfiCommon1
+        CFI (cfiPicker31) NoFunction
+        CFI (cfiPicker31) Picker
+        LCALL   ?Subroutine11 & 0xFFFF
+??CrossCallReturnLabel_13:
+        RET
+        CFI EndBlock cfiCond29
+        CFI EndBlock cfiCond30
+        CFI EndBlock cfiPicker31
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine11:
+        CFI Block cfiCond32 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_13, ??CrossCallReturnLabel_4
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond33 Using cfiCommon0
+        CFI (cfiCond33) NoFunction
+        CFI (cfiCond33) Conditional ??CrossCallReturnLabel_13, ??CrossCallReturnLabel_5
+        CFI (cfiCond33) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond33) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond33) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond33) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond33) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond33) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond33) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond33) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond33) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond33) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond33) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond33) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond33) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond33) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond33) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond33) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond33) CFA_SP SP+0
+        CFI (cfiCond33) CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiCond34 Using cfiCommon0
+        CFI (cfiCond34) NoFunction
+        CFI (cfiCond34) Conditional ??CrossCallReturnLabel_12, ??CrossCallReturnLabel_2
+        CFI (cfiCond34) R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond34) VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond34) V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond34) V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond34) V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond34) V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond34) V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond34) V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond34) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond34) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond34) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond34) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond34) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond34) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond34) CFA_SP SP+0
+        CFI (cfiCond34) CFA_XSP16 add(XSP16, 14)
+        CFI Block cfiCond35 Using cfiCommon0
+        CFI (cfiCond35) NoFunction
+        CFI (cfiCond35) Conditional ??CrossCallReturnLabel_12, ??CrossCallReturnLabel_3
+        CFI (cfiCond35) R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond35) VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond35) V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond35) V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond35) V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond35) V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond35) V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond35) V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond35) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond35) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond35) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond35) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond35) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond35) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond35) CFA_SP SP+0
+        CFI (cfiCond35) CFA_XSP16 add(XSP16, 14)
+        CFI Block cfiPicker36 Using cfiCommon1
+        CFI (cfiPicker36) NoFunction
+        CFI (cfiPicker36) Picker
+        MOV     A,?V0 + 0
+        ADD     A,#0xb
+        MOV     ?V0 + 0,A
+        MOV     A,?V0 + 1
+        ADDC    A,#0x0
+        MOV     ?V0 + 1,A
+        RET
+        CFI EndBlock cfiCond32
+        CFI EndBlock cfiCond33
+        CFI EndBlock cfiCond34
+        CFI EndBlock cfiCond35
+        CFI EndBlock cfiPicker36
+//  781 
+//  782 /*******************************************************************************
+//  783  * @fn          nwk_isValidReply
+//  784  *
+//  785  * @brief       Examine a frame to see if it is a valid reply when compared with
+//  786  *              expected parameters.
+//  787  *
+//  788  * input parameters
+//  789  * @param   frame      - pointer to frmae being examined
+//  790  * @param   tid        - expected transaction ID in application payload
+//  791  * @param   infoOffset - offset to payload information containing reply hint
+//  792  * @param   tidOffset  - offset to transaction ID in payload
+//  793  *
+//  794  * output parameters
+//  795  *
+//  796  * @return   reply category:
+//  797  *               SMPL_NOT_REPLY: not a reply
+//  798  *               SMPL_MY_REPLY : a reply that matches input parameters
+//  799  *               SMPL_A_REPLY  : a reply but does not match input parameters
+//  800  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  801 uint8_t nwk_isValidReply(mrfiPacket_t *frame, uint8_t tid, uint8_t infoOffset, uint8_t tidOffset)
+nwk_isValidReply:
+        CFI Block cfiBlock37 Using cfiCommon0
+        CFI Function nwk_isValidReply
+        CODE
+//  802 {
+        FUNCALL nwk_isValidReply, nwk_getMyAddress
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL nwk_isValidReply, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 15, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 15, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xd
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 13)
+        ; Saved register size: 13
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     ?V0 + 2,R1
+//  803   uint8_t rc = SMPL_NOT_REPLY;
+        MOV     R1,#0x2
+//  804 
+//  805   if ((*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+infoOffset) & NWK_APP_REPLY_BIT))
+        MOV     ?V0 + 0,R4
+        MOV     A,R6
+        ADD     A,?V0 + 0
+        MOV     R2,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R3,A
+        MOV     A,R2
+        ADD     A,#0xf
+        MOV     DPL,A
+        MOV     A,R3
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_8:
+        MOV     C,0xE0 /* A   */.7
+        JNC     ??nwk_isValidReply_0
+//  806   {
+//  807     if ((*(MRFI_P_PAYLOAD(frame)+F_APP_PAYLOAD_OS+tidOffset) == tid) &&
+//  808         !memcmp(MRFI_P_DST_ADDR(frame), nwk_getMyAddress(), NET_ADDR_SIZE))
+        MOV     ?V0 + 0,R5
+        MOV     A,R6
+        ADD     A,?V0 + 0
+        MOV     R0,A
+        MOV     A,R7
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#0xf
+        MOV     DPL,A
+        MOV     A,R1
+        LCALL   ?Subroutine9 & 0xFFFF
+??CrossCallReturnLabel_9:
+        XRL     A,?V0 + 2
+        JNZ     ??nwk_isValidReply_1
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 15)
+        ; Setup parameters for call to function nwk_getMyAddress
+        LCALL   ??nwk_getMyAddress?relay
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     A,R6
+        ADD     A,#0x4
+        LCALL   ?Subroutine10 & 0xFFFF
+??CrossCallReturnLabel_11:
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 13)
+        MOV     ?V0 + 1,R3
+        MOV     A,R2
+        ORL     A,?V0 + 1
+        JNZ     ??nwk_isValidReply_1
+//  809     {
+//  810       rc = SMPL_MY_REPLY;
+        MOV     R1,#0x0
+        SJMP    ??nwk_isValidReply_0
+//  811     }
+//  812     else
+//  813     {
+//  814       rc = SMPL_A_REPLY;
+??nwk_isValidReply_1:
+        MOV     R1,#0x1
+//  815     }
+//  816   }
+//  817 
+//  818   return rc;
+??nwk_isValidReply_0:
+        MOV     R7,#0x5
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock37
+//  819 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine10:
+        CFI Block cfiCond38 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_10
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond39 Using cfiCommon0
+        CFI (cfiCond39) NoFunction
+        CFI (cfiCond39) Conditional ??CrossCallReturnLabel_11
+        CFI (cfiCond39) R6 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond39) VB load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond39) V0 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond39) V1 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond39) V2 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond39) V3 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond39) V4 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond39) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond39) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond39) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond39) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond39) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond39) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond39) CFA_SP SP+0
+        CFI (cfiCond39) CFA_XSP16 add(XSP16, 15)
+        CFI Block cfiPicker40 Using cfiCommon1
+        CFI (cfiPicker40) NoFunction
+        CFI (cfiPicker40) Picker
+        MOV     R2,A
+        MOV     A,R7
+        LCALL   ?Subroutine12 & 0xFFFF
+??CrossCallReturnLabel_18:
+        RET
+        CFI EndBlock cfiCond38
+        CFI EndBlock cfiCond39
+        CFI EndBlock cfiPicker40
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine12:
+        CFI Block cfiCond41 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_17, ??CrossCallReturnLabel_14
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 18)
+        CFI Block cfiCond42 Using cfiCommon0
+        CFI (cfiCond42) NoFunction
+        CFI (cfiCond42) Conditional ??CrossCallReturnLabel_17, ??CrossCallReturnLabel_15
+        CFI (cfiCond42) R6 load(1, XDATA, add(CFA_XSP16, literal(-16)))
+        CFI (cfiCond42) VB load(1, XDATA, add(CFA_XSP16, literal(-15)))
+        CFI (cfiCond42) V0 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond42) V1 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond42) V2 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond42) V3 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond42) V4 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond42) V5 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond42) V6 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond42) V7 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond42) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond42) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond42) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond42) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond42) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond42) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond42) CFA_SP SP+0
+        CFI (cfiCond42) CFA_XSP16 add(XSP16, 20)
+        CFI Block cfiCond43 Using cfiCommon0
+        CFI (cfiCond43) NoFunction
+        CFI (cfiCond43) Conditional ??CrossCallReturnLabel_17, ??CrossCallReturnLabel_16
+        CFI (cfiCond43) R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond43) VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond43) V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond43) V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond43) V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond43) V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond43) V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond43) V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond43) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond43) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond43) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond43) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond43) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond43) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond43) CFA_SP SP+0
+        CFI (cfiCond43) CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond44 Using cfiCommon0
+        CFI (cfiCond44) NoFunction
+        CFI (cfiCond44) Conditional ??CrossCallReturnLabel_18, ??CrossCallReturnLabel_10
+        CFI (cfiCond44) R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond44) VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond44) V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond44) V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond44) V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond44) V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond44) V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond44) V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond44) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond44) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond44) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond44) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond44) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond44) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond44) CFA_SP SP+0
+        CFI (cfiCond44) CFA_XSP16 add(XSP16, 16)
+        CFI Block cfiCond45 Using cfiCommon0
+        CFI (cfiCond45) NoFunction
+        CFI (cfiCond45) Conditional ??CrossCallReturnLabel_18, ??CrossCallReturnLabel_11
+        CFI (cfiCond45) R6 load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond45) VB load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond45) V0 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond45) V1 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond45) V2 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond45) V3 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond45) V4 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond45) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond45) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond45) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond45) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond45) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond45) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond45) CFA_SP SP+0
+        CFI (cfiCond45) CFA_XSP16 add(XSP16, 15)
+        CFI Block cfiPicker46 Using cfiCommon1
+        CFI (cfiPicker46) NoFunction
+        CFI (cfiPicker46) Picker
+        ADDC    A,#0x0
+        MOV     R3,A
+        LCALL   ??memcmp?relay
+        MOV     A,#0x2
+        RET
+        CFI EndBlock cfiCond41
+        CFI EndBlock cfiCond42
+        CFI EndBlock cfiCond43
+        CFI EndBlock cfiCond44
+        CFI EndBlock cfiCond45
+        CFI EndBlock cfiPicker46
+//  820 
+//  821 /******************************************************************************
+//  822  * @fn          map_lid2idx
+//  823  *
+//  824  * @brief       Map link ID to index into connection table.
+//  825  *
+//  826  * input parameters
+//  827  * @param   lid   - Link ID to be matched
+//  828  *
+//  829  * output parameters
+//  830  * @param   idx   - populated with index into connection table
+//  831  *
+//  832  * @return   Non-zero if Link ID found and output is valid else 0.
+//  833  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  834 static uint8_t map_lid2idx(linkID_t lid, uint8_t *idx)
+map_lid2idx:
+        CFI Block cfiBlock47 Using cfiCommon0
+        CFI Function map_lid2idx
+        CODE
+//  835 {
+        MOV     A,#-0x9
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 9)
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R5,A
+//  836   uint8_t     i;
+//  837   connInfo_t *ptr = sPersistInfo.connStruct;
+        MOV     R0,#(sPersistInfo + 5) & 0xff
+        MOV     R1,#((sPersistInfo + 5) >> 8) & 0xff
+//  838 
+//  839   for (i=0; i<SYS_NUM_CONNECTIONS; ++i, ++ptr)
+        MOV     R4,#0x0
+//  840   {
+//  841     if ((CONNSTATE_CONNECTED == ptr->connState) && (ptr->thisLinkID == lid))
+??map_lid2idx_0:
+        MOV     DPL,R0
+        MOV     DPH,R1
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        JNZ     ??map_lid2idx_1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        XRL     A,R5
+        JNZ     ??map_lid2idx_1
+//  842     {
+//  843       *idx = i;
+        MOV     A,R4
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOVX    @DPTR,A
+//  844       return 1;
+        MOV     R1,#0x1
+        SJMP    ??map_lid2idx_2
+//  845     }
+//  846   }
+??map_lid2idx_1:
+        INC     R4
+        MOV     A,R0
+        ADD     A,#0xb
+        MOV     R0,A
+        MOV     A,R1
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     A,R4
+        CLR     C
+        SUBB    A,#0x3
+        JC      ??map_lid2idx_0
+//  847 
+//  848   return 0;
+        MOV     R1,#0x0
+??map_lid2idx_2:
+        LJMP    ??Subroutine13_0 & 0xFFFF
+        CFI EndBlock cfiBlock47
+//  849 }
+//  850 
+//  851 /******************************************************************************
+//  852  * @fn          nwk_findPeer
+//  853  *
+//  854  * @brief       Find connection entry for a peer
+//  855  *
+//  856  * input parameters
+//  857  * @param   peerAddr   - address of peer
+//  858  * @param   peerPort   - port on which this device was sending to peer.
+//  859  *
+//  860  * output parameters
+//  861  *
+//  862  * @return   Pointer to matching connection table entry else 0.
+//  863  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  864 connInfo_t *nwk_findPeer(addr_t *peerAddr, uint8_t peerPort)
+nwk_findPeer:
+        CFI Block cfiBlock48 Using cfiCommon0
+        CFI Function nwk_findPeer
+        CODE
+//  865 {
+        FUNCALL nwk_findPeer, memcmp
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 16, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 16, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xe
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 14)
+        ; Saved register size: 14
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R6,A
+        MOV     A,R3
+        MOV     R7,A
+        MOV     ?V0 + 3,R1
+//  866   uint8_t     i;
+//  867   connInfo_t *ptr = sPersistInfo.connStruct;
+        MOV     ?V0 + 0,#(sPersistInfo + 5) & 0xff
+        MOV     ?V0 + 1,#((sPersistInfo + 5) >> 8) & 0xff
+//  868 
+//  869   for (i=0; i<SYS_NUM_CONNECTIONS; ++i, ++ptr)
+        MOV     ?V0 + 2,#0x3
+//  870   {
+//  871     if (CONNSTATE_CONNECTED == ptr->connState)
+??nwk_findPeer_0:
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        MOVX    A,@DPTR
+        XRL     A,#0x2
+        JNZ     ??nwk_findPeer_1
+//  872     {
+//  873       if (!memcmp(peerAddr, ptr->peerAddr, NET_ADDR_SIZE))
+        ; Setup parameters for call to function memcmp
+        MOV     ?V0 + 4,#0x4
+        MOV     ?V0 + 5,#0x0
+        MOV     R0,#?V0 + 4
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 16)
+        MOV     A,?V0 + 0
+        ADD     A,#0x2
+        MOV     R4,A
+        MOV     A,?V0 + 1
+        ADDC    A,#0x0
+        MOV     R5,A
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   ??memcmp?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 14)
+        MOV     ?V0 + 5,R3
+        MOV     A,R2
+        ORL     A,?V0 + 5
+        JNZ     ??nwk_findPeer_1
+//  874       {
+//  875         if (peerPort == ptr->portTx)
+        MOV     DPL,?V0 + 0
+        MOV     DPH,?V0 + 1
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        MOVX    A,@DPTR
+        XRL     A,?V0 + 3
+        JNZ     ??nwk_findPeer_1
+//  876         {
+//  877           return ptr;
+        MOV     R2,?V0 + 0
+        MOV     R3,?V0 + 1
+        SJMP    ??nwk_findPeer_2
+//  878         }
+//  879       }
+//  880     }
+//  881   }
+??nwk_findPeer_1:
+        LCALL   ?Subroutine7 & 0xFFFF
+??CrossCallReturnLabel_3:
+        JNZ     ??nwk_findPeer_0
+//  882 
+//  883   return (connInfo_t *)NULL;
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+??nwk_findPeer_2:
+        LJMP    ?Subroutine2 & 0xFFFF
+        CFI EndBlock cfiBlock48
+//  884 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine7:
+        CFI Block cfiCond49 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_2
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 14)
+        CFI Block cfiCond50 Using cfiCommon0
+        CFI (cfiCond50) NoFunction
+        CFI (cfiCond50) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond50) R6 load(1, XDATA, add(CFA_XSP16, literal(-14)))
+        CFI (cfiCond50) VB load(1, XDATA, add(CFA_XSP16, literal(-13)))
+        CFI (cfiCond50) V0 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI (cfiCond50) V1 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI (cfiCond50) V2 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond50) V3 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond50) V4 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond50) V5 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond50) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond50) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond50) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond50) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond50) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond50) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond50) CFA_SP SP+0
+        CFI (cfiCond50) CFA_XSP16 add(XSP16, 14)
+        CFI Block cfiPicker51 Using cfiCommon1
+        CFI (cfiPicker51) NoFunction
+        CFI (cfiPicker51) Picker
+        LCALL   ?Subroutine11 & 0xFFFF
+??CrossCallReturnLabel_12:
+        DEC     ?V0 + 2
+        MOV     A,?V0 + 2
+        RET
+        CFI EndBlock cfiCond49
+        CFI EndBlock cfiCond50
+        CFI EndBlock cfiPicker51
+//  885 
+//  886 /******************************************************************************
+//  887  * @fn          nwk_checkAppMsgTID
+//  888  *
+//  889  * @brief       Compare received TID to last-seen TID to decide whether the
+//  890  *              received message is a duplicate or we missed some.
+//  891  *
+//  892  * input parameters
+//  893  * @param   lastTID   - last-seen TID
+//  894  * @param   appMsgTID - TID from current application payload.
+//  895  *
+//  896  * output parameters
+//  897  *
+//  898  * @return   Returns zero if message with supplied TID should be discarded.
+//  899  *           Otherwise returns non-zero. In this case the message should be
+//  900  *           processed. The last-seen TID should be updated with the current
+//  901  *           application payload TID.
+//  902  *
+//  903  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  904 uint8_t nwk_checkAppMsgTID(appPTid_t lastTID, appPTid_t appMsgTID)
+nwk_checkAppMsgTID:
+        CFI Block cfiBlock52 Using cfiCommon0
+        CFI Function nwk_checkAppMsgTID
+        CODE
+//  905 {
+        ; Saved register size: 0
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R0,A
+//  906   uint8_t rc = 0;
+        MOV     R1,#0x0
+//  907 
+//  908   /* If the values are equal this is a duplicate. We're done. */
+//  909   if (lastTID != appMsgTID)
+        MOV     A,R2
+        XRL     A,R0
+        JZ      ??nwk_checkAppMsgTID_0
+//  910   {
+//  911     /* Is the new TID bigger? */
+//  912     if (appMsgTID > lastTID)
+        MOV     A,R0
+        CLR     C
+        SUBB    A,R2
+        JNC     ??nwk_checkAppMsgTID_1
+//  913     {
+//  914       /* In this case the current payload is OK unless we've received a late
+//  915        * (duplicate) message that occurred just before the TID wrapped. This is
+//  916        * considered a duplicate and we should discard it.
+//  917        */
+//  918       if (!(DUP_TID_AFTER_WRAP(lastTID, appMsgTID)))
+        MOV     A,R2
+        CLR     C
+        SUBB    A,#-0x3
+        JC      ??nwk_checkAppMsgTID_2
+        MOV     A,R0
+        CLR     C
+        SUBB    A,#0x3
+        JC      ??nwk_checkAppMsgTID_0
+//  919       {
+//  920         rc = 1;
+??nwk_checkAppMsgTID_2:
+        INC     R1
+        SJMP    ??nwk_checkAppMsgTID_0
+//  921       }
+//  922     }
+//  923     else
+//  924     {
+//  925       /* New TID is smaller. Accept the payload if this is the wrap case or we missed
+//  926        * the specific wrap frame but are still within the range in which we assume
+//  927        * we missed it. Otherwise is a genuine late frame so we should ignore it.
+//  928        */
+//  929       if (CHECK_TID_WRAP(lastTID, appMsgTID))
+??nwk_checkAppMsgTID_1:
+        MOV     A,R0
+        CLR     C
+        SUBB    A,#-0x3
+        JC      ??nwk_checkAppMsgTID_0
+        MOV     A,R2
+        CLR     C
+        SUBB    A,#0x3
+        JC      ??nwk_checkAppMsgTID_2
+//  930       {
+//  931         rc = 1;
+//  932       }
+//  933     }
+//  934   }
+//  935 
+//  936   return rc;
+??nwk_checkAppMsgTID_0:
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock52
+//  937 }
+//  938 
+//  939 /******************************************************************************
+//  940  * @fn          nwk_getNumObjectFromMsg
+//  941  *
+//  942  * @brief       Get a numeric object from a message buffer. Take care of
+//  943  *              alignment and endianess issues.
+//  944  *
+//  945  * input parameters
+//  946  * @param   src     - pointer to object location in message buffer
+//  947  * @param   objSize - size of numeric object
+//  948  *
+//  949  * output parameters
+//  950  * @param   dest - pointer to numeric type variable receiving the object
+//  951  *                 contains aligned number in correct endian order on return.
+//  952  *
+//  953  * @return   void. There is no warning if there is no case for the supplied
+//  954  *                 object size. A simple copy is then done. Alignment is
+//  955  *                 guaranteed only for object size cases defined (and
+//  956  *                 vacuously size 1).
+//  957  *
+//  958  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  959 void nwk_getNumObjectFromMsg(void *src, void *dest, uint8_t objSize)
+nwk_getNumObjectFromMsg:
+        CFI Block cfiBlock53 Using cfiCommon0
+        CFI Function nwk_getNumObjectFromMsg
+        CODE
+//  960 {
+        FUNCALL nwk_getNumObjectFromMsg, memmove
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 13, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 13, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xb
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        ; Saved register size: 11
+        ; Auto size: 0
+        MOV     A,R4
+        MOV     R6,A
+        MOV     A,R5
+        MOV     R7,A
+        MOV     ?V0 + 2,R1
+//  961   /* Take care of alignment */
+//  962   memmove(dest, src, objSize);
+        ; Setup parameters for call to function memmove
+        MOV     ?V0 + 0,R1
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 13)
+        MOV     A,R2
+        MOV     R4,A
+        MOV     A,R3
+        MOV     R5,A
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   ??memmove?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 11)
+//  963 
+//  964   /* Take care of endianess */
+//  965   switch(objSize)
+        MOV     A,?V0 + 2
+        ADD     A,#-0x2
+        JZ      ??nwk_getNumObjectFromMsg_0
+        ADD     A,#-0x2
+        JZ      ??nwk_getNumObjectFromMsg_1
+        SJMP    ??nwk_getNumObjectFromMsg_2
+//  966   {
+//  967     case 2:
+//  968       *((uint16_t *)dest) = ntohs(*((uint16_t *)dest));
+??nwk_getNumObjectFromMsg_0:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPL,R6
+        MOV     DPH,R7
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+//  969       break;
+        SJMP    ??nwk_getNumObjectFromMsg_2
+//  970 
+//  971     case 4:
+//  972       *((uint32_t *)dest) = ntohl(*((uint32_t *)dest));
+??nwk_getNumObjectFromMsg_1:
+        MOV     DPL,R6
+        MOV     DPH,R7
+        LCALL   ?XLOAD_R2345
+        MOV     DPL,R6
+        MOV     DPH,R7
+        LCALL   ?XSTORE_R2345
+        CFI EndBlock cfiBlock53
+//  973       break;
+//  974   }
+//  975 
+//  976   return;
+??nwk_getNumObjectFromMsg_2:
+        REQUIRE ?Subroutine4
+        ; // Fall through to label ?Subroutine4
+//  977 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine4:
+        CFI Block cfiBlock54 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x3
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock54
+//  978 
+//  979 /******************************************************************************
+//  980  * @fn          nwk_putNumObjectIntoMsg
+//  981  *
+//  982  * @brief       Put a numeric object into a message buffer. Take care of
+//  983  *              alignment and endianess issues.
+//  984  *
+//  985  * input parameters
+//  986  * @param   src     - pointer to numeric type variable providing the object
+//  987  * @param   objSize - size of numeric object. Fuction works for object size 1.
+//  988  *
+//  989  * output parameters
+//  990  * @param   dest - pointer to object location in message buffer where the
+//  991  *                 correct endian order representation will be placed.
+//  992  *
+//  993  * @return   void. There is no warning if there is no case for the supplied
+//  994  *                 object size. A simple copy is then done.
+//  995  *
+//  996  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  997 void nwk_putNumObjectIntoMsg(void *src, void *dest, uint8_t objSize)
+nwk_putNumObjectIntoMsg:
+        CFI Block cfiBlock55 Using cfiCommon0
+        CFI Function nwk_putNumObjectIntoMsg
+        CODE
+//  998 {
+        FUNCALL nwk_putNumObjectIntoMsg, memmove
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 19, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 19, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xb
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 11)
+        ; Saved register size: 11
+        ; Auto size: 6
+        MOV     A,#-0x6
+        LCALL   ?ALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 17)
+        MOV     DPL,R2
+        MOV     DPH,R3
+        MOV     A,R4
+        MOV     R6,A
+        MOV     A,R5
+        MOV     R7,A
+        MOV     ?V0 + 2,R1
+//  999 
+// 1000   uint8_t *ptr;
+// 1001   uint16_t u16;
+// 1002   uint32_t u32;
+// 1003 
+// 1004   /* Take care of endianess */
+// 1005   switch(objSize)
+        MOV     A,R1
+        ADD     A,#-0x2
+        JZ      ??nwk_putNumObjectIntoMsg_0
+        ADD     A,#-0x2
+        JZ      ??nwk_putNumObjectIntoMsg_1
+// 1006   {
+// 1007     case 1:
+// 1008       ptr = (uint8_t *)src;
+        SJMP    ??nwk_putNumObjectIntoMsg_2
+// 1009       break;
+// 1010 
+// 1011     case 2:
+// 1012       u16 = htons(*((uint16_t *)src));
+??nwk_putNumObjectIntoMsg_0:
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+// 1013       ptr = (uint8_t *)&u16;
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        SJMP    ??nwk_putNumObjectIntoMsg_2
+// 1014       break;
+// 1015 
+// 1016     case 4:
+// 1017       u32 = htonl(*((uint32_t *)src));
+??nwk_putNumObjectIntoMsg_1:
+        LCALL   ?XLOAD_R2345
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        LCALL   ?XSTORE_R2345
+// 1018       ptr = (uint8_t *)&u32;
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+??nwk_putNumObjectIntoMsg_2:
+        MOV     R4,DPL
+        MOV     R5,DPH
+// 1019       break;
+// 1020 
+// 1021     default:
+// 1022       ptr = (uint8_t *)src;
+// 1023       break;
+// 1024   }
+// 1025 
+// 1026   /* Take care of alignment */
+// 1027   memmove(dest, ptr, objSize);
+        ; Setup parameters for call to function memmove
+        MOV     ?V0 + 0,?V0 + 2
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        CFI CFA_XSP16 add(XSP16, 19)
+        MOV     A,R6
+        MOV     R2,A
+        MOV     A,R7
+        MOV     R3,A
+        LCALL   ??memmove?relay
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 17)
+// 1028 
+// 1029   return;
+        MOV     A,#0x6
+        LCALL   ?DEALLOC_XSTACK8
+        CFI CFA_XSP16 add(XSP16, 11)
+        SJMP    ?Subroutine4
+        CFI EndBlock cfiBlock55
+// 1030 }
+// 1031 /******************************************************************************
+// 1032  * @fn          nwk_NVObj
+// 1033  *
+// 1034  * @brief       GET and SET support for NV object (connection context).
+// 1035  *
+// 1036  * input parameters
+// 1037  * @param   action  - GET or SET
+// 1038  * @param   val     - (GET/SET) pointer to NV IOCTL object.
+// 1039  *                    (SET) NV length and version values to be used for sanity
+// 1040  *                    checks.
+// 1041  *
+// 1042  * output parameters
+// 1043  * @param   val     - (GET) Version number of NV object, size of NV object and
+// 1044  *                          pointer to the connection context memory.
+// 1045  *                  - (SET) Pointer to the connection context memory.
+// 1046  *
+// 1047  * @return   SMPL_SUCCESS
+// 1048  *           SMPL_BAD_PARAM   Object version or size do not conform on a SET call
+// 1049  *                            or illegal action specified.
+// 1050  */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+// 1051 smplStatus_t nwk_NVObj(ioctlAction_t action, ioctlNVObj_t *val)
+nwk_NVObj:
+        CFI Block cfiBlock56 Using cfiCommon0
+        CFI Function nwk_NVObj
+        CODE
+// 1052 {
+        ; Saved register size: 0
+        ; Auto size: 0
+// 1053 #ifdef NVOBJECT_SUPPORT
+// 1054   smplStatus_t rc = SMPL_SUCCESS;
+// 1055 
+// 1056   if (IOCTL_ACT_GET == action)
+// 1057   {
+// 1058     /* Populate helper objects */
+// 1059     val->objLen     = SIZEOF_NV_OBJ;
+// 1060     val->objVersion = sPersistInfo.structureVersion;
+// 1061     /* Set pointer to connection context if address of pointer is not null */
+// 1062     if (val->objPtr)
+// 1063     {
+// 1064       *(val->objPtr) = (uint8_t *)&sPersistInfo;
+// 1065     }
+// 1066   }
+// 1067   else // unknown action or failed set parameter test
+// 1068   {
+// 1069     rc = SMPL_BAD_PARAM;
+// 1070   }
+// 1071 
+// 1072   return rc;
+// 1073 #else  /* NVOBJECT_SUPPORT */
+// 1074   return SMPL_BAD_PARAM;
+        MOV     R1,#0x2
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock56
+// 1075 #endif
+// 1076 }
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for sPersistInfo>`:
+        DATA8
+        DB 1
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+        DB 0
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_nwkInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_nwkInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_getNextConnection?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_getNextConnection
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_freeConnection?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_freeConnection
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_getConnInfo?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_getConnInfo
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_isLinkDuplicate?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_isLinkDuplicate
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_findAddressMatch?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_findAddressMatch
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_checkConnInfo?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_checkConnInfo
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_isConnectionValid?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_isConnectionValid
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_allocateLocalRxPort?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_allocateLocalRxPort
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_isValidReply?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_isValidReply
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??map_lid2idx?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    map_lid2idx
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_findPeer?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_findPeer
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_checkAppMsgTID?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_checkAppMsgTID
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_getNumObjectFromMsg?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_getNumObjectFromMsg
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_putNumObjectIntoMsg?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_putNumObjectIntoMsg
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??nwk_NVObj?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    nwk_NVObj
+
+        END
+// 
+// 1 673 bytes in segment BANKED_CODE
+//    96 bytes in segment BANK_RELAYS
+//    38 bytes in segment XDATA_I
+//    38 bytes in segment XDATA_ID
+// 
+// 1 807 bytes of CODE  memory
+//    38 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

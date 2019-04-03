@@ -1,0 +1,2530 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:52 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Compone /
+//                          nts\mrfi\mrfi.c                                   /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Components\mrfi\ /
+//                          mrfi.c" -D "MCU_H=\"ioCC1110.h\"" -D MRFI_CC1110  /
+//                          -lB "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pr /
+//                          ojects\Examples\SRF04\UART_Bridge\IAR\CC1110-Link /
+//                          To\List\" -o "C:\Texas Instruments\SimpliciTI-IAR /
+//                          -1.2.0\Projects\Examples\SRF04\UART_Bridge\IAR\CC /
+//                          1110-LinkTo\Obj\" -e --debug --core=plain         /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\mrfi.s51                                       /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME mrfi
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ADD_XSTACK_DISP0_8
+        EXTERN ?CALL_IND
+        EXTERN ?DEALLOC_XSTACK8
+        EXTERN ?DPH1
+        EXTERN ?DPL1
+        EXTERN ?DPS
+        EXTERN ?FUNC_ENTER_XDATA
+        EXTERN ?FUNC_LEAVE_XDATA
+        EXTERN ?INTERRUPT_ENTER_XSP
+        EXTERN ?INTERRUPT_LEAVE_XSP
+        EXTERN ?L_ADD_X
+        EXTERN ?MOVE_LONG8_XDATA_XDATA_2DPTR
+        EXTERN ?PUSH_XSTACK_I_TWO
+        EXTERN ?S_DIV_MOD
+        EXTERN ?US_SHR
+        EXTERN ?V0
+        EXTERN ?VB
+        EXTERN ?XLOAD_R2345
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN ?XSTACK_RESTORE_DPTRS_1
+        EXTERN ?XSTACK_SAVE_DPTRS_1
+        EXTERN __INIT_XDATA_I
+        EXTERN __INIT_XDATA_Z
+
+        PUBWEAK `??MRFI_RfIsr??INTVEC 131`
+        PUBWEAK ADCCON1
+        PUBWEAK CLKCON
+        PUBWEAK DMA0CFGH
+        PUBWEAK DMA0CFGL
+        PUBWEAK DMAARM
+        PUBWEAK DMAIRQ
+        PUBWEAK IEN2
+        PUBLIC MRFI_DelayMs
+        PUBLIC MRFI_DisableRxAddrFilter
+        PUBLIC MRFI_EnableRxAddrFilter
+        PUBLIC MRFI_GetRadioState
+        PUBLIC MRFI_Init
+        PUBLIC MRFI_PostKillSem
+        PUBLIC MRFI_RandomByte
+        PUBLIC MRFI_Receive
+        PUBLIC MRFI_ReplyDelay
+        PUBLIC MRFI_RfIsr
+        PUBLIC MRFI_Rssi
+        PUBLIC MRFI_RxAddrIsFiltered
+        PUBLIC MRFI_RxIdle
+        PUBLIC MRFI_RxOn
+        PUBLIC MRFI_SetLogicalChannel
+        PUBLIC MRFI_SetRFPwr
+        PUBLIC MRFI_SetRxAddrFilter
+        PUBLIC MRFI_Sleep
+        PUBLIC MRFI_Transmit
+        PUBLIC MRFI_WakeUp
+        PUBLIC Mrfi_DelayUsecLong
+        PUBWEAK RFIF
+        PUBWEAK RFIM
+        PUBWEAK RFST
+        PUBWEAK RNDL
+        PUBWEAK S1CON
+        PUBWEAK SLEEP
+        PUBWEAK _A_IEN0
+        PUBWEAK _A_IP0xx
+        PUBWEAK _A_IP1xx
+        PUBWEAK __Constant_2
+        PUBWEAK __Constant_ffffffff
+        PUBLIC mrfiBroadcastAddr
+        PUBLIC mrfiDmaCfg
+
+MRFI_RfIsr          SYMBOL "MRFI_RfIsr"
+`??MRFI_RfIsr??INTVEC 131` SYMBOL "??INTVEC 131", MRFI_RfIsr
+
+        EXTERN memset
+        EXTERN BSP_Delay
+        EXTERN memmove
+        EXTERN MRFI_RxCompleteISR
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Components\mrfi\mrfi.c
+//    1 /**************************************************************************************************
+//    2   Revised:        $Date: 2007-07-06 11:19:00 -0700 (Fri, 06 Jul 2007) $
+//    3   Revision:       $Revision: 13579 $
+//    4 
+//    5   Copyright 2007 Texas Instruments Incorporated.  All rights reserved.
+//    6 
+//    7   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//    8   the terms of a software license agreement between the user who downloaded the software,
+//    9   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   10   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   11   License. The License limits your use, and you acknowledge, that the Software may not be
+//   12   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   13   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   14   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   15   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   16   perform, display or sell this Software and/or its documentation for any purpose.
+//   17 
+//   18   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   19   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   20   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   21   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   22   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   23   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   24   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   25   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   26   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   27 
+//   28   Should you have any questions regarding your right to use this Software,
+//   29   contact Texas Instruments Incorporated at www.TI.com.
+//   30 **************************************************************************************************/
+//   31 
+//   32 /* ~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
+//   33  *   MRFI (Minimal RF Interface)
+//   34  *   Top-level code file.
+//   35  * ~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
+//   36  */
+//   37 
+//   38 /* ------------------------------------------------------------------------------------------------
+//   39  *                                          Includes
+//   40  * ------------------------------------------------------------------------------------------------
+//   41  */
+//   42 #include "mrfi.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,0a9H
+// union <unnamed> volatile __sfr _A_IP0xx
+_A_IP0xx:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b9H
+// union <unnamed> volatile __sfr _A_IP1xx
+_A_IP1xx:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,091H
+// unsigned char volatile __sfr RFIM
+RFIM:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09aH
+// unsigned char volatile __sfr IEN2
+IEN2:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,09bH
+// unsigned char volatile __sfr S1CON
+S1CON:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0a8H
+// union <unnamed> volatile __sfr _A_IEN0
+_A_IEN0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0b4H
+// unsigned char volatile __sfr ADCCON1
+ADCCON1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0bcH
+// unsigned char volatile __sfr RNDL
+RNDL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0beH
+// unsigned char volatile __sfr SLEEP
+SLEEP:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0c6H
+// unsigned char volatile __sfr CLKCON
+CLKCON:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d1H
+// unsigned char volatile __sfr DMAIRQ
+DMAIRQ:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d4H
+// unsigned char volatile __sfr DMA0CFGL
+DMA0CFGL:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d5H
+// unsigned char volatile __sfr DMA0CFGH
+DMA0CFGH:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0d6H
+// unsigned char volatile __sfr DMAARM
+DMAARM:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e1H
+// unsigned char volatile __sfr RFST
+RFST:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0e9H
+// unsigned char volatile __sfr RFIF
+RFIF:
+        DATA8
+        DS 1
+//   43 #include "mrfi_defs.h"
+//   44 
+//   45 /* ------------------------------------------------------------------------------------------------
+//   46  *                                    Global Constants
+//   47  * ------------------------------------------------------------------------------------------------
+//   48  */
+//   49 
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+//   50 const uint8_t mrfiBroadcastAddr[] = { 0xFF, 0xFF, 0xFF, 0xFF };
+mrfiBroadcastAddr:
+        DS 4
+        REQUIRE `?<Initializer for mrfiBroadcastAddr>`
+        REQUIRE __INIT_XDATA_I
+//   51 /* verify number of table entries matches the corresponding #define */
+//   52 BSP_STATIC_ASSERT(MRFI_ADDR_SIZE == ((sizeof(mrfiBroadcastAddr)/sizeof(mrfiBroadcastAddr[0])) * sizeof(mrfiBroadcastAddr[0])));
+//   53 
+//   54 
+//   55 
+//   56 /* ------------------------------------------------------------------------------------------------
+//   57  *                                       Local Variables
+//   58  * ------------------------------------------------------------------------------------------------
+//   59  */
+//   60 #ifdef MRFI_TIMER_ALWAYS_ACTIVE
+//   61 
+//   62 /* MRFI_Time holds the active time counted by the timer interrupt.
+//   63  * Only bytes beyond the size of the timer are allocated.
+//   64  */
+//   65 static volatile uint32_t MRFI_Time = 0;
+//   66 
+//   67 #endif
+//   68 
+//   69 
+//   70 
+//   71 /* ------------------------------------------------------------------------------------------------
+//   72  *                                       Local Prototypes
+//   73  * ------------------------------------------------------------------------------------------------
+//   74  */
+//   75 static void Mrfi_RxModeOn(void);
+//   76 static void Mrfi_RxModeOff(void);
+//   77 static void Mrfi_RandomBackoffDelay(void);
+//   78 
+//   79 
+//   80 
+//   81 /* ------------------------------------------------------------------------------------------------
+//   82  *                                       C Code Includes
+//   83  * ------------------------------------------------------------------------------------------------
+//   84  */
+//   85 
+//   86 /* ----- Radio Family 1 ----- */
+//   87 #if (defined MRFI_RADIO_FAMILY1)
+//   88 #include "radios/family1/mrfi_radio.c"
+//   89 #include "radios/family1/mrfi_spi.c"
+//   90 #include "radios/common/mrfi_f1f2.c"
+//   91 #include "bsp_external/mrfi_board.c"
+//   92 
+//   93 /* ----- Radio Family 2 ----- */
+//   94 #elif (defined MRFI_RADIO_FAMILY2)
+//   95 #include "radios/family2/mrfi_radio.c"
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t mrfiRadioState
+mrfiRadioState:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static mrfiPacket_t mrfiIncomingPacket
+mrfiIncomingPacket:
+        DS 48
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t volatile sKillSem
+sKillSem:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t volatile sReplyDelayContext
+sReplyDelayContext:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+// static uint16_t sReplyDelayScalar
+sReplyDelayScalar:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+// static uint16_t sBackoffHelper
+sBackoffHelper:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// unsigned char mrfiDmaCfg[8]
+mrfiDmaCfg:
+        DS 8
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_Init(void)
+MRFI_Init:
+        CODE
+        MOV     A,#-0xb
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 11
+        ; Auto size: 0
+        ORL     0xb9,#0x2
+        ORL     0xa9,#0x2
+        ORL     0xa9,#0x1
+        ANL     0xb9,#0xfe
+        ANL     0xa9,#0xf7
+        ANL     0xa9,#0xfb
+        ORL     0xb9,#0x8
+        ORL     0xb9,#0x4
+        ANL     0xb9,#0xef
+        ANL     0xa9,#0xef
+        ANL     0xb9,#0xdf
+        ANL     0xa9,#0xdf
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x30
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     DPTR,#-0x20ca
+        MOVX    A,@DPTR
+        ANL     A,#0xef
+        XRL     A,#0x1
+        JZ      ??MRFI_Init_0
+        CLR     0xa8.7
+??MRFI_Init_1:
+        SJMP    ??MRFI_Init_1
+??MRFI_Init_0:
+        INC     DPTR
+        MOVX    A,@DPTR
+        CLR     C
+        SUBB    A,#0x3
+        JNC     ??MRFI_Init_2
+        CLR     0xa8.7
+??MRFI_Init_3:
+        SJMP    ??MRFI_Init_3
+??MRFI_Init_2:
+        ANL     0xbe,#0xfb
+??MRFI_Init_4:
+        MOV     A,0xbe
+        MOV     C,0xE0 /* A   */.6
+        JNC     ??MRFI_Init_4
+        ANL     0xc6,#0xbf
+        ORL     0xbe,#0x4
+        MOV     A,#(mrfiDmaCfg >> 8) & 0xff
+        MOV     0xd5,A
+        MOV     0xd4,#mrfiDmaCfg & 0xff
+        MOV     DPTR,#-0x20ed
+        MOV     A,#0x3c
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x14
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20fe
+        MOV     A,#0x2d
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20fc
+        MOV     A,#0x5
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20d2
+        MOV     A,#-0x72
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20db
+        MOV     A,#0x9
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20f9
+        MOV     A,#0x12
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x22
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x4f
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x3b
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x2d
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x3b
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x22
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x8
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x62
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20eb
+        MOV     A,#0x1d
+        MOVX    @DPTR,A
+        INC     DPTR
+        DEC     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x39
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x50
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x4a
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x10
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x16
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x2a
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x1f
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20dd
+        MOV     A,#-0x78
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x31
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function MRFI_SetLogicalChannel
+        MOV     R1,#0x0
+        LCALL   MRFI_SetLogicalChannel
+        MOV     R6,#0x0
+        MOV     R7,#0x0
+        MOV     0xe1,#0x2
+        MOV     ?V0 + 2,#0x15
+??MRFI_Init_5:
+        MOV     DPTR,#-0x20c4
+        MOVX    A,@DPTR
+        ANL     A,#0x50
+        JNZ     ??MRFI_Init_6
+        MOV     ?V0 + 0,#0x4
+        MOV     ?V0 + 1,R6
+??MRFI_Init_7:
+        MOV     A,0xa8
+        MOV     ?V0 + 3,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 3
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     R0,?V0 + 0
+        MOV     R1,?V0 + 1
+        MOV     A,R0
+        ADD     A,#-0x1
+        MOV     ?V0 + 0,A
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     ?V0 + 1,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_Init_7
+        DEC     ?V0 + 2
+        MOV     A,?V0 + 2
+        JNZ     ??MRFI_Init_5
+??MRFI_Init_6:
+        MOV     R2,#0x10
+??MRFI_Init_8:
+        MOV     A,R6
+        CLR     C
+        RLC     A
+        MOV     R6,A
+        MOV     A,R7
+        RLC     A
+        MOV     R7,A
+        MOV     DPTR,#-0x20c6
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.0
+        CLR     A
+        RLC     A
+        MOV     R0,A
+        MOV     A,R6
+        ORL     A,R0
+        MOV     R6,A
+        DEC     R2
+        MOV     A,R2
+        JNZ     ??MRFI_Init_8
+        MOV     A,#-0x80
+        ORL     A,R6
+        MOV     0xbc,A
+        MOV     A,R7
+        MOV     0xbc,A
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_Init_9:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Init_9
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     DPTR,#sReplyDelayScalar
+        MOV     A,#0x34
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#sBackoffHelper
+        MOV     A,#-0x1e
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x4
+        MOVX    @DPTR,A
+        ORL     0x9a,#0x1
+        SETB    0xa8.7
+        MOV     R7,A
+        LJMP    ?FUNC_LEAVE_XDATA
+        REQUIRE _A_IP0xx
+        REQUIRE _A_IP1xx
+        REQUIRE _A_IEN0
+        REQUIRE SLEEP
+        REQUIRE CLKCON
+        REQUIRE DMA0CFGH
+        REQUIRE DMA0CFGL
+        REQUIRE RFST
+        REQUIRE RNDL
+        REQUIRE IEN2
+        REQUIRE RFIM
+        REQUIRE DMAARM
+        REQUIRE DMAIRQ
+        REQUIRE S1CON
+        REQUIRE RFIF
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// static __near_func __xdata_reentrant bool mrfi_TxDone(void)
+mrfi_TxDone:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     A,0xe9
+        MOV     C,0xE0 /* A   */.4
+        JC      ??mrfi_TxDone_0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0xd
+        JZ      ??mrfi_TxDone_0
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??mrfi_TxDone_1
+??mrfi_TxDone_0:
+        SETB    B.0
+        SJMP    ??mrfi_TxDone_2
+??mrfi_TxDone_1:
+        CLR     B.0
+??mrfi_TxDone_2:
+        MOV     C,B.0
+        POP     DPH
+        POP     DPL
+        ANL     ?DPS,#0xfe
+        RET
+        REQUIRE RFIF
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant uint8_t MRFI_Transmit(mrfiPacket_t *, uint8_t)
+MRFI_Transmit:
+        CODE
+        MOV     A,#-0xe
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 14
+        ; Auto size: 0
+        MOV     ?V0 + 6,R1
+        MOV     ?V0 + 0,#0x0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_0
+        CLR     0xa8.7
+??MRFI_Transmit_1:
+        SJMP    ??MRFI_Transmit_1
+??MRFI_Transmit_0:
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_Transmit_2:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_2
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     0xd6,#-0x7f
+        MOV     0xe1,#0x4
+??MRFI_Transmit_3:
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_3
+        MOV     0xd1,#-0x2
+        MOV     A,R3
+        MOV     ?V0 + 4,A
+        MOV     DPTR,#mrfiDmaCfg
+        MOVX    @DPTR,A
+        MOV     A,R2
+        MOV     ?V0 + 1,A
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x20
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x41
+        MOVX    @DPTR,A
+        MOV     A,R1
+        JNZ     ??MRFI_Transmit_4
+        ORL     0xd6,#0x1
+        MOV     0xe1,#0x3
+??MRFI_Transmit_5:
+        MOV     A,0xe9
+        MOV     C,0xE0 /* A   */.4
+        JNC     ??MRFI_Transmit_5
+??MRFI_Transmit_6:
+        MOV     0xe9,#-0x11
+        LJMP    ??MRFI_Transmit_7
+??MRFI_Transmit_4:
+        MOV     A,#0x1
+        XRL     A,?V0 + 6
+        JZ      ??MRFI_Transmit_8
+        CLR     0xa8.7
+??MRFI_Transmit_9:
+        SJMP    ??MRFI_Transmit_9
+??MRFI_Transmit_8:
+        MOV     DPTR,#??ccaRetries
+        MOV     A,#0x4
+        LJMP    ??MRFI_Transmit_10
+??MRFI_Transmit_11:
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_Transmit_12:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_12
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        ORL     0xb4,#0x4
+        MOV     A,0xbc
+        ANL     A,#0xf
+        INC     A
+        MOV     ?V0 + 5,A
+??MRFI_Transmit_13:
+        MOV     DPTR,#sBackoffHelper
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        MOV     ?V0 + 2,R2
+        MOV     ?V0 + 3,R3
+        MOV     A,#0x4
+        MOV     R0,#?V0 + 2
+        LCALL   ?US_SHR
+        MOV     R6,?V0 + 2
+        MOV     R7,?V0 + 3
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??MRFI_Transmit_14
+??MRFI_Transmit_15:
+        MOV     A,0xa8
+        MOV     ?V0 + 2,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 2
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_Transmit_15
+??MRFI_Transmit_14:
+        DEC     ?V0 + 5
+        MOV     A,?V0 + 5
+        JNZ     ??MRFI_Transmit_13
+        MOV     DPTR,#??ccaRetries
+        MOVX    A,@DPTR
+        DEC     A
+        MOVX    @DPTR,A
+        MOV     0xd6,#-0x7f
+        MOV     0xe1,#0x4
+??MRFI_Transmit_16:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_16
+        MOV     0xd1,#-0x2
+        MOV     A,?V0 + 4
+        MOV     DPTR,#mrfiDmaCfg
+        MOVX    @DPTR,A
+        MOV     A,?V0 + 1
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x20
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x41
+??MRFI_Transmit_10:
+        MOVX    @DPTR,A
+        ORL     0xd6,#0x1
+        MOV     0xe1,#0x2
+??MRFI_Transmit_17:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0xd
+        JNZ     ??MRFI_Transmit_17
+        MOV     ?V0 + 2,#0x15
+??MRFI_Transmit_18:
+        MOV     DPTR,#-0x20c4
+        MOVX    A,@DPTR
+        ANL     A,#0x50
+        JNZ     ??MRFI_Transmit_19
+        MOV     R6,#0x4
+        MOV     R7,#0x0
+??MRFI_Transmit_20:
+        MOV     A,0xa8
+        MOV     ?V0 + 3,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 3
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_Transmit_20
+        DEC     ?V0 + 2
+        MOV     A,?V0 + 2
+        JNZ     ??MRFI_Transmit_18
+??MRFI_Transmit_19:
+        MOV     0xe1,#0x3
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0xd
+        JZ      ??MRFI_Transmit_21
+        ; Setup parameters for call to function Mrfi_DelayUsecLong
+        MOV     ?V0 + 2,#mrfi_TxDone & 0xff
+        MOV     ?V0 + 3,#(mrfi_TxDone >> 8) & 0xff
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     ?V0 + 2,#-0x1c
+        MOV     ?V0 + 3,#0x0
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     DPTR,#__Constant_2
+        LCALL   ?XLOAD_R2345
+        LCALL   Mrfi_DelayUsecLong
+        MOV     A,#0x4
+        LCALL   ?DEALLOC_XSTACK8
+        LJMP    ??MRFI_Transmit_6
+??MRFI_Transmit_21:
+        MOV     DPTR,#??ccaRetries
+        MOVX    A,@DPTR
+        JZ      $+5
+        LJMP    ??MRFI_Transmit_11
+        MOV     ?V0 + 0,#0x1
+??MRFI_Transmit_7:
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_Transmit_22:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Transmit_22
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_Transmit_23
+        MOV     DPTR,#mrfiDmaCfg
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        MOV     A,#(mrfiIncomingPacket >> 8) & 0xff
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#mrfiIncomingPacket & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x11
+        MOVX    @DPTR,A
+        MOV     0xd6,#-0x7f
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 2,#0x2e
+        MOV     ?V0 + 3,#0x0
+        MOV     R0,#?V0 + 2
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        ORL     0xd6,#0x1
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     0xe1,#0x2
+        ORL     0x91,#0x10
+??MRFI_Transmit_23:
+        MOV     R1,?V0 + 0
+        MOV     R7,#0x7
+        LJMP    ?FUNC_LEAVE_XDATA
+        REQUIRE _A_IEN0
+        REQUIRE DMAARM
+        REQUIRE RFST
+        REQUIRE RFIF
+        REQUIRE S1CON
+        REQUIRE RFIM
+        REQUIRE DMAIRQ
+        REQUIRE ADCCON1
+        REQUIRE RNDL
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// uint8_t MRFI_Transmit::ccaRetries
+??ccaRetries:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_Receive(mrfiPacket_t *)
+MRFI_Receive:
+        CODE
+        MOV     A,#-0x8
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     DPL,R2
+        MOV     DPH,R3
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOV     DPTR/*1*/,#mrfiIncomingPacket
+        MOV     A,#0x30
+        LCALL   ?MOVE_LONG8_XDATA_XDATA_2DPTR
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        LJMP    ??Subroutine5_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant __interrupt void MRFI_RfIsr(void)
+MRFI_RfIsr:
+        CODE
+        PUSH    A
+        MOV     A,#-0x10
+        LCALL   ?INTERRUPT_ENTER_XSP
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 18
+        ; Auto size: 0
+        MOV     C,0xa8.7
+        CLR     A
+        RLC     A
+        MOV     R6,A
+        SETB    0xa8.7
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JZ      ??MRFI_RfIsr_0
+        CLR     0xa8.7
+??MRFI_RfIsr_1:
+        SJMP    ??MRFI_RfIsr_1
+??MRFI_RfIsr_0:
+        MOV     A,0xe9
+        MOV     C,0xE0 /* A   */.4
+        JC      $+5
+        LJMP    ??MRFI_RfIsr_2
+        MOV     A,0xe9
+        MOV     C,0xE0 /* A   */.6
+        JC      $+5
+        LJMP    ??MRFI_RfIsr_2
+        MOV     0xe9,#-0x11
+        MOV     0xe9,#-0x41
+        MOV     0x9b,#0x0
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_RfIsr_3:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_RfIsr_3
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x2e
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     DPTR,#mrfiDmaCfg
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        MOV     A,#(mrfiIncomingPacket >> 8) & 0xff
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#mrfiIncomingPacket & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x11
+        MOVX    @DPTR,A
+        MOV     0xd6,#-0x7f
+        ; Setup parameters for call to function memset
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        ORL     0xd6,#0x1
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     0xe1,#0x2
+        ORL     0x91,#0x10
+        LJMP    ??MRFI_RfIsr_4
+??MRFI_RfIsr_2:
+        MOV     0xe9,#-0x11
+        MOV     0x9b,#0x0
+        ; Setup parameters for call to function memmove
+        MOV     ?V0 + 0,#0x2
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     DPTR,#mrfiIncomingPacket
+        MOVX    A,@DPTR
+        INC     A
+        MOV     R0,A
+        MOV     A,#mrfiIncomingPacket & 0xff
+        ADD     A,R0
+        MOV     R4,A
+        MOV     A,#(mrfiIncomingPacket >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     R5,A
+        MOV     R2,#(mrfiIncomingPacket + 46) & 0xff
+        MOV     R3,#((mrfiIncomingPacket + 46) >> 8) & 0xff
+        LCALL   memmove
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOVX    A,@DPTR
+        MOV     R2,A
+        MOV     DPTR,#mrfiIncomingPacket + 47
+        MOVX    A,@DPTR
+        MOV     C,0xE0 /* A   */.7
+        JC      $+5
+        LJMP    ??MRFI_RfIsr_5
+        MOV     A,R2
+        ADD     A,#0x1
+        MOV     R0,A
+        CLR     A
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     A,R0
+        SUBB    A,#0x2f
+        MOV     A,R1
+        SUBB    A,#0x0
+        CLR     C
+        XRL     A,PSW
+        RLC     A
+        JC      $+5
+        LJMP    ??MRFI_RfIsr_5
+        MOV     A,R2
+        CLR     C
+        SUBB    A,#0xb
+        JNC     $+5
+        LJMP    ??MRFI_RfIsr_5
+        MOV     DPTR,#mrfiRxFilterEnabled
+        MOVX    A,@DPTR
+        JZ      ??MRFI_RfIsr_6
+        MOV     R5,#0x0
+        MOV     R4,#0x0
+        MOV     R0,#(mrfiIncomingPacket + 1) & 0xff
+        MOV     R1,#((mrfiIncomingPacket + 1) >> 8) & 0xff
+        MOV     R2,#mrfiRxFilterAddr & 0xff
+        MOV     R3,#(mrfiRxFilterAddr >> 8) & 0xff
+        MOV     DPL,#mrfiBroadcastAddr & 0xff
+        MOV     DPH,#(mrfiBroadcastAddr >> 8) & 0xff
+??MRFI_RfIsr_7:
+        MOV     ?DPL1,R0
+        MOV     ?DPH1,R1
+        ; Selecting DPTR 1 by inc-method (DPSEL=x)
+        ORL     ?DPS,#0x1
+        MOVX    A,@DPTR/*1*/
+        MOV     R7,A
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+        MOVX    A,@DPTR/*1*/
+        XRL     A,R7
+        JNZ     ??MRFI_RfIsr_8
+        INC     R5
+??MRFI_RfIsr_8:
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOVX    A,@DPTR
+        XRL     A,R7
+        JNZ     ??MRFI_RfIsr_9
+        INC     R4
+??MRFI_RfIsr_9:
+        INC     DPTR
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        MOV     R2,?DPL1
+        MOV     R3,?DPH1
+        MOV     ?DPL1,R0
+        MOV     ?DPH1,R1
+        INC     DPTR/*1*/
+        MOV     R0,?DPL1
+        MOV     R1,?DPH1
+        MOV     A,DPL
+        XRL     A,#(mrfiBroadcastAddr + 4) & 0xff
+        JNZ     ??MRFI_RfIsr_10
+        MOV     A,DPH
+        XRL     A,#((mrfiBroadcastAddr + 4) >> 8) & 0xff
+??MRFI_RfIsr_10:
+        JNZ     ??MRFI_RfIsr_7
+        MOV     A,#0x4
+        XRL     A,R4
+        JZ      ??MRFI_RfIsr_6
+        MOV     A,#0x4
+        XRL     A,R5
+        JNZ     ??MRFI_RfIsr_5
+??MRFI_RfIsr_6:
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiIncomingPacket + 46
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        CLR     C
+        SUBB    A,#-0x80
+        JC      ??MRFI_RfIsr_11
+        MOV     R0,?V0 + 0
+        MOV     R1,#-0x1
+        MOV     R2,#0x2
+        MOV     R3,#0x0
+        LCALL   ?S_DIV_MOD
+        MOV     A,R0
+        ADD     A,#-0x49
+        MOV     R0,A
+        MOV     A,R1
+        SJMP    ??MRFI_RfIsr_12
+??MRFI_RfIsr_11:
+        MOV     A,?V0 + 0
+        CLR     C
+        RRC     A
+        ADD     A,#-0x49
+        MOV     R0,A
+        CLR     A
+??MRFI_RfIsr_12:
+        ADDC    A,#-0x1
+        MOV     R1,A
+        CLR     C
+        MOV     A,R0
+        SUBB    A,#-0x80
+        MOV     A,R1
+        SUBB    A,#-0x1
+        MOV     C,0xD0 /* PSW */.2
+        XRL     A,PSW
+        RLC     A
+        JNC     ??MRFI_RfIsr_13
+        MOV     R0,#-0x80
+??MRFI_RfIsr_13:
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        CLR     0xE0 /* A   */.7
+        MOVX    @DPTR,A
+        ; Setup parameters for call to function MRFI_RxCompleteISR
+        LCALL   MRFI_RxCompleteISR
+??MRFI_RfIsr_5:
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x2e
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        ORL     0xd6,#0x1
+??MRFI_RfIsr_4:
+        MOV     A,R6
+        MOV     C,0xE0 /* A   */.0
+        MOV     0xa8.7,C
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x2
+        LJMP    ?INTERRUPT_LEAVE_XSP
+        REQUIRE _A_IEN0
+        REQUIRE RFIF
+        REQUIRE S1CON
+        REQUIRE DMAARM
+        REQUIRE RFST
+        REQUIRE RFIM
+        REQUIRE DMAIRQ
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_Sleep(void)
+MRFI_Sleep:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JZ      ??MRFI_Sleep_0
+        MOV     C,0xa8.7
+        CLR     A
+        RLC     A
+        MOV     R0,A
+        CLR     0xa8.7
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_Sleep_1
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_Sleep_2:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_Sleep_2
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+??MRFI_Sleep_1:
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.0
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+??MRFI_Sleep_0:
+        SJMP    ??Subroutine4_0
+        REQUIRE _A_IEN0
+        REQUIRE RFIM
+        REQUIRE RFST
+        REQUIRE DMAARM
+        REQUIRE DMAIRQ
+        REQUIRE S1CON
+        REQUIRE RFIF
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_WakeUp(void)
+MRFI_WakeUp:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     A,0xc6
+        MOV     C,0xE0 /* A   */.6
+        JNC     ??MRFI_WakeUp_0
+        CLR     0xa8.7
+??MRFI_WakeUp_1:
+        SJMP    ??MRFI_WakeUp_1
+??MRFI_WakeUp_0:
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_WakeUp_2
+        MOV     DPTR,#-0x20e4
+        MOV     A,#-0x16
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x2a
+        MOVX    @DPTR,A
+        INC     DPTR
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+        MOV     0xe1,#0x4
+??MRFI_WakeUp_3:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_WakeUp_3
+??MRFI_WakeUp_2:
+        SJMP    ??Subroutine4_0
+        REQUIRE CLKCON
+        REQUIRE _A_IEN0
+        REQUIRE RFST
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+// static unsigned char const mrfiLogicalChanTable[4]
+mrfiLogicalChanTable:
+        DS 4
+        REQUIRE `?<Initializer for mrfiLogicalChanTable>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA8
+// static unsigned char const mrfiRFPowerTable[3]
+mrfiRFPowerTable:
+        DS 3
+        REQUIRE `?<Initializer for mrfiRFPowerTable>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA8
+// static uint8_t mrfiRxFilterEnabled
+mrfiRxFilterEnabled:
+        DS 1
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+// static uint8_t mrfiRxFilterAddr[4]
+mrfiRxFilterAddr:
+        DATA32
+        DS 4
+        REQUIRE `?<Initializer for mrfiRxFilterAddr>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+__Constant_2:
+        DS 4
+        REQUIRE `?<Initializer for __Constant_2>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA32
+__Constant_ffffffff:
+        DS 4
+        REQUIRE `?<Initializer for __Constant_ffffffff>`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        MOVX    @DPTR,A
+        REQUIRE ??Subroutine4_0
+        ; // Fall through to label ??Subroutine4_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+??Subroutine4_0:
+        POP     DPH
+        POP     DPL
+        RET
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant uint8_t MRFI_RandomByte(void)
+MRFI_RandomByte:
+        CODE
+        ; Saved register size: 0
+        ; Auto size: 0
+        ORL     0xb4,#0x4
+        MOV     R1,0xbc
+        ANL     ?DPS,#0xfe
+        RET
+        REQUIRE ADCCON1
+        REQUIRE RNDL
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_RxOn(void)
+MRFI_RxOn:
+        CODE
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_RxOn_0
+        CLR     0xa8.7
+??MRFI_RxOn_1:
+        SJMP    ??MRFI_RxOn_1
+??MRFI_RxOn_0:
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JZ      ??MRFI_RxOn_2
+        MOV     A,#0x3
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiDmaCfg
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        MOV     A,#(mrfiIncomingPacket >> 8) & 0xff
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#mrfiIncomingPacket & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x11
+        MOVX    @DPTR,A
+        MOV     0xd6,#-0x7f
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x2e
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        ORL     0xd6,#0x1
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     0xe1,#0x2
+        ORL     0x91,#0x10
+??MRFI_RxOn_2:
+        LJMP    ?Subroutine2
+        REQUIRE _A_IEN0
+        REQUIRE DMAARM
+        REQUIRE S1CON
+        REQUIRE RFIF
+        REQUIRE RFST
+        REQUIRE RFIM
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_RxIdle(void)
+MRFI_RxIdle:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_RxIdle_0
+        CLR     0xa8.7
+??MRFI_RxIdle_1:
+        SJMP    ??MRFI_RxIdle_1
+??MRFI_RxIdle_0:
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_RxIdle_2
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_RxIdle_3:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_RxIdle_3
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     DPTR,#mrfiRadioState
+        MOV     A,#0x2
+        MOVX    @DPTR,A
+??MRFI_RxIdle_2:
+        LJMP    ??Subroutine4_0
+        REQUIRE _A_IEN0
+        REQUIRE RFIM
+        REQUIRE RFST
+        REQUIRE DMAARM
+        REQUIRE DMAIRQ
+        REQUIRE S1CON
+        REQUIRE RFIF
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_DelayMs(uint16_t)
+MRFI_DelayMs:
+        CODE
+        MOV     A,#-0xa
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     ?V0 + 0,R2
+        MOV     ?V0 + 1,R3
+        MOV     A,R2
+        ORL     A,?V0 + 1
+        JZ      ??MRFI_DelayMs_0
+??MRFI_DelayMs_1:
+        MOV     R6,#0x1f
+        MOV     R7,#0x0
+??MRFI_DelayMs_2:
+        MOV     A,0xa8
+        MOV     ?V0 + 2,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 2
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_DelayMs_2
+        MOV     A,?V0 + 0
+        ADD     A,#-0x1
+        MOV     ?V0 + 0,A
+        MOV     A,?V0 + 1
+        ADDC    A,#-0x1
+        MOV     ?V0 + 1,A
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        JNZ     ??MRFI_DelayMs_1
+??MRFI_DelayMs_0:
+        REQUIRE ?Subroutine3
+        REQUIRE _A_IEN0
+        ; // Fall through to label ?Subroutine3
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        MOV     R7,#0x3
+        LJMP    ?FUNC_LEAVE_XDATA
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_ReplyDelay()
+MRFI_ReplyDelay:
+        CODE
+        MOV     A,#-0xa
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     DPTR,#sReplyDelayScalar
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 1,A
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     DPTR,#sReplyDelayContext
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        JZ      ??MRFI_ReplyDelay_0
+??MRFI_ReplyDelay_1:
+        MOV     R6,#0x1f
+        MOV     R7,#0x0
+??MRFI_ReplyDelay_2:
+        MOV     A,0xa8
+        MOV     ?V0 + 2,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 2
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     DPTR,#sKillSem
+        MOVX    A,@DPTR
+        JNZ     ??MRFI_ReplyDelay_3
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_ReplyDelay_2
+??MRFI_ReplyDelay_3:
+        MOVX    A,@DPTR
+        JNZ     ??MRFI_ReplyDelay_0
+        MOV     A,?V0 + 0
+        ADD     A,#-0x1
+        MOV     ?V0 + 0,A
+        MOV     A,?V0 + 1
+        ADDC    A,#-0x1
+        MOV     ?V0 + 1,A
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        JNZ     ??MRFI_ReplyDelay_1
+??MRFI_ReplyDelay_0:
+        MOV     A,0xa8
+        MOV     R0,A
+        CLR     0xa8.7
+        MOV     DPTR,#sKillSem
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#sReplyDelayContext
+        MOVX    @DPTR,A
+        MOV     A,R0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        LJMP    ?Subroutine3
+        REQUIRE _A_IEN0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant bool Mrfi_DelayUsecLong(uint32_t, uint16_t, bool (*)(void))
+Mrfi_DelayUsecLong:
+        CODE
+        MOV     A,#-0xf
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 17
+        ; Auto size: 0
+        MOV     ?V0 + 4,R2
+        MOV     ?V0 + 5,R3
+        MOV     ?V0 + 6,R4
+        MOV     ?V0 + 7,R5
+        MOV     A,#0x11
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?V0 + 1,A
+        MOV     A,#0x13
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     ?DPL1,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     ?DPH1,A
+        CLR     ?VB.0
+??Mrfi_DelayUsecLong_0:
+        MOV     A,?V0 + 4
+        ORL     A,?V0 + 5
+        ORL     A,?V0 + 6
+        ORL     A,?V0 + 7
+        JZ      ??Mrfi_DelayUsecLong_1
+        MOV     R6,#0x1f
+        MOV     R7,#0x0
+??Mrfi_DelayUsecLong_2:
+        MOV     A,0xa8
+        MOV     ?V0 + 2,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 2
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,?DPL1
+        ORL     A,?DPH1
+        JZ      ??Mrfi_DelayUsecLong_3
+        ; Setup parameters for indirect call
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        LCALL   ?CALL_IND
+        MOV     ?VB.0,C
+        JC      ??Mrfi_DelayUsecLong_4
+??Mrfi_DelayUsecLong_3:
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??Mrfi_DelayUsecLong_2
+??Mrfi_DelayUsecLong_4:
+        MOV     DPTR,#__Constant_ffffffff
+        MOV     R0,#?V0 + 4
+        LCALL   ?L_ADD_X
+        MOV     C,?VB.0
+        JNC     ??Mrfi_DelayUsecLong_0
+??Mrfi_DelayUsecLong_1:
+        MOV     ?V0 + 2,?V0 + 0
+        MOV     ?V0 + 3,?V0 + 1
+        MOV     A,#0x4
+        MOV     R0,#?V0 + 2
+        LCALL   ?US_SHR
+        MOV     R6,?V0 + 2
+        MOV     R7,?V0 + 3
+        MOV     C,?VB.0
+        JC      ??Mrfi_DelayUsecLong_5
+        MOV     A,?V0 + 0
+        ORL     A,?V0 + 1
+        JZ      ??Mrfi_DelayUsecLong_5
+??Mrfi_DelayUsecLong_6:
+        MOV     A,0xa8
+        MOV     ?V0 + 0,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 0
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,?DPL1
+        ORL     A,?DPH1
+        JZ      ??Mrfi_DelayUsecLong_7
+        ; Setup parameters for indirect call
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        LCALL   ?CALL_IND
+        MOV     ?VB.0,C
+        JC      ??Mrfi_DelayUsecLong_5
+??Mrfi_DelayUsecLong_7:
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??Mrfi_DelayUsecLong_6
+??Mrfi_DelayUsecLong_5:
+        MOV     C,?VB.0
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x8
+        LJMP    ?FUNC_LEAVE_XDATA
+        REQUIRE _A_IEN0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_PostKillSem(void)
+MRFI_PostKillSem:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#sReplyDelayContext
+        MOVX    A,@DPTR
+        JZ      ??MRFI_PostKillSem_0
+        MOV     DPTR,#sKillSem
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+??MRFI_PostKillSem_0:
+        LJMP    ??Subroutine4_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant int8_t MRFI_Rssi(void)
+MRFI_Rssi:
+        CODE
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JZ      ??MRFI_Rssi_0
+        CLR     0xa8.7
+??MRFI_Rssi_1:
+        SJMP    ??MRFI_Rssi_1
+??MRFI_Rssi_0:
+        MOV     ?V0 + 0,#0x15
+??MRFI_Rssi_2:
+        MOV     DPTR,#-0x20c4
+        MOVX    A,@DPTR
+        ANL     A,#0x50
+        JNZ     ??MRFI_Rssi_3
+        MOV     R6,#0x4
+        MOV     R7,#0x0
+??MRFI_Rssi_4:
+        MOV     A,0xa8
+        MOV     ?V0 + 1,A
+        CLR     0xa8.7
+        ; Setup parameters for call to function BSP_Delay
+        MOV     R2,#0x10
+        MOV     R3,#0x0
+        LCALL   BSP_Delay
+        MOV     A,?V0 + 1
+        MOV     C,0xE0 /* A   */.7
+        MOV     0xa8.7,C
+        MOV     A,0xa8
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,R7
+        MOV     R1,A
+        MOV     A,R0
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R1
+        ADDC    A,#-0x1
+        MOV     R7,A
+        MOV     A,R0
+        ORL     A,R1
+        JNZ     ??MRFI_Rssi_4
+        DEC     ?V0 + 0
+        MOV     A,?V0 + 0
+        JNZ     ??MRFI_Rssi_2
+??MRFI_Rssi_3:
+        MOV     DPTR,#-0x20c6
+        MOVX    A,@DPTR
+        MOV     ?V0 + 0,A
+        CLR     C
+        SUBB    A,#-0x80
+        JC      ??MRFI_Rssi_5
+        MOV     R0,?V0 + 0
+        MOV     R1,#-0x1
+        MOV     R2,#0x2
+        MOV     R3,#0x0
+        LCALL   ?S_DIV_MOD
+        MOV     A,R0
+        ADD     A,#-0x49
+        MOV     R0,A
+        MOV     A,R1
+        SJMP    ??MRFI_Rssi_6
+??MRFI_Rssi_5:
+        MOV     A,?V0 + 0
+        CLR     C
+        RRC     A
+        ADD     A,#-0x49
+        MOV     R0,A
+        CLR     A
+??MRFI_Rssi_6:
+        ADDC    A,#-0x1
+        MOV     R1,A
+        CLR     C
+        MOV     A,R0
+        SUBB    A,#-0x80
+        MOV     A,R1
+        SUBB    A,#-0x1
+        MOV     C,0xD0 /* PSW */.2
+        XRL     A,PSW
+        RLC     A
+        JNC     ??MRFI_Rssi_7
+        MOV     R0,#-0x80
+??MRFI_Rssi_7:
+        MOV     A,R0
+        MOV     R1,A
+        LJMP    ?Subroutine2
+        REQUIRE _A_IEN0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant uint8_t MRFI_GetRadioState(void)
+MRFI_GetRadioState:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LJMP    ??Subroutine4_0
+//   96 #include "radios/common/mrfi_f1f2.c"
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_SetLogicalChannel(uint8_t)
+MRFI_SetLogicalChannel:
+        CODE
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+        CLR     C
+        SUBB    A,#0x4
+        JC      ??MRFI_SetLogicalChannel_0
+        CLR     0xa8.7
+??MRFI_SetLogicalChannel_1:
+        SJMP    ??MRFI_SetLogicalChannel_1
+??MRFI_SetLogicalChannel_0:
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_SetLogicalChannel_2:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_SetLogicalChannel_2
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     ?V0 + 0,R6
+        MOV     A,#mrfiLogicalChanTable & 0xff
+        ADD     A,?V0 + 0
+        MOV     DPL,A
+        MOV     A,#(mrfiLogicalChanTable >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     DPTR,#-0x20fa
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_SetLogicalChannel_3
+        MOV     DPTR,#mrfiDmaCfg
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        MOV     A,#(mrfiIncomingPacket >> 8) & 0xff
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#mrfiIncomingPacket & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x11
+        MOVX    @DPTR,A
+        MOV     0xd6,#-0x7f
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x2e
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        ORL     0xd6,#0x1
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     0xe1,#0x2
+        ORL     0x91,#0x10
+??MRFI_SetLogicalChannel_3:
+        REQUIRE ?Subroutine2
+        REQUIRE _A_IEN0
+        REQUIRE DMAARM
+        REQUIRE S1CON
+        REQUIRE RFIF
+        REQUIRE RFST
+        REQUIRE RFIM
+        REQUIRE DMAIRQ
+        ; // Fall through to label ?Subroutine2
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        MOV     R7,#0x2
+        LJMP    ?FUNC_LEAVE_XDATA
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_SetRFPwr(uint8_t)
+MRFI_SetRFPwr:
+        CODE
+        MOV     A,#-0x9
+        LCALL   ?FUNC_ENTER_XDATA
+        ; Saved register size: 9
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+        CLR     C
+        SUBB    A,#0x3
+        JC      ??MRFI_SetRFPwr_0
+        CLR     0xa8.7
+??MRFI_SetRFPwr_1:
+        SJMP    ??MRFI_SetRFPwr_1
+??MRFI_SetRFPwr_0:
+        ANL     0x91,#0xef
+        MOV     0xe1,#0x4
+??MRFI_SetRFPwr_2:
+        MOV     DPTR,#-0x20c5
+        MOVX    A,@DPTR
+        XRL     A,#0x1
+        JNZ     ??MRFI_SetRFPwr_2
+        MOV     0xd6,#-0x7f
+        MOV     0xd1,#-0x2
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     ?V0 + 0,R6
+        MOV     A,#mrfiRFPowerTable & 0xff
+        ADD     A,?V0 + 0
+        MOV     DPL,A
+        MOV     A,#(mrfiRFPowerTable >> 8) & 0xff
+        ADDC    A,#0x0
+        MOV     DPH,A
+        MOVX    A,@DPTR
+        MOV     DPTR,#-0x20d2
+        MOVX    @DPTR,A
+        MOV     DPTR,#mrfiRadioState
+        MOVX    A,@DPTR
+        XRL     A,#0x3
+        JNZ     ??MRFI_SetRFPwr_3
+        MOV     DPTR,#mrfiDmaCfg
+        MOV     A,#-0x21
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x27
+        MOVX    @DPTR,A
+        MOV     A,#(mrfiIncomingPacket >> 8) & 0xff
+        INC     DPTR
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#mrfiIncomingPacket & 0xff
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#-0x80
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x30
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x13
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,#0x11
+        MOVX    @DPTR,A
+        MOV     0xd6,#-0x7f
+        ; Setup parameters for call to function memset
+        MOV     ?V0 + 0,#0x2e
+        MOV     ?V0 + 1,#0x0
+        MOV     R0,#?V0 + 0
+        LCALL   ?PUSH_XSTACK_I_TWO
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#mrfiIncomingPacket & 0xff
+        MOV     R3,#(mrfiIncomingPacket >> 8) & 0xff
+        LCALL   memset
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        ORL     0xd6,#0x1
+        MOV     0x9b,#0x0
+        MOV     0xe9,#-0x11
+        MOV     0xe1,#0x2
+        ORL     0x91,#0x10
+??MRFI_SetRFPwr_3:
+        LJMP    ?Subroutine2
+        REQUIRE _A_IEN0
+        REQUIRE DMAARM
+        REQUIRE S1CON
+        REQUIRE RFIF
+        REQUIRE RFST
+        REQUIRE RFIM
+        REQUIRE DMAIRQ
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant uint8_t MRFI_SetRxAddrFilter(uint8_t *)
+MRFI_SetRxAddrFilter:
+        CODE
+        MOV     A,#-0x8
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        MOVX    A,@DPTR
+        MOV     R0,A
+        MOV     A,#-0x1
+        XRL     A,R0
+        JNZ     ??MRFI_SetRxAddrFilter_0
+        MOV     R1,#0x1
+        SJMP    ??MRFI_SetRxAddrFilter_1
+??MRFI_SetRxAddrFilter_0:
+        MOV     A,R0
+        MOV     DPTR,#-0x20fb
+        MOVX    @DPTR,A
+        MOV     R2,#mrfiRxFilterAddr & 0xff
+        MOV     R3,#(mrfiRxFilterAddr >> 8) & 0xff
+        MOV     DPL,?DPL1
+        MOV     DPH,?DPH1
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        INC     DPTR/*1*/
+        MOV     R4,?DPL1
+        MOV     R5,?DPH1
+??MRFI_SetRxAddrFilter_2:
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOVX    A,@DPTR
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        MOVX    @DPTR/*1*/,A
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        INC     DPTR
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        MOV     R2,?DPL1
+        MOV     R3,?DPH1
+        MOV     R0,DPL
+        MOV     R1,DPH
+        MOV     A,R4
+        XRL     A,R0
+        JNZ     ??MRFI_SetRxAddrFilter_3
+        MOV     A,R5
+        XRL     A,R1
+??MRFI_SetRxAddrFilter_3:
+        JNZ     ??MRFI_SetRxAddrFilter_2
+        MOV     R1,#0x0
+??MRFI_SetRxAddrFilter_1:
+        REQUIRE ?Subroutine1
+        ; // Fall through to label ?Subroutine1
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        REQUIRE ??Subroutine5_0
+        ; // Fall through to label ??Subroutine5_0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+??Subroutine5_0:
+        LCALL   ?XSTACK_RESTORE_DPTRS_1
+        MOV     A,#0x2
+        LCALL   ?DEALLOC_XSTACK8
+        MOV     R7,#0x1
+        LJMP    ?FUNC_LEAVE_XDATA
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_EnableRxAddrFilter(void)
+MRFI_EnableRxAddrFilter:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiRxFilterAddr
+        MOVX    A,@DPTR
+        CPL     A
+        JNZ     ??MRFI_EnableRxAddrFilter_0
+        CLR     0xa8.7
+??MRFI_EnableRxAddrFilter_1:
+        SJMP    ??MRFI_EnableRxAddrFilter_1
+??MRFI_EnableRxAddrFilter_0:
+        MOV     DPTR,#mrfiRxFilterEnabled
+        MOV     A,#0x1
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20fd
+        MOV     A,#0x7
+        LJMP    ?Subroutine0
+        REQUIRE _A_IEN0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant void MRFI_DisableRxAddrFilter(void)
+MRFI_DisableRxAddrFilter:
+        CODE
+        PUSH    DPL
+        PUSH    DPH
+        ; Saved register size: 2
+        ; Auto size: 0
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOV     DPTR,#mrfiRxFilterEnabled
+        CLR     A
+        MOVX    @DPTR,A
+        MOV     DPTR,#-0x20fd
+        MOV     A,#0x4
+        LJMP    ?Subroutine0
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+// __near_func __xdata_reentrant uint8_t MRFI_RxAddrIsFiltered(uint8_t *)
+MRFI_RxAddrIsFiltered:
+        CODE
+        MOV     A,#-0x8
+        LCALL   ?FUNC_ENTER_XDATA
+        MOV     A,#-0x2
+        LCALL   ?ADD_XSTACK_DISP0_8
+        LCALL   ?XSTACK_SAVE_DPTRS_1
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     DPTR,#mrfiRxFilterEnabled
+        MOVX    A,@DPTR
+        JNZ     ??MRFI_RxAddrIsFiltered_0
+??MRFI_RxAddrIsFiltered_1:
+        MOV     R1,#0x0
+        SJMP    ??MRFI_RxAddrIsFiltered_2
+??MRFI_RxAddrIsFiltered_0:
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     A,R2
+        MOV     R0,A
+        MOV     A,R3
+        MOV     R1,A
+        MOV     R2,#mrfiRxFilterAddr & 0xff
+        MOV     R3,#(mrfiRxFilterAddr >> 8) & 0xff
+        MOV     DPL,#mrfiBroadcastAddr & 0xff
+        MOV     DPH,#(mrfiBroadcastAddr >> 8) & 0xff
+??MRFI_RxAddrIsFiltered_3:
+        MOV     ?DPL1,R0
+        MOV     ?DPH1,R1
+        ; Selecting DPTR 1 by inc-method (DPSEL=x)
+        ORL     ?DPS,#0x1
+        MOVX    A,@DPTR/*1*/
+        MOV     R6,A
+        MOV     ?DPL1,R2
+        MOV     ?DPH1,R3
+        MOVX    A,@DPTR/*1*/
+        XRL     A,R6
+        JNZ     ??MRFI_RxAddrIsFiltered_4
+        INC     R4
+??MRFI_RxAddrIsFiltered_4:
+        ; Selecting DPTR 0 by inc-method (DPSEL=1)
+        INC     ?DPS
+        MOVX    A,@DPTR
+        XRL     A,R6
+        JNZ     ??MRFI_RxAddrIsFiltered_5
+        INC     R5
+??MRFI_RxAddrIsFiltered_5:
+        INC     DPTR
+        ; Selecting DPTR 1 by inc-method (DPSEL=0)
+        INC     ?DPS
+        INC     DPTR/*1*/
+        MOV     R2,?DPL1
+        MOV     R3,?DPH1
+        MOV     ?DPL1,R0
+        MOV     ?DPH1,R1
+        INC     DPTR/*1*/
+        MOV     R0,?DPL1
+        MOV     R1,?DPH1
+        MOV     A,DPL
+        XRL     A,#(mrfiBroadcastAddr + 4) & 0xff
+        JNZ     ??MRFI_RxAddrIsFiltered_6
+        MOV     A,DPH
+        XRL     A,#((mrfiBroadcastAddr + 4) >> 8) & 0xff
+??MRFI_RxAddrIsFiltered_6:
+        JNZ     ??MRFI_RxAddrIsFiltered_3
+        MOV     A,#0x4
+        XRL     A,R5
+        JZ      ??MRFI_RxAddrIsFiltered_1
+        MOV     A,#0x4
+        XRL     A,R4
+        JZ      ??MRFI_RxAddrIsFiltered_1
+        MOV     R1,#0x1
+??MRFI_RxAddrIsFiltered_2:
+        LJMP    ?Subroutine1
+
+        COMMON INTVEC:CODE:ROOT(0)
+        ORG 131
+`??MRFI_RfIsr??INTVEC 131`:
+        LJMP       (MRFI_RfIsr)
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiBroadcastAddr>`:
+        DATA8
+        DB 255
+        DB 255
+        DB 255
+        DB 255
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiLogicalChanTable>`:
+        DATA8
+        DB 20
+        DB 50
+        DB 80
+        DB 110
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiRFPowerTable>`:
+        DATA8
+        DB 14
+        DB 39
+        DB 80
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for mrfiRxFilterAddr>`:
+        DATA8
+        DB 255
+        DB 0
+        DB 0
+        DB 0
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for __Constant_2>`:
+        DATA32
+        DD 2
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for __Constant_ffffffff>`:
+        DATA32
+        DD 4294967295
+
+        END
+//   97 
+//   98 /* ----- Radio Family 3 ----- */
+//   99 #elif (defined MRFI_RADIO_FAMILY3)
+//  100 #include "bsp_external/mrfi_board.c"
+//  101 #include "radios/family3/mrfi_spi.c"
+//  102 #include "radios/family3/mrfi_radio.c"
+//  103 
+//  104 /* ----- Radio Family 4 ----- */
+//  105 #elif (defined MRFI_RADIO_FAMILY4)
+//  106 #include "radios/family4/mrfi_radio.c"
+//  107 
+//  108 /* ----- Radio Family 5 ----- */
+//  109 #elif (defined MRFI_RADIO_FAMILY5)
+//  110 #include "radios/family5/mrfi_radio.c"
+//  111 #include "radios/family5/mrfi_radio_interface.c"
+//  112 
+//  113 /* ----- Radio Family 6 ----- */
+//  114 #elif (defined MRFI_RADIO_FAMILY6)
+//  115 #include "radios/family6/mrfi_radio.c"
+//  116 
+//  117 #else
+//  118 #error "ERROR: Radio family is not defined."
+//  119 #endif
+//  120 
+//  121 
+//  122 /**************************************************************************************************
+//  123  */
+// 
+//     3 bytes in segment INTVEC
+// 3 039 bytes in segment NEAR_CODE
+//    16 bytes in segment SFR_AN
+//    23 bytes in segment XDATA_I
+//    23 bytes in segment XDATA_ID
+//    65 bytes in segment XDATA_Z
+// 
+// 3 054 bytes of CODE  memory (+ 11 bytes shared)
+//     0 bytes of DATA  memory (+ 16 bytes shared)
+//    80 bytes of XDATA memory (+  8 bytes shared)
+//
+//Errors: none
+//Warnings: none

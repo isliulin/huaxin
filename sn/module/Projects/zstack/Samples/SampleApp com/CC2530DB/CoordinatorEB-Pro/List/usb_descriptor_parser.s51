@@ -1,0 +1,1146 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        19/Jun/2016  18:15:49 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\library\usb_descriptor_parser.c           /
+//    Command line       =  -f "C:\Users\freeman\Documents\work\SN\module\Pro /
+//                          jects\zstack\Samples\SampleApp                    /
+//                          com\CC2530DB\..\..\..\Tools\CC2530DB\f8wConfig.cf /
+//                          g" (-DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR  /
+//                          -DDEFAULT_CHANLIST=0x00000800                     /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          "-DCONST=const __code" -DGENERIC=__generic        /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000       /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100   /
+//                          -DREJOIN_POLL_RATE=440)                           /
+//                          C:\Users\freeman\Documents\work\SN\module\Compone /
+//                          nts\usb\library\usb_descriptor_parser.c -D        /
+//                          ZIGBEEPRO -D ZTOOL_P1 -lC                         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\" -lA         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\"             /
+//                          --diag_suppress Pe001,Pa010 -o                    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\CoordinatorEB-Pro\Obj\" -e --debug   /
+//                          --core=plain --dptr=16,1 --data_model=large       /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data_rom                /
+//                          --nr_virtual_regs 16 -I                           /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp com\CC2530DB\" -I     /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\SOURCE\" -I                       /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\ZMAIN\TI2530DB\" -I         /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MT\" -I    /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\HAL\TARGET /
+//                          \CC2530EB\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\MCU\C /
+//                          CSOC\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\OSAL\INCLU /
+//                          DE\" -I "C:\Users\freeman\Documents\work\SN\modul /
+//                          e\Projects\zstack\Samples\SampleApp               /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\AF\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SEC\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SAPI /
+//                          \" -I "C:\Users\freeman\Documents\work\SN\module\ /
+//                          Projects\zstack\Samples\SampleApp                 /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\SYS\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\STACK\ZDO\ /
+//                          " -I "C:\Users\freeman\Documents\work\SN\module\P /
+//                          rojects\zstack\Samples\SampleApp                  /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\F8W\" /
+//                           -I "C:\Users\freeman\Documents\work\SN\module\Pr /
+//                          ojects\zstack\Samples\SampleApp                   /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\" -I  /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          ADDR\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\SERVICES\S /
+//                          DATA\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\INCLUD /
+//                          E\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\HIGH_L /
+//                          EVEL\" -I "C:\Users\freeman\Documents\work\SN\mod /
+//                          ule\Projects\zstack\Samples\SampleApp             /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\" -I "C:\Users\freeman\Documents\work\S /
+//                          N\module\Projects\zstack\Samples\SampleApp        /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\MAC\LOW_LE /
+//                          VEL\srf04\SINGLE_CHIP\" -I                        /
+//                          "C:\Users\freeman\Documents\work\SN\module\Projec /
+//                          ts\zstack\Samples\SampleApp                       /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\librar /
+//                          y\" -I "C:\Users\freeman\Documents\work\SN\module /
+//                          \Projects\zstack\Samples\SampleApp                /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\usb\class_ /
+//                          hid\" -I "C:\Users\freeman\Documents\work\SN\modu /
+//                          le\Projects\zstack\Samples\SampleApp              /
+//                          com\CC2530DB\..\..\..\..\..\COMPONENTS\hal\common /
+//                          \" -Ohz --require_prototypes                      /
+//    List file          =  C:\Users\freeman\Documents\work\SN\module\Project /
+//                          s\zstack\Samples\SampleApp                        /
+//                          com\CC2530DB\CoordinatorEB-Pro\List\usb_descripto /
+//                          r_parser.s51                                      /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME usb_descriptor_parser
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BANKED_ENTER_XDATA
+        EXTERN ?BANKED_LEAVE_XDATA
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN ?V0
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??usbdpFindNext?relay
+        FUNCTION ??usbdpFindNext?relay,0203H
+        PUBLIC ??usbdpGetConfigurationDesc?relay
+        FUNCTION ??usbdpGetConfigurationDesc?relay,0203H
+        PUBLIC ??usbdpGetDeviceDesc?relay
+        FUNCTION ??usbdpGetDeviceDesc?relay,0203H
+        PUBLIC ??usbdpGetInterfaceDesc?relay
+        FUNCTION ??usbdpGetInterfaceDesc?relay,0203H
+        PUBLIC ??usbdpGetStringDesc?relay
+        FUNCTION ??usbdpGetStringDesc?relay,0203H
+        PUBLIC ??usbdpInit?relay
+        FUNCTION ??usbdpInit?relay,0203H
+        PUBLIC usbdpFindNext
+        FUNCTION usbdpFindNext,0203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbdpGetConfigurationDesc
+        FUNCTION usbdpGetConfigurationDesc,021203H
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC usbdpGetDeviceDesc
+        FUNCTION usbdpGetDeviceDesc,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC usbdpGetInterfaceDesc
+        FUNCTION usbdpGetInterfaceDesc,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        PUBLIC usbdpGetStringDesc
+        FUNCTION usbdpGetStringDesc,021203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        PUBLIC usbdpInit
+        FUNCTION usbdpInit,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-2
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B SameValue
+        CFI A SameValue
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT SameValue
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon1
+        
+usbdpFindNext       SYMBOL "usbdpFindNext"
+??usbdpFindNext?relay SYMBOL "?relay", usbdpFindNext
+usbdpGetConfigurationDesc SYMBOL "usbdpGetConfigurationDesc"
+??usbdpGetConfigurationDesc?relay SYMBOL "?relay", usbdpGetConfigurationDesc
+usbdpGetDeviceDesc  SYMBOL "usbdpGetDeviceDesc"
+??usbdpGetDeviceDesc?relay SYMBOL "?relay", usbdpGetDeviceDesc
+usbdpGetInterfaceDesc SYMBOL "usbdpGetInterfaceDesc"
+??usbdpGetInterfaceDesc?relay SYMBOL "?relay", usbdpGetInterfaceDesc
+usbdpGetStringDesc  SYMBOL "usbdpGetStringDesc"
+??usbdpGetStringDesc?relay SYMBOL "?relay", usbdpGetStringDesc
+usbdpInit           SYMBOL "usbdpInit"
+??usbdpInit?relay   SYMBOL "?relay", usbdpInit
+
+        EXTERN usbDescriptorMarker
+
+// C:\Users\freeman\Documents\work\SN\module\Components\usb\library\usb_descriptor_parser.c
+//    1 /***********************************************************************************
+//    2 
+//    3     Filename:     usb_descriptor_parser.c
+//    4 
+//    5     Description:  Parser for USB descriptor structures.
+//    6 
+//    7 ***********************************************************************************/
+//    8 
+//    9 /// \addtogroup module_usb_descriptor_parser
+//   10 /// @{
+//   11 #define USBDESCRIPTORPARSER_C ///< Modifies the behavior of "EXTERN" in usb_descriptor_parser.h
+//   12 #include "usb_firmware_library_headers.h"
+//   13 
+//   14 //-------------------------------------------------------------------------------------------------------
+//   15 // USBDP internal module data
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   16 static USBDP_DATA __xdata usbdpData; ///< USBDP internal module data
+usbdpData:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   17 
+//   18 
+//   19 /** \brief	Initializes a search
+//   20 *
+//   21 * This function must be called before each new search to reset \ref USBDP_DATA.pDesc.
+//   22 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   23 void usbdpInit(void)
+usbdpInit:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function usbdpInit
+        CODE
+//   24 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   25    usbdpData.pDesc = (const uint8 __code *) usbDescriptorMarker.pUsbDescStart;
+        LCALL   ?Subroutine2 & 0xFFFF
+        CFI EndBlock cfiBlock0
+//   26 } // usbdpInit
+??CrossCallReturnLabel_0:
+        REQUIRE ?Subroutine0
+        ; // Fall through to label ?Subroutine0
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+-5
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        POP     DPH
+        CFI CFA_SP SP+-4
+        CFI DPH0 SameValue
+        POP     DPL
+        CFI CFA_SP SP+-3
+        CFI DPL0 SameValue
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock1
+//   27 
+//   28 
+//   29 
+//   30 
+//   31 /** \brief	Locates the descriptor of the wanted type
+//   32 *
+//   33 * This function parses through the USB descriptors until:
+//   34 * \li It hits one with <tt>bDescriptorType = wantedType</tt>, in which case it returns a pointer to
+//   35 *     that descriptor, and exits. \ref USBDP_DATA.pDesc will then point to the next descriptor.
+//   36 * \li It hits one with <tt>bDescriptorType = haltAtType</tt>, in which case it returns a NULL-pointer,
+//   37 *     and exits. \ref USBDP_DATA.pDesc will then point to that descriptor.
+//   38 * \li \ref USBDP_DATA.pDesc = \ref usbDescEnd, in which case it returns a NULL-pointer, and exits.
+//   39 *     \ref USBDP_DATA.pDesc will continue to point to \ref usbDescEnd.
+//   40 *
+//   41 * \note To begin a search with this function, \ref usbdpInit should be called first. It should not be
+//   42 *       called when continuing a search - for instance after a call to \ref usbdpGetConfigurationDesc().
+//   43 *
+//   44 * \param[in]       wantedType
+//   45 *     The wanted descriptor type (e.g. \ref DESC_TYPE_CONFIG)
+//   46 * \param[in]       haltAtType
+//   47 *     The parser halts when it reaches this descriptor type, unless \c haltAtType is \c 0 (which in any
+//   48 *     case is an invalid \c bDescriptorType value).
+//   49 *
+//   50 * \return
+//   51 *     A pointer to the wanted descriptor type, or \c NULL if it was not found.
+//   52 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   53 void __code* usbdpFindNext(uint8 wantedType, uint8 haltAtType)
+usbdpFindNext:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function usbdpFindNext
+        CODE
+//   54 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R4,A
+        MOV     A,R2
+        MOV     R5,A
+//   55    void __code *pResult;
+//   56    pResult = NULL;
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        SJMP    ??CrossCallReturnLabel_4
+//   57 
+//   58    // As long as we haven't reached the end...
+//   59    while (usbdpData.pDesc != (void __code *) usbDescriptorMarker.pUsbDescEnd) {
+//   60 
+//   61       // If we have a match on wantedType...
+//   62       if (usbdpData.pDesc[DESC_TYPE_IDX] == wantedType) {
+//   63          pResult = (void __code*) usbdpData.pDesc;
+//   64          usbdpData.pDesc += usbdpData.pDesc[DESC_LENGTH_IDX];
+//   65          break;
+//   66 
+//   67       // If we have a match on haltAtType...
+//   68       } else if (usbdpData.pDesc[DESC_TYPE_IDX] == haltAtType) {
+//   69          if (haltAtType) break;
+//   70       }
+//   71 
+//   72       // Move on to the next descriptor
+//   73       usbdpData.pDesc += usbdpData.pDesc[DESC_LENGTH_IDX];
+??usbdpFindNext_0:
+        DEC     R0
+        MOV     DPTR,#usbdpData + 1
+        MOVX    A,@DPTR
+        LCALL   ?Subroutine3 & 0xFFFF
+??CrossCallReturnLabel_4:
+        MOV     DPTR,#usbdpData
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPTR,#usbDescriptorMarker + 2
+        MOVX    A,@DPTR
+        XRL     A,R0
+        JNZ     ??usbdpFindNext_1
+        INC     DPTR
+        MOVX    A,@DPTR
+        XRL     A,R1
+??usbdpFindNext_1:
+        JZ      ??usbdpFindNext_2
+        MOV     DPTR,#usbdpData
+        MOVX    A,@DPTR
+        ADD     A,#0x1
+        INC     R0
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     DPL,R0
+        MOV     DPH,R1
+        CLR     A
+        MOVC    A,@A+DPTR
+        XRL     A,R4
+        JNZ     ??usbdpFindNext_3
+        MOV     DPTR,#usbdpData
+        MOVX    A,@DPTR
+        MOV     R2,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R3,A
+        DEC     R0
+        LCALL   ?Subroutine3 & 0xFFFF
+??CrossCallReturnLabel_5:
+        SJMP    ??usbdpFindNext_2
+??usbdpFindNext_3:
+        CLR     A
+        MOVC    A,@A+DPTR
+        XRL     A,R5
+        JNZ     ??usbdpFindNext_0
+        MOV     A,R5
+        JZ      ??usbdpFindNext_0
+//   74    }
+//   75 
+//   76    return pResult;
+??usbdpFindNext_2:
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock2
+//   77 } // usbdpFindNext
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine3:
+        CFI Block cfiCond3 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_4
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond4 Using cfiCommon0
+        CFI (cfiCond4) NoFunction
+        CFI (cfiCond4) Conditional ??CrossCallReturnLabel_5
+        CFI (cfiCond4) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond4) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond4) CFA_SP SP+-5
+        CFI Block cfiPicker5 Using cfiCommon1
+        CFI (cfiPicker5) NoFunction
+        CFI (cfiPicker5) Picker
+        MOV     DPH,A
+        MOV     DPL,R0
+        CLR     A
+        MOVC    A,@A+DPTR
+        MOV     R0,A
+        MOV     DPTR,#usbdpData
+        MOVX    A,@DPTR
+        ADD     A,R0
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        ADDC    A,#0x0
+        MOV     R1,A
+        MOV     DPTR,#usbdpData
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond3
+        CFI EndBlock cfiCond4
+        CFI EndBlock cfiPicker5
+//   78 
+//   79 
+//   80 
+//   81 
+//   82 /** \brief	Locates the (one and only) device descriptor
+//   83 *
+//   84 * \note It is not necessary to call \ref usbdpInit() before this function.
+//   85 *
+//   86 * \return
+//   87 *     A pointer to the \ref USB_DEVICE_DESCRIPTOR, or \c NULL if it was not found.
+//   88 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   89 USB_DEVICE_DESCRIPTOR __code* usbdpGetDeviceDesc(void)
+usbdpGetDeviceDesc:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function usbdpGetDeviceDesc
+        CODE
+//   90 {
+        FUNCALL usbdpGetDeviceDesc, usbdpFindNext
+        LOCFRAME ISTACK, 2, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 0, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 2, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 0, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   91    usbdpInit();
+        LCALL   ?Subroutine2 & 0xFFFF
+//   92    return usbdpFindNext(DESC_TYPE_DEVICE, 0);
+??CrossCallReturnLabel_1:
+        ; Setup parameters for call to function usbdpFindNext
+        MOV     R2,#0x0
+        MOV     R1,#0x1
+        LCALL   ??usbdpFindNext?relay
+        LJMP    ?Subroutine0 & 0xFFFF
+        CFI EndBlock cfiBlock6
+//   93 } // usbdpGetDeviceDesc
+//   94 
+//   95 
+//   96 
+//   97 
+//   98 /** \brief	Locates a configuration descriptor
+//   99 *
+//  100 * The search will either look for a descriptor with a specific
+//  101 * \ref USB_CONFIGURATION_DESCRIPTOR.bConfigurationValue, or simply take the n'th descriptor (by "index")
+//  102 *
+//  103 * \note It is not necessary to call \ref usbdpInit() before this function.
+//  104 *
+//  105 * \param[in]       cfgValue
+//  106 *     The configuration value to search for (\ref USB_CONFIGURATION_DESCRIPTOR.bConfigurationValue), or
+//  107 *     0 to find descriptor by index
+//  108 * \param[in]       cfgIndex
+//  109 *     A zero-based index for the configuration descriptor to find.
+//  110 *     This value is ignored unless \c cfgValue is 0.
+//  111 *
+//  112 * \return
+//  113 *     A pointer to the \ref USB_DEVICE_DESCRIPTOR, or \c NULL if it was not found.
+//  114 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  115 USB_CONFIGURATION_DESCRIPTOR __code* usbdpGetConfigurationDesc(uint8 cfgValue, uint8 cfgIndex)
+usbdpGetConfigurationDesc:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function usbdpGetConfigurationDesc
+        CODE
+//  116 {
+        FUNCALL usbdpGetConfigurationDesc, usbdpFindNext
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+        MOV     A,R2
+        MOV     R7,A
+//  117    USB_CONFIGURATION_DESCRIPTOR __code *pConfigurationDesc;
+//  118    usbdpInit();
+        LCALL   ?Subroutine2 & 0xFFFF
+//  119 
+//  120    // As long as there are more configuration descriptors...
+//  121    while (pConfigurationDesc = usbdpFindNext(DESC_TYPE_CONFIG, 0)) {
+??CrossCallReturnLabel_2:
+        ; Setup parameters for call to function usbdpFindNext
+        MOV     R2,#0x0
+        MOV     R1,#0x2
+        LCALL   ??usbdpFindNext?relay
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??usbdpGetConfigurationDesc_0
+//  122 
+//  123       // Search by value?
+//  124       if (cfgValue) {
+        MOV     A,R6
+        JZ      ??usbdpGetConfigurationDesc_1
+//  125          if (cfgValue == pConfigurationDesc->bConfigurationValue) break;
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        CLR     A
+        MOVC    A,@A+DPTR
+        XRL     A,R6
+        JNZ     ??CrossCallReturnLabel_2
+        SJMP    ??usbdpGetConfigurationDesc_0
+//  126 
+//  127       // Search by index? (search cfgIndex+1 times)
+//  128       } else if (!cfgIndex--) {
+??usbdpGetConfigurationDesc_1:
+        MOV     A,R7
+        MOV     R0,A
+        MOV     A,#-0x1
+        ADD     A,R0
+        DEC     R7
+        INC     A
+        JNZ     ??CrossCallReturnLabel_2
+        CFI EndBlock cfiBlock7
+//  129          break;
+//  130       }
+//  131    }
+//  132 
+//  133    return pConfigurationDesc;
+??usbdpGetConfigurationDesc_0:
+        REQUIRE ?Subroutine1
+        ; // Fall through to label ?Subroutine1
+//  134 } // usbdpGetConfigurationDesc
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        MOV     R7,#0x2
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock8
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine2:
+        CFI Block cfiCond9 Using cfiCommon0
+        CFI NoFunction
+        CFI Conditional ??CrossCallReturnLabel_0
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        CFI Block cfiCond10 Using cfiCommon0
+        CFI (cfiCond10) NoFunction
+        CFI (cfiCond10) Conditional ??CrossCallReturnLabel_1
+        CFI (cfiCond10) DPL0 Frame(CFA_SP, 4)
+        CFI (cfiCond10) DPH0 Frame(CFA_SP, 5)
+        CFI (cfiCond10) CFA_SP SP+-5
+        CFI Block cfiCond11 Using cfiCommon0
+        CFI (cfiCond11) NoFunction
+        CFI (cfiCond11) Conditional ??CrossCallReturnLabel_2
+        CFI (cfiCond11) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond11) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond11) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond11) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond11) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond11) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond11) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond11) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond11) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond11) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond11) CFA_SP SP+0
+        CFI (cfiCond11) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiCond12 Using cfiCommon0
+        CFI (cfiCond12) NoFunction
+        CFI (cfiCond12) Conditional ??CrossCallReturnLabel_3
+        CFI (cfiCond12) R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI (cfiCond12) VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI (cfiCond12) V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI (cfiCond12) V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI (cfiCond12) R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI (cfiCond12) ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI (cfiCond12) ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI (cfiCond12) ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI (cfiCond12) DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI (cfiCond12) DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI (cfiCond12) CFA_SP SP+0
+        CFI (cfiCond12) CFA_XSP16 add(XSP16, 10)
+        CFI Block cfiPicker13 Using cfiCommon1
+        CFI (cfiPicker13) NoFunction
+        CFI (cfiPicker13) Picker
+        MOV     DPTR,#usbDescriptorMarker
+        MOVX    A,@DPTR
+        MOV     R0,A
+        INC     DPTR
+        MOVX    A,@DPTR
+        MOV     R1,A
+        MOV     DPTR,#usbdpData
+        MOV     A,R0
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOV     A,R1
+        MOVX    @DPTR,A
+        RET
+        CFI EndBlock cfiCond9
+        CFI EndBlock cfiCond10
+        CFI EndBlock cfiCond11
+        CFI EndBlock cfiCond12
+        CFI EndBlock cfiPicker13
+//  135 
+//  136 
+//  137 
+//  138 
+//  139 /** \brief	Locates an interface descriptor
+//  140 *
+//  141 * The function will first go to the configuration descriptor that matches the supplied configuration
+//  142 * value, and then locate the interface descriptor that matches the given interface number and alternate
+//  143 * setting.
+//  144 *
+//  145 * \note It is not necessary to call \ref usbdpInit() before this function.
+//  146 *
+//  147 * \param[in]       cfgValue
+//  148 *     The configuration value (\ref USB_CONFIGURATION_DESCRIPTOR.bConfigurationValue)
+//  149 * \param[in]       intNumber
+//  150 *     The interface number (\ref USB_INTERFACE_DESCRIPTOR.bInterfaceNumber)
+//  151 * \param[in]       altSetting
+//  152 *     The alternate setting (\ref USB_INTERFACE_DESCRIPTOR.bAlternateSetting)
+//  153 *
+//  154 * \return
+//  155 *     A pointer to the \ref USB_INTERFACE_DESCRIPTOR, or \c NULL if it was not found.
+//  156 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  157 USB_INTERFACE_DESCRIPTOR __code* usbdpGetInterfaceDesc(uint8 cfgValue, uint8 intNumber, uint8 altSetting)
+usbdpGetInterfaceDesc:
+        CFI Block cfiBlock14 Using cfiCommon0
+        CFI Function usbdpGetInterfaceDesc
+        CODE
+//  158 {
+        FUNCALL usbdpGetInterfaceDesc, usbdpGetConfigurationDesc
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        FUNCALL usbdpGetInterfaceDesc, usbdpFindNext
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 12, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 12, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xc
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V3 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V2 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-11)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-12)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 12)
+        ; Saved register size: 12
+        ; Auto size: 0
+        MOV     A,R2
+        MOV     R7,A
+        MOV     ?V0 + 0,R3
+//  159    USB_INTERFACE_DESCRIPTOR __code *pInterfaceDesc;
+//  160 
+//  161    // First get to the correct configuration
+//  162    usbdpGetConfigurationDesc(cfgValue, 0);
+        ; Setup parameters for call to function usbdpGetConfigurationDesc
+        MOV     R2,#0x0
+        LCALL   ??usbdpGetConfigurationDesc?relay
+//  163 
+//  164    // Then find a match on the interface
+//  165    while (pInterfaceDesc = usbdpFindNext(DESC_TYPE_INTERFACE, DESC_TYPE_CONFIG)) {
+??usbdpGetInterfaceDesc_0:
+        ; Setup parameters for call to function usbdpFindNext
+        MOV     R2,#0x2
+        MOV     R1,#0x4
+        LCALL   ??usbdpFindNext?relay
+        MOV     A,R2
+        ORL     A,R3
+        JZ      ??usbdpGetInterfaceDesc_1
+//  166       if ((pInterfaceDesc->bInterfaceNumber == intNumber) && (pInterfaceDesc->bAlternateSetting == altSetting)) {
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        CLR     A
+        MOVC    A,@A+DPTR
+        XRL     A,R7
+        JNZ     ??usbdpGetInterfaceDesc_0
+        MOV     DPL,R2
+        MOV     DPH,R3
+        INC     DPTR
+        INC     DPTR
+        INC     DPTR
+        CLR     A
+        MOVC    A,@A+DPTR
+        XRL     A,?V0 + 0
+        JNZ     ??usbdpGetInterfaceDesc_0
+//  167          break;
+//  168       }
+//  169    }
+//  170 
+//  171    return pInterfaceDesc;
+??usbdpGetInterfaceDesc_1:
+        MOV     R7,#0x4
+        LJMP    ?BANKED_LEAVE_XDATA
+        CFI EndBlock cfiBlock14
+//  172 } // usbdpGetInterfaceDesc
+//  173 
+//  174 
+//  175 
+//  176 
+//  177 /** \brief	Locates a string descriptor
+//  178 *
+//  179 * \note It is not necessary to call \ref usbdpInit() before this function.
+//  180 *
+//  181 * \param[in]       strIndex
+//  182 *     A zero-based index that matches the "iXxxxxxxxxx" string indexes in the other descriptors
+//  183 *
+//  184 * \return
+//  185 *     A pointer to the \ref USB_INTERFACE_DESCRIPTOR, or \c NULL if it was not found.
+//  186 */
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//  187 USB_STRING_DESCRIPTOR __code* usbdpGetStringDesc(uint8 strIndex)
+usbdpGetStringDesc:
+        CFI Block cfiBlock15 Using cfiCommon0
+        CFI Function usbdpGetStringDesc
+        CODE
+//  188 {
+        FUNCALL usbdpGetStringDesc, usbdpFindNext
+        LOCFRAME ISTACK, 0, STACK
+        LOCFRAME PSTACK, 0, STACK
+        LOCFRAME XSTACK, 10, STACK
+        LOCFRAME IOVERLAY, 0, STATIC
+        LOCFRAME DOVERLAY, 0, STATIC
+        ARGFRAME ISTACK, 0, STACK
+        ARGFRAME PSTACK, 0, STACK
+        ARGFRAME XSTACK, 10, STACK
+        ARGFRAME IOVERLAY, 0, STATIC
+        ARGFRAME DOVERLAY, 0, STATIC
+        MOV     A,#-0xa
+        LCALL   ?BANKED_ENTER_XDATA
+        CFI DPH0 load(1, XDATA, add(CFA_XSP16, literal(-1)))
+        CFI DPL0 load(1, XDATA, add(CFA_XSP16, literal(-2)))
+        CFI ?BRET_EXT load(1, XDATA, add(CFA_XSP16, literal(-3)))
+        CFI ?RET_HIGH load(1, XDATA, add(CFA_XSP16, literal(-4)))
+        CFI ?RET_LOW load(1, XDATA, add(CFA_XSP16, literal(-5)))
+        CFI R7 load(1, XDATA, add(CFA_XSP16, literal(-6)))
+        CFI V1 load(1, XDATA, add(CFA_XSP16, literal(-7)))
+        CFI V0 load(1, XDATA, add(CFA_XSP16, literal(-8)))
+        CFI VB load(1, XDATA, add(CFA_XSP16, literal(-9)))
+        CFI R6 load(1, XDATA, add(CFA_XSP16, literal(-10)))
+        CFI CFA_SP SP+0
+        CFI CFA_XSP16 add(XSP16, 10)
+        ; Saved register size: 10
+        ; Auto size: 0
+        MOV     A,R1
+        MOV     R6,A
+//  189    USB_STRING_DESCRIPTOR __code *pStringDesc;
+//  190    usbdpInit();
+        LCALL   ?Subroutine2 & 0xFFFF
+//  191 
+//  192 #ifdef MS_EXT_C_ID
+//  193     if (strIndex == 0xEE){
+//  194         // Find the Microsoft OS String Descriptor
+//  195         do{
+//  196             pStringDesc = usbdpFindNext(DESC_TYPE_STRING, 0);
+//  197         }while (pStringDesc != NULL && pStringDesc->bLength != 18);
+//  198     } else
+//  199 #endif
+//  200     {
+//  201         // Search strIndex+1 times
+//  202         do {
+//  203             pStringDesc = usbdpFindNext(DESC_TYPE_STRING, 0);
+??CrossCallReturnLabel_3:
+        ; Setup parameters for call to function usbdpFindNext
+        MOV     R2,#0x0
+        MOV     R1,#0x3
+        LCALL   ??usbdpFindNext?relay
+//  204         } while (strIndex--);
+        MOV     A,R6
+        MOV     R0,A
+        MOV     A,#-0x1
+        ADD     A,R0
+        DEC     R6
+        INC     A
+        JNZ     ??CrossCallReturnLabel_3
+//  205     }
+//  206    return pStringDesc;
+        SJMP    ?Subroutine1
+        CFI EndBlock cfiBlock15
+//  207 } // usbdpGetStringDesc
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbdpInit?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbdpInit
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbdpFindNext?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbdpFindNext
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbdpGetDeviceDesc?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbdpGetDeviceDesc
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbdpGetConfigurationDesc?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbdpGetConfigurationDesc
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbdpGetInterfaceDesc?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbdpGetInterfaceDesc
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??usbdpGetStringDesc?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    usbdpGetStringDesc
+
+        END
+//  208 /// @}
+//  209 /*
+//  210 +------------------------------------------------------------------------------
+//  211 |  Copyright 2004-2007 Texas Instruments Incorporated. All rights reserved.
+//  212 |
+//  213 |  IMPORTANT: Your use of this Software is limited to those specific rights
+//  214 |  granted under the terms of a software license agreement between the user who
+//  215 |  downloaded the software, his/her employer (which must be your employer) and
+//  216 |  Texas Instruments Incorporated (the "License"). You may not use this Software
+//  217 |  unless you agree to abide by the terms of the License. The License limits
+//  218 |  your use, and you acknowledge, that the Software may not be modified, copied
+//  219 |  or distributed unless embedded on a Texas Instruments microcontroller or used
+//  220 |  solely and exclusively in conjunction with a Texas Instruments radio
+//  221 |  frequency transceiver, which is integrated into your product. Other than for
+//  222 |  the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+//  223 |  works of, modify, distribute, perform, display or sell this Software and/or
+//  224 |  its documentation for any purpose.
+//  225 |
+//  226 |  YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+//  227 |  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+//  228 |  INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+//  229 |  NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+//  230 |  TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//  231 |  NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+//  232 |  LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING
+//  233 |  BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+//  234 |  CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+//  235 |  SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+//  236 |  (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//  237 |
+//  238 |  Should you have any questions regarding your right to use this Software,
+//  239 |  contact Texas Instruments Incorporated at www.TI.com.
+//  240 |
+//  241 +------------------------------------------------------------------------------
+//  242 */
+// 
+// 300 bytes in segment BANKED_CODE
+//  36 bytes in segment BANK_RELAYS
+//   2 bytes in segment XDATA_Z
+// 
+// 336 bytes of CODE  memory
+//   2 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,432 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.4.40412/W32 for 8051        08/Jul/2016  22:45:52 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  near                                              /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data                                              /
+//    Dptr setup         =  2,separate,16,inc                                 /
+//    Source file        =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\Applications\main_UART_Bridge.c        /
+//    Command line       =  -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\Configuratio /
+//                          n\LinkTo\smpl_config.dat" (-DNUM_CONNECTIONS=2    /
+//                          -DSIZE_INFRAME_Q=2 -DSIZE_OUTFRAME_Q=2            /
+//                          "-DTHIS_DEVICE_ADDRESS={0x79, 0x56, 0x34, 0x12}"  /
+//                          -DEND_DEVICE -DLINK_TO -DxNWK_PLL_REFERENCE_CLOCK /
+//                          ) -f "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\P /
+//                          rojects\Examples\SRF04\UART_Bridge\IAR\Configurat /
+//                          ion\smpl_nwk_config.dat" (-DMAX_HOPS=3            /
+//                          -DMAX_HOPS_FROM_AP=1 -DMAX_NWK_PAYLOAD=34         /
+//                          -DMAX_APP_PAYLOAD=10 -DDEFAULT_LINK_TOKEN=0x01020 /
+//                          304 -DDEFAULT_JOIN_TOKEN=0x05060708               /
+//                          -DxFREQUENCY_AGILITY -DxAPP_AUTO_ACK              /
+//                          -DxEXTENDED_API -DxSMPL_SECURE                    /
+//                          -DxNVOBJECT_SUPPORT -DxSW_TIMER                   /
+//                          -DxFREQUENCY_HOPPING -DBSP_TIMER_USED=1           /
+//                          -DNWK_PLL_SHOW_LOCATION_INDICATORS                /
+//                          -DUART_NUMBER=UART_NUMBER_0                       /
+//                          -DUART_LOCATION=UART_LOCATION_1                   /
+//                          -DUART_BAUD_RATE=9600 -DUART_FLOW_CONTROL=UART_FL /
+//                          OW_CONTROL_OFF -DUART_PARITY_MODE=UART_PARITY_NON /
+//                          E -DUART_STOP_BITS=UART_1_STOP_BIT) "C:\Texas     /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\Applications\main_UART_Bridge.c" -D             /
+//                          "MCU_H=\"ioCC1110.h\"" -D MRFI_CC1110 -lB         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\L /
+//                          ist\" -o "C:\Texas Instruments\SimpliciTI-IAR-1.2 /
+//                          .0\Projects\Examples\SRF04\UART_Bridge\IAR\CC1110 /
+//                          -LinkTo\Obj\" -e --debug --core=plain             /
+//                          --dptr=16,2,separate,inc --data_model=large       /
+//                          --code_model=near --calling_convention=xdata_reen /
+//                          trant --place_constants=data --nr_virtual_regs 8  /
+//                          -I "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Pro /
+//                          jects\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\ /
+//                          ..\Components\bsp\" -I "C:\Texas                  /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\drivers\" -I "C:\Texas                       /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \bsp\boards\SRF04EB\" -I "C:\Texas                /
+//                          Instruments\SimpliciTI-IAR-1.2.0\Projects\Example /
+//                          s\SRF04\UART_Bridge\IAR\..\..\..\..\..\Components /
+//                          \mrfi\" -I "C:\Texas Instruments\SimpliciTI-IAR-1 /
+//                          .2.0\Projects\Examples\SRF04\UART_Bridge\IAR\..\. /
+//                          .\..\..\..\Components\SimpliciTI\nwk\" -I         /
+//                          "C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projec /
+//                          ts\Examples\SRF04\UART_Bridge\IAR\..\..\..\..\..\ /
+//                          Components\SimpliciTI\nwk_applications\" -Ohs     /
+//                          --require_prototypes                              /
+//    List file          =  C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Project /
+//                          s\Examples\SRF04\UART_Bridge\IAR\CC1110-LinkTo\Li /
+//                          st\main_UART_Bridge.s51                           /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME main_UART_Bridge
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?ALLOC_XSTACK8
+        EXTERN ?DPS
+        EXTERN ?V0
+        EXTERN ?XSP
+        EXTERN ?XSTACK_DISP0_8
+        EXTERN __INIT_XDATA_I
+
+        PUBWEAK _A_P1
+        PUBLIC main
+
+        EXTERN BSP_Init
+        EXTERN SMPL_Init
+        EXTERN uart_intfc_init
+        EXTERN SMPL_Ioctl
+        EXTERN tx_send_wait
+        EXTERN SMPL_Link
+        EXTERN SMPL_Send
+        EXTERN MRFI_DelayMs
+        EXTERN SMPL_Receive
+        EXTERN rx_receive
+
+// C:\Texas Instruments\SimpliciTI-IAR-1.2.0\Projects\Examples\Applications\main_UART_Bridge.c
+//    1 /*----------------------------------------------------------------------------
+//    2  *  Demo Application for SimpliciTI
+//    3  *
+//    4  *  L. Friedman
+//    5  *  Texas Instruments, Inc.
+//    6  *----------------------------------------------------------------------------
+//    7  */
+//    8 /******************************************************************************************
+//    9 
+//   10   Copyright 2007-2009 Texas Instruments Incorporated. All rights reserved.
+//   11 
+//   12   IMPORTANT: Your use of this Software is limited to those specific rights granted under
+//   13   the terms of a software license agreement between the user who downloaded the software,
+//   14   his/her employer (which must be your employer) and Texas Instruments Incorporated (the
+//   15   "License"). You may not use this Software unless you agree to abide by the terms of the
+//   16   License. The License limits your use, and you acknowledge, that the Software may not be
+//   17   modified, copied or distributed unless embedded on a Texas Instruments microcontroller
+//   18   or used solely and exclusively in conjunction with a Texas Instruments radio frequency
+//   19   transceiver, which is integrated into your product. Other than for the foregoing purpose,
+//   20   you may not use, reproduce, copy, prepare derivative works of, modify, distribute,
+//   21   perform, display or sell this Software and/or its documentation for any purpose.
+//   22 
+//   23   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS”
+//   24   WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY
+//   25   WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+//   26   IN NO EVENT SHALL TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+//   27   NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL EQUITABLE
+//   28   THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING BUT NOT LIMITED TO ANY
+//   29   INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST
+//   30   DATA, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY
+//   31   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+//   32 
+//   33   Should you have any questions regarding your right to use this Software,
+//   34   contact Texas Instruments Incorporated at www.TI.com.
+//   35 **************************************************************************************************/
+//   36 #define INDICATOR_TIME_OUT 250;
+//   37 
+//   38 #include <stdio.h>
+//   39 #include "bsp.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,090H
+// union <unnamed> volatile __sfr _A_P1
+_A_P1:
+        DATA8
+        DS 1
+//   40 #include "mrfi.h"
+//   41 #include "nwk_types.h"
+//   42 #include "nwk_api.h"
+//   43 #include "nwk_pll.h"
+//   44 #include "bsp_leds.h"
+//   45 #ifdef MRFI_CC430
+//   46   #include "uart_intfc_cc430.h"
+//   47 #else
+//   48   #include "uart_intfc.h"
+//   49 #endif
+//   50 
+//   51 
+
+        RSEG NEAR_CODE:CODE:NOROOT(0)
+//   52 void main (void)
+main:
+        CODE
+//   53 {
+        ; Auto size: 22
+        MOV     A,#-0x16
+        LCALL   ?ALLOC_XSTACK8
+//   54   /* holds length of current message */
+//   55   uint8_t len; 
+//   56   
+//   57   /* the link token */
+//   58   linkID_t LinkID = 0;
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        CLR     A
+        ; Selecting DPTR 0 by inc-method (DPSEL=x)
+        ANL     ?DPS,#0xfe
+        MOVX    @DPTR,A
+//   59   
+//   60   /* the transmit and receive buffers */
+//   61   uint8_t rx[MAX_APP_PAYLOAD], tx[MAX_APP_PAYLOAD];
+//   62 
+//   63   /* holds led indicator time out counts */
+//   64   uint16_t led_tmr;
+//   65 
+//   66   BSP_Init( );
+        ; Setup parameters for call to function BSP_Init
+        LCALL   BSP_Init
+//   67 
+//   68   SMPL_Init( NULL );
+        ; Setup parameters for call to function SMPL_Init
+        MOV     R2,#0x0
+        MOV     R3,#0x0
+        LCALL   SMPL_Init
+//   69   
+//   70   uart_intfc_init( );
+        ; Setup parameters for call to function uart_intfc_init
+        LCALL   uart_intfc_init
+//   71 
+//   72   /* turn on the radio so we are always able to receive data asynchronously */
+//   73   SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_RXON, NULL );
+        ; Setup parameters for call to function SMPL_Ioctl
+        MOV     R4,#0x0
+        MOV     R5,#0x0
+        MOV     R2,#0x8
+        MOV     R1,#0x3
+        LCALL   SMPL_Ioctl
+//   74   
+//   75   /* turn on LED. */
+//   76   BSP_TURN_ON_LED1( );
+        CLR     0x90.0
+//   77 
+//   78 #ifdef  LINK_TO
+//   79   {
+//   80     uint8_t cnt = 0;
+        MOV     ?V0 + 1,#0x0
+//   81     tx_send_wait( "Linking to...\r\n", 15 );
+        ; Setup parameters for call to function tx_send_wait
+        MOV     R4,#0xf
+        MOV     R5,#0x0
+        MOV     R2,#`?<Constant "Linking to...\\r\\n">` & 0xff
+        MOV     R3,#(`?<Constant "Linking to...\\r\\n">` >> 8) & 0xff
+        LCALL   tx_send_wait
+        SJMP    ??main_0
+//   82     while (SMPL_SUCCESS != SMPL_Link(&LinkID))
+//   83       if( cnt++ == 0 )
+??main_1:
+        MOV     ?V0 + 0,?V0 + 1
+        MOV     A,#0x1
+        ADD     A,?V0 + 0
+        MOV     ?V0 + 1,A
+        MOV     A,?V0 + 0
+        JNZ     ??main_0
+//   84       {
+//   85         /* blink LED until we link successfully */
+//   86         BSP_TOGGLE_LED1( );
+        XRL     0x90,#0x1
+//   87       }
+??main_0:
+        ; Setup parameters for call to function SMPL_Link
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   SMPL_Link
+        MOV     A,R1
+        JNZ     ??main_1
+//   88   }
+//   89 #else // ifdef LINK_LISTEN
+//   90   tx_send_wait( "Listening for Link...\r\n", 23 );
+//   91   while (SMPL_SUCCESS != SMPL_LinkListen(&LinkID))
+//   92   {
+//   93     /* blink LED until we link successfully */
+//   94     BSP_TOGGLE_LED1( );
+//   95   }
+//   96 #endif
+//   97 
+//   98   tx_send_wait( "Link Established!\r\nReady...\r\n", 29 );
+        ; Setup parameters for call to function tx_send_wait
+        MOV     R4,#0x1d
+        MOV     R5,#0x0
+        MOV     R2,#`?<Constant "Link Established!\\r\\nRe...">` & 0xff
+        MOV     R3,#(`?<Constant "Link Established!\\r\\nRe...">` >> 8) & 0xff
+        LCALL   tx_send_wait
+//   99   
+//  100   /* turn off the led */
+//  101   BSP_TURN_OFF_LED1( );
+??main_2:
+        SETB    0x90.0
+        SJMP    ??main_3
+//  102   
+//  103   main_loop:
+//  104     /* Check to see if we received any characters from the other radio
+//  105      * and if we have send them out the uart and reset indicator timeout.
+//  106      * Prioritize on radio received links as that buffer is the most time
+//  107      * critical with respect to the UART buffers.
+//  108      */
+//  109     if( SMPL_Receive( LinkID, tx, &len ) == SMPL_SUCCESS )
+//  110     {
+//  111       /* blocking call but should be ok if both ends have same uart buad rate */
+//  112       tx_send_wait( tx, len );
+//  113       led_tmr = INDICATOR_TIME_OUT;   /* update activity time out */
+//  114     }
+//  115 
+//  116     FHSS_ACTIVE( if( nwk_pllBackgrounder( false ) != false ) );
+//  117     {
+//  118       /* check to see if the host has sent any characters and if it has
+//  119       * then send them over the radio link and reset indicator timeout.
+//  120       */
+//  121       len = rx_receive( rx, MAX_APP_PAYLOAD );
+//  122       if( len != 0 )
+//  123       {
+//  124         while( SMPL_Send( LinkID, rx, len ) != SMPL_SUCCESS )
+??main_4:
+        ; Setup parameters for call to function SMPL_Send
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     R4,A
+        MOV     A,#0xc
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   SMPL_Send
+        MOV     A,R1
+        JNZ     ??main_4
+//  125           ;
+//  126         led_tmr = INDICATOR_TIME_OUT;   /* update activity time out */
+        MOV     R6,#-0x6
+        MOV     R7,#0x0
+//  127         
+//  128         /* By forcing a minimum delay between transmissions we guarantee
+//  129         * a window for receiving packets.  This is necessary as the radio
+//  130         * link is half duplex while the UART is full duplex.  Without this
+//  131         * delay mechanism, packets can get lost as both ends may attempt to
+//  132         * transmit at the same time which the CCA algorithm fails to handle.
+//  133         */
+//  134         MRFI_DelayMs( 5 );
+        ; Setup parameters for call to function MRFI_DelayMs
+        MOV     R2,#0x5
+        MOV     R3,#0x0
+        LCALL   MRFI_DelayMs
+//  135       }
+//  136     }
+//  137     
+//  138     /* manage led indicator */
+//  139     if( led_tmr != 0 )
+//  140     {
+//  141       led_tmr--;
+??main_5:
+        MOV     A,R6
+        ADD     A,#-0x1
+        DEC     R6
+        MOV     A,R7
+        ADDC    A,#-0x1
+        MOV     R7,A
+//  142       BSP_TURN_ON_LED1( );
+        CLR     0x90.0
+//  143     }
+??main_3:
+        ; Setup parameters for call to function SMPL_Receive
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOV     R4,DPL
+        MOV     R5,DPH
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        MOV     A,#0x1
+        LCALL   ?XSTACK_DISP0_8
+        MOVX    A,@DPTR
+        MOV     R1,A
+        LCALL   SMPL_Receive
+        MOV     A,R1
+        JNZ     ??main_6
+        ; Setup parameters for call to function tx_send_wait
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    A,@DPTR
+        MOV     R4,A
+        MOV     R5,#0x0
+        MOV     A,#0x2
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   tx_send_wait
+        MOV     R6,#-0x6
+        MOV     R7,#0x0
+??main_6:
+        ; Setup parameters for call to function rx_receive
+        MOV     R4,#0xa
+        MOV     R5,#0x0
+        MOV     A,#0xc
+        LCALL   ?XSTACK_DISP0_8
+        MOV     R2,DPL
+        MOV     R3,DPH
+        LCALL   rx_receive
+        MOV     A,R2
+        MOV     DPL,?XSP + 0
+        MOV     DPH,?XSP + 1
+        MOVX    @DPTR,A
+        JZ      $+5
+        LJMP    ??main_4
+        MOV     A,R6
+        ORL     A,R7
+        JNZ     ??main_5
+//  144     else
+//  145       BSP_TURN_OFF_LED1( );
+        LJMP    ??main_2
+        REQUIRE _A_P1
+//  146 
+//  147     goto main_loop; /* do it again and again and again and ... */
+//  148 }
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for <Constant "Linking to...\\r\\n`:
+        DB "Linking to...\015\012"
+
+        RSEG XDATA_ID:CODE:NOROOT(0)
+`?<Initializer for <Constant "Link Established!`:
+        DB "Link Established!\015\012Ready...\015\012"
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA8
+`?<Constant "Linking to...\\r\\n">`:
+        DS 16
+        REQUIRE `?<Initializer for <Constant "Linking to...\\r\\n`
+        REQUIRE __INIT_XDATA_I
+
+        RSEG XDATA_I:XDATA:NOROOT(0)
+        DATA8
+`?<Constant "Link Established!\\r\\nRe...">`:
+        DS 30
+        REQUIRE `?<Initializer for <Constant "Link Established!`
+        REQUIRE __INIT_XDATA_I
+
+        END
+// 
+// 243 bytes in segment NEAR_CODE
+//   1 byte  in segment SFR_AN
+//  46 bytes in segment XDATA_I
+//  46 bytes in segment XDATA_ID
+// 
+// 289 bytes of CODE  memory
+//   0 bytes of DATA  memory (+ 1 byte shared)
+//  46 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

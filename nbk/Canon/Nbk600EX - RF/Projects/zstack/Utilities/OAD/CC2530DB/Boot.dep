@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>477346173</fileChecksum>
+  <configuration>
+    <name>OAD Boot Loader</name>
+    <outputs>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\osal\include\comdef.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_board_cfg.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_defs.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl-pli-nlxd-1e16x01.r51</file>
+      <file>$TOOLKIT_DIR$\src\lib\iar_cfi.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_flash.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_oad.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_dma.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_flash.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_mcu.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_oad.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_types.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_uart.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_uart.c</file>
+      <file>$PROJ_DIR$\..\..\..\Tools\CC2530DB\oad-boot.xcl</file>
+      <file>$PROJ_DIR$\..\..\..\ZMain\TI2530DB\chipcon_cstartup.s51</file>
+      <file>$PROJ_DIR$\..\..\..\ZMain\TI2530DB\interrupt_stubs.s51</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\osal\include\OSAL_Memory.h</file>
+      <file>$PROJ_DIR$\OAD-Boot\List\hal_flash.s51</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\interrupt_stubs.r51</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\_hal_uart_dma.c</file>
+      <file>$PROJ_DIR$\OAD-Boot\List\hal_flash.lst</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\UART.pbi</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\hal_uart.r51</file>
+      <file>$PROJ_DIR$\OAD-Boot\List\_hal_uart_dma.lst</file>
+      <file>$TOOLKIT_DIR$\src\lib\iar_check_symbols.h</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\hal_flash.pbi</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\_hal_uart_dma.pbi</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\UART.r51</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\hal_oad.pbi</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\osal\include\OSAL.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_assert.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\hal\include\hal_board.h</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\hal_oad.r51</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\OAD-Boot\List\UART.s51</file>
+      <file>$PROJ_DIR$\OAD-Boot\List\UART.lst</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\hal_flash.r51</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\chipcon_cstartup.r51</file>
+      <file>$PROJ_DIR$\OAD-Boot\Exe\Boot.d51</file>
+      <file>$PROJ_DIR$\OAD-Boot\Exe\Boot.hex</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\hal_uart.pbi</file>
+      <file>$TOOLKIT_DIR$\src\lib\iar_common.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\UART.c</file>
+      <file>$PROJ_DIR$\OAD-Boot\List\Boot.map</file>
+      <file>$PROJ_DIR$\OAD-Boot\Obj\Boot.pbd</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\COMPONENTS\osal\include\OSAL_Timers.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+    </outputs>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_flash.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 27</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 18 21 39 34 24</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1 9 2 11 35 7 33 8</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 1 9 2 11 35 7 33 8 6 0 10 49 50 22 13 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_oad.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 30</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 34</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35 0 2 1 9 11 7 33 8 10 49 50 22</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\hal_uart.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 43</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 24</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 1 9 2 11 35 12 33</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\ZMain\TI2530DB\chipcon_cstartup.s51</name>
+      <outputs>
+        <tool>
+          <name>A8051</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>A8051</name>
+          <file> 44 26 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\ZMain\TI2530DB\interrupt_stubs.s51</name>
+      <outputs>
+        <tool>
+          <name>A8051</name>
+          <file> 19</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\_hal_uart_dma.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 28</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11 32 33 2 7 9 35 12 31 0 17 48</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 11 32 33 1 9 2 35 7 12 31 0 17 48 5 8 6 10 13</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 41 46 42</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\OAD-Boot\Exe\Boot.d51</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 46 42</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 14 40 39 34 24 19 3</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\..\..\Components\hal\target\CC2530EB\UART.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 23</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 37 38 29 39 34 24</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 35 36 22</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 35 36 22 5 1 9 2 11 7 33 8 6 0 10 13 12</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\OAD-Boot\Obj\Boot.pbd</name>
+      <inputs>
+        <tool>
+          <name>BILINK</name>
+          <file> 27 30 43</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

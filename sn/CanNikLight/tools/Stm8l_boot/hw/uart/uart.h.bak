@@ -1,0 +1,7 @@
+#ifndef _UART_H_
+#define _UART_H_
+
+void Init_USART1(void);
+int printf(const char *fmt, ...);
+
+#endif

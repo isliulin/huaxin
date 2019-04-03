@@ -1,0 +1,1000 @@
+###############################################################################
+#
+# IAR ELF Linker V2.20.1.176 for STM8                     23/Feb/2019  18:10:33
+# Copyright 2010-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Exe\project.out
+#    Map file     =  
+#        C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\List\project.map
+#    Command line =  
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Change.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Funct.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Init.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Key_Process.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Lcd.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\main.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Motor.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Nikon.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_adc.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_aes.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_beep.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_clk.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_comp.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_dac.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_dma.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_exti.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_flash.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_gpio.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_i2c.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_irtim.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_it.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_itc.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_iwdg.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_lcd.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_pwr.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_rst.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_rtc.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_spi.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_syscfg.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_tim1.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_tim2.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_tim3.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_tim4.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_tim5.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_usart.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_wfe.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\stm8l15x_wwdg.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj\Task.o"
+#        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFullNoMb -o
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Exe\project.out"
+#        --map
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\List\project.map"
+#        --log
+#        libraries,initialization,modules,redirects,sections,unused_fragments
+#        --log_file
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\List\project.log"
+#        --config
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\..\Config\lnkstm8l152r8.icf"
+#        --config_def _CSTACK_SIZE=0x200 --config_def _HEAP_SIZE=0x200 --entry
+#        __iar_program_start --debug_lib
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+__SystemLibrary            = DLib
+__code_model               = small
+__core                     = stm8
+__data_model               = medium
+__dlib_file_descriptor     = 0
+__dlib_full_locale_support = 0
+__rt_version               = 4
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at start of [0x000000-0x0000ff] { rw section .vregs };
+"A2":  place at end of [0x000000-0x000fff] { block CSTACK };
+"P2":  place in [from 0x000000 to 0x000fff] {
+          block HEAP, rw section __DLIB_PERTHREAD, rw section .far.bss,
+          rw section .far.data, rw section .far.noinit,
+          rw section .far_func.textrw, rw section .huge.bss,
+          rw section .huge.data, rw section .huge.noinit,
+          rw section .huge_func.textrw, rw section .iar.dynexit,
+          rw section .near.bss, rw section .near.data, rw section .near.noinit,
+          rw section .near_func.textrw };
+"A3":  place at start of [0x00a000-0x017fff] { block INTVEC };
+"P3":  place in [from 0x00a000 to 0x017fff] {
+          ro section __DLIB_PERTHREAD_init, ro section .far.data_init,
+          ro section .far_func.textrw_init, ro section .huge.data_init,
+          ro section .huge_func.textrw_init, ro section .iar.init_table,
+          ro section .init_array, ro section .near.data_init,
+          ro section .near.rodata, ro section .near_func.text,
+          ro section .near_func.textrw_init, ro section .tiny.data_init,
+          ro section .tiny.rodata_init };
+"P6":  place in [from 0x001000 to 0x0010ff] { section .eeprom.noinit };
+
+  Section            Kind      Address    Size  Object
+  -------            ----      -------    ----  ------
+"A1":                                     0x10
+  .vregs             uninit   0x000000    0x10  vregs.o [4]
+                            - 0x000010    0x10
+
+"P2", part 1 of 2:                       0x225
+  P2-1                        0x000010   0x225  <Init block>
+    .near.data       inited   0x000010     0x1  Funct.o [1]
+    .near.data       inited   0x000011     0x1  Funct.o [1]
+    .near.data       inited   0x000012     0x1  Funct.o [1]
+    .near.data       inited   0x000013     0x1  Funct.o [1]
+    .near.data       inited   0x000014     0x1  Funct.o [1]
+    .near.data       inited   0x000015     0x1  Funct.o [1]
+    .near.data       inited   0x000016     0xa  Funct.o [1]
+    .near.data       inited   0x000020    0x29  Funct.o [1]
+    .near.data       inited   0x000049    0x1f  Funct.o [1]
+    .near.data       inited   0x000068     0xb  Key_Process.o [1]
+    .near.data       inited   0x000073     0x1  Nikon.o [1]
+    .near.data       inited   0x000074    0x16  Nikon.o [1]
+    .near.data       inited   0x00008a    0x1c  Nikon.o [1]
+    .near.data       inited   0x0000a6    0x1c  Nikon.o [1]
+    .near.data       inited   0x0000c2   0x150  Nikon.o [1]
+    .near.data       inited   0x000212    0x23  Task.o [1]
+                            - 0x000235   0x225
+
+"P2", part 2 of 2:                       0x10f
+  .near.bss          zero     0x000235    0x1e  Nikon.o [1]
+  .near.bss          zero     0x000253    0x1d  Nikon.o [1]
+  .near.bss          zero     0x000270    0x1c  Nikon.o [1]
+  .near.bss          zero     0x00028c    0x1a  Nikon.o [1]
+  .near.bss          zero     0x0002a6    0x10  Lcd.o [1]
+  .near.bss          zero     0x0002b6     0xd  Nikon.o [1]
+  .near.bss          zero     0x0002c3     0xb  Funct.o [1]
+  .near.bss          zero     0x0002ce     0xb  Motor.o [1]
+  .near.bss          zero     0x0002d9     0xa  Change.o [1]
+  .near.bss          zero     0x0002e3     0xa  Init.o [1]
+  .near.bss          zero     0x0002ed     0x4  Nikon.o [1]
+  .near.bss          zero     0x0002f1     0x4  Task.o [1]
+  .near.bss          zero     0x0002f5     0x3  Funct.o [1]
+  .near.bss          zero     0x0002f8     0x3  Nikon.o [1]
+  .near.bss          zero     0x0002fb     0x2  Change.o [1]
+  .near.bss          zero     0x0002fd     0x2  Change.o [1]
+  .near.bss          zero     0x0002ff     0x2  Change.o [1]
+  .near.bss          zero     0x000301     0x2  main.o [1]
+  .near.bss          zero     0x000303     0x2  Motor.o [1]
+  .near.bss          zero     0x000305     0x2  Nikon.o [1]
+  .near.bss          zero     0x000307     0x2  Nikon.o [1]
+  .near.bss          zero     0x000309     0x2  Nikon.o [1]
+  .near.bss          zero     0x00030b     0x2  Nikon.o [1]
+  .near.bss          zero     0x00030d     0x2  Nikon.o [1]
+  .near.bss          zero     0x00030f     0x2  Nikon.o [1]
+  .near.bss          zero     0x000311     0x2  Nikon.o [1]
+  .near.bss          zero     0x000313     0x2  Nikon.o [1]
+  .near.bss          zero     0x000315     0x2  Nikon.o [1]
+  .near.bss          zero     0x000317     0x2  Nikon.o [1]
+  .near.bss          zero     0x000319     0x1  Change.o [1]
+  .near.bss          zero     0x00031a     0x1  Change.o [1]
+  .near.bss          zero     0x00031b     0x1  Change.o [1]
+  .near.bss          zero     0x00031c     0x1  Change.o [1]
+  .near.bss          zero     0x00031d     0x1  Funct.o [1]
+  .near.bss          zero     0x00031e     0x1  Funct.o [1]
+  .near.bss          zero     0x00031f     0x1  Funct.o [1]
+  .near.bss          zero     0x000320     0x1  Funct.o [1]
+  .near.bss          zero     0x000321     0x1  Funct.o [1]
+  .near.bss          zero     0x000322     0x1  Funct.o [1]
+  .near.bss          zero     0x000323     0x1  Funct.o [1]
+  .near.bss          zero     0x000324     0x1  Funct.o [1]
+  .near.bss          zero     0x000325     0x1  Funct.o [1]
+  .near.bss          zero     0x000326     0x1  Funct.o [1]
+  .near.bss          zero     0x000327     0x1  Key_Process.o [1]
+  .near.bss          zero     0x000328     0x1  Key_Process.o [1]
+  .near.bss          zero     0x000329     0x1  Motor.o [1]
+  .near.bss          zero     0x00032a     0x1  Nikon.o [1]
+  .near.bss          zero     0x00032b     0x1  Nikon.o [1]
+  .near.bss          zero     0x00032c     0x1  Nikon.o [1]
+  .near.bss          zero     0x00032d     0x1  Nikon.o [1]
+  .near.bss          zero     0x00032e     0x1  Nikon.o [1]
+  .near.bss          zero     0x00032f     0x1  Nikon.o [1]
+  .near.bss          zero     0x000330     0x1  Nikon.o [1]
+  .near.bss          zero     0x000331     0x1  Nikon.o [1]
+  .near.bss          zero     0x000332     0x1  Nikon.o [1]
+  .near.bss          zero     0x000333     0x1  Nikon.o [1]
+  .near.bss          zero     0x000334     0x1  Nikon.o [1]
+  .near.bss          zero     0x000335     0x1  Nikon.o [1]
+  .near.bss          zero     0x000336     0x1  Nikon.o [1]
+  .near.bss          zero     0x000337     0x1  Nikon.o [1]
+  .near.bss          zero     0x000338     0x1  Nikon.o [1]
+  .near.bss          zero     0x000339     0x1  Nikon.o [1]
+  .near.bss          zero     0x00033a     0x1  Nikon.o [1]
+  .near.bss          zero     0x00033b     0x1  Nikon.o [1]
+  .near.bss          zero     0x00033c     0x1  Nikon.o [1]
+  .near.bss          zero     0x00033d     0x1  Nikon.o [1]
+  .near.bss          zero     0x00033e     0x1  Nikon.o [1]
+  .near.bss          zero     0x00033f     0x1  Nikon.o [1]
+  .near.bss          zero     0x000340     0x1  Nikon.o [1]
+  .near.bss          zero     0x000341     0x1  Nikon.o [1]
+  .near.bss          zero     0x000342     0x1  Nikon.o [1]
+  .near.bss          zero     0x000343     0x1  Task.o [1]
+                            - 0x000344   0x10f
+
+"A2":                                    0x200
+  CSTACK                      0x000e00   0x200  <Block>
+    CSTACK           uninit   0x000e00   0x200  <Block tail>
+                            - 0x001000   0x200
+
+"P6":                                      0x9
+  .eeprom.noinit     uninit   0x001000     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001001     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001002     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001003     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001004     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001005     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001006     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001007     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001008     0x1  Funct.o [1]
+                            - 0x001009     0x9
+
+"A3":                                     0x80
+  INTVEC                      0x00a000    0x80  <Block>
+    .intvec          const    0x00a000    0x80  interrupt.o [4]
+                            - 0x00a080    0x80
+
+"P3":                                   0x5845
+  .near_func.text    ro code  0x00a080  0x100e  Lcd.o [1]
+  .near_func.text    ro code  0x00b08e   0x37c  Lcd.o [1]
+  .near_func.text    ro code  0x00b40a   0x36a  Nikon.o [1]
+  .near_func.text    ro code  0x00b774   0x2c6  Funct.o [1]
+  .near_func.text    ro code  0x00ba3a   0x231  Lcd.o [1]
+  Initializer bytes  const    0x00bc6b   0x225  <for P2-1>
+  .near_func.text    ro code  0x00be90   0x1ff  Key_Process.o [1]
+  .near_func.text    ro code  0x00c08f   0x1ff  Lcd.o [1]
+  .near_func.text    ro code  0x00c28e   0x1d6  Nikon.o [1]
+  .near_func.text    ro code  0x00c464   0x1a2  Nikon.o [1]
+  .near_func.text    ro code  0x00c606   0x17d  Init.o [1]
+  .near_func.text    ro code  0x00c783   0x143  Key_Process.o [1]
+  .near_func.text    ro code  0x00c8c6   0x139  Motor.o [1]
+  .near_func.text    ro code  0x00c9ff   0x12a  Motor.o [1]
+  .near_func.text    ro code  0x00cb29   0x129  Key_Process.o [1]
+  .near_func.text    ro code  0x00cc52   0x125  Nikon.o [1]
+  .near_func.text    ro code  0x00cd77   0x10e  Nikon.o [1]
+  .near_func.text    ro code  0x00ce85   0x10b  Key_Process.o [1]
+  .near_func.text    ro code  0x00cf90   0x100  Change.o [1]
+  .near_func.text    ro code  0x00d090    0xf9  Change.o [1]
+  .near_func.text    ro code  0x00d189    0xf7  Nikon.o [1]
+  .near_func.text    ro code  0x00d280    0xe1  Change.o [1]
+  .near_func.text    ro code  0x00d361    0xe1  Nikon.o [1]
+  .near_func.text    ro code  0x00d442    0xdc  Nikon.o [1]
+  .near_func.text    ro code  0x00d51e    0xcd  Lcd.o [1]
+  .near_func.text    ro code  0x00d5eb    0xbc  Key_Process.o [1]
+  .near_func.text    ro code  0x00d6a7    0xb9  vreg_util.o [4]
+  .near.rodata       const    0x00d760    0xb8  Nikon.o [1]
+  .near_func.text    ro code  0x00d818    0xb6  stm8l15x_gpio.o [1]
+  .near_func.text    ro code  0x00d8ce    0xb4  Nikon.o [1]
+  .near_func.text    ro code  0x00d982    0xab  Funct.o [1]
+  .near_func.text    ro code  0x00da2d    0xa5  Lcd.o [1]
+  .near_func.text    ro code  0x00dad2    0xa1  Task.o [1]
+  .near_func.text    ro code  0x00db73    0x9f  Key_Process.o [1]
+  .near_func.text    ro code  0x00dc12    0x9f  Key_Process.o [1]
+  .near.rodata       const    0x00dcb1    0x9c  Nikon.o [1]
+  .near_func.text    ro code  0x00dd4d    0x98  Nikon.o [1]
+  .near_func.text    ro code  0x00dde5    0x98  Task.o [1]
+  .near_func.text    ro code  0x00de7d    0x8e  stm8l15x_clk.o [1]
+  .near_func.text    ro code  0x00df0b    0x8c  Nikon.o [1]
+  .near_func.text    ro code  0x00df97    0x89  Nikon.o [1]
+  .near_func.text    ro code  0x00e020    0x88  stm8l15x_dma.o [1]
+  .near_func.text    ro code  0x00e0a8    0x82  Change.o [1]
+  .near_func.text    ro code  0x00e12a    0x81  Init.o [1]
+  .near.rodata       const    0x00e1ab    0x7c  Nikon.o [1]
+  .near_func.text    ro code  0x00e227    0x79  Lcd.o [1]
+  .near_func.text    ro code  0x00e2a0    0x73  Funct.o [1]
+  .near_func.text    ro code  0x00e313    0x73  Key_Process.o [1]
+  .near_func.text    ro code  0x00e386    0x6a  Motor.o [1]
+  .near_func.text    ro code  0x00e3f0    0x67  Key_Process.o [1]
+  .near_func.text    ro code  0x00e457    0x62  Task.o [1]
+  .near_func.text    ro code  0x00e4b9    0x61  Nikon.o [1]
+  .near_func.text    ro code  0x00e51a    0x60  Nikon.o [1]
+  .near_func.text    ro code  0x00e57a    0x5d  stm8l15x_tim3.o [1]
+  .near_func.text    ro code  0x00e5d7    0x5d  stm8l15x_tim5.o [1]
+  .near_func.text    ro code  0x00e634    0x5b  Lcd.o [1]
+  .near_func.text    ro code  0x00e68f    0x59  long.o [4]
+  .near.rodata       const    0x00e6e8    0x58  Nikon.o [1]
+  .near_func.text    ro code  0x00e740    0x58  Task.o [1]
+  .near_func.text    ro code  0x00e798    0x55  Key_Process.o [1]
+  .near_func.text    ro code  0x00e7ed    0x53  Key_Process.o [1]
+  .near_func.text    ro code  0x00e840    0x4c  stm8l15x_adc.o [1]
+  .near_func.text    ro code  0x00e88c    0x4c  stm8l15x_adc.o [1]
+  .near_func.text    ro code  0x00e8d8    0x4b  Task.o [1]
+  .near_func.text    ro code  0x00e923    0x4a  Nikon.o [1]
+  .near_func.text    ro code  0x00e96d    0x46  Nikon.o [1]
+  .near_func.text    ro code  0x00e9b3    0x46  short.o [4]
+  .near_func.text    ro code  0x00e9f9    0x45  Key_Process.o [1]
+  .near_func.text    ro code  0x00ea3e    0x41  Init.o [1]
+  .near_func.text    ro code  0x00ea7f    0x40  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00eabf    0x3e  Change.o [1]
+  .near_func.text    ro code  0x00eafd    0x3e  Lcd.o [1]
+  .near_func.text    ro code  0x00eb3b    0x3d  Lcd.o [1]
+  .near_func.text    ro code  0x00eb78    0x3c  Init.o [1]
+  .near_func.text    ro code  0x00ebb4    0x3c  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00ebf0    0x3b  Nikon.o [1]
+  .near_func.text    ro code  0x00ec2b    0x3a  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00ec65    0x3a  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00ec9f    0x3a  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00ecd9    0x3a  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00ed13    0x39  Lcd.o [1]
+  .near_func.text    ro code  0x00ed4c    0x38  Nikon.o [1]
+  .near_func.text    ro code  0x00ed84    0x38  stm8l15x_flash.o [1]
+  .near.rodata       const    0x00edbc    0x37  Nikon.o [1]
+  .near.rodata       const    0x00edf3    0x37  Nikon.o [1]
+  .near_func.text    ro code  0x00ee2a    0x36  Funct.o [1]
+  .near_func.text    ro code  0x00ee60    0x35  Motor.o [1]
+  .near_func.text    ro code  0x00ee95    0x35  Nikon.o [1]
+  .near_func.text    ro code  0x00eeca    0x34  main.o [1]
+  .near_func.text    ro code  0x00eefe    0x33  Funct.o [1]
+  .near_func.text    ro code  0x00ef31    0x32  Lcd.o [1]
+  .near_func.text    ro code  0x00ef63    0x31  Nikon.o [1]
+  .near_func.text    ro code  0x00ef94    0x31  Nikon.o [1]
+  .near_func.text    ro code  0x00efc5    0x2f  Funct.o [1]
+  .near.rodata       const    0x00eff4    0x2e  Nikon.o [1]
+  .near_func.text    ro code  0x00f022    0x2e  Change.o [1]
+  .near_func.text    ro code  0x00f050    0x2e  Nikon.o [1]
+  .near_func.text    ro code  0x00f07e    0x2d  main.o [1]
+  .near_func.text    ro code  0x00f0ab    0x2d  Nikon.o [1]
+  .near_func.text    ro code  0x00f0d8    0x2d  stm8l15x_adc.o [1]
+  .near.rodata       const    0x00f105    0x2c  Nikon.o [1]
+  .near_func.text    ro code  0x00f131    0x2c  Nikon.o [1]
+  .near_func.text    ro code  0x00f15d    0x2b  Nikon.o [1]
+  .near_func.text    ro code  0x00f188    0x2b  Task.o [1]
+  .near_func.text    ro code  0x00f1b3    0x2a  Nikon.o [1]
+  .near_func.text    ro code  0x00f1dd    0x2a  stm8l15x_tim3.o [1]
+  .near_func.text    ro code  0x00f207    0x2a  stm8l15x_tim5.o [1]
+  .near_func.text    ro code  0x00f231    0x29  stm8l15x_adc.o [1]
+  .near_func.text    ro code  0x00f25a    0x28  Key_Process.o [1]
+  .near_func.text    ro code  0x00f282    0x28  init_small.o [4]
+  .near_func.text    ro code  0x00f2aa    0x27  stm8l15x_syscfg.o [1]
+  .near_func.text    ro code  0x00f2d1    0x27  stm8l15x_tim2.o [1]
+  .near_func.text    ro code  0x00f2f8    0x26  Funct.o [1]
+  .near_func.text    ro code  0x00f31e    0x26  Nikon.o [1]
+  .near_func.text    ro code  0x00f344    0x24  char.o [4]
+  .near.rodata       const    0x00f368    0x23  Motor.o [1]
+  .near.rodata       const    0x00f38b    0x23  Motor.o [1]
+  .near_func.text    ro code  0x00f3ae    0x22  Nikon.o [1]
+  .near_func.text    ro code  0x00f3d0    0x22  stm8l15x_exti.o [1]
+  .near_func.text    ro code  0x00f3f2    0x21  Nikon.o [1]
+  .iar.init_table    const    0x00f413    0x12  - Linker created -
+  .near_func.text    ro code  0x00f425    0x20  Nikon.o [1]
+  .near_func.text    ro code  0x00f445    0x1e  init_small.o [4]
+  .near_func.text    ro code  0x00f463    0x1d  Nikon.o [1]
+  .near_func.text    ro code  0x00f480    0x1d  Nikon.o [1]
+  .near_func.text    ro code  0x00f49d    0x1b  Key_Process.o [1]
+  .near_func.text    ro code  0x00f4b8    0x1b  Key_Process.o [1]
+  .near_func.text    ro code  0x00f4d3    0x1b  main.o [1]
+  .near_func.text    ro code  0x00f4ee    0x1a  Nikon.o [1]
+  .near_func.text    ro code  0x00f508    0x1a  long_util.o [4]
+  .near_func.text    ro code  0x00f522    0x19  Init.o [1]
+  .near_func.text    ro code  0x00f53b    0x19  Key_Process.o [1]
+  .near_func.text    ro code  0x00f554    0x19  stm8l15x_flash.o [1]
+  .near_func.text    ro code  0x00f56d    0x18  Nikon.o [1]
+  .near_func.text    ro code  0x00f585    0x17  memset.o [4]
+  .near_func.text    ro code  0x00f59c    0x17  init.o [4]
+  .near.rodata       const    0x00f5b3    0x16  Change.o [1]
+  .near.rodata       const    0x00f5c9    0x16  Nikon.o [1]
+  .near_func.text    ro code  0x00f5df    0x16  Init.o [1]
+  .near_func.text    ro code  0x00f5f5    0x16  Nikon.o [1]
+  .near_func.text    ro code  0x00f60b    0x15  Nikon.o [1]
+  .near_func.text    ro code  0x00f620    0x14  Lcd.o [1]
+  .near_func.text    ro code  0x00f634    0x14  Nikon.o [1]
+  .near_func.text    ro code  0x00f648    0x14  Nikon.o [1]
+  .near_func.text    ro code  0x00f65c    0x14  Nikon.o [1]
+  .near_func.text    ro code  0x00f670    0x14  __dbg_xxexit.o [3]
+  .near.rodata       const    0x00f684    0x13  Nikon.o [1]
+  .near_func.text    ro code  0x00f697    0x13  Nikon.o [1]
+  .near_func.text    ro code  0x00f6aa    0x13  cstartup.o [4]
+  .near.rodata       const    0x00f6bd    0x12  Nikon.o [1]
+  .near_func.text    ro code  0x00f6cf    0x12  stm8l15x_gpio.o [1]
+  .near_func.text    ro code  0x00f6e1    0x11  Init.o [1]
+  .near_func.text    ro code  0x00f6f2    0x11  stm8l15x_adc.o [1]
+  .near_func.text    ro code  0x00f703    0x11  stm8l15x_dma.o [1]
+  .near_func.text    ro code  0x00f714    0x11  stm8l15x_tim3.o [1]
+  .near_func.text    ro code  0x00f725    0x11  stm8l15x_tim5.o [1]
+  .near_func.text    ro code  0x00f736    0x10  Funct.o [1]
+  .near_func.text    ro code  0x00f746    0x10  Funct.o [1]
+  .near_func.text    ro code  0x00f756     0xf  Lcd.o [1]
+  .near_func.text    ro code  0x00f765     0xe  Lcd.o [1]
+  .near_func.text    ro code  0x00f773     0xe  stm8l15x_clk.o [1]
+  .near_func.text    ro code  0x00f781     0xe  stm8l15x_dma.o [1]
+  .near_func.text    ro code  0x00f78f     0xe  stm8l15x_tim3.o [1]
+  .near_func.text    ro code  0x00f79d     0xe  stm8l15x_tim3.o [1]
+  .near_func.text    ro code  0x00f7ab     0xe  stm8l15x_tim5.o [1]
+  .near_func.text    ro code  0x00f7b9     0xe  stm8l15x_tim5.o [1]
+  .near_func.text    ro code  0x00f7c7     0xd  Nikon.o [1]
+  .near_func.text    ro code  0x00f7d4     0xd  Nikon.o [1]
+  .near_func.text    ro code  0x00f7e1     0xd  Nikon.o [1]
+  .near_func.text    ro code  0x00f7ee     0xd  Nikon.o [1]
+  .near_func.text    ro code  0x00f7fb     0xd  Task.o [1]
+  .near_func.text    ro code  0x00f808     0xd  move.o [4]
+  .near_func.text    ro code  0x00f815     0xb  stm8l15x_flash.o [1]
+  .near_func.text    ro code  0x00f820     0xb  stm8l15x_flash.o [1]
+  .near_func.text    ro code  0x00f82b     0xb  abs.o [4]
+  .near.rodata       const    0x00f836     0xa  Nikon.o [1]
+  .near_func.text    ro code  0x00f840     0x9  Key_Process.o [1]
+  .near_func.text    ro code  0x00f849     0x9  Nikon.o [1]
+  .near_func.text    ro code  0x00f852     0x9  stm8l15x_tim2.o [1]
+  .near_func.text    ro code  0x00f85b     0x8  stm8l15x_gpio.o [1]
+  .near_func.text    ro code  0x00f863     0x7  stm8l15x_gpio.o [1]
+  .near_func.text    ro code  0x00f86a     0x7  dc_util.o [4]
+  .near_func.text    ro code  0x00f871     0x5  Funct.o [1]
+  .near_func.text    ro code  0x00f876     0x5  stm8l15x_adc.o [1]
+  .near_func.text    ro code  0x00f87b     0x5  cexit.o [4]
+  .near_func.text    ro code  0x00f880     0x4  stm8l15x_clk.o [1]
+  .near_func.text    ro code  0x00f884     0x4  stm8l15x_clk.o [1]
+  .near_func.text    ro code  0x00f888     0x4  stm8l15x_clk.o [1]
+  .near_func.text    ro code  0x00f88c     0x4  Task.o [1]
+  .near.rodata       const    0x00f890     0x3  Nikon.o [1]
+  .near.rodata       const    0x00f893     0x3  Nikon.o [1]
+  .near_func.text    ro code  0x00f896     0x3  stm8l15x_gpio.o [1]
+  .near_func.text    ro code  0x00f899     0x3  interrupt.o [4]
+  .near_func.text    ro code  0x00f89c     0x3  low_level_init.o [4]
+  .near_func.text    ro code  0x00f89f     0x3  exit.o [4]
+  .near_func.text    ro code  0x00f8a2     0x3  unhandled_exception.o [4]
+  .near_func.text    ro code  0x00f8a5     0x1  Key_Process.o [1]
+  .near_func.text    ro code  0x00f8a6     0x1  Key_Process.o [1]
+  .near_func.text    ro code  0x00f8a7     0x1  Key_Process.o [1]
+  .near_func.text    ro code  0x00f8a8     0x1  Key_Process.o [1]
+  .near_func.text    ro code  0x00f8a9     0x1  Nikon.o [1]
+  .near_func.text    ro code  0x00f8aa     0x1  Nikon.o [1]
+  .near_func.text    ro code  0x00f8ab     0x1  Nikon.o [1]
+  .near_func.text    ro code  0x00f8ac     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8ad     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8ae     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8af     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b0     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b1     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b2     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b3     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b4     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b5     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b6     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b7     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b8     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8b9     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8ba     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8bb     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8bc     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8bd     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8be     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8bf     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8c0     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8c1     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8c2     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8c3     0x1  stm8l15x_it.o [1]
+  .near_func.text    ro code  0x00f8c4     0x1  __dbg_break.o [3]
+                            - 0x00f8c5  0x5845
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address   Size
+          -------   ----
+Zero (__iar_zero_init2)
+    1 destination range, total size 0x10f:
+          0x000235  0x10f
+
+Copy (__iar_copy_init2)
+    1 source range, total size 0x225:
+          0x00bc6b  0x225
+    1 destination range, total size 0x225:
+          0x000010  0x225
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                 ro code  ro data  rw data
+    ------                 -------  -------  -------
+C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj: [1]
+    Change.o                   968       22       20
+    Funct.o                  1 223       88      121
+    Init.o                     699                10
+    Key_Process.o            2 491       11       13
+    Lcd.o                    6 935                16
+    Motor.o                    770       70       14
+    Nikon.o                  4 880    1 242      593
+    Task.o                     634       35       40
+    main.o                     124                 2
+    stm8l15x_adc.o             260
+    stm8l15x_clk.o             168
+    stm8l15x_dma.o             167
+    stm8l15x_exti.o             34
+    stm8l15x_flash.o           103
+    stm8l15x_gpio.o            218
+    stm8l15x_it.o              380
+    stm8l15x_syscfg.o           39
+    stm8l15x_tim2.o             48
+    stm8l15x_tim3.o            180
+    stm8l15x_tim5.o            180
+    ------------------------------------------------
+    Total:                  20 501    1 468      829
+
+command line: [2]
+    ------------------------------------------------
+    Total:
+
+dbgstm8smd.a: [3]
+    __dbg_break.o                1
+    __dbg_xxexit.o              20
+    ------------------------------------------------
+    Total:                      21
+
+dlstm8smn.a: [4]
+    abs.o                       11
+    cexit.o                      5
+    char.o                      36
+    cstartup.o                  19
+    dc_util.o                    7
+    exit.o                       3
+    init.o                      23
+    init_small.o                70
+    interrupt.o                  3      128
+    long.o                      89
+    long_util.o                 26
+    low_level_init.o             3
+    memset.o                    23
+    move.o                      13
+    short.o                     70
+    unhandled_exception.o        3
+    vreg_util.o                185
+    vregs.o                                       16
+    ------------------------------------------------
+    Total:                     589      128       16
+
+    Linker created                       18      512
+----------------------------------------------------
+    Grand Total:            21 111    1 614    1 357
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                    Address    Size  Type      Object
+-----                    -------    ----  ----      ------
+.iar.init_table$$Base   0x00f413           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00f425           --   Gb  - Linker created -
+?b0                     0x000000          Data  Gb  vregs.o [4]
+?b1                     0x000001          Data  Gb  vregs.o [4]
+?b10                    0x00000a          Data  Gb  vregs.o [4]
+?b11                    0x00000b          Data  Gb  vregs.o [4]
+?b12                    0x00000c          Data  Gb  vregs.o [4]
+?b13                    0x00000d          Data  Gb  vregs.o [4]
+?b14                    0x00000e          Data  Gb  vregs.o [4]
+?b15                    0x00000f          Data  Gb  vregs.o [4]
+?b2                     0x000002          Data  Gb  vregs.o [4]
+?b3                     0x000003          Data  Gb  vregs.o [4]
+?b4                     0x000004          Data  Gb  vregs.o [4]
+?b5                     0x000005          Data  Gb  vregs.o [4]
+?b6                     0x000006          Data  Gb  vregs.o [4]
+?b7                     0x000007          Data  Gb  vregs.o [4]
+?b8                     0x000008          Data  Gb  vregs.o [4]
+?b9                     0x000009          Data  Gb  vregs.o [4]
+?dc8_px                 0x00f86a          Code  Gb  dc_util.o [4]
+?dec32_0x_0x            0x00e6a7          Code  Gb  long.o [4]
+?dec32_l2_l2            0x00e6a2          Code  Gb  long.o [4]
+?e0                     0x000001          Data  Gb  vregs.o [4]
+?e1                     0x000005          Data  Gb  vregs.o [4]
+?e2                     0x000009          Data  Gb  vregs.o [4]
+?e3                     0x00000d          Data  Gb  vregs.o [4]
+?epilogue_l2            0x00d716          Code  Gb  vreg_util.o [4]
+?epilogue_l2_l3         0x00d713          Code  Gb  vreg_util.o [4]
+?epilogue_w4            0x00d71a          Code  Gb  vreg_util.o [4]
+?inc32_0x_0x            0x00e694          Code  Gb  long.o [4]
+?inc32_l0_l0            0x00e68f          Code  Gb  long.o [4]
+?l0                     0x000000          Data  Gb  vregs.o [4]
+?l1                     0x000004          Data  Gb  vregs.o [4]
+?l2                     0x000008          Data  Gb  vregs.o [4]
+?l3                     0x00000c          Data  Gb  vregs.o [4]
+?load32_0x_l0           0x00f514          Code  Gb  long_util.o [4]
+?load32_l0_0x           0x00f508          Code  Gb  long_util.o [4]
+?mov_e0_e2              0x00d728          Code  Gb  vreg_util.o [4]
+?mov_e0_e3              0x00d735          Code  Gb  vreg_util.o [4]
+?mov_e2_e0              0x00d749          Code  Gb  vreg_util.o [4]
+?mov_e3_e0              0x00d756          Code  Gb  vreg_util.o [4]
+?mov_l0_l2              0x00d725          Code  Gb  vreg_util.o [4]
+?mov_l0_l3              0x00d732          Code  Gb  vreg_util.o [4]
+?mov_l2_l0              0x00d746          Code  Gb  vreg_util.o [4]
+?mov_l3_l0              0x00d753          Code  Gb  vreg_util.o [4]
+?mov_w1_w4              0x00d71e          Code  Gb  vreg_util.o [4]
+?mov_w1_w5              0x00d72b          Code  Gb  vreg_util.o [4]
+?mov_w1_w7              0x00d738          Code  Gb  vreg_util.o [4]
+?mov_w3_w1              0x00d73f          Code  Gb  vreg_util.o [4]
+?mov_w5_w1              0x00d74c          Code  Gb  vreg_util.o [4]
+?mov_w7_w1              0x00d759          Code  Gb  vreg_util.o [4]
+?move1616_v_x_y_a       0x00f808          Code  Gb  move.o [4]
+?mul16_x_x_w0           0x00e9b3          Code  Gb  short.o [4]
+?pop_l2                 0x00d6f5          Code  Gb  vreg_util.o [4]
+?pop_l3                 0x00d700          Code  Gb  vreg_util.o [4]
+?pop_w4                 0x00d6bf          Code  Gb  vreg_util.o [4]
+?push_l2                0x00d6ce          Code  Gb  vreg_util.o [4]
+?push_l3                0x00d6d3          Code  Gb  vreg_util.o [4]
+?push_w4                0x00d6a7          Code  Gb  vreg_util.o [4]
+?sdiv16_x_x_y           0x00e9d1          Code  Gb  short.o [4]
+?sext16_x_a             0x00e9f2          Code  Gb  short.o [4]
+?sll16_x_x_a            0x00e9ea          Code  Gb  short.o [4]
+?sll8_a_a_5             0x00f358          Code  Gb  char.o [4]
+?smod8_a_b0_a           0x00f344          Code  Gb  char.o [4]
+?sra8_a_a_4             0x00f363          Code  Gb  char.o [4]
+?srl32_0x_0x_a          0x00e6da          Code  Gb  long.o [4]
+?srl32_l0_l0_a          0x00e6d7          Code  Gb  long.o [4]
+?srl32_l0_l0_db         0x00e6d3          Code  Gb  long.o [4]
+?srl8_a_a_5             0x00f35e          Code  Gb  char.o [4]
+?srl8_a_a_6             0x00f35d          Code  Gb  char.o [4]
+?sub32_l0_l0_0x         0x00e6bb          Code  Gb  long.o [4]
+?w0                     0x000000          Data  Gb  vregs.o [4]
+?w1                     0x000002          Data  Gb  vregs.o [4]
+?w2                     0x000004          Data  Gb  vregs.o [4]
+?w3                     0x000006          Data  Gb  vregs.o [4]
+?w4                     0x000008          Data  Gb  vregs.o [4]
+?w5                     0x00000a          Data  Gb  vregs.o [4]
+?w6                     0x00000c          Data  Gb  vregs.o [4]
+?w7                     0x00000e          Data  Gb  vregs.o [4]
+ADC1_COMP_IRQHandler    0x00f8bb     0x1  Code  Gb  stm8l15x_it.o [1]
+ADC_Buffer              0x0002e3     0xa  Data  Gb  Init.o [1]
+ADC_ChannelCmd          0x00e840    0x4c  Code  Gb  stm8l15x_adc.o [1]
+ADC_Cmd                 0x00f6f2    0x11  Code  Gb  stm8l15x_adc.o [1]
+ADC_Config              0x00e12a    0x81  Code  Gb  Init.o [1]
+ADC_DMACmd              0x00f0d8    0x2d  Code  Gb  stm8l15x_adc.o [1]
+ADC_Init                0x00f231    0x29  Code  Gb  stm8l15x_adc.o [1]
+ADC_SamplingTimeConfig  0x00e88c    0x4c  Code  Gb  stm8l15x_adc.o [1]
+ADC_SoftwareStartConv   0x00f876     0x5  Code  Gb  stm8l15x_adc.o [1]
+ADC_VALUE               0x0002d9     0xa  Data  Gb  Change.o [1]
+BEEP_CAP_LOW_ONCE       0x00031b     0x1  Data  Gb  Change.o [1]
+BEEP_CAP_ONCE           0x000319     0x1  Data  Gb  Change.o [1]
+BEEP_TEMP_ONCE          0x00031a     0x1  Data  Gb  Change.o [1]
+BeepFlag                0x0002f5     0x3  Data  Gb  Funct.o [1]
+Beep_Mode_Handle        0x00b774   0x2c6  Code  Gb  Funct.o [1]
+Beep_Mode_TypeDef       0x000321     0x1  Data  Gb  Funct.o [1]
+BkLightOff              0x00f8ab     0x1  Code  Gb  Nikon.o [1]
+BkLightOn               0x00f8aa     0x1  Code  Gb  Nikon.o [1]
+BuzLock_Hndler          0x00f620    0x14  Code  Lc  Lcd.o [1]
+CLK_Config              0x00f5df    0x16  Code  Gb  Init.o [1]
+CLK_GetSYSCLKSource     0x00f884     0x4  Code  Gb  stm8l15x_clk.o [1]
+CLK_PeripheralClockConfig
+                        0x00de7d    0x8e  Code  Gb  stm8l15x_clk.o [1]
+CLK_SYSCLKDivConfig     0x00f888     0x4  Code  Gb  stm8l15x_clk.o [1]
+CLK_SYSCLKSourceConfig  0x00f880     0x4  Code  Gb  stm8l15x_clk.o [1]
+CLK_SYSCLKSourceSwitchCmd
+                        0x00f773     0xe  Code  Gb  stm8l15x_clk.o [1]
+CSTACK$$Base            0x000e00           --   Gb  - Linker created -
+CSTACK$$Limit           0x001000           --   Gb  - Linker created -
+CalcSum                 0x00f1b3    0x2a  Code  Gb  Nikon.o [1]
+CameraBlockRcv          0x00f648    0x14  Code  Gb  Nikon.o [1]
+CameraCmdFlagSet        0x00e4b9    0x61  Code  Lc  Nikon.o [1]
+CameraCmdHandle         0x00cc52   0x125  Code  Gb  Nikon.o [1]
+CameraCmdRearHandle     0x00ed4c    0x38  Code  Lc  Nikon.o [1]
+CameraCmdReply          0x00c28e   0x1d6  Code  Gb  Nikon.o [1]
+Camera_Zoom_offset      0x000329     0x1  Data  Gb  Motor.o [1]
+Change_Cap              0x00e0a8    0x82  Code  Gb  Change.o [1]
+Check_Lamp_Temp         0x00d280    0xe1  Code  Gb  Change.o [1]
+ClearComRstTime         0x00f849     0x9  Code  Gb  Nikon.o [1]
+ClkSynRcv               0x00f3ae    0x22  Code  Gb  Nikon.o [1]
+ClkSynSend              0x00f31e    0x26  Code  Gb  Nikon.o [1]
+CmrLedCtrl              0x00f65c    0x14  Code  Gb  Nikon.o [1]
+CodeSearch              0x00f15d    0x2b  Code  Gb  Nikon.o [1]
+ComDataHandleProc       0x00f425    0x20  Code  Gb  Nikon.o [1]
+ComDataSR               0x00f463    0x1d  Code  Gb  Nikon.o [1]
+ComMonitor              0x00d189    0xf7  Code  Gb  Nikon.o [1]
+ComSpiDataClear         0x00f480    0x1d  Code  Gb  Nikon.o [1]
+DMA1_CHANNEL0_1_IRQHandler
+                        0x00f8ae     0x1  Code  Gb  stm8l15x_it.o [1]
+DMA1_CHANNEL2_3_IRQHandler
+                        0x00f8af     0x1  Code  Gb  stm8l15x_it.o [1]
+DMA_Cmd                 0x00f703    0x11  Code  Gb  stm8l15x_dma.o [1]
+DMA_Config              0x00ea3e    0x41  Code  Gb  Init.o [1]
+DMA_GlobalCmd           0x00f781     0xe  Code  Gb  stm8l15x_dma.o [1]
+DMA_Init                0x00e020    0x88  Code  Gb  stm8l15x_dma.o [1]
+Delayus                 0x00f871     0x5  Code  Gb  Funct.o [1]
+DisPlay_M_Gear          0x00a080  0x100e  Code  Lc  Lcd.o [1]
+Display_Multi_Hz        0x00c08f   0x1ff  Code  Lc  Lcd.o [1]
+Display_Multi_Times     0x00b08e   0x37c  Code  Lc  Lcd.o [1]
+Display_Zoom            0x00ba3a   0x231  Code  Lc  Lcd.o [1]
+DitherlessKey           0x00ce85   0x10b  Code  Gb  Key_Process.o [1]
+EEPROM_DATA1            0x001000     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA2            0x001001     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA3            0x001002     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA4            0x001003     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA5            0x001004     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA6            0x001005     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA7            0x001006     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA8            0x001007     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA9            0x001008     0x1  Data  Gb  Funct.o [1]
+EXTI0_IRQHandler        0x00f8b4     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI1_IRQHandler        0x00ea7f    0x40  Code  Gb  stm8l15x_it.o [1]
+EXTI2_IRQHandler        0x00f8b5     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI3_IRQHandler        0x00f8b6     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI4_IRQHandler        0x00ec2b    0x3a  Code  Gb  stm8l15x_it.o [1]
+EXTI5_IRQHandler        0x00f8b7     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI6_IRQHandler        0x00f8b8     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI7_IRQHandler        0x00ec65    0x3a  Code  Gb  stm8l15x_it.o [1]
+EXTIB_G_IRQHandler      0x00f8b2     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTID_H_IRQHandler      0x00f8b3     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTIE_F_PVD_IRQHandler  0x00f8b1     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI_ClearITPendingBit  0x00f3d0    0x22  Code  Gb  stm8l15x_exti.o [1]
+FLASHIntProc            0x00f56d    0x18  Code  Gb  Nikon.o [1]
+FLASH_IRQHandler        0x00f8ad     0x1  Code  Gb  stm8l15x_it.o [1]
+FLASH_Lock              0x00f815     0xb  Code  Gb  stm8l15x_flash.o [1]
+FLASH_ProgramByte       0x00f820     0xb  Code  Gb  stm8l15x_flash.o [1]
+FLASH_Unlock            0x00f554    0x19  Code  Gb  stm8l15x_flash.o [1]
+FLASH_WaitForLastOperation
+                        0x00ed84    0x38  Code  Gb  stm8l15x_flash.o [1]
+FlashEventLoop          0x00cd77   0x10e  Code  Gb  Nikon.o [1]
+Flash_Output_Typedef    0x000011     0x1  Data  Gb  Funct.o [1]
+Flash_Time_Group        0x0000c2   0x150  Data  Gb  Nikon.o [1]
+Formalfrash             0x00e923    0x4a  Code  Gb  Nikon.o [1]
+GPIO_Config             0x00c606   0x17d  Code  Gb  Init.o [1]
+GPIO_Init               0x00d818    0xb6  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_Pin_1_Callback     0x00d982    0xab  Code  Gb  Funct.o [1]
+GPIO_Pin_4_Callback     0x00d8ce    0xb4  Code  Gb  Nikon.o [1]
+GPIO_Pin_7_Callback     0x00f7d4     0xd  Code  Gb  Nikon.o [1]
+GPIO_ReadInputDataBit   0x00f896     0x3  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_ResetBits          0x00f85b     0x8  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_SetBits            0x00f863     0x7  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_WriteBit           0x00f6cf    0x12  Code  Gb  stm8l15x_gpio.o [1]
+GetCmrInfo              0x00b40a   0x36a  Code  Gb  Nikon.o [1]
+GetMotoStdIndex         0x00ebf0    0x3b  Code  Gb  Nikon.o [1]
+HAL_SYSTICK_Callback    0x00f7fb     0xd  Code  Gb  Task.o [1]
+I2C1_SPI2_IRQHandler    0x00f8c3     0x1  Code  Gb  stm8l15x_it.o [1]
+INTVEC$$Base            0x00a000           --   Gb  - Linker created -
+INTVEC$$Limit           0x00a080           --   Gb  - Linker created -
+InitNssIntPort          0x00f697    0x13  Code  Gb  Nikon.o [1]
+KeyDownCallBack         0x00e3f0    0x67  Code  Gb  Key_Process.o [1]
+KeyUpCallBack           0x00f840     0x9  Code  Gb  Key_Process.o [1]
+Key_Beep_Srt            0x00f25a    0x28  Code  Gb  Key_Process.o [1]
+Key_Flag                0x000327     0x1  Data  Gb  Key_Process.o [1]
+Key_Pilot_Str           0x00e313    0x73  Code  Gb  Key_Process.o [1]
+Key_Power_Long_Str      0x00e9f9    0x45  Code  Gb  Key_Process.o [1]
+Key_Power_Str           0x00f53b    0x19  Code  Gb  Key_Process.o [1]
+Key_Proc                0x00f49d    0x1b  Code  Gb  Key_Process.o [1]
+Key_S2_Long_Str         0x00f8a5     0x1  Code  Gb  Key_Process.o [1]
+Key_S2_Str              0x00db73    0x9f  Code  Gb  Key_Process.o [1]
+Key_S3_Long_Str         0x00f8a8     0x1  Code  Gb  Key_Process.o [1]
+Key_S3_Str              0x00c783   0x143  Code  Gb  Key_Process.o [1]
+Key_S4_Long_Str         0x00f8a6     0x1  Code  Gb  Key_Process.o [1]
+Key_S4_Str              0x00dc12    0x9f  Code  Gb  Key_Process.o [1]
+Key_S5_Long_Str         0x00f8a7     0x1  Code  Gb  Key_Process.o [1]
+Key_S5_Str              0x00be90   0x1ff  Code  Gb  Key_Process.o [1]
+Key_S6_Str              0x00e798    0x55  Code  Gb  Key_Process.o [1]
+Key_S7_Long_Str         0x00f4b8    0x1b  Code  Gb  Key_Process.o [1]
+Key_S7_Str              0x00e7ed    0x53  Code  Gb  Key_Process.o [1]
+Key_SET_Function_Typedef
+                        0x00031e     0x1  Data  Gb  Funct.o [1]
+Key_Scan                0x00d5eb    0xbc  Code  Gb  Key_Process.o [1]
+Key_Stroke              0x00cb29   0x129  Code  Gb  Key_Process.o [1]
+LCD_AES_IRQHandler      0x00f8b9     0x1  Code  Gb  stm8l15x_it.o [1]
+LCD_Data                0x0002a6    0x10  Data  Gb  Lcd.o [1]
+LCD_Dis_All_Clear       0x00f765     0xe  Code  Gb  Lcd.o [1]
+LCD_Display             0x00f756     0xf  Code  Gb  Lcd.o [1]
+LCD_Handler             0x00e634    0x5b  Code  Lc  Lcd.o [1]
+Lamp_Temp_TypeDef       0x000322     0x1  Data  Gb  Funct.o [1]
+LiteBlockSend           0x00f634    0x14  Code  Gb  Nikon.o [1]
+Low_Batt_Check          0x00d090    0xf9  Code  Gb  Change.o [1]
+M_T1_SCALE_Group        0x00008a    0x1c  Data  Gb  Nikon.o [1]
+M_T2_SCALE_Group        0x0000a6    0x1c  Data  Gb  Nikon.o [1]
+M_Zoom_TypeDef          0x000320     0x1  Data  Gb  Funct.o [1]
+Mode_Handler            0x00d51e    0xcd  Code  Lc  Lcd.o [1]
+Moto_Operation          0x00c8c6   0x139  Code  Gb  Motor.o [1]
+Motor_Contorl           0x00c9ff   0x12a  Code  Gb  Motor.o [1]
+Motor_Contorl_TypeDef   0x000303     0x2  Data  Gb  Motor.o [1]
+Motor_Manger_TypeDef    0x0002ce     0xb  Data  Gb  Motor.o [1]
+Motor_Oper              0x00e386    0x6a  Code  Gb  Motor.o [1]
+Motor_Step_Data         0x00f38b    0x23  Data  Gb  Motor.o [1]
+Motor_Value_Data        0x00f368    0x23  Data  Gb  Motor.o [1]
+Multi_Freq_TypeDef      0x000014     0x1  Data  Gb  Funct.o [1]
+Multi_Handler           0x00da2d    0xa5  Code  Lc  Lcd.o [1]
+Multi_Output_MAX        0x000328     0x1  Data  Gb  Key_Process.o [1]
+Multi_Output_Typedef    0x000013     0x1  Data  Gb  Funct.o [1]
+Multi_Times_TypeDef     0x000015     0x1  Data  Gb  Funct.o [1]
+Multiflash              0x00ee95    0x35  Code  Gb  Nikon.o [1]
+Multifrash              0x00ef94    0x31  Code  Gb  Nikon.o [1]
+Multifrash_Handle       0x00d442    0xdc  Code  Gb  Nikon.o [1]
+NikComInit              0x00f050    0x2e  Code  Gb  Nikon.o [1]
+NikTmComRst             0x00f0ab    0x2d  Code  Gb  Nikon.o [1]
+Nikon_To_Camera         0x00f2f8    0x26  Code  Gb  Funct.o [1]
+Nikon_Zoom_Handler      0x00ee60    0x35  Code  Gb  Motor.o [1]
+PreFlash2Set            0x00f7ee     0xd  Code  Gb  Nikon.o [1]
+PreFlashSet             0x00f7e1     0xd  Code  Gb  Nikon.o [1]
+Pre_Start_Flash         0x00e96d    0x46  Code  Gb  Nikon.o [1]
+RTC_CSSLSE_IRQHandler   0x00f8b0     0x1  Code  Gb  stm8l15x_it.o [1]
+Read_EepromData         0x00ee2a    0x36  Code  Gb  Funct.o [1]
+ReadyForFlash           0x00c464   0x1a2  Code  Gb  Nikon.o [1]
+Region$$Table$$Base     0x00f413           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00f425           --   Gb  - Linker created -
+RstComPara              0x00f60b    0x15  Code  Gb  Nikon.o [1]
+SBOintHandle            0x00df97    0x89  Code  Lc  Nikon.o [1]
+SPI1_IRQHandler         0x00ecd9    0x3a  Code  Gb  stm8l15x_it.o [1]
+SPI1_IT_Callback        0x00f5f5    0x16  Code  Gb  Nikon.o [1]
+SPIn_Init               0x00ef63    0x31  Code  Gb  Nikon.o [1]
+SWITCH_CSS_BREAK_DAC_IRQHandler
+                        0x00f8ba     0x1  Code  Gb  stm8l15x_it.o [1]
+SYSCFG_REMAPDMAChannelConfig
+                        0x00f2aa    0x27  Code  Gb  stm8l15x_syscfg.o [1]
+Save_EepromData         0x00e2a0    0x73  Code  Gb  Funct.o [1]
+SetComRstTime           0x00f7c7     0xd  Code  Gb  Nikon.o [1]
+SetSBOInt               0x00f3f2    0x21  Code  Gb  Nikon.o [1]
+SetSpiComModeOff        0x00dd4d    0x98  Code  Gb  Nikon.o [1]
+Slave_Flag              0x000324     0x1  Data  Gb  Funct.o [1]
+Slave_Output_Typedef    0x000012     0x1  Data  Gb  Funct.o [1]
+Slave_S2_Count          0x000323     0x1  Data  Gb  Funct.o [1]
+Slave_S2_TimeOut        0x00eefe    0x33  Code  Gb  Funct.o [1]
+Slave_time_count        0x000325     0x1  Data  Gb  Funct.o [1]
+SpiSrIntProc            0x00df0b    0x8c  Code  Gb  Nikon.o [1]
+Start_Flash             0x00e51a    0x60  Code  Gb  Nikon.o [1]
+SwRfMode                0x00f8a9     0x1  Code  Gb  Nikon.o [1]
+SysInfo                 0x0002c3     0xb  Data  Gb  Funct.o [1]
+SysTicks                0x00f07e    0x2d  Code  Gb  main.o [1]
+Sys_Mode_Typedef        0x000010     0x1  Data  Gb  Funct.o [1]
+TIM1_CC_IRQHandler      0x00f8c0     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM1_UPD_OVF_TRG_COM_IRQHandler
+                        0x00f8bf     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM2_CC_USART2_RX_IRQHandler
+                        0x00f8bc     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM2_ClearITPendingBit  0x00f852     0x9  Code  Gb  stm8l15x_tim2.o [1]
+TIM2_Config             0x00f6e1    0x11  Code  Gb  Init.o [1]
+TIM2_GetCounter         0x00f2d1    0x27  Code  Gb  stm8l15x_tim2.o [1]
+TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler
+                        0x00ebb4    0x3c  Code  Gb  stm8l15x_it.o [1]
+TIM3_CC_USART3_RX_IRQHandler
+                        0x00f8be     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM3_ClearFlag          0x00f714    0x11  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_Cmd                0x00f78f     0xe  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_Config             0x00eb78    0x3c  Code  Gb  Init.o [1]
+TIM3_CtrlPWMOutputs     0x00f79d     0xe  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_OC2Init            0x00e57a    0x5d  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_TimeBaseInit       0x00f1dd    0x2a  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler
+                        0x00f8bd     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM4_Callback           0x00f4ee    0x1a  Code  Gb  Nikon.o [1]
+TIM4_Config             0x00f522    0x19  Code  Gb  Init.o [1]
+TIM4_UPD_OVF_TRG_IRQHandler
+                        0x00ec9f    0x3a  Code  Gb  stm8l15x_it.o [1]
+TIM5_ClearFlag          0x00f725    0x11  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_Cmd                0x00f7ab     0xe  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_Config             0x00f022    0x2e  Code  Gb  Change.o [1]
+TIM5_CtrlPWMOutputs     0x00f7b9     0xe  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_OC1Init            0x00e5d7    0x5d  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_TimeBaseInit       0x00f207    0x2a  Code  Gb  stm8l15x_tim5.o [1]
+TM1621WrAllData         0x00eafd    0x3e  Code  Gb  Lcd.o [1]
+TM1621WrCmd             0x00ef31    0x32  Code  Gb  Lcd.o [1]
+TM1621Wr_Data           0x00ed13    0x39  Code  Lc  Lcd.o [1]
+TM1621_Init             0x00eb3b    0x3d  Code  Gb  Lcd.o [1]
+TRAP_IRQHandler         0x00f8ac     0x1  Code  Gb  stm8l15x_it.o [1]
+TTL_Ev_TypeDef          0x00031f     0x1  Data  Gb  Funct.o [1]
+T_Multi_Freq            0x000020    0x29  Data  Gb  Funct.o [1]
+T_Multi_Times           0x000049    0x1f  Data  Gb  Funct.o [1]
+T_Zoom_Group            0x000016     0xa  Data  Gb  Funct.o [1]
+TaskComps               0x000212    0x23  Data  Lc  Task.o [1]
+TaskProcess             0x00e8d8    0x4b  Code  Gb  Task.o [1]
+TaskRemarks             0x00dde5    0x98  Code  Gb  Task.o [1]
+Task_1                  0x00e740    0x58  Code  Gb  Task.o [1]
+Task_2                  0x00dad2    0xa1  Code  Gb  Task.o [1]
+Task_3                  0x00f88c     0x4  Code  Gb  Task.o [1]
+Task_4                  0x00f188    0x2b  Code  Gb  Task.o [1]
+Task_5                  0x00e457    0x62  Code  Gb  Task.o [1]
+USART1_RX_TIM5_CC_IRQHandler
+                        0x00f8c2     0x1  Code  Gb  stm8l15x_it.o [1]
+USART1_TX_TIM5_UPD_OVF_TRG_BRK_IRQHandler
+                        0x00f8c1     0x1  Code  Gb  stm8l15x_it.o [1]
+UserInit                0x00d361    0xe1  Code  Gb  Nikon.o [1]
+VerCodeCal              0x00f131    0x2c  Code  Gb  Nikon.o [1]
+Zoom_Handler            0x00e227    0x79  Code  Lc  Lcd.o [1]
+__DebugBreak            0x00f8c4     0x1  Code  Gb  __dbg_break.o [3]
+__eeprom_write_8        0x00efc5    0x2f  Code  Gb  Funct.o [1]
+__exit                  0x00f670    0x14  Code  Gb  __dbg_xxexit.o [3]
+__iar_copy_init2        0x00f282          Code  Gb  init_small.o [4]
+__iar_data_init2        0x00f59c    0x17  Code  Gb  init.o [4]
+__iar_program_start     0x00f6aa          Code  Gb  cstartup.o [4]
+__iar_unhandled_exception
+                        0x00f8a2          Code  Gb  unhandled_exception.o [4]
+__iar_zero_init2        0x00f445          Code  Gb  init_small.o [4]
+__intvec                0x00a000          Data  Gb  interrupt.o [4]
+__low_level_init        0x00f89c     0x3  Code  Gb  low_level_init.o [4]
+_exit                   0x00f87b          Code  Gb  cexit.o [4]
+_interrupt_1            0x00f8ac          Code  Gb  stm8l15x_it.o [1]
+_interrupt_10           0x00f8b4          Code  Gb  stm8l15x_it.o [1]
+_interrupt_11           0x00ea7f          Code  Gb  stm8l15x_it.o [1]
+_interrupt_12           0x00f8b5          Code  Gb  stm8l15x_it.o [1]
+_interrupt_13           0x00f8b6          Code  Gb  stm8l15x_it.o [1]
+_interrupt_14           0x00ec2b          Code  Gb  stm8l15x_it.o [1]
+_interrupt_15           0x00f8b7          Code  Gb  stm8l15x_it.o [1]
+_interrupt_16           0x00f8b8          Code  Gb  stm8l15x_it.o [1]
+_interrupt_17           0x00ec65          Code  Gb  stm8l15x_it.o [1]
+_interrupt_18           0x00f8b9          Code  Gb  stm8l15x_it.o [1]
+_interrupt_19           0x00f8ba          Code  Gb  stm8l15x_it.o [1]
+_interrupt_20           0x00f8bb          Code  Gb  stm8l15x_it.o [1]
+_interrupt_21           0x00ebb4          Code  Gb  stm8l15x_it.o [1]
+_interrupt_22           0x00f8bc          Code  Gb  stm8l15x_it.o [1]
+_interrupt_23           0x00f8bd          Code  Gb  stm8l15x_it.o [1]
+_interrupt_24           0x00f8be          Code  Gb  stm8l15x_it.o [1]
+_interrupt_25           0x00f8bf          Code  Gb  stm8l15x_it.o [1]
+_interrupt_26           0x00f8c0          Code  Gb  stm8l15x_it.o [1]
+_interrupt_27           0x00ec9f          Code  Gb  stm8l15x_it.o [1]
+_interrupt_28           0x00ecd9          Code  Gb  stm8l15x_it.o [1]
+_interrupt_29           0x00f8c1          Code  Gb  stm8l15x_it.o [1]
+_interrupt_3            0x00f8ad          Code  Gb  stm8l15x_it.o [1]
+_interrupt_30           0x00f8c2          Code  Gb  stm8l15x_it.o [1]
+_interrupt_31           0x00f8c3          Code  Gb  stm8l15x_it.o [1]
+_interrupt_4            0x00f8ae          Code  Gb  stm8l15x_it.o [1]
+_interrupt_5            0x00f8af          Code  Gb  stm8l15x_it.o [1]
+_interrupt_6            0x00f8b0          Code  Gb  stm8l15x_it.o [1]
+_interrupt_7            0x00f8b1          Code  Gb  stm8l15x_it.o [1]
+_interrupt_8            0x00f8b2          Code  Gb  stm8l15x_it.o [1]
+_interrupt_9            0x00f8b3          Code  Gb  stm8l15x_it.o [1]
+abs                     0x00f82b     0xb  Code  Gb  abs.o [4]
+apert_code              0x00f105    0x2c  Data  Gb  Nikon.o [1]
+cmp_calc                0x00f684    0x13  Data  Gb  Nikon.o [1]
+cmrApertVal             0x00e6e8    0x58  Data  Gb  Nikon.o [1]
+cmrIsoVal               0x00d760    0xb8  Data  Gb  Nikon.o [1]
+cmrIsoValExt            0x00e1ab    0x7c  Data  Gb  Nikon.o [1]
+cmrPara                 0x000253    0x1d  Data  Gb  Nikon.o [1]
+comm_state              0x00031d     0x1  Data  Gb  Funct.o [1]
+delay_time              0x00f746    0x10  Code  Gb  Funct.o [1]
+delay_us                0x00f736    0x10  Code  Gb  Funct.o [1]
+exit                    0x00f89f     0x3  Code  Gb  exit.o [4]
+filter                  0x00cf90   0x100  Code  Gb  Change.o [1]
+focLenScape             0x00f836     0xa  Data  Gb  Nikon.o [1]
+focLen_code             0x00edbc    0x37  Data  Gb  Nikon.o [1]
+focLen_val              0x00edf3    0x37  Data  Gb  Nikon.o [1]
+gWSleepCounter          0x0002ed     0x4  Data  Gb  Nikon.o [1]
+g_KeyInfo1              0x000068     0xb  Data  Lc  Key_Process.o [1]
+g_SettingIndex          0x00032f     0x1  Data  Gb  Nikon.o [1]
+g_chargeOk              0x000073     0x1  Data  Gb  Nikon.o [1]
+g_cmdCode               0x00033e     0x1  Data  Gb  Nikon.o [1]
+g_cmdSrFlag             0x00033c     0x1  Data  Gb  Nikon.o [1]
+g_cmrLinked             0x000338     0x1  Data  Gb  Nikon.o [1]
+g_datRcvFlag            0x00032a     0x1  Data  Gb  Nikon.o [1]
+g_dspUpdateFlag         0x000305     0x2  Data  Gb  Nikon.o [1]
+g_flashEnable           0x00032e     0x1  Data  Gb  Nikon.o [1]
+g_flashTime             0x000309     0x2  Data  Gb  Nikon.o [1]
+g_isAfOn                0x000342     0x1  Data  Gb  Nikon.o [1]
+g_isAutoStby            0x000341     0x1  Data  Gb  Nikon.o [1]
+g_isComStop             0x000331     0x1  Data  Gb  Nikon.o [1]
+g_isShadowOn            0x000333     0x1  Data  Gb  Nikon.o [1]
+g_lightMode             0x000307     0x2  Data  Gb  Nikon.o [1]
+g_nikComStatue          0x000336     0x1  Data  Gb  Nikon.o [1]
+g_nikPreTmr1            0x000315     0x2  Data  Gb  Nikon.o [1]
+g_nikPreTmr2            0x000317     0x2  Data  Gb  Nikon.o [1]
+g_nikSuspend            0x000337     0x1  Data  Gb  Nikon.o [1]
+g_pSendRcv              0x000311     0x2  Data  Gb  Nikon.o [1]
+g_sboPullFlag           0x000332     0x1  Data  Gb  Nikon.o [1]
+g_sboPullTimer          0x00030b     0x2  Data  Gb  Nikon.o [1]
+g_shadowCnt             0x000334     0x1  Data  Gb  Nikon.o [1]
+g_shadowTimer           0x00030d     0x2  Data  Gb  Nikon.o [1]
+g_sleepTag              0x00032d     0x1  Data  Gb  Nikon.o [1]
+g_spiBuf                0x00033d     0x1  Data  Gb  Nikon.o [1]
+g_spiRcvData            0x000235    0x1e  Data  Gb  Nikon.o [1]
+g_spiRcvIndex           0x000330     0x1  Data  Gb  Nikon.o [1]
+g_srFlag                0x00033a     0x1  Data  Gb  Nikon.o [1]
+g_srIndex               0x00033f     0x1  Data  Gb  Nikon.o [1]
+g_srMod                 0x00033b     0x1  Data  Gb  Nikon.o [1]
+g_srTotal               0x000340     0x1  Data  Gb  Nikon.o [1]
+g_sysTick               0x000301     0x2  Data  Gb  main.o [1]
+g_tmHandleFlag          0x000339     0x1  Data  Gb  Nikon.o [1]
+g_volRef                0x0002fb     0x2  Data  Gb  Change.o [1]
+getVolLevel             0x00eabf    0x3e  Code  Gb  Change.o [1]
+get_counter             0x00f4d3    0x1b  Code  Gb  main.o [1]
+macData1                0x00f6bd    0x12  Data  Gb  Nikon.o [1]
+macData2                0x000074    0x16  Data  Gb  Nikon.o [1]
+macData3                0x00eff4    0x2e  Data  Gb  Nikon.o [1]
+macData4                0x00f890     0x3  Data  Gb  Nikon.o [1]
+macData5                0x00f893     0x3  Data  Gb  Nikon.o [1]
+main                    0x00eeca    0x34  Code  Gb  main.o [1]
+mainPara                0x000270    0x1c  Data  Gb  Nikon.o [1]
+memset                  0x00f585    0x17  Code  Gb  memset.o [4]
+motoSet                 0x00028c    0x1a  Data  Gb  Nikon.o [1]
+mstPara                 0x00030f     0x2  Data  Gb  Nikon.o [1]
+multiSet                0x0002b6     0xd  Data  Gb  Nikon.o [1]
+nShutter                0x00dcb1    0x9c  Data  Gb  Nikon.o [1]
+output_calc             0x00f5c9    0x16  Data  Gb  Nikon.o [1]
+sendRecord              0x0002f8     0x3  Data  Gb  Nikon.o [1]
+ttl_expCodeRsv          0x000335     0x1  Data  Gb  Nikon.o [1]
+ttl_pre2_flag           0x00032b     0x1  Data  Gb  Nikon.o [1]
+ttl_pre_dbg             0x00032c     0x1  Data  Gb  Nikon.o [1]
+uwTick                  0x0002f1     0x4  Data  Gb  Task.o [1]
+
+
+[1] = C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_NIKON\Project\Debug\Obj
+[2] = command line
+[3] = dbgstm8smd.a
+[4] = dlstm8smn.a
+
+  21 111 bytes of readonly  code memory
+   1 614 bytes of readonly  data memory
+   1 357 bytes of readwrite data memory
+
+Errors: none
+Warnings: none

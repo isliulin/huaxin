@@ -1,0 +1,83 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=-1161494004
+[CodeCoverage]
+Enabled=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=1
+Graph=0
+Symbiont=0
+Exclusions=
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[Breakpoints2]
+Bp0=_ 1 "STD_CODE2" "{$PROJ_DIR$\..\USER\key.c}.69.4" 0 0 1 "" 0 ""
+Count=1
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=0
+ShowSource=1
+[Simulator]
+Freq=16000000
+[DataSample]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\USER\key.c}.315.2" 1 0 0 0 "" 0 ""
+Count=1
+[Aliases]
+A0=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_adc1.c" ""
+A1=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_clk.c" ""
+A2=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_exti.c" ""
+A3=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_flash.c" ""
+A4=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_gpio.c" ""
+A5=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_tim1.c" ""
+A6=_ "D:\ycb\LED\STM8S903\STM8S903\FWlib\src\stm8s_tim5.c" ""
+Count=7
+SuppressDialog=0
+[DebuggerSettings]
+DisableInterruptsWhenStepping=0

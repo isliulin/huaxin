@@ -1,0 +1,2341 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.40338/W32 for 8051         21/Jul/2014  12:20:05 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\Source\MT_X.c            #
+#    Command line       =  -f D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\P #
+#                          rojects\zstack\Utilities\OAD\CC2530DB\..\..\..\Too #
+#                          ls\CC2530DB\f8wEndev.cfg (-DCPU32MHZ               #
+#                          -DROOT=__near_func -DBLINK_LEDS) -f                #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\Tools\ #
+#                          CC2530DB\f8wConfig.cfg (-DSECURE=0                 #
+#                          -DZG_SECURE_DYNAMIC=0 -DREFLECTOR                  #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFF0                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116 "-DCONST=const __code"    #
+#                          -DGENERIC=__generic -DRFD_RCVC_ALWAYS_ON=FALSE     #
+#                          -DPOLL_RATE=1000 -DQUEUED_POLL_RATE=100            #
+#                          -DRESPONSE_POLL_RATE=100) -DREJOIN_POLL_RATE=440   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\Source\MT_X.c -D         #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D MT_TASK -D            #
+#                          MT_APP_FUNC -D MT_NWK_FUNC -D MT_NWK_CB_FUNC -D    #
+#                          MT_SYS_FUNC -D MT_ZDO_FUNC -D MT_ZDO_CB_FUNC -D    #
+#                          MT_UTIL_FUNC -D LCD_SUPPORTED -D                   #
+#                          RFD_RCVC_ALWAYS_ON -D ZPORT -D HOLD_AUTO_START     #
+#                          -lC D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\ #
+#                          Projects\zstack\Utilities\OAD\CC2530DB\DongleEB\Li #
+#                          st\ -lA D:\WorkReserve\project\AES_BOOT\CC2530EncB #
+#                          oot\Projects\zstack\Utilities\OAD\CC2530DB\DongleE #
+#                          B\List\ -o D:\WorkReserve\project\AES_BOOT\CC2530E #
+#                          ncBoot\Projects\zstack\Utilities\OAD\CC2530DB\Dong #
+#                          leEB\Obj\ -e --debug --core=plain --dptr=16,1      #
+#                          --data_model=large --code_model=banked             #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data_rom --nr_virtual_regs 16    #
+#                          -I D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\P #
+#                          rojects\zstack\Utilities\OAD\CC2530DB\ -I          #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\SOURCE\ -I   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\ZMAIN\ #
+#                          TI2530DB\ -I D:\WorkReserve\project\AES_BOOT\CC253 #
+#                          0EncBoot\Projects\zstack\Utilities\OAD\CC2530DB\.. #
+#                          \..\..\..\..\COMPONENTS\MT\ -I                     #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\HAL\INCLUDE\ -I                         #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\HAL\TARGET\CC2530EB\ -I                 #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\OSAL\INCLUDE\ -I                        #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\AF\ -I D:\WorkReserve\project\AES #
+#                          _BOOT\CC2530EncBoot\Projects\zstack\Utilities\OAD\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\STACK\NWK\ -I   #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SEC\ -I                           #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SAPI\ -I                          #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\SYS\ -I                           #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\STACK\ZDO\ -I                           #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\ZMAC\F8W\ -I D:\WorkReserve\project\AES #
+#                          _BOOT\CC2530EncBoot\Projects\zstack\Utilities\OAD\ #
+#                          CC2530DB\..\..\..\..\..\COMPONENTS\ZMAC\ -I        #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\SERVICES\SADDR\ -I                      #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\SERVICES\SDATA\ -I                      #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\INCLUDE\ -I                         #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\HIGH_LEVEL\ -I                      #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\LOW_LEVEL\srf04\ -I                 #
+#                          D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\..\..\..\..\..\ #
+#                          COMPONENTS\MAC\LOW_LEVEL\srf04\SINGLE_CHIP\ -Ohz   #
+#                          --require_prototypes                               #
+#    List file          =  D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\DongleEB\List\M #
+#                          T_X.lst                                            #
+#    Object file        =  D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Proj #
+#                          ects\zstack\Utilities\OAD\CC2530DB\DongleEB\Obj\MT #
+#                          _X.r51                                             #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+D:\WorkReserve\project\AES_BOOT\CC2530EncBoot\Projects\zstack\Utilities\OAD\Source\MT_X.c
+      1          /**************************************************************************************************
+      2            Filename:       MT_X.c
+      3            Revised:        $Date: 2009-08-21 13:10:13 -0700 (Fri, 21 Aug 2009) $
+      4            Revision:       $Revision: 20630 $
+      5          
+      6            Description: This file contains the MT cross-over interface to simultaneously support
+      7                         ZOAD on MT V1.0 and Z-TOOL on MT V2.0.
+      8          
+      9          
+     10            Copyright 2008-2009 Texas Instruments Incorporated. All rights reserved.
+     11          
+     12            IMPORTANT: Your use of this Software is limited to those specific rights
+     13            granted under the terms of a software license agreement between the user
+     14            who downloaded the software, his/her employer (which must be your employer)
+     15            and Texas Instruments Incorporated (the "License").  You may not use this
+     16            Software unless you agree to abide by the terms of the License. The License
+     17            limits your use, and you acknowledge, that the Software may not be modified,
+     18            copied or distributed unless embedded on a Texas Instruments microcontroller
+     19            or used solely and exclusively in conjunction with a Texas Instruments radio
+     20            frequency transceiver, which is integrated into your product.  Other than for
+     21            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     22            works of, modify, distribute, perform, display or sell this Software and/or
+     23            its documentation for any purpose.
+     24          
+     25            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     26            PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     27            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     28            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     29            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     30            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     31            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     32            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     33            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     34            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     35            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     36          
+     37            Should you have any questions regarding your right to use this Software,
+     38            contact Texas Instruments Incorporated at www.TI.com.
+     39          **************************************************************************************************/
+     40          
+     41          /* ------------------------------------------------------------------------------------------------
+     42           *                                          Includes
+     43           * ------------------------------------------------------------------------------------------------
+     44           */
+     45          
+     46          #include <string.h>
+     47          #include "hal_uart.h"
+     48          #include "hal_types.h"
+     49          #include "mt.h"
+     50          #include "mt_rpc.h"
+     51          #include "mt_x.h"
+     52          #include "mt_nwk.h"
+     53          #include "mt_uart.h"
+     54          #include "mt_zdo.h"
+     55          #include "NLMEDE.h"
+     56          #include "oad_app.h"
+     57          #include "ZDApp.h"
+     58          #include "ZGlobals.h"
+     59          
+     60          /* ------------------------------------------------------------------------------------------------
+     61           *                                           Macros  
+     62           * ------------------------------------------------------------------------------------------------
+     63           */
+     64          
+     65          /* ------------------------------------------------------------------------------------------------
+     66           *                                          Constants
+     67           * ------------------------------------------------------------------------------------------------
+     68           */
+     69          
+     70          #define SOP_STATE      0x00
+     71          #define CMD_STATE1     0x01
+     72          #define CMD_STATE2     0x02
+     73          #define LEN_STATE      0x03
+     74          #define DATA_STATE     0x04
+     75          #define FCS_STATE      0x05
+     76          
+     77          #define SOP_VALUE      0x02
+     78          
+     79          // Index into the cross-over command array.
+     80          #define MTX_OLD        0x00
+     81          #define MTX_NEW        0x01
+     82          // Max entries in the cross-over command array.
+     83          #define MTX_MAX        12
+     84          
+     85          // MT_RPC_SUBSYSTEM_MASK for the equivalent cmd as a uint16.
+     86          #define MTX_SSM        (((uint16)MT_RPC_SUBSYSTEM_MASK << 8) | 0xFF)
+     87          // SPI_RESPONSE_BIT mask for the equivalent cmd as a uint8.
+     88          #define MTX_RSP        ((uint8)(SPI_RESPONSE_BIT >> 8))
+     89          
+     90          // Old MT commands from MTEL.h, MT_NWK.h & MT_ZDO.h.
+     91          #define SPI_CMD_SYS_PING                0x0007
+     92          #define SPI_CMD_SYS_VERSION             0x0008
+     93          #define SPI_CMD_SYS_GET_DEVICE_INFO     0x0014
+     94          #define SPI_CMD_SYS_APP_MSG             0x0018
+     95          #define SPI_CMD_SYS_LED_CONTROL         0x0019
+     96          
+     97          #define SPI_CMD_NLME_JOIN_REQ           0x0104
+     98          #define SPI_CMD_NLME_LEAVE_REQ          0x0105
+     99          #define SPI_CB_NLME_JOIN_CNF            0x0183
+    100          #define	SPI_CMD_NLME_NWK_DISC_REQ       0x010B
+    101          #define SPI_CB_NLME_NWK_DISC_CNF        0x018D
+    102          
+    103          #define SPI_CMD_ZDO_IEEE_ADDR_REQ       0x0A03
+    104          #define SPI_CB_ZDO_IEEE_ADDR_RSP        0x0A81
+    105          
+    106          // Hard-code the most simple sys version response to indicate the ZPortApp capability: -ZP
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    107          const uint8 msgVersion[] = {
+   \                     msgVersion:
+   \   000000   02           DB 2
+   \   000001   10           DB 16
+   \   000002   08           DB 8
+   \   000003   12           DB 18
+   \   000004   31           DB 49
+   \   000005   2E           DB 46
+   \   000006   31           DB 49
+   \   000007   30           DB 48
+   \   000008   20           DB 32
+   \   000009   28           DB 40
+   \   00000A   46           DB 70
+   \   00000B   38           DB 56
+   \   00000C   57           DB 87
+   \   00000D   31           DB 49
+   \   00000E   2E           DB 46
+   \   00000F   34           DB 52
+   \   000010   2E           DB 46
+   \   000011   32           DB 50
+   \   000012   2D           DB 45
+   \   000013   5A           DB 90
+   \   000014   50           DB 80
+   \   000015   29           DB 41
+   \   000016   0C           DB 12
+    108            SOP_VALUE,            // 0x02
+    109            MTX_RSP,              // 0x10
+    110            SPI_CMD_SYS_VERSION,  // 0x08
+    111             18,  // 0x12
+    112            '1',  // 0x31
+    113            '.',  // 0x2E
+    114            '1',  // 0x31
+    115            '0',  // 0x30
+    116            ' ',  // 0x20
+    117            '(',  // 0x28
+    118            'F',  // 0x46
+    119            '8',  // 0x38
+    120            'W',  // 0x57
+    121            '1',  // 0x31
+    122            '.',  // 0x2E
+    123            '4',  // 0x34
+    124            '.',  // 0x2E
+    125            '2',  // 0x32
+    126            '-',  // 0x2D
+    127            'Z',  // 0x5A
+    128            'P',  // 0x50
+    129            ')',  // 0x29
+    130            0x0C  // FCS
+    131          };
+    132          
+
+   \                                 In  segment XDATA_ROM_C, align 1
+    133          const uint16 mtxCmd[MTX_MAX][2] =
+   \                     mtxCmd:
+   \   000000   1800         DW 24
+   \   000002   0029         DW 10496
+   \   000004   1800         DW 24
+   \   000006   8069         DW 27008
+   \   000008   0700         DW 7
+   \   00000A   0121         DW 8449
+   \   00000C   1400         DW 20
+   \   00000E   0027         DW 9984
+   \   000010   0800         DW 8
+   \   000012   0221         DW 8450
+   \   000014   030A         DW 2563
+   \   000016   0125         DW 9473
+   \   000018   810A         DW 2689
+   \   00001A   8145         DW 17793
+   \   00001C   0B01         DW 267
+   \   00001E   0923         DW 8969
+   \   000020   8D01         DW 397
+   \   000022   8943         DW 17289
+   \   000024   0401         DW 260
+   \   000026   0423         DW 8964
+   \   000028   0501         DW 261
+   \   00002A   0523         DW 8965
+   \   00002C   8301         DW 387
+   \   00002E   8343         DW 17283
+    134          {
+    135            {SPI_CMD_SYS_APP_MSG,          0x2900},  // MT_APP_MSG
+    136            {SPI_CMD_SYS_APP_MSG,          0x6980},  // MT_APP_RSP
+    137            {SPI_CMD_SYS_PING,             0x2101},
+    138            {SPI_CMD_SYS_GET_DEVICE_INFO,  0x2700},
+    139            {SPI_CMD_SYS_VERSION,          0x2102},
+    140            {SPI_CMD_ZDO_IEEE_ADDR_REQ,    0x2501},
+    141            {SPI_CB_ZDO_IEEE_ADDR_RSP,     0x4581},
+    142            {SPI_CMD_NLME_NWK_DISC_REQ,    0x2309},
+    143            {SPI_CB_NLME_NWK_DISC_CNF,     0x4389},
+    144            {SPI_CMD_NLME_JOIN_REQ,        0x2304},
+    145            {SPI_CMD_NLME_LEAVE_REQ,       0x2305},
+    146            {SPI_CB_NLME_JOIN_CNF,         0x4383}
+    147          };
+    148          
+    149          /* ------------------------------------------------------------------------------------------------
+    150           *                                          Typedefs
+    151           * ------------------------------------------------------------------------------------------------
+    152           */
+    153          
+    154          /* ------------------------------------------------------------------------------------------------
+    155           *                                       Global Variables
+    156           * ------------------------------------------------------------------------------------------------
+    157           */
+    158          
+    159          extern byte MT_TaskID;
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    160          uint8 mtxMode;
+   \                     mtxMode:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+    161          
+    162          /* ------------------------------------------------------------------------------------------------
+    163           *                                       Global Functions
+    164           * ------------------------------------------------------------------------------------------------
+    165           */
+    166          
+    167          extern void MT_UartProcessZToolByte(uint8 ch);
+    168          
+    169          /* ------------------------------------------------------------------------------------------------
+    170           *                                       Local Variables
+    171           * ------------------------------------------------------------------------------------------------
+    172           */
+    173          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    174          static uint8 mtxCmdToken[2];
+   \                     mtxCmdToken:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    175          static uint8 mtxFCSToken;
+   \                     mtxFCSToken:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    176          static uint8 mtxIdxToken;
+   \                     mtxIdxToken:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    177          static uint8 mtxLenToken;
+   \                     mtxLenToken:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    178          static uint8 mtxState;
+   \                     mtxState:
+   \   000000                DS 1
+   \   000001                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    179          static mtOSALSerialData_t *mtxMsg;
+   \                     mtxMsg:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+    180          static uint8 mtxRsp[128];
+   \                     mtxRsp:
+   \   000000                DS 128
+   \   000080                REQUIRE __INIT_XDATA_Z
+    181          
+    182          /* ------------------------------------------------------------------------------------------------
+    183           *                                       Local Functions
+    184           * ------------------------------------------------------------------------------------------------
+    185           */
+    186          
+    187          static uint8 cmdO2N(uint8 *cmd);
+    188          static uint8 cmdN2O(uint8 *cmd);
+    189          static uint8 msgO2N(uint8 *cmd, uint8 *msg);
+    190          static uint8 msgN2O(uint8 *cmd, uint8 idx);
+    191          static void mtxIEEEAddrRspCB(uint8 *cmd);
+    192          
+    193          /**************************************************************************************************
+    194           * @fn          cmdO2N
+    195           *
+    196           * @brief       This function translates from an old MT command to the corresponding new one and
+    197           *              returns TRUE if the command is recognized as pertinent to ZOAD traffic.
+    198           *              This function must only be called to convert incoming commands.
+    199           *
+    200           * input parameters
+    201           *
+    202           * @param       cmd - A command that is to be translated if it is pertinent to ZOAD traffic.
+    203           *
+    204           * output parameters
+    205           *
+    206           * @param       cmd - The translated command.
+    207           *
+    208           * @return      TRUE if a command that is pertinent to OAD traffic is recognized and converted.
+    209           *              FALSE otherwise.
+    210           **************************************************************************************************
+    211           */
+    212          static uint8 cmdO2N(uint8 *cmd)
+    213          {
+    214            uint16 tmp;
+    215            uint8 idx;
+    216          
+    217            // Incoming command, so no need to mask for SPI_RESPONSE_BIT.
+    218            tmp = BUILD_UINT16(cmd[1], cmd[0]);
+    219          
+    220            for (idx = 0; idx < MTX_MAX; idx++)
+    221            {
+    222              if (mtxCmd[idx][MTX_OLD] == tmp)
+    223              {
+    224                // Incoming command cross-over to SREQ or AREQ done by table value.
+    225                cmd[0] = HI_UINT16(mtxCmd[idx][MTX_NEW]);
+    226                cmd[1] = LO_UINT16(mtxCmd[idx][MTX_NEW]);
+    227          
+    228                break;
+    229              }
+    230            }
+    231          
+    232            return (idx == MTX_MAX) ? FALSE : TRUE;
+    233          }
+    234          
+    235          /**************************************************************************************************
+    236           * @fn          cmdN2O
+    237           *
+    238           * @brief       This function translates from a new MT command to the corresponding old one and
+    239           *              returns TRUE if the command is recognized as pertinent to ZOAD traffic.
+    240           *              This function must only be called to convert outgoing commands.
+    241           *
+    242           * input parameters
+    243           *
+    244           * @param       cmd - A command that is to be translated if it is pertinent to ZOAD traffic.
+    245           *
+    246           * output parameters
+    247           *
+    248           * @param       cmd - The translated command.
+    249           *
+    250           * @return      TRUE if a command that is pertinent to OAD traffic is recognized and converted.
+    251           *              FALSE otherwise.
+    252           **************************************************************************************************
+    253           */
+    254          static uint8 cmdN2O(uint8 *cmd)
+    255          {
+    256            uint16 tmp;
+    257            uint8 idx;
+    258          
+    259            tmp = BUILD_UINT16(cmd[1], (cmd[0] & MT_RPC_SUBSYSTEM_MASK));
+    260          
+    261            for (idx = 0; idx < MTX_MAX; idx++)
+    262            {
+    263              if ((mtxCmd[idx][MTX_NEW] & MTX_SSM) == tmp)
+    264              {
+    265                return msgN2O(cmd, idx);
+    266              }
+    267            }
+    268          
+    269            return FALSE;
+    270          }
+    271          
+    272          /**************************************************************************************************
+    273           * @fn          msgO2N
+    274           *
+    275           * @brief       This function translates from the old MT message data format to the corresponding
+    276           *              new one. This function must only be called to convert incoming message data.
+    277           *
+    278           * input parameters
+    279           *
+    280           * @param       cmd - The command that has been translated to the new format.
+    281           * @param       msg - The message data to be translated to the new format.
+    282           *
+    283           * output parameters
+    284           *
+    285           * @param       msg - The translated message data.
+    286           *
+    287           * @return      TRUE if the message should be sent to the destination OSAL task.
+    288           **************************************************************************************************
+    289           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    290          static uint8 msgO2N(uint8 *cmd, uint8 *msg)
+   \                     msgO2N:
+    291          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 6
+   \   000005   74FA         MOV     A,#-0x6
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   8C..         MOV     ?V0 + 0,R4
+   \   00000C   8D..         MOV     ?V0 + 1,R5
+    292            uint16 tmp = BUILD_UINT16(cmd[1], cmd[0]);
+   \   00000E   8A82         MOV     DPL,R2
+   \   000010   8B83         MOV     DPH,R3
+   \   000012   A3           INC     DPTR
+   \   000013   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_6:
+   \   000016   F8           MOV     R0,A
+    293            uint8 rtrn = TRUE;
+   \   000017   75..01       MOV     ?V0 + 2,#0x1
+    294          
+    295            if (tmp == 0x2309)  // SPI_CMD_NLME_NWK_DISC_REQ
+   \   00001A   7409         MOV     A,#0x9
+   \   00001C   68           XRL     A,R0
+   \   00001D   7003         JNZ     ??msgO2N_0
+   \   00001F   7423         MOV     A,#0x23
+   \   000021   69           XRL     A,R1
+   \                     ??msgO2N_0:
+   \   000022   7014         JNZ     ??msgO2N_1
+    296            {
+    297              MT_ReverseBytes(msg, 4);
+   \   000024                ; Setup parameters for call to function MT_ReverseBytes
+   \   000024   7904         MOV     R1,#0x4
+   \   000026   AA..         MOV     R2,?V0 + 0
+   \   000028   AB..         MOV     R3,?V0 + 1
+   \   00002A   12....       LCALL   ??MT_ReverseBytes?relay
+    298              _nwkCallbackSub = 0xFFFF;
+   \   00002D   90....       MOV     DPTR,#_nwkCallbackSub
+   \   000030   74FF         MOV     A,#-0x1
+   \   000032   F0           MOVX    @DPTR,A
+   \   000033   A3           INC     DPTR
+   \   000034   F0           MOVX    @DPTR,A
+   \   000035   02....       LJMP    ??msgO2N_2 & 0xFFFF
+    299            }
+    300            else if (tmp == 0x2304)  // SPI_CMD_NLME_JOIN_REQ
+   \                     ??msgO2N_1:
+   \   000038   E5..         MOV     A,?V0 + 0
+   \   00003A   2402         ADD     A,#0x2
+   \   00003C   FE           MOV     R6,A
+   \   00003D   ED           MOV     A,R5
+   \   00003E   3400         ADDC    A,#0x0
+   \   000040   FF           MOV     R7,A
+   \   000041   85..82       MOV     DPL,?V0 + 0
+   \   000044   8D83         MOV     DPH,R5
+   \   000046   A3           INC     DPTR
+   \   000047   AA82         MOV     R2,DPL
+   \   000049   AB83         MOV     R3,DPH
+   \   00004B   7404         MOV     A,#0x4
+   \   00004D   68           XRL     A,R0
+   \   00004E   7003         JNZ     ??msgO2N_3
+   \   000050   7423         MOV     A,#0x23
+   \   000052   69           XRL     A,R1
+   \                     ??msgO2N_3:
+   \   000053   707F         JNZ     ??msgO2N_4
+    301            {
+    302              // Fake success to the NLME_JOIN_REQ while making a ZDO Init device request.
+    303              const uint8 fakeNwkJoinAck[] = { 0x02, 0x11, 0x04, 0x01, 0x00, 0x14 };
+   \   000055   85..82       MOV     DPL,?XSP + 0
+   \   000058   85..83       MOV     DPH,?XSP + 1
+   \   00005B   AC82         MOV     R4,DPL
+   \   00005D   AD83         MOV     R5,DPH
+   \   00005F   7583..       MOV     DPH,#(`?<Constant {2, 17, 4, 1, 0, 20}>` >> 8) & 0xff
+   \   000062   7582..       MOV     DPL,#`?<Constant {2, 17, 4, 1, 0, 20}>` & 0xff
+   \   000065   7406         MOV     A,#0x6
+   \   000067   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    304          
+    305              zgConfigPANID = BUILD_UINT16(msg[1], msg[0]);
+   \   00006A   8A82         MOV     DPL,R2
+   \   00006C   8B83         MOV     DPH,R3
+   \   00006E   E0           MOVX    A,@DPTR
+   \   00006F   FA           MOV     R2,A
+   \   000070   85..82       MOV     DPL,?V0 + 0
+   \   000073   85..83       MOV     DPH,?V0 + 1
+   \   000076   E0           MOVX    A,@DPTR
+   \   000077   F8           MOV     R0,A
+   \   000078   E4           CLR     A
+   \   000079   C8           XCH     A,R0
+   \   00007A   F9           MOV     R1,A
+   \   00007B   EA           MOV     A,R2
+   \   00007C   90....       MOV     DPTR,#zgConfigPANID
+   \   00007F   F0           MOVX    @DPTR,A
+   \   000080   A3           INC     DPTR
+   \   000081   E9           MOV     A,R1
+   \   000082   F0           MOVX    @DPTR,A
+    306              zgDefaultChannelList = 0x00000800;
+   \   000083   90....       MOV     DPTR,#__Constant_800
+   \   000086   12....       LCALL   ?XLOAD_R2345
+   \   000089   90....       MOV     DPTR,#zgDefaultChannelList
+   \   00008C   12....       LCALL   ?XSTORE_R2345
+    307              zgDefaultChannelList <<= (msg[2] - 11);
+   \   00008F   88..         MOV     ?V0 + 0,R0
+   \   000091   75..08       MOV     ?V0 + 1,#0x8
+   \   000094   88..         MOV     ?V0 + 2,R0
+   \   000096   88..         MOV     ?V0 + 3,R0
+   \   000098   8E82         MOV     DPL,R6
+   \   00009A   8F83         MOV     DPH,R7
+   \   00009C   E0           MOVX    A,@DPTR
+   \   00009D   24F5         ADD     A,#-0xb
+   \   00009F   78..         MOV     R0,#?V0 + 0
+   \   0000A1   12....       LCALL   ?L_SHL
+   \   0000A4   90....       MOV     DPTR,#zgDefaultChannelList
+   \   0000A7   78..         MOV     R0,#?V0 + 0
+   \   0000A9   12....       LCALL   ?L_MOV_TO_X
+    308              zgDefaultStartingScanDuration = 0;
+   \   0000AC   90....       MOV     DPTR,#zgDefaultStartingScanDuration
+   \   0000AF   E4           CLR     A
+   \   0000B0   F0           MOVX    @DPTR,A
+    309              ZDOInitDevice(0);
+   \   0000B1                ; Setup parameters for call to function ZDOInitDevice
+   \   0000B1   FA           MOV     R2,A
+   \   0000B2   FB           MOV     R3,A
+   \   0000B3   12....       LCALL   ??ZDOInitDevice?relay
+    310              
+    311              _nwkCallbackSub = 0;
+   \   0000B6   90....       MOV     DPTR,#_nwkCallbackSub
+   \   0000B9   E4           CLR     A
+   \   0000BA   F0           MOVX    @DPTR,A
+   \   0000BB   A3           INC     DPTR
+   \   0000BC   F0           MOVX    @DPTR,A
+    312              HalUARTWrite(MT_UART_DEFAULT_PORT, (uint8 *)fakeNwkJoinAck, sizeof(fakeNwkJoinAck));
+   \   0000BD                ; Setup parameters for call to function HalUARTWrite
+   \   0000BD   7C06         MOV     R4,#0x6
+   \   0000BF   FD           MOV     R5,A
+   \   0000C0   85..82       MOV     DPL,?XSP + 0
+   \   0000C3   85..83       MOV     DPH,?XSP + 1
+   \   0000C6   AA82         MOV     R2,DPL
+   \   0000C8   AB83         MOV     R3,DPH
+   \   0000CA   F9           MOV     R1,A
+   \   0000CB   12....       LCALL   ??HalUARTWrite?relay
+    313              rtrn = FALSE;
+   \                     ??msgO2N_5:
+   \   0000CE   75..00       MOV     ?V0 + 2,#0x0
+   \   0000D1   02....       LJMP    ??msgO2N_2 & 0xFFFF
+    314            }
+    315            else if (tmp == 0x2501)  // SPI_CMD_ZDO_IEEE_ADDR_REQ
+   \                     ??msgO2N_4:
+   \   0000D4   7401         MOV     A,#0x1
+   \   0000D6   68           XRL     A,R0
+   \   0000D7   7003         JNZ     ??msgO2N_6
+   \   0000D9   7425         MOV     A,#0x25
+   \   0000DB   69           XRL     A,R1
+   \                     ??msgO2N_6:
+   \   0000DC   7039         JNZ     ??msgO2N_7
+    316            {
+    317              uint16 addr =  BUILD_UINT16(msg[0], msg[1]);
+   \   0000DE   85..82       MOV     DPL,?V0 + 0
+   \   0000E1   8D83         MOV     DPH,R5
+   \   0000E3   12....       LCALL   ?Subroutine4 & 0xFFFF
+   \                     ??CrossCallReturnLabel_7:
+   \   0000E6   2400         ADD     A,#0x0
+   \   0000E8   F5..         MOV     ?V0 + 2,A
+   \   0000EA   E4           CLR     A
+   \   0000EB   39           ADDC    A,R1
+   \   0000EC   F5..         MOV     ?V0 + 3,A
+    318          
+    319              if (addr != NLME_GetShortAddr())
+   \   0000EE                ; Setup parameters for call to function NLME_GetShortAddr
+   \   0000EE   12....       LCALL   ??NLME_GetShortAddr?relay
+   \   0000F1   EA           MOV     A,R2
+   \   0000F2   65..         XRL     A,?V0 + 2
+   \   0000F4   7003         JNZ     ??msgO2N_8
+   \   0000F6   EB           MOV     A,R3
+   \   0000F7   65..         XRL     A,?V0 + 3
+   \                     ??msgO2N_8:
+   \   0000F9   60D3         JZ      ??msgO2N_5
+    320              {
+    321                (void)ZDP_IEEEAddrReq(addr, msg[2], msg[3], 0);
+   \   0000FB                ; Setup parameters for call to function ZDP_IEEEAddrReq
+   \   0000FB   7D00         MOV     R5,#0x0
+   \   0000FD   85..82       MOV     DPL,?V0 + 0
+   \   000100   85..83       MOV     DPH,?V0 + 1
+   \   000103   A3           INC     DPTR
+   \   000104   A3           INC     DPTR
+   \   000105   A3           INC     DPTR
+   \   000106   E0           MOVX    A,@DPTR
+   \   000107   FC           MOV     R4,A
+   \   000108   8E82         MOV     DPL,R6
+   \   00010A   8F83         MOV     DPH,R7
+   \   00010C   E0           MOVX    A,@DPTR
+   \   00010D   F9           MOV     R1,A
+   \   00010E   AA..         MOV     R2,?V0 + 2
+   \   000110   AB..         MOV     R3,?V0 + 3
+   \   000112   12....       LCALL   ??ZDP_IEEEAddrReq?relay
+    322              }
+    323              rtrn = FALSE;
+   \   000115   80B7         SJMP    ??msgO2N_5
+    324            }
+    325            else if (tmp == 0x2305)  // SPI_CMD_NLME_LEAVE_REQ
+   \                     ??msgO2N_7:
+   \   000117   7405         MOV     A,#0x5
+   \   000119   68           XRL     A,R0
+   \   00011A   7003         JNZ     ??msgO2N_9
+   \   00011C   7423         MOV     A,#0x23
+   \   00011E   69           XRL     A,R1
+   \                     ??msgO2N_9:
+   \   00011F   7055         JNZ     ??msgO2N_2
+    326            {
+    327              // Fake a leave success and reset.
+    328              mtxRsp[0] = SOP_VALUE;
+   \   000121   90....       MOV     DPTR,#mtxRsp
+   \   000124   7402         MOV     A,#0x2
+   \   000126   F0           MOVX    @DPTR,A
+    329              mtxRsp[1] = 0x01;
+   \   000127   A3           INC     DPTR
+   \   000128   14           DEC     A
+   \   000129   F0           MOVX    @DPTR,A
+    330              mtxRsp[2] = 0x85;
+   \   00012A   A3           INC     DPTR
+   \   00012B   7485         MOV     A,#-0x7b
+   \   00012D   F0           MOVX    @DPTR,A
+    331              mtxRsp[3] = Z_EXTADDR_LEN + 1;
+   \   00012E   A3           INC     DPTR
+   \   00012F   7409         MOV     A,#0x9
+   \   000131   F0           MOVX    @DPTR,A
+    332              osal_cpyExtAddr(mtxRsp+4, aExtendedAddress);
+   \   000132                ; Setup parameters for call to function sAddrExtCpy
+   \   000132   7C..         MOV     R4,#aExtendedAddress & 0xff
+   \   000134   7D..         MOV     R5,#(aExtendedAddress >> 8) & 0xff
+   \   000136   7A..         MOV     R2,#(mtxRsp + 4) & 0xff
+   \   000138   7B..         MOV     R3,#((mtxRsp + 4) >> 8) & 0xff
+   \   00013A   12....       LCALL   ??sAddrExtCpy?relay
+    333              MT_ReverseBytes(mtxRsp+4, Z_EXTADDR_LEN);
+   \   00013D                ; Setup parameters for call to function MT_ReverseBytes
+   \   00013D   7908         MOV     R1,#0x8
+   \   00013F   7A..         MOV     R2,#(mtxRsp + 4) & 0xff
+   \   000141   7B..         MOV     R3,#((mtxRsp + 4) >> 8) & 0xff
+   \   000143   12....       LCALL   ??MT_ReverseBytes?relay
+    334              mtxRsp[4+Z_EXTADDR_LEN] = ZSuccess;
+   \   000146   90....       MOV     DPTR,#mtxRsp + 12
+   \   000149   E4           CLR     A
+   \   00014A   F0           MOVX    @DPTR,A
+    335              
+    336              mtxRsp[SPI_0DATA_MSG_LEN + Z_EXTADDR_LEN] = MT_UartCalcFCS(mtxRsp+1, Z_EXTADDR_LEN+3);
+   \   00014B                ; Setup parameters for call to function MT_UartCalcFCS
+   \   00014B   790B         MOV     R1,#0xb
+   \   00014D   7A..         MOV     R2,#(mtxRsp + 1) & 0xff
+   \   00014F   7B..         MOV     R3,#((mtxRsp + 1) >> 8) & 0xff
+   \   000151   12....       LCALL   ??MT_UartCalcFCS?relay
+   \   000154   E9           MOV     A,R1
+   \   000155   90....       MOV     DPTR,#mtxRsp + 13
+   \   000158   F0           MOVX    @DPTR,A
+    337              HalUARTWrite(MT_UART_DEFAULT_PORT, mtxRsp, SPI_0DATA_MSG_LEN+Z_EXTADDR_LEN+1);
+   \   000159                ; Setup parameters for call to function HalUARTWrite
+   \   000159   7C0E         MOV     R4,#0xe
+   \   00015B   7D00         MOV     R5,#0x0
+   \   00015D   7A..         MOV     R2,#mtxRsp & 0xff
+   \   00015F   7B..         MOV     R3,#(mtxRsp >> 8) & 0xff
+   \   000161   7900         MOV     R1,#0x0
+   \   000163   12....       LCALL   ??HalUARTWrite?relay
+    338              osal_start_timerEx(oad_app_taskId, ZLOAD_RESET_BOARD_EVT, 6000);
+   \   000166                ; Setup parameters for call to function osal_start_timerEx
+   \   000166   7C70         MOV     R4,#0x70
+   \   000168   7D17         MOV     R5,#0x17
+   \   00016A   7A20         MOV     R2,#0x20
+   \   00016C   7B00         MOV     R3,#0x0
+   \   00016E   90....       MOV     DPTR,#oad_app_taskId
+   \   000171   E0           MOVX    A,@DPTR
+   \   000172   F9           MOV     R1,A
+   \   000173   12....       LCALL   ??osal_start_timerEx?relay
+    339            }
+    340          
+    341            return rtrn;
+   \                     ??msgO2N_2:
+   \   000176   A9..         MOV     R1,?V0 + 2
+   \   000178   7406         MOV     A,#0x6
+   \   00017A   12....       LCALL   ?DEALLOC_XSTACK8
+   \   00017D   02....       LJMP    ?Subroutine0 & 0xFFFF
+    342          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   FC           MOV     R4,A
+   \   000002   8A82         MOV     DPL,R2
+   \   000004   8B83         MOV     DPH,R3
+   \   000006   E0           MOVX    A,@DPTR
+   \   000007   F9           MOV     R1,A
+   \   000008   EC           MOV     A,R4
+   \   000009   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F06         MOV     R7,#0x6
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+    343          
+    344          /**************************************************************************************************
+    345           * @fn          msgN2O
+    346           *
+    347           * @brief       This function translates from the new MT message data format to the corresponding
+    348           *              old one. This function must only be called to convert outgoing message data.
+    349           *
+    350           * input parameters
+    351           *
+    352           * @param       cmd - The command that has been translated to the old format.
+    353           * @param       msg - The message data to be translated to the old format.
+    354           *
+    355           * output parameters
+    356           *
+    357           * @param       msg - The translated message data.
+    358           *
+    359           * @return      TRUE if message should be sent on UART; FALSE if handled here.
+    360           **************************************************************************************************
+    361           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    362          static uint8 msgN2O(uint8 *cmd, uint8 idx)
+   \                     msgN2O:
+    363          {
+   \   000000   74F4         MOV     A,#-0xc
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 12
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+   \   000009   89..         MOV     ?V0 + 0,R1
+    364            if (mtxCmd[idx][MTX_OLD] == SPI_CMD_SYS_VERSION)
+   \   00000B   89..         MOV     ?V0 + 2,R1
+   \   00000D   75..00       MOV     ?V0 + 3,#0x0
+   \   000010   7402         MOV     A,#0x2
+   \   000012   78..         MOV     R0,#?V0 + 2
+   \   000014   12....       LCALL   ?S_SHL
+   \   000017   74..         MOV     A,#mtxCmd & 0xff
+   \   000019   25..         ADD     A,?V0 + 2
+   \   00001B   F582         MOV     DPL,A
+   \   00001D   74..         MOV     A,#(mtxCmd >> 8) & 0xff
+   \   00001F   35..         ADDC    A,?V0 + 3
+   \   000021   F583         MOV     DPH,A
+   \   000023   E0           MOVX    A,@DPTR
+   \   000024   F8           MOV     R0,A
+   \   000025   A3           INC     DPTR
+   \   000026   E0           MOVX    A,@DPTR
+   \   000027   F9           MOV     R1,A
+   \   000028   7408         MOV     A,#0x8
+   \   00002A   68           XRL     A,R0
+   \   00002B   7001         JNZ     ??msgN2O_0
+   \   00002D   E9           MOV     A,R1
+   \                     ??msgN2O_0:
+   \   00002E   700F         JNZ     ??msgN2O_1
+    365            {
+    366              HalUARTWrite(MT_UART_DEFAULT_PORT, (uint8 *)msgVersion, sizeof(msgVersion));
+   \   000030                ; Setup parameters for call to function HalUARTWrite
+   \   000030   7C17         MOV     R4,#0x17
+   \   000032   7D00         MOV     R5,#0x0
+   \   000034   7A..         MOV     R2,#msgVersion & 0xff
+   \   000036   7B..         MOV     R3,#(msgVersion >> 8) & 0xff
+   \   000038   7900         MOV     R1,#0x0
+   \   00003A   12....       LCALL   ??HalUARTWrite?relay
+    367              idx = MTX_MAX;  // Force return of FALSE since command handled here.
+   \   00003D   8041         SJMP    ??msgN2O_2
+    368            }
+    369            else
+    370            {
+    371              // Outgoing command needs to determine if it is a response or not.
+    372              if ((cmd[0] & MT_RPC_CMD_SRSP) == MT_RPC_CMD_SRSP)
+   \                     ??msgN2O_1:
+   \   00003F   8E82         MOV     DPL,R6
+   \   000041   8F83         MOV     DPH,R7
+   \   000043   E0           MOVX    A,@DPTR
+   \   000044   5460         ANL     A,#0x60
+   \   000046   6460         XRL     A,#0x60
+   \   000048   7004         JNZ     ??msgN2O_3
+    373              {
+    374                cmd[0] = MTX_RSP;
+   \   00004A   7410         MOV     A,#0x10
+   \   00004C   8001         SJMP    ??msgN2O_4
+    375              }
+    376              else
+    377              {
+    378                cmd[0] = 0;
+   \                     ??msgN2O_3:
+   \   00004E   E4           CLR     A
+   \                     ??msgN2O_4:
+   \   00004F   F0           MOVX    @DPTR,A
+    379              }
+    380              cmd[0] |= HI_UINT16(mtxCmd[idx][MTX_OLD]);
+   \   000050   E9           MOV     A,R1
+   \   000051   FA           MOV     R2,A
+   \   000052   E0           MOVX    A,@DPTR
+   \   000053   4A           ORL     A,R2
+   \   000054   F0           MOVX    @DPTR,A
+    381              cmd[1] = LO_UINT16(mtxCmd[idx][MTX_OLD]);
+   \   000055   E8           MOV     A,R0
+   \   000056   A3           INC     DPTR
+   \   000057   F0           MOVX    @DPTR,A
+    382          
+    383              if (mtxCmd[idx][MTX_OLD] == SPI_CMD_SYS_GET_DEVICE_INFO)
+   \   000058   EE           MOV     A,R6
+   \   000059   2403         ADD     A,#0x3
+   \   00005B   FA           MOV     R2,A
+   \   00005C   EF           MOV     A,R7
+   \   00005D   3400         ADDC    A,#0x0
+   \   00005F   FB           MOV     R3,A
+   \   000060   7414         MOV     A,#0x14
+   \   000062   68           XRL     A,R0
+   \   000063   7001         JNZ     ??msgN2O_5
+   \   000065   E9           MOV     A,R1
+   \                     ??msgN2O_5:
+   \   000066   701C         JNZ     ??msgN2O_6
+    384              {
+    385                MT_ReverseBytes(cmd+3, Z_EXTADDR_LEN);    // Reverse the IEEE.
+   \   000068                ; Setup parameters for call to function MT_ReverseBytes
+   \   000068   7908         MOV     R1,#0x8
+   \   00006A   12....       LCALL   ??MT_ReverseBytes?relay
+    386                MT_ReverseBytes(cmd+3+Z_EXTADDR_LEN, 2);  // Reverse the Nwk Addr.
+   \   00006D                ; Setup parameters for call to function MT_ReverseBytes
+   \   00006D   7902         MOV     R1,#0x2
+   \   00006F   EE           MOV     A,R6
+   \   000070   240B         ADD     A,#0xb
+   \   000072   FA           MOV     R2,A
+   \   000073   EF           MOV     A,R7
+   \   000074   3400         ADDC    A,#0x0
+   \   000076   FB           MOV     R3,A
+   \   000077   12....       LCALL   ??MT_ReverseBytes?relay
+    387              }
+    388              else if (mtxCmd[idx][MTX_OLD] == SPI_CB_NLME_NWK_DISC_CNF)
+    389              {
+    390                idx = cmd[2];
+    391                cmd += 3;
+    392          
+    393                while (idx--)
+    394                {
+    395                  MT_ReverseBytes(cmd, 2);  // Reverse the PanId for every network discovered.
+    396                  cmd += 9;
+    397                }
+    398              }
+    399              /*else if (mtxCmd[idx][MTX_OLD] == SPI_CB_NLME_JOIN_CNF)
+    400              {
+    401                MT_ReverseBytes(cmd+2, Z_EXTADDR_LEN);   // Reverse the IEEE.
+    402                MT_ReverseBytes(cmd+10, 2);  // Reverse the PanId.
+    403              }*/
+    404              else if (mtxCmd[idx][MTX_OLD] == SPI_CB_ZDO_IEEE_ADDR_RSP)
+    405              {
+    406                mtxIEEEAddrRspCB(cmd-1);
+    407                idx = MTX_MAX;  // Force return of FALSE since command handled here.
+    408              }
+    409            }
+    410          
+    411            return (idx == MTX_MAX) ? FALSE : TRUE;
+   \                     ??msgN2O_7:
+   \   00007A   740C         MOV     A,#0xc
+   \   00007C   65..         XRL     A,?V0 + 0
+   \   00007E   7051         JNZ     ??msgN2O_8
+   \                     ??msgN2O_2:
+   \   000080   7900         MOV     R1,#0x0
+   \   000082   804F         SJMP    ??msgN2O_9
+   \                     ??msgN2O_6:
+   \   000084   748D         MOV     A,#-0x73
+   \   000086   68           XRL     A,R0
+   \   000087   7003         JNZ     ??msgN2O_10
+   \   000089   7401         MOV     A,#0x1
+   \   00008B   69           XRL     A,R1
+   \                     ??msgN2O_10:
+   \   00008C   702C         JNZ     ??msgN2O_11
+   \   00008E   8E82         MOV     DPL,R6
+   \   000090   8F83         MOV     DPH,R7
+   \   000092   A3           INC     DPTR
+   \   000093   A3           INC     DPTR
+   \   000094   E0           MOVX    A,@DPTR
+   \   000095   F5..         MOV     ?V0 + 0,A
+   \   000097   0E           INC     R6
+   \   000098   0E           INC     R6
+   \   000099   0E           INC     R6
+   \   00009A   EB           MOV     A,R3
+   \                     ??msgN2O_12:
+   \   00009B   FF           MOV     R7,A
+   \   00009C   85....       MOV     ?V0 + 1,?V0 + 0
+   \   00009F   74FF         MOV     A,#-0x1
+   \   0000A1   25..         ADD     A,?V0 + 1
+   \   0000A3   F5..         MOV     ?V0 + 0,A
+   \   0000A5   04           INC     A
+   \   0000A6   60D2         JZ      ??msgN2O_7
+   \   0000A8                ; Setup parameters for call to function MT_ReverseBytes
+   \   0000A8   7902         MOV     R1,#0x2
+   \   0000AA   EE           MOV     A,R6
+   \   0000AB   FA           MOV     R2,A
+   \   0000AC   EF           MOV     A,R7
+   \   0000AD   FB           MOV     R3,A
+   \   0000AE   12....       LCALL   ??MT_ReverseBytes?relay
+   \   0000B1   EE           MOV     A,R6
+   \   0000B2   2409         ADD     A,#0x9
+   \   0000B4   FE           MOV     R6,A
+   \   0000B5   EF           MOV     A,R7
+   \   0000B6   3400         ADDC    A,#0x0
+   \   0000B8   80E1         SJMP    ??msgN2O_12
+   \                     ??msgN2O_11:
+   \   0000BA   7481         MOV     A,#-0x7f
+   \   0000BC   68           XRL     A,R0
+   \   0000BD   7003         JNZ     ??msgN2O_13
+   \   0000BF   740A         MOV     A,#0xa
+   \   0000C1   69           XRL     A,R1
+   \                     ??msgN2O_13:
+   \   0000C2   70B6         JNZ     ??msgN2O_7
+   \   0000C4                ; Setup parameters for call to function mtxIEEEAddrRspCB
+   \   0000C4   EE           MOV     A,R6
+   \   0000C5   24FF         ADD     A,#-0x1
+   \   0000C7   FA           MOV     R2,A
+   \   0000C8   EF           MOV     A,R7
+   \   0000C9   34FF         ADDC    A,#-0x1
+   \   0000CB   FB           MOV     R3,A
+   \   0000CC   12....       LCALL   ??mtxIEEEAddrRspCB?relay
+   \   0000CF   80AF         SJMP    ??msgN2O_2
+   \                     ??msgN2O_8:
+   \   0000D1   7901         MOV     R1,#0x1
+   \                     ??msgN2O_9:
+   \   0000D3   7F04         MOV     R7,#0x4
+   \   0000D5   02....       LJMP    ?BANKED_LEAVE_XDATA
+    412          }
+    413          
+    414          /**************************************************************************************************
+    415           * @fn          mtxIEEEAddrRspCB
+    416           *
+    417           * @brief       Make the big conversion from new to old IEEE MT response.
+    418           *
+    419           * input parameters
+    420           *
+    421           * @param       cmd - New response buffer beginning with a converted command.
+    422           *
+    423           * output parameters
+    424           *
+    425           * None.
+    426           *
+    427           * @return      None.
+    428           **************************************************************************************************
+    429           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    430          static void mtxIEEEAddrRspCB(uint8 *cmd)
+   \                     mtxIEEEAddrRspCB:
+    431          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    432            uint8 cnt = cmd[15] * 2;
+   \   000009   EE           MOV     A,R6
+   \   00000A   240F         ADD     A,#0xf
+   \   00000C   F8           MOV     R0,A
+   \   00000D   EF           MOV     A,R7
+   \   00000E   3400         ADDC    A,#0x0
+   \   000010   F9           MOV     R1,A
+   \   000011   88..         MOV     ?V0 + 0,R0
+   \   000013   89..         MOV     ?V0 + 1,R1
+   \   000015   8882         MOV     DPL,R0
+   \   000017   F583         MOV     DPH,A
+   \   000019   E0           MOVX    A,@DPTR
+   \   00001A   C3           CLR     C
+   \   00001B   33           RLC     A
+   \   00001C   F5..         MOV     ?V0 + 2,A
+    433            if (cnt > 12)  cnt = 12;
+   \   00001E   C3           CLR     C
+   \   00001F   940D         SUBB    A,#0xd
+   \   000021   4003         JC      ??mtxIEEEAddrRspCB_0
+   \   000023   75..0C       MOV     ?V0 + 2,#0xc
+    434          
+    435            mtxRsp[0] = SOP_VALUE;
+   \                     ??mtxIEEEAddrRspCB_0:
+   \   000026   90....       MOV     DPTR,#mtxRsp
+   \   000029   7402         MOV     A,#0x2
+   \   00002B   12....       LCALL   ?Subroutine8 & 0xFFFF
+    436            mtxRsp[1] = cmd[1];
+   \                     ??CrossCallReturnLabel_14:
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   90....       MOV     DPTR,#mtxRsp + 1
+   \   000032   12....       LCALL   ?Subroutine8 & 0xFFFF
+    437            mtxRsp[2] = cmd[2];
+   \                     ??CrossCallReturnLabel_15:
+   \   000035   A3           INC     DPTR
+   \   000036   E0           MOVX    A,@DPTR
+   \   000037   90....       MOV     DPTR,#mtxRsp + 2
+   \   00003A   F0           MOVX    @DPTR,A
+    438            mtxRsp[3] = 36;
+   \   00003B   A3           INC     DPTR
+   \   00003C   7424         MOV     A,#0x24
+   \   00003E   F0           MOVX    @DPTR,A
+    439          
+    440            // Set the network address.
+    441            mtxRsp[4] = Addr16Bit;
+   \   00003F   A3           INC     DPTR
+   \   000040   7402         MOV     A,#0x2
+   \   000042   F0           MOVX    @DPTR,A
+    442            (void)memset(mtxRsp+5, 0, Z_EXTADDR_LEN-2);
+   \   000043                ; Setup parameters for call to function memset
+   \   000043   75..06       MOV     ?V0 + 4,#0x6
+   \   000046   75..00       MOV     ?V0 + 5,#0x0
+   \   000049   78..         MOV     R0,#?V0 + 4
+   \   00004B   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00004E   7C00         MOV     R4,#0x0
+   \   000050   7D00         MOV     R5,#0x0
+   \   000052   7A..         MOV     R2,#(mtxRsp + 5) & 0xff
+   \   000054   7B..         MOV     R3,#((mtxRsp + 5) >> 8) & 0xff
+   \   000056   12....       LCALL   ??memset?relay
+   \   000059   7402         MOV     A,#0x2
+   \   00005B   12....       LCALL   ?DEALLOC_XSTACK8
+    443            mtxRsp[11] = cmd[13];
+   \   00005E   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_17:
+   \   000061   E0           MOVX    A,@DPTR
+   \   000062   90....       MOV     DPTR,#mtxRsp + 11
+   \   000065   F0           MOVX    @DPTR,A
+    444            mtxRsp[12] = cmd[12];
+   \   000066   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_19:
+   \   000069   E0           MOVX    A,@DPTR
+   \   00006A   90....       MOV     DPTR,#mtxRsp + 12
+   \   00006D   12....       LCALL   ?Subroutine7 & 0xFFFF
+    445            mtxRsp[13] = cmd[3];  // Status.
+   \                     ??CrossCallReturnLabel_12:
+   \   000070   E0           MOVX    A,@DPTR
+   \   000071   90....       MOV     DPTR,#mtxRsp + 13
+   \   000074   F0           MOVX    @DPTR,A
+    446          
+    447            // Copy and reverse the IEEE.
+    448            (void)memcpy(mtxRsp+14, cmd+4, Z_EXTADDR_LEN);
+   \   000075                ; Setup parameters for call to function memcpy
+   \   000075   75..08       MOV     ?V0 + 4,#0x8
+   \   000078   78..         MOV     R0,#?V0 + 4
+   \   00007A   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00007D   EE           MOV     A,R6
+   \   00007E   2404         ADD     A,#0x4
+   \   000080   FC           MOV     R4,A
+   \   000081   EF           MOV     A,R7
+   \   000082   3400         ADDC    A,#0x0
+   \   000084   FD           MOV     R5,A
+   \   000085   7A..         MOV     R2,#(mtxRsp + 14) & 0xff
+   \   000087   7B..         MOV     R3,#((mtxRsp + 14) >> 8) & 0xff
+   \   000089   12....       LCALL   ??memcpy?relay
+   \   00008C   7402         MOV     A,#0x2
+   \   00008E   12....       LCALL   ?DEALLOC_XSTACK8
+    449            MT_ReverseBytes(mtxRsp+14, Z_EXTADDR_LEN);
+   \   000091                ; Setup parameters for call to function MT_ReverseBytes
+   \   000091   7908         MOV     R1,#0x8
+   \   000093   7A..         MOV     R2,#(mtxRsp + 14) & 0xff
+   \   000095   7B..         MOV     R3,#((mtxRsp + 14) >> 8) & 0xff
+   \   000097   12....       LCALL   ??MT_ReverseBytes?relay
+    450          
+    451            // Copy and reverse the start index and count.
+    452            mtxRsp[22] = cmd[15];
+   \   00009A   85..82       MOV     DPL,?V0 + 0
+   \   00009D   85..83       MOV     DPH,?V0 + 1
+   \   0000A0   E0           MOVX    A,@DPTR
+   \   0000A1   90....       MOV     DPTR,#mtxRsp + 22
+   \   0000A4   12....       LCALL   ?Subroutine6 & 0xFFFF
+    453            mtxRsp[23] = cmd[14];
+   \                     ??CrossCallReturnLabel_10:
+   \   0000A7   E0           MOVX    A,@DPTR
+   \   0000A8   90....       MOV     DPTR,#mtxRsp + 23
+   \   0000AB   F0           MOVX    @DPTR,A
+    454          
+    455            // Copy each Nwk Addr.
+    456            (void)memcpy(mtxRsp+24, cmd+16, cnt);
+   \   0000AC                ; Setup parameters for call to function memcpy
+   \   0000AC   85....       MOV     ?V0 + 0,?V0 + 2
+   \   0000AF   75..00       MOV     ?V0 + 1,#0x0
+   \   0000B2   78..         MOV     R0,#?V0 + 0
+   \   0000B4   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000B7   EE           MOV     A,R6
+   \   0000B8   2410         ADD     A,#0x10
+   \   0000BA   FC           MOV     R4,A
+   \   0000BB   EF           MOV     A,R7
+   \   0000BC   3400         ADDC    A,#0x0
+   \   0000BE   FD           MOV     R5,A
+   \   0000BF   7A..         MOV     R2,#(mtxRsp + 24) & 0xff
+   \   0000C1   7B..         MOV     R3,#((mtxRsp + 24) >> 8) & 0xff
+   \   0000C3   12....       LCALL   ??memcpy?relay
+   \   0000C6   7402         MOV     A,#0x2
+   \   0000C8   12....       LCALL   ?DEALLOC_XSTACK8
+    457          
+    458            // Zero out unused addresses.
+    459            (void)memset(mtxRsp+24+cnt, 0, 12-cnt);
+   \   0000CB   85..82       MOV     DPL,?V0 + 2
+   \   0000CE   AA82         MOV     R2,DPL
+   \   0000D0                ; Setup parameters for call to function memset
+   \   0000D0   740C         MOV     A,#0xc
+   \   0000D2   C3           CLR     C
+   \   0000D3   9A           SUBB    A,R2
+   \   0000D4   F5..         MOV     ?V0 + 0,A
+   \   0000D6   95E0         SUBB    A,0xE0 /* A   */
+   \   0000D8   F5..         MOV     ?V0 + 1,A
+   \   0000DA   78..         MOV     R0,#?V0 + 0
+   \   0000DC   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000DF   7C00         MOV     R4,#0x0
+   \   0000E1   7D00         MOV     R5,#0x0
+   \   0000E3   74..         MOV     A,#(mtxRsp + 24) & 0xff
+   \   0000E5   2A           ADD     A,R2
+   \   0000E6   FA           MOV     R2,A
+   \   0000E7   74..         MOV     A,#((mtxRsp + 24) >> 8) & 0xff
+   \   0000E9   3400         ADDC    A,#0x0
+   \   0000EB   FB           MOV     R3,A
+   \   0000EC   12....       LCALL   ??memset?relay
+   \   0000EF   7402         MOV     A,#0x2
+   \   0000F1   12....       LCALL   ?DEALLOC_XSTACK8
+    460          
+    461            mtxRsp[SPI_0DATA_MSG_LEN-1 + 36] = MT_UartCalcFCS(mtxRsp+1, (MT_RPC_FRAME_HDR_SZ + 36));
+   \   0000F4                ; Setup parameters for call to function MT_UartCalcFCS
+   \   0000F4   7927         MOV     R1,#0x27
+   \   0000F6   7A..         MOV     R2,#(mtxRsp + 1) & 0xff
+   \   0000F8   7B..         MOV     R3,#((mtxRsp + 1) >> 8) & 0xff
+   \   0000FA   12....       LCALL   ??MT_UartCalcFCS?relay
+   \   0000FD   E9           MOV     A,R1
+   \   0000FE   90....       MOV     DPTR,#mtxRsp + 40
+   \   000101   F0           MOVX    @DPTR,A
+    462            HalUARTWrite(MT_UART_DEFAULT_PORT, mtxRsp, SPI_0DATA_MSG_LEN+36);
+   \   000102                ; Setup parameters for call to function HalUARTWrite
+   \   000102   7C29         MOV     R4,#0x29
+   \   000104   7D00         MOV     R5,#0x0
+   \   000106   7A..         MOV     R2,#mtxRsp & 0xff
+   \   000108   7B..         MOV     R3,#(mtxRsp >> 8) & 0xff
+   \   00010A   7900         MOV     R1,#0x0
+   \   00010C   12....       LCALL   ??HalUARTWrite?relay
+    463          }
+   \   00010F   02....       LJMP    ?Subroutine0 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   EE           MOV     A,R6
+   \   000001   240C         ADD     A,#0xc
+   \   000003   F582         MOV     DPL,A
+   \   000005   EF           MOV     A,R7
+   \   000006   3400         ADDC    A,#0x0
+   \   000008   F583         MOV     DPH,A
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   EE           MOV     A,R6
+   \   000001   240D         ADD     A,#0xd
+   \   000003   F582         MOV     DPL,A
+   \   000005   EF           MOV     A,R7
+   \   000006   3400         ADDC    A,#0x0
+   \   000008   F583         MOV     DPH,A
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8E82         MOV     DPL,R6
+   \   000003   8F83         MOV     DPH,R7
+   \   000005   A3           INC     DPTR
+   \   000006   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   8E82         MOV     DPL,R6
+   \   000003   8F83         MOV     DPH,R7
+   \   000005   A3           INC     DPTR
+   \   000006   A3           INC     DPTR
+   \   000007   A3           INC     DPTR
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   EE           MOV     A,R6
+   \   000002   240E         ADD     A,#0xe
+   \   000004   F582         MOV     DPL,A
+   \   000006   EF           MOV     A,R7
+   \   000007   3400         ADDC    A,#0x0
+   \   000009   F583         MOV     DPH,A
+   \   00000B   22           RET
+    464          
+    465          /**************************************************************************************************
+    466           * @fn          MT_X_UartProcessZToolData
+    467           *
+    468           * @brief       This function is called by Hal_UART_SendCallBack to read incoming Rx data.
+    469           *
+    470           *              Attempt to sync on and parse the old MT 1.0 format:
+    471           *              | SOP | Data Length  |   CMD   |   Data   |  FCS  |
+    472           *              |  1  |     1        |    2    |  0-Len   |   1   |
+    473           *
+    474           *              And then pass on all data to the MT 2.0 by invoking 
+    475           *              void MT_UartProcessZToolData ( uint8 port, uint8 event )
+    476           *
+    477           * input parameters
+    478           *
+    479           * @param       port - UART port.
+    480           * @param       event - Event that causes the callback.
+    481           *
+    482           * output parameters
+    483           *
+    484           * None.
+    485           *
+    486           * @return      None.
+    487           **************************************************************************************************
+    488           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    489          void MT_X_UartProcessZToolData(uint8 port, uint8 event)
+   \                     MT_X_UartProcessZToolData:
+    490          {
+   \   000000   74F6         MOV     A,#-0xa
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 10
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   E9           MOV     A,R1
+   \   00000B   FE           MOV     R6,A
+    491            uint8 ch;
+    492            (void)event;
+   \   00000C   801F         SJMP    ??MT_X_UartProcessZToolData_0
+    493          
+    494            while (HalUARTRead(port, &ch, 1))
+    495            {
+    496             if (mtxMode)
+    497             {
+    498              switch (mtxState)
+    499              {
+    500              case SOP_STATE:
+    501                if (ch == SOP_VALUE)
+   \                     ??MT_X_UartProcessZToolData_1:
+   \   00000E   85..82       MOV     DPL,?XSP + 0
+   \   000011   85..83       MOV     DPH,?XSP + 1
+   \   000014   E0           MOVX    A,@DPTR
+   \   000015   6402         XRL     A,#0x2
+   \   000017   7006         JNZ     ??MT_X_UartProcessZToolData_2
+    502                {
+    503                  mtxState = CMD_STATE1;
+   \   000019   90....       MOV     DPTR,#mtxState
+   \   00001C   7401         MOV     A,#0x1
+   \                     ??MT_X_UartProcessZToolData_3:
+   \   00001E   F0           MOVX    @DPTR,A
+    504                }
+    505                break;
+    506          
+    507              case CMD_STATE1:
+    508                mtxCmdToken[0] = ch;
+    509                mtxFCSToken = 0;
+    510                mtxState = CMD_STATE2;
+    511                break;
+    512          
+    513              case CMD_STATE2:
+    514                mtxCmdToken[1] = ch;
+    515          
+    516                /* If it is an old command that is pertinent to the ZOAD traffic, convert it to new and
+    517                 * continue to parse, otherwise re-start the sync.
+    518                 */
+    519                if (cmdO2N(mtxCmdToken))  
+    520                {
+    521                  mtxState = LEN_STATE;
+    522                }
+    523                else
+    524                {
+    525                  mtxState = SOP_STATE;
+    526                }
+    527                break;
+    528          
+    529              case LEN_STATE:
+    530                if (ch == 0)
+    531                {
+    532                  mtxState = FCS_STATE;
+    533                }
+    534                else
+    535                {
+    536                  mtxState = DATA_STATE;
+    537                }
+    538          
+    539                mtxLenToken = ch;
+    540                mtxIdxToken = 0;
+    541          
+    542                /* Allocate memory for the data */
+    543                mtxMsg = (mtOSALSerialData_t *)osal_msg_allocate(sizeof(mtOSALSerialData_t) +
+    544                                                                 MT_RPC_FRAME_HDR_SZ + mtxLenToken);
+    545          
+    546                if (mtxMsg)
+    547                {
+    548                  mtxMsg->hdr.event = CMD_SERIAL_MSG;
+    549                  mtxMsg->msg = (uint8*)(mtxMsg+1);
+    550                  mtxMsg->msg[MT_RPC_POS_LEN] = mtxLenToken;
+    551                  mtxMsg->msg[MT_RPC_POS_CMD0] = mtxCmdToken[0];
+    552                  mtxMsg->msg[MT_RPC_POS_CMD1] = mtxCmdToken[1];
+    553                }
+    554                else
+    555                {
+    556                  mtxState = SOP_STATE;
+    557                }
+    558                break;
+    559          
+    560              case DATA_STATE:
+    561                  mtxMsg->msg[MT_RPC_FRAME_HDR_SZ + mtxIdxToken++] = ch;
+    562                  if (--mtxLenToken == 0)
+    563                  {
+    564                    mtxState = FCS_STATE;
+    565                  }
+    566                break;
+    567          
+    568              case FCS_STATE:
+    569                if (mtxFCSToken == ch)
+    570                {
+    571                  if (msgO2N(mtxCmdToken, (mtxMsg->msg)+MT_RPC_POS_DAT0))
+    572                  {
+    573                    osal_msg_send(MT_TaskID, (byte *)mtxMsg);
+    574                  }
+    575                  else
+    576                  {
+    577                    osal_msg_deallocate((uint8 *)mtxMsg);
+    578                  }
+    579                }
+    580                else
+    581                {
+    582                  osal_msg_deallocate ( (uint8 *)mtxMsg );
+    583                }
+    584          
+    585                mtxState = SOP_STATE;
+    586                break;
+    587          
+    588              default:
+    589                break;
+    590              }
+    591          
+    592              mtxFCSToken ^= ch;
+   \                     ??MT_X_UartProcessZToolData_2:
+   \   00001F   85..82       MOV     DPL,?XSP + 0
+   \   000022   85..83       MOV     DPH,?XSP + 1
+   \   000025   E0           MOVX    A,@DPTR
+   \   000026   F8           MOV     R0,A
+   \   000027   90....       MOV     DPTR,#mtxFCSToken
+   \   00002A   E0           MOVX    A,@DPTR
+   \   00002B   68           XRL     A,R0
+   \   00002C   F0           MOVX    @DPTR,A
+   \                     ??MT_X_UartProcessZToolData_0:
+   \   00002D                ; Setup parameters for call to function HalUARTRead
+   \   00002D   7C01         MOV     R4,#0x1
+   \   00002F   7D00         MOV     R5,#0x0
+   \   000031   85..82       MOV     DPL,?XSP + 0
+   \   000034   85..83       MOV     DPH,?XSP + 1
+   \   000037   AA82         MOV     R2,DPL
+   \   000039   AB83         MOV     R3,DPH
+   \   00003B   EE           MOV     A,R6
+   \   00003C   F9           MOV     R1,A
+   \   00003D   12....       LCALL   ??HalUARTRead?relay
+   \   000040   8B..         MOV     ?V0 + 1,R3
+   \   000042   EA           MOV     A,R2
+   \   000043   45..         ORL     A,?V0 + 1
+   \   000045   7003         JNZ     $+5
+   \   000047   02....       LJMP    ??MT_X_UartProcessZToolData_4 & 0xFFFF
+   \   00004A   90....       MOV     DPTR,#mtxMode
+   \   00004D   E0           MOVX    A,@DPTR
+   \   00004E   7003         JNZ     $+5
+   \   000050   02....       LJMP    ??MT_X_UartProcessZToolData_5 & 0xFFFF
+   \   000053   90....       MOV     DPTR,#mtxState
+   \   000056   E0           MOVX    A,@DPTR
+   \   000057   60B5         JZ      ??MT_X_UartProcessZToolData_1
+   \   000059   14           DEC     A
+   \   00005A   6017         JZ      ??MT_X_UartProcessZToolData_6
+   \   00005C   14           DEC     A
+   \   00005D   602B         JZ      ??MT_X_UartProcessZToolData_7
+   \   00005F   14           DEC     A
+   \   000060   7003         JNZ     $+5
+   \   000062   02....       LJMP    ??MT_X_UartProcessZToolData_8 & 0xFFFF
+   \   000065   14           DEC     A
+   \   000066   7003         JNZ     $+5
+   \   000068   02....       LJMP    ??MT_X_UartProcessZToolData_9 & 0xFFFF
+   \   00006B   14           DEC     A
+   \   00006C   7003         JNZ     $+5
+   \   00006E   02....       LJMP    ??MT_X_UartProcessZToolData_10 & 0xFFFF
+   \   000071   80AC         SJMP    ??MT_X_UartProcessZToolData_2
+   \                     ??MT_X_UartProcessZToolData_6:
+   \   000073   85..82       MOV     DPL,?XSP + 0
+   \   000076   85..83       MOV     DPH,?XSP + 1
+   \   000079   E0           MOVX    A,@DPTR
+   \   00007A   90....       MOV     DPTR,#mtxCmdToken
+   \   00007D   F0           MOVX    @DPTR,A
+   \   00007E   90....       MOV     DPTR,#mtxFCSToken
+   \   000081   E4           CLR     A
+   \   000082   F0           MOVX    @DPTR,A
+   \   000083   90....       MOV     DPTR,#mtxState
+   \   000086   7402         MOV     A,#0x2
+   \   000088   8094         SJMP    ??MT_X_UartProcessZToolData_3
+   \                     ??MT_X_UartProcessZToolData_7:
+   \   00008A   85..82       MOV     DPL,?XSP + 0
+   \   00008D   85..83       MOV     DPH,?XSP + 1
+   \   000090   E0           MOVX    A,@DPTR
+   \   000091   90....       MOV     DPTR,#mtxCmdToken + 1
+   \   000094   F0           MOVX    @DPTR,A
+   \   000095   FA           MOV     R2,A
+   \   000096   90....       MOV     DPTR,#mtxCmdToken
+   \   000099   E0           MOVX    A,@DPTR
+   \   00009A   F9           MOV     R1,A
+   \   00009B   EA           MOV     A,R2
+   \   00009C   2400         ADD     A,#0x0
+   \   00009E   E4           CLR     A
+   \   00009F   39           ADDC    A,R1
+   \   0000A0   FB           MOV     R3,A
+   \   0000A1   7C00         MOV     R4,#0x0
+   \                     ??MT_X_UartProcessZToolData_11:
+   \   0000A3   8C..         MOV     ?V0 + 0,R4
+   \   0000A5   75..00       MOV     ?V0 + 1,#0x0
+   \   0000A8   7402         MOV     A,#0x2
+   \   0000AA   78..         MOV     R0,#?V0 + 0
+   \   0000AC   12....       LCALL   ?S_SHL
+   \   0000AF   74..         MOV     A,#mtxCmd & 0xff
+   \   0000B1   25..         ADD     A,?V0 + 0
+   \   0000B3   F8           MOV     R0,A
+   \   0000B4   74..         MOV     A,#(mtxCmd >> 8) & 0xff
+   \   0000B6   35..         ADDC    A,?V0 + 1
+   \   0000B8   F9           MOV     R1,A
+   \   0000B9   8882         MOV     DPL,R0
+   \   0000BB   8983         MOV     DPH,R1
+   \   0000BD   E0           MOVX    A,@DPTR
+   \   0000BE   6A           XRL     A,R2
+   \   0000BF   7003         JNZ     ??MT_X_UartProcessZToolData_12
+   \   0000C1   A3           INC     DPTR
+   \   0000C2   E0           MOVX    A,@DPTR
+   \   0000C3   6B           XRL     A,R3
+   \                     ??MT_X_UartProcessZToolData_12:
+   \   0000C4   7013         JNZ     ??MT_X_UartProcessZToolData_13
+   \   0000C6   8882         MOV     DPL,R0
+   \   0000C8   8983         MOV     DPH,R1
+   \   0000CA   A3           INC     DPTR
+   \   0000CB   A3           INC     DPTR
+   \   0000CC   E0           MOVX    A,@DPTR
+   \   0000CD   FA           MOV     R2,A
+   \   0000CE   A3           INC     DPTR
+   \   0000CF   E0           MOVX    A,@DPTR
+   \   0000D0   90....       MOV     DPTR,#mtxCmdToken
+   \   0000D3   F0           MOVX    @DPTR,A
+   \   0000D4   EA           MOV     A,R2
+   \   0000D5   A3           INC     DPTR
+   \   0000D6   F0           MOVX    @DPTR,A
+   \   0000D7   8007         SJMP    ??MT_X_UartProcessZToolData_14
+   \                     ??MT_X_UartProcessZToolData_13:
+   \   0000D9   0C           INC     R4
+   \   0000DA   EC           MOV     A,R4
+   \   0000DB   C3           CLR     C
+   \   0000DC   940C         SUBB    A,#0xc
+   \   0000DE   40C3         JC      ??MT_X_UartProcessZToolData_11
+   \                     ??MT_X_UartProcessZToolData_14:
+   \   0000E0   740C         MOV     A,#0xc
+   \   0000E2   6C           XRL     A,R4
+   \   0000E3   7003         JNZ     $+5
+   \   0000E5   02....       LJMP    ??MT_X_UartProcessZToolData_15 & 0xFFFF
+   \   0000E8   90....       MOV     DPTR,#mtxState
+   \   0000EB   7403         MOV     A,#0x3
+   \   0000ED   02....       LJMP    ??MT_X_UartProcessZToolData_3 & 0xFFFF
+   \                     ??MT_X_UartProcessZToolData_8:
+   \   0000F0   85..82       MOV     DPL,?XSP + 0
+   \   0000F3   85..83       MOV     DPH,?XSP + 1
+   \   0000F6   E0           MOVX    A,@DPTR
+   \   0000F7   90....       MOV     DPTR,#mtxState
+   \   0000FA   7004         JNZ     ??MT_X_UartProcessZToolData_16
+   \   0000FC   7405         MOV     A,#0x5
+   \   0000FE   8002         SJMP    ??MT_X_UartProcessZToolData_17
+   \                     ??MT_X_UartProcessZToolData_16:
+   \   000100   7404         MOV     A,#0x4
+   \                     ??MT_X_UartProcessZToolData_17:
+   \   000102   F0           MOVX    @DPTR,A
+   \   000103   85..82       MOV     DPL,?XSP + 0
+   \   000106   85..83       MOV     DPH,?XSP + 1
+   \   000109   E0           MOVX    A,@DPTR
+   \   00010A   90....       MOV     DPTR,#mtxLenToken
+   \   00010D   F0           MOVX    @DPTR,A
+   \   00010E   90....       MOV     DPTR,#mtxIdxToken
+   \   000111   E4           CLR     A
+   \   000112   F0           MOVX    @DPTR,A
+   \   000113                ; Setup parameters for call to function osal_msg_allocate
+   \   000113   90....       MOV     DPTR,#mtxLenToken
+   \   000116   E0           MOVX    A,@DPTR
+   \   000117   2407         ADD     A,#0x7
+   \   000119   FA           MOV     R2,A
+   \   00011A   E4           CLR     A
+   \   00011B   3400         ADDC    A,#0x0
+   \   00011D   FB           MOV     R3,A
+   \   00011E   12....       LCALL   ??osal_msg_allocate?relay
+   \   000121   90....       MOV     DPTR,#mtxMsg
+   \   000124   EA           MOV     A,R2
+   \   000125   F0           MOVX    @DPTR,A
+   \   000126   A3           INC     DPTR
+   \   000127   EB           MOV     A,R3
+   \   000128   F0           MOVX    @DPTR,A
+   \   000129   90....       MOV     DPTR,#mtxMsg
+   \   00012C   E0           MOVX    A,@DPTR
+   \   00012D   F8           MOV     R0,A
+   \   00012E   A3           INC     DPTR
+   \   00012F   E0           MOVX    A,@DPTR
+   \   000130   F9           MOV     R1,A
+   \   000131   E8           MOV     A,R0
+   \   000132   49           ORL     A,R1
+   \   000133   7003         JNZ     $+5
+   \   000135   02....       LJMP    ??MT_X_UartProcessZToolData_15 & 0xFFFF
+   \   000138   E0           MOVX    A,@DPTR
+   \   000139   F583         MOV     DPH,A
+   \   00013B   8882         MOV     DPL,R0
+   \   00013D   7401         MOV     A,#0x1
+   \   00013F   F0           MOVX    @DPTR,A
+   \   000140   90....       MOV     DPTR,#mtxMsg
+   \   000143   E0           MOVX    A,@DPTR
+   \   000144   2402         ADD     A,#0x2
+   \   000146   F8           MOV     R0,A
+   \   000147   A3           INC     DPTR
+   \   000148   E0           MOVX    A,@DPTR
+   \   000149   3400         ADDC    A,#0x0
+   \   00014B   F9           MOV     R1,A
+   \   00014C   90....       MOV     DPTR,#mtxMsg
+   \   00014F   E0           MOVX    A,@DPTR
+   \   000150   2404         ADD     A,#0x4
+   \   000152   FA           MOV     R2,A
+   \   000153   A3           INC     DPTR
+   \   000154   E0           MOVX    A,@DPTR
+   \   000155   3400         ADDC    A,#0x0
+   \   000157   FB           MOV     R3,A
+   \   000158   8882         MOV     DPL,R0
+   \   00015A   8983         MOV     DPH,R1
+   \   00015C   EA           MOV     A,R2
+   \   00015D   F0           MOVX    @DPTR,A
+   \   00015E   A3           INC     DPTR
+   \   00015F   EB           MOV     A,R3
+   \   000160   F0           MOVX    @DPTR,A
+   \   000161   90....       MOV     DPTR,#mtxLenToken
+   \   000164   E0           MOVX    A,@DPTR
+   \   000165   C0E0         PUSH    A
+   \   000167   8882         MOV     DPL,R0
+   \   000169   8983         MOV     DPH,R1
+   \   00016B   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_21:
+   \   00016E   D0E0         POP     A
+   \   000170   F0           MOVX    @DPTR,A
+   \   000171   90....       MOV     DPTR,#mtxCmdToken
+   \   000174   E0           MOVX    A,@DPTR
+   \   000175   C0E0         PUSH    A
+   \   000177   8882         MOV     DPL,R0
+   \   000179   8983         MOV     DPH,R1
+   \   00017B   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   00017E   D0E0         POP     A
+   \   000180   F0           MOVX    @DPTR,A
+   \   000181   90....       MOV     DPTR,#mtxCmdToken + 1
+   \   000184   E0           MOVX    A,@DPTR
+   \   000185   C0E0         PUSH    A
+   \   000187   8882         MOV     DPL,R0
+   \   000189   8983         MOV     DPH,R1
+   \   00018B   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_4:
+   \   00018E   D0E0         POP     A
+   \   000190   02....       LJMP    ??MT_X_UartProcessZToolData_3 & 0xFFFF
+   \                     ??MT_X_UartProcessZToolData_9:
+   \   000193   85..82       MOV     DPL,?XSP + 0
+   \   000196   85..83       MOV     DPH,?XSP + 1
+   \   000199   E0           MOVX    A,@DPTR
+   \   00019A   C0E0         PUSH    A
+   \   00019C   90....       MOV     DPTR,#mtxIdxToken
+   \   00019F   E0           MOVX    A,@DPTR
+   \   0001A0   F8           MOV     R0,A
+   \   0001A1   90....       MOV     DPTR,#mtxMsg
+   \   0001A4   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   0001A7   A3           INC     DPTR
+   \   0001A8   E0           MOVX    A,@DPTR
+   \   0001A9   28           ADD     A,R0
+   \   0001AA   FA           MOV     R2,A
+   \   0001AB   A3           INC     DPTR
+   \   0001AC   E0           MOVX    A,@DPTR
+   \   0001AD   3400         ADDC    A,#0x0
+   \   0001AF   8A82         MOV     DPL,R2
+   \   0001B1   F583         MOV     DPH,A
+   \   0001B3   A3           INC     DPTR
+   \   0001B4   A3           INC     DPTR
+   \   0001B5   A3           INC     DPTR
+   \   0001B6   D0E0         POP     A
+   \   0001B8   F0           MOVX    @DPTR,A
+   \   0001B9   90....       MOV     DPTR,#mtxIdxToken
+   \   0001BC   E0           MOVX    A,@DPTR
+   \   0001BD   04           INC     A
+   \   0001BE   F0           MOVX    @DPTR,A
+   \   0001BF   90....       MOV     DPTR,#mtxLenToken
+   \   0001C2   E0           MOVX    A,@DPTR
+   \   0001C3   14           DEC     A
+   \   0001C4   F0           MOVX    @DPTR,A
+   \   0001C5   6003         JZ      $+5
+   \   0001C7   02....       LJMP    ??MT_X_UartProcessZToolData_2 & 0xFFFF
+   \   0001CA   90....       MOV     DPTR,#mtxState
+   \   0001CD   7405         MOV     A,#0x5
+   \   0001CF   02....       LJMP    ??MT_X_UartProcessZToolData_3 & 0xFFFF
+   \                     ??MT_X_UartProcessZToolData_10:
+   \   0001D2   90....       MOV     DPTR,#mtxFCSToken
+   \   0001D5   E0           MOVX    A,@DPTR
+   \   0001D6   F8           MOV     R0,A
+   \   0001D7   85..82       MOV     DPL,?XSP + 0
+   \   0001DA   85..83       MOV     DPH,?XSP + 1
+   \   0001DD   E0           MOVX    A,@DPTR
+   \   0001DE   68           XRL     A,R0
+   \   0001DF   7030         JNZ     ??MT_X_UartProcessZToolData_18
+   \   0001E1                ; Setup parameters for call to function msgO2N
+   \   0001E1   90....       MOV     DPTR,#mtxMsg
+   \   0001E4   12....       LCALL   ?Subroutine3 & 0xFFFF
+   \                     ??CrossCallReturnLabel_5:
+   \   0001E7   E0           MOVX    A,@DPTR
+   \   0001E8   2403         ADD     A,#0x3
+   \   0001EA   FC           MOV     R4,A
+   \   0001EB   A3           INC     DPTR
+   \   0001EC   E0           MOVX    A,@DPTR
+   \   0001ED   3400         ADDC    A,#0x0
+   \   0001EF   FD           MOV     R5,A
+   \   0001F0   7A..         MOV     R2,#mtxCmdToken & 0xff
+   \   0001F2   7B..         MOV     R3,#(mtxCmdToken >> 8) & 0xff
+   \   0001F4   12....       LCALL   ??msgO2N?relay
+   \   0001F7   E9           MOV     A,R1
+   \   0001F8   6017         JZ      ??MT_X_UartProcessZToolData_18
+   \   0001FA                ; Setup parameters for call to function osal_msg_send
+   \   0001FA   90....       MOV     DPTR,#mtxMsg
+   \   0001FD   E0           MOVX    A,@DPTR
+   \   0001FE   FA           MOV     R2,A
+   \   0001FF   A3           INC     DPTR
+   \   000200   E0           MOVX    A,@DPTR
+   \   000201   FB           MOV     R3,A
+   \   000202   90....       MOV     DPTR,#MT_TaskID
+   \   000205   E0           MOVX    A,@DPTR
+   \   000206   F9           MOV     R1,A
+   \   000207   12....       LCALL   ??osal_msg_send?relay
+   \                     ??MT_X_UartProcessZToolData_15:
+   \   00020A   90....       MOV     DPTR,#mtxState
+   \   00020D   E4           CLR     A
+   \   00020E   02....       LJMP    ??MT_X_UartProcessZToolData_3 & 0xFFFF
+   \                     ??MT_X_UartProcessZToolData_18:
+   \   000211                ; Setup parameters for call to function osal_msg_deallocate
+   \   000211   90....       MOV     DPTR,#mtxMsg
+   \   000214   E0           MOVX    A,@DPTR
+   \   000215   FA           MOV     R2,A
+   \   000216   A3           INC     DPTR
+   \   000217   E0           MOVX    A,@DPTR
+   \   000218   FB           MOV     R3,A
+   \   000219   12....       LCALL   ??osal_msg_deallocate?relay
+   \   00021C   80EC         SJMP    ??MT_X_UartProcessZToolData_15
+    593             }
+    594             else
+    595             {
+    596              MT_UartProcessZToolByte(ch);
+   \                     ??MT_X_UartProcessZToolData_5:
+   \   00021E                ; Setup parameters for call to function MT_UartProcessZToolByte
+   \   00021E   85..82       MOV     DPL,?XSP + 0
+   \   000221   85..83       MOV     DPH,?XSP + 1
+   \   000224   E0           MOVX    A,@DPTR
+   \   000225   F9           MOV     R1,A
+   \   000226   12....       LCALL   ??MT_UartProcessZToolByte?relay
+   \   000229   02....       LJMP    ??MT_X_UartProcessZToolData_0 & 0xFFFF
+    597             }
+    598            }
+    599          }
+   \                     ??MT_X_UartProcessZToolData_4:
+   \   00022C   7401         MOV     A,#0x1
+   \   00022E   12....       LCALL   ?DEALLOC_XSTACK8
+   \   000231   7F02         MOV     R7,#0x2
+   \   000233   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_22:
+   \   000003   A3           INC     DPTR
+   \   000004   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   FA           MOV     R2,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F583         MOV     DPH,A
+   \   000006   8A82         MOV     DPL,R2
+   \   000008   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F8           MOV     R0,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   F583         MOV     DPH,A
+   \   000006   8882         MOV     DPL,R0
+   \   000008   A3           INC     DPTR
+   \   000009   A3           INC     DPTR
+   \   00000A   22           RET
+    600          
+    601          /**************************************************************************************************
+    602           * @fn          MT_X_TransportSend
+    603           *
+    604           * @brief       Prepare message to send by old MT format if it is pertinent to ZOAD.
+    605           *              Copy message header to re-use to also send in new MT format and then
+    606           *              fill in SOP and FCS then send out the msg.
+    607           *
+    608           * input parameters
+    609           *
+    610           * @param       msg - pointer to the message that contains spare byte, CMD, length, data and FCS.
+    611           *
+    612           * output parameters
+    613           *
+    614           * None.
+    615           *
+    616           * @return      None.
+    617           **************************************************************************************************
+    618           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    619          void MT_X_TransportSend(uint8 *msg)
+   \                     MT_X_TransportSend:
+    620          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+   \   000005   EA           MOV     A,R2
+   \   000006   FE           MOV     R6,A
+   \   000007   EB           MOV     A,R3
+   \   000008   FF           MOV     R7,A
+    621            if (mtxMode)
+   \   000009   8E82         MOV     DPL,R6
+   \   00000B   8F83         MOV     DPH,R7
+   \   00000D   A3           INC     DPTR
+   \   00000E   8582..       MOV     ?V0 + 0,DPL
+   \   000011   8583..       MOV     ?V0 + 1,DPH
+   \   000014   90....       MOV     DPTR,#mtxMode
+   \   000017   E0           MOVX    A,@DPTR
+   \   000018   7003         JNZ     $+5
+   \   00001A   02....       LJMP    ??MT_X_TransportSend_0 & 0xFFFF
+    622            {
+    623              if (cmdN2O(msg+2))
+   \   00001D   EE           MOV     A,R6
+   \   00001E   2402         ADD     A,#0x2
+   \   000020   F5..         MOV     ?V0 + 2,A
+   \   000022   EF           MOV     A,R7
+   \   000023   3400         ADDC    A,#0x0
+   \   000025   F5..         MOV     ?V0 + 3,A
+   \   000027   0A           INC     R2
+   \   000028   0A           INC     R2
+   \   000029   FB           MOV     R3,A
+   \   00002A   8A82         MOV     DPL,R2
+   \   00002C   8B83         MOV     DPH,R3
+   \   00002E   A3           INC     DPTR
+   \   00002F   E0           MOVX    A,@DPTR
+   \   000030   FC           MOV     R4,A
+   \   000031   8A82         MOV     DPL,R2
+   \   000033   8B83         MOV     DPH,R3
+   \   000035   E0           MOVX    A,@DPTR
+   \   000036   541F         ANL     A,#0x1f
+   \   000038   F9           MOV     R1,A
+   \   000039   EC           MOV     A,R4
+   \   00003A   2400         ADD     A,#0x0
+   \   00003C   E4           CLR     A
+   \   00003D   39           ADDC    A,R1
+   \   00003E   FD           MOV     R5,A
+   \   00003F   7900         MOV     R1,#0x0
+   \                     ??MT_X_TransportSend_1:
+   \   000041   89..         MOV     ?V0 + 4,R1
+   \   000043   75..00       MOV     ?V0 + 5,#0x0
+   \   000046   7402         MOV     A,#0x2
+   \   000048   78..         MOV     R0,#?V0 + 4
+   \   00004A   12....       LCALL   ?S_SHL
+   \   00004D   74..         MOV     A,#(mtxCmd + 2) & 0xff
+   \   00004F   25..         ADD     A,?V0 + 4
+   \   000051   F582         MOV     DPL,A
+   \   000053   74..         MOV     A,#((mtxCmd + 2) >> 8) & 0xff
+   \   000055   35..         ADDC    A,?V0 + 5
+   \   000057   F583         MOV     DPH,A
+   \   000059   E0           MOVX    A,@DPTR
+   \   00005A   F5..         MOV     ?V0 + 4,A
+   \   00005C   A3           INC     DPTR
+   \   00005D   E0           MOVX    A,@DPTR
+   \   00005E   541F         ANL     A,#0x1f
+   \   000060   F5..         MOV     ?V0 + 5,A
+   \   000062   EC           MOV     A,R4
+   \   000063   65..         XRL     A,?V0 + 4
+   \   000065   7003         JNZ     ??MT_X_TransportSend_2
+   \   000067   ED           MOV     A,R5
+   \   000068   65..         XRL     A,?V0 + 5
+   \                     ??MT_X_TransportSend_2:
+   \   00006A   7065         JNZ     ??MT_X_TransportSend_3
+   \   00006C                ; Setup parameters for call to function msgN2O
+   \   00006C   12....       LCALL   ??msgN2O?relay
+   \   00006F   E9           MOV     A,R1
+   \   000070   7003         JNZ     $+5
+   \   000072   02....       LJMP    ??MT_X_TransportSend_4 & 0xFFFF
+    624              {
+    625                // Re-position the 2 cmd bytes & length to the old format positions.
+    626                msg[0] = msg[1];          // Temporarily save data len.
+   \   000075   85..82       MOV     DPL,?V0 + 0
+   \   000078   85..83       MOV     DPH,?V0 + 1
+   \   00007B   E0           MOVX    A,@DPTR
+   \   00007C   8E82         MOV     DPL,R6
+   \   00007E   8F83         MOV     DPH,R7
+   \   000080   F0           MOVX    @DPTR,A
+    627                (void)memcpy(msg+1, msg+2, 2);  // Move command bytes to first location after SOP.
+   \   000081                ; Setup parameters for call to function memcpy
+   \   000081   75..02       MOV     ?V0 + 4,#0x2
+   \   000084   75..00       MOV     ?V0 + 5,#0x0
+   \   000087   78..         MOV     R0,#?V0 + 4
+   \   000089   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00008C   AC..         MOV     R4,?V0 + 2
+   \   00008E   AD..         MOV     R5,?V0 + 3
+   \   000090   AA..         MOV     R2,?V0 + 0
+   \   000092   AB..         MOV     R3,?V0 + 1
+   \   000094   12....       LCALL   ??memcpy?relay
+   \   000097   7402         MOV     A,#0x2
+   \   000099   12....       LCALL   ?DEALLOC_XSTACK8
+    628                msg[3] = msg[0];          // Data len.
+   \   00009C   EE           MOV     A,R6
+   \   00009D   2403         ADD     A,#0x3
+   \   00009F   F8           MOV     R0,A
+   \   0000A0   EF           MOV     A,R7
+   \   0000A1   3400         ADDC    A,#0x0
+   \   0000A3   F9           MOV     R1,A
+   \   0000A4   88..         MOV     ?V0 + 2,R0
+   \   0000A6   89..         MOV     ?V0 + 3,R1
+   \   0000A8   8E82         MOV     DPL,R6
+   \   0000AA   8F83         MOV     DPH,R7
+   \   0000AC   E0           MOVX    A,@DPTR
+   \   0000AD   8882         MOV     DPL,R0
+   \   0000AF   8983         MOV     DPH,R1
+   \   0000B1   F0           MOVX    @DPTR,A
+    629          
+    630                msg[0] = SOP_VALUE;
+   \   0000B2   8E82         MOV     DPL,R6
+   \   0000B4   8F83         MOV     DPH,R7
+   \   0000B6   7402         MOV     A,#0x2
+   \   0000B8   F0           MOVX    @DPTR,A
+    631                msg[SPI_0DATA_MSG_LEN-1 + msg[3]] = MT_UartCalcFCS(msg+1, (MT_RPC_FRAME_HDR_SZ + msg[3]));
+   \   0000B9                ; Setup parameters for call to function MT_UartCalcFCS
+   \   0000B9   8882         MOV     DPL,R0
+   \   0000BB   8983         MOV     DPH,R1
+   \   0000BD   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_2:
+   \   0000C0   85..82       MOV     DPL,?V0 + 2
+   \   0000C3   85..83       MOV     DPH,?V0 + 3
+   \   0000C6   12....       LCALL   ?Subroutine1 & 0xFFFF
+    632          
+    633                HalUARTWrite(MT_UART_DEFAULT_PORT, msg, SPI_0DATA_MSG_LEN + msg[3]);
+   \                     ??CrossCallReturnLabel_0:
+   \   0000C9                ; Setup parameters for call to function HalUARTWrite
+   \   0000C9   85..82       MOV     DPL,?V0 + 2
+   \   0000CC   85..83       MOV     DPH,?V0 + 3
+   \   0000CF   8029         SJMP    ??MT_X_TransportSend_5
+    634              }
+    635            }
+   \                     ??MT_X_TransportSend_3:
+   \   0000D1   09           INC     R1
+   \   0000D2   E9           MOV     A,R1
+   \   0000D3   C3           CLR     C
+   \   0000D4   940C         SUBB    A,#0xc
+   \   0000D6   5033         JNC     ??MT_X_TransportSend_4
+   \   0000D8   02....       LJMP    ??MT_X_TransportSend_1 & 0xFFFF
+    636            else
+    637            {
+    638              msg[0] = MT_UART_SOF;
+   \                     ??MT_X_TransportSend_0:
+   \   0000DB   8E82         MOV     DPL,R6
+   \   0000DD   8F83         MOV     DPH,R7
+   \   0000DF   74FE         MOV     A,#-0x2
+   \   0000E1   F0           MOVX    @DPTR,A
+    639              msg[SPI_0DATA_MSG_LEN - 1 + msg[1]] = MT_UartCalcFCS (msg+1, (3 + msg[1]));
+   \   0000E2                ; Setup parameters for call to function MT_UartCalcFCS
+   \   0000E2   85..82       MOV     DPL,?V0 + 0
+   \   0000E5   85..83       MOV     DPH,?V0 + 1
+   \   0000E8   12....       LCALL   ?Subroutine2 & 0xFFFF
+   \                     ??CrossCallReturnLabel_3:
+   \   0000EB   85..82       MOV     DPL,?V0 + 0
+   \   0000EE   85..83       MOV     DPH,?V0 + 1
+   \   0000F1   12....       LCALL   ?Subroutine1 & 0xFFFF
+    640              HalUARTWrite(MT_UART_DEFAULT_PORT, msg, msg[1] + SPI_0DATA_MSG_LEN);
+   \                     ??CrossCallReturnLabel_1:
+   \   0000F4                ; Setup parameters for call to function HalUARTWrite
+   \   0000F4   85..82       MOV     DPL,?V0 + 0
+   \   0000F7   85..83       MOV     DPH,?V0 + 1
+   \                     ??MT_X_TransportSend_5:
+   \   0000FA   E0           MOVX    A,@DPTR
+   \   0000FB   2405         ADD     A,#0x5
+   \   0000FD   FC           MOV     R4,A
+   \   0000FE   E4           CLR     A
+   \   0000FF   3400         ADDC    A,#0x0
+   \   000101   FD           MOV     R5,A
+   \   000102   EE           MOV     A,R6
+   \   000103   FA           MOV     R2,A
+   \   000104   EF           MOV     A,R7
+   \   000105   FB           MOV     R3,A
+   \   000106   7900         MOV     R1,#0x0
+   \   000108   12....       LCALL   ??HalUARTWrite?relay
+    641            }
+    642          
+    643            osal_msg_deallocate(msg);
+   \                     ??MT_X_TransportSend_4:
+   \   00010B                ; Setup parameters for call to function osal_msg_deallocate
+   \   00010B   EE           MOV     A,R6
+   \   00010C   FA           MOV     R2,A
+   \   00010D   EF           MOV     A,R7
+   \   00010E   FB           MOV     R3,A
+   \   00010F   12....       LCALL   ??osal_msg_deallocate?relay
+    644          }
+   \   000112                REQUIRE ?Subroutine0
+   \   000112                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   2403         ADD     A,#0x3
+   \   000003   F9           MOV     R1,A
+   \   000004   AA..         MOV     R2,?V0 + 0
+   \   000006   AB..         MOV     R3,?V0 + 1
+   \   000008   12....       LCALL   ??MT_UartCalcFCS?relay
+   \   00000B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F8           MOV     R0,A
+   \   000002   EE           MOV     A,R6
+   \   000003   28           ADD     A,R0
+   \   000004   F582         MOV     DPL,A
+   \   000006   EF           MOV     A,R7
+   \   000007   3400         ADDC    A,#0x0
+   \   000009   F583         MOV     DPH,A
+   \   00000B   A3           INC     DPTR
+   \   00000C   A3           INC     DPTR
+   \   00000D   A3           INC     DPTR
+   \   00000E   A3           INC     DPTR
+   \   00000F   E9           MOV     A,R1
+   \   000010   F0           MOVX    @DPTR,A
+   \   000011   22           RET
+    645          
+    646          /**************************************************************************************************
+    647           * @fn          MT_X_FakeNwkJoinCnf
+    648           *
+    649           * @brief       Fake a SPI_CB_NLME_JOIN_CNF to the old ZOAD.
+    650           *
+    651           * input parameters
+    652           *
+    653           * None.
+    654           *
+    655           * output parameters
+    656           *
+    657           * None.
+    658           *
+    659           * @return      None.
+    660           **************************************************************************************************
+    661           */
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    662          void MT_X_FakeNwkJoinCnf(void)
+   \                     MT_X_FakeNwkJoinCnf:
+    663          {
+   \   000000   74F2         MOV     A,#-0xe
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 14
+   \   000005                ; Auto size: 0
+    664            uint8 *msg;
+    665          
+    666            if ((msg=osal_mem_alloc(SPI_0DATA_MSG_LEN+11)))
+   \   000005                ; Setup parameters for call to function osal_mem_alloc
+   \   000005   7A10         MOV     R2,#0x10
+   \   000007   7B00         MOV     R3,#0x0
+   \   000009   12....       LCALL   ??osal_mem_alloc?relay
+   \   00000C   8A..         MOV     ?V0 + 0,R2
+   \   00000E   8B..         MOV     ?V0 + 1,R3
+   \   000010   AE..         MOV     R6,?V0 + 0
+   \   000012   AF..         MOV     R7,?V0 + 1
+   \   000014   EE           MOV     A,R6
+   \   000015   4F           ORL     A,R7
+   \   000016   7003         JNZ     $+5
+   \   000018   02....       LJMP    ??MT_X_FakeNwkJoinCnf_0 & 0xFFFF
+    667            {
+    668              msg[0] = SOP_VALUE;
+   \   00001B   8E82         MOV     DPL,R6
+   \   00001D   8F83         MOV     DPH,R7
+   \   00001F   7402         MOV     A,#0x2
+   \   000021   F0           MOVX    @DPTR,A
+    669              msg[1] = 0x01;
+   \   000022   A3           INC     DPTR
+   \   000023   8582..       MOV     ?V0 + 0,DPL
+   \   000026   8583..       MOV     ?V0 + 1,DPH
+   \   000029   14           DEC     A
+   \   00002A   12....       LCALL   ?Subroutine8 & 0xFFFF
+    670              msg[2] = 0x83;
+   \                     ??CrossCallReturnLabel_16:
+   \   00002D   A3           INC     DPTR
+   \   00002E   7483         MOV     A,#-0x7d
+   \   000030   12....       LCALL   ?Subroutine7 & 0xFFFF
+    671              msg[3] = 11;
+   \                     ??CrossCallReturnLabel_13:
+   \   000033   740B         MOV     A,#0xb
+   \   000035   F0           MOVX    @DPTR,A
+    672          
+    673              osal_nv_read(ZCD_NV_EXTADDR, 0, Z_EXTADDR_LEN, msg+4);
+   \   000036   EE           MOV     A,R6
+   \   000037   2404         ADD     A,#0x4
+   \   000039   F5..         MOV     ?V0 + 2,A
+   \   00003B   EF           MOV     A,R7
+   \   00003C   3400         ADDC    A,#0x0
+   \   00003E   F5..         MOV     ?V0 + 3,A
+   \   000040                ; Setup parameters for call to function osal_nv_read
+   \   000040   78..         MOV     R0,#?V0 + 2
+   \   000042   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000045   75..08       MOV     ?V0 + 4,#0x8
+   \   000048   75..00       MOV     ?V0 + 5,#0x0
+   \   00004B   78..         MOV     R0,#?V0 + 4
+   \   00004D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000050   7C00         MOV     R4,#0x0
+   \   000052   7D00         MOV     R5,#0x0
+   \   000054   7A01         MOV     R2,#0x1
+   \   000056   7B00         MOV     R3,#0x0
+   \   000058   12....       LCALL   ??osal_nv_read?relay
+   \   00005B   7404         MOV     A,#0x4
+   \   00005D   12....       LCALL   ?DEALLOC_XSTACK8
+    674              MT_ReverseBytes(msg+4, Z_EXTADDR_LEN);
+   \   000060                ; Setup parameters for call to function MT_ReverseBytes
+   \   000060   7908         MOV     R1,#0x8
+   \   000062   AA..         MOV     R2,?V0 + 2
+   \   000064   AB..         MOV     R3,?V0 + 3
+   \   000066   12....       LCALL   ??MT_ReverseBytes?relay
+    675              msg[12] = HI_UINT16(zgConfigPANID);
+   \   000069   90....       MOV     DPTR,#zgConfigPANID + 1
+   \   00006C   E0           MOVX    A,@DPTR
+   \   00006D   C0E0         PUSH    A
+   \   00006F   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_20:
+   \   000072   D0E0         POP     A
+   \   000074   F0           MOVX    @DPTR,A
+    676              msg[13] = LO_UINT16(zgConfigPANID);
+   \   000075   90....       MOV     DPTR,#zgConfigPANID
+   \   000078   E0           MOVX    A,@DPTR
+   \   000079   C0E0         PUSH    A
+   \   00007B   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_18:
+   \   00007E   D0E0         POP     A
+   \   000080   12....       LCALL   ?Subroutine6 & 0xFFFF
+    677              msg[14] = 0;
+   \                     ??CrossCallReturnLabel_11:
+   \   000083   E4           CLR     A
+   \   000084   F0           MOVX    @DPTR,A
+    678          
+    679              msg[SPI_0DATA_MSG_LEN-1 + 11] = MT_UartCalcFCS(msg+1, (MT_RPC_FRAME_HDR_SZ + 11));
+   \   000085                ; Setup parameters for call to function MT_UartCalcFCS
+   \   000085   790E         MOV     R1,#0xe
+   \   000087   AA..         MOV     R2,?V0 + 0
+   \   000089   AB..         MOV     R3,?V0 + 1
+   \   00008B   12....       LCALL   ??MT_UartCalcFCS?relay
+   \   00008E   EE           MOV     A,R6
+   \   00008F   240F         ADD     A,#0xf
+   \   000091   F582         MOV     DPL,A
+   \   000093   EF           MOV     A,R7
+   \   000094   3400         ADDC    A,#0x0
+   \   000096   F583         MOV     DPH,A
+   \   000098   E9           MOV     A,R1
+   \   000099   F0           MOVX    @DPTR,A
+    680              HalUARTWrite(MT_UART_DEFAULT_PORT, msg, SPI_0DATA_MSG_LEN+11);
+   \   00009A                ; Setup parameters for call to function HalUARTWrite
+   \   00009A   7C10         MOV     R4,#0x10
+   \   00009C   7D00         MOV     R5,#0x0
+   \   00009E   EE           MOV     A,R6
+   \   00009F   FA           MOV     R2,A
+   \   0000A0   EF           MOV     A,R7
+   \   0000A1   FB           MOV     R3,A
+   \   0000A2   7900         MOV     R1,#0x0
+   \   0000A4   12....       LCALL   ??HalUARTWrite?relay
+    681              osal_mem_free(msg);
+   \   0000A7                ; Setup parameters for call to function osal_mem_free
+   \   0000A7   EE           MOV     A,R6
+   \   0000A8   FA           MOV     R2,A
+   \   0000A9   EF           MOV     A,R7
+   \   0000AA   FB           MOV     R3,A
+   \   0000AB   12....       LCALL   ??osal_mem_free?relay
+    682            }
+    683          }
+   \                     ??MT_X_FakeNwkJoinCnf_0:
+   \   0000AE   02....       LJMP    ?Subroutine0 & 0xFFFF
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??msgO2N?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    msgO2N
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??msgN2O?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    msgN2O
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??mtxIEEEAddrRspCB?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    mtxIEEEAddrRspCB
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_X_UartProcessZToolData?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_X_UartProcessZToolData
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_X_TransportSend?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_X_TransportSend
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??MT_X_FakeNwkJoinCnf?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    MT_X_FakeNwkJoinCnf
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant {2, 17, 4, 1, 0, 20}>`:
+   \   000000   02           DB 2
+   \   000001   11           DB 17
+   \   000002   04           DB 4
+   \   000003   01           DB 1
+   \   000004   00           DB 0
+   \   000005   14           DB 20
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     __Constant_800:
+   \   000000   00080000     DD 2048
+    684          
+    685          /**************************************************************************************************
+    686          */
+
+   Maximum stack usage in bytes:
+
+     Function                     ISTACK PSTACK XSTACK
+     --------                     ------ ------ ------
+     MT_X_FakeNwkJoinCnf              1      0     18
+       -> osal_mem_alloc              0      0     28
+       -> osal_nv_read                0      0     36
+       -> MT_ReverseBytes             0      0     28
+       -> MT_UartCalcFCS              0      0     28
+       -> HalUARTWrite                0      0     28
+       -> osal_mem_free               0      0     28
+     MT_X_TransportSend               1      0     16
+       -> msgN2O                      0      0     28
+       -> memcpy                      0      0     32
+       -> MT_UartCalcFCS              0      0     28
+       -> HalUARTWrite                0      0     28
+       -> MT_UartCalcFCS              0      0     28
+       -> HalUARTWrite                0      0     28
+       -> osal_msg_deallocate         0      0     28
+     MT_X_UartProcessZToolData        1      0     11
+       -> HalUARTRead                 0      0     22
+       -> osal_msg_allocate           0      0     22
+       -> msgO2N                      0      0     22
+       -> osal_msg_send               0      0     22
+       -> osal_msg_deallocate         0      0     22
+       -> MT_UartProcessZToolByte     0      0     22
+     msgN2O                           1      0     26
+       -> HalUARTWrite                0      0     24
+       -> MT_ReverseBytes             0      0     24
+       -> MT_ReverseBytes             0      0     24
+       -> MT_ReverseBytes             0      0     24
+       -> mtxIEEEAddrRspCB            0      0     24
+     msgO2N                           2      0     31
+       -> MT_ReverseBytes             0      0     40
+       -> ZDOInitDevice               0      0     40
+       -> HalUARTWrite                0      0     40
+       -> NLME_GetShortAddr           0      0     40
+       -> ZDP_IEEEAddrReq             0      0     40
+       -> sAddrExtCpy                 0      0     40
+       -> MT_ReverseBytes             0      0     40
+       -> MT_UartCalcFCS              0      0     40
+       -> HalUARTWrite                0      0     40
+       -> osal_start_timerEx          0      0     40
+     mtxIEEEAddrRspCB                 0      0     28
+       -> memset                      0      0     32
+       -> memcpy                      0      0     32
+       -> MT_ReverseBytes             0      0     28
+       -> memcpy                      0      0     32
+       -> memset                      0      0     32
+       -> MT_UartCalcFCS              0      0     28
+       -> HalUARTWrite                0      0     28
+
+
+   Segment part sizes:
+
+     Function/Label                    Bytes
+     --------------                    -----
+     msgVersion                          23
+     mtxCmd                              48
+     mtxMode                              1
+     mtxCmdToken                          2
+     mtxFCSToken                          1
+     mtxIdxToken                          1
+     mtxLenToken                          1
+     mtxState                             1
+     mtxMsg                               2
+     mtxRsp                             128
+     msgO2N                             384
+     ?Subroutine4                        10
+     ?Subroutine0                         5
+     msgN2O                             216
+     mtxIEEEAddrRspCB                   274
+     ?Subroutine10                       11
+     ?Subroutine9                        11
+     ?Subroutine8                         7
+     ?Subroutine7                         9
+     ?Subroutine6                        12
+     MT_X_UartProcessZToolData          566
+     ?Subroutine5                         5
+     ?Subroutine11                        9
+     ?Subroutine3                        11
+     MT_X_TransportSend                 274
+     ?Subroutine2                        12
+     ?Subroutine1                        18
+     MT_X_FakeNwkJoinCnf                177
+     ??msgO2N?relay                       6
+     ??msgN2O?relay                       6
+     ??mtxIEEEAddrRspCB?relay             6
+     ??MT_X_UartProcessZToolData?relay    6
+     ??MT_X_TransportSend?relay           6
+     ??MT_X_FakeNwkJoinCnf?relay          6
+     ?<Constant {2, 17, 4, 1, 0, 20}>     6
+     __Constant_800                       4
+
+ 
+ 2 011 bytes in segment BANKED_CODE
+    36 bytes in segment BANK_RELAYS
+    81 bytes in segment XDATA_ROM_C
+   137 bytes in segment XDATA_Z
+ 
+ 2 047 bytes of CODE  memory
+    77 bytes of CONST memory (+ 4 bytes shared)
+   137 bytes of XDATA memory
+
+Errors: none
+Warnings: none

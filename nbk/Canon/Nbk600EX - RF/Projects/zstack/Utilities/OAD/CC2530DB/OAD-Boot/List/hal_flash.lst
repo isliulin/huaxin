@@ -1,0 +1,4002 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.4.40412/W32 for 8051         06/Nov/2016  20:51:49 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  near                                               #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data                                               #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX #
+#                           - RF\Components\hal\target\CC2530EB\hal_flash.c   #
+#    Command line       =  "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Components\hal\target\CC2530EB\hal_flash.c" #
+#                           -D HAL_OAD_BOOT_CODE -lC                          #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Projects\zstack\Utilities\OAD\CC2530DB\OAD- #
+#                          Boot\List\" -lA "C:\Users\freeman\Documents\work\N #
+#                          BK\Canon\Nbk600EX - RF\Projects\zstack\Utilities\O #
+#                          AD\CC2530DB\OAD-Boot\List\" --remarks -o           #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Projects\zstack\Utilities\OAD\CC2530DB\OAD- #
+#                          Boot\Obj\" -e --debug --core=plain --dptr=16,1     #
+#                          --data_model=large --code_model=near               #
+#                          --calling_convention=xdata_reentrant               #
+#                          --place_constants=data --nr_virtual_regs 16 -I     #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Projects\zstack\Utilities\OAD\CC2530DB\"    #
+#                          -I "C:\Users\freeman\Documents\work\NBK\Canon\Nbk6 #
+#                          00EX - RF\Projects\zstack\Utilities\OAD\CC2530DB\S #
+#                          OURCE\" -I "C:\Users\freeman\Documents\work\NBK\Ca #
+#                          non\Nbk600EX - RF\Projects\zstack\Utilities\OAD\CC #
+#                          2530DB\..\..\..\Tools\CC2530DB\" -I                #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Projects\zstack\Utilities\OAD\CC2530DB\..\. #
+#                          .\..\ZMAIN\TI2530DB\" -I                           #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Projects\zstack\Utilities\OAD\CC2530DB\..\. #
+#                          .\..\..\..\COMPONENTS\HAL\INCLUDE\" -I             #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Projects\zstack\Utilities\OAD\CC2530DB\..\. #
+#                          .\..\..\..\COMPONENTS\OSAL\INCLUDE\" -Ohz          #
+#                          --require_prototypes --mfc                         #
+#                          --discard_unused_publics                           #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Components\hal\target\CC2530EB\hal_oad.c"   #
+#                          "C:\Users\freeman\Documents\work\NBK\Canon\Nbk600E #
+#                          X - RF\Components\hal\target\CC2530EB\hal_uart.c"  #
+#    List file          =  C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX #
+#                           - RF\Projects\zstack\Utilities\OAD\CC2530DB\OAD-B #
+#                          oot\List\hal_flash.lst                             #
+#    Object file        =  C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX #
+#                           - RF\Projects\zstack\Utilities\OAD\CC2530DB\OAD-B #
+#                          oot\Obj\hal_flash.r51                              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_flash.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_flash.c
+      3            Revised:        $Date:$
+      4            Revision:       $Revision:$
+      5          
+      6            Description: This file contains the interface to the H/W Flash driver.
+      7          
+      8          
+      9            Copyright 2006-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /* ------------------------------------------------------------------------------------------------
+     41           *                                          Includes
+     42           * ------------------------------------------------------------------------------------------------
+     43           */
+     44          
+     45          #include "hal_board_cfg.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x86
+   \   unsigned char volatile __sfr U0CSR
+   \                     U0CSR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x88
+   \   union <unnamed> volatile __sfr _A_TCON
+   \                     _A_TCON:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x8f
+   \   unsigned char volatile __sfr P0INP
+   \                     P0INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9d
+   \   unsigned char volatile __sfr SLEEPSTA
+   \                     SLEEPSTA:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9e
+   \   unsigned char volatile __sfr CLKCONSTA
+   \                     CLKCONSTA:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb1
+   \   unsigned char volatile __sfr ENCDI
+   \                     ENCDI:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb2
+   \   unsigned char volatile __sfr ENCDO
+   \                     ENCDO:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xb3
+   \   unsigned char volatile __sfr ENCCS
+   \                     ENCCS:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xbe
+   \   unsigned char volatile __sfr SLEEPCMD
+   \                     SLEEPCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc1
+   \   unsigned char volatile __sfr U0DBUF
+   \                     U0DBUF:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc2
+   \   unsigned char volatile __sfr U0BAUD
+   \                     U0BAUD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc5
+   \   unsigned char volatile __sfr U0GCR
+   \                     U0GCR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc6
+   \   unsigned char volatile __sfr CLKCONCMD
+   \                     CLKCONCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc7
+   \   unsigned char volatile __sfr MEMCTR
+   \                     MEMCTR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd1
+   \   unsigned char volatile __sfr DMAIRQ
+   \                     DMAIRQ:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd4
+   \   unsigned char volatile __sfr DMA0CFGL
+   \                     DMA0CFGL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd5
+   \   unsigned char volatile __sfr DMA0CFGH
+   \                     DMA0CFGH:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xd6
+   \   unsigned char volatile __sfr DMAARM
+   \                     DMAARM:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xe8
+   \   union <unnamed> volatile __sfr _A_IRCON2
+   \                     _A_IRCON2:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf1
+   \   unsigned char volatile __sfr PERCFG
+   \                     PERCFG:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xff
+   \   unsigned char volatile __sfr P2DIR
+   \                     P2DIR:
+   \   000000                DS 1
+     46          #include "hal_dma.h"
+     47          #include "hal_flash.h"
+     48          #include "hal_types.h"
+     49          
+     50          /* ------------------------------------------------------------------------------------------------
+     51           *                                           Macros
+     52           * ------------------------------------------------------------------------------------------------
+     53           */
+     54          
+     55          /* ------------------------------------------------------------------------------------------------
+     56           *                                          Constants
+     57           * ------------------------------------------------------------------------------------------------
+     58           */
+     59          
+     60          // These values depend on RAM_CODE_FLASH in the .xcl file used.
+     61          #if defined CC2530F64     // RemoTI is using 0x01DDD --> pg 3, offset 0x5DD.
+     62          #define OSET_OF_RAM_CODE  0x5DD
+     63          #define PAGE_OF_RAM_CODE  3
+     64          #define SIZE_OF_RAM_CODE  0x23
+     65          #elif defined HAL_OAD_BOOT_CODE
+     66                                    // OAD boot code is using 0x7E3 --> pg 0, so same as offset 0x7E3.
+     67          #define OSET_OF_RAM_CODE  0x7E3
+     68          #define PAGE_OF_RAM_CODE  0
+     69          #define SIZE_OF_RAM_CODE  0x1D
+     70          #elif defined HAL_USB_BOOT_CODE
+     71                                    // USB boot code is using 0x7DD --> pg 0, so same as offset 0x7DD.
+     72          #define OSET_OF_RAM_CODE  0x7DD
+     73          #define PAGE_OF_RAM_CODE  0
+     74          #define SIZE_OF_RAM_CODE  0x23
+     75          #else                     // Z-Stack is using 0x39EDD --> pg 51, offset 0x6DD.
+     76          #define OSET_OF_RAM_CODE  0x6DD
+     77          #define PAGE_OF_RAM_CODE  51
+     78          #define SIZE_OF_RAM_CODE  0x23
+     79          #endif
+     80          
+     81          /* ------------------------------------------------------------------------------------------------
+     82           *                                          Typedefs
+     83           * ------------------------------------------------------------------------------------------------
+     84           */
+     85          
+     86          /* ------------------------------------------------------------------------------------------------
+     87           *                                       Global Variables
+     88           * ------------------------------------------------------------------------------------------------
+     89           */
+     90          
+     91          /* ------------------------------------------------------------------------------------------------
+     92           *                                       Global Functions
+     93           * ------------------------------------------------------------------------------------------------
+     94           */
+     95          
+     96          /* ------------------------------------------------------------------------------------------------
+     97           *                                       Local Variables
+     98           * ------------------------------------------------------------------------------------------------
+     99           */
+    100          
+    101          #pragma location="RAM_CODE_XDATA"
+
+   \                                 In  segment RAM_CODE_XDATA, align 1
+    102          static __no_init uint8 ramCode[SIZE_OF_RAM_CODE];
+   \                     ??ramCode:
+   \   000000                DS 29
+    103          
+    104          /* ------------------------------------------------------------------------------------------------
+    105           *                                       Local Functions
+    106           * ------------------------------------------------------------------------------------------------
+    107           */
+    108          
+    109          #pragma location="RAM_CODE_FLASH"
+    110          #if defined HAL_OAD_BOOT_CODE
+    111          static void HalFlashWriteTrigger(void);
+    112          #else
+    113          static __monitor void HalFlashWriteTrigger(void);
+    114          #endif
+    115          
+    116          /**************************************************************************************************
+    117           * @fn          HalFlashInit
+    118           *
+    119           * @brief       This function initializes the environment for this module.
+    120           *
+    121           * input parameters
+    122           *
+    123           * None.
+    124           *
+    125           * output parameters
+    126           *
+    127           * None.
+    128           *
+    129           * @return      None.
+    130           **************************************************************************************************
+    131           */
+    132          void HalFlashInit(void)
+    133          {
+    134            // Load the code to run from RAM into its reserved area of RAM once at startup.
+    135            HalFlashRead(PAGE_OF_RAM_CODE, OSET_OF_RAM_CODE, ramCode, SIZE_OF_RAM_CODE);
+    136          }
+    137          
+    138          
+    139          /**************************************************************************************************
+    140           * @fn          HalFlashRead
+    141           *
+    142           * @brief       This function reads 'cnt' bytes from the internal flash.
+    143           *
+    144           * input parameters
+    145           *
+    146           * @param       pg - A valid flash page number.
+    147           * @param       offset - A valid offset into the page.
+    148           * @param       buf - A valid buffer space at least as big as the 'cnt' parameter.
+    149           * @param       cnt - A valid number of bytes to read.
+    150           *
+    151           * output parameters
+    152           *
+    153           * None.
+    154           *
+    155           * @return      None.
+    156           **************************************************************************************************
+    157           */
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    158          void HalFlashRead(uint8 pg, uint16 offset, uint8 *buf, uint16 cnt)
+   \                     HalFlashRead:
+    159          {
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+   \   000007   740B         MOV     A,#0xb
+   \   000009   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   FE           MOV     R6,A
+   \   00000E   A3           INC     DPTR
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   FF           MOV     R7,A
+    160            // Calculate the offset into the containing flash bank as it gets mapped into XDATA.
+    161            uint8 *ptr = (uint8 *)(offset + HAL_FLASH_PAGE_MAP) +
+    162                         ((pg % HAL_FLASH_PAGE_PER_BANK) * HAL_FLASH_PAGE_SIZE);
+   \   000011   740F         MOV     A,#0xf
+   \   000013   55..         ANL     A,?V0 + 0
+   \   000015   F5..         MOV     ?V0 + 2,A
+   \   000017   75..00       MOV     ?V0 + 3,#0x0
+   \   00001A   740B         MOV     A,#0xb
+   \   00001C   78..         MOV     R0,#?V0 + 2
+   \   00001E   12....       LCALL   ?S_SHL
+   \   000021   EA           MOV     A,R2
+   \   000022   2400         ADD     A,#0x0
+   \   000024   F8           MOV     R0,A
+   \   000025   EB           MOV     A,R3
+   \   000026   3480         ADDC    A,#-0x80
+   \   000028   F9           MOV     R1,A
+   \   000029   E8           MOV     A,R0
+   \   00002A   2400         ADD     A,#0x0
+   \   00002C   E9           MOV     A,R1
+   \   00002D   35..         ADDC    A,?V0 + 3
+   \   00002F   F9           MOV     R1,A
+    163            uint8 memctr = MEMCTR;  // Save to restore.
+   \   000030   E5C7         MOV     A,0xc7
+   \   000032   F5..         MOV     ?V0 + 1,A
+    164          
+    165          #if !defined HAL_OAD_BOOT_CODE
+    166            halIntState_t is;
+    167          #endif
+    168          
+    169            pg /= HAL_FLASH_PAGE_PER_BANK;  // Calculate the flash bank from the flash page.
+    170          
+    171          #if !defined HAL_OAD_BOOT_CODE
+    172            HAL_ENTER_CRITICAL_SECTION(is);
+    173          #endif
+    174          
+    175            // Calculate and map the containing flash bank into XDATA.
+    176            MEMCTR = (MEMCTR & 0xF8) | pg;
+   \   000034   E5..         MOV     A,?V0 + 0
+   \   000036   C4           SWAP    A
+   \   000037   540F         ANL     A,#0xf
+   \   000039   FA           MOV     R2,A
+   \   00003A   E5C7         MOV     A,0xc7
+   \   00003C   54F8         ANL     A,#0xf8
+   \   00003E   4A           ORL     A,R2
+   \   00003F   F5C7         MOV     0xc7,A
+   \   000041   801C         SJMP    ??HalFlashRead_0
+    177          
+    178            while (cnt--)
+    179            {
+    180              *buf++ = *ptr++;
+   \                     ??HalFlashRead_1:
+   \   000043   8882         MOV     DPL,R0
+   \   000045   8983         MOV     DPH,R1
+   \   000047   E0           MOVX    A,@DPTR
+   \   000048   8C82         MOV     DPL,R4
+   \   00004A   8D83         MOV     DPH,R5
+   \   00004C   F0           MOVX    @DPTR,A
+   \   00004D   8882         MOV     DPL,R0
+   \   00004F   8983         MOV     DPH,R1
+   \   000051   A3           INC     DPTR
+   \   000052   A882         MOV     R0,DPL
+   \   000054   A983         MOV     R1,DPH
+   \   000056   8C82         MOV     DPL,R4
+   \   000058   8D83         MOV     DPH,R5
+   \   00005A   A3           INC     DPTR
+   \   00005B   AC82         MOV     R4,DPL
+   \   00005D   AD83         MOV     R5,DPH
+    181            }
+   \                     ??HalFlashRead_0:
+   \   00005F   EE           MOV     A,R6
+   \   000060   FA           MOV     R2,A
+   \   000061   EF           MOV     A,R7
+   \   000062   FB           MOV     R3,A
+   \   000063   EA           MOV     A,R2
+   \   000064   24FF         ADD     A,#-0x1
+   \   000066   1E           DEC     R6
+   \   000067   EB           MOV     A,R3
+   \   000068   34FF         ADDC    A,#-0x1
+   \   00006A   FF           MOV     R7,A
+   \   00006B   EA           MOV     A,R2
+   \   00006C   4B           ORL     A,R3
+   \   00006D   70D4         JNZ     ??HalFlashRead_1
+    182          
+    183            MEMCTR = memctr;
+   \   00006F   85..C7       MOV     0xc7,?V0 + 1
+    184          
+    185          #if !defined HAL_OAD_BOOT_CODE
+    186            HAL_EXIT_CRITICAL_SECTION(is);
+    187          #endif
+    188          }
+   \   000072   7F04         MOV     R7,#0x4
+   \   000074   02....       LJMP    ?FUNC_LEAVE_XDATA
+   \   000077                REQUIRE MEMCTR
+    189          
+    190          /**************************************************************************************************
+    191           * @fn          HalFlashWrite
+    192           *
+    193           * @brief       This function writes 'cnt' bytes to the internal flash.
+    194           *
+    195           * input parameters
+    196           *
+    197           * @param       addr - Valid HAL flash write address: actual addr / 4 and quad-aligned.
+    198           * @param       buf - Valid buffer space at least as big as 'cnt' X 4.
+    199           * @param       cnt - Number of 4-byte blocks to write.
+    200           *
+    201           * output parameters
+    202           *
+    203           * None.
+    204           *
+    205           * @return      None.
+    206           **************************************************************************************************
+    207           */
+    208           #if HAL_DMA
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    209          void HalFlashWrite(uint16 addr, uint8 *buf, uint16 cnt)
+   \                     HalFlashWrite:
+    210          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+   \   000005   7409         MOV     A,#0x9
+   \   000007   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   F5..         MOV     ?V0 + 0,A
+   \   00000D   A3           INC     DPTR
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F5..         MOV     ?V0 + 1,A
+    211            halDMADesc_t *ch = HAL_NV_DMA_GET_DESC();
+    212          
+    213            HAL_DMA_SET_SOURCE(ch, buf);
+   \   000011   ED           MOV     A,R5
+   \   000012   90....       MOV     DPTR,#dmaCh0
+   \   000015   F0           MOVX    @DPTR,A
+   \   000016   EC           MOV     A,R4
+   \   000017   A3           INC     DPTR
+   \   000018   F0           MOVX    @DPTR,A
+    214            HAL_DMA_SET_DEST(ch, &FWDATA);
+   \   000019   A3           INC     DPTR
+   \   00001A   7462         MOV     A,#0x62
+   \   00001C   F0           MOVX    @DPTR,A
+   \   00001D   A3           INC     DPTR
+   \   00001E   7473         MOV     A,#0x73
+   \   000020   F0           MOVX    @DPTR,A
+    215            HAL_DMA_SET_VLEN(ch, HAL_DMA_VLEN_USE_LEN);
+   \   000021   A3           INC     DPTR
+   \   000022   E0           MOVX    A,@DPTR
+   \   000023   541F         ANL     A,#0x1f
+   \   000025   F0           MOVX    @DPTR,A
+    216            HAL_DMA_SET_LEN(ch, (cnt * HAL_FLASH_WORD_SIZE));
+   \   000026   E5..         MOV     A,?V0 + 0
+   \   000028   33           RLC     A
+   \   000029   33           RLC     A
+   \   00002A   54FC         ANL     A,#0xfc
+   \   00002C   A3           INC     DPTR
+   \   00002D   F0           MOVX    @DPTR,A
+   \   00002E   7406         MOV     A,#0x6
+   \   000030   78..         MOV     R0,#?V0 + 0
+   \   000032   12....       LCALL   ?US_SHR
+   \   000035   E5..         MOV     A,?V0 + 0
+   \   000037   90....       MOV     DPTR,#dmaCh0 + 4
+   \   00003A   F0           MOVX    @DPTR,A
+    217            HAL_DMA_SET_WORD_SIZE(ch, HAL_DMA_WORDSIZE_BYTE);
+    218            HAL_DMA_SET_TRIG_MODE(ch, HAL_DMA_TMODE_SINGLE);
+    219            HAL_DMA_SET_TRIG_SRC(ch, HAL_DMA_TRIG_FLASH);
+   \   00003B   90....       MOV     DPTR,#dmaCh0 + 6
+   \   00003E   7412         MOV     A,#0x12
+   \   000040   F0           MOVX    @DPTR,A
+    220            HAL_DMA_SET_SRC_INC(ch, HAL_DMA_SRCINC_1);
+    221            HAL_DMA_SET_DST_INC(ch, HAL_DMA_DSTINC_0);
+    222            // The DMA is to be polled and shall not issue an IRQ upon completion.
+    223            HAL_DMA_SET_IRQ(ch, HAL_DMA_IRQMASK_DISABLE);
+    224            HAL_DMA_SET_M8( ch, HAL_DMA_M8_USE_8_BITS);
+    225            HAL_DMA_SET_PRIORITY(ch, HAL_DMA_PRI_HIGH);
+   \   000041   A3           INC     DPTR
+   \   000042   7442         MOV     A,#0x42
+   \   000044   F0           MOVX    @DPTR,A
+    226            HAL_DMA_CLEAR_IRQ(HAL_NV_DMA_CH);
+   \   000045   53D1FE       ANL     0xd1,#0xfe
+    227            HAL_DMA_ARM_CH(HAL_NV_DMA_CH);
+   \   000048   75D601       MOV     0xd6,#0x1
+    228          
+    229            FADDRL = (uint8)addr;
+   \   00004B   EA           MOV     A,R2
+   \   00004C   906271       MOV     DPTR,#0x6271
+   \   00004F   F0           MOVX    @DPTR,A
+    230            FADDRH = (uint8)(addr >> 8);
+   \   000050   EB           MOV     A,R3
+   \   000051   A3           INC     DPTR
+   \   000052   F0           MOVX    @DPTR,A
+    231            HalFlashWriteTrigger();
+   \   000053                ; Setup parameters for call to function HalFlashWriteTrigger
+   \   000053   12....       LCALL   ??HalFlashWriteTrigger
+    232          }
+   \   000056   02....       LJMP    ?Subroutine0
+   \   000059                REQUIRE DMAIRQ
+   \   000059                REQUIRE DMAARM
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   7F02         MOV     R7,#0x2
+   \   000002   02....       LJMP    ?FUNC_LEAVE_XDATA
+    233          #else
+    234          void HalFlashWrite(uint16 addr, uint8 *buf, uint16 cnt)
+    235          {
+    236            return;
+    237          }
+    238           #endif
+    239          
+    240          /**************************************************************************************************
+    241           * @fn          HalFlashErase
+    242           *
+    243           * @brief       This function erases the specified page of the internal flash.
+    244           *
+    245           * input parameters
+    246           *
+    247           * @param       pg - A valid flash page number to erase.
+    248           *
+    249           * output parameters
+    250           *
+    251           * None.
+    252           *
+    253           * @return      None.
+    254           **************************************************************************************************
+    255           */
+    256          void HalFlashErase(uint8 pg)
+    257          {
+    258            FADDRH = pg * (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE / 256);
+    259            FCTL |= 0x01;
+    260          }
+    261          
+    262          /**************************************************************************************************
+    263           * @fn          HalFlashWriteTrigger
+    264           *
+    265           * @brief       This function must be copied to RAM before running because it triggers and then
+    266           *              awaits completion of Flash write, which can only be done from RAM.
+    267           *
+    268           * input parameters
+    269           *
+    270           * None.
+    271           *
+    272           * output parameters
+    273           *
+    274           * None.
+    275           *
+    276           * @return      None.
+    277           **************************************************************************************************
+    278           */
+    279          #if defined HAL_OAD_BOOT_CODE
+    280          #pragma optimize=medium
+
+   \                                 In  segment RAM_CODE_FLASH, align 1, keep-with-next
+    281          static void HalFlashWriteTrigger(void)
+   \                     ??HalFlashWriteTrigger:
+    282          #else
+    283          static __monitor void HalFlashWriteTrigger(void)
+    284          #endif
+    285          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    286            MEMCTR |= 0x08;       // Start the Memory Arbiter running CODE from RAM.
+   \   000004   43C708       ORL     0xc7,#0x8
+    287            FCTL |= 0x02;         // Trigger the DMA writes.
+   \   000007   906270       MOV     DPTR,#0x6270
+   \   00000A   E0           MOVX    A,@DPTR
+   \   00000B   D2E1         SETB    0xE0 /* A   */.1
+   \   00000D   F0           MOVX    @DPTR,A
+    288            while (FCTL & 0x80);  // Wait until writing is done.
+   \                     ??HalFlashWriteTrigger_1:
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   A2E7         MOV     C,0xE0 /* A   */.7
+   \   000011   40FB         JC      ??HalFlashWriteTrigger_1
+    289            MEMCTR &= ~0x08;      // Stop the Memory Arbiter.
+   \   000013   53C7F7       ANL     0xc7,#0xf7
+    290          }
+   \   000016   D083         POP     DPH
+   \   000018   D082         POP     DPL
+   \   00001A   22           RET
+   \   00001B                REQUIRE MEMCTR
+    291          
+    292          
+    293          /**************************************************************************************************
+    294          */
+C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_oad.c
+      3            Revised:        $Date: 2008-01-17 12:32:06 -0800 (Thu, 17 Jan 2008) $
+      4            Revision:       $Revision: 16224 $
+      5          
+      6            Description:    This module contains optionally-compiled Boot Code to support OAD.
+      7                            The rest of the functionality is the H/W specific drivers to read/write
+      8                            the flash/NV containing the ACTIVE and the DOWNLOADED images.
+      9            Notes:          This version targets the Texas Instruments CC2x3x family of processors.
+     10          
+     11          
+     12            Copyright 2008-2009 Texas Instruments Incorporated. All rights reserved.
+     13          
+     14            IMPORTANT: Your use of this Software is limited to those specific rights
+     15            granted under the terms of a software license agreement between the user
+     16            who downloaded the software, his/her employer (which must be your employer)
+     17            and Texas Instruments Incorporated (the "License").  You may not use this
+     18            Software unless you agree to abide by the terms of the License. The License
+     19            limits your use, and you acknowledge, that the Software may not be modified,
+     20            copied or distributed unless embedded on a Texas Instruments microcontroller
+     21            or used solely and exclusively in conjunction with a Texas Instruments radio
+     22            frequency transceiver, which is integrated into your product.  Other than for
+     23            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     24            works of, modify, distribute, perform, display or sell this Software and/or
+     25            its documentation for any purpose.
+     26          
+     27            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     28            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     29            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     30            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     31            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     32            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     33            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     34            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     35            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     36            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     37            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     38          
+     39            Should you have any questions regarding your right to use this Software,
+     40            contact Texas Instruments Incorporated at www.TI.com.
+     41          **************************************************************************************************/
+     42          
+     43          /* ------------------------------------------------------------------------------------------------
+     44           *                                          Includes
+     45           * ------------------------------------------------------------------------------------------------
+     46           */
+     47          #include <ioCC2530.h>
+     48          #include "comdef.h"
+     49          #include "hal_board_cfg.h"
+     50          #include "hal_dma.h"
+     51          #include "hal_flash.h"
+     52          #include "hal_oad.h"
+     53          #include "hal_types.h"
+     54          #include <stdio.h>
+     55          //#include "hal_aes.h"
+     56          
+     57          /* ------------------------------------------------------------------------------------------------
+     58           *                                           Macros
+     59           * ------------------------------------------------------------------------------------------------
+     60           */
+     61          
+     62          /* ------------------------------------------------------------------------------------------------
+     63           *                                          Constants
+     64           * ------------------------------------------------------------------------------------------------
+     65           */
+     66          
+     67          /* ------------------------------------------------------------------------------------------------
+     68           *                                          Typedefs
+     69           * ------------------------------------------------------------------------------------------------
+     70           */
+     71          
+     72          /* ------------------------------------------------------------------------------------------------
+     73           *                                       Global Variables
+     74           * ------------------------------------------------------------------------------------------------
+     75           */
+     76          
+     77          /* ------------------------------------------------------------------------------------------------
+     78           *                                       Global Functions
+     79           * ------------------------------------------------------------------------------------------------
+     80           */
+     81          
+     82          /* ------------------------------------------------------------------------------------------------
+     83           *                                       Local Variables
+     84           * ------------------------------------------------------------------------------------------------
+     85           */
+     86          
+     87          #if HAL_OAD_BOOT_CODE
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     88          halDMADesc_t dmaCh0;
+   \                     dmaCh0:
+   \   000000                DS 8
+   \   000008                REQUIRE __INIT_XDATA_Z
+     89          #endif
+     90          
+     91          #define LED_GREEN_ON()          st(HAL_TURN_ON_LED1();)
+     92          #define LED_GREEN_OFF()        st(HAL_TURN_OFF_LED1();)
+     93          #define LED_GREEN_TOGGLE()  st(HAL_TOGGLE_LED1();)
+     94          
+     95          #define LED_RED_ON()          st(HAL_TURN_ON_LED2();)
+     96          #define LED_RED_OFF()        st(HAL_TURN_OFF_LED2();)
+     97          #define LED_RED_TOGGLE()  st(HAL_TOGGLE_LED2();)
+     98          
+     99          #define LED_INS_LINKED()    st(LED_GREEN_ON();LED_RED_OFF();)
+    100          #define LED_INS_UNLINK()    st(LED_GREEN_OFF();LED_RED_ON();)
+    101          #define LED_INS_BRIGDE()    st(LED_GREEN_ON();LED_RED_ON();)
+    102          #define LED_INS_ALLOFF()    st(LED_GREEN_OFF();LED_RED_OFF();)
+    103          
+    104          /* ------------------------------------------------------------------------------------------------
+    105           *                                       Local Functions
+    106           * ------------------------------------------------------------------------------------------------
+    107           */
+    108          
+    109          static uint16 runPoly(uint16 crc, uint8 val);
+    110          
+    111          #define	 ucLDR_Security_F	(*(unsigned char *)0x100)	
+    112          #define	 start_flag	(*(unsigned char *)0x101)	
+    113          #define	 ucLDR_Ret	(*(unsigned char *)0x102)
+    114          #define	 ucLDR_Message	(*(Uart_message *)0x110)
+    115          #define	 stCommand	(*(union  u_stCommand *)0x1E0)	
+    116          #define	 ucLDR_WorkRam	(*(unsigned char *)0x200)
+    117          //#define 	 dmaCh0		(*(halDMADesc_t*)0x201)
+    118          
+    119          #define LED_1 P1_3
+    120          #define LED_2 P1_4
+    121          
+    122          #define OAD_AES_VERI
+    123          
+    124          // _mode_ is one of
+    125          #define CBC         0x00
+    126          #define CFB         0x10
+    127          #define OFB         0x20
+    128          #define CTR         0x30
+    129          #define ECB         0x40
+    130          #define CBC_MAC     0x50
+    131          
+    132          #define AES_BUSY    0x08
+    133          #define ENCRYPT     0x00
+    134          #define DECRYPT     0x01
+    135          
+    136          // Macro for starting or stopping encryption or decryption
+    137          #define AES_SET_ENCR_DECR_KEY_IV(mode) \
+    138             do {                                \
+    139              ENCCS = (ENCCS & ~0x07) | mode     \
+    140             } while(0)
+    141          
+    142          #define VALID_INIT_SN				(978137684l)
+    143          #define VALID_START_SN				(260636838l)
+    144          
+    145          typedef volatile unsigned char XDATA macRam_t;
+    146          #define TI_EXTADDR  PXREG( 0x780C )  /* Pointer to Start of Flash Information Page          */
+    147          
+    148          // Where _mode_ is one of
+    149          #define AES_ENCRYPT     0x00;
+    150          #define AES_DECRYPT     0x02;
+    151          #define AES_LOAD_KEY    0x04;
+    152          #define AES_LOAD_IV     0x06;
+    153          
+    154          #define LENGTH_IV  16
+    155          #define LENGTH_KEY 16
+    156          
+    157          #define STRING_LENGTH       16
+    158          
+    159          
+    160          // Macro for setting the mode of the AES operation
+    161          #define AES_SETMODE(mode) do { ENCCS &= ~0x70; ENCCS |= mode; } while (0)
+    162          
+    163          // Macro for starting the AES module for either encryption, decryption,
+    164          // key or initialisation vector loading.
+    165          #define AES_START()     ENCCS |= 0x01
+    166          
+    167          #define DELAY 0x0F
+    168          
+    169          typedef unsigned char       BOOL;
+    170          
+    171          // Data
+    172          typedef unsigned char       BYTE;
+    173          typedef unsigned short      WORD;
+    174          typedef unsigned long       DWORD;
+    175          
+    176          // Unsigned numbers
+    177          typedef unsigned char       UINT8;
+    178          typedef unsigned short      UINT16;
+    179          typedef unsigned long       UINT32;
+    180          
+    181          // Signed numbers
+    182          typedef signed char         INT8;
+    183          typedef signed short        INT16;
+    184          typedef signed long         INT32;
+    185          
+    186          #if HAL_OAD_XNV_IS_SPI
+    187          //static void HalSPIRead(uint32 addr, uint8 *pBuf, uint16 len);
+    188          //static void HalSPIWrite(uint32 addr, uint8 *pBuf, uint16 len);
+    189          static unsigned char RcvData(void);
+    190          static unsigned char Message_Rcv(void);
+    191          static void Message_Send(void);
+    192          static void SendData(char dat);
+    193          static void delay(unsigned int de);
+    194          static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key);
+    195          static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr);
+    196          static void MemReadRam(macRam_t * pRam, uint8 * pData, uint8 len);
+    197          static uint8 OAD_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned int len );
+    198          static void putsDialog(const char *str);
+    199          #endif
+    200          
+    201          //char g_cupIdRst[16] = {0x08,0x3f,0x37,0x9f,0xb6,0xe6,0x5d,0x1f,0x3d,0xb9,0xdb,0x9c,0x4f,0xf3,0x6f,0xf0};
+    202          
+    203          //#define DEBUG_TRACE
+    204          
+    205          #if HAL_OAD_BOOT_CODE
+    206          static void dl2rc(void);
+    207          static uint16 crcCalc(void);
+    208          static void InitUart(void);
+    209          static void Uart_Send_String(char *Data,int len);
+    210          #endif
+    211          
+    212          #ifdef DEBUG_TRACE
+    213          static void PutChar(const char Tbyte);
+    214          static void putsStr(const char *str);
+    215          static char *mac_itoa(long n, int base);
+    216          int Printf(const char *fmt, ...);
+    217          #endif
+    218          
+    219          /**************************************************************************************************
+    220           * @fn          main
+    221           *
+    222           * @brief       ISR for the reset vector.
+    223           *
+    224           * input parameters
+    225           *
+    226           * None.
+    227           *
+    228           * output parameters
+    229           *
+    230           * None.
+    231           *
+    232           * @return      None.
+    233           **************************************************************************************************
+    234           */
+    235           
+    236          //#pragma location="RAM_CODE_XDATA"
+    237          
+    238          //unsigned char ucLDR_Security_F;
+    239          //unsigned char start_flag;
+    240          //unsigned char ucLDR_Ret;
+    241          //Uart_message ucLDR_Message;
+    242          //unsigned char ucLDR_WorkRam;
+    243          
+    244          // char *g_decKey = "WorkForYourDream";
+    245          //    char *g_decKey = "MakeTomorrowBest";
+    246           //BYTE  IV[LENGTH_IV ] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    247          
+    248          /****************
+    249          
+    250          :101FF000e560f3070687996742fdfbc684bdc655B9
+    251          :100FF000e560f3070687996742fdfbc684bdc655C9
+    252          e5 60 f3 07 06 87 99 67 42 fd fb c6 84 bd c6 55
+    253          
+    254          938
+    255          *****************/
+    256          
+    257          /********************************************/
+    258          //F0 02 2D 76 AA 9C C7 D7 2A B3 24 53 98 B9 62 93
+    259          //:101FF000F0022D76AA9CC7D72AB3245398B96293CE
+    260          //
+    261          /********************************************/
+    262          
+    263          
+    264          #pragma location="NEAR_CODE"
+    265          //char g_cupIdRst[16] = {0xE8,0xF7,0x0C,0x78,0xCB,0xDF,0xE6,0x5D,0xD1,0x4B,0xF7,0x51,0xA6,0x01,0x98,0x22};
+    266          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    267          void main(void)
+   \                     main:
+    268          {
+   \   000000                ; Auto size: 36
+   \   000000   74DC         MOV     A,#-0x24
+   \   000002   12....       LCALL   ?ALLOC_XSTACK8
+    269            //uint16 crc[2];
+    270            //uint8 g_extAddr[8] = {0x38,0x15,0xC6,0xFE,0xFF,0x17,0x87,0x88};
+    271            static char cpuIdKey[16] = {0x24,0x98,0xb7,0xA0,0xCB,0xDF,0xE6,0x5D,0xD1,0x4B,0xF7,0x51,0xA6,0x01,0x98,0x22};
+    272            //char cpuIdRst[16] = {0xE8,0xF7,0x0C,0x78,0xCB,0xDF,0xE6,0x5D,0xD1,0x4B,0xF7,0x51,0xA6,0x01,0x98,0x22};
+    273            char cpuIdRst[16]  = {0x3f ,0xdd ,0xfb ,0xb7 ,0x20 ,0xb1 ,0x95 ,0x89 ,0x75 ,0xd6 ,0x6e ,0x92 ,0x3f ,0xf7 ,0xf0 ,0xad};
+   \   000005   90....       MOV     DPTR,#`?<Constant {63, 221, 251, 183, 32, 177, 149, 1`
+   \   000008   C082         PUSH    DPL
+   \   00000A   7414         MOV     A,#0x14
+   \   00000C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000F   AC82         MOV     R4,DPL
+   \   000011   AD83         MOV     R5,DPH
+   \   000013   7583..       MOV     DPH,#(`?<Constant {63, 221, 251, 183, 32, 177, 149, 1` >> 8) & 0xff
+   \   000016   D082         POP     DPL
+   \   000018   7410         MOV     A,#0x10
+   \   00001A   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
+    274            //uint8 veriBuf[16];
+    275            uint8 veriBuf[20];
+    276            uint16 addr = HAL_OAD_RC_START / HAL_FLASH_WORD_SIZE;
+   \   00001D   FE           MOV     R6,A
+   \   00001E   7F08         MOV     R7,#0x8
+    277            uint16 oset;
+    278            uint8 page=HAL_OAD_RC_START/HAL_FLASH_PAGE_SIZE;
+   \   000020   75..04       MOV     ?V0 + 0,#0x4
+    279            //char *decKey = "WorkForYourDream";
+    280            //char *g_decKey = "MakeTomorrowBest";
+    281            char *decKey = "MakeTomorrowBest";
+    282            uint8 buf[16];
+    283            uint32 *pVeriFlag;
+    284            uint8 i = 0;
+    285            uint16 *cpuIdAddr;
+    286           // char *g_decKey = "WorkForYourDream";
+    287           //BYTE  IV[LENGTH_IV ] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    288            //uint8 buf[8] = {0};  
+    289          
+    290            HAL_BOARD_INIT();
+                   ^
+Remark[Pe1348]: declaration hides variable "i" (declared at line 284)
+   \   000023   53BEFB       ANL     0xbe,#0xfb
+   \                     ??main_0:
+   \   000026   E59D         MOV     A,0x9d
+   \   000028   A2E6         MOV     C,0xE0 /* A   */.6
+   \   00002A   50FA         JNC     ??main_0
+   \   00002C   00           NOP
+   \   00002D   78F8         MOV     R0,#-0x8
+   \   00002F   7901         MOV     R1,#0x1
+   \                     ??main_1:
+   \   000031   00           NOP
+   \   000032   E8           MOV     A,R0
+   \   000033   24FF         ADD     A,#-0x1
+   \   000035   18           DEC     R0
+   \   000036   E9           MOV     A,R1
+   \   000037   34FF         ADDC    A,#-0x1
+   \   000039   F9           MOV     R1,A
+   \   00003A   E8           MOV     A,R0
+   \   00003B   49           ORL     A,R1
+   \   00003C   70F3         JNZ     ??main_1
+   \   00003E   75C680       MOV     0xc6,#-0x80
+   \                     ??main_2:
+   \   000041   7480         MOV     A,#-0x80
+   \   000043   659E         XRL     A,0x9e
+   \   000045   70FA         JNZ     ??main_2
+   \   000047   43BE04       ORL     0xbe,#0x4
+   \   00004A   906270       MOV     DPTR,#0x6270
+   \   00004D   EF           MOV     A,R7
+   \   00004E   F0           MOVX    @DPTR,A
+   \   00004F   43FE04       ORL     0xfe,#0x4
+   \   000052   43FD80       ORL     0xfd,#0x80
+   \   000055   438F01       ORL     0x8f,#0x1
+   \   000058   43FE04       ORL     0xfe,#0x4
+   \   00005B   43FE08       ORL     0xfe,#0x8
+    291          #if HAL_OAD_XNV_IS_SPI
+    292            //XNV_SPI_INIT(); 
+    293          #endif
+    294            /* This is in place of calling HalDmaInit() which would require init of the other 4 DMA
+    295             * descriptors in addition to just Channel 0.
+    296             */
+    297            HAL_DMA_SET_ADDR_DESC0( &dmaCh0 );
+                   ^
+Warning[Pe069]: integer conversion resulted in truncation
+   \   00005E   74..         MOV     A,#(dmaCh0 >> 8) & 0xff
+   \   000060   F5D5         MOV     0xd5,A
+   \   000062   75D4..       MOV     0xd4,#dmaCh0 & 0xff
+    298            HalFlashInit();
+   \   000065                ; Setup parameters for call to function HalFlashRead
+   \   000065   75..1D       MOV     ?V0 + 2,#0x1d
+   \   000068   8E..         MOV     ?V0 + 3,R6
+   \   00006A   78..         MOV     R0,#?V0 + 2
+   \   00006C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00006F   7C..         MOV     R4,#??ramCode & 0xff
+   \   000071   7D..         MOV     R5,#(??ramCode >> 8) & 0xff
+   \   000073   7AE3         MOV     R2,#-0x1d
+   \   000075   7B07         MOV     R3,#0x7
+   \   000077   7900         MOV     R1,#0x0
+   \   000079   12....       LCALL   HalFlashRead
+   \   00007C   7402         MOV     A,#0x2
+   \   00007E   12....       LCALL   ?DEALLOC_XSTACK8
+    299          
+    300          #ifdef _USER_OAD_FLASH_WRITE_
+    301            HalFlashRead(HAL_OAD_CRC_ADDR / HAL_FLASH_PAGE_SIZE,
+    302                         HAL_OAD_CRC_ADDR % HAL_FLASH_PAGE_SIZE,
+    303                         (uint8 *)crc, sizeof(crc));
+    304          
+    305          
+    306            if (crc[0] != crc[1])
+    307            {
+    308              // If the CRC is erased or the RC code fails a sanity check, instantiate the DL code (again).
+    309              if ((crc[0] == 0) || (crc[0] != crcCalc()))
+    310              {
+    311                dl2rc();
+    312          
+    313                /* If dl2rc() fails, a flawed image is allowed to run - 
+    314                 * maybe the damage is not fatal to OTA ops?
+    315                 */
+    316              }
+    317              else
+    318              {
+    319                crc[1] = crc[0];
+    320                HalFlashWrite((HAL_OAD_CRC_ADDR / HAL_FLASH_WORD_SIZE), (uint8 *)crc, 1);
+    321              }
+    322            }
+    323          #endif
+    324          
+    325            //InitUart();
+    326            //Uart_Send_String("boot",4);
+    327            
+    328            //P1DIR &=( ~0x04);
+    329            //P1DIR |= 0x08;				//P1_3
+    330            //P1DIR |= 0x08;
+    331            //P1DIR |= 0x10;
+    332            //P1DIR |= 0x18;
+    333            //P1_3 = 0;
+    334            //P1_4 = 0;
+    335            P0DIR &= 0xDF;
+   \   000081   53FDDF       ANL     0xfd,#0xdf
+    336            P0SEL&=~(1<<5);//设置P0_5为一般IO口功能
+   \   000084   53F3DF       ANL     0xf3,#0xdf
+    337            P0DIR&=~(1<<5);//设置P0_5为输入功能
+   \   000087   53FDDF       ANL     0xfd,#0xdf
+    338            P0INP&=~(1<<5);//设置为上拉
+   \   00008A   538FDF       ANL     0x8f,#0xdf
+    339            //P0DIR |= 0x20;					//P05
+    340            InitUart();
+   \   00008D   53C6BF       ANL     0xc6,#0xbf
+   \                     ??main_3:
+   \   000090   E59E         MOV     A,0x9e
+   \   000092   A2E6         MOV     C,0xE0 /* A   */.6
+   \   000094   40FA         JC      ??main_3
+   \   000096   53C6B8       ANL     0xc6,#0xb8
+   \   000099   75F100       MOV     0xf1,#0x0
+   \   00009C   43F30C       ORL     0xf3,#0xc
+   \   00009F   53FF3F       ANL     0xff,#0x3f
+   \   0000A2   438680       ORL     0x86,#0x80
+   \   0000A5   43C50B       ORL     0xc5,#0xb
+   \   0000A8   43C2D8       ORL     0xc2,#0xd8
+   \   0000AB   C2E9         CLR     0xe8.1
+   \   0000AD   438640       ORL     0x86,#0x40
+   \   0000B0   C28B         CLR     0x88.3
+    341            AES_SETMODE(ECB);
+   \   0000B2   53B38F       ANL     0xb3,#0x8f
+   \   0000B5   43B340       ORL     0xb3,#0x40
+    342            //halAesLoadKeyOrInitVector(g_decKey, TRUE);
+    343            //halAesLoadKeyOrInitVector(decKey, TRUE);
+    344          
+    345            putsDialog("BOOT\r\n");
+   \   0000B8                ; Setup parameters for call to function putsDialog
+   \   0000B8   7A..         MOV     R2,#`?<Constant "BOOT\\r\\n">` & 0xff
+   \   0000BA   7B..         MOV     R3,#(`?<Constant "BOOT\\r\\n">` >> 8) & 0xff
+   \   0000BC   12....       LCALL   ??putsDialog
+    346          
+    347          #ifdef OAD_AES_VERI
+    348            //halAesLoadKeyOrInitVector(decKey, TRUE);
+    349          #if 1
+    350          //****************************************************************
+    351          // encrpto CPUID
+    352          //****************************************************************
+    353            halAesLoadKeyOrInitVector(cpuIdKey, TRUE);
+                                             ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "BYTE *"
+   \   0000BF                ; Setup parameters for call to function halAesLoadKeyOrInitVector
+   \   0000BF   7901         MOV     R1,#0x1
+   \   0000C1   7A..         MOV     R2,#??cpuIdKey & 0xff
+   \   0000C3   7B..         MOV     R3,#(??cpuIdKey >> 8) & 0xff
+   \   0000C5   12....       LCALL   ??halAesLoadKeyOrInitVector
+    354            //halAesEncrDecr(cpuIdRst, 16, cpuIdRst, ENCRYPT);
+    355            //putsDialog("key enc\r\n");
+    356            //for(i=0;i<16;i++)
+    357            //{
+    358            //    Printf("%x ",cpuIdRst[i]);
+    359            //}
+    360            //putsDialog("\r\nkey dec\r\n");
+    361            halAesEncrDecr(cpuIdRst, 16, cpuIdRst, DECRYPT);
+                                  ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "BYTE *"
+
+    halAesEncrDecr(cpuIdRst, 16, cpuIdRst, DECRYPT);
+                                 ^
+"C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c",361  Warning[Pe167]: 
+          argument of type "char *" is incompatible with parameter of type
+          "BYTE *"
+   \   0000C8                ; Setup parameters for call to function halAesEncrDecr
+   \   0000C8   7414         MOV     A,#0x14
+   \   0000CA   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000CD   8582..       MOV     ?V0 + 2,DPL
+   \   0000D0   8583..       MOV     ?V0 + 3,DPH
+   \   0000D3   78..         MOV     R0,#?V0 + 2
+   \   0000D5   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000D8   7901         MOV     R1,#0x1
+   \   0000DA   7C10         MOV     R4,#0x10
+   \   0000DC   7D00         MOV     R5,#0x0
+   \   0000DE   7416         MOV     A,#0x16
+   \   0000E0   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000E3   12....       LCALL   ?Subroutine11
+   \                     ??CrossCallReturnLabel_25:
+   \   0000E6   12....       LCALL   ?DEALLOC_XSTACK8
+    362            //for(i=0;i<16;i++)
+    363            //{
+    364                //Printf("%x ",cpuIdRst[i]);
+    365            //}
+    366            //putsDialog("\r\n");
+    367          
+    368            cpuIdAddr = (uint16*)(cpuIdRst+2);
+    369          
+    370            //Printf("cpuIdAddr %x\r\n",*cpuIdAddr);
+    371          #endif
+    372          //****************************************************************
+    373          // end
+    374          //****************************************************************
+    375          // resume the decrypto key
+    376            halAesLoadKeyOrInitVector(decKey, TRUE);
+                                             ^
+Warning[Pe167]: argument of type "char *" is incompatible with parameter of
+          type "BYTE *"
+
+    uint8 buf[16];
+          ^
+"C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c",282  Warning[Pe177]: 
+          variable "buf" was declared but never referenced
+
+    uint8 i = 0;
+          ^
+"C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c",284  Warning[Pe177]: 
+          variable "i" was declared but never referenced
+   \   0000E9                ; Setup parameters for call to function halAesLoadKeyOrInitVector
+   \   0000E9   7901         MOV     R1,#0x1
+   \   0000EB   7A..         MOV     R2,#`?<Constant "MakeTomorrowBest">` & 0xff
+   \   0000ED   7B..         MOV     R3,#(`?<Constant "MakeTomorrowBest">` >> 8) & 0xff
+   \   0000EF   12....       LCALL   ??halAesLoadKeyOrInitVector
+    377          //****************************************************************
+    378          // end
+    379          //****************************************************************
+    380          
+    381            MemReadRam((macRam_t *)TI_EXTADDR, veriBuf, 8);                             // initialize the veriBuf
+   \   0000F2                ; Setup parameters for call to function MemReadRam
+   \   0000F2   7908         MOV     R1,#0x8
+   \   0000F4   85..82       MOV     DPL,?XSP + 0
+   \   0000F7   85..83       MOV     DPH,?XSP + 1
+   \   0000FA   AC82         MOV     R4,DPL
+   \   0000FC   AD83         MOV     R5,DPH
+   \   0000FE   7A0C         MOV     R2,#0xc
+   \   000100   7B78         MOV     R3,#0x78
+   \   000102   12....       LCALL   ??MemReadRam
+    382            
+    383            HalFlashRead(CPUID_VERI_ADDR / HAL_FLASH_PAGE_SIZE,
+    384                         CPUID_VERI_ADDR % HAL_FLASH_PAGE_SIZE,
+    385                         veriBuf, sizeof(veriBuf));
+   \   000105                ; Setup parameters for call to function HalFlashRead
+   \   000105   75..14       MOV     ?V0 + 2,#0x14
+   \   000108   8E..         MOV     ?V0 + 3,R6
+   \   00010A   78..         MOV     R0,#?V0 + 2
+   \   00010C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00010F   7402         MOV     A,#0x2
+   \   000111   12....       LCALL   ?XSTACK_DISP0_8
+   \   000114   AC82         MOV     R4,DPL
+   \   000116   AD83         MOV     R5,DPH
+   \   000118   7AF0         MOV     R2,#-0x10
+   \   00011A   7B07         MOV     R3,#0x7
+   \   00011C   7903         MOV     R1,#0x3
+   \   00011E   12....       LCALL   HalFlashRead
+   \   000121   7402         MOV     A,#0x2
+   \   000123   12....       LCALL   ?DEALLOC_XSTACK8
+    386          
+    387            halAesEncrDecr((BYTE *)veriBuf, CPUID_VERI_LEN, (BYTE *)veriBuf/*, ucLDR_Message.com_data*/, DECRYPT); 
+   \   000126                ; Setup parameters for call to function halAesEncrDecr
+   \   000126   85..82       MOV     DPL,?XSP + 0
+   \   000129   8582..       MOV     ?V0 + 2,DPL
+   \   00012C   8583..       MOV     ?V0 + 3,DPH
+   \   00012F   78..         MOV     R0,#?V0 + 2
+   \   000131   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000134   7901         MOV     R1,#0x1
+   \   000136   7C10         MOV     R4,#0x10
+   \   000138   7D00         MOV     R5,#0x0
+   \   00013A   7402         MOV     A,#0x2
+   \   00013C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00013F   12....       LCALL   ?Subroutine11
+   \                     ??CrossCallReturnLabel_26:
+   \   000142   12....       LCALL   ?DEALLOC_XSTACK8
+    388            
+    389            pVeriFlag = (uint32*)veriBuf;
+    390            if(VALID_INIT_SN==*pVeriFlag)
+   \   000145   85..82       MOV     DPL,?XSP + 0
+   \   000148   C082         PUSH    DPL
+   \   00014A   C083         PUSH    DPH
+   \   00014C   90....       MOV     DPTR,#__Constant_3a4d3254
+   \   00014F   78..         MOV     R0,#?V0 + 4
+   \   000151   12....       LCALL   ?L_MOV_X
+   \   000154   D083         POP     DPH
+   \   000156   D082         POP     DPL
+   \   000158   78..         MOV     R0,#?V0 + 4
+   \   00015A   12....       LCALL   ?L_EQ_X
+   \   00015D   7069         JNZ     ??main_4
+    391            {
+    392            	putsDialog("Initial\r\n");
+   \   00015F                ; Setup parameters for call to function putsDialog
+   \   00015F   7A..         MOV     R2,#`?<Constant "Initial\\r\\n">` & 0xff
+   \   000161   7B..         MOV     R3,#(`?<Constant "Initial\\r\\n">` >> 8) & 0xff
+   \   000163   12....       LCALL   ??putsDialog
+    393          
+    394          	//dl2rc();
+    395          	//HalFlashErase(HAL_OAD_RC_START / HAL_FLASH_PAGE_SIZE );
+    396          	//HalFlashWrite((HAL_OAD_CRC_ADDR / HAL_FLASH_WORD_SIZE), (uint8 *)crc, 1);		//不能批量烧录
+    397          	
+    398            	*pVeriFlag = VALID_START_SN;						//first start 
+   \   000166   90....       MOV     DPTR,#__Constant_f8900a6
+   \   000169   12....       LCALL   ?XLOAD_R2345
+   \   00016C   85..82       MOV     DPL,?XSP + 0
+   \   00016F   85..83       MOV     DPH,?XSP + 1
+   \   000172   12....       LCALL   ?XSTORE_R2345
+    399            	//MemReadRam((macRam_t *)TI_EXTADDR, (veriBuf+4), 8);
+    400            	MemReadRam((macRam_t *)(PXREG(*cpuIdAddr)),(veriBuf+4), 8);
+   \   000175                ; Setup parameters for call to function MemReadRam
+   \   000175   7908         MOV     R1,#0x8
+   \   000177   7404         MOV     A,#0x4
+   \   000179   12....       LCALL   ?XSTACK_DISP0_8
+   \   00017C   AC82         MOV     R4,DPL
+   \   00017E   AD83         MOV     R5,DPH
+   \   000180   7416         MOV     A,#0x16
+   \   000182   12....       LCALL   ?XSTACK_DISP0_8
+   \   000185   12....       LCALL   ?Subroutine12
+    401          //	 test for read cpuid
+    402          //	putsDialog("cpu id\r\n");
+    403          //	for(i=0;i<8;i++)
+    404          //	{
+    405          //	    Printf("%x ",veriBuf[i]);
+    406          //	}
+    407          //	putsDialog("\r\n");
+    408          //
+    409          	halAesEncrDecr((BYTE *)veriBuf, CPUID_VERI_LEN, (BYTE *)veriBuf/*, ucLDR_Message.com_data*/, ENCRYPT); 
+   \                     ??CrossCallReturnLabel_16:
+   \   000188                ; Setup parameters for call to function halAesEncrDecr
+   \   000188   78..         MOV     R0,#?V0 + 2
+   \   00018A   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00018D   7900         MOV     R1,#0x0
+   \   00018F   7C10         MOV     R4,#0x10
+   \   000191   7D00         MOV     R5,#0x0
+   \   000193   7402         MOV     A,#0x2
+   \   000195   12....       LCALL   ?XSTACK_DISP0_8
+   \   000198   12....       LCALL   ?Subroutine11
+   \                     ??CrossCallReturnLabel_27:
+   \   00019B   12....       LCALL   ?DEALLOC_XSTACK8
+    410          	HalFlashErase(CPUID_VERI_ADDR / HAL_FLASH_PAGE_SIZE);
+   \   00019E   906272       MOV     DPTR,#0x6272
+   \   0001A1   7406         MOV     A,#0x6
+   \   0001A3   12....       LCALL   ?Subroutine13
+    411          	HalFlashWrite((CPUID_VERI_ADDR / HAL_FLASH_WORD_SIZE), (uint8 *)veriBuf, CPUID_VERI_LEN/4);	
+   \                     ??CrossCallReturnLabel_18:
+   \   0001A6                ; Setup parameters for call to function HalFlashWrite
+   \   0001A6   75..04       MOV     ?V0 + 2,#0x4
+   \   0001A9   8E..         MOV     ?V0 + 3,R6
+   \   0001AB   78..         MOV     R0,#?V0 + 2
+   \   0001AD   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0001B0   7402         MOV     A,#0x2
+   \   0001B2   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001B5   AC82         MOV     R4,DPL
+   \   0001B7   AD83         MOV     R5,DPH
+   \   0001B9   7AFC         MOV     R2,#-0x4
+   \   0001BB   7B07         MOV     R3,#0x7
+   \   0001BD   12....       LCALL   HalFlashWrite
+   \   0001C0   7402         MOV     A,#0x2
+   \   0001C2   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0001C5   02....       LJMP    ??main_5
+    412            }else if(VALID_START_SN==*pVeriFlag)
+   \                     ??main_4:
+   \   0001C8   85..82       MOV     DPL,?XSP + 0
+   \   0001CB   85..83       MOV     DPH,?XSP + 1
+   \   0001CE   C082         PUSH    DPL
+   \   0001D0   C083         PUSH    DPH
+   \   0001D2   90....       MOV     DPTR,#__Constant_f8900a6
+   \   0001D5   78..         MOV     R0,#?V0 + 4
+   \   0001D7   12....       LCALL   ?L_MOV_X
+   \   0001DA   D083         POP     DPH
+   \   0001DC   D082         POP     DPL
+   \   0001DE   78..         MOV     R0,#?V0 + 4
+   \   0001E0   12....       LCALL   ?L_EQ_X
+   \   0001E3   707E         JNZ     ??main_6
+    413            {
+    414            	//MemReadRam((macRam_t *)TI_EXTADDR, (veriBuf+12), 8);		//read mac iD
+    415            	MemReadRam((macRam_t *)(PXREG(*cpuIdAddr)),(veriBuf+12), 8);
+   \   0001E5                ; Setup parameters for call to function MemReadRam
+   \   0001E5   7908         MOV     R1,#0x8
+   \   0001E7   740C         MOV     A,#0xc
+   \   0001E9   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001EC   AC82         MOV     R4,DPL
+   \   0001EE   AD83         MOV     R5,DPH
+   \   0001F0   7416         MOV     A,#0x16
+   \   0001F2   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001F5   12....       LCALL   ?Subroutine12
+    416          	if(FALSE==OAD_memcmp((veriBuf+4), (veriBuf+12), 8))
+   \                     ??CrossCallReturnLabel_17:
+   \   0001F8   8F..         MOV     ?V0 + 4,R7
+   \   0001FA   8E..         MOV     ?V0 + 5,R6
+   \   0001FC   7404         MOV     A,#0x4
+   \   0001FE   12....       LCALL   ?XSTACK_DISP0_8
+   \   000201   A882         MOV     R0,DPL
+   \   000203   A983         MOV     R1,DPH
+   \   000205   740C         MOV     A,#0xc
+   \   000207   12....       LCALL   ?XSTACK_DISP0_8
+   \   00020A   AA82         MOV     R2,DPL
+   \   00020C   AB83         MOV     R3,DPH
+   \                     ??main_7:
+   \   00020E   AC..         MOV     R4,?V0 + 4
+   \   000210   AD..         MOV     R5,?V0 + 5
+   \   000212   EC           MOV     A,R4
+   \   000213   24FF         ADD     A,#-0x1
+   \   000215   F5..         MOV     ?V0 + 4,A
+   \   000217   ED           MOV     A,R5
+   \   000218   34FF         ADDC    A,#-0x1
+   \   00021A   F5..         MOV     ?V0 + 5,A
+   \   00021C   EC           MOV     A,R4
+   \   00021D   4D           ORL     A,R5
+   \   00021E   603A         JZ      ??main_8
+   \   000220   E8           MOV     A,R0
+   \   000221   FC           MOV     R4,A
+   \   000222   E9           MOV     A,R1
+   \   000223   FD           MOV     R5,A
+   \   000224   8C82         MOV     DPL,R4
+   \   000226   8D83         MOV     DPH,R5
+   \   000228   A3           INC     DPTR
+   \   000229   A882         MOV     R0,DPL
+   \   00022B   A983         MOV     R1,DPH
+   \   00022D   8A..         MOV     ?V0 + 2,R2
+   \   00022F   8B..         MOV     ?V0 + 3,R3
+   \   000231   85..82       MOV     DPL,?V0 + 2
+   \   000234   85..83       MOV     DPH,?V0 + 3
+   \   000237   A3           INC     DPTR
+   \   000238   AA82         MOV     R2,DPL
+   \   00023A   AB83         MOV     R3,DPH
+   \   00023C   8C82         MOV     DPL,R4
+   \   00023E   8D83         MOV     DPH,R5
+   \   000240   E0           MOVX    A,@DPTR
+   \   000241   FC           MOV     R4,A
+   \   000242   85..82       MOV     DPL,?V0 + 2
+   \   000245   85..83       MOV     DPH,?V0 + 3
+   \   000248   E0           MOVX    A,@DPTR
+   \   000249   6C           XRL     A,R4
+   \   00024A   60C2         JZ      ??main_7
+    417          	{
+    418          		//putsDialog("Verified Error");
+    419          		//while(1);
+    420          		for(oset=0;oset<1000;oset++)
+   \   00024C   75..E8       MOV     ?V0 + 2,#-0x18
+   \   00024F   75..03       MOV     ?V0 + 3,#0x3
+    421          		{
+    422          			delay(1000);
+   \                     ??main_9:
+   \   000252                ; Setup parameters for call to function delay
+   \   000252   12....       LCALL   ?Subroutine10
+    423          		}
+   \                     ??CrossCallReturnLabel_14:
+   \   000255   70FB         JNZ     ??main_9
+    424          		asm("LJMP 0x0000\n");
+   \   000257   020000       LJMP 0x0000
+    425          	}
+    426          	putsDialog("Start\r\n");
+   \                     ??main_8:
+   \   00025A                ; Setup parameters for call to function putsDialog
+   \   00025A   7A..         MOV     R2,#`?<Constant "Start\\r\\n">` & 0xff
+   \   00025C   7B..         MOV     R3,#(`?<Constant "Start\\r\\n">` >> 8) & 0xff
+   \   00025E   12....       LCALL   ??putsDialog
+   \   000261   800E         SJMP    ??main_5
+    427            }else
+    428            {
+    429            	//putsDialog("Verified Error");
+    430          	//while(1);
+    431          	for(oset=0;oset<1000;oset++)
+   \                     ??main_6:
+   \   000263   75..E8       MOV     ?V0 + 2,#-0x18
+   \   000266   75..03       MOV     ?V0 + 3,#0x3
+    432          	{
+    433          		delay(1000);
+   \                     ??main_10:
+   \   000269                ; Setup parameters for call to function delay
+   \   000269   12....       LCALL   ?Subroutine10
+    434          	}
+   \                     ??CrossCallReturnLabel_15:
+   \   00026C   70FB         JNZ     ??main_10
+    435          	asm("LJMP 0x0000\n");
+   \   00026E   020000       LJMP 0x0000
+    436            }
+    437          
+    438          #endif
+    439            
+    440           //if(!P1_2)
+    441            if(!P0_5)
+   \                     ??main_5:
+   \   000271   A285         MOV     C,0x80.5
+   \   000273   7C04         MOV     R4,#0x4
+   \   000275   7D00         MOV     R5,#0x0
+   \   000277   5003         JNC     $+5
+   \   000279   02....       LJMP    ??main_11
+    442            {
+    443          
+    444          	Uart_Send_String("boot",4);
+   \   00027C                ; Setup parameters for call to function Uart_Send_String
+   \   00027C   7A..         MOV     R2,#`?<Constant "boot">` & 0xff
+   \   00027E   7B..         MOV     R3,#(`?<Constant "boot">` >> 8) & 0xff
+   \   000280   12....       LCALL   ??Uart_Send_String
+    445                  P1DIR |= 0x18;
+   \   000283   43FE18       ORL     0xfe,#0x18
+    446                  P1_4 = 0;
+   \   000286   C294         CLR     0x90.4
+   \   000288   803F         SJMP    ??main_12
+    447          	
+    448          	while(1)
+    449          	{
+    450                          //LED_RED_TOGGLE();
+    451          		if(Message_Rcv())
+    452          		{	
+    453          			//P1_3 = !P1_3;
+    454          			LED_RED_TOGGLE();
+    455          			ucLDR_Security_F = 0;
+    456          			ucLDR_Ret = 0x00;
+    457          			//Uart_Send_String("rcv",3);
+    458          #if 1
+    459          			switch(ucLDR_Message.protocol_command )
+    460          			{
+    461          
+    462          				case AM1_IAP_READ_64BYTE:
+    463          #if 1
+    464          					//P1_3 = !P1_3;
+    465                                             //     P1_4 = !P1_4;
+    466          				  	for (oset = 0; oset < HAL_FLASH_PAGE_SIZE; oset += 64)
+   \                     ??main_13:
+   \   00028A   75..00       MOV     ?V0 + 2,#0x0
+   \   00028D   75..00       MOV     ?V0 + 3,#0x0
+    467          				  	{
+    468          						HalFlashRead(page,oset,ucLDR_Message.com_data,64);
+   \                     ??main_14:
+   \   000290                ; Setup parameters for call to function HalFlashRead
+   \   000290   75..40       MOV     ?V0 + 4,#0x40
+   \   000293   75..00       MOV     ?V0 + 5,#0x0
+   \   000296   78..         MOV     R0,#?V0 + 4
+   \   000298   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00029B   7C14         MOV     R4,#0x14
+   \   00029D   7D01         MOV     R5,#0x1
+   \   00029F   AA..         MOV     R2,?V0 + 2
+   \   0002A1   AB..         MOV     R3,?V0 + 3
+   \   0002A3   A9..         MOV     R1,?V0 + 0
+   \   0002A5   12....       LCALL   HalFlashRead
+   \   0002A8   7402         MOV     A,#0x2
+   \   0002AA   12....       LCALL   ?DEALLOC_XSTACK8
+    469          						ucLDR_Message.data_length=64;
+   \   0002AD   900113       MOV     DPTR,#0x113
+   \   0002B0   7440         MOV     A,#0x40
+   \   0002B2   F0           MOVX    @DPTR,A
+    470          						Message_Send();		
+   \   0002B3                ; Setup parameters for call to function Message_Send
+   \   0002B3   12....       LCALL   ??Message_Send
+    471          						//Uart_Send_String(buf,4);
+    472          					
+    473          				  	}
+   \   0002B6   E5..         MOV     A,?V0 + 2
+   \   0002B8   2440         ADD     A,#0x40
+   \   0002BA   F5..         MOV     ?V0 + 2,A
+   \   0002BC   E5..         MOV     A,?V0 + 3
+   \   0002BE   3400         ADDC    A,#0x0
+   \   0002C0   F5..         MOV     ?V0 + 3,A
+   \   0002C2   C3           CLR     C
+   \   0002C3   9408         SUBB    A,#0x8
+   \   0002C5   40C9         JC      ??main_14
+    474          					page++;
+   \   0002C7   05..         INC     ?V0 + 0
+    475          #endif
+    476          				break;
+   \                     ??main_12:
+   \   0002C9                ; Setup parameters for call to function Message_Rcv
+   \   0002C9   12....       LCALL   ??Message_Rcv
+   \   0002CC   E9           MOV     A,R1
+   \   0002CD   60FA         JZ      ??main_12
+   \   0002CF   A293         MOV     C,0x90.3
+   \   0002D1   5004         JNC     ??main_15
+   \   0002D3   C293         CLR     0x90.3
+   \   0002D5   8002         SJMP    ??main_16
+   \                     ??main_15:
+   \   0002D7   D293         SETB    0x90.3
+   \                     ??main_16:
+   \   0002D9   900100       MOV     DPTR,#0x100
+   \   0002DC   E4           CLR     A
+   \   0002DD   F0           MOVX    @DPTR,A
+   \   0002DE   900102       MOV     DPTR,#0x102
+   \   0002E1   F0           MOVX    @DPTR,A
+   \   0002E2   900111       MOV     DPTR,#0x111
+   \   0002E5   E0           MOVX    A,@DPTR
+   \   0002E6   24BF         ADD     A,#-0x41
+   \   0002E8   6012         JZ      ??main_17
+   \   0002EA   14           DEC     A
+   \   0002EB   7003         JNZ     $+5
+   \   0002ED   02....       LJMP    ??main_18
+   \   0002F0   24FB         ADD     A,#-0x5
+   \   0002F2   6096         JZ      ??main_13
+   \   0002F4   14           DEC     A
+   \   0002F5   7003         JNZ     $+5
+   \   0002F7   02....       LJMP    ??main_19
+   \   0002FA   80CD         SJMP    ??main_12
+    477          /*
+    478          				case BOOT_FIRMWARE_VERSION:
+    479          					ucLDR_Message.com_data[0]=1;
+    480          					ucLDR_Message.com_data[1]=0;      
+    481          					ucLDR_Message.com_data[12]=5;	//for AM1_IAP
+    482          					ucLDR_Message.data_length=20;
+    483          					Message_Send();
+    484          					break;
+    485          					
+    486          				case AM1_IAP_READ_64BYTE:
+    487          					stCommand.Program_Lib.ram_adr	= &ucLDR_WorkRam;
+    488          					stCommand.Program_Lib.dst_adr	+= 64;
+    489          					if( stCommand.Program_Lib.dst_adr == 0x00 )
+    490          					stCommand.Program_Lib.dst_bank++;	
+    491          					stCommand.Program_Lib.bc		=  LDR_WRITE_SIZE;
+    492          					stCommand.Program_Lib.src_adr  =   &ucLDR_Message.com_data[0];
+    493          					ucLDR_Read_64Byte_Ram();
+    494          					ucLDR_Message.data_length=64;
+    495          					Message_Send();
+    496          					break;
+    497          
+    498          						
+    499          				case AM1_IAP_READ_STATUS:
+    500          					stCommand.ReadStatus_Lib.ram_adr = (unsigned char*)&ucLDR_WorkRam;
+    501          					ucLDR_Ret=0;//test
+    502          					ucLDR_ReadStatus_Ram();//test
+    503          					ucLDR_Message.com_data[0]=ucLDR_Ret;// No Key	
+    504          					ucLDR_Message.data_length=2;
+    505          					Message_Send();
+    506          					stCommand.Program_Lib.dst_adr	= (unsigned char*)(LDR_WRITE_ADDRESS-64);	   
+    507          					stCommand.Program_Lib.dst_bank	= 0;	
+    508          					break;
+    509          
+    510          					  
+    511          				case AM1_IAP_SECURITYCHECK:
+    512          		 			stCommand.Security_Lib.ram_adr	= (unsigned char*)&ucLDR_WorkRam;
+    513          			 		stCommand.Security_Lib.key_adr = (unsigned char*)&ucLDR_Message.com_data[0];
+    514          					ucLDR_Ret = 0x00;
+    515          					ucLDR_SecurityCheck_Ram();
+    516          					ucLDR_Message.com_data[0]=ucLDR_Ret;// No Key	
+    517          					ucLDR_Message.data_length=2;		
+    518          					Message_Send();
+    519          					stCommand.Program_Lib.dst_adr	= (unsigned char*)(LDR_WRITE_ADDRESS-64);	   
+    520          					stCommand.Program_Lib.dst_bank	= 0;	
+    521          				      break;
+    522          */
+    523          						
+    524          	//=================================================================================
+    525          				case AM1_IAP_WRITE_PAGE:	
+    526          /*
+    527          					stCommand.Program_Lib.ram_adr	= &ucLDR_WorkRam;
+    528          					stCommand.Program_Lib.dst_adr	+= 64;
+    529          					if( stCommand.Program_Lib.dst_adr == 0x00 )
+    530          					stCommand.Program_Lib.dst_bank++;	
+    531          					stCommand.Program_Lib.bc		=  LDR_WRITE_SIZE;
+    532          					stCommand.Program_Lib.src_adr  =   &ucLDR_Message.com_data[0];
+    533          					ucLDR_Ret=0x00;//test	
+    534          					ucLDR_Program_Ram();//test
+    535          */
+    536          					halAesEncrDecr((BYTE *)ucLDR_Message.com_data, STRING_LENGTH, (BYTE *)ucLDR_Message.com_data/*, ucLDR_Message.com_data*/, DECRYPT);
+   \                     ??main_17:
+   \   0002FC                ; Setup parameters for call to function halAesEncrDecr
+   \   0002FC   75..14       MOV     ?V0 + 2,#0x14
+   \   0002FF   75..01       MOV     ?V0 + 3,#0x1
+   \   000302   78..         MOV     R0,#?V0 + 2
+   \   000304   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000307   7901         MOV     R1,#0x1
+   \   000309   7C10         MOV     R4,#0x10
+   \   00030B   7D00         MOV     R5,#0x0
+   \   00030D   7A14         MOV     R2,#0x14
+   \   00030F   7B01         MOV     R3,#0x1
+   \   000311   12....       LCALL   ??Subroutine15_0
+   \                     ??CrossCallReturnLabel_28:
+   \   000314   12....       LCALL   ?DEALLOC_XSTACK8
+    537          					//Uart_Send_String((BYTE *)buf,16);
+    538          					if(addr>=(HAL_OAD_RC_START / HAL_FLASH_WORD_SIZE))
+   \   000317   C3           CLR     C
+   \   000318   EF           MOV     A,R7
+   \   000319   9408         SUBB    A,#0x8
+   \   00031B   405C         JC      ??main_20
+    539          					{
+    540          						if ((addr % (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE)) == 0)
+   \   00031D   EE           MOV     A,R6
+   \   00031E   F8           MOV     R0,A
+   \   00031F   EF           MOV     A,R7
+   \   000320   5401         ANL     A,#0x1
+   \   000322   F9           MOV     R1,A
+   \   000323   E8           MOV     A,R0
+   \   000324   49           ORL     A,R1
+   \   000325   7015         JNZ     ??CrossCallReturnLabel_19
+    541          						{
+    542          							HalFlashErase(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE));
+   \   000327   8E..         MOV     ?V0 + 2,R6
+   \   000329   8F..         MOV     ?V0 + 3,R7
+   \   00032B   7409         MOV     A,#0x9
+   \   00032D   78..         MOV     R0,#?V0 + 2
+   \   00032F   12....       LCALL   ?US_SHR
+   \   000332   E5..         MOV     A,?V0 + 2
+   \   000334   C3           CLR     C
+   \   000335   33           RLC     A
+   \   000336   906272       MOV     DPTR,#0x6272
+   \   000339   12....       LCALL   ?Subroutine13
+    543          						}
+    544          						//HalFlashWrite(addr++, ucLDR_Message.com_data, 1);
+    545          						HalFlashWrite(addr, ucLDR_Message.com_data, ucLDR_Message.data_length/4);
+   \                     ??CrossCallReturnLabel_19:
+   \   00033C                ; Setup parameters for call to function HalFlashWrite
+   \   00033C   900113       MOV     DPTR,#0x113
+   \   00033F   E0           MOVX    A,@DPTR
+   \   000340   13           RRC     A
+   \   000341   13           RRC     A
+   \   000342   543F         ANL     A,#0x3f
+   \   000344   F5..         MOV     ?V0 + 2,A
+   \   000346   75..00       MOV     ?V0 + 3,#0x0
+   \   000349   78..         MOV     R0,#?V0 + 2
+   \   00034B   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00034E   7C14         MOV     R4,#0x14
+   \   000350   7D01         MOV     R5,#0x1
+   \   000352   EE           MOV     A,R6
+   \   000353   FA           MOV     R2,A
+   \   000354   EF           MOV     A,R7
+   \   000355   FB           MOV     R3,A
+   \   000356   12....       LCALL   HalFlashWrite
+   \   000359   7402         MOV     A,#0x2
+   \   00035B   12....       LCALL   ?DEALLOC_XSTACK8
+    546          						addr+=(ucLDR_Message.data_length/4);
+   \   00035E   900113       MOV     DPTR,#0x113
+   \   000361   E0           MOVX    A,@DPTR
+   \   000362   13           RRC     A
+   \   000363   13           RRC     A
+   \   000364   543F         ANL     A,#0x3f
+   \   000366   F8           MOV     R0,A
+   \   000367   EE           MOV     A,R6
+   \   000368   28           ADD     A,R0
+   \   000369   FE           MOV     R6,A
+   \   00036A   EF           MOV     A,R7
+   \   00036B   3400         ADDC    A,#0x0
+   \   00036D   FF           MOV     R7,A
+    547          						delay(1000);
+   \   00036E                ; Setup parameters for call to function delay
+   \   00036E   7AE8         MOV     R2,#-0x18
+   \   000370   7B03         MOV     R3,#0x3
+   \   000372   12....       LCALL   ??delay
+    548          					    //ucLDR_Read_64Byte_Ram();
+    549          						ucLDR_Message.com_data[0]=0x00;
+   \   000375   A3           INC     DPTR
+   \                     ??main_21:
+   \   000376   E4           CLR     A
+   \   000377   8005         SJMP    ??main_22
+    550          					}else
+    551          					{
+    552          						ucLDR_Message.com_data[0]=0x01;
+   \                     ??main_20:
+   \   000379   900114       MOV     DPTR,#0x114
+   \   00037C   7401         MOV     A,#0x1
+   \                     ??main_22:
+   \   00037E   F0           MOVX    @DPTR,A
+    553          					}
+    554          					ucLDR_Message.data_length=2;
+   \   00037F   900113       MOV     DPTR,#0x113
+   \   000382   7402         MOV     A,#0x2
+   \                     ??main_23:
+   \   000384   F0           MOVX    @DPTR,A
+    555          					Message_Send();					
+   \   000385                ; Setup parameters for call to function Message_Send
+   \   000385   12....       LCALL   ??Message_Send
+    556          					break;
+   \   000388   02....       LJMP    ??main_12
+    557          
+    558          				case AM1_IAP_RST_POINT:
+    559          					addr = HAL_OAD_RC_START / HAL_FLASH_WORD_SIZE;
+   \                     ??main_19:
+   \   00038B   7E00         MOV     R6,#0x0
+   \   00038D   7F08         MOV     R7,#0x8
+    560          					ucLDR_Message.com_data[0]=0x00;
+   \   00038F   900114       MOV     DPTR,#0x114
+   \   000392   80E2         SJMP    ??main_21
+    561          					ucLDR_Message.data_length=2;
+    562          					Message_Send();	
+    563          				break;
+    564          
+    565          				case AM1_IAP_ERASE_DEVICE:
+    566          					ucLDR_Message.com_data[0]=0x55;
+   \                     ??main_18:
+   \   000394   900114       MOV     DPTR,#0x114
+   \   000397   7455         MOV     A,#0x55
+   \   000399   F0           MOVX    @DPTR,A
+    567          					ucLDR_Message.com_data[1]=0x00;
+   \   00039A   A3           INC     DPTR
+   \   00039B   E4           CLR     A
+   \   00039C   F0           MOVX    @DPTR,A
+    568          					ucLDR_Message.data_length=3;
+   \   00039D   900113       MOV     DPTR,#0x113
+   \   0003A0   7403         MOV     A,#0x3
+   \   0003A2   80E0         SJMP    ??main_23
+    569          					Message_Send();	
+    570          				break;
+    571          	//=================================================================================
+    572          /*
+    573          				case AM1_IAP_ERASE_DEVICE:		
+    574          					ucLDR_Security_F = 0;
+    575          					stCommand.ReadStatus_Lib.ram_adr = &ucLDR_WorkRam;
+    576          					ucLDR_Ret=0;//test
+    577          					ucLDR_ReadStatus_Ram();//test
+    578          					if( (ucLDR_Ret&0x01) == 0x01 )
+    579          						{
+    580          						ucLDR_Message.com_data[0]=0x55;// No Key	
+    581          						ucLDR_Security_F=1;
+    582          					     }
+    583          					else
+    584          						{
+    585          						ucLDR_Ret = 0x00;
+    586          			 			stCommand.Security_Lib.ram_adr	= &ucLDR_WorkRam;
+    587          			 			stCommand.Security_Lib.key_adr = (unsigned char*)&ucLDR_Message.com_data[0];
+    588          						ucLDR_SecurityCheck_Ram();
+    589          						if( ucLDR_Ret != 0x00 )
+    590          							{
+    591          							ucLDR_Message.com_data[0]=0xEE;   //Key Verify error
+    592          			
+    593          							}
+    594          						else
+    595          							{
+    596          							 ucLDR_Message.com_data[0]=0xaa ;//Key Verify Pass
+    597          		                                 ucLDR_Security_F=1;
+    598          						       }
+    599          						}
+    600          
+    601          						 if(ucLDR_Security_F==1)
+    602          							{
+    603          								stCommand.Erase_Lib.ram_adr	= &ucLDR_WorkRam;
+    604          								ucLDR_Ret=0x00;//test
+    605          								ucLDR_Erase_Ram();//test
+    606          								ucLDR_Message.com_data[1]= ucLDR_Ret;
+    607          								#if 0
+    608          								if(ucLDR_Ret==0)
+    609          								{
+    610          								stCommand.Secter_Lib.ram_adr	= (unsigned char*)&ucLDR_WorkRam[0];
+    611          								ucLDR_Ret=0x00;//test
+    612          								ucLDR_BankCheck_Ram();  //test 
+    613          								ucLDR_Message.com_data[2]=ucLDR_Ret;
+    614          								}
+    615          								#endif
+    616          							}
+    617          					delay(60000);		
+    618          					stCommand.Program_Lib.dst_adr	= (unsigned char*)(0x4000-64);	   
+    619          					stCommand.Program_Lib.dst_bank	= 0;
+    620          					Message_Send();	
+    621          					break;
+    622          */
+    623          //=================================================================================
+    624          				  default:
+    625          					//Message_Send();		
+    626          					break;
+    627          				}
+    628          #endif
+    629          		}
+    630          		//start_flag = 0;
+    631          		//InitUart();
+    632          		//Uart_Send_String("test",4);
+    633          		//P1_3 = !P1_3;
+    634          
+    635          	}
+    636            }else
+    637            {
+    638            	Uart_Send_String("jump",4);
+   \                     ??main_11:
+   \   0003A4                ; Setup parameters for call to function Uart_Send_String
+   \   0003A4   7A..         MOV     R2,#`?<Constant "jump">` & 0xff
+   \   0003A6   7B..         MOV     R3,#(`?<Constant "jump">` >> 8) & 0xff
+   \   0003A8   12....       LCALL   ??Uart_Send_String
+    639          	asm("LJMP 0x2000\n");
+   \   0003AB   022000       LJMP 0x2000
+    640          	//asm("LJMP 0x800\n");
+    641          	//asm("LJMP 0x2000\n");
+    642          	//asm("LJMP 0x1000\n");
+    643          	//asm("LJMP 0x5000\n");
+    644            }
+    645            
+    646            //Uart_Send_String("boot",4);
+    647            /*
+    648            for(page=0;page<10;page++)
+    649            {
+    650            	for (oset = 0; oset < 512; oset += HAL_FLASH_WORD_SIZE)
+    651            	{
+    652          		HalFlashRead(page,oset,buf,4);
+    653          		Uart_Send_String(buf,4);
+    654          	
+    655            	}
+    656            }*/
+    657            //HalFlashInit();
+    658            //HalFlashWrite(addr++, buf, 1);
+    659          
+    660            //HalFlashErase(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE));
+    661            //HalFlashWrite(addr, g_extAddr, 1);
+    662            //HalFlashWrite(addr+1, g_extAddr+4, 2);
+    663            //HalFlashRead(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE),0,g_extAddr,8);
+    664            //Uart_Send_String(g_extAddr,8);
+    665            
+    666            // Simulate a reset for the Application code by an absolute jump to location 0x0800.
+    667            //asm("LJMP 0x800\n");
+    668          }
+   \   0003AE   7424         MOV     A,#0x24
+   \   0003B0   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0003B3   22           RET
+   \   0003B4                REQUIRE SLEEPCMD
+   \   0003B4                REQUIRE SLEEPSTA
+   \   0003B4                REQUIRE CLKCONCMD
+   \   0003B4                REQUIRE CLKCONSTA
+   \   0003B4                REQUIRE P1DIR
+   \   0003B4                REQUIRE P0DIR
+   \   0003B4                REQUIRE P0INP
+   \   0003B4                REQUIRE DMA0CFGH
+   \   0003B4                REQUIRE DMA0CFGL
+   \   0003B4                REQUIRE P0SEL
+   \   0003B4                REQUIRE ENCCS
+   \   0003B4                REQUIRE _A_P0
+   \   0003B4                REQUIRE _A_P1
+   \   0003B4                REQUIRE PERCFG
+   \   0003B4                REQUIRE P2DIR
+   \   0003B4                REQUIRE U0CSR
+   \   0003B4                REQUIRE U0GCR
+   \   0003B4                REQUIRE U0BAUD
+   \   0003B4                REQUIRE _A_IRCON2
+   \   0003B4                REQUIRE _A_TCON
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine12:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   FA           MOV     R2,A
+   \   000002   A3           INC     DPTR
+   \   000003   E0           MOVX    A,@DPTR
+   \   000004   FB           MOV     R3,A
+   \   000005   12....       LCALL   ??MemReadRam
+   \   000008   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine11:
+   \   000000   AA82         MOV     R2,DPL
+   \   000002   AB83         MOV     R3,DPH
+   \   000004                REQUIRE ??Subroutine15_0
+   \   000004                ; // Fall through to label ??Subroutine15_0
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ??Subroutine15_0:
+   \   000000   12....       LCALL   ??halAesEncrDecr
+   \   000003   7402         MOV     A,#0x2
+   \   000005   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine10:
+   \   000000   7AE8         MOV     R2,#-0x18
+   \   000002   7B03         MOV     R3,#0x3
+   \   000004   12....       LCALL   ??delay
+   \   000007   E5..         MOV     A,?V0 + 2
+   \   000009   24FF         ADD     A,#-0x1
+   \   00000B   F5..         MOV     ?V0 + 2,A
+   \   00000D   E5..         MOV     A,?V0 + 3
+   \   00000F   34FF         ADDC    A,#-0x1
+   \   000011   F5..         MOV     ?V0 + 3,A
+   \   000013   E5..         MOV     A,?V0 + 2
+   \   000015   45..         ORL     A,?V0 + 3
+   \   000017   22           RET
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     ??cpuIdKey:
+   \   000000                DS 16
+   \   000010                REQUIRE `?<Initializer for cpuIdKey>`
+   \   000010                REQUIRE __INIT_XDATA_I
+    669          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    670          static void MemReadRam(macRam_t * pRam, uint8 * pData, uint8 len)
+   \                     ??MemReadRam:
+    671          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+   \   000004   801D         SJMP    ??MemReadRam_1
+    672            while (len)
+    673            {
+    674              len--;
+   \                     ??MemReadRam_2:
+   \   000006   19           DEC     R1
+    675              *pData = *pRam;
+   \   000007   8A82         MOV     DPL,R2
+   \   000009   8B83         MOV     DPH,R3
+   \   00000B   E0           MOVX    A,@DPTR
+   \   00000C   8C82         MOV     DPL,R4
+   \   00000E   8D83         MOV     DPH,R5
+   \   000010   F0           MOVX    @DPTR,A
+    676              pRam++;
+   \   000011   8A82         MOV     DPL,R2
+   \   000013   8B83         MOV     DPH,R3
+   \   000015   A3           INC     DPTR
+   \   000016   AA82         MOV     R2,DPL
+   \   000018   AB83         MOV     R3,DPH
+    677              pData++;
+   \   00001A   8C82         MOV     DPL,R4
+   \   00001C   8D83         MOV     DPH,R5
+   \   00001E   A3           INC     DPTR
+   \   00001F   AC82         MOV     R4,DPL
+   \   000021   AD83         MOV     R5,DPH
+    678            }
+   \                     ??MemReadRam_1:
+   \   000023   E9           MOV     A,R1
+   \   000024   70E0         JNZ     ??MemReadRam_2
+    679          }
+   \   000026                REQUIRE ?Subroutine1
+   \   000026                ; // Fall through to label ?Subroutine1
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   22           RET
+    680          
+    681          static uint8 OAD_memcmp( const void GENERIC *src1, const void GENERIC *src2, unsigned int len )
+    682          {
+    683            const uint8 GENERIC *pSrc1;
+    684            const uint8 GENERIC *pSrc2;
+    685          
+    686            pSrc1 = src1;
+    687            pSrc2 = src2;
+    688          
+    689            while ( len-- )
+    690            {
+    691              if( *pSrc1++ != *pSrc2++ )
+    692                return FALSE;
+    693            }
+    694            return TRUE;
+    695          }
+    696          
+    697          static void InitUart(void)
+    698          {
+    699              CLKCONCMD &= ~0x40; // 设置系统时钟源为 32MHZ晶振
+    700              while(CLKCONSTA & 0x40);                     // 等待晶振稳定 
+    701              CLKCONCMD &= ~0x47;                          // 设置系统主时钟频率为 32MHZ
+    702          
+    703              PERCFG = 0x00;        //位置1 P0口 
+    704              //P0SEL = 0x3c;        //P0_2,P0_3,P0_4,P0_5用作串口,第二功能 
+    705              P0SEL |= 0x0c;
+    706              //P0DIR |= 0x08;
+    707              P2DIR &= ~0XC0;      //P0 优先作为UART0 ，优先级
+    708              //PERCFG &= ~(BV(0)); //选择P0端口uart
+    709              //P0SEL |=BV(5)|BV(4)|BV(3)|BV(2);
+    710              //P2DIR &=~(BV(7)|BV(6));
+    711          
+    712              U0CSR |= 0x80;       //UART 方式 
+    713              U0GCR |= 11;         //U0GCR与U0BAUD配合     
+    714              U0BAUD |= 216;       // 波特率设为115200 
+    715              UTX0IF = 0;          //UART0 TX 中断标志初始置位1  （收发时候）
+    716              U0CSR |= 0X40;       //允许接收 
+    717             // IEN0 |= 0x84;        // 开总中断，接收中断    
+    718          
+    719             URX0IF = 0;
+    720          
+    721            // P1_3 = !P1_3;
+    722          }
+    723          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    724          static void SendData(char dat)
+   \                     ??SendData:
+    725          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    726          	U0DBUF = dat;
+   \   000000   89C1         MOV     0xc1,R1
+    727          	while(!UTX0IF);
+   \                     ??SendData_1:
+   \   000002   A2E9         MOV     C,0xe8.1
+   \   000004   50FC         JNC     ??SendData_1
+    728          	UTX0IF = 0; 	
+   \   000006   C2E9         CLR     0xe8.1
+    729          }
+   \   000008   22           RET
+   \   000009                REQUIRE U0DBUF
+   \   000009                REQUIRE _A_IRCON2
+    730          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    731          static void putsDialog(const char *str)
+   \                     ??putsDialog:
+    732          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+   \   000004   8A82         MOV     DPL,R2
+   \   000006   8B83         MOV     DPH,R3
+   \   000008   8004         SJMP    ??putsDialog_1
+    733          	 //UartDecode(str);
+    734          	 while(*str != '\0')
+    735          	{
+    736                  	SendData(*str++);
+   \                     ??putsDialog_2:
+   \   00000A                ; Setup parameters for call to function SendData
+   \   00000A   12....       LCALL   ??SendData
+   \   00000D   A3           INC     DPTR
+    737              }
+   \                     ??putsDialog_1:
+   \   00000E   E0           MOVX    A,@DPTR
+   \   00000F   F9           MOV     R1,A
+   \   000010   70F8         JNZ     ??putsDialog_2
+    738          }
+   \   000012   80..         SJMP    ?Subroutine1
+    739          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    740          static void Uart_Send_String(char *Data,int len) 
+   \                     ??Uart_Send_String:
+    741          {
+   \   000000   74F8         MOV     A,#-0x8
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 8
+   \   000005                ; Auto size: 0
+    742          	  int j; 
+    743          	  for(j=0;j<len;j++) 
+   \   000005   7800         MOV     R0,#0x0
+   \   000007   7900         MOV     R1,#0x0
+   \   000009   801A         SJMP    ??Uart_Send_String_1
+    744          	  { 
+    745          		    U0DBUF = *Data++; 
+   \                     ??Uart_Send_String_2:
+   \   00000B   8A82         MOV     DPL,R2
+   \   00000D   8B83         MOV     DPH,R3
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   F5C1         MOV     0xc1,A
+   \   000012   A3           INC     DPTR
+   \   000013   AA82         MOV     R2,DPL
+   \   000015   AB83         MOV     R3,DPH
+    746          		    while(UTX0IF == 0); //发送完成标志位
+   \                     ??Uart_Send_String_3:
+   \   000017   A2E9         MOV     C,0xe8.1
+   \   000019   50FC         JNC     ??Uart_Send_String_3
+    747          		    UTX0IF = 0; 
+   \   00001B   C2E9         CLR     0xe8.1
+    748          	  } 
+   \   00001D   E8           MOV     A,R0
+   \   00001E   2401         ADD     A,#0x1
+   \   000020   08           INC     R0
+   \   000021   E9           MOV     A,R1
+   \   000022   3400         ADDC    A,#0x0
+   \   000024   F9           MOV     R1,A
+   \                     ??Uart_Send_String_1:
+   \   000025   C3           CLR     C
+   \   000026   E8           MOV     A,R0
+   \   000027   9C           SUBB    A,R4
+   \   000028   E9           MOV     A,R1
+   \   000029   9D           SUBB    A,R5
+   \   00002A   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   00002C   65D0         XRL     A,PSW
+   \   00002E   33           RLC     A
+   \   00002F   40DA         JC      ??Uart_Send_String_2
+    749          }
+   \   000031   7F01         MOV     R7,#0x1
+   \   000033   02....       LJMP    ?FUNC_LEAVE_XDATA
+   \   000036                REQUIRE U0DBUF
+   \   000036                REQUIRE _A_IRCON2
+    750          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    751          static void delay(unsigned int de)
+   \                     ??delay:
+    752          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+    753          	//while(de--);
+    754          	 uint16 i,j;
+    755          	 for(i=de;i>0;i--)
+   \   000000   EA           MOV     A,R2
+   \   000001   F8           MOV     R0,A
+   \   000002   EB           MOV     A,R3
+   \   000003   8007         SJMP    ??delay_1
+    756          	   for(j=587;j>0;j--);
+   \                     ??delay_2:
+   \   000005   E8           MOV     A,R0
+   \   000006   24FF         ADD     A,#-0x1
+   \   000008   18           DEC     R0
+   \   000009   E9           MOV     A,R1
+   \   00000A   34FF         ADDC    A,#-0x1
+   \                     ??delay_1:
+   \   00000C   F9           MOV     R1,A
+   \   00000D   E8           MOV     A,R0
+   \   00000E   49           ORL     A,R1
+   \   00000F   70F4         JNZ     ??delay_2
+    757          }
+   \   000011   22           RET
+    758          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    759          static unsigned char RcvData(void)
+   \                     ??RcvData:
+    760          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+    761          	unsigned char count1=0;
+   \   000004   7900         MOV     R1,#0x0
+    762          	unsigned char count2=0;
+   \   000006   7800         MOV     R0,#0x0
+    763          
+    764          	while( !URX0IF )
+   \                     ??RcvData_1:
+   \   000008   A28B         MOV     C,0x88.3
+   \   00000A   401B         JC      ??RcvData_2
+    765          	{
+    766          		count1++;
+   \   00000C   09           INC     R1
+    767          		if(count1==252)
+   \   00000D   74FC         MOV     A,#-0x4
+   \   00000F   69           XRL     A,R1
+   \   000010   7003         JNZ     ??RcvData_3
+    768          		{
+    769          		count1=0;
+   \   000012   7900         MOV     R1,#0x0
+    770          		count2++;
+   \   000014   08           INC     R0
+    771          		}
+    772          		if((count2==252)&&(start_flag==1))
+   \                     ??RcvData_3:
+   \   000015   74FC         MOV     A,#-0x4
+   \   000017   68           XRL     A,R0
+   \   000018   70EE         JNZ     ??RcvData_1
+   \   00001A   900101       MOV     DPTR,#0x101
+   \   00001D   E0           MOVX    A,@DPTR
+   \   00001E   6401         XRL     A,#0x1
+   \   000020   70E6         JNZ     ??RcvData_1
+    773          		{
+    774          			start_flag=0;
+   \   000022   E4           CLR     A
+   \   000023   F0           MOVX    @DPTR,A
+    775          			
+    776          			return 0;
+   \   000024   F9           MOV     R1,A
+   \   000025   8004         SJMP    ??RcvData_4
+    777          		}
+    778          	}
+    779          	URX0IF = 0;
+   \                     ??RcvData_2:
+   \   000027   C28B         CLR     0x88.3
+    780          	return U0DBUF;
+   \   000029   A9C1         MOV     R1,0xc1
+   \                     ??RcvData_4:
+   \   00002B   02....       LJMP    ?Subroutine1
+   \   00002E                REQUIRE _A_TCON
+   \   00002E                REQUIRE U0DBUF
+    781          }
+    782          
+    783          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    784          static unsigned char Message_Rcv(void)
+   \                     ??Message_Rcv:
+    785          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+    786          	unsigned char	ucdata;
+    787          	unsigned char 	rcvdat;
+    788          	unsigned char	uci;
+    789          	start_flag=0;
+   \   000005   900101       MOV     DPTR,#0x101
+   \   000008   E4           CLR     A
+   \   000009   F0           MOVX    @DPTR,A
+    790          
+    791          	//P1_3 = !P1_3;
+    792               start_flag=1;
+   \   00000A   04           INC     A
+   \   00000B   F0           MOVX    @DPTR,A
+    793               ucdata=RcvData();
+    794          	if(ucdata!=0x7E)
+   \   00000C                ; Setup parameters for call to function RcvData
+   \   00000C   12....       LCALL   ??RcvData
+   \   00000F   E9           MOV     A,R1
+   \   000010   647E         XRL     A,#0x7e
+   \   000012   6004         JZ      ??Message_Rcv_1
+    795          	   return 0;
+   \                     ??Message_Rcv_2:
+   \   000014   7900         MOV     R1,#0x0
+   \   000016   8062         SJMP    ??Message_Rcv_3
+    796          	start_flag=1;
+   \                     ??Message_Rcv_1:
+   \   000018   7401         MOV     A,#0x1
+   \   00001A   F0           MOVX    @DPTR,A
+    797          	ucdata=RcvData();
+   \   00001B                ; Setup parameters for call to function RcvData
+   \   00001B   12....       LCALL   ??RcvData
+   \   00001E   E9           MOV     A,R1
+    798          	ucLDR_Message.com_number=  ucdata;
+   \   00001F   900110       MOV     DPTR,#0x110
+   \   000022   F0           MOVX    @DPTR,A
+    799          	ucLDR_Message.msg_cks=ucdata;
+   \   000023   900164       MOV     DPTR,#0x164
+   \   000026   12....       LCALL   ??Subroutine14_0
+    800          	
+    801                ucdata=RcvData();
+    802          	if(start_flag==0)
+   \                     ??CrossCallReturnLabel_22:
+   \   000029   60E9         JZ      ??Message_Rcv_2
+    803          		return 0;
+    804          	ucLDR_Message.protocol_command=  ucdata;
+   \   00002B   E8           MOV     A,R0
+   \   00002C   900111       MOV     DPTR,#0x111
+   \   00002F   12....       LCALL   ?Subroutine2
+    805          	ucLDR_Message.msg_cks+=ucdata;	
+    806          	
+    807          	ucdata=RcvData();
+    808          	if(start_flag==0)
+   \                     ??CrossCallReturnLabel_20:
+   \   000032   60E0         JZ      ??Message_Rcv_2
+    809          		 return 0;
+    810          	ucLDR_Message.no_used=  ucdata;
+   \   000034   E8           MOV     A,R0
+   \   000035   900112       MOV     DPTR,#0x112
+   \   000038   12....       LCALL   ?Subroutine2
+    811          	ucLDR_Message.msg_cks+=ucdata;	
+    812          	
+    813          	ucdata=RcvData();
+    814          	if(start_flag==0)
+   \                     ??CrossCallReturnLabel_21:
+   \   00003B   60D7         JZ      ??Message_Rcv_2
+    815          		 return 0;
+    816          	ucLDR_Message.data_length=  ucdata;
+   \   00003D   E8           MOV     A,R0
+   \   00003E   900113       MOV     DPTR,#0x113
+   \   000041   12....       LCALL   ?Subroutine7
+    817          	ucLDR_Message.msg_cks+=ucdata;
+   \                     ??CrossCallReturnLabel_9:
+   \   000044   F0           MOVX    @DPTR,A
+    818          	
+    819          	for( uci=0 ; uci<ucLDR_Message.data_length ; uci++ )
+   \   000045   7E00         MOV     R6,#0x0
+   \   000047   8019         SJMP    ??Message_Rcv_4
+    820          	{
+    821          		ucdata = RcvData();
+   \                     ??Message_Rcv_5:
+   \   000049                ; Setup parameters for call to function RcvData
+   \   000049   12....       LCALL   ?Subroutine5
+    822          		if(start_flag==0)
+   \                     ??CrossCallReturnLabel_5:
+   \   00004C   60C6         JZ      ??Message_Rcv_2
+    823          			 return 0;
+    824          		ucLDR_Message.com_data[uci] = ucdata;
+   \   00004E   8E..         MOV     ?V0 + 0,R6
+   \   000050   7414         MOV     A,#0x14
+   \   000052   25..         ADD     A,?V0 + 0
+   \   000054   F582         MOV     DPL,A
+   \   000056   7401         MOV     A,#0x1
+   \   000058   3400         ADDC    A,#0x0
+   \   00005A   F583         MOV     DPH,A
+   \   00005C   E8           MOV     A,R0
+   \   00005D   12....       LCALL   ?Subroutine7
+    825          		ucLDR_Message.msg_cks+=ucdata;
+    826          	}
+   \                     ??CrossCallReturnLabel_10:
+   \   000060   F0           MOVX    @DPTR,A
+   \   000061   0E           INC     R6
+   \                     ??Message_Rcv_4:
+   \   000062   900113       MOV     DPTR,#0x113
+   \   000065   E0           MOVX    A,@DPTR
+   \   000066   F8           MOV     R0,A
+   \   000067   EE           MOV     A,R6
+   \   000068   C3           CLR     C
+   \   000069   98           SUBB    A,R0
+   \   00006A   40DD         JC      ??Message_Rcv_5
+    827          	ucdata = RcvData();
+   \   00006C                ; Setup parameters for call to function RcvData
+   \   00006C   12....       LCALL   ?Subroutine5
+    828          	rcvdat = ucLDR_Message.msg_cks;
+    829          	if(start_flag==0)
+   \                     ??CrossCallReturnLabel_6:
+   \   00006F   60A3         JZ      ??Message_Rcv_2
+    830          		 return 0;
+    831          	//if(ucLDR_Message.msg_cks==ucdata)
+    832          	if(rcvdat==ucdata)
+   \   000071   900164       MOV     DPTR,#0x164
+   \   000074   E0           MOVX    A,@DPTR
+   \   000075   68           XRL     A,R0
+   \   000076   709C         JNZ     ??Message_Rcv_2
+    833                return 1;
+   \   000078   7901         MOV     R1,#0x1
+   \                     ??Message_Rcv_3:
+   \   00007A   02....       LJMP    ?Subroutine0
+    834          	else
+    835          	return 0;	
+    836          
+    837          }
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine5:
+   \   000000   12....       LCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_23:
+   \   000003   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine2:
+   \   000000   12....       LCALL   ?Subroutine7
+   \                     ??CrossCallReturnLabel_11:
+   \   000003                REQUIRE ??Subroutine14_0
+   \   000003                ; // Fall through to label ??Subroutine14_0
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ??Subroutine14_0:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001                ; Setup parameters for call to function RcvData
+   \   000001                ; Setup parameters for call to function RcvData
+   \   000001                ; Setup parameters for call to function RcvData
+   \   000001   12....       LCALL   ?Subroutine9
+   \                     ??CrossCallReturnLabel_24:
+   \   000004   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   12....       LCALL   ??RcvData
+   \   000003   E9           MOV     A,R1
+   \   000004   F8           MOV     R0,A
+   \   000005   900101       MOV     DPTR,#0x101
+   \   000008   E0           MOVX    A,@DPTR
+   \   000009   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   900164       MOV     DPTR,#0x164
+   \   000004   E0           MOVX    A,@DPTR
+   \   000005   28           ADD     A,R0
+   \   000006   22           RET
+    838          
+    839          
+    840          /*********************************************************************
+    841           * @fn      dl2rc
+    842           *
+    843           * @brief   Copy the DL image to the RC image location.
+    844           *
+    845           *  NOTE:   Assumes that DL image ends on a flash word boundary.
+    846           *
+    847           * @param   None.
+    848           *
+    849           * @return  None.
+    850           *********************************************************************/
+    851          #if 1
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    852          static void Message_Send(void)
+   \                     ??Message_Send:
+    853          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+    854          	unsigned char  uci;
+    855          	
+    856          	SendData(0x7E);
+   \   000005                ; Setup parameters for call to function SendData
+   \   000005   797E         MOV     R1,#0x7e
+   \   000007   12....       LCALL   ??SendData
+    857              
+    858          	ucLDR_Message.msg_cks =ucLDR_Message.com_number;
+   \   00000A   900110       MOV     DPTR,#0x110
+   \   00000D   E0           MOVX    A,@DPTR
+   \   00000E   900164       MOV     DPTR,#0x164
+   \   000011   F0           MOVX    @DPTR,A
+    859              SendData(ucLDR_Message.com_number);
+   \   000012                ; Setup parameters for call to function SendData
+   \   000012   F9           MOV     R1,A
+   \   000013   12....       LCALL   ??SendData
+    860              
+    861              ucLDR_Message.msg_cks+=ucLDR_Message.protocol_command;
+   \   000016   900111       MOV     DPTR,#0x111
+   \   000019   12....       LCALL   ?Subroutine8
+    862          	SendData(ucLDR_Message.protocol_command);  
+   \                     ??CrossCallReturnLabel_12:
+   \   00001C                ; Setup parameters for call to function SendData
+   \   00001C   900111       MOV     DPTR,#0x111
+   \   00001F   12....       LCALL   ?Subroutine3
+    863          	
+    864              ucLDR_Message.msg_cks+=ucLDR_Message.no_used;
+    865          	SendData(ucLDR_Message.no_used); 	
+   \                     ??CrossCallReturnLabel_0:
+   \   000022                ; Setup parameters for call to function SendData
+   \   000022   900112       MOV     DPTR,#0x112
+   \   000025   12....       LCALL   ?Subroutine3
+    866          		
+    867              ucLDR_Message.msg_cks+=ucLDR_Message.data_length;
+    868          	SendData(ucLDR_Message.data_length); 
+   \                     ??CrossCallReturnLabel_1:
+   \   000028                ; Setup parameters for call to function SendData
+   \   000028   900113       MOV     DPTR,#0x113
+   \   00002B   12....       LCALL   ?Subroutine4
+    869          		
+    870          
+    871              for(uci =0;uci<ucLDR_Message.data_length;uci++)
+   \                     ??CrossCallReturnLabel_2:
+   \   00002E   7E00         MOV     R6,#0x0
+   \   000030   8020         SJMP    ??Message_Send_1
+    872              {
+    873                 ucLDR_Message.msg_cks+=ucLDR_Message.com_data[uci];  
+   \                     ??Message_Send_2:
+   \   000032   8E..         MOV     ?V0 + 0,R6
+   \   000034   7414         MOV     A,#0x14
+   \   000036   25..         ADD     A,?V0 + 0
+   \   000038   F8           MOV     R0,A
+   \   000039   7401         MOV     A,#0x1
+   \   00003B   3400         ADDC    A,#0x0
+   \   00003D   F9           MOV     R1,A
+   \   00003E   8882         MOV     DPL,R0
+   \   000040   8983         MOV     DPH,R1
+   \   000042   E0           MOVX    A,@DPTR
+   \   000043   FA           MOV     R2,A
+   \   000044   900164       MOV     DPTR,#0x164
+   \   000047   E0           MOVX    A,@DPTR
+   \   000048   2A           ADD     A,R2
+   \   000049   F0           MOVX    @DPTR,A
+    874                 SendData(ucLDR_Message.com_data[uci]); 	
+   \   00004A                ; Setup parameters for call to function SendData
+   \   00004A   8882         MOV     DPL,R0
+   \   00004C   8983         MOV     DPH,R1
+   \   00004E   12....       LCALL   ?Subroutine4
+    875          	 }
+   \                     ??CrossCallReturnLabel_3:
+   \   000051   0E           INC     R6
+   \                     ??Message_Send_1:
+   \   000052   900113       MOV     DPTR,#0x113
+   \   000055   E0           MOVX    A,@DPTR
+   \   000056   F8           MOV     R0,A
+   \   000057   EE           MOV     A,R6
+   \   000058   C3           CLR     C
+   \   000059   98           SUBB    A,R0
+   \   00005A   40D6         JC      ??Message_Send_2
+    876               ucLDR_Message.msg_cks+=0;
+   \   00005C   900164       MOV     DPTR,#0x164
+   \   00005F   12....       LCALL   ?Subroutine4
+    877          	 SendData(ucLDR_Message.msg_cks); 		
+    878          }
+   \                     ??CrossCallReturnLabel_4:
+   \   000062                REQUIRE ?Subroutine0
+   \   000062                ; // Fall through to label ?Subroutine0
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001                ; Setup parameters for call to function SendData
+   \   000001   F9           MOV     R1,A
+   \   000002   12....       LCALL   ??SendData
+   \   000005   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine3:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F9           MOV     R1,A
+   \   000002   12....       LCALL   ??SendData
+   \   000005   A3           INC     DPTR
+   \   000006   12....       LCALL   ?Subroutine8
+   \                     ??CrossCallReturnLabel_13:
+   \   000009   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine8:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F8           MOV     R0,A
+   \   000002   900164       MOV     DPTR,#0x164
+   \   000005   E0           MOVX    A,@DPTR
+   \   000006   28           ADD     A,R0
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+    879          
+    880          #endif
+    881          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    882          static void halAesLoadKeyOrInitVector(BYTE* pData, BOOL key)
+   \                     ??halAesLoadKeyOrInitVector:
+    883          {
+   \   000000   74F7         MOV     A,#-0x9
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 9
+   \   000005                ; Auto size: 0
+    884             UINT8 i;
+    885          
+    886             // Checking whether to load a key or an initialisation vector.
+    887             if(key){
+   \   000005   E9           MOV     A,R1
+   \   000006   6008         JZ      ??halAesLoadKeyOrInitVector_1
+    888                AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_KEY);
+   \   000008   E5B3         MOV     A,0xb3
+   \   00000A   54F8         ANL     A,#0xf8
+   \   00000C   4404         ORL     A,#0x4
+   \   00000E   8006         SJMP    ??halAesLoadKeyOrInitVector_2
+    889             }
+    890             else {
+    891                AES_SET_ENCR_DECR_KEY_IV(AES_LOAD_IV);
+   \                     ??halAesLoadKeyOrInitVector_1:
+   \   000010   E5B3         MOV     A,0xb3
+   \   000012   54F8         ANL     A,#0xf8
+   \   000014   4406         ORL     A,#0x6
+   \                     ??halAesLoadKeyOrInitVector_2:
+   \   000016   F5B3         MOV     0xb3,A
+    892             }
+    893             // Starting loading of key or vector.
+    894             AES_START();
+   \   000018   43B301       ORL     0xb3,#0x1
+    895          
+    896             // loading the data (key or vector)
+    897             for(i = 0; i < 16; i++){
+   \   00001B   7800         MOV     R0,#0x0
+    898                ENCDI = pData[i];
+   \                     ??halAesLoadKeyOrInitVector_3:
+   \   00001D   88..         MOV     ?V0 + 0,R0
+   \   00001F   EA           MOV     A,R2
+   \   000020   25..         ADD     A,?V0 + 0
+   \   000022   F582         MOV     DPL,A
+   \   000024   EB           MOV     A,R3
+   \   000025   3400         ADDC    A,#0x0
+   \   000027   F583         MOV     DPH,A
+   \   000029   E0           MOVX    A,@DPTR
+   \   00002A   F5B1         MOV     0xb1,A
+    899             }
+   \   00002C   08           INC     R0
+   \   00002D   E8           MOV     A,R0
+   \   00002E   C3           CLR     C
+   \   00002F   9410         SUBB    A,#0x10
+   \   000031   40EA         JC      ??halAesLoadKeyOrInitVector_3
+    900          }
+   \   000033   80..         SJMP    ?Subroutine0
+   \   000035                REQUIRE ENCCS
+   \   000035                REQUIRE ENCDI
+    901          
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+    902          static void halAesEncrDecr(BYTE *pDataIn, UINT16 length, BYTE *pDataOut, /*BYTE *pInitVector, */BOOL decr)
+   \                     ??halAesEncrDecr:
+    903          {
+   \   000000   74EF         MOV     A,#-0x11
+   \   000002   12....       LCALL   ?FUNC_ENTER_XDATA
+   \   000005                ; Saved register size: 17
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 6,R1
+   \   000007   7411         MOV     A,#0x11
+   \   000009   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000C   E0           MOVX    A,@DPTR
+   \   00000D   F8           MOV     R0,A
+   \   00000E   A3           INC     DPTR
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   F9           MOV     R1,A
+   \   000011   E8           MOV     A,R0
+   \   000012   FE           MOV     R6,A
+   \   000013   E9           MOV     A,R1
+   \   000014   FF           MOV     R7,A
+    904             UINT16  i;
+    905             UINT8   j, k;
+                               ^
+Warning[Pe177]: variable "k" was declared but never referenced
+    906             BYTE    mode;
+    907             UINT16  nbrOfBlocks;
+    908             UINT16  convertedBlock;
+    909             UINT8   delay;
+    910          
+    911             nbrOfBlocks = length / 16;
+   \   000015   8C..         MOV     ?V0 + 0,R4
+   \   000017   8D..         MOV     ?V0 + 1,R5
+   \   000019   7404         MOV     A,#0x4
+   \   00001B   78..         MOV     R0,#?V0 + 0
+   \   00001D   12....       LCALL   ?US_SHR
+   \   000020   85....       MOV     ?V0 + 2,?V0 + 0
+   \   000023   85....       MOV     ?V0 + 3,?V0 + 1
+    912             mode = 0;
+    913          
+    914             if( (length % 16) != 0){
+   \   000026   EC           MOV     A,R4
+   \   000027   540F         ANL     A,#0xf
+   \   000029   600C         JZ      ??halAesEncrDecr_1
+    915                // length not multiplum of 16, convert one block extra with zeropadding
+    916                nbrOfBlocks++;
+   \   00002B   E5..         MOV     A,?V0 + 2
+   \   00002D   2401         ADD     A,#0x1
+   \   00002F   F5..         MOV     ?V0 + 2,A
+   \   000031   E5..         MOV     A,?V0 + 3
+   \   000033   3400         ADDC    A,#0x0
+   \   000035   F5..         MOV     ?V0 + 3,A
+    917             }
+    918          
+    919             // Loading the IV.
+    920             //halAesLoadKeyOrInitVector(pInitVector, FALSE);
+    921          
+    922             // Starting either encryption or decryption
+    923             if(decr){
+   \                     ??halAesEncrDecr_1:
+   \   000037   E5..         MOV     A,?V0 + 6
+   \   000039   600A         JZ      ??halAesEncrDecr_2
+    924                AES_SET_ENCR_DECR_KEY_IV(AES_DECRYPT);
+   \   00003B   E5B3         MOV     A,0xb3
+   \   00003D   54F8         ANL     A,#0xf8
+   \   00003F   4402         ORL     A,#0x2
+   \   000041   F5B3         MOV     0xb3,A
+   \   000043   8003         SJMP    ??halAesEncrDecr_3
+    925             } else {
+    926                AES_SET_ENCR_DECR_KEY_IV(AES_ENCRYPT);
+   \                     ??halAesEncrDecr_2:
+   \   000045   53B3F8       ANL     0xb3,#0xf8
+    927             }
+    928          
+    929             // Getting the operation mode.
+    930             mode = ENCCS & 0x70;
+   \                     ??halAesEncrDecr_3:
+   \   000048   E5B3         MOV     A,0xb3
+   \   00004A   5470         ANL     A,#0x70
+   \   00004C   F5..         MOV     ?V0 + 7,A
+    931          
+    932             for(convertedBlock = 0; convertedBlock < nbrOfBlocks; convertedBlock++){
+   \   00004E   75..00       MOV     ?V0 + 0,#0x0
+   \   000051   75..00       MOV     ?V0 + 1,#0x0
+   \   000054   8047         SJMP    ??halAesEncrDecr_4
+    933                // Starting the conversion.
+    934                AES_START();
+    935          
+    936                i = convertedBlock * 16;
+    937                // Counter, Output Feedback and Cipher Feedback operates on 4 bytes and not 16 bytes.
+    938                if((mode == CFB) || (mode == OFB) || (mode == CTR))
+    939          	 {
+    940          /*
+    941                   for(j = 0; j < 4; j++){
+    942                      // Writing the input data
+    943                      // Zeropadding the remainder of the block
+    944                      for(k = 0; k < 4; k++){
+    945                         ENCDI = ((i + 4*j + k < length) ? pDataIn[i + 4*j + k] : 0x00 );
+    946                      }
+    947                      // wait for data ready
+    948                      delay = DELAY;
+    949                      while(delay--);
+    950                      // Read out data for every 4th byte
+    951                      for(k = 0; k < 4; k++){
+    952                         pDataOut[i + 4*j + k] = ENCDO;
+    953                      }
+    954                   }
+    955          */
+    956                }
+    957                else if(mode == CBC_MAC){/*
+    958                   // Writing the input data
+    959                   // Zeropadding the remainder of the block
+    960                   for(j = 0; j < 16; j++){
+    961                      ENCDI = ((i + j < length) ? pDataIn[i + j] : 0x00 );
+    962                   }
+    963                   // The last block of the CBC-MAC is computed by using CBC mode.
+    964                   if(convertedBlock == nbrOfBlocks - 2){
+    965                      AES_SETMODE(CBC);
+    966                      delay = DELAY;
+    967                      while(delay--);
+    968                   }
+    969                   // The CBC-MAC does not produce an output on the n-1 first blocks
+    970                   // only the last block is read out
+    971                   else if(convertedBlock == nbrOfBlocks - 1){
+    972                      // wait for data ready
+    973                      delay = DELAY;
+    974                      while(delay--);
+    975                      for(j = 0; j < 16; j++){
+    976                         pDataOut[j] = ENCDO;
+    977                      }
+    978                   }*/
+    979                }
+    980                else{
+    981                   // Writing the input data
+    982                   // Zeropadding the remainder of the block
+    983                   for(j = 0; j < 16; j++){
+    984                      ENCDI = ((i+j < length) ? pDataIn[i+j] : 0x00 );
+   \                     ??halAesEncrDecr_5:
+   \   000056   E4           CLR     A
+   \                     ??halAesEncrDecr_6:
+   \   000057   F5B1         MOV     0xb1,A
+   \   000059   05..         INC     ?V0 + 9
+   \   00005B   E5..         MOV     A,?V0 + 9
+   \   00005D   C3           CLR     C
+   \   00005E   9410         SUBB    A,#0x10
+   \   000060   4075         JC      ??halAesEncrDecr_7
+    985                   }
+    986                   // wait for data ready
+    987                   delay = DELAY;
+   \   000062   75..0F       MOV     ?V0 + 4,#0xf
+    988                   while(delay--);
+   \                     ??halAesEncrDecr_8:
+   \   000065   85....       MOV     ?V0 + 8,?V0 + 4
+   \   000068   74FF         MOV     A,#-0x1
+   \   00006A   25..         ADD     A,?V0 + 8
+   \   00006C   F5..         MOV     ?V0 + 4,A
+   \   00006E   04           INC     A
+   \   00006F   70F4         JNZ     ??halAesEncrDecr_8
+    989                   // Read out data
+    990                   for(j = 0; j < 16; j++){
+   \   000071   75..00       MOV     ?V0 + 9,#0x0
+    991                      pDataOut[i+j] = ENCDO;
+   \                     ??halAesEncrDecr_9:
+   \   000074   E5B2         MOV     A,0xb2
+   \   000076   C0E0         PUSH    A
+   \   000078   12....       LCALL   ?Subroutine6
+    992                   }
+   \                     ??CrossCallReturnLabel_7:
+   \   00007B   EE           MOV     A,R6
+   \   00007C   25..         ADD     A,?V0 + 4
+   \   00007E   F582         MOV     DPL,A
+   \   000080   EF           MOV     A,R7
+   \   000081   35..         ADDC    A,?V0 + 5
+   \   000083   F583         MOV     DPH,A
+   \   000085   D0E0         POP     A
+   \   000087   F0           MOVX    @DPTR,A
+   \   000088   05..         INC     ?V0 + 9
+   \   00008A   E5..         MOV     A,?V0 + 9
+   \   00008C   C3           CLR     C
+   \   00008D   9410         SUBB    A,#0x10
+   \   00008F   40E3         JC      ??halAesEncrDecr_9
+   \                     ??halAesEncrDecr_10:
+   \   000091   E5..         MOV     A,?V0 + 0
+   \   000093   2401         ADD     A,#0x1
+   \   000095   F5..         MOV     ?V0 + 0,A
+   \   000097   E5..         MOV     A,?V0 + 1
+   \   000099   3400         ADDC    A,#0x0
+   \   00009B   F5..         MOV     ?V0 + 1,A
+   \                     ??halAesEncrDecr_4:
+   \   00009D   C3           CLR     C
+   \   00009E   E5..         MOV     A,?V0 + 0
+   \   0000A0   95..         SUBB    A,?V0 + 2
+   \   0000A2   E5..         MOV     A,?V0 + 1
+   \   0000A4   95..         SUBB    A,?V0 + 3
+   \   0000A6   504C         JNC     ??halAesEncrDecr_11
+   \   0000A8   43B301       ORL     0xb3,#0x1
+   \   0000AB   85....       MOV     ?V0 + 4,?V0 + 0
+   \   0000AE   85....       MOV     ?V0 + 5,?V0 + 1
+   \   0000B1   7404         MOV     A,#0x4
+   \   0000B3   78..         MOV     R0,#?V0 + 4
+   \   0000B5   12....       LCALL   ?S_SHL
+   \   0000B8   A8..         MOV     R0,?V0 + 4
+   \   0000BA   A9..         MOV     R1,?V0 + 5
+   \   0000BC   7410         MOV     A,#0x10
+   \   0000BE   65..         XRL     A,?V0 + 7
+   \   0000C0   60CF         JZ      ??halAesEncrDecr_10
+   \   0000C2   7420         MOV     A,#0x20
+   \   0000C4   65..         XRL     A,?V0 + 7
+   \   0000C6   60C9         JZ      ??halAesEncrDecr_10
+   \   0000C8   7430         MOV     A,#0x30
+   \   0000CA   65..         XRL     A,?V0 + 7
+   \   0000CC   60C3         JZ      ??halAesEncrDecr_10
+   \   0000CE   7450         MOV     A,#0x50
+   \   0000D0   65..         XRL     A,?V0 + 7
+   \   0000D2   60BD         JZ      ??halAesEncrDecr_10
+   \   0000D4   75..00       MOV     ?V0 + 9,#0x0
+   \                     ??halAesEncrDecr_7:
+   \   0000D7   12....       LCALL   ?Subroutine6
+    993                }
+    994             }
+   \                     ??CrossCallReturnLabel_8:
+   \   0000DA   C3           CLR     C
+   \   0000DB   E5..         MOV     A,?V0 + 4
+   \   0000DD   9C           SUBB    A,R4
+   \   0000DE   E5..         MOV     A,?V0 + 5
+   \   0000E0   9D           SUBB    A,R5
+   \   0000E1   4003         JC      $+5
+   \   0000E3   02....       LJMP    ??halAesEncrDecr_5
+   \   0000E6   EA           MOV     A,R2
+   \   0000E7   25..         ADD     A,?V0 + 4
+   \   0000E9   F582         MOV     DPL,A
+   \   0000EB   EB           MOV     A,R3
+   \   0000EC   35..         ADDC    A,?V0 + 5
+   \   0000EE   F583         MOV     DPH,A
+   \   0000F0   E0           MOVX    A,@DPTR
+   \   0000F1   02....       LJMP    ??halAesEncrDecr_6
+    995          }
+   \                     ??halAesEncrDecr_11:
+   \   0000F4   7F0A         MOV     R7,#0xa
+   \   0000F6   02....       LJMP    ?FUNC_LEAVE_XDATA
+   \   0000F9                REQUIRE ENCCS
+   \   0000F9                REQUIRE ENCDI
+   \   0000F9                REQUIRE ENCDO
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine6:
+   \   000000   85....       MOV     ?V0 + 4,?V0 + 9
+   \   000003   E8           MOV     A,R0
+   \   000004   25..         ADD     A,?V0 + 4
+   \   000006   F5..         MOV     ?V0 + 4,A
+   \   000008   E9           MOV     A,R1
+   \   000009   3400         ADDC    A,#0x0
+   \   00000B   F5..         MOV     ?V0 + 5,A
+   \   00000D   22           RET
+
+   \                                 In  segment NEAR_CODE, align 1, keep-with-next
+   \                     ?Subroutine13:
+   \   000000   F0           MOVX    @DPTR,A
+   \   000001   906270       MOV     DPTR,#0x6270
+   \   000004   E0           MOVX    A,@DPTR
+   \   000005   D2E0         SETB    0xE0 /* A   */.0
+   \   000007   F0           MOVX    @DPTR,A
+   \   000008   22           RET
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant {63, 221, 251, 183`:
+   \   000000   3F           DB 63
+   \   000001   DD           DB 221
+   \   000002   FB           DB 251
+   \   000003   B7           DB 183
+   \   000004   20           DB 32
+   \   000005   B1           DB 177
+   \   000006   95           DB 149
+   \   000007   89           DB 137
+   \   000008   75           DB 117
+   \   000009   D6           DB 214
+   \   00000A   6E           DB 110
+   \   00000B   92           DB 146
+   \   00000C   3F           DB 63
+   \   00000D   F7           DB 247
+   \   00000E   F0           DB 240
+   \   00000F   AD           DB 173
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "MakeTomorrowBest"`:
+   \   000000   4D616B65     DB "MakeTomorrowBest"
+   \            546F6D6F
+   \            72726F77
+   \            42657374
+   \            00      
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "BOOT\\r\\n">>`:
+   \   000000   424F4F54     DB "BOOT\015\012"
+   \            0D0A00  
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "Initial\\r\\n">>`:
+   \   000000   496E6974     DB "Initial\015\012"
+   \            69616C0D
+   \            0A00    
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "Start\\r\\n">>`:
+   \   000000   53746172     DB "Start\015\012"
+   \            740D0A00
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "boot">>`:
+   \   000000   626F6F74     DB "boot"
+   \            00      
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for <Constant "jump">>`:
+   \   000000   6A756D70     DB "jump"
+   \            00      
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for cpuIdKey>`:
+   \   000000   24           DB 36
+   \   000001   98           DB 152
+   \   000002   B7           DB 183
+   \   000003   A0           DB 160
+   \   000004   CB           DB 203
+   \   000005   DF           DB 223
+   \   000006   E6           DB 230
+   \   000007   5D           DB 93
+   \   000008   D1           DB 209
+   \   000009   4B           DB 75
+   \   00000A   F7           DB 247
+   \   00000B   51           DB 81
+   \   00000C   A6           DB 166
+   \   00000D   01           DB 1
+   \   00000E   98           DB 152
+   \   00000F   22           DB 34
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for __Constant_3a4d3254>`:
+   \   000000   54324D3A     DD 978137684
+
+   \                                 In  segment XDATA_ID, align 1, keep-with-next
+   \                     `?<Initializer for __Constant_f8900a6>`:
+   \   000000   A600890F     DD 260636838
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant {63, 221, 251, 183, 32, 177, 149, 1`:
+   \   000000                DS 16
+   \   000010                REQUIRE `?<Initializer for <Constant {63, 221, 251, 183`
+   \   000010                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "MakeTomorrowBest">`:
+   \   000000                DS 17
+   \   000011                REQUIRE `?<Initializer for <Constant "MakeTomorrowBest"`
+   \   000011                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "BOOT\\r\\n">`:
+   \   000000                DS 7
+   \   000007                REQUIRE `?<Initializer for <Constant "BOOT\\r\\n">>`
+   \   000007                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "Initial\\r\\n">`:
+   \   000000                DS 10
+   \   00000A                REQUIRE `?<Initializer for <Constant "Initial\\r\\n">>`
+   \   00000A                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "Start\\r\\n">`:
+   \   000000                DS 8
+   \   000008                REQUIRE `?<Initializer for <Constant "Start\\r\\n">>`
+   \   000008                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "boot">`:
+   \   000000                DS 5
+   \   000005                REQUIRE `?<Initializer for <Constant "boot">>`
+   \   000005                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     `?<Constant "jump">`:
+   \   000000                DS 5
+   \   000005                REQUIRE `?<Initializer for <Constant "jump">>`
+   \   000005                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     __Constant_3a4d3254:
+   \   000000                DS 4
+   \   000004                REQUIRE `?<Initializer for __Constant_3a4d3254>`
+   \   000004                REQUIRE __INIT_XDATA_I
+
+   \                                 In  segment XDATA_I, align 1, keep-with-next
+   \                     __Constant_f8900a6:
+   \   000000                DS 4
+   \   000004                REQUIRE `?<Initializer for __Constant_f8900a6>`
+   \   000004                REQUIRE __INIT_XDATA_I
+    996          
+    997          
+    998           #ifdef _USER_OAD_FLASH_WRITE_
+    999          static void dl2rc(void)
+   1000          {
+   1001            preamble_t preamble;
+   1002            uint32 oset;
+   1003            uint16 addr = HAL_OAD_RC_START / HAL_FLASH_WORD_SIZE;				//0x0800/4		user code start address
+   1004            uint8 buf[4];
+   1005          
+   1006            HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_DL);
+   1007            //preamble.len = 65536;
+   1008          
+   1009            for (oset = 0; oset < preamble.len; oset += HAL_FLASH_WORD_SIZE)
+   1010            {
+   1011              HalOADRead(oset, buf, HAL_FLASH_WORD_SIZE, HAL_OAD_DL);
+   1012              if ((addr % (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE)) == 0)
+   1013              {
+   1014                HalFlashErase(addr / (HAL_FLASH_PAGE_SIZE / HAL_FLASH_WORD_SIZE));
+   1015              }
+   1016              HalFlashWrite(addr++, buf, 1);
+   1017            }
+   1018          }  
+   1019          
+   1020          /*********************************************************************
+   1021           * @fn      crcCalc
+   1022           *
+   1023           * @brief   Run the CRC16 Polynomial calculation over the RC image.
+   1024           *
+   1025           * @param   None.
+   1026           *
+   1027           * @return  The CRC16 calculated.
+   1028           */
+   1029          static uint16 crcCalc(void)
+   1030          {
+   1031            preamble_t preamble;
+   1032            uint32 oset;
+   1033            uint16 crc = 0;
+   1034          
+   1035            HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+   1036          
+   1037            // Run the CRC calculation over the active body of code.
+   1038            for (oset = 0; oset < preamble.len; oset++)
+   1039            {
+   1040              if ((oset < HAL_OAD_CRC_OSET) || (oset >= HAL_OAD_CRC_OSET+4))
+   1041              {
+   1042                uint8 buf;
+   1043                HalOADRead(oset, &buf, 1, HAL_OAD_RC);
+   1044                crc = runPoly(crc, buf);
+   1045              }
+   1046            }
+   1047          
+   1048            // IAR note explains that poly must be run with value zero for each byte of crc.
+   1049            crc = runPoly(crc, 0);
+   1050            crc = runPoly(crc, 0);
+   1051          
+   1052            return crc;
+   1053          }
+   1054          #endif
+   1055          //#endif
+   1056          
+   1057          /*********************************************************************
+   1058           * @fn      runPoly
+   1059           *
+   1060           * @brief   Run the CRC16 Polynomial calculation over the byte parameter.
+   1061           *
+   1062           * @param   crc - Running CRC calculated so far.
+   1063           * @param   val - Value on which to run the CRC16.
+   1064           *
+   1065           * @return  crc - Updated for the run.
+   1066           */
+   1067           #if _USER_OAD_FLASH_WRITE_
+                      ^
+Remark[Pe193]: zero used for undefined preprocessing identifier
+          "_USER_OAD_FLASH_WRITE_"
+
+  static uint16 runPoly(uint16 crc, uint8 val);
+                ^
+"C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c",109  Warning[Pe177]: 
+          function "runPoly" was declared but never referenced
+
+  static void dl2rc(void);
+              ^
+"C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c",206  Warning[Pe177]: 
+          function "dl2rc" was declared but never referenced
+
+  static uint16 crcCalc(void);
+                ^
+"C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_oad.c",207  Warning[Pe177]: 
+          function "crcCalc" was declared but never referenced
+   1068          static uint16 runPoly(uint16 crc, uint8 val)
+   1069          {
+   1070            const uint16 poly = 0x1021;
+   1071            uint8 cnt;
+   1072          
+   1073            for (cnt = 0; cnt < 8; cnt++, val <<= 1)
+   1074            {
+   1075              uint8 msb = (crc & 0x8000) ? 1 : 0;
+   1076          
+   1077              crc <<= 1;
+   1078              if (val & 0x80)  crc |= 0x0001;
+   1079              if (msb)         crc ^= poly;
+   1080            }
+   1081          
+   1082            return crc;
+   1083          }
+   1084          
+   1085          /*********************************************************************
+   1086           * @fn      HalOADChkDL
+   1087           *
+   1088           * @brief   Run the CRC16 Polynomial calculation over the DL image.
+   1089           *
+   1090           * @param   dlImagePreambleOffset - Offset into the monolithic DL image to read the preamble.
+   1091           *
+   1092           * @return  SUCCESS or FAILURE.
+   1093           *********************************************************************/
+   1094          uint8 HalOADChkDL(uint8 dlImagePreambleOffset)
+   1095          {
+   1096            preamble_t preamble;
+   1097            uint32 oset;
+   1098            uint16 crc = 0, crc2;
+   1099          
+   1100            HalOADRead(dlImagePreambleOffset, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_DL);
+   1101          
+   1102            // Run the CRC calculation over the downloaded image.
+   1103            for (oset = 0; oset < preamble.len; oset++)
+   1104            {
+   1105              if ((oset < HAL_OAD_CRC_OSET) || (oset >= HAL_OAD_CRC_OSET+4))
+   1106              {
+   1107                uint8 buf;
+   1108                HalOADRead(oset, &buf, 1, HAL_OAD_DL);
+   1109                crc = runPoly(crc, buf);
+   1110              }
+   1111            }
+   1112          
+   1113            // IAR note explains that poly must be run with value zero for each byte of crc.
+   1114            crc = runPoly(crc, 0);
+   1115            crc = runPoly(crc, 0);
+   1116          
+   1117            HalOADRead(HAL_OAD_CRC_OSET, (uint8 *)&crc2, sizeof(crc2), HAL_OAD_DL);
+   1118            return (crc2 == crc) ? SUCCESS : FAILURE;
+   1119          }
+   1120          
+   1121          /*********************************************************************
+   1122           * @fn      HalOADInvRC
+   1123           *
+   1124           * @brief   Invalidate the active image so that the boot code will instantiate the DL image on the
+   1125           *          next reset.
+   1126           *
+   1127           * @param   None.
+   1128           *
+   1129           * @return  None.
+   1130           *********************************************************************/
+   1131          void HalOADInvRC(void)
+   1132          {
+   1133            uint16 crc[2] = {0,0xFFFF};
+   1134            HalFlashWrite((HAL_OAD_CRC_ADDR / HAL_FLASH_WORD_SIZE), (uint8 *)crc, 1);
+   1135          }
+   1136          
+   1137          /*********************************************************************
+   1138           * @fn      HalOADRead
+   1139           *
+   1140           * @brief   Read from the storage medium according to image type.
+   1141           *
+   1142           * @param   oset - Offset into the monolithic image.
+   1143           * @param   pBuf - Pointer to the buffer in which to copy the bytes read.
+   1144           * @param   len - Number of bytes to read.
+   1145           * @param   type - Which image: HAL_OAD_RC or HAL_OAD_DL.
+   1146           *
+   1147           * @return  None.
+   1148           *********************************************************************/
+   1149          void HalOADRead(uint32 oset, uint8 *pBuf, uint16 len, image_t type)
+   1150          {
+   1151            if (HAL_OAD_RC != type)
+   1152            {
+   1153          #if HAL_OAD_XNV_IS_INT
+   1154              preamble_t preamble;
+   1155          
+   1156              HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+   1157              //oset += HAL_OAD_RC_START + preamble.len;
+   1158              oset += HAL_OAD_RC_START + HAL_OAD_DL_OSET;
+   1159          #elif HAL_OAD_XNV_IS_SPI
+   1160              oset += HAL_OAD_DL_OSET;
+   1161              HalSPIRead(oset, pBuf, len);
+   1162              return;
+   1163          #endif
+   1164            }
+   1165            else
+   1166            {
+   1167              oset += HAL_OAD_RC_START;
+   1168            }
+   1169          
+   1170            HalFlashRead(oset / HAL_FLASH_PAGE_SIZE, oset % HAL_FLASH_PAGE_SIZE, pBuf, len);
+   1171          }
+   1172          
+   1173          /*********************************************************************
+   1174           * @fn      HalOADWrite
+   1175           *
+   1176           * @brief   Write to the storage medium according to the image type.
+   1177           *
+   1178           *  NOTE:   Destructive write on page boundary! When writing to the first flash word
+   1179           *          of a page boundary, the page is erased without saving/restoring the bytes not written.
+   1180           *          Writes anywhere else on a page assume that the location written to has been erased.
+   1181           *
+   1182           * @param   oset - Offset into the monolithic image, aligned to HAL_FLASH_WORD_SIZE.
+   1183           * @param   pBuf - Pointer to the buffer in from which to write.
+   1184           * @param   len - Number of bytes to write. If not an even multiple of HAL_FLASH_WORD_SIZE,
+   1185           *                remainder bytes are overwritten with garbage.
+   1186           * @param   type - Which image: HAL_OAD_RC or HAL_OAD_DL.
+   1187           *
+   1188           * @return  None.
+   1189           *********************************************************************/
+   1190          void HalOADWrite(uint32 oset, uint8 *pBuf, uint16 len, image_t type)
+   1191          {
+   1192            if (HAL_OAD_RC != type)
+   1193            {
+   1194          #if HAL_OAD_XNV_IS_INT
+   1195              preamble_t preamble;
+   1196          
+   1197              HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+   1198              //oset += HAL_OAD_RC_START + preamble.len;
+   1199              oset += HAL_OAD_RC_START + HAL_OAD_DL_OSET;
+   1200          #elif HAL_OAD_XNV_IS_SPI
+   1201              oset += HAL_OAD_DL_OSET;
+   1202              HalSPIWrite(oset, pBuf, len);
+   1203              return;
+   1204          #endif
+   1205            }
+   1206            else
+   1207            {
+   1208              oset += HAL_OAD_RC_START;
+   1209            }
+   1210          
+   1211            if ((oset % HAL_FLASH_PAGE_SIZE) == 0)
+   1212            {
+   1213              HalFlashErase(oset / HAL_FLASH_PAGE_SIZE);
+   1214            }
+   1215          
+   1216            HalFlashWrite(oset / HAL_FLASH_WORD_SIZE, pBuf, len / HAL_FLASH_WORD_SIZE);
+   1217          }
+   1218          
+   1219          #if HAL_OAD_XNV_IS_INT
+   1220          /*********************************************************************
+   1221           * @fn      HalOADAvail
+   1222           *
+   1223           * @brief   Determine the space available for downloading an image.
+   1224           *
+   1225           * @param   None.
+   1226           *
+   1227           * @return  Number of bytes available for storing an OAD image.
+   1228           *********************************************************************/
+   1229          uint32 HalOADAvail(void)
+   1230          {
+   1231            /*
+   1232            preamble_t preamble;
+   1233          
+   1234            HalOADRead(PREAMBLE_OFFSET, (uint8 *)&preamble, sizeof(preamble_t), HAL_OAD_RC);
+   1235            return HAL_OAD_DL_MAX - preamble.len;
+   1236             */
+   1237            return HAL_OAD_DL_MAX - HAL_OAD_DL_OSET;
+   1238          }
+   1239          
+   1240          #elif HAL_OAD_XNV_IS_SPI
+   1241          
+   1242          /*********************************************************************
+   1243           * CONSTANTS
+   1244           */
+   1245          
+   1246          #define XNV_STAT_CMD  0x05
+   1247          #define XNV_WREN_CMD  0x06
+   1248          #define XNV_WRPG_CMD  0x0A
+   1249          #define XNV_READ_CMD  0x0B
+   1250          
+   1251          #define XNV_STAT_WIP  0x01
+   1252          
+   1253          /*********************************************************************
+   1254           * @fn      xnvSPIWrite
+   1255           *
+   1256           * @brief   SPI write sequence for code size savings.
+   1257           *
+   1258           * @param   ch - The byte to write to the SPI.
+   1259           *
+   1260           * @return  None.
+   1261           *********************************************************************/
+   1262          static void xnvSPIWrite(uint8 ch);
+   1263          static void xnvSPIWrite(uint8 ch)
+   1264          {
+   1265            XNV_SPI_TX(ch);
+   1266            XNV_SPI_WAIT_RXRDY();
+   1267          }
+   1268          
+   1269          /*********************************************************************
+   1270           * @fn      HalOADAvail
+   1271           *
+   1272           * @brief   Determine the space available for downloading an image.
+   1273           *
+   1274           * @param   None.
+   1275           *
+   1276           * @return  Number of bytes available for storing an OAD image.
+   1277           *********************************************************************/
+   1278          uint32 HalOADAvail(void)
+   1279          {
+   1280            return HAL_OAD_DL_MAX - HAL_OAD_DL_OSET;
+   1281          }
+   1282          
+   1283          /*********************************************************************
+   1284           * @fn      HalSPIRead
+   1285           *
+   1286           * @brief   Read from the external NV storage via SPI.
+   1287           *
+   1288           * @param   addr - Offset into the external NV.
+   1289           * @param   pBuf - Pointer to the buffer in which to copy the bytes read from external NV.
+   1290           * @param   len - Number of bytes to read from external NV.
+   1291           *
+   1292           * @return  None.
+   1293           *********************************************************************/
+   1294          static void HalSPIRead(uint32 addr, uint8 *pBuf, uint16 len)
+   1295          {
+   1296          #if !HAL_OAD_BOOT_CODE
+   1297            uint8 shdw = P1DIR;
+   1298            halIntState_t his;
+   1299            HAL_ENTER_CRITICAL_SECTION(his);
+   1300            P1DIR |= BV(3);
+   1301          #endif
+   1302          
+   1303            XNV_SPI_BEGIN();
+   1304            do {
+   1305              xnvSPIWrite(XNV_STAT_CMD);
+   1306            } while (XNV_SPI_RX() & XNV_STAT_WIP);
+   1307            XNV_SPI_END();
+   1308            asm("NOP"); asm("NOP");
+   1309          
+   1310            XNV_SPI_BEGIN();
+   1311            xnvSPIWrite(XNV_READ_CMD);
+   1312            xnvSPIWrite(addr >> 16);
+   1313            xnvSPIWrite(addr >> 8);
+   1314            xnvSPIWrite(addr);
+   1315            xnvSPIWrite(0);
+   1316          
+   1317            while (len--)
+   1318            {
+   1319              xnvSPIWrite(0);
+   1320              *pBuf++ = XNV_SPI_RX();
+   1321            }
+   1322            XNV_SPI_END();
+   1323          
+   1324          #if !HAL_OAD_BOOT_CODE
+   1325            P1DIR = shdw;
+   1326            HAL_EXIT_CRITICAL_SECTION(his);
+   1327          #endif
+   1328          }
+   1329          
+   1330          /*********************************************************************
+   1331           * @fn      HalSPIWrite
+   1332           *
+   1333           * @brief   Write to the external NV storage via SPI.
+   1334           *
+   1335           * @param   addr - Offset into the external NV.
+   1336           * @param   pBuf - Pointer to the buffer in from which to write bytes to external NV.
+   1337           * @param   len - Number of bytes to write to external NV.
+   1338           *
+   1339           * @return  None.
+   1340           *********************************************************************/
+   1341          static void HalSPIWrite(uint32 addr, uint8 *pBuf, uint16 len)
+   1342          {
+   1343            uint8 cnt;
+   1344          #if !HAL_OAD_BOOT_CODE
+   1345            uint8 shdw = P1DIR;
+   1346            halIntState_t his;
+   1347            HAL_ENTER_CRITICAL_SECTION(his);
+   1348            P1DIR |= BV(3);
+   1349          #endif
+   1350          
+   1351            while (len)
+   1352            {
+   1353              XNV_SPI_BEGIN();
+   1354              do {
+   1355                xnvSPIWrite(XNV_STAT_CMD);
+   1356              } while (XNV_SPI_RX() & XNV_STAT_WIP);
+   1357              XNV_SPI_END();
+   1358              asm("NOP"); asm("NOP");
+   1359          
+   1360              XNV_SPI_BEGIN();
+   1361              xnvSPIWrite(XNV_WREN_CMD);
+   1362              XNV_SPI_END();
+   1363              asm("NOP"); asm("NOP");
+   1364          
+   1365              XNV_SPI_BEGIN();
+   1366              xnvSPIWrite(XNV_WRPG_CMD);
+   1367              xnvSPIWrite(addr >> 16);
+   1368              xnvSPIWrite(addr >> 8);
+   1369              xnvSPIWrite(addr);
+   1370          
+   1371              // Can only write within any one page boundary, so prepare for next page write if bytes remain.
+   1372              cnt = 0 - (uint8)addr;
+   1373              if (cnt)
+   1374              {
+   1375                addr += cnt;
+   1376              }
+   1377              else
+   1378              {
+   1379                addr += 256;
+   1380              }
+   1381          
+   1382              do
+   1383              {
+   1384                xnvSPIWrite(*pBuf++);
+   1385                cnt--;
+   1386                len--;
+   1387              } while (len && cnt);
+   1388              XNV_SPI_END();
+   1389            }
+   1390          
+   1391          #if !HAL_OAD_BOOT_CODE
+   1392            P1DIR = shdw;
+   1393            HAL_EXIT_CRITICAL_SECTION(his);
+   1394          #endif
+   1395          }
+   1396          #else
+   1397          #error Invalid Xtra-NV for OAD.
+   1398          #endif
+   1399          
+   1400          #endif
+   1401          
+   1402          #if defined HAL_PA_LNA || defined HAL_PA_LNA_CC2590
+   1403          void MAC_RfFrontendSetup(void)
+   1404          {}
+   1405          #endif
+   1406          
+   1407          #ifdef DEBUG_TRACE
+   1408          static void PutChar(const char Tbyte)
+   1409          {
+   1410          	U0DBUF = Tbyte; 
+   1411          	while(UTX0IF == 0);   //发送完成标志位
+   1412          	UTX0IF = 0;  
+   1413          }
+   1414          
+   1415          static void putsStr(const char *str)
+   1416          {
+   1417          	while(*str!='0')
+   1418          		PutChar(*str++);
+   1419          	//HalUARTWrite(0, (unsigned char*)str++, 1);
+   1420          }
+   1421          
+   1422          static char *mac_itoa(long n, int base)
+   1423           {
+   1424            	char *p;
+   1425           	int minus;
+   1426           	static char buf[16];
+   1427          
+   1428          //	puts_("enter _itoa\n");
+   1429          //	put_hex(n);
+   1430          
+   1431           	p = &buf[16];
+   1432           	*--p =  0;
+   1433           	if (n < 0) 
+   1434          	{
+   1435            		minus = 1;
+   1436            		n = -n;
+   1437           	}
+   1438           	else
+   1439            		minus = 0;
+   1440          
+   1441          
+   1442           	if (n == 0)
+   1443          	{
+   1444            		*--p = '0';
+   1445          	}
+   1446           	else
+   1447            		while (n > 0) 
+   1448          		{  
+   1449          	//		puts_("_itoa ");
+   1450             			*--p = "0123456789abcdef"[n % base];
+   1451          	//		putchar(*p);
+   1452             			n /= base;
+   1453            		}
+   1454          
+   1455           	if (minus)
+   1456            		*--p = '-';
+   1457          
+   1458           	return p;
+   1459          }
+   1460          
+   1461          
+   1462          
+   1463          int Printf(const char *fmt, ...)
+   1464          {
+   1465          	int i;
+   1466          	const char *s;
+   1467           	int d;
+   1468          	char buf[128];
+   1469          	char *p = buf;
+   1470          //	char buf[16];
+   1471          //	char *p = buf;
+   1472           	va_list ap;
+   1473          
+   1474              va_start(ap, fmt);
+   1475          	i = 16;
+   1476          
+   1477              while (*fmt) 
+   1478          	{
+   1479                  if (*fmt != '%') 
+   1480          		{
+   1481                      PutChar(*fmt++);
+   1482                      continue;
+   1483                  }
+   1484          		
+   1485          		switch(*++fmt)
+   1486          		{
+   1487                      case 's':
+   1488                          s = va_arg(ap, const char *);
+   1489                          for ( ; *s; s++) 
+   1490          		 {
+   1491                             PutChar(*s);
+   1492                          }
+   1493                          break;
+   1494                      case 'd':			
+   1495                          d = va_arg(ap, int);
+   1496          				//d>>=8;
+   1497                          p = mac_itoa(d, 10);
+   1498                          for (s = p; *s; s++) 
+   1499          				{
+   1500                              PutChar(*s);
+   1501                          }
+   1502          
+   1503          				break;
+   1504          
+   1505                      case 'x':
+   1506          			case 'X':
+   1507                          d = va_arg(ap, int);
+   1508                          p = mac_itoa(d, 16);
+   1509                          for (s = p; *s; s++) 
+   1510          				{
+   1511                              PutChar(*s);
+   1512                          }
+   1513                          break;
+   1514                       //Add other specifiers here...              
+   1515                      default:  
+   1516                          putsStr(fmt);
+   1517                          break;
+   1518                  } 
+   1519                  fmt++;
+   1520              }
+   1521              va_end(ap);
+   1522          
+   1523              return 1;   /* Dummy return value */
+   1524          }
+   1525          #endif
+   1526          
+   1527          /**************************************************************************************************
+   1528          */
+C:\Users\freeman\Documents\work\NBK\Canon\Nbk600EX - RF\Components\hal\target\CC2530EB\hal_uart.c
+      1          /**************************************************************************************************
+      2            Filename:       _hal_uart.c
+      3            Revised:        $Date: 2009-06-12 09:16:43 -0700 (Fri, 12 Jun 2009) $
+      4            Revision:       $Revision: 20142 $
+      5          
+      6            Description: This file contains the interface to the H/W UART driver.
+      7          
+      8          
+      9            Copyright 2006-2009 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License").  You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product.  Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          **************************************************************************************************/
+     39          
+     40          /*********************************************************************
+     41           * INCLUDES
+     42           */
+     43          
+     44          #include "hal_board_cfg.h"
+     45          #include "hal_defs.h"
+     46          #include "hal_types.h"
+     47          #include "hal_uart.h"
+     48          
+     49          /*********************************************************************
+     50           * MACROS
+     51           */
+     52          
+     53          /*********************************************************************
+     54           * TYPEDEFS
+     55           */
+     56          
+     57          /*********************************************************************
+     58           * CONSTANTS
+     59           */
+     60          
+     61          /*********************************************************************
+     62           * GLOBAL VARIABLES
+     63           */
+     64          
+     65          /*********************************************************************
+     66           * GLOBAL FUNCTIONS
+     67           */
+     68          
+     69          /*********************************************************************
+     70           * LOCAL VARIABLES
+     71           */
+     72          
+     73          /*********************************************************************
+     74           * LOCAL FUNCTIONS
+     75           */
+     76          
+     77          #if HAL_UART_DMA
+     78          #include "_hal_uart_dma.c"
+     79          #endif
+     80          #if HAL_UART_ISR
+     81          #include "_hal_uart_isr.c"
+     82          #endif
+     83          #if HAL_UART_USB
+     84          #include "_hal_uart_usb.c"
+     85          #endif
+     86          
+     87          /******************************************************************************
+     88           * @fn      HalUARTInit
+     89           *
+     90           * @brief   Initialize the UART
+     91           *
+     92           * @param   none
+     93           *
+     94           * @return  none
+     95           *****************************************************************************/
+     96          void HalUARTInit(void)
+     97          {
+     98          #if HAL_UART_DMA
+     99            HalUARTInitDMA();
+    100          #endif
+    101          #if HAL_UART_ISR
+    102            HalUARTInitISR();
+    103          #endif
+    104          #if HAL_UART_USB
+    105            HalUARTInitUSB();
+    106          #endif
+    107          }
+    108          
+    109          /******************************************************************************
+    110           * @fn      HalUARTOpen
+    111           *
+    112           * @brief   Open a port according tp the configuration specified by parameter.
+    113           *
+    114           * @param   port   - UART port
+    115           *          config - contains configuration information
+    116           *
+    117           * @return  Status of the function call
+    118           *****************************************************************************/
+    119          uint8 HalUARTOpen(uint8 port, halUARTCfg_t *config)
+    120          {
+    121            (void)port;
+    122            (void)config;
+    123          
+    124          #if (HAL_UART_DMA == 1)
+    125            if (port == HAL_UART_PORT_0)  HalUARTOpenDMA(config);
+    126          #endif
+    127          #if (HAL_UART_DMA == 2)
+    128            if (port == HAL_UART_PORT_1)  HalUARTOpenDMA(config);
+    129          #endif
+    130          #if (HAL_UART_ISR == 1)
+    131            if (port == HAL_UART_PORT_0)  HalUARTOpenISR(config);
+    132          #endif
+    133          #if (HAL_UART_ISR == 2)
+    134            if (port == HAL_UART_PORT_1)  HalUARTOpenISR(config);
+    135          #endif
+    136          #if (HAL_UART_USB)
+    137            HalUARTOpenUSB(config);
+    138          #endif
+    139            
+    140            return HAL_UART_SUCCESS;
+    141          }
+    142          
+    143          /*****************************************************************************
+    144           * @fn      HalUARTRead
+    145           *
+    146           * @brief   Read a buffer from the UART
+    147           *
+    148           * @param   port - USART module designation
+    149           *          buf  - valid data buffer at least 'len' bytes in size
+    150           *          len  - max length number of bytes to copy to 'buf'
+    151           *
+    152           * @return  length of buffer that was read
+    153           *****************************************************************************/
+    154          uint16 HalUARTRead(uint8 port, uint8 *buf, uint16 len)
+    155          {
+    156            (void)port;
+    157            (void)buf;
+    158            (void)len;
+    159          
+    160          #if (HAL_UART_DMA == 1)
+    161            if (port == HAL_UART_PORT_0)  return HalUARTReadDMA(buf, len);
+    162          #endif
+    163          #if (HAL_UART_DMA == 2)
+    164            if (port == HAL_UART_PORT_1)  return HalUARTReadDMA(buf, len);
+    165          #endif
+    166          #if (HAL_UART_ISR == 1)
+    167            if (port == HAL_UART_PORT_0)  return HalUARTReadISR(buf, len);
+    168          #endif
+    169          #if (HAL_UART_ISR == 2)
+    170            if (port == HAL_UART_PORT_1)  return HalUARTReadISR(buf, len);
+    171          #endif
+    172          
+    173          #if HAL_UART_USB
+    174            return HalUARTRx(buf, len);
+    175          #else
+    176            return 0;
+    177          #endif
+    178          }
+    179          
+    180          /******************************************************************************
+    181           * @fn      HalUARTWrite
+    182           *
+    183           * @brief   Write a buffer to the UART.
+    184           *
+    185           * @param   port - UART port
+    186           *          buf  - pointer to the buffer that will be written, not freed
+    187           *          len  - length of
+    188           *
+    189           * @return  length of the buffer that was sent
+    190           *****************************************************************************/
+    191          uint16 HalUARTWrite(uint8 port, uint8 *buf, uint16 len)
+    192          {
+    193            (void)port;
+    194            (void)buf;
+    195            (void)len;
+    196          
+    197          #if (HAL_UART_DMA == 1)
+    198            if (port == HAL_UART_PORT_0)  return HalUARTWriteDMA(buf, len);
+    199          #endif
+    200          #if (HAL_UART_DMA == 2)
+    201            if (port == HAL_UART_PORT_1)  return HalUARTWriteDMA(buf, len);
+    202          #endif
+    203          #if (HAL_UART_ISR == 1)
+    204            if (port == HAL_UART_PORT_0)  return HalUARTWriteISR(buf, len);
+    205          #endif
+    206          #if (HAL_UART_ISR == 2)
+    207            if (port == HAL_UART_PORT_1)  return HalUARTWriteISR(buf, len);
+    208          #endif
+    209          
+    210          #if HAL_UART_USB
+    211            HalUARTTx(buf, len);
+    212            return len;
+    213          #else
+    214            return 0;
+    215          #endif
+    216          }
+    217          
+    218          /******************************************************************************
+    219           * @fn      HalUARTSuspend
+    220           *
+    221           * @brief   Suspend UART hardware before entering PM mode 1, 2 or 3.
+    222           *
+    223           * @param   None
+    224           *
+    225           * @return  None
+    226           *****************************************************************************/
+    227          void HalUARTSuspend( void )
+    228          {
+    229          #if HAL_UART_DMA
+    230            HalUARTSuspendDMA();
+    231          #endif
+    232          #if HAL_UART_ISR
+    233            HalUARTSuspendISR();
+    234          #endif
+    235          }
+    236          
+    237          /******************************************************************************
+    238           * @fn      HalUARTResume
+    239           *
+    240           * @brief   Resume UART hardware after exiting PM mode 1, 2 or 3.
+    241           *
+    242           * @param   None
+    243           *
+    244           * @return  None
+    245           *****************************************************************************/
+    246          void HalUARTResume( void )
+    247          {
+    248          #if HAL_UART_DMA
+    249            HalUARTResumeDMA();
+    250          #endif
+    251          #if HAL_UART_ISR
+    252            HalUARTResumeISR();
+    253          #endif
+    254          }
+    255          
+    256          /***************************************************************************************************
+    257           * @fn      HalUARTPoll
+    258           *
+    259           * @brief   Poll the UART.
+    260           *
+    261           * @param   none
+    262           *
+    263           * @return  none
+    264           *****************************************************************************/
+    265          void HalUARTPoll(void)
+    266          {
+    267          #if HAL_UART_DMA
+    268            HalUARTPollDMA();
+    269          #endif
+    270          #if HAL_UART_ISR
+    271            HalUARTPollISR();
+    272          #endif
+    273          #if HAL_UART_USB
+    274            HalUARTPollUSB();
+    275          #endif
+    276          }
+    277          
+    278          /**************************************************************************************************
+    279           * @fn      Hal_UART_RxBufLen()
+    280           *
+    281           * @brief   Calculate Rx Buffer length - the number of bytes in the buffer.
+    282           *
+    283           * @param   port - UART port
+    284           *
+    285           * @return  length of current Rx Buffer
+    286           **************************************************************************************************/
+    287          uint16 Hal_UART_RxBufLen( uint8 port )
+    288          {
+    289            (void)port;
+    290          
+    291          #if (HAL_UART_DMA == 1)
+    292            if (port == HAL_UART_PORT_0)  return HalUARTRxAvailDMA();
+    293          #endif
+    294          #if (HAL_UART_DMA == 2)
+    295            if (port == HAL_UART_PORT_1)  return HalUARTRxAvailDMA();
+    296          #endif
+    297          #if (HAL_UART_ISR == 1)
+    298            if (port == HAL_UART_PORT_0)  return HalUARTRxAvailISR();
+    299          #endif
+    300          #if (HAL_UART_ISR == 2)
+    301            if (port == HAL_UART_PORT_1)  return HalUARTRxAvailISR();
+    302          #endif
+    303          #if HAL_UART_USB
+    304            return HalUARTRxAvailUSB();
+    305          #else
+    306            return 0;
+    307          #endif
+    308          }
+    309          
+    310          /******************************************************************************
+    311          ******************************************************************************/
+
+   Maximum stack usage in bytes:
+
+     Function                       ISTACK PSTACK XSTACK
+     --------                       ------ ------ ------
+     HalFlashRead                       1      0     49
+     HalFlashWrite                      0      0     47
+       -> HalFlashWriteTrigger          0      0     18
+     HalFlashWriteTrigger               2      0      9
+     MemReadRam                         3      0     36
+     Message_Rcv                        1      0     45
+       -> RcvData                       0      0     18
+       -> RcvData                       0      0     18
+       -> RcvData                       0      0     18
+       -> RcvData                       0      0     18
+       -> RcvData                       0      0     18
+       -> RcvData                       0      0     18
+       -> RcvData                       0      0     18
+     Message_Send                       0      0     45
+       -> SendData                      0      0     18
+       -> SendData                      0      0     18
+       -> SendData                      0      0     18
+       -> SendData                      0      0     18
+       -> SendData                      0      0     18
+       -> SendData                      0      0     18
+       -> SendData                      0      0     18
+     RcvData                            2      0      9
+     SendData                           0      0      9
+     Uart_Send_String                   0      0     44
+     delay                              0      0     36
+     halAesEncrDecr                     1      0     55
+     halAesLoadKeyOrInitVector          0      0     45
+     main                               2      0     38
+       -> HalFlashRead                  0      0     76
+       -> putsDialog                    0      0     72
+       -> halAesLoadKeyOrInitVector     0      0     72
+       -> halAesEncrDecr                0      0     76
+       -> halAesLoadKeyOrInitVector     0      0     72
+       -> MemReadRam                    0      0     72
+       -> HalFlashRead                  0      0     76
+       -> halAesEncrDecr                0      0     76
+       -> putsDialog                    0      0     72
+       -> MemReadRam                    0      0     72
+       -> halAesEncrDecr                0      0     76
+       -> HalFlashWrite                 0      0     76
+       -> MemReadRam                    0      0     72
+       -> delay                         0      0     72
+       -> putsDialog                    0      0     72
+       -> delay                         0      0     72
+       -> Uart_Send_String              0      0     72
+       -> HalFlashRead                  0      0     76
+       -> Message_Send                  0      0     72
+       -> Message_Rcv                   0      0     72
+       -> halAesEncrDecr                0      0     76
+       -> HalFlashWrite                 0      0     76
+       -> delay                         0      0     72
+       -> Message_Send                  0      0     72
+       -> Message_Send                  0      0     72
+       -> Message_Send                  0      0     72
+       -> Uart_Send_String              0      0     72
+     putsDialog                         2      0     36
+       -> SendData                      4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label                                 Bytes
+     --------------                                 -----
+     _A_P0                                             1
+     U0CSR                                             1
+     _A_TCON                                           1
+     P0INP                                             1
+     _A_P1                                             1
+     SLEEPSTA                                          1
+     CLKCONSTA                                         1
+     ENCDI                                             1
+     ENCDO                                             1
+     ENCCS                                             1
+     SLEEPCMD                                          1
+     U0DBUF                                            1
+     U0BAUD                                            1
+     U0GCR                                             1
+     CLKCONCMD                                         1
+     MEMCTR                                            1
+     DMAIRQ                                            1
+     DMA0CFGL                                          1
+     DMA0CFGH                                          1
+     DMAARM                                            1
+     _A_IRCON2                                         1
+     PERCFG                                            1
+     P0SEL                                             1
+     P0DIR                                             1
+     P1DIR                                             1
+     P2DIR                                             1
+     ramCode                                          29
+     HalFlashRead                                    119
+     HalFlashWrite                                    89
+     ?Subroutine0                                      5
+     HalFlashWriteTrigger                             27
+     dmaCh0                                            8
+     main                                            948
+     ?Subroutine12                                     9
+     ?Subroutine11                                     4
+     ??Subroutine15_0                                  6
+     ?Subroutine10                                    24
+     cpuIdKey                                         16
+     MemReadRam                                       38
+     ?Subroutine1                                      5
+     SendData                                          9
+     putsDialog                                       20
+     Uart_Send_String                                 54
+     delay                                            18
+     RcvData                                          46
+     Message_Rcv                                     125
+     ?Subroutine5                                      4
+     ?Subroutine2                                      3
+     ??Subroutine14_0                                  5
+     ?Subroutine9                                     10
+     ?Subroutine7                                      7
+     Message_Send                                     98
+     ?Subroutine4                                      6
+     ?Subroutine3                                     10
+     ?Subroutine8                                      9
+     halAesLoadKeyOrInitVector                        53
+     halAesEncrDecr                                  249
+     ?Subroutine6                                     14
+     ?Subroutine13                                     9
+     ?<Initializer for <Constant {63, 221, 251, 183   16
+     ?<Initializer for <Constant "MakeTomorrowBest"   17
+     ?<Initializer for <Constant "BOOT\r\n">>          7
+     ?<Initializer for <Constant "Initial\r\n">>      10
+     ?<Initializer for <Constant "Start\r\n">>         8
+     ?<Initializer for <Constant "boot">>              5
+     ?<Initializer for <Constant "jump">>              5
+     ?<Initializer for cpuIdKey>                      16
+     ?<Initializer for __Constant_3a4d3254>            4
+     ?<Initializer for __Constant_f8900a6>             4
+     ?<Constant {63, 221, 251, 183, 32, 177, 149, 1   16
+     ?<Constant "MakeTomorrowBest">                   17
+     ?<Constant "BOOT\r\n">                            7
+     ?<Constant "Initial\r\n">                        10
+     ?<Constant "Start\r\n">                           8
+     ?<Constant "boot">                                5
+     ?<Constant "jump">                                5
+     __Constant_3a4d3254                               4
+     __Constant_f8900a6                                4
+
+ 
+ 1 996 bytes in segment NEAR_CODE
+    27 bytes in segment RAM_CODE_FLASH
+    29 bytes in segment RAM_CODE_XDATA
+    26 bytes in segment SFR_AN
+    92 bytes in segment XDATA_I
+    92 bytes in segment XDATA_ID
+     8 bytes in segment XDATA_Z
+ 
+ 2 107 bytes of CODE  memory (+  8 bytes shared)
+     0 bytes of DATA  memory (+ 26 bytes shared)
+   121 bytes of XDATA memory (+  8 bytes shared)
+
+Errors: none
+Warnings: 11

@@ -1,0 +1,947 @@
+###############################################################################
+#
+# IAR ELF Linker V2.20.1.176 for STM8                     23/Feb/2019  18:01:14
+# Copyright 2010-2015 IAR Systems AB.
+#
+#    Output file  =  
+#        C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Exe\project.out
+#    Map file     =  
+#        C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\List\project.map
+#    Command line =  
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\canon.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Change.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Funct.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Init.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Key_Process.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Lcd.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\main.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Motor.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_adc.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_aes.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_beep.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_clk.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_comp.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_dac.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_dma.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_exti.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_flash.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_gpio.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_i2c.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_irtim.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_it.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_itc.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_iwdg.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_lcd.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_pwr.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_rst.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_rtc.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_spi.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_syscfg.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_tim1.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_tim2.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_tim3.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_tim4.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_tim5.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_usart.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_wfe.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\stm8l15x_wwdg.o"
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj\Task.o"
+#        --redirect _Printf=_PrintfFull --redirect _Scanf=_ScanfFullNoMb -o
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Exe\project.out"
+#        --map
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\List\project.map"
+#        --log
+#        libraries,initialization,modules,redirects,sections,unused_fragments
+#        --log_file
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\List\project.log"
+#        --config
+#        "C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\..\Config\lnkstm8l152r8.icf"
+#        --config_def _CSTACK_SIZE=0x200 --config_def _HEAP_SIZE=0x200 --entry
+#        __iar_program_start --debug_lib
+#
+###############################################################################
+
+*******************************************************************************
+*** RUNTIME MODEL ATTRIBUTES
+***
+
+__SystemLibrary            = DLib
+__code_model               = medium_or_large
+__core                     = stm8
+__data_model               = medium
+__dlib_file_descriptor     = 0
+__dlib_full_locale_support = 0
+__rt_version               = 4
+
+
+*******************************************************************************
+*** PLACEMENT SUMMARY
+***
+
+"A1":  place at start of [0x000000-0x0000ff] { rw section .vregs };
+"A2":  place at end of [0x000000-0x000fff] { block CSTACK };
+"P2":  place in [from 0x000000 to 0x000fff] {
+          block HEAP, rw section __DLIB_PERTHREAD, rw section .far.bss,
+          rw section .far.data, rw section .far.noinit,
+          rw section .far_func.textrw, rw section .huge.bss,
+          rw section .huge.data, rw section .huge.noinit,
+          rw section .huge_func.textrw, rw section .iar.dynexit,
+          rw section .near.bss, rw section .near.data, rw section .near.noinit,
+          rw section .near_func.textrw };
+"A3":  place at start of [0x00a000-0x017fff] { block INTVEC };
+"P3":  place in [from 0x00a000 to 0x017fff] {
+          ro section __DLIB_PERTHREAD_init, ro section .far.data_init,
+          ro section .far_func.textrw_init, ro section .huge.data_init,
+          ro section .huge_func.textrw_init, ro section .iar.init_table,
+          ro section .init_array, ro section .near.data_init,
+          ro section .near.rodata, ro section .near_func.text,
+          ro section .near_func.textrw_init, ro section .tiny.data_init,
+          ro section .tiny.rodata_init };
+"P4":  place in [from 0x00a000 to 0x017fff] {
+          ro section .far.rodata, ro section .far_func.text };
+"P6":  place in [from 0x001000 to 0x0010ff] { section .eeprom.noinit };
+
+  Section            Kind      Address    Size  Object
+  -------            ----      -------    ----  ------
+"A1":                                     0x10
+  .vregs             uninit   0x000000    0x10  vregs.o [4]
+                            - 0x000010    0x10
+
+"P2", part 1 of 2:                       0x202
+  P2-1                        0x000010   0x202  <Init block>
+    .near.data       inited   0x000010     0x1  canon.o [1]
+    .near.data       inited   0x000011    0x1c  canon.o [1]
+    .near.data       inited   0x00002d   0x150  canon.o [1]
+    .near.data       inited   0x00017d     0x1  Funct.o [1]
+    .near.data       inited   0x00017e     0x1  Funct.o [1]
+    .near.data       inited   0x00017f     0x1  Funct.o [1]
+    .near.data       inited   0x000180     0x1  Funct.o [1]
+    .near.data       inited   0x000181     0x1  Funct.o [1]
+    .near.data       inited   0x000182     0xb  Funct.o [1]
+    .near.data       inited   0x00018d    0x29  Funct.o [1]
+    .near.data       inited   0x0001b6    0x1f  Funct.o [1]
+    .near.data       inited   0x0001d5     0xd  Key_Process.o [1]
+    .near.data       inited   0x0001e2    0x30  Task.o [1]
+                            - 0x000212   0x202
+
+"P2", part 2 of 2:                       0x197
+  .near.bss          zero     0x000212    0x6e  Init.o [1]
+  .near.bss          zero     0x000280    0x21  canon.o [1]
+  .near.bss          zero     0x0002a1    0x1e  canon.o [1]
+  .near.bss          zero     0x0002bf    0x1e  canon.o [1]
+  .near.bss          zero     0x0002dd    0x1c  canon.o [1]
+  .near.bss          zero     0x0002f9    0x1a  canon.o [1]
+  .near.bss          zero     0x000313    0x18  canon.o [1]
+  .near.bss          zero     0x00032b    0x10  Lcd.o [1]
+  .near.bss          zero     0x00033b     0xd  canon.o [1]
+  .near.bss          zero     0x000348     0xb  Motor.o [1]
+  .near.bss          zero     0x000353     0xa  Change.o [1]
+  .near.bss          zero     0x00035d     0xa  Funct.o [1]
+  .near.bss          zero     0x000367     0x4  Task.o [1]
+  .near.bss          zero     0x00036b     0x3  Funct.o [1]
+  .near.bss          zero     0x00036e     0x2  canon.o [1]
+  .near.bss          zero     0x000370     0x2  canon.o [1]
+  .near.bss          zero     0x000372     0x2  canon.o [1]
+  .near.bss          zero     0x000374     0x2  canon.o [1]
+  .near.bss          zero     0x000376     0x2  canon.o [1]
+  .near.bss          zero     0x000378     0x2  canon.o [1]
+  .near.bss          zero     0x00037a     0x2  Change.o [1]
+  .near.bss          zero     0x00037c     0x2  Change.o [1]
+  .near.bss          zero     0x00037e     0x2  Change.o [1]
+  .near.bss          zero     0x000380     0x2  main.o [1]
+  .near.bss          zero     0x000382     0x2  Motor.o [1]
+  .near.bss          zero     0x000384     0x1  canon.o [1]
+  .near.bss          zero     0x000385     0x1  canon.o [1]
+  .near.bss          zero     0x000386     0x1  canon.o [1]
+  .near.bss          zero     0x000387     0x1  canon.o [1]
+  .near.bss          zero     0x000388     0x1  canon.o [1]
+  .near.bss          zero     0x000389     0x1  canon.o [1]
+  .near.bss          zero     0x00038a     0x1  canon.o [1]
+  .near.bss          zero     0x00038b     0x1  canon.o [1]
+  .near.bss          zero     0x00038c     0x1  canon.o [1]
+  .near.bss          zero     0x00038d     0x1  canon.o [1]
+  .near.bss          zero     0x00038e     0x1  canon.o [1]
+  .near.bss          zero     0x00038f     0x1  canon.o [1]
+  .near.bss          zero     0x000390     0x1  canon.o [1]
+  .near.bss          zero     0x000391     0x1  canon.o [1]
+  .near.bss          zero     0x000392     0x1  canon.o [1]
+  .near.bss          zero     0x000393     0x1  canon.o [1]
+  .near.bss          zero     0x000394     0x1  canon.o [1]
+  .near.bss          zero     0x000395     0x1  canon.o [1]
+  .near.bss          zero     0x000396     0x1  canon.o [1]
+  .near.bss          zero     0x000397     0x1  canon.o [1]
+  .near.bss          zero     0x000398     0x1  Change.o [1]
+  .near.bss          zero     0x000399     0x1  Change.o [1]
+  .near.bss          zero     0x00039a     0x1  Change.o [1]
+  .near.bss          zero     0x00039b     0x1  Change.o [1]
+  .near.bss          zero     0x00039c     0x1  Funct.o [1]
+  .near.bss          zero     0x00039d     0x1  Funct.o [1]
+  .near.bss          zero     0x00039e     0x1  Funct.o [1]
+  .near.bss          zero     0x00039f     0x1  Funct.o [1]
+  .near.bss          zero     0x0003a0     0x1  Funct.o [1]
+  .near.bss          zero     0x0003a1     0x1  Funct.o [1]
+  .near.bss          zero     0x0003a2     0x1  Funct.o [1]
+  .near.bss          zero     0x0003a3     0x1  Funct.o [1]
+  .near.bss          zero     0x0003a4     0x1  Funct.o [1]
+  .near.bss          zero     0x0003a5     0x1  Key_Process.o [1]
+  .near.bss          zero     0x0003a6     0x1  Key_Process.o [1]
+  .near.bss          zero     0x0003a7     0x1  Task.o [1]
+  .near.bss          zero     0x0003a8     0x1  Task.o [1]
+                            - 0x0003a9   0x197
+
+"A2":                                    0x200
+  CSTACK                      0x000e00   0x200  <Block>
+    CSTACK           uninit   0x000e00   0x200  <Block tail>
+                            - 0x001000   0x200
+
+"P6":                                      0x8
+  .eeprom.noinit     uninit   0x001000     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001001     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001002     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001003     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001004     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001005     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001006     0x1  Funct.o [1]
+  .eeprom.noinit     uninit   0x001007     0x1  Funct.o [1]
+                            - 0x001008     0x8
+
+"A3":                                     0x80
+  INTVEC                      0x00a000    0x80  <Block>
+    .intvec          const    0x00a000    0x80  interrupt.o [4]
+                            - 0x00a080    0x80
+
+"P3":                                    0x43c
+  Initializer bytes  const    0x00a080   0x202  <for P2-1>
+  .near_func.text    const    0x00a282    0xa5  canon.o [1]
+  .near.rodata       const    0x00a327    0x4c  canon.o [1]
+  .near_func.text    const    0x00a373    0x42  canon.o [1]
+  .near_func.text    const    0x00a3b5    0x27  canon.o [1]
+  .near.rodata       const    0x00a3dc    0x25  canon.o [1]
+  .near.rodata       const    0x00a401    0x23  Motor.o [1]
+  .near.rodata       const    0x00a424    0x23  Motor.o [1]
+  .iar.init_table    const    0x00a447    0x14  - Linker created -
+  .near.rodata       const    0x00a45b    0x18  canon.o [1]
+  .near.rodata       const    0x00a473    0x16  canon.o [1]
+  .near.rodata       const    0x00a489     0xb  Motor.o [1]
+  .near.rodata       const    0x00a494     0xa  canon.o [1]
+  .near.rodata       const    0x00a49e     0xa  canon.o [1]
+  .near.rodata       const    0x00a4a8     0xa  canon.o [1]
+  .near.rodata       const    0x00a4b2     0xa  Motor.o [1]
+                            - 0x00a4bc   0x43c
+
+"P4":                                   0x747a
+  .far_func.text     ro code  0x00a4bc  0x16bc  canon.o [1]
+  .far_func.text     ro code  0x00bb78  0x100f  Lcd.o [1]
+  .far_func.text     ro code  0x00cb87   0x6fe  canon.o [1]
+  .far_func.text     ro code  0x00d285   0x513  Funct.o [1]
+  .far_func.text     ro code  0x00d798   0x37c  Lcd.o [1]
+  .far_func.text     ro code  0x00db14   0x2e6  Funct.o [1]
+  .far_func.text     ro code  0x00ddfa   0x231  Lcd.o [1]
+  .far_func.text     ro code  0x00e02b   0x202  Key_Process.o [1]
+  .far_func.text     ro code  0x00e22d   0x1ff  Lcd.o [1]
+  .far_func.text     ro code  0x00e42c   0x1f3  Funct.o [1]
+  .far_func.text     ro code  0x00e61f   0x1d7  Init.o [1]
+  .far_func.text     ro code  0x00e7f6   0x1ad  canon.o [1]
+  .far_func.text     ro code  0x00e9a3   0x15c  stm8l15x_itc.o [1]
+  .far_func.text     ro code  0x00eaff   0x141  Key_Process.o [1]
+  .far_func.text     ro code  0x00ec40   0x13c  Key_Process.o [1]
+  .far_func.text     ro code  0x00ed7c   0x13b  Motor.o [1]
+  .far_func.text     ro code  0x00eeb7   0x139  canon.o [1]
+  .far_func.text     ro code  0x00eff0   0x12f  Motor.o [1]
+  .far_func.text     ro code  0x00f11f   0x126  Key_Process.o [1]
+  .far_func.text     ro code  0x00f245   0x11e  stm8l15x_exti.o [1]
+  .far_func.text     ro code  0x00f363    0xff  Change.o [1]
+  .far_func.text     ro code  0x00f462    0xfe  canon.o [1]
+  .far_func.text     ro code  0x00f560    0xed  Lcd.o [1]
+  .far_func.text     ro code  0x00f64d    0xe7  canon.o [1]
+  .far_func.text     ro code  0x00f734    0xe6  canon.o [1]
+  .far_func.text     ro code  0x00f81a    0xdf  canon.o [1]
+  .far_func.text     ro code  0x00f8f9    0xd2  Change.o [1]
+  .far_func.text     ro code  0x00f9cb    0xcc  vreg_util.o [4]
+  .far_func.text     ro code  0x00fa97    0xbc  Init.o [1]
+  .far_func.text     ro code  0x00fb53    0xb9  Funct.o [1]
+  .far_func.text     ro code  0x00fc0c    0xb9  Key_Process.o [1]
+  .far_func.text     ro code  0x00fcc5    0xb6  stm8l15x_gpio.o [1]
+  .far_func.text     ro code  0x00fd7b    0xac  Key_Process.o [1]
+  .far_func.text     ro code  0x00fe27    0xac  Key_Process.o [1]
+  .far_func.text     ro code  0x00fed3    0xa7  Lcd.o [1]
+  .far_func.text     ro code  0x00ff7a    0x9f  Task.o [1]
+  .far_func.text     ro code  0x010019    0x94  stm8l15x_clk.o [1]
+  .far_func.text     ro code  0x0100ad    0x8f  stm8l15x_dma.o [1]
+  .far_func.text     ro code  0x01013c    0x89  Change.o [1]
+  .far_func.text     ro code  0x0101c5    0x89  Task.o [1]
+  .far_func.text     ro code  0x01024e    0x80  Key_Process.o [1]
+  .far_func.text     ro code  0x0102ce    0x7e  canon.o [1]
+  .far_func.text     ro code  0x01034c    0x7b  Lcd.o [1]
+  .far_func.text     ro code  0x0103c7    0x76  Funct.o [1]
+  .far_func.text     ro code  0x01043d    0x73  Task.o [1]
+  .far_func.text     ro code  0x0104b0    0x6d  Task.o [1]
+  .far_func.text     ro code  0x01051d    0x6c  Motor.o [1]
+  .far_func.text     ro code  0x010589    0x69  Key_Process.o [1]
+  .far_func.text     ro code  0x0105f2    0x67  Key_Process.o [1]
+  .far_func.text     ro code  0x010659    0x60  Key_Process.o [1]
+  .far_func.text     ro code  0x0106b9    0x60  Lcd.o [1]
+  .far_func.text     ro code  0x010719    0x5e  Task.o [1]
+  .far_func.text     ro code  0x010777    0x5d  stm8l15x_tim3.o [1]
+  .far_func.text     ro code  0x0107d4    0x5d  stm8l15x_tim5.o [1]
+  .far_func.text     ro code  0x010831    0x56  canon.o [1]
+  .far_func.text     ro code  0x010887    0x56  Task.o [1]
+  .far_func.text     ro code  0x0108dd    0x55  long.o [4]
+  .far_func.text     ro code  0x010932    0x54  Key_Process.o [1]
+  .far_func.text     ro code  0x010986    0x54  Motor.o [1]
+  .far_func.text     ro code  0x0109da    0x53  Init.o [1]
+  .far_func.text     ro code  0x010a2d    0x4f  canon.o [1]
+  .far_func.text     ro code  0x010a7c    0x4d  canon.o [1]
+  .far_func.text     ro code  0x010ac9    0x4d  Change.o [1]
+  .far_func.text     ro code  0x010b16    0x4d  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x010b63    0x4c  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x010baf    0x4c  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x010bfb    0x49  canon.o [1]
+  .far_func.text     ro code  0x010c44    0x49  stm8l15x_dma.o [1]
+  .far_func.text     ro code  0x010c8d    0x46  short.o [4]
+  .far_func.text     ro code  0x010cd3    0x45  Lcd.o [1]
+  .far_func.text     ro code  0x010d18    0x43  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x010d5b    0x42  Init.o [1]
+  .far_func.text     ro code  0x010d9d    0x42  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x010ddf    0x42  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x010e21    0x41  Change.o [1]
+  .far_func.text     ro code  0x010e62    0x41  Lcd.o [1]
+  .far_func.text     ro code  0x010ea3    0x41  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x010ee4    0x3f  Task.o [1]
+  .far_func.text     ro code  0x010f23    0x3e  Change.o [1]
+  .far_func.text     ro code  0x010f61    0x3d  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x010f9e    0x3b  canon.o [1]
+  .far_func.text     ro code  0x010fd9    0x3b  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011014    0x3b  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01104f    0x39  canon.o [1]
+  .far_func.text     ro code  0x011088    0x39  Lcd.o [1]
+  .far_func.text     ro code  0x0110c1    0x38  main.o [1]
+  .far_func.text     ro code  0x0110f9    0x38  stm8l15x_flash.o [1]
+  .far_func.text     ro code  0x011131    0x37  Funct.o [1]
+  .far_func.text     ro code  0x011168    0x36  canon.o [1]
+  .far_func.text     ro code  0x01119e    0x34  canon.o [1]
+  .far_func.text     ro code  0x0111d2    0x34  canon.o [1]
+  .far_func.text     ro code  0x011206    0x34  canon.o [1]
+  .far_func.text     ro code  0x01123a    0x34  Lcd.o [1]
+  .far_func.text     ro code  0x01126e    0x34  main.o [1]
+  .far_func.text     ro code  0x0112a2    0x33  Change.o [1]
+  .far_func.text     ro code  0x0112d5    0x33  Funct.o [1]
+  .far_func.text     ro code  0x011308    0x31  Funct.o [1]
+  .far_func.text     ro code  0x011339    0x2d  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x011366    0x2b  Init.o [1]
+  .far_func.text     ro code  0x011391    0x2a  canon.o [1]
+  .far_func.text     ro code  0x0113bb    0x2a  stm8l15x_tim3.o [1]
+  .far_func.text     ro code  0x0113e5    0x2a  stm8l15x_tim5.o [1]
+  .far_func.text     ro code  0x01140f    0x29  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x011438    0x28  init_small.o [4]
+  .far_func.text     ro code  0x011460    0x27  stm8l15x_syscfg.o [1]
+  .far_func.text     ro code  0x011487    0x27  stm8l15x_tim2.o [1]
+  .far_func.text     ro code  0x0114ae    0x25  canon.o [1]
+  .far_func.text     ro code  0x0114d3    0x24  Key_Process.o [1]
+  .far_func.text     ro code  0x0114f7    0x22  canon.o [1]
+  .far_func.text     ro code  0x011519    0x22  stm8l15x_exti.o [1]
+  .far_func.text     ro code  0x01153b    0x20  Key_Process.o [1]
+  .far_func.text     ro code  0x01155b    0x1f  canon.o [1]
+  .far_func.text     ro code  0x01157a    0x1e  canon.o [1]
+  .far_func.text     ro code  0x011598    0x1e  init.o [4]
+  .far_func.text     ro code  0x0115b6    0x1e  init_small.o [4]
+  .far_func.text     ro code  0x0115d4    0x1c  Key_Process.o [1]
+  .far_func.text     ro code  0x0115f0    0x1c  Task.o [1]
+  .far_func.text     ro code  0x01160c    0x1c  far_util.o [4]
+  .far_func.text     ro code  0x011628    0x1b  main.o [1]
+  .far_func.text     ro code  0x011643    0x1a  canon.o [1]
+  .far_func.text     ro code  0x01165d    0x1a  Init.o [1]
+  .far_func.text     ro code  0x011677    0x1a  long_util.o [4]
+  .far_func.text     ro code  0x011691    0x1a  char.o [4]
+  .far_func.text     ro code  0x0116ab    0x19  Init.o [1]
+  .far_func.text     ro code  0x0116c4    0x19  stm8l15x_flash.o [1]
+  .far_func.text     ro code  0x0116dd    0x18  canon.o [1]
+  .far_func.text     ro code  0x0116f5    0x17  canon.o [1]
+  .far_func.text     ro code  0x01170c    0x17  cstartup.o [4]
+  .far_func.text     ro code  0x011723    0x17  memset.o [4]
+  .far_func.text     ro code  0x01173a    0x16  Key_Process.o [1]
+  .far_func.text     ro code  0x011750    0x16  __dbg_xxexit.o [3]
+  .far_func.text     ro code  0x011766    0x15  main.o [1]
+  .far_func.text     ro code  0x01177b    0x14  Lcd.o [1]
+  .far_func.text     ro code  0x01178f    0x12  stm8l15x_dma.o [1]
+  .far_func.text     ro code  0x0117a1    0x11  Init.o [1]
+  .far_func.text     ro code  0x0117b2    0x11  Lcd.o [1]
+  .far_func.text     ro code  0x0117c3    0x11  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x0117d4    0x11  stm8l15x_dma.o [1]
+  .far_func.text     ro code  0x0117e5    0x11  stm8l15x_tim3.o [1]
+  .far_func.text     ro code  0x0117f6    0x11  stm8l15x_tim5.o [1]
+  .far_func.text     ro code  0x011807    0x11  Task.o [1]
+  .far_func.text     ro code  0x011818    0x10  Funct.o [1]
+  .far_func.text     ro code  0x011828     0xf  Lcd.o [1]
+  .far_func.text     ro code  0x011837     0xe  stm8l15x_clk.o [1]
+  .far_func.text     ro code  0x011845     0xe  stm8l15x_dma.o [1]
+  .far_func.text     ro code  0x011853     0xe  stm8l15x_tim3.o [1]
+  .far_func.text     ro code  0x011861     0xe  stm8l15x_tim3.o [1]
+  .far_func.text     ro code  0x01186f     0xe  stm8l15x_tim5.o [1]
+  .far_func.text     ro code  0x01187d     0xe  stm8l15x_tim5.o [1]
+  .far_func.text     ro code  0x01188b     0xc  stm8l15x_flash.o [1]
+  .far_func.text     ro code  0x011897     0xc  switch.o [4]
+  .far_func.text     ro code  0x0118a3     0xb  stm8l15x_flash.o [1]
+  .far_func.text     ro code  0x0118ae     0xb  abs.o [4]
+  .far_func.text     ro code  0x0118b9     0xa  far.o [4]
+  .far_func.text     ro code  0x0118c3     0x9  canon.o [1]
+  .far_func.text     ro code  0x0118cc     0x9  Key_Process.o [1]
+  .far_func.text     ro code  0x0118d5     0x9  stm8l15x_tim2.o [1]
+  .far_func.text     ro code  0x0118de     0x8  stm8l15x_gpio.o [1]
+  .far_func.text     ro code  0x0118e6     0x7  stm8l15x_gpio.o [1]
+  .far_func.text     ro code  0x0118ed     0x6  cexit.o [4]
+  .far_func.text     ro code  0x0118f3     0x5  canon.o [1]
+  .far_func.text     ro code  0x0118f8     0x5  stm8l15x_adc.o [1]
+  .far_func.text     ro code  0x0118fd     0x4  stm8l15x_clk.o [1]
+  .far_func.text     ro code  0x011901     0x4  stm8l15x_clk.o [1]
+  .far_func.text     ro code  0x011905     0x4  stm8l15x_clk.o [1]
+  .far_func.text     ro code  0x011909     0x4  interrupt.o [4]
+  .far_func.text     ro code  0x01190d     0x4  exit.o [4]
+  .far_func.text     ro code  0x011911     0x3  stm8l15x_gpio.o [1]
+  .far_func.text     ro code  0x011914     0x3  low_level_init.o [4]
+  .far_func.text     ro code  0x011917     0x3  unhandled_exception.o [4]
+  .far_func.text     ro code  0x01191a     0x1  Key_Process.o [1]
+  .far_func.text     ro code  0x01191b     0x1  Key_Process.o [1]
+  .far_func.text     ro code  0x01191c     0x1  Key_Process.o [1]
+  .far_func.text     ro code  0x01191d     0x1  Key_Process.o [1]
+  .far_func.text     ro code  0x01191e     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01191f     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011920     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011921     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011922     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011923     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011924     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011925     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011926     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011927     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011928     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011929     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01192a     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01192b     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01192c     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01192d     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01192e     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x01192f     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011930     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011931     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011932     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011933     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011934     0x1  stm8l15x_it.o [1]
+  .far_func.text     ro code  0x011935     0x1  __dbg_break.o [3]
+                            - 0x011936  0x747a
+
+
+*******************************************************************************
+*** INIT TABLE
+***
+
+          Address   Size
+          -------   ----
+Zero (__iar_zero_init2)
+    1 destination range, total size 0x197:
+          0x000212  0x197
+
+Copy (__iar_copy_init2)
+    1 source range, total size 0x202:
+          0x00a080  0x202
+    1 destination range, total size 0x202:
+          0x000010  0x202
+
+
+
+*******************************************************************************
+*** MODULE SUMMARY
+***
+
+    Module                 ro code  ro data  rw data
+    ------                 -------  -------  -------
+C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj: [1]
+    Change.o                   857                20
+    Funct.o                  3 014       88      118
+    Init.o                     919               110
+    Key_Process.o            2 621       13       15
+    Lcd.o                    6 993                16
+    Motor.o                    810       91       13
+    Task.o                     808       48       54
+    canon.o                 10 318      824      581
+    main.o                     156                 2
+    stm8l15x_adc.o             337
+    stm8l15x_clk.o             174
+    stm8l15x_dma.o             265
+    stm8l15x_exti.o            320
+    stm8l15x_flash.o           104
+    stm8l15x_gpio.o            200
+    stm8l15x_it.o              466
+    stm8l15x_itc.o             348
+    stm8l15x_syscfg.o           39
+    stm8l15x_tim2.o             48
+    stm8l15x_tim3.o            180
+    stm8l15x_tim5.o            180
+    ------------------------------------------------
+    Total:                  29 157    1 064      929
+
+command line: [2]
+    ------------------------------------------------
+    Total:
+
+dbgstm8mmd.a: [3]
+    __dbg_break.o                1
+    __dbg_xxexit.o              22
+    ------------------------------------------------
+    Total:                      23
+
+dlstm8mmn.a: [4]
+    abs.o                       11
+    cexit.o                      6
+    char.o                      26
+    cstartup.o                  23
+    exit.o                       4
+    far.o                       10
+    far_util.o                  28
+    init.o                      30
+    init_small.o                70
+    interrupt.o                  4      128
+    long.o                      85
+    long_util.o                 26
+    low_level_init.o             3
+    memset.o                    23
+    short.o                     70
+    switch.o                    12
+    unhandled_exception.o        3
+    vreg_util.o                204
+    vregs.o                                       16
+    ------------------------------------------------
+    Total:                     638      128       16
+
+    Linker created                       20      512
+----------------------------------------------------
+    Grand Total:            29 818    1 212    1 457
+
+
+*******************************************************************************
+*** ENTRY LIST
+***
+
+Entry                    Address    Size  Type      Object
+-----                    -------    ----  ----      ------
+.iar.init_table$$Base   0x00a447           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x00a45b           --   Gb  - Linker created -
+?b0                     0x000000          Data  Gb  vregs.o [4]
+?b1                     0x000001          Data  Gb  vregs.o [4]
+?b10                    0x00000a          Data  Gb  vregs.o [4]
+?b11                    0x00000b          Data  Gb  vregs.o [4]
+?b12                    0x00000c          Data  Gb  vregs.o [4]
+?b13                    0x00000d          Data  Gb  vregs.o [4]
+?b14                    0x00000e          Data  Gb  vregs.o [4]
+?b15                    0x00000f          Data  Gb  vregs.o [4]
+?b2                     0x000002          Data  Gb  vregs.o [4]
+?b3                     0x000003          Data  Gb  vregs.o [4]
+?b4                     0x000004          Data  Gb  vregs.o [4]
+?b5                     0x000005          Data  Gb  vregs.o [4]
+?b6                     0x000006          Data  Gb  vregs.o [4]
+?b7                     0x000007          Data  Gb  vregs.o [4]
+?b8                     0x000008          Data  Gb  vregs.o [4]
+?b9                     0x000009          Data  Gb  vregs.o [4]
+?dec32_0x_0x            0x0108f5          Code  Gb  long.o [4]
+?dec32_l2_l2            0x0108f0          Code  Gb  long.o [4]
+?e0                     0x000001          Data  Gb  vregs.o [4]
+?e1                     0x000005          Data  Gb  vregs.o [4]
+?e2                     0x000009          Data  Gb  vregs.o [4]
+?e3                     0x00000d          Data  Gb  vregs.o [4]
+?epilogue_l2            0x00fa4b          Code  Gb  vreg_util.o [4]
+?epilogue_l2_l3         0x00fa47          Code  Gb  vreg_util.o [4]
+?epilogue_w4            0x00fa50          Code  Gb  vreg_util.o [4]
+?inc32_0x_0x            0x0108e2          Code  Gb  long.o [4]
+?inc32_l0_l0            0x0108dd          Code  Gb  long.o [4]
+?l0                     0x000000          Data  Gb  vregs.o [4]
+?l1                     0x000004          Data  Gb  vregs.o [4]
+?l2                     0x000008          Data  Gb  vregs.o [4]
+?l3                     0x00000c          Data  Gb  vregs.o [4]
+?load24_e0_0x           0x01160c          Code  Gb  far_util.o [4]
+?load24_e1_0x           0x01161a          Code  Gb  far_util.o [4]
+?load32_0x_l0           0x011683          Code  Gb  long_util.o [4]
+?load32_l0_0x           0x011677          Code  Gb  long_util.o [4]
+?mov_e0_e2              0x00fa5f          Code  Gb  vreg_util.o [4]
+?mov_e0_e3              0x00fa6c          Code  Gb  vreg_util.o [4]
+?mov_e2_e0              0x00fa80          Code  Gb  vreg_util.o [4]
+?mov_e3_e0              0x00fa8d          Code  Gb  vreg_util.o [4]
+?mov_l0_l2              0x00fa5c          Code  Gb  vreg_util.o [4]
+?mov_l0_l3              0x00fa69          Code  Gb  vreg_util.o [4]
+?mov_l2_l0              0x00fa7d          Code  Gb  vreg_util.o [4]
+?mov_l3_l0              0x00fa8a          Code  Gb  vreg_util.o [4]
+?mov_w1_w4              0x00fa55          Code  Gb  vreg_util.o [4]
+?mov_w1_w5              0x00fa62          Code  Gb  vreg_util.o [4]
+?mov_w1_w7              0x00fa6f          Code  Gb  vreg_util.o [4]
+?mov_w3_w1              0x00fa76          Code  Gb  vreg_util.o [4]
+?mov_w5_w1              0x00fa83          Code  Gb  vreg_util.o [4]
+?mov_w7_w1              0x00fa90          Code  Gb  vreg_util.o [4]
+?mul16_x_x_w0           0x010c8d          Code  Gb  short.o [4]
+?pop_l2                 0x00fa25          Code  Gb  vreg_util.o [4]
+?pop_l3                 0x00fa30          Code  Gb  vreg_util.o [4]
+?pop_w4                 0x00f9e7          Code  Gb  vreg_util.o [4]
+?push_l2                0x00f9fa          Code  Gb  vreg_util.o [4]
+?push_l3                0x00f9ff          Code  Gb  vreg_util.o [4]
+?push_w4                0x00f9cb          Code  Gb  vreg_util.o [4]
+?sdiv16_x_x_y           0x010cab          Code  Gb  short.o [4]
+?sext16_x_a             0x010ccc          Code  Gb  short.o [4]
+?sll16_x_x_a            0x010cc4          Code  Gb  short.o [4]
+?smod8_a_b0_a           0x011691          Code  Gb  char.o [4]
+?srl32_0x_0x_a          0x010924          Code  Gb  long.o [4]
+?srl32_l0_l0_a          0x010921          Code  Gb  long.o [4]
+?srl8_a_a_5             0x0116a6          Code  Gb  char.o [4]
+?srl8_a_a_6             0x0116a5          Code  Gb  char.o [4]
+?sub32_l0_l0_0x         0x010909          Code  Gb  long.o [4]
+?switch8vlt_0x_a_0x     0x011897          Code  Gb  switch.o [4]
+?ucmp24_c_0x_e0         0x0118b9          Code  Gb  far.o [4]
+?w0                     0x000000          Data  Gb  vregs.o [4]
+?w1                     0x000002          Data  Gb  vregs.o [4]
+?w2                     0x000004          Data  Gb  vregs.o [4]
+?w3                     0x000006          Data  Gb  vregs.o [4]
+?w4                     0x000008          Data  Gb  vregs.o [4]
+?w5                     0x00000a          Data  Gb  vregs.o [4]
+?w6                     0x00000c          Data  Gb  vregs.o [4]
+?w7                     0x00000e          Data  Gb  vregs.o [4]
+ADC1_COMP_IRQHandler    0x01192c     0x1  Code  Gb  stm8l15x_it.o [1]
+ADC_Buffer              0x000212    0x6e  Data  Gb  Init.o [1]
+ADC_ChannelCmd          0x010b63    0x4c  Code  Gb  stm8l15x_adc.o [1]
+ADC_Cmd                 0x0117c3    0x11  Code  Gb  stm8l15x_adc.o [1]
+ADC_Config              0x00fa97    0xbc  Code  Gb  Init.o [1]
+ADC_DMACmd              0x011339    0x2d  Code  Gb  stm8l15x_adc.o [1]
+ADC_Init                0x01140f    0x29  Code  Gb  stm8l15x_adc.o [1]
+ADC_SamplingTimeConfig  0x010b16    0x4d  Code  Gb  stm8l15x_adc.o [1]
+ADC_SchmittTriggerConfig
+                        0x010baf    0x4c  Code  Gb  stm8l15x_adc.o [1]
+ADC_SoftwareStartConv   0x0118f8     0x5  Code  Gb  stm8l15x_adc.o [1]
+ADC_VALUE               0x000353     0xa  Data  Gb  Change.o [1]
+Average_math_filter     0x010ac9    0x4d  Code  Gb  Change.o [1]
+BEEP_CAP_LOW_ONCE       0x00039a     0x1  Data  Gb  Change.o [1]
+BEEP_CAP_ONCE           0x000398     0x1  Data  Gb  Change.o [1]
+BEEP_TEMP_ONCE          0x000399     0x1  Data  Gb  Change.o [1]
+BeepFlag                0x00036b     0x3  Data  Gb  Funct.o [1]
+Beep_Mode_Handle        0x00db14   0x2e6  Code  Gb  Funct.o [1]
+Beep_Mode_TypeDef       0x00039f     0x1  Data  Gb  Funct.o [1]
+BuzLock_Hndler          0x01177b    0x14  Code  Lc  Lcd.o [1]
+CLK_Config              0x01165d    0x1a  Code  Gb  Init.o [1]
+CLK_GetSYSCLKSource     0x011901     0x4  Code  Gb  stm8l15x_clk.o [1]
+CLK_PeripheralClockConfig
+                        0x010019    0x94  Code  Gb  stm8l15x_clk.o [1]
+CLK_SYSCLKDivConfig     0x011905     0x4  Code  Gb  stm8l15x_clk.o [1]
+CLK_SYSCLKSourceConfig  0x0118fd     0x4  Code  Gb  stm8l15x_clk.o [1]
+CLK_SYSCLKSourceSwitchCmd
+                        0x011837     0xe  Code  Gb  stm8l15x_clk.o [1]
+CSTACK$$Base            0x000e00           --   Gb  - Linker created -
+CSTACK$$Limit           0x001000           --   Gb  - Linker created -
+CalcSum                 0x011391    0x2a  Code  Gb  canon.o [1]
+CameraCfnSet            0x010831    0x56  Code  Gb  canon.o [1]
+Camera_Link_Canon       0x00e42c   0x1f3  Code  Gb  Funct.o [1]
+Camera_Zoom_Data        0x00a489     0xb  Data  Gb  Motor.o [1]
+CanResetMod             0x0116dd    0x18  Code  Gb  canon.o [1]
+CannonApertVal          0x00a327    0x4c  Data  Gb  canon.o [1]
+Cannon_Camera_Zoom_Handler
+                        0x010986    0x54  Code  Gb  Motor.o [1]
+Canon_Link_Camera       0x00d285   0x513  Code  Gb  Funct.o [1]
+Change_Cap              0x01013c    0x89  Code  Gb  Change.o [1]
+Check_Lamp_Temp         0x00f8f9    0xd2  Code  Gb  Change.o [1]
+CodeAnalysis            0x00a4bc  0x16bc  Code  Gb  canon.o [1]
+ComMonitor              0x010ee4    0x3f  Code  Gb  Task.o [1]
+DMA1_CHANNEL0_1_IRQHandler
+                        0x010ea3    0x41  Code  Gb  stm8l15x_it.o [1]
+DMA1_CHANNEL2_3_IRQHandler
+                        0x011920     0x1  Code  Gb  stm8l15x_it.o [1]
+DMA_Callback            0x010e21    0x41  Code  Gb  Change.o [1]
+DMA_ClearITPendingBit   0x010c44    0x49  Code  Gb  stm8l15x_dma.o [1]
+DMA_Cmd                 0x0117d4    0x11  Code  Gb  stm8l15x_dma.o [1]
+DMA_Config              0x0109da    0x53  Code  Gb  Init.o [1]
+DMA_GlobalCmd           0x011845     0xe  Code  Gb  stm8l15x_dma.o [1]
+DMA_ITConfig            0x01178f    0x12  Code  Gb  stm8l15x_dma.o [1]
+DMA_Init                0x0100ad    0x8f  Code  Gb  stm8l15x_dma.o [1]
+DisPlay_M_Gear          0x00bb78  0x100f  Code  Lc  Lcd.o [1]
+Display_Multi_Hz        0x00e22d   0x1ff  Code  Lc  Lcd.o [1]
+Display_Multi_Times     0x00d798   0x37c  Code  Lc  Lcd.o [1]
+Display_Zoom            0x00ddfa   0x231  Code  Lc  Lcd.o [1]
+DitherlessKey           0x00f11f   0x126  Code  Gb  Key_Process.o [1]
+EEPROM_DATA1            0x001000     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA2            0x001001     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA4            0x001002     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA5            0x001003     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA6            0x001004     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA7            0x001005     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA8            0x001006     0x1  Data  Gb  Funct.o [1]
+EEPROM_DATA9            0x001007     0x1  Data  Gb  Funct.o [1]
+EXTI0_IRQHandler        0x011925     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI1_IRQHandler        0x010d9d    0x42  Code  Gb  stm8l15x_it.o [1]
+EXTI2_IRQHandler        0x011926     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI3_IRQHandler        0x011927     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI4_IRQHandler        0x010ddf    0x42  Code  Gb  stm8l15x_it.o [1]
+EXTI5_IRQHandler        0x010d18    0x43  Code  Gb  stm8l15x_it.o [1]
+EXTI6_IRQHandler        0x011928     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI7_IRQHandler        0x011929     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTIB_G_IRQHandler      0x011923     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTID_H_IRQHandler      0x011924     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTIE_F_PVD_IRQHandler  0x011922     0x1  Code  Gb  stm8l15x_it.o [1]
+EXTI_ClearITPendingBit  0x011519    0x22  Code  Gb  stm8l15x_exti.o [1]
+EXTI_SetPinSensitivity  0x00f245   0x11e  Code  Gb  stm8l15x_exti.o [1]
+FLASH_IRQHandler        0x01191f     0x1  Code  Gb  stm8l15x_it.o [1]
+FLASH_Lock              0x0118a3     0xb  Code  Gb  stm8l15x_flash.o [1]
+FLASH_ProgramByte       0x01188b     0xc  Code  Gb  stm8l15x_flash.o [1]
+FLASH_Unlock            0x0116c4    0x19  Code  Gb  stm8l15x_flash.o [1]
+FLASH_WaitForLastOperation
+                        0x0110f9    0x38  Code  Gb  stm8l15x_flash.o [1]
+FlashHandle             0x00e7f6   0x1ad  Code  Gb  canon.o [1]
+Flash_Output_Typedef    0x00017e     0x1  Data  Gb  Funct.o [1]
+Flash_Time_Group        0x00002d   0x150  Data  Gb  canon.o [1]
+Flash_Time_out          0x010a2d    0x4f  Code  Gb  canon.o [1]
+Flash_offset            0x000395     0x1  Data  Gb  canon.o [1]
+Formalfrash             0x010a7c    0x4d  Code  Gb  canon.o [1]
+GPIO_Config             0x00e61f   0x1d7  Code  Gb  Init.o [1]
+GPIO_Init               0x00fcc5    0xb6  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_Pin_1_Callback     0x00fb53    0xb9  Code  Gb  Funct.o [1]
+GPIO_Pin_4_Callback     0x00eeb7   0x139  Code  Gb  canon.o [1]
+GPIO_Pin_5_Callback     0x0118f3     0x5  Code  Gb  canon.o [1]
+GPIO_ReadInputDataBit   0x011911     0x3  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_ResetBits          0x0118de     0x8  Code  Gb  stm8l15x_gpio.o [1]
+GPIO_SetBits            0x0118e6     0x7  Code  Gb  stm8l15x_gpio.o [1]
+GetMotoStdIndex         0x010f9e    0x3b  Code  Gb  canon.o [1]
+GetParameter            0x00cb87   0x6fe  Code  Gb  canon.o [1]
+HAL_SYSTICK_Callback    0x011807    0x11  Code  Gb  Task.o [1]
+I2C1_SPI2_IRQHandler    0x011934     0x1  Code  Gb  stm8l15x_it.o [1]
+INTVEC$$Base            0x00a000           --   Gb  - Linker created -
+INTVEC$$Limit           0x00a080           --   Gb  - Linker created -
+ITC_Config              0x011366    0x2b  Code  Gb  Init.o [1]
+ITC_SetSoftwarePriority
+                        0x00e9a3   0x15c  Code  Gb  stm8l15x_itc.o [1]
+InitExtIntPort          0x0114f7    0x22  Code  Gb  canon.o [1]
+KeyDownCallBack         0x0105f2    0x67  Code  Gb  Key_Process.o [1]
+KeyUpCallBack           0x0118cc     0x9  Code  Gb  Key_Process.o [1]
+Key_Beep_Srt            0x0114d3    0x24  Code  Gb  Key_Process.o [1]
+Key_Flag                0x0003a5     0x1  Data  Gb  Key_Process.o [1]
+Key_Pilot_Str           0x01024e    0x80  Code  Gb  Key_Process.o [1]
+Key_Power_Long_Str      0x010589    0x69  Code  Gb  Key_Process.o [1]
+Key_Power_Str           0x01173a    0x16  Code  Gb  Key_Process.o [1]
+Key_Proc                0x01153b    0x20  Code  Gb  Key_Process.o [1]
+Key_S2_Long_Str         0x01191a     0x1  Code  Gb  Key_Process.o [1]
+Key_S2_Str              0x00fd7b    0xac  Code  Gb  Key_Process.o [1]
+Key_S3_Long_Str         0x01191d     0x1  Code  Gb  Key_Process.o [1]
+Key_S3_Str              0x00eaff   0x141  Code  Gb  Key_Process.o [1]
+Key_S4_Long_Str         0x01191b     0x1  Code  Gb  Key_Process.o [1]
+Key_S4_Str              0x00fe27    0xac  Code  Gb  Key_Process.o [1]
+Key_S5_Long_Str         0x01191c     0x1  Code  Gb  Key_Process.o [1]
+Key_S5_Str              0x00e02b   0x202  Code  Gb  Key_Process.o [1]
+Key_S6_Str              0x010659    0x60  Code  Gb  Key_Process.o [1]
+Key_S7_Long_Str         0x0115d4    0x1c  Code  Gb  Key_Process.o [1]
+Key_S7_Str              0x010932    0x54  Code  Gb  Key_Process.o [1]
+Key_SET_Function_Typedef
+                        0x00039c     0x1  Data  Gb  Funct.o [1]
+Key_Scan                0x00fc0c    0xb9  Code  Gb  Key_Process.o [1]
+Key_Stroke              0x00ec40   0x13c  Code  Gb  Key_Process.o [1]
+LCD_AES_IRQHandler      0x01192a     0x1  Code  Gb  stm8l15x_it.o [1]
+LCD_Data                0x00032b    0x10  Data  Gb  Lcd.o [1]
+LCD_Dis_All_Clear       0x011828     0xf  Code  Gb  Lcd.o [1]
+LCD_Display             0x0117b2    0x11  Code  Gb  Lcd.o [1]
+LCD_Handler             0x0106b9    0x60  Code  Lc  Lcd.o [1]
+Lamp_Temp_TypeDef       0x0003a0     0x1  Data  Gb  Funct.o [1]
+Low_Batt_Check          0x00f363    0xff  Code  Gb  Change.o [1]
+M_SCALE_Group           0x000011    0x1c  Data  Gb  canon.o [1]
+M_Zoom_TypeDef          0x00039e     0x1  Data  Gb  Funct.o [1]
+Mode_Handler            0x00f560    0xed  Code  Lc  Lcd.o [1]
+Moto_Operation          0x00ed7c   0x13b  Code  Gb  Motor.o [1]
+Moto_Zoom_Data          0x00a4b2     0xa  Data  Gb  Motor.o [1]
+Motor_Contorl           0x00eff0   0x12f  Code  Gb  Motor.o [1]
+Motor_Contorl_TypeDef   0x000382     0x2  Data  Gb  Motor.o [1]
+Motor_Manger_TypeDef    0x000348     0xb  Data  Gb  Motor.o [1]
+Motor_Oper              0x01051d    0x6c  Code  Gb  Motor.o [1]
+Motor_Step_Data         0x00a424    0x23  Data  Gb  Motor.o [1]
+Motor_Value_Data        0x00a401    0x23  Data  Gb  Motor.o [1]
+Multi_Freq_TypeDef      0x000180     0x1  Data  Gb  Funct.o [1]
+Multi_Handler           0x00fed3    0xa7  Code  Lc  Lcd.o [1]
+Multi_Output_MAX        0x0003a6     0x1  Data  Gb  Key_Process.o [1]
+Multi_Output_Typedef    0x00017f     0x1  Data  Gb  Funct.o [1]
+Multi_Times_TypeDef     0x000181     0x1  Data  Gb  Funct.o [1]
+Multiflash              0x01104f    0x39  Code  Gb  canon.o [1]
+Multifrash              0x011206    0x34  Code  Gb  canon.o [1]
+Multifrash_Handle       0x00f734    0xe6  Code  Gb  canon.o [1]
+RTC_CSSLSE_IRQHandler   0x011921     0x1  Code  Gb  stm8l15x_it.o [1]
+Read_EepromData         0x011308    0x31  Code  Gb  Funct.o [1]
+Region$$Table$$Base     0x00a447           --   Gb  - Linker created -
+Region$$Table$$Limit    0x00a45b           --   Gb  - Linker created -
+SPI1_IRQHandler         0x011014    0x3b  Code  Gb  stm8l15x_it.o [1]
+SPI1_IT_Callback        0x00f81a    0xdf  Code  Gb  canon.o [1]
+SPI1_Init               0x0114ae    0x25  Code  Gb  canon.o [1]
+SWITCH_CSS_BREAK_DAC_IRQHandler
+                        0x01192b     0x1  Code  Gb  stm8l15x_it.o [1]
+SYSCFG_REMAPDMAChannelConfig
+                        0x011460    0x27  Code  Gb  stm8l15x_syscfg.o [1]
+Save_EepromData         0x0103c7    0x76  Code  Gb  Funct.o [1]
+SckIntHandle            0x010bfb    0x49  Code  Lc  canon.o [1]
+SetSckInt               0x01119e    0x34  Code  Gb  canon.o [1]
+SetSpiTrans             0x01155b    0x1f  Code  Gb  canon.o [1]
+SetSpioOn               0x0118c3     0x9  Code  Gb  canon.o [1]
+Slave_Flag              0x0003a2     0x1  Data  Gb  Funct.o [1]
+Slave_S2_Count          0x0003a1     0x1  Data  Gb  Funct.o [1]
+Slave_S2_TimeOut        0x0112d5    0x33  Code  Gb  Funct.o [1]
+Slave_time_count        0x0003a3     0x1  Data  Gb  Funct.o [1]
+SpiRearUp               0x01157a    0x1e  Code  Gb  canon.o [1]
+SpiTimerOut             0x011643    0x1a  Code  Gb  canon.o [1]
+StartSpiTrans           0x0116f5    0x17  Code  Lc  canon.o [1]
+Start_Flash             0x0102ce    0x7e  Code  Gb  canon.o [1]
+SysInfo                 0x00035d     0xa  Data  Gb  Funct.o [1]
+SysTicks                0x01126e    0x34  Code  Gb  main.o [1]
+Sys_Init                0x011766    0x15  Code  Gb  main.o [1]
+Sys_Mode_Typedef        0x00017d     0x1  Data  Gb  Funct.o [1]
+TIM1_CC_IRQHandler      0x011931     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM1_UPD_OVF_TRG_COM_IRQHandler
+                        0x011930     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM2_CC_USART2_RX_IRQHandler
+                        0x01192d     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM2_ClearITPendingBit  0x0118d5     0x9  Code  Gb  stm8l15x_tim2.o [1]
+TIM2_Config             0x0117a1    0x11  Code  Gb  Init.o [1]
+TIM2_GetCounter         0x011487    0x27  Code  Gb  stm8l15x_tim2.o [1]
+TIM2_UPD_OVF_TRG_BRK_USART2_TX_IRQHandler
+                        0x010f61    0x3d  Code  Gb  stm8l15x_it.o [1]
+TIM3_CC_USART3_RX_IRQHandler
+                        0x01192f     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM3_ClearFlag          0x0117e5    0x11  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_Cmd                0x011853     0xe  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_Config             0x010d5b    0x42  Code  Gb  Init.o [1]
+TIM3_CtrlPWMOutputs     0x011861     0xe  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_OC2Init            0x010777    0x5d  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_TimeBaseInit       0x0113bb    0x2a  Code  Gb  stm8l15x_tim3.o [1]
+TIM3_UPD_OVF_TRG_BRK_USART3_TX_IRQHandler
+                        0x01192e     0x1  Code  Gb  stm8l15x_it.o [1]
+TIM4_Callback           0x0111d2    0x34  Code  Gb  canon.o [1]
+TIM4_Config             0x0116ab    0x19  Code  Gb  Init.o [1]
+TIM4_UPD_OVF_TRG_IRQHandler
+                        0x010fd9    0x3b  Code  Gb  stm8l15x_it.o [1]
+TIM5_ClearFlag          0x0117f6    0x11  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_Cmd                0x01186f     0xe  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_Config             0x0112a2    0x33  Code  Gb  Change.o [1]
+TIM5_CtrlPWMOutputs     0x01187d     0xe  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_OC1Init            0x0107d4    0x5d  Code  Gb  stm8l15x_tim5.o [1]
+TIM5_TimeBaseInit       0x0113e5    0x2a  Code  Gb  stm8l15x_tim5.o [1]
+TM1621WrAllData         0x010e62    0x41  Code  Gb  Lcd.o [1]
+TM1621WrCmd             0x01123a    0x34  Code  Gb  Lcd.o [1]
+TM1621Wr_Data           0x011088    0x39  Code  Lc  Lcd.o [1]
+TM1621_Init             0x010cd3    0x45  Code  Gb  Lcd.o [1]
+TRAP_IRQHandler         0x01191e     0x1  Code  Gb  stm8l15x_it.o [1]
+TTL_Ev_TypeDef          0x00039d     0x1  Data  Gb  Funct.o [1]
+TTL_Prefrash            0x00f64d    0xe7  Code  Gb  canon.o [1]
+T_Multi_Freq            0x00018d    0x29  Data  Gb  Funct.o [1]
+T_Multi_Times           0x0001b6    0x1f  Data  Gb  Funct.o [1]
+T_Zoom_Group            0x000182     0xb  Data  Gb  Funct.o [1]
+TaskComps               0x0001e2    0x30  Data  Lc  Task.o [1]
+TaskProcess             0x010887    0x56  Code  Gb  Task.o [1]
+TaskRemarks             0x00ff7a    0x9f  Code  Gb  Task.o [1]
+Task_1                  0x010719    0x5e  Code  Gb  Task.o [1]
+Task_2                  0x0101c5    0x89  Code  Gb  Task.o [1]
+Task_3                  0x0115f0    0x1c  Code  Gb  Task.o [1]
+Task_4                  0x0104b0    0x6d  Code  Gb  Task.o [1]
+Task_5                  0x01043d    0x73  Code  Gb  Task.o [1]
+USART1_RX_TIM5_CC_IRQHandler
+                        0x011933     0x1  Code  Gb  stm8l15x_it.o [1]
+USART1_TX_TIM5_UPD_OVF_TRG_BRK_IRQHandler
+                        0x011932     0x1  Code  Gb  stm8l15x_it.o [1]
+UserInit                0x00f462    0xfe  Code  Gb  canon.o [1]
+WaitCmrHandle           0x011168    0x36  Code  Gb  canon.o [1]
+Zoom_Handler            0x01034c    0x7b  Code  Lc  Lcd.o [1]
+__DebugBreak            0x011935     0x1  Code  Gb  __dbg_break.o [3]
+__eeprom_write_8        0x011131    0x37  Code  Gb  Funct.o [1]
+__exit                  0x011750    0x16  Code  Gb  __dbg_xxexit.o [3]
+__iar_copy_init2        0x011438          Code  Gb  init_small.o [4]
+__iar_data_init2        0x011598    0x1e  Code  Gb  init.o [4]
+__iar_program_start     0x01170c          Code  Gb  cstartup.o [4]
+__iar_unhandled_exception
+                        0x011917          Code  Gb  unhandled_exception.o [4]
+__iar_zero_init2        0x0115b6          Code  Gb  init_small.o [4]
+__intvec                0x00a000          Data  Gb  interrupt.o [4]
+__low_level_init        0x011914     0x3  Code  Gb  low_level_init.o [4]
+_exit                   0x0118ed          Code  Gb  cexit.o [4]
+_interrupt_1            0x01191e          Code  Gb  stm8l15x_it.o [1]
+_interrupt_10           0x011925          Code  Gb  stm8l15x_it.o [1]
+_interrupt_11           0x010d9d          Code  Gb  stm8l15x_it.o [1]
+_interrupt_12           0x011926          Code  Gb  stm8l15x_it.o [1]
+_interrupt_13           0x011927          Code  Gb  stm8l15x_it.o [1]
+_interrupt_14           0x010ddf          Code  Gb  stm8l15x_it.o [1]
+_interrupt_15           0x010d18          Code  Gb  stm8l15x_it.o [1]
+_interrupt_16           0x011928          Code  Gb  stm8l15x_it.o [1]
+_interrupt_17           0x011929          Code  Gb  stm8l15x_it.o [1]
+_interrupt_18           0x01192a          Code  Gb  stm8l15x_it.o [1]
+_interrupt_19           0x01192b          Code  Gb  stm8l15x_it.o [1]
+_interrupt_20           0x01192c          Code  Gb  stm8l15x_it.o [1]
+_interrupt_21           0x010f61          Code  Gb  stm8l15x_it.o [1]
+_interrupt_22           0x01192d          Code  Gb  stm8l15x_it.o [1]
+_interrupt_23           0x01192e          Code  Gb  stm8l15x_it.o [1]
+_interrupt_24           0x01192f          Code  Gb  stm8l15x_it.o [1]
+_interrupt_25           0x011930          Code  Gb  stm8l15x_it.o [1]
+_interrupt_26           0x011931          Code  Gb  stm8l15x_it.o [1]
+_interrupt_27           0x010fd9          Code  Gb  stm8l15x_it.o [1]
+_interrupt_28           0x011014          Code  Gb  stm8l15x_it.o [1]
+_interrupt_29           0x011932          Code  Gb  stm8l15x_it.o [1]
+_interrupt_3            0x01191f          Code  Gb  stm8l15x_it.o [1]
+_interrupt_30           0x011933          Code  Gb  stm8l15x_it.o [1]
+_interrupt_31           0x011934          Code  Gb  stm8l15x_it.o [1]
+_interrupt_4            0x010ea3          Code  Gb  stm8l15x_it.o [1]
+_interrupt_5            0x011920          Code  Gb  stm8l15x_it.o [1]
+_interrupt_6            0x011921          Code  Gb  stm8l15x_it.o [1]
+_interrupt_7            0x011922          Code  Gb  stm8l15x_it.o [1]
+_interrupt_8            0x011923          Code  Gb  stm8l15x_it.o [1]
+_interrupt_9            0x011924          Code  Gb  stm8l15x_it.o [1]
+abs                     0x0118ae     0xb  Code  Gb  abs.o [4]
+cfnCntMask              0x00a45b    0x18  Data  Gb  canon.o [1]
+comm_state              0x000376     0x2  Data  Gb  canon.o [1]
+compensation_table      0x00a3dc    0x25  Data  Gb  canon.o [1]
+delay_time              0x011818    0x10  Code  Gb  Funct.o [1]
+exit                    0x01190d     0x4  Code  Gb  exit.o [4]
+feb_table               0x00a4a8     0xa  Data  Gb  canon.o [1]
+flaPara                 0x000280    0x21  Data  Gb  canon.o [1]
+focLenCode              0x00a49e     0xa  Data  Gb  canon.o [1]
+focLenScape             0x00a494     0xa  Data  Gb  canon.o [1]
+g_AfIndex               0x000393     0x1  Data  Gb  canon.o [1]
+g_KeyInfo1              0x0001d5     0xd  Data  Lc  Key_Process.o [1]
+g_SettingIndex          0x000385     0x1  Data  Gb  canon.o [1]
+g_canCmrLink            0x000394     0x1  Data  Gb  canon.o [1]
+g_canComStatue          0x000384     0x1  Data  Gb  canon.o [1]
+g_cfnOption             0x00036e     0x2  Data  Gb  canon.o [1]
+g_chargeOk              0x000010     0x1  Data  Gb  canon.o [1]
+g_cmdMode               0x000372     0x2  Data  Gb  canon.o [1]
+g_cmrLinked             0x000388     0x1  Data  Gb  canon.o [1]
+g_cmrPressed            0x00038f     0x1  Data  Gb  canon.o [1]
+g_dspUpdateFlag         0x000370     0x2  Data  Gb  canon.o [1]
+g_flashEnable           0x00038a     0x1  Data  Gb  canon.o [1]
+g_getTtlFlashCode       0x000391     0x1  Data  Gb  canon.o [1]
+g_isFullFrame           0x000390     0x1  Data  Gb  canon.o [1]
+g_shutterFlag           0x00038b     0x1  Data  Gb  canon.o [1]
+g_sleepTag              0x000389     0x1  Data  Gb  canon.o [1]
+g_spiRcvData            0x0002a1    0x1e  Data  Gb  canon.o [1]
+g_spiRcvIndex           0x00038e     0x1  Data  Gb  canon.o [1]
+g_spiRcvTotal           0x00038c     0x1  Data  Gb  canon.o [1]
+g_spiSendData           0x0002bf    0x1e  Data  Gb  canon.o [1]
+g_spiSendIndex          0x00038d     0x1  Data  Gb  canon.o [1]
+g_sysTick               0x000380     0x2  Data  Gb  main.o [1]
+g_tmHandleFlag          0x000387     0x1  Data  Gb  canon.o [1]
+g_vCmr                  0x000386     0x1  Data  Gb  canon.o [1]
+g_volRef                0x00037a     0x2  Data  Gb  Change.o [1]
+getVolLevel             0x010f23    0x3e  Code  Gb  Change.o [1]
+get_counter             0x011628    0x1b  Code  Gb  main.o [1]
+main                    0x0110c1    0x38  Code  Gb  main.o [1]
+mainPara                0x0002dd    0x1c  Data  Gb  canon.o [1]
+memset                  0x011723    0x17  Code  Gb  memset.o [4]
+menuPara                0x000313    0x18  Data  Gb  canon.o [1]
+motoSet                 0x0002f9    0x1a  Data  Gb  canon.o [1]
+mstPara                 0x000374     0x2  Data  Gb  canon.o [1]
+multiSet                0x00033b     0xd  Data  Gb  canon.o [1]
+output_table            0x00a473    0x16  Data  Gb  canon.o [1]
+ttl_expCodeRsv          0x000392     0x1  Data  Gb  canon.o [1]
+uwTick                  0x000367     0x4  Data  Gb  Task.o [1]
+
+
+[1] = C:\Users\freeman\Documents\work\NEWER\prj\STM8L052_(20190219)\STM8L052_CANON\Project\Debug\Obj
+[2] = command line
+[3] = dbgstm8mmd.a
+[4] = dlstm8mmn.a
+
+  29 818 bytes of readonly  code memory
+   1 212 bytes of readonly  data memory
+   1 457 bytes of readwrite data memory
+
+Errors: none
+Warnings: none
